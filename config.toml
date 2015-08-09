@@ -1,7 +1,7 @@
 # Site settings
 baseurl = "http://replace-this-with-your-hugo-site.com/"
 languageCode = "en-us"
-title = "Hugo Artists Theme"
+title = "josdem"
 theme = "hugo-artists-theme"
 
 [params]
@@ -25,7 +25,7 @@ theme = "hugo-artists-theme"
     # - send a dummy email yourself to confirm your account
     # - click the confirm link in the email from www.formspree.io
     # - you're done. Happy mailing!
-	email = "your@email.com"
+	email = "joseluis.delacruz@gmail.com"
 
 
 	# Header an navigation
@@ -34,7 +34,7 @@ theme = "hugo-artists-theme"
 	# Do the same with the logo ('logo.svg').
 	# But keep the original filename!
 	[params.header]
-		title = "Artists Theme"
+		title = "josdem"
 		shortBio = "Thinker // Designer // YouTuber"
 
 
@@ -154,20 +154,22 @@ theme = "hugo-artists-theme"
 		# The following social network icons are available:
 		# 'twitter' / 'facebook' / 'github' / 'pinterest' 'google-plus' / 'linkedin'
 		# 'youtube' / 'instagram' / 'dribbble' / 'behance' / 'soundcloud' / 'vine'
+		#
 		[[params.contact.social]]
+			icon = "github"
+			link = "//github.com/josdem"
+
+    [[params.contact.social]]
 			icon = "twitter"
 			link = "//twitter.com/josdem"
 
-		[[params.contact.social]]
-			icon = "dribbble"
-			link = "//github.com/josdem"
 
 		[[params.contact.social]]
 			icon = "behance"
 			link = "//mixcloud.com/josdem"
 
 		[[params.contact.social]]
-			icon = "youtube"
+			icon = "instagram"
 			link = "//instagram.com/j0sdem"
 
 		[[params.contact.social]]
