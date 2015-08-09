@@ -156,23 +156,23 @@ theme = "hugo-artists-theme"
 		# 'youtube' / 'instagram' / 'dribbble' / 'behance' / 'soundcloud' / 'vine'
 		[[params.contact.social]]
 			icon = "twitter"
-			link = "//twitter.com/devtipsshow"
+			link = "//twitter.com/josdem"
 
 		[[params.contact.social]]
 			icon = "dribbble"
-			link = "//dribbble.com/travisneilson"
+			link = "//github.com/josdem"
 
 		[[params.contact.social]]
 			icon = "behance"
-			link = "//www.behance.net/travisneilson"
+			link = "//mixcloud.com/josdem"
 
 		[[params.contact.social]]
 			icon = "youtube"
-			link = "//www.youtube.com/DevTipsForDesigners"
+			link = "//instagram.com/j0sdem"
 
 		[[params.contact.social]]
 			icon = "linkedin"
-			link = "//www.linkedin.com/in/travisneilson"
+			link = "//linkedin.com/pub/jose-luis-de-la-cruz-morales/9/11a/5b9"
 
 
 	[params.form]
