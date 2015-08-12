@@ -116,7 +116,7 @@ theme = "hugo-artists-theme"
 
 	# Clients section
 	[params.clients]
-		title = "Clients"
+		title = "Contacts"
 
 		[[params.clients.list]]
 			avatar = "face-aaroni.jpg"
