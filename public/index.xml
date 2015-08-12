@@ -39,17 +39,6 @@
     
     <item>
       <title></title>
-      <link>http://localhost:1313/work/proj-2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/work/proj-2/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-2/CityIn-AntonSkvortsov.jpg&#34; alt=&#34;City In&#34; /&gt;
-&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>http://localhost:1313/work/proj-1/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -66,6 +55,17 @@
 &lt;img src=&#34;img/work/proj-1/img4.jpg&#34; alt=&#34;Typo International&#34; /&gt;
 
 &lt;img src=&#34;img/work/proj-1/img5.jpg&#34; alt=&#34;Typo International&#34; /&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/work/proj-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/work/proj-2/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-2/CityIn-AntonSkvortsov.jpg&#34; alt=&#34;City In&#34; /&gt;
 &lt;/p&gt;
 </description>
     </item>
