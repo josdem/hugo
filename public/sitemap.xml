@@ -26,10 +26,6 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/work/proj-3/</loc>
-  </url>
-  
-  <url>
     <loc>http://localhost:1313/work/proj-4/</loc>
   </url>
   
@@ -47,6 +43,10 @@
   
   <url>
     <loc>http://localhost:1313/work/proj-8/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/work/proj-3/</loc>
   </url>
   
 </urlset>

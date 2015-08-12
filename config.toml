@@ -47,11 +47,11 @@ theme = "hugo-artists-theme"
 
 		[[params.about.skills]]
 			name = "Communication"
-			value = 9
+			value = 8
 
 		[[params.about.skills]]
 			name = "Organization"
-			value = 7
+			value = 8
 
 		[[params.about.skills]]
 			name = "Learning"
@@ -59,23 +59,23 @@ theme = "hugo-artists-theme"
 
 		[[params.about.skills]]
 			name = "Teaching"
-			value = 6
+			value = 9
 
 		[[params.about.skills]]
 			name = "Planning"
-			value = 7
-
-		[[params.about.skills]]
-			name = "Visual Design"
-			value = 5
-
-		[[params.about.skills]]
-			name = "UX Design"
 			value = 8
 
 		[[params.about.skills]]
-			name = "Programming"
+			name = "UX Developer"
 			value = 6
+
+		[[params.about.skills]]
+			name = "Backend developer"
+			value = 9
+
+		[[params.about.skills]]
+			name = "Programming"
+			value = 9
 
 	# Work section
 	[params.work]
