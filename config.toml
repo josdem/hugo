@@ -79,38 +79,38 @@ theme = "hugo-artists-theme"
 
 	# Work section
 	[params.work]
-		title = "Work"
+		title = "Techtalks"
 
 		[[params.work.projects]]
-			name = "TYPO International Design Talks"
+			name = "Groovy"
 			folder = "proj-1"
 
 		[[params.work.projects]]
-			name = "City-IN website concept"
+			name = "Grails"
 			folder = "proj-2"
 
 		[[params.work.projects]]
-			name = "Crispy Icons"
+			name = "Spring Boot"
 			folder = "proj-3"
 
 		[[params.work.projects]]
-			name = "Flat Mobile UI/UX Concept"
+			name = "Elixir"
 			folder = "proj-4"
 
 		[[params.work.projects]]
-			name = "Fresh It Up"
+			name = "Refactoring"
 			folder = "proj-5"
 
 		[[params.work.projects]]
-			name = "Timeline Page"
+			name = "Clean Code"
 			folder = "proj-6"
 
 		[[params.work.projects]]
-			name = "Weather Dashboard"
+			name = "Continuous Delivery"
 			folder = "proj-7"
 
 		[[params.work.projects]]
-			name = "Stripes & Co"
+			name = "Extreme Programming"
 			folder = "proj-8"
 
 
