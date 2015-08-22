@@ -6,8 +6,25 @@
     <description>Recent content on josdem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 08 Aug 2015 16:19:37 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 22 Aug 2015 08:14:09 -0500</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>jmetadata</title>
+      <link>http://localhost:1313/projects/jmetadata/</link>
+      <pubDate>Sat, 22 Aug 2015 08:14:09 -0500</pubDate>
+      
+      <guid>http://localhost:1313/projects/jmetadata/</guid>
+      <description>
+
+&lt;h1 id=&#34;jmetadata:2aaffab9c48830e8c755e6a43266787a&#34;&gt;Jmetadata&lt;/h1&gt;
+
+&lt;p&gt;Complete metadata automatically with MusicBrainz, LastFM or manually.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;../../images/jmetadata.png&#34; alt=&#34;Jmetadata&#34; /&gt;
+&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>first</title>
@@ -34,17 +51,6 @@
 &lt;h2 id=&#34;a-headline:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;A headline&lt;/h2&gt;
 
 &lt;p&gt;Some Content&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://localhost:1313/work/proj-3/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/work/proj-3/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-3/CrispyIcons-PetrasNargela.jpg&#34; alt=&#34;Crispy Icons&#34; /&gt;
-&lt;/p&gt;
 </description>
     </item>
     
@@ -77,6 +83,17 @@
       
       <guid>http://localhost:1313/work/proj-2/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-2/CityIn-AntonSkvortsov.jpg&#34; alt=&#34;City In&#34; /&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/work/proj-3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/work/proj-3/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-3/CrispyIcons-PetrasNargela.jpg&#34; alt=&#34;Crispy Icons&#34; /&gt;
 &lt;/p&gt;
 </description>
     </item>
