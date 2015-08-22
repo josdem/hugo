@@ -54,25 +54,6 @@
     
     <item>
       <title></title>
-      <link>http://localhost:1313/work/proj-7/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/work/proj-7/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-7/img0.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img1.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img2.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img3.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img4.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
       <link>http://localhost:1313/work/proj-4/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
@@ -100,6 +81,25 @@
       
       <guid>http://localhost:1313/work/proj-6/</guid>
       <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-6/TimeLinePage-SergeyValiukh.jpg&#34; alt=&#34;Timeline Page&#34; /&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/work/proj-7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/work/proj-7/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-7/img0.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img1.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img2.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img3.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img4.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
 &lt;/p&gt;
 </description>
     </item>
