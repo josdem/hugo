@@ -11,11 +11,14 @@
     
     <item>
       <title>jmetadata</title>
-      <link>http://localhost:1313/projects/jmetadata/</link>
+      <link>http://localhost:1313/project/jmetadata/</link>
       <pubDate>Sat, 22 Aug 2015 11:41:34 -0500</pubDate>
       
-      <guid>http://localhost:1313/projects/jmetadata/</guid>
+      <guid>http://localhost:1313/project/jmetadata/</guid>
       <description>
+
+&lt;p&gt;&lt;img src=&#34;../../images/hero-bg.jpg&#34; alt=&#34;header&#34; /&gt;
+&lt;/p&gt;
 
 &lt;h1 id=&#34;jmetadata:2aaffab9c48830e8c755e6a43266787a&#34;&gt;Jmetadata&lt;/h1&gt;
 
@@ -74,20 +77,6 @@
 &lt;ul&gt;
 &lt;li&gt;Jmetadata Application&lt;/li&gt;
 &lt;/ul&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>first</title>
-      <link>http://localhost:1313/post/first/</link>
-      <pubDate>Sat, 08 Aug 2015 16:19:37 -0500</pubDate>
-      
-      <guid>http://localhost:1313/post/first/</guid>
-      <description>
-
-&lt;h2 id=&#34;first-headline:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;First headline&lt;/h2&gt;
-
-&lt;p&gt;First post&lt;/p&gt;
 </description>
     </item>
     
@@ -151,22 +140,19 @@
     
     <item>
       <title></title>
-      <link>http://localhost:1313/work/proj-5/</link>
+      <link>http://localhost:1313/work/proj-7/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/work/proj-5/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-5/freshitup-JieyuXiong.jpg&#34; alt=&#34;Fresh It Up&#34; /&gt;
-&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title></title>
-      <link>http://localhost:1313/work/proj-6/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/work/proj-6/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-6/TimeLinePage-SergeyValiukh.jpg&#34; alt=&#34;Timeline Page&#34; /&gt;
+      <guid>http://localhost:1313/work/proj-7/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-7/img0.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img1.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img2.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img3.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+
+&lt;img src=&#34;img/work/proj-7/img4.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
 &lt;/p&gt;
 </description>
     </item>
@@ -184,19 +170,22 @@
     
     <item>
       <title></title>
-      <link>http://localhost:1313/work/proj-7/</link>
+      <link>http://localhost:1313/work/proj-5/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/work/proj-7/</guid>
-      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-7/img0.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img1.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img2.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img3.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
-
-&lt;img src=&#34;img/work/proj-7/img4.jpg&#34; alt=&#34;Weather Dashboard&#34; /&gt;
+      <guid>http://localhost:1313/work/proj-5/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-5/freshitup-JieyuXiong.jpg&#34; alt=&#34;Fresh It Up&#34; /&gt;
+&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://localhost:1313/work/proj-6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/work/proj-6/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;img/work/proj-6/TimeLinePage-SergeyValiukh.jpg&#34; alt=&#34;Timeline Page&#34; /&gt;
 &lt;/p&gt;
 </description>
     </item>

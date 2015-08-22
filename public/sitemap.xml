@@ -8,13 +8,8 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/projects/jmetadata/</loc>
+    <loc>http://localhost:1313/project/jmetadata/</loc>
     <lastmod>2015-08-22T11:41:34-05:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/post/first/</loc>
-    <lastmod>2015-08-08T16:19:37-05:00</lastmod>
   </url>
   
   <url>
@@ -35,11 +30,7 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/work/proj-5/</loc>
-  </url>
-  
-  <url>
-    <loc>http://localhost:1313/work/proj-6/</loc>
+    <loc>http://localhost:1313/work/proj-7/</loc>
   </url>
   
   <url>
@@ -47,7 +38,11 @@
   </url>
   
   <url>
-    <loc>http://localhost:1313/work/proj-7/</loc>
+    <loc>http://localhost:1313/work/proj-5/</loc>
+  </url>
+  
+  <url>
+    <loc>http://localhost:1313/work/proj-6/</loc>
   </url>
   
   <url>

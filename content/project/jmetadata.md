@@ -5,6 +5,8 @@ title = "jmetadata"
 
 +++
 
+![header](../../images/hero-bg.jpg)
+
 # Jmetadata
 Complete metadata automatically with MusicBrainz, LastFM or manually.
 

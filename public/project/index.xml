@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on josdem</title>
-    <link>http://localhost:1313/projects/</link>
+    <link>http://localhost:1313/project/</link>
     <description>Recent content in Projects on josdem</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 22 Aug 2015 11:41:34 -0500</lastBuildDate>
-    <atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/project/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>jmetadata</title>
-      <link>http://localhost:1313/projects/jmetadata/</link>
+      <link>http://localhost:1313/project/jmetadata/</link>
       <pubDate>Sat, 22 Aug 2015 11:41:34 -0500</pubDate>
       
-      <guid>http://localhost:1313/projects/jmetadata/</guid>
+      <guid>http://localhost:1313/project/jmetadata/</guid>
       <description>
 
 &lt;p&gt;&lt;img src=&#34;../../images/hero-bg.jpg&#34; alt=&#34;header&#34; /&gt;
