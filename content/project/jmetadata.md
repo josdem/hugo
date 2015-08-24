@@ -1,11 +1,10 @@
 +++
 date = "2015-08-22T11:41:34-05:00"
 draft = true
-title = "jmetadata"
-
+categories = ["projects", "java"]
+tags = ["josdem", "jmetadata"]
+title = "Jmetadata"
 +++
-
-# Jmetadata
 Complete metadata automatically with MusicBrainz, LastFM or manually.
 
 |   |   |
