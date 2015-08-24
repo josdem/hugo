@@ -8,7 +8,7 @@ title = "Downloads"
 JMetadata installers.
 
 * [JMetadata.dmg](/jmetadata/mac_installer) (Mac Installer)
-* JMetadata.deb (Ubuntu Installer)
+* [JMetadata.deb](/jmetadata/ubuntu_installer) (Ubuntu Installer)
 * JMetadata.exe (Windows Installer)
 * JMetadata-Linux.zip (Linux Script)
 
