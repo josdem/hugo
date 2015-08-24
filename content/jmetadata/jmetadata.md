@@ -29,8 +29,8 @@ _"As we enjoy great advantages from inventions of others, we should be glad of a
 
 ## Wiki
 
-* Developers
-* Alpha
+* [Developers](/jmetadata/developers)
+* [Alpha](/jmetadata/alpha)
 * Downloads
 
 ## Tutorials
