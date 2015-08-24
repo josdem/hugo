@@ -31,7 +31,7 @@ _"As we enjoy great advantages from inventions of others, we should be glad of a
 
 * [Developers](/jmetadata/developers)
 * [Alpha](/jmetadata/alpha)
-* Downloads
+* [Downloads](/jmetadata/downloads)
 
 ## Tutorials
 
