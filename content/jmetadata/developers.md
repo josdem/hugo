@@ -32,3 +32,5 @@ Note: You should find the third party Jars in /lib folder in Jmetadata source co
 ## Create Installers
 * Maven in your system environment path is required
 * From your command line: `mvn -Dmaven.test.skip clean assembly:assembly`
+
+[Return to the main article](/jmetadata/jmetadata)
