@@ -42,7 +42,7 @@ You will have to develop you own sense of how many instance variables are too ma
 
 ### Examples
 * [Duplicated Code](/techtalk/duplicated_code)
-* Replace Temp With Query
+* [Replace Temp With Query](/techtalk/replace_temp_with_query)
 * Introduce Parameter Object
 * Replace Error Code with Exception
 * Replace conditional with polymorphism
