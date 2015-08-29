@@ -13,7 +13,7 @@ Working with Groovy feels like a partnership between you and the language, rathe
 * [Looping structures](/techtalk/looping_structures)
 * [Closures](/techtalk/closures)
 * [Metaprogramming](/techtalk/metaprogramming)
-* Design Patterns
+* [Design Patterns](/techtalk/design_patterns)
 
 ## Characteristics
 
@@ -76,4 +76,6 @@ println technologies
 
 `true
 [Groovy, Grails, Griffon]`
+
+[Return to the main article](/techtalk/techtalks)
 
