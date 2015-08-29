@@ -7,7 +7,7 @@ title = "Techtalks"
 
 * Groovy: [Groovy](/techtalk/groovy)
 * Grails: [Grails](/techtalk/grails)
-* Refactoring: Refactoring
+* Refactoring: [Refactoring](/techtalk/refactoring)
 * Continuous Delivery: Continuous Delivery
 * Spring Boot: Spring Boot
 * Elixir: Elixir
