@@ -41,7 +41,7 @@ title = "Refactoring"
 You will have to develop you own sense of how many instance variables are too many instance variables and how many lines of code in a method are too many lines
 
 ### Examples
-* Duplicated Code
+* [Duplicated Code](/techtalk/duplicated_code)
 * Replace Temp With Query
 * Introduce Parameter Object
 * Replace Error Code with Exception
