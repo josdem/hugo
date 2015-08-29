@@ -5,7 +5,7 @@ tags = ["josdem", "jmetadata"]
 title = "Jmetadata.deb"
 
 +++
-File: JMetadata.deb 7.0 MB
+File: [JMetadata.deb](http://josdem.io:8081/jmetadata-download-stats/downloader/downloadUbuntuVersion) 7.0 MB
 
 ## Instructions:
 1. In a terminal: sudo dpkg -i JMetadata.deb
