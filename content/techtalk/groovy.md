@@ -12,7 +12,7 @@ Working with Groovy feels like a partnership between you and the language, rathe
 * [Program Structure](/techtalk/program_structure)
 * [Looping structures](/techtalk/looping_structures)
 * [Closures](/techtalk/closures)
-* Metaprogramming
+* [Metaprogramming](/techtalk/metaprogramming)
 * Design Patterns
 
 ## Characteristics
