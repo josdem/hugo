@@ -71,7 +71,7 @@ package com.josdem
 }
 ```
 
-*NOTE: It is your turn! create a class with a method that receives an integer if its 1 prints your firstname, if receives 2 prints your lastname.*
+*TIP: It is your turn! create a class with a method that receives an integer if its 1 prints your firstname, if receives 2 prints your lastname.*
 
 ### Groovy Truth
 All objects can be 'coerced' to a boolean value: everything that’s null, void, equal to zero, or empty evaluates to false, and if not, evaluates to true.
