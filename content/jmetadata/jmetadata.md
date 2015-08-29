@@ -36,7 +36,7 @@ _"As we enjoy great advantages from inventions of others, we should be glad of a
 ## Tutorials
 
 * [English](/jmetadata/tutorials)
-* Spanish
+* [Spanish](/jmetadata/tutorials_spanish)
 
 ## Link
 

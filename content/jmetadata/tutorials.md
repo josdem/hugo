@@ -26,3 +26,9 @@ All information concerning JMetadata functionality.
 * Complete basic information an album needs in automatically way
 
 [<img src="http://farm3.staticflickr.com/2865/9656739516_0250cc2b2d.jpg">](http://www.youtube.com/watch?v=6isUjfupz4s)
+
+* Sending scrobblings to your LastFM account
+
+[<img src="http://farm8.staticflickr.com/7287/9737384496_f0cebdf70a.jpg">](http://www.youtube.com/watch?v=4g74FQH7di8)
+
+[Return to the main article](/jmetadata/jmetadata)
