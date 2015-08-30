@@ -45,7 +45,7 @@ You will have to develop you own sense of how many instance variables are too ma
 * [Replace Temp With Query](/techtalk/replace_temp_with_query)
 * [Introduce Parameter Object](/techtalk/introduce_parameter_object)
 * [Replace Error Code with Exception](/techtalk/replace_error_code_with_exception)
-* Replace conditional with polymorphism
+* [Replace conditional with polymorphism](/techtalk/replace_conditional_with_polymorphism)
 
 [Return to the main article](/techtalk/techtalks)
 
