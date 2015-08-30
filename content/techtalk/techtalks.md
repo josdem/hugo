@@ -11,7 +11,7 @@ title = "Techtalks"
 * Continuous Delivery: [Continuous Delivery](/techtalk/continuous_delivery)
 * Spring Boot: [Spring Boot](/techtalk/spring_boot)
 * Elixir: [Elixir](/techtalk/elixir)
-* Extreme Programming: Extreme Programming
+* Extreme Programming: [Extreme Programming](/techtalk/extreme_programming)
 * Clean Code: Clean Code
 
 
