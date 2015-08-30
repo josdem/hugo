@@ -12,6 +12,6 @@ title = "Techtalks"
 * Spring Boot: [Spring Boot](/techtalk/spring_boot)
 * Elixir: [Elixir](/techtalk/elixir)
 * Extreme Programming: [Extreme Programming](/techtalk/extreme_programming)
-* Clean Code: Clean Code
+* Clean Code: [Clean Code](/techtalk/clean_code)
 
 
