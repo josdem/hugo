@@ -43,7 +43,7 @@ theme = "hugo-artists-theme"
 	# Replace the 'avatar.jpg' under 'static/img' with your own image.
 	[params.about]
 		title = "About me"
-		bio = "**Jose Luis is a software developer** eager to contribute in products. He has two public projects [Jmetadata](/jmetadata/jmetadata), and [Jugoterapia](/jugoterapia/jugoterapia) he enjoy to write about technology so he has a [Techtalks](/techtalk/techtalks) section, and also he enjoy creating [Mixes](/music/myremixes) because he thinks that sharing is caring."
+		bio = "**Jose Luis is a software developer** eager to contribute in products. He has two public projects [Jmetadata](/jmetadata/jmetadata), and [Jugoterapia](/jugoterapia/jugoterapia) he enjoy to write about technology so he has a [Techtalks](/techtalk/techtalks) section, his hobby is creating [Mixes](/music/myremixes) because he thinks that sharing is caring."
 
 		[[params.about.skills]]
 			name = "Communication"
@@ -178,11 +178,11 @@ theme = "hugo-artists-theme"
 
 
 	[params.form]
-		title = "Let's work together"
+		title = "Let's do stuff together"
 		# Form fields
 		name = "Your Name"
 		email = "Your Email"
-		message = "Tell me about your project"
+		message = "Text me"
 		buttonText = "Send"
 
 
