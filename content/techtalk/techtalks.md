@@ -10,7 +10,7 @@ title = "Techtalks"
 * Refactoring: [Refactoring](/techtalk/refactoring)
 * Continuous Delivery: [Continuous Delivery](/techtalk/continuous_delivery)
 * Spring Boot: [Spring Boot](/techtalk/spring_boot)
-* Elixir: Elixir
+* Elixir: [Elixir](/techtalk/elixir)
 * Extreme Programming: Extreme Programming
 * Clean Code: Clean Code
 
