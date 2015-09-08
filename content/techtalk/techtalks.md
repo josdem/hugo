@@ -15,6 +15,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * Elixir: [Elixir](/techtalk/elixir)
 * Extreme Programming: [Extreme Programming](/techtalk/extreme_programming)
 * Clean Code: [Clean Code](/techtalk/clean_code)
+* Infrastructure: [Tomcat AJP](/techtalk/tomcat_domain)
 
 If you have some doubts or comments about this, let me know I'll be more than happy to help.
 
