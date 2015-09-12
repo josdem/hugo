@@ -52,6 +52,7 @@ Hello world from Elixir!
 
 * [Basic project in elixir](/techtalk/elixir_application)
 * [Elixir and processes](/techtalk/elixir_processes)
+* [FizzBuzz Example](/techtalk/elixir_fizzbuzz)
 
 [Return to the main article](/techtalk/techtalks)
 
