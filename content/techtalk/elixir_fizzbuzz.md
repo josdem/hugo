@@ -107,4 +107,30 @@ Finished in 0.08 seconds (0.08s on load, 0.00s on tests)
 
 Randomized with seed 521475
 ```
+
+### Refactoring fizzbuzz module
+
+Using matchers we can simplify our code as follow:
+1. fizzbuzz(x) function will call private functions calculate_fizzbuzz using matchers
+2. _ character accepts any value to do the match
+3. Each private funcion do different action depending matchers
+
+```
+defmodule Fizzbuzz do
+  def fizzbuzz(x) when is_number(x) do
+    calculate_fizzbuzz(rem(x, 5), rem(x, 3), x)
+  end
+
+  defp calculate_fizzbuzz(0, 0, _), do: "Fizzbuzz"
+
+  defp calculate_fizzbuzz(0, _, _), do: "Buzz"
+
+  defp calculate_fizzbuzz(_, 0, _), do: "Fizz"
+
+  defp calculate_fizzbuzz(_, _, x), do: x
+end
+```
+
+After this refactor you can run the tests again.
+
 [Return to the main article](/techtalk/elixir)
