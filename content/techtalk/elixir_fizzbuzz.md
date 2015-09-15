@@ -110,10 +110,10 @@ Randomized with seed 521475
 
 ### Refactoring fizzbuzz module
 
-Using matchers we can simplify our code as follow:
-1. fizzbuzz(x) function will call private functions calculate_fizzbuzz using matchers
-2. _ character accepts any value to do the match
-3. Each private funcion do different action depending matchers
+Using matchers we can simplify our code.
+* fizzbuzz(x) function will call private functions calculate_fizzbuzz using matchers
+* _ character accepts any value to do the match
+* Each private funcion do different action depending matchers
 
 ```
 defmodule Fizzbuzz do
