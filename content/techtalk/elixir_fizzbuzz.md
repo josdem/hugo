@@ -111,6 +111,7 @@ Randomized with seed 521475
 ### Refactoring fizzbuzz module
 
 Using matchers we can simplify our code.
+
 * fizzbuzz(x) function will call private functions calculate_fizzbuzz using matchers
 * _ character accepts any value to do the match
 * Each private funcion do different action depending matchers
