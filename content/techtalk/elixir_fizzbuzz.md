@@ -24,14 +24,14 @@ defmodule Fizzbuzz do
   def fizzbuzz(x) when is_number(x) do
     if rem(x,5) == 0 && rem(x,3) == 0 do
       "FizzBuzz"
-      else if rem(x,5) == 0 do
-        "Buzz"
-        else if rem(x,3) == 0 do
-          "Fizz"
-          else
-            x
-        end
-      end
+    else if rem(x,3) == 0 do
+      "Fizz"
+    else if rem(x,5) == 0 do
+      "Buzz"
+    else
+      x
+    end
+    end
     end
   end
 
@@ -108,7 +108,7 @@ Finished in 0.08 seconds (0.08s on load, 0.00s on tests)
 Randomized with seed 521475
 ```
 
-### Refactoring fizzbuzz module
+### Refactoring fizzbuzz using pattern mathing and private functions
 
 Using matchers we can simplify our code.
 
@@ -132,6 +132,29 @@ defmodule Fizzbuzz do
 end
 ```
 
-After this refactor you can run the tests again.
+### Refactoring explicit pattern matching
+
+Our ultimate refactor in this code is using explicit pattern matching which allow us to encapsulate our solution in a single function.
+
+```
+defmodule Fizzbuzz do
+
+  def fizzbuzz(x) when is_number(x) do
+    another(rem(x,3),rem(x,5),x)
+  end
+
+  def another(a,b,c) do
+    case {a,b,c} do
+      {0,0,_} -> "FizzBuzz"
+      {_,0,_} -> "Buzz"
+      {0,_,_} -> "Fizz"
+      {_,_,c} -> c
+    end
+  end
+
+end
+```
+
+After each refactor you can run the tests again.
 
 [Return to the main article](/techtalk/elixir)
