@@ -18,12 +18,14 @@ Elixir is a dynamic, functional language designed for building scalable and main
 When you start interactive Elixir you can see someting like this:
 
 ```
+$ iex
+
 Erlang/OTP 18 [erts-7.0] [source] [64-bit] [smp:4:4] [async-threads:10] [kernel-poll:false]
 ```
 
 First you can see OTP Erlang version, Erlang was designed to run processes and that’s why is easy to scale, Erlang VM called BEAM seems to run as an operating system although Erlang VM runs as one OS process. OTP is an applications collection with Erlang modules, OTP provides libraries that Elixir uses. Erts stands for Erlang Runtime System Application. SMP detects processor core number. The asynchronous thread pool are OS threads which are used for I/O operations.
 
-If you want quit from interactive Elixir type Ctrl + C or Ctrl + g to user switch command, as you can see follow options:
+If you want quit from interactive Elixir type Ctrl + g to user switch command, as you can see follow options:
 
 ```
 iex(1)>
@@ -40,6 +42,23 @@ User switch command
 ```
 
 Then press h for menu and q for quit
+
+Using mix command you can:
+
+* Create a new project
+* Compile
+* Run tests
+* Manage versions
+* Create a release package
+* Etc.
+
+Type:
+
+```
+$ mix -h
+```
+
+For more information.
 
 ### Hello World
 ```
