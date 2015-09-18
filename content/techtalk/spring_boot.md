@@ -4,7 +4,7 @@ draft = true
 title = "Spring Boot"
 
 +++
-### What is Spring Boot?
+## What is Spring Boot?
 It is a Spring project aim to create easy web or stand-alone applications. It provides the next features:
 
 * No requirement for XML configuration

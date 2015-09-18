@@ -4,7 +4,7 @@ draft = true
 title = "Spring Boot with Jade"
 
 +++
-### Setup
+## Setup
 We are going to create a basic project with Spring Boot and Jade. First we need to go to this site: [Spring Initializr](http://start.spring.io/) and create a new project with next elements:
 
 * Type: Gradle Project
@@ -110,7 +110,7 @@ java -jar spring-boot-jade-0.0.1-SNAPSHOT.jar
 
 At this point you have an application Spring Boot running in 8080 port.
 
-### Web flow setup
+## Web flow setup
 Now it is time to create some controller to receive requests. Let’s create a simple Controller in your package directory in my case is in $HOME_PROJECT/src/main/groovy/jade
 
 ```java
@@ -144,7 +144,7 @@ Now you are able to browse [localhost](http://localhost:8080/) and see some resp
 Hello World!
 ```
 
-### Jade integration
+## Jade integration
 Jade is a template language implemented with JavaScript. Jade is a clean, whitespace sensitive syntax for writing html, for more information go to: Jade To integrate [Jade](http://jade-lang.com/) add this line to the build.gradle file:
 
 ```
