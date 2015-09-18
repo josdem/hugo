@@ -6,7 +6,7 @@ title = "Tomcat listening in a domain"
 +++
 When we want to publish our services in a specific domain such as api.josdem.io and that services are hosted in a Tomcat, the best way I can recommend you to do it is using a AJP connector. In this post I'll show you how to do it.
 
-### Light Tomcat
+## Light Tomcat
 The first thing you must do is get rid of configuration you don't need in your Tomcat, this give you the next advantages:
 
 * Less code
@@ -42,7 +42,7 @@ file: $TOMCAT_HOME/config/server.xml
 
 Notice jvmRoute parameter is added as AJP Connector.
 
-### A record configuration
+## A record configuration
 It is important you have your domain pointing to your IP address. Usually, you can do this creating an A record in your domain management. As soon as you got it, you should do something like this:
 
 ```
@@ -56,7 +56,7 @@ Name: jmetadata.josdem.io
 Address: 52.8.244.12
 ```
 
-### Creating a virtual host in your Apache Server
+## Creating a virtual host in your Apache Server
 Next step is create a file named josdem.io.conf in /etc/httpd/conf.d with this your Apache will know how connect your Tomcat, here is my example file:
 
 ```
@@ -88,7 +88,7 @@ Next step is create a file named josdem.io.conf in /etc/httpd/conf.d with this y
 </VirtualHost>
 ```
 
-### Tomcat as a service
+## Tomcat as a service
 Finally you may want to start, stop your tomcat service as any service in your server, so here is an example.
 File: /etc/rc.d/init.d/tomcatJmetadata
 
@@ -99,7 +99,7 @@ File: /etc/rc.d/init.d/tomcatJmetadata
 #
 # chkconfig: - 80 20
 #
-### BEGIN INIT INFO
+## BEGIN INIT INFO
 # Provides: tomcat7
 # Required-Start: $network $syslog
 # Required-Stop: $network $syslog
@@ -107,7 +107,7 @@ File: /etc/rc.d/init.d/tomcatJmetadata
 # Default-Stop:
 # Description: Release implementation for Servlet 2.5 and JSP 2.1
 # Short-Description: start and stop tomcat
-### END INIT INFO
+## END INIT INFO
 
 ## Source function library.
 #. /etc/rc.d/init.d/functions
