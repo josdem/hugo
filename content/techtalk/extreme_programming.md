@@ -29,7 +29,7 @@ title = "Extreme Programming Explained"
 
 *Respect:* If members of a team don’t care about each other and what they are doing, XP won’t work. If members of a team don’t care about a project, nothing can save it. For software development to simultaneously improve in humanity and productivity, the contributions of each person on the team need to be respected. I am important and so are you.
 
-### Principles
+## Principles
 
 **Humanity:** People develop software, that’s the way because we need to pay attention to: Basic Safety, Accomplishment (Opportunity to contribute to their society), Belonging (The ability to identify with a group from which they receive validation and accountability and contribute to its shared goals), Growth (Opportunity to expand their skills and perspective). Intimacy (The ability to understand and be understood deeply by others).
 
@@ -47,7 +47,7 @@ title = "Extreme Programming Explained"
 
 **Responsibility:** cannot be assigned; it can only be accepted, if someone tries to give you responsibility, only you can decide if you are responsible or if you aren’t.
 
-### Primary Practices
+## Primary Practices
 Whole Team: People need a sense of "team":
 
 * We belong.
@@ -56,7 +56,7 @@ Whole Team: People need a sense of "team":
 
 Stories: When your team are doing estimation be sure that your story has all constraints in that case the team can split in task and do it in a informed decision way.
 
-### Pair Programming
+## Pair Programming
 
 * Keep each other on task.
 * Brainstorm refinements to the system.

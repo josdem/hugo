@@ -4,7 +4,7 @@ draft = true
 title = "Elixir"
 
 +++
-### Description
+## Description
 Elixir is a dynamic, functional language designed for building scalable and maintainable applications. Some of Elixir characteristics are:
 
 * Uses Erlang VM
@@ -14,7 +14,7 @@ Elixir is a dynamic, functional language designed for building scalable and main
 * Easy to extend
 * Immutable data types
 
-### Basics
+## Basics
 When you start interactive Elixir you can see someting like this:
 
 ```
@@ -60,7 +60,7 @@ $ mix -h
 
 For more information.
 
-### Hello World
+## Hello World
 ```
 $ cat simple.exs
 IO.puts "Hello world from Elixir!"

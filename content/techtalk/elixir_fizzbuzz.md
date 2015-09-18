@@ -108,7 +108,7 @@ Finished in 0.08 seconds (0.08s on load, 0.00s on tests)
 Randomized with seed 521475
 ```
 
-### Refactoring fizzbuzz using pattern mathing and private functions
+## Refactoring fizzbuzz using pattern mathing and private functions
 
 Using matchers we can simplify our code.
 
@@ -132,7 +132,7 @@ defmodule Fizzbuzz do
 end
 ```
 
-### Refactoring explicit pattern matching
+## Refactoring explicit pattern matching
 
 Our ultimate refactor in this code is using explicit pattern matching which allow us to encapsulate our solution in a single function.
 
