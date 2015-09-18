@@ -6,10 +6,10 @@ title = "Grails Example Project (Downloader stat)"
 +++
 Simple project with Grails
 
-### Project user story
+## Project user story
 As application owner I want to deliver my application installer so the client can download it.
 
-### Acceptance Criteria
+## Acceptance Criteria
 
 * I need to know how many downloads I have by installer
 * Installers are Linux, Ubuntu, Mac and Windows
@@ -43,14 +43,14 @@ package com.tim
 }
 ```
 
-### About Domain
+## About Domain
 
 * Grails will create an "downloader" table
 * If you define an property "dateCreated" it will set current date at creating new instances
 * Grails will validate "address" is not empty and a size between 5 and 255
 * InstallerType is an enum and I need to define it in src/groovy/ folder
 
-### Creating enum
+## Creating enum
 Create path src/groovy/com/tim Create InstallerType enum as follow:
 
 ```groovy
@@ -61,7 +61,7 @@ enum InstallerType {
 }
 ```
 
-### Creating controller
+## Creating controller
 In order to create a controller we need to start grails application, type this:
 
 ```
@@ -74,7 +74,7 @@ And then:
 create-controller com.tim.DownloaderController
 ```
 
-### Creating service
+## Creating service
 Services are transactional by default in Grails and is intended contains business logic, in order to create a service type:
 
 ```
@@ -87,7 +87,7 @@ And then:
 create-service com.tim.DownloaderService
 ```
 
-### Unit testing
+## Unit testing
 Now we are ready to write unit test and let the test guide us to the solution, we are going to start with DownloaderControllerSpec.groovy which is located in test/unit/com/tim
 
 ```groovy
@@ -114,7 +114,7 @@ class DownloaderControllerSpec extends Specification {
 }
 ```
 
-### DownloaderControllerSpec facts
+## DownloaderControllerSpec facts
 
 * DownloaderService is a mock, needs to be that way since we are trying to test DownloaderController
 * The purpose "def setup()" method is execute code before any test is called
@@ -148,7 +148,7 @@ class DownloaderControllerSpec extends Specification {
 }
 ```
 
-### DownloaderServiceSpec facts
+## DownloaderServiceSpec facts
 
 * When we call service.createUbuntuStat("127.0.0.1") we are expecting that service returns an downloader object
 * Then we verify that object contains "127.0.0.1" as address and UBUNTU as InstallerType
@@ -181,7 +181,7 @@ class DownloaderControllerSpec extends Specification {
 }
 ```
 
-### DownloaderServiceSpec modifications
+## DownloaderServiceSpec modifications
 
 * Now we are expecting that ContentType is application/octet-stream
 * The intended purpose is to be saved to disk as "arbitrary binary data"
@@ -189,7 +189,7 @@ class DownloaderControllerSpec extends Specification {
 
 Now is time to see the DownloadController and DownloadService implementations
 
-### DownloaderController
+## DownloaderController
 
 ```groovy
 package com.tim
@@ -208,7 +208,7 @@ class DownloaderController {
 }
 ```
 
-### DownloaderService
+## DownloaderService
 
 ```groovy
 package com.tim

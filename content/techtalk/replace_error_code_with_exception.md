@@ -8,7 +8,7 @@ A method returns special code to indicate a wrong path. Throw an exception inste
 
 In computers, as in life, things go wrong occasionally, when things go wrong, you need to do something about it. In the simplest case, you can stop the program with an error code. When a routine finds an error, it needs to let its caller know, and the caller may pass the error up to the chain.
 
-### Example
+## Example
 Let’s consider the following class who try to withdraw an amount from user, and return true as success or false as failure at attemp.
 
 ```java

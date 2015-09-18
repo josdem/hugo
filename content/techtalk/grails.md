@@ -7,14 +7,14 @@ title = "Grails"
 
 Grails is an open source web application framework it is intended to be a high-productivity framework by following the "coding by convention" paradigm and ready-to-use development environment
 
-### Characteristics
+## Characteristics
 
 * Web Framework
 * Open Source
 * Cross-platform
 * MVC paradigm
 
-### Features
+## Features
 
 * Convention-over-Configuration
 * Ready-to-use development environment
@@ -32,7 +32,7 @@ Grails is an open source web application framework it is intended to be a high-p
 * Spring support
 * Highly productive
 
-### Creating a simple structure in Grails
+## Creating a simple structure in Grails
 Creating an application
 In order to create an application type this command in your command line:
 
@@ -48,7 +48,7 @@ Created Grails Application at /home/josdem/Temporal/Grails/project-creator
 
 Grails will create an directory named as the application name, go to that directory and continue creating a domain
 
-### Creating a domain
+## Creating a domain
 Grails create a relation between domain classes and a table in a database, this is known as ORM (Object-relational Mapping) and Grails uses Hibernate for this.
 
 In order to create a domain named Project type this command in your command line:
@@ -80,13 +80,13 @@ class Project {
 
 In this case we are validating in Project that name can not be blank and its size is between 1 and 15 characters
 
-### Scaffolding
+## Scaffolding
 Scaffolding lets you generate some basic CRUD interfaces for a domain class, including:
 
 * The necessary views
 * Controller actions for create/read/update/delete (CRUD) operations
 
-### Creating a controller
+## Creating a controller
 In order to create a controller we need to start grails application, type this:
 
 ```
