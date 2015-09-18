@@ -6,7 +6,7 @@ title = "Groovy and design patterns"
 +++
 A design pattern is a general reusable solition to commonly occurring problem with a given context in software design. With Groovy is easier to implement design patterns than other languages such as C++ or Java. Using design patters we can share to the development teams a way to communicate solitions in the software design.
 
-### Abstract factory
+## Abstract factory
 Abstract out the creation of an object from its implementations. Let’s consider the following example:
 
 ```groovy
@@ -58,7 +58,7 @@ def create(klass, properties){
 println create(CD, [title: 'Tri-state', volume: 1]).dump()
 ```
 
-### Strategy
+## Strategy
 Enables an algorithm behavior to be selected at runtime.
 
 ```groovy
@@ -121,7 +121,7 @@ println "Prices under 35:"  + totalPrices(prices, { it < 35 })
 
 Selector decides whether we should sumarize all prices or not, and if not what condition applies to sumarize them.
 
-### Iterator pattern
+## Iterator pattern
 Is so common pattern that we are using it all the time while programming in Groovy.
 
 ```groovy
@@ -166,7 +166,7 @@ def names = ["Joe", "Jane", "Jill"]
 println names.join(', ')
 ```
 
-### Delegation pattern
+## Delegation pattern
 Delegation is better than inheritance since minimize dependency. Let’s see how Groovy manage delegation.
 
 ```groovy

@@ -30,9 +30,7 @@ Working with Groovy feels like a partnership between you and the language, rathe
 * High-level concurrency
 * Wide-libraries support
 
-## Examples
-
-### Variables
+## Variables
 
 ```groovy
 /**
@@ -48,8 +46,7 @@ println x
 x = "Groovy"
 println x
 ```
-
-### Output:
+*Output*
 
 `1
 3.14159
@@ -72,7 +69,7 @@ technologies.remove("Java")
 println technologies
 ```
 
-### Output
+*Output*
 
 `true
 [Groovy, Grails, Griffon]`

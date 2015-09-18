@@ -5,15 +5,15 @@ title = "Metaprogramming"
 
 +++
 
-### What is?
+## What is?
 
 * Behavior changes at runtime
 * Capabilities are introduced at runtime
 
-### Groovy is dynamic
+## Groovy is dynamic
 In Grails, for example, you see statements like Album.findByArtist('Oscar Peterson') but the Album class has no such method! Neither has any superclass. No class has such a method! The trick is that method calls are funneled through an object called MetaClass, which in this case regognizes that there’s no corresponding method in the bytecode of Album and therefore relays the call to its missingMethod handler. This knows about the naming convention of Grails' dynamic finder methods and fetches your favorite albums from the database.
 
-### Expando
+## Expando
 Dynamically expanding an object.
 
 ```groovy
@@ -42,7 +42,7 @@ expando.addNumbers(60,40)
 expando.invokeMethod('addNumbers', [33,66] as Object[])
 ```
 
-### Our own expando
+## Our own expando
 With those 3 simple methods, we can create our own version of expando.
 
 ```groovy
@@ -132,7 +132,7 @@ class MetaExpando {
 3. Verify if value from the map is a closure
 4. Execute closure and pass all the parameters
 
-### Closure delegates
+## Closure delegates
 
 * Closure may be assignated a "delegate"
 * Closures relay method calls to their delegate
@@ -165,7 +165,7 @@ print "StringBuffer value: ${sb}"
 
 The sb value is now 'oneTwo', since closure delegates the append functionality to the StringBuffer class. So when we use delegate, we are allowing to Groovy the oportunitty to delegate others respond to that method calls.
 
-### Adding functionality at runtime
+## Adding functionality at runtime
 
 Sometimes you might want to change behavior to some functionality allowing to the developer write less code, let’s consider the following snipppet.
 
