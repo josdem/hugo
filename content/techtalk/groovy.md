@@ -14,6 +14,7 @@ Working with Groovy feels like a partnership between you and the language, rathe
 * [Closures](/techtalk/closures)
 * [Metaprogramming](/techtalk/metaprogramming)
 * [Design Patterns](/techtalk/design_patterns)
+* [Kata String Calculator](/techtalk/kata_string_calculator)
 
 ## Characteristics
 
