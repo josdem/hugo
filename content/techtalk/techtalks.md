@@ -19,4 +19,4 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 
 If you have some doubts or comments about this, let me know I'll be more than happy to help.
 
-[index](/)
+[Home](/)
