@@ -117,3 +117,5 @@ gradle bootRun
 ```
 
 Example: [Spring Boot with Jade](/techtalk/spring_boot_jade)
+
+[Return to the main article](/techtalk/techtalks)
