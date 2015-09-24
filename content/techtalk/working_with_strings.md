@@ -4,7 +4,7 @@ draft = true
 title = "Working with Strings"
 
 +++
-Groovy strings come in two flavors: plain strings and GStrings. Plain strings are instances of java.lang.String, and GStrings are instances of groovy.lang.Gstring. Gstring allow placeholder expressions to be resolved and evaluated at runtime.
+Groovy strings come in two flavors: plain strings and GStrings. Plain strings are instances of java.lang.String, and GStrings are instances of groovy.lang.Gstring which allows placeholder expressions to be resolved and evaluated at runtime.
 
 | Start/End Characters  | Example                     |
 | --------------------- | --------------              |
@@ -17,7 +17,7 @@ Groovy strings come in two flavors: plain strings and GStrings. Plain strings ar
 | Forward slash         | /x(\d*)y/                   |
 
 * The single-quoted never pays any attention to placeholders. This is closely equivalent to Java string literals.
-* The double-quoted form is the equivalent of the single-quoted form except if the text contains unescaped dollar signs, the dollar sign introduces a place holder.
+* The double-quoted form is the equivalent of the single-quoted form except if the text contains unescaped dollar signs, the dollar sign introduces a placeholder.
 * The triple-quoted form  allows the literal to span several lines. Multiline string literals may also be GStrings, depending on whether single quotes or double quotes are used.
 * The slashy form of string literal is also multiline but allow strings with backslashes to be specified simply without having to escape. This is particularly useful with regular expressions.
 
@@ -43,7 +43,7 @@ class Person {
 
 def person = new Person(firstName:'Jose Luis',lastName:'De la Cruz')
 def line = "Person is: $person.firstName $person.lastName"
-assert 'Person is: Jose Luis De la Cruz'
+assert line == 'Person is: Jose Luis De la Cruz'
 ```
 
 **Full syntax with braces**
