@@ -13,11 +13,13 @@ title = "Refactoring"
 * Programs that are hard to read are hard to modify
 * Programs that have duplicated logic are hard to modify
 * Programs with complex conditional logic are hard to modify
+
 *Martin Fowler’s reasons*
 
 * The only way to go fast in software development is to keep your code clean
 * We are authors
 * In software, 80% or more of what we do is quaintly called "maintenance"
+
 *Robert C. Martin’s reasons*
 
 ## When I should do refactoring?
