@@ -34,7 +34,7 @@ Why we wrote bad code?, Were you trying to go fast? Were you in a rush? Probably
 ## Commented-Out Code
 Few practices are as odious as commenting-out code. Don’t do this!.
 
-```
+```java
 // InputStream resultsStream = formatter.getResultStream();
 // StreamReader reader = new StreamReader(resultsStream);
 // response.setContent(reader.read(formatter.getByteCount()));
@@ -61,13 +61,13 @@ Others who see that commented-out code won’t have the courage to delete it. Th
 * Consider polymorphism before using a switch or if/else statements.
 * Avoid negative conditionals (Negatives are just a bit harder to understand that positives) So, when possible, conditionals should be expressed as positives. For example:
 
-```
+```java
 if(buffer.shouldCompact())
 ```
 
 is preferable to
 
-```
+```java
  if(!buffer.shouldNotCompact())
 ```
 

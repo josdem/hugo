@@ -39,7 +39,7 @@ Next download your project, and unzip it in some directory that you want. Browse
 
 This is the build.gradle file generated:
 
-```
+```groovy
 buildscript {
   ext {
     springBootVersion = '1.3.0.M2'

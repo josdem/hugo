@@ -17,7 +17,7 @@ This is the main goal for this kata:
 
 **Step one: create testStringCalculator.groovy in any directory and add this code:**
 
-```
+```groovy
 def add(args){
   return 0
 }
@@ -27,7 +27,7 @@ assert add("") == 0
 
 Type this command:
 
-```
+```groovy
 groovy testStringCalculator.groovy
 ```
 
@@ -35,7 +35,7 @@ Be sure you have groovy installed in your computer.
 
 **Step two: Write next test and then modify your code, the trick is add the minimum code necessary to pass the test**
 
-```
+```groovy
 def add(args){
   if(args == "")
     0
@@ -49,7 +49,7 @@ assert add("1,2") == 3
 
 **Step three: Here is when we can not go on with the same pattern solution, so we improve our code with another algorithm**
 
-```
+```groovy
 def add(args){
   if(args == "")
     return 0
@@ -69,7 +69,7 @@ assert add("1,2,3") == 6
 
 **Step Four: So we add the last test and we modify our code in order to pass the test**
 
-```
+```groovy
 def add(args){
   if(args == "")
     return 0
@@ -91,7 +91,7 @@ assert add("1,2,3\n4") == 10
 
 **Step Five: We realize that our code is pretty ugly, so needs a refactor, and we come with a new solution**
 
-```
+```groovy
 def add(args){
   args.split("\n|,")?.collect { n ->
     n.isInteger() ? n as Integer : 0

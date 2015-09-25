@@ -12,13 +12,13 @@ Our Dojo goal is to test a starting round of fizz buzz from 1 to 10 as follow:
 
 Let's build our Dojo using Elixir testing. In order to do that we need a new project called fizzbuzz:
 
-`
+```bash
 $ mix new fizzbuzz
-`
+```
 
 Then add FizzBuzz logic in lib/fizzbuzz.ex file:
 
-```
+```elixir
 defmodule Fizzbuzz do
 
   def fizzbuzz(x) when is_number(x) do
@@ -40,7 +40,7 @@ end
 
 Now is time to write our test cases; open test/fizzbuzz_test.exs and add this code:
 
-```
+```elixir
 defmodule FizzbuzzTest do
   use ExUnit.Case, async: true
   import Fizzbuzz
@@ -93,13 +93,13 @@ end
 
 Finally run all test with this command:
 
-`
+```bash
 $ mix test
-`
+```
 
 As result you should see this output.
 
-```
+```bash
 ..........
 
 Finished in 0.08 seconds (0.08s on load, 0.00s on tests)
@@ -116,7 +116,7 @@ Using matchers we can simplify our code.
 * _ character accepts any value to do the match
 * Each private funcion do different action depending matchers
 
-```
+```elixir
 defmodule Fizzbuzz do
   def fizzbuzz(x) when is_number(x) do
     calculate_fizzbuzz(rem(x, 5), rem(x, 3), x)
@@ -136,7 +136,7 @@ end
 
 Our ultimate refactor in this code is using explicit pattern matching which allow us to encapsulate our solution in a single function.
 
-```
+```elixir
 defmodule Fizzbuzz do
 
   def fizzbuzz(x) when is_number(x) do

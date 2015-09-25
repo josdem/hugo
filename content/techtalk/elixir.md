@@ -17,7 +17,7 @@ Elixir is a dynamic, functional language designed for building scalable and main
 ## Basics
 When you start interactive Elixir you can see someting like this:
 
-```
+```bash
 $ iex
 
 Erlang/OTP 18 [erts-7.0] [source] [64-bit] [smp:4:4] [async-threads:10] [kernel-poll:false]
@@ -27,7 +27,7 @@ First you can see OTP Erlang version, Erlang was designed to run processes and t
 
 If you want quit from interactive Elixir type Ctrl + g to user switch command, as you can see follow options:
 
-```
+```bash
 iex(1)>
 User switch command
  --> h
@@ -54,14 +54,14 @@ Using mix command you can:
 
 Type:
 
-```
+```bash
 $ mix -h
 ```
 
 For more information.
 
 ## Hello World
-```
+```bash
 $ cat simple.exs
 IO.puts "Hello world from Elixir!"
 

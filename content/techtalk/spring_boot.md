@@ -20,13 +20,13 @@ This simple tutorial shows you how to create a simple Spring project with this f
 
 You can create this project from command line like this:
 
-```
+```bash
 spring init --dependencies=data-jpa,data-rest --build=gradle SimpleRestApplication
 ```
 
 That command will generate a Spring project structure under SimpleRestApplication folder, I will show you a short version of build.gradle generated.
 
-```
+```groovy
 buildscript {
   ext {
     springBootVersion = '1.2.5.RELEASE'
@@ -65,7 +65,7 @@ dependencies {
 
 This project will generate an DemoApplication.java file, rename it as DemoApplication.groovy in a package structure you want.
 
-```java
+```groovy
 package com.josdem
 
 import org.springframework.boot.SpringApplication
@@ -82,7 +82,7 @@ class DemoApplication {
 
 Next create a groovy file with simple rest controller description as follow:
 
-```java
+```groovy
 package com.josdem
 
 import org.springframework.web.bind.annotation.RestController
@@ -101,7 +101,7 @@ class SimpleController {
 
 Mysql configuration keeps url connection, username and password description in the application.properties file.
 
-```
+```groovy
 spring.datasource.url=jdbc:mysql://localhost/springboot
 spring.datasource.username=josdem
 spring.datasource.password=josdem

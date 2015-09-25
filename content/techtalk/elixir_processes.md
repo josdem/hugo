@@ -10,14 +10,14 @@ Elixir manages concurrency in this way, since it can spawn process and send/rece
 
 The basic mechanism for starting a process is by spawning, basically spawn/1 takes a function which it will execute in another process.
 
-```
+```bash
 iex> spawn fn -> 1 + 2 end
 #PID<0.43.0>
 ```
 
 spawn/1 returns a PID (process identifier). We can send messages to a process with send/2 and receive them with receive/1. Let’s consider next example.
 
-```
+```bash
 iex(1)> defmodule Messengine do
 ...(1)>  def message do
 ...(1)>    receive do
@@ -30,13 +30,13 @@ iex(1)> defmodule Messengine do
 
 We defined a Module with a message method which receive a tuple with atom :name and value as string, next thanks to receive method puts in the output console the message "Receiving message from ${parameter}"
 
-```
+```bash
 iex(2)> pid = spawn(fn -> Messengine.message() end)
 ```
 
 Next we spawned the function in a process and store as pid value.
 
-```
+```bash
 iex(3)> send pid, {:name, "josdem"}
 ```
 

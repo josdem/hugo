@@ -7,13 +7,13 @@ title = "Writting basic project in Elixir"
 
 Let’s create a basic project scructure by invoking mix new from the command line. Type:
 
-```
+```bash
 $ mix new greet
 ```
 
 Where greet is our name project. You should see following out put.
 
-```
+```bash
 * creating README.md
 * creating .gitignore
 * creating mix.exs
@@ -54,7 +54,7 @@ end
 
 Then create an executable and run it:
 
-```
+```bash
 $ mix escript.build
 $ ./greet
 ```

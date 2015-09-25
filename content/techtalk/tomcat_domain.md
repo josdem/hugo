@@ -17,7 +17,7 @@ The first thing you must do is get rid of configuration you don't need in your T
 This is a file example how  you can configure your "light" Tomcat
 file: $TOMCAT_HOME/config/server.xml
 
-```
+```xml
 <?xml version='1.0' encoding='utf-8'?>
 <Server port="8001" shutdown="SHUTDOWN">
   <Listener className="org.apache.catalina.startup.VersionLoggerListener" />
@@ -45,7 +45,7 @@ Notice jvmRoute parameter is added as AJP Connector.
 ## A record configuration
 It is important you have your domain pointing to your IP address. Usually, you can do this creating an A record in your domain management. As soon as you got it, you should do something like this:
 
-```
+```bash
 $nslookup jmetadata.josdem.io
 
 Server:   127.0.1.1
@@ -59,7 +59,7 @@ Address: 52.8.244.12
 ## Creating a virtual host in your Apache Server
 Next step is create a file named josdem.io.conf in /etc/httpd/conf.d with this your Apache will know how connect your Tomcat, here is my example file:
 
-```
+```xml
 <VirtualHost *:80>
   DocumentRoot "/var/www/html/website"
   ServerName josdem.io
@@ -92,7 +92,7 @@ Next step is create a file named josdem.io.conf in /etc/httpd/conf.d with this y
 Finally you may want to start, stop your tomcat service as any service in your server, so here is an example.
 File: /etc/rc.d/init.d/tomcatJmetadata
 
-```
+```bash
 #!/bin/bash
 #
 # tomcat7     This shell script takes care of starting and stopping Tomcat
