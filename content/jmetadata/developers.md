@@ -24,13 +24,19 @@ In order to set up you environment I recommend you
   * GIT plugin
 * Install Musicbrainz and LastFM third party jar’s manually in your .m2 repository
 
-`mvn install:install-file -Dfile="path-to-file" -DgroupId=de.umass.lastfm -DartifactId=lastfm_bindings -Dversion=0.1.0 -Dpackaging=jar
-mvn install:install-file -Dfile="path-to-file" -DgroupId=com.skychief.javamusicbrainz -DartifactId=javamusicbrainz -Dversion=1.0 -Dpackaging=jar`
+```bash
+mvn install:install-file -Dfile="path-to-file" -DgroupId=de.umass.lastfm -DartifactId=lastfm_bindings -Dversion=0.1.0 -Dpackaging=jar
+mvn install:install-file -Dfile="path-to-file" -DgroupId=com.skychief.javamusicbrainz -DartifactId=javamusicbrainz -Dversion=1.0 -Dpackaging=jar
+```
 
 Note: You should find the third party Jars in /lib folder in Jmetadata source code.
 
 ## Create Installers
 * Maven in your system environment path is required
-* From your command line: `mvn -Dmaven.test.skip clean assembly:assembly`
+* From your command line:
+
+```bash
+mvn -Dmaven.test.skip clean assembly:assembly
+```
 
 [Return to the main article](/jmetadata/jmetadata)
