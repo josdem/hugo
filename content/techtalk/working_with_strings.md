@@ -30,7 +30,7 @@ def me = 'josdem'
 def you = 'Jane'
 def line = 'me $me, you $you!'
 
-assert 'me josdem you Jane!'
+assert line == 'me josdem you Jane!'
 ```
 
 **Extended dot syntax**
@@ -70,10 +70,10 @@ $flower2 are $color2,
 Sugar is sweet,
 And so are you."""
 
-assert output == """Roses are red,
+assert output == "Roses are red,
 Violets are blue,
 Sugar is sweet,
-And so are you."""
+And so are you."
 ```
 
 ## String operations
