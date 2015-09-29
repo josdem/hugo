@@ -5,7 +5,7 @@ tags = ["josdem", "jmetadata"]
 title = "Jmetadata Linux.zip"
 
 +++
-File: [JMetadata-Linux.zip](http://josdem.io:8081/jmetadata-download-stats/downloader/downloadLinuxVersion) 7.7 MB
+File: [JMetadata-Linux.zip](http://jmetadata.josdem.io/jmetadata-download-stats/downloader/downloadLinuxVersion) 7.7 MB
 
 ## Instructions:
 1. Unzip.
