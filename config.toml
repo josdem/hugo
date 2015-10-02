@@ -121,7 +121,7 @@ theme = "hugo-artists-theme"
 		[[params.clients.list]]
 			avatar = "theo.jpg"
 			name   = "Theodor Grip"
-			title  = "Software Developer."
+			title  = "Tech lead."
 			quote  = "**José Luis fue un compañero muy trabajador.** Siempre se interesó por las nuevas tecnologías y estuvo aprendiendo nuevas cosas. Tiene mucha ambición y trabaja rápido. Siempre esta dispuesto a ayudar y fue un placer hacer pair programming con él."
 			logo   = "logo1.png"
 
