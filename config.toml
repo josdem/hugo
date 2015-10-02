@@ -119,10 +119,10 @@ theme = "hugo-artists-theme"
 		title = "Contacts"
 
 		[[params.clients.list]]
-			avatar = "face-aaroni.jpg"
-			name   = "Scott Summers"
-			title  = "Director of Design, OnToText Ind."
-			quote  = "**While we all felt that Travis was a great** asset to our team — and really worked hard to understand our products from the point of view of the customer — we also all agree he should shower more often."
+			avatar = "theo.jpg"
+			name   = "Theodor Grip"
+			title  = "Software Developer."
+			quote  = "**José Luis fue un compañero muy trabajador.** Siempre se interesó por las nuevas tecnologías y estuvo aprendiendo nuevas cosas. Tiene mucha ambición y trabaja rápido. Siempre esta dispuesto a ayudar y fue un placer hacer pair programming con él."
 			logo   = "logo1.png"
 
 		[[params.clients.list]]
