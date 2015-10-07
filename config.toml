@@ -126,10 +126,10 @@ theme = "hugo-artists-theme"
 			logo   = "logo1.png"
 
 		[[params.clients.list]]
-			avatar = "face-atariboy.jpg"
-			name   = "Hank McCoy"
-			title  = "Eater of Salad, Antartica Int."
-			quote  = "**Working with Travis was the highlight of my career.** Other moments of note were collecting the largest number of paperclips in the office, and winning a trophy for saying \"uh huh, and then what?\" 30 times in a row to my girlfriend without her noticing."
+			avatar = "felipe.jpg"
+			name   = "Felipe Juarez"
+			title  = "Software Developer, Makingdevs."
+			quote  = "**José Luis un gran desarrollador, compañero, mentor y mejor amigo.** Interesado por conocer sobre tecnologías, mejores prácticas y compartir cada uno de sus descubrimientos. Apasionado del TDD, la música electrónica, las chelas, el mezcal y de entablar buenas conversaciones."
 			logo   = "logo2.png"
 
 		[[params.clients.list]]
