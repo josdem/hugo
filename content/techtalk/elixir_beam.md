@@ -12,7 +12,7 @@ Beam is the Erlang virtual machine, by default runs one OS thread per processor 
 * BEAM create process and they are isolated
 * Process send messages to other processes as communication mechanism
 * BEAM create an scheduler per core processor
-* Each scheduler is associated with a thread in the OS.
+* Each scheduler is associated with a thread in the OS
 * Each scheduler has an execution queue
 * An important function in any scheduler is load balancing
 * Each process has 2000 executions as life-cycle by default
