@@ -130,7 +130,7 @@ theme = "hugo-artists-theme"
 			name   = "Felipe Juarez"
 			title  = "Software Developer, Makingdevs."
 			quote  = "**José Luis un gran desarrollador, compañero, mentor y mejor amigo.** Interesado por conocer sobre tecnologías, mejores prácticas y compartir cada uno de sus descubrimientos. Apasionado del TDD, la música electrónica, las chelas, el mezcal y de entablar buenas conversaciones."
-			logo   = "logo2.png"
+			logo   = "makingdevs.png"
 
 		[[params.clients.list]]
 			avatar = "face-jackiesaik.jpg"
