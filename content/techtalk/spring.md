@@ -18,6 +18,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * JSON API
 * Oauth2 Authentification
 * IP Whitelist using interceptors
+* Command validation with hibernate
 * Java Mail library
 * Bootstrap
 

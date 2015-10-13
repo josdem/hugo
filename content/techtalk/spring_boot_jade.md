@@ -184,6 +184,6 @@ class HomeController {
 }
 ```
 
-Return to the main article. [Spring Boot](/techtalk/techtalks)
+[Return to the main article](/techtalk/spring)
 
 
