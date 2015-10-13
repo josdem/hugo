@@ -11,7 +11,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * Grails: [Grails](/techtalk/grails)
 * Refactoring: [Refactoring](/techtalk/refactoring)
 * Continuous Delivery: [Continuous Delivery](/techtalk/continuous_delivery)
-* Spring Boot: [Spring Boot](/techtalk/spring_boot)
+* Spring: [Spring](/techtalk/spring)
 * Elixir: [Elixir](/techtalk/elixir)
 * Extreme Programming: [Extreme Programming](/techtalk/extreme_programming)
 * Clean Code: [Clean Code](/techtalk/clean_code)
