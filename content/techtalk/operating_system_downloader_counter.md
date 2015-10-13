@@ -17,13 +17,13 @@ As application owner I want to deliver my application installer so the client ca
 
 As first step, I’m going to create a project as follow:
 
-```
+```bash
 grails create-app operating-system-downloader-stat
 ```
 
 Next, I’m going to create a Domain as follow:
 
-```
+```bash
 grails create-domain-class com.tim.Downloader
 ```
 
@@ -64,26 +64,26 @@ enum InstallerType {
 ## Creating controller
 In order to create a controller we need to start grails application, type this:
 
-```
+```bash
 grails
 ```
 
 And then:
 
-```
+```bash
 create-controller com.tim.DownloaderController
 ```
 
 ## Creating service
 Services are transactional by default in Grails and is intended contains business logic, in order to create a service type:
 
-```
+```bash
 grails
 ```
 
 And then:
 
-```
+```bash
 create-service com.tim.DownloaderService
 ```
 
@@ -123,7 +123,7 @@ class DownloaderControllerSpec extends Specification {
 
 You can run unit tests by typing in your command line:
 
-```
+```bash
 grails test-app :unit
 ```
 

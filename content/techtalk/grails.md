@@ -36,13 +36,13 @@ Grails is an open source web application framework it is intended to be a high-p
 Creating an application
 In order to create an application type this command in your command line:
 
-```
+```bash
 grails create-app project-creator
 ```
 
 Output:
 
-```
+```bash
 Created Grails Application at /home/josdem/Temporal/Grails/project-creator
 ```
 
@@ -53,13 +53,13 @@ Grails create a relation between domain classes and a table in a database, this 
 
 In order to create a domain named Project type this command in your command line:
 
-```
+```bash
 grails create-domain-class com.josdem.Project
 ```
 
 Output:
 
-```
+```bash
 Created file grails-app/domain/com/josdem/Project.groovy
 Created file test/unit/com/josdem/ProjectSpec.groovy
 ```
@@ -89,19 +89,19 @@ Scaffolding lets you generate some basic CRUD interfaces for a domain class, inc
 ## Creating a controller
 In order to create a controller we need to start grails application, type this:
 
-```
+```bash
 grails
 ```
 
 And then:
 
-```
+```bash
 run-app
 ```
 
 Output:
 
-```
+```bash
 Server running. Browse to http://localhost:8080/project-creator
 Application loaded in interactive mode. Type 'stop-app' to shutdown.
 Enter a script name to run. Use TAB for completion:
@@ -109,13 +109,13 @@ Enter a script name to run. Use TAB for completion:
 
 Now we can create a controller named ProjectController type this command in your command line:
 
-```
+```bash
 create-scaffold-controller com.josdem.Project
 ```
 
 Output:
 
-```
+```bash
 Created file grails-app/controllers/com/josdem/ProjectController.groovy
 Created file grails-app/views/project
 Created file test/unit/com/josdem/ProjectControllerSpec.groovy
