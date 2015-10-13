@@ -259,6 +259,40 @@ File: /WEB-INF/web.xml
 </web-app>
 ```
 
+In your home, create a folder named .jmailer and add this log4j file
+
+File: log4j-development.properties
+
+```bash
+#
+# The logging properties used for eclipse testing, We want to see INFO output on the console.
+#
+log4j.rootLogger=out
+
+log4j.logger.com.jos.dem=DEBUG,out
+log4j.logger.org.springframework=INFO,out
+log4j.logger.org.springframework.transaction=DEBUG
+log4j.logger.org.springframework.jmx=ERROR,out
+log4j.logger.org.springframework.aop=DEBUG
+log4j.logger.org.hibernate=ERROR,out
+log4j.logger.org.apache.commons.beanutils=ERROR,out
+log4j.logger.org.displaytag=ERROR,out
+log4j.logger.net.sf=ERROR,out
+
+#Ensure the logs don't add to each other
+log4j.additivity.com.tim.one=false
+log4j.additivity.org.springframework=false
+log4j.additivity.org.springframework.jmx=false
+log4j.additivity.org.hibernate=false
+log4j.additivity.org.apache.commons.beanutils=false
+log4j.additivity.org.displaytag=false
+log4j.additivity.net.sf=false
+
+log4j.appender.out=org.apache.log4j.ConsoleAppender
+log4j.appender.out.layout=org.apache.log4j.PatternLayout
+log4j.appender.out.layout.ConversionPattern=%d %5p [%t] (%F:%L) - %m%n
+```
+
 In order to run go to your home directory and type:
 
 ```bash
