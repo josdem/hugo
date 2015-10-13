@@ -30,7 +30,6 @@ repositories {
 }
 
 def springVersion = '4.1.7.RELEASE'
-def hibernateValidatorVersion = "5.2.2.Final"
 def groovyVersion = '2.4.5'
 def aspectjVersion = '1.8.7'
 def currentEnvironment = project.hasProperty("environment")?environment:"development"
@@ -39,7 +38,6 @@ dependencies {
 
   compile "org.springframework:spring-webmvc:${springVersion}"
   compile "org.codehaus.groovy:groovy:${groovyVersion}"
-  compile "org.hibernate:hibernate-validator:${hibernateValidatorVersion}"
   compile 'log4j:log4j:1.2.17'
 
 }
