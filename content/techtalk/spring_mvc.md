@@ -11,6 +11,7 @@ title = "Basic Spring MVC with Bootstrap"
 * Spring 4.1.7
 * Java 8
 * Groovy 2.4.5
+* Bootstrap 3.3.4
 * XML configuration
 
 **build.gradle**
@@ -64,3 +65,213 @@ task settingLog4jProperties(type:Copy){
 processResources.dependsOn "settingLog4jProperties"
 ```
 
+**Spring controller**
+
+```groovy
+package com.jos.dem.jmailer.controller
+
+import java.util.Map
+
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping
+
+import static org.springframework.web.bind.annotation.RequestMethod.GET
+
+import com.jos.dem.jmailer.service.EmailerService
+
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
+
+@Controller
+class EmailerController {
+
+  @Autowired
+  EmailerService emailerService
+
+  Log log = LogFactory.getLog(this.class)
+
+  @RequestMapping(value = '/', method = GET)
+  String index(Map<String, Object> model) {
+    log.debug 'Calling index'
+    model.put('title', emailerService.getTitle('World!'))
+    model.put('msg', emailerService.getDescription())
+
+    return 'index'
+  }
+}
+```
+
+**Service**
+
+```groovy
+package com.jos.dem.jmailer.service
+
+import org.springframework.stereotype.Service
+import org.springframework.util.StringUtils
+
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
+
+@Service
+class EmailerService {
+
+  Log log = LogFactory.getLog(this.class)
+
+  String getTitle(String name) {
+    log.debug "GETTING title with name : ${name}"
+    "Hello ${name}"
+  }
+
+  String getDescription() {
+    log.debug "GETTING description"
+    "Jmailer is a service for delivering emails"
+  }
+
+}
+```
+
+**Views – JSP + JSTL + bootstrap. A simple JSP page to display the model, and includes the static resources like css and js.**
+
+File: /WEB-INF/views/jsp/index.jsp
+
+```xml
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Jmailer</title>
+
+<spring:url value="/resources/core/css/jmailer.css" var="coreCss" />
+<spring:url value="/resources/core/css/bootstrap.min.css" var="bootstrapCss" />
+<link href="${bootstrapCss}" rel="stylesheet" />
+<link href="${coreCss}" rel="stylesheet" />
+</head>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Email deliver service</a>
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron">
+  <div class="container">
+    <h1>${title}</h1>
+    <p>
+      <c:if test="${not empty msg}">
+        About: ${msg}
+      </c:if>
+    </p>
+    <p>
+      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+    </p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-4">
+      <h2>Heading</h2>
+      <p>Text</p>
+      <p>
+        <a class="btn btn-default" href="#" role="button">Action</a>
+      </p>
+    </div>
+  </div>
+
+
+  <hr>
+  <footer>
+    <p>&copy; josdem 2015</p>
+  </footer>
+</div>
+
+<spring:url value="/resources/core/css/hello.js" var="coreJs" />
+<spring:url value="/resources/core/css/bootstrap.min.js" var="bootstrapJs" />
+
+<script src="${coreJs}"></script>
+<script src="${bootstrapJs}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+</body>
+</html>
+```
+
+**Spring XML Configuration**
+
+File: /WEB-INF/dispatcher-servlet.xml
+
+```xml
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:mvc="http://www.springframework.org/schema/mvc"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans
+  http://www.springframework.org/schema/beans/spring-beans.xsd
+  http://www.springframework.org/schema/mvc
+  http://www.springframework.org/schema/mvc/spring-mvc.xsd
+  http://www.springframework.org/schema/context
+  http://www.springframework.org/schema/context/spring-context.xsd ">
+
+  <context:component-scan base-package="com.jos.dem.jmailer" />
+
+
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+    <property name="prefix" value="/WEB-INF/views/jsp/" />
+    <property name="suffix" value=".jsp" />
+  </bean>
+
+  <mvc:resources mapping="/resources/**" location="/resources/" />
+
+  <mvc:annotation-driven />
+
+</beans>
+
+```
+
+File: /WEB-INF/web.xml
+
+```xml
+<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+  version="3.0">
+
+  <display-name>Jmailer</display-name>
+  <description>Emailer deliver service</description>
+
+  <servlet>
+    <servlet-name>dispatcher</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>dispatcher</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+</web-app>
+```
+
+In order to run go to your home directory and type:
+
+```bash
+gradle jettyRun
+```
+
+Go in your browser to: http://localhost:8080/jmailer/
+
+To download the project
+
+```bash
+git clone git@github.com:josdem/jmailer-bootstrap.git
+git checkout setup
+```
+
+[Return to the main article](/techtalk/spring)
