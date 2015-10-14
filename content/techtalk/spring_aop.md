@@ -145,6 +145,8 @@ In order to define our AOP in spring we need an aop context file in the followin
 
 Finally we need to import our aop-appctx.xml in our servlet as well.
 
+File: src/main/webapp/WEB-INF/dispatcher-servlet.xml
+
 ```xml
 <beans xmlns="http://www.springframework.org/schema/beans"
   xmlns:context="http://www.springframework.org/schema/context"
