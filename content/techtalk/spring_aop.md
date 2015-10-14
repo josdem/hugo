@@ -10,7 +10,7 @@ Apply same logic in several points in your application is called cross cutting c
   * Advice: action taken. Different types of advice include "around," "before" and "after" advice.
   * Pointcut: Where the action should be applied.
 
-In this example we are going to define an AfterThrowingAdvice which means an method executed after some exception has been thrown, so first we need to define a general exception in our application.
+In this example we are going to define an AfterThrowingAdvice which means an action is executed after some exception has been thrown, so first we need to define a general exception in our application.
 
 ```groovy
 package com.jos.dem.jmailer.exception
@@ -31,7 +31,7 @@ class BusinessException extends NestedRuntimeException {
 
 ```
 
-BusinessException is a general exception in our application defined to react in the same way in any unusual event, some specific exception could be an EmailerException.
+BusinessException is a general exception in our application defined to react in the same way to the specific exception, some specific exception could be an EmailerException.
 
 ```groovy
 package com.jos.dem.jmailer.exception
