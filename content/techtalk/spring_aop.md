@@ -121,7 +121,7 @@ class EmailerService {
 }
 ```
 
-In this example in the sendEmail() method we are throwing an EmailerException so our Advice will be called.
+As you can see at EmailerService in the sendEmail() method we are throwing an EmailerException so our Advice will be called.
 
 In order to define our AOP in spring we need an aop context file in the following path: src/main/resources/aop-appctx.xml
 
