@@ -135,7 +135,7 @@ In order to define our AOP in spring we need an aop context file in the followin
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-  <aop:aspectj-autoproxy proxy-target-class="true"/>
+  <aop:aspectj-autoproxy/>
 
   <context:component-scan base-package="com.jos.dem.jmailer.advice"/>
 
