@@ -26,7 +26,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 
 * [Basic Spring MVC with Bootstrap](/techtalk/spring_mvc)
 * [Managing Exceptions With AOP](/techtalk/spring_aop)
-* [Logger Using JMS Messages](/techtalk/spring_jms_logger)
+* [Logger Using JMS and ActiveMQ](/techtalk/spring_jms_logger)
 
 ## Spring Boot
 

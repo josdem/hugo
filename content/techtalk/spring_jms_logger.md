@@ -1,7 +1,7 @@
 +++
 date = "2015-10-14T21:41:43-05:00"
 draft = true
-title = "JMS Logger with Spring"
+title = "JMS Logger with ActiveMQ"
 
 +++
 
