@@ -7,7 +7,7 @@ title = "Aspect Oriented Programming"
 
 Apply same logic in several points in your application is called cross cutting concerns, and in Spring we can implement it using AOP, some basics aspects are:
 
-  * Advice: action taken. Different types of advice include "around," "before" and "after" advice.
+  * Advice: Action taken. Different types of advice include "around," "before" and "after" advice.
   * Pointcut: Where the action should be applied.
 
 In this example we are going to define an AfterThrowingAdvice which means an action is executed after some exception has been thrown, so first we need to define a general exception in our application.
@@ -53,7 +53,6 @@ So our advice look like this:
 ```groovy
 package com.jos.dem.jmailer.advice
 
-import org.aspectj.lang.JoinPoint
 import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
@@ -121,7 +120,7 @@ class EmailerService {
 }
 ```
 
-In this example in the sendEmail() method we are throwing an EmailerException so our Advice will be called.
+As you can see at EmailerService in the sendEmail() method we are throwing an EmailerException so our Advice will be called.
 
 In order to define our AOP in spring we need an aop context file in the following path: src/main/resources/aop-appctx.xml
 
@@ -135,7 +134,7 @@ In order to define our AOP in spring we need an aop context file in the followin
   http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
   http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 
-  <aop:aspectj-autoproxy proxy-target-class="true"/>
+  <aop:aspectj-autoproxy/>
 
   <context:component-scan base-package="com.jos.dem.jmailer.advice"/>
 
@@ -144,6 +143,8 @@ In order to define our AOP in spring we need an aop context file in the followin
 ```
 
 Finally we need to import our aop-appctx.xml in our servlet as well.
+
+File: src/main/webapp/WEB-INF/dispatcher-servlet.xml
 
 ```xml
 <beans xmlns="http://www.springframework.org/schema/beans"
