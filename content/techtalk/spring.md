@@ -12,8 +12,8 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * Spring MVC
 * XML Configuration
 * Managing exceptions with AOP
-* Java Melody to measure performance
 * Logging using JMS messages
+* Java Melody to measure performance
 * Freemarker to manage email templating
 * JSON API
 * Oauth2 Authentification
@@ -26,6 +26,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 
 * [Basic Spring MVC with Bootstrap](/techtalk/spring_mvc)
 * [Managing Exceptions With AOP](/techtalk/spring_aop)
+* [Logger Using JMS Messages](/techtalk/spring_jms_logger)
 
 ## Spring Boot
 
