@@ -303,6 +303,7 @@ To download the project
 
 ```bash
 git clone git@github.com:josdem/jmailer-bootstrap.git
+git fetch
 git checkout setup
 ```
 
