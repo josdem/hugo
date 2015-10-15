@@ -75,12 +75,11 @@ import javax.jms.Message
 import javax.jms.MessageListener
 import javax.jms.ObjectMessage
 
+import org.springframework.stereotype.Service
+import org.springframework.beans.factory.annotation.Autowired
+
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
-
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.stereotype.Service
-
 
 @Service
 class LoggerMessageListener implements MessageListener {
