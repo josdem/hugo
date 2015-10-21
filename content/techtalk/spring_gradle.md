@@ -16,6 +16,21 @@ Using DSL language you write your build script like you write your code and this
 
 In this post I will show you how to build Jmailer project using Gradle.
 
+Our project has the following directory structure:
+
+```bash
+.
+├── build
+├── build.gradle
+├── emailer
+├── settings.gradle
+├── src
+└── web
+
+4 directories, 2 files
+```
+## build.gradle
+
 **Variables**
 
 ```groovy
@@ -123,10 +138,10 @@ project(":web"){
 
 Here we are defying war build, jetty server application, Java 8 compatibility, web project dependencies, context path and http port and a task which will perform properties replacement as follow:
 
-* into is our path target directory to contains property files
-* jmailerConfigurationDir is source folder, you can see it's definition at the top
-* include is our file to copy in this task
-* rename and replace do the trick to manage environments
+* **into** is our path target directory to contains property files
+* **jmailerConfigurationDir** is source folder, you can see it's definition at the top
+* **include** is our file to copy in this task
+* **rename and replace** do the trick to manage environments
 
 To download the project
 
