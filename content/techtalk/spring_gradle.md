@@ -48,7 +48,7 @@ Here we're defying variables in the top of the file in order to declare our depe
 
 **Subprojects**
 
-In the next structure we are going to define a Groovy plugin, version, group package, and repositories notice that we're defying subprojects attributes.
+In the next structure we are going to define a Groovy plugin, version, group package, repositories as subprojects attributes.
 
 ```groovy
 subprojects {
@@ -84,7 +84,7 @@ project(":emailer:formatter"){
 }
 ```
 
-As you can see at the :email:formatter bottom definition, it's an :emailer:sender dependency which means dependencies from sender are inherited to formatter.
+As you can see at the :email:formatter bottom definition, it's an :emailer:sender dependency which means dependencies from sender are inherited.
 
 **Main project**
 
@@ -136,7 +136,7 @@ project(":web"){
 }
 ```
 
-Here we are defying war build, jetty server application, Java 8 compatibility, web project dependencies, context path and http port and a task which will perform properties replacement as follow:
+Here we are defying war build, jetty server application, Java 8 compatibility, web project dependencies, context path, http port and two tasks, those are performing properties replacement as follow:
 
 * **into** is our path target directory to contains property files
 * **jmailerConfigurationDir** is source folder, you can see it's definition at the top
