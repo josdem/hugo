@@ -53,12 +53,12 @@ $(document).ready(function(){
   $("button").click(function(){
 
     $.ajax('//localhost:8080/client', {
-        method: 'GET',
-        dataType: 'json',
-        data: {
-          rfc: $('#rfc').val()
-        }
-        })
+      method: 'GET',
+      dataType: 'json',
+      data: {
+        rfc: $('#rfc').val()
+      }
+    })
     .done(function(data) {
       var simulator = $('#simulator');
       simulator.find('#rfc').val(data.rfc);
