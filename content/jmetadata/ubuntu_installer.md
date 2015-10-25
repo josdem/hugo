@@ -14,7 +14,7 @@ File: [JMetadata.deb](http://jmetadata.josdem.io/jmetadata-download-stats/downlo
 ## Troubleshooting:
 Make sure to have $JAVA_HOME in your environment. If not you can set it up in /etc/profile
 
-### Example:
+## Example:
 `export JAVA_HOME=/opt/jdk1.7.0_11;
 export PATH=$PATH:$JAVA_HOME/bin;`
 
