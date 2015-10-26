@@ -48,6 +48,8 @@ Let's imagine this scenario: when user type rfc in a form and click on send butt
 And we define an ajax to do the trick as follow:
 
 ```javascript
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
   $("button").click(function(){
@@ -72,6 +74,7 @@ $(document).ready(function(){
   });
 });
 </script>
+</head>
 ```
 
 In this code we can see the following aspects:
