@@ -22,6 +22,7 @@ In order to set up you environment I recommend you
   * Maven plugin
   * EMMA plugin
   * GIT plugin
+* Maven in your system environment path
 * Install Musicbrainz and LastFM third party jar’s manually in your .m2 repository
 
 ```bash
@@ -33,13 +34,11 @@ Note: You should find the third party Jars in /lib folder in Jmetadata source co
 
 ## To run JMetadata
 
-* Maven in your system environment path is required
-* Download code from repository
+Download code from repository
 
 ```bash
 git clone git@github.com:josdem/jmetadata.git
 ```
-
 Execute this command where you downloaded the code
 
 ```bash
