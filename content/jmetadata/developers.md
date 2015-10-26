@@ -31,12 +31,27 @@ mvn install:install-file -Dfile="path-to-file" -DgroupId=com.skychief.javamusicb
 
 Note: You should find the third party Jars in /lib folder in Jmetadata source code.
 
-## Create Installers
+## To run JMetadata
+
 * Maven in your system environment path is required
-* From your command line:
+* Download code from repository
+
+```bash
+git clone git@github.com:josdem/jmetadata.git
+```
+
+Execute this command where you downloaded the code
 
 ```bash
 mvn -Dmaven.test.skip clean assembly:assembly
 ```
+
+Go to the $JMETADATA_HOME/target/ directory and unzip the JMetadata-bin.zip file and execute
+
+```bash
+.JMetadata.sh
+```
+
+NOTE: To create installers read the INSTALL file included.
 
 [Return to the main article](/jmetadata/jmetadata)
