@@ -133,6 +133,8 @@ project(":web"){
     include "log4j-${currentEnvironment}.properties"
     rename { String fileName -> fileName.replace("-${currentEnvironment}", '') }
   }
+
+  processResources.dependsOn "settingEnvironment", "settingLog4jProperties"
 }
 ```
 
