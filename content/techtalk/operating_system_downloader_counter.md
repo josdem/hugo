@@ -227,5 +227,5 @@ class DownloaderService {
 }
 ```
 
-[Return to the main article](/techtalk/techtalks)
+[Return to the main article](/techtalk/grails)
 
