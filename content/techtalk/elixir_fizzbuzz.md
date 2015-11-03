@@ -108,7 +108,7 @@ Finished in 0.08 seconds (0.08s on load, 0.00s on tests)
 Randomized with seed 521475
 ```
 
-## Refactoring fizzbuzz using pattern mathing and private functions
+## Refactoring fizzbuzz using pattern matching and private functions
 
 Using matchers we can simplify our code.
 
