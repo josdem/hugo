@@ -5,55 +5,32 @@ title = "Looping structures"
 
 +++
 
-Groovy supports the standard C for loop:
+Iterate over a range of numbers:
 
 ```groovy
-String message = ''
-for (int i = 0; i < 5; i++) {
-    message += 'Hi '
+def message = ''
+
+(1..5).each{
+  message += 'HI '
 }
-assert message == 'Hi Hi Hi Hi Hi '
+
+assert message == 'HI HI HI HI HI '
 ```
 
-The for loop in Groovy is much simpler and works with any kind of array, collection, Map, etc.
+The for loop in Groovy is much simpler in collections.
 
 ```groovy
-// iterate over a range
-def x = 0
-for ( i in 0..9 ) {
-    x += i
-}
-assert x == 45
-
 // iterate over a list
-x = 0
-for ( i in [0, 1, 2, 3, 4] ) {
-    x += i
+["A","B","C"].each{
+  println it
 }
-assert x == 10
-
-// iterate over an array
-def array = (0..4).toArray()
-x = 0
-for ( i in array ) {
-    x += i
-}
-assert x == 10
 
 // iterate over a map
 def map = ['abc':1, 'def':2, 'xyz':3]
-x = 0
-for ( e in map ) {
-    x += e.value
-}
-assert x == 6
 
-// iterate over values in a map
-x = 0
-for ( v in map.values() ) {
-    x += v
+for (item in map){
+  println "key: ${item.key} value: ${item.value}"
 }
-assert x == 6
 
 // iterate over the characters in a string
 def text = "abc"
@@ -75,6 +52,20 @@ while ( y-- > 0 ) {
 }
 
 assert x == 5
+```
+
+## FizzBuzz in Groovy
+
+Fizz buzz is a group word game for children to teach them about division. Players take turns to count incrementally, replacing any number divisible by three with the word "fizz", and any number divisible by five with the word "buzz".
+
+Our final example is to test a starting round of fizz buzz from 1 to 100 as follow:
+
+  *1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14 FizzBuzz...*
+
+```groovy
+(1..100).each{
+  println "${it%3 ?'':'Fizz'}${it%5 ?'':'Buzz'}" ?: it
+}
 ```
 
 [Return to the main article](/techtalk/groovy)

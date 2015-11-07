@@ -64,7 +64,7 @@ package com.josdem
     String name
     String note
 
-    public static main(String[] args){
+    static main(String[] args){
       Todo todo = new Todo(name:"Tweet",note:"About my site")
       print todo.dump()
     }
