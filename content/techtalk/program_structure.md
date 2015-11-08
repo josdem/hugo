@@ -108,4 +108,35 @@ try {
 }
 ```
 
+## Annotations
+
+You can easily implement toString method in Groovy using annotations as follow:
+
+```groovy
+@groovy.transform.ToString
+class User {
+  String name
+  String twitter
+}
+
+print new User(name:'Jose Luis',twitter:'josdem')
+```
+
+`output: User(Jose Luis, josdem)`
+
+Another example is TupleConstructor to get parameters as tuple and create our object by constructor
+
+```groovy
+@groovy.transform.ToString
+@groovy.transform.TupleConstructor
+class User {
+  String name
+  String twitter
+}
+
+print new User('Jose Luis','josdem')
+```
+
+`output: User(Jose Luis, josdem)`
+
 [Return to the main article](/techtalk/groovy)
