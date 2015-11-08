@@ -69,6 +69,26 @@ println list.findAll{
 }
 ```
 
+You may want to pass an closure as parameter
+
+```groovy
+def multiply(n, closure){
+  closure(n)
+}
+
+assert 18 == multiply(3, { n -> n * 6 })
+```
+
+Simplifying this code.
+
+```groovy
+def multiply(n, closure){
+  closure(n)
+}
+
+assert 18 == multiply(3) { n -> n * 6 }
+```
+
 1. Go through the list and find all elements that is divisible by two
 
 [Return to the main article](/techtalk/groovy)
