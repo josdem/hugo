@@ -63,7 +63,7 @@ Groovy`
 **/
 
 def technologies = ["Grails" ]
-technologies.add("Groovy" )"
+technologies.add("Groovy")
 technologies << "Java" << "Griffon"
 println technologies.contains("Java")
 
@@ -71,10 +71,17 @@ technologies.remove("Java")
 println technologies
 ```
 
-*Output*
-
-`true
+`output: true
 [Groovy, Grails, Griffon]`
+
+**Some funtions in collections**
+
+```groovy
+def list = [1,2,3]
+def otherList = [3,4]
+
+assert list.intersect(otherList) == [3]
+```
 
 [Return to the main article](/techtalk/techtalks)
 

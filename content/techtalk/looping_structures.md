@@ -5,6 +5,15 @@ title = "Looping structures"
 
 +++
 
+Definying a range
+
+```groovy
+def range = ('a'..'z')
+print range
+```
+
+`output: [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]`
+
 Iterate over a range of numbers:
 
 ```groovy
@@ -26,11 +35,14 @@ The for loop in Groovy is much simpler in collections.
 }
 
 // iterate over a map
-def map = ['abc':1, 'def':2, 'xyz':3]
+def map = [one:1, two:2, three:3]
 
 for (item in map){
   println "key: ${item.key} value: ${item.value}"
 }
+
+//Map new value as simple as:
+map.four = 4
 
 // iterate over the characters in a string
 def text = "abc"
