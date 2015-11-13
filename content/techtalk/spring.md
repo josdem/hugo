@@ -13,6 +13,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * XML Configuration
 * Building with Gradle
 * Managing exceptions with AOP
+* Managing exceptions with HandlerExceptionResolver
 * Logging using JMS and ActiveMQ
 * Java Melody to measure performance
 * Freemarker to manage email templating
@@ -29,6 +30,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [Managing Exceptions With AOP](/techtalk/spring_aop)
 * [Logger Using JMS and ActiveMQ](/techtalk/spring_jms_logger)
 * [Building with Gradle](/techtalk/spring_gradle)
+* [Managing Exceptions with HandlerExceptionResolver](/techtalk/spring_handler_exception_resolver)
 
 ## Spring Boot
 
