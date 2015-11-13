@@ -14,7 +14,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * Building with Gradle
 * Managing exceptions with AOP
 * Managing exceptions with HandlerExceptionResolver
-* Logging using JMS and ActiveMQ
+* Logger using JMS and ActiveMQ
 * Java Melody to measure performance
 * Freemarker to manage email templating
 * JSON API
