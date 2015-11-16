@@ -73,6 +73,7 @@ Hello world from Elixir!
 * [Elixir and processes](/techtalk/elixir_processes)
 * [FizzBuzz Example](/techtalk/elixir_fizzbuzz)
 * [BEAM](/techtalk/elixir_beam)
+* [Elixir Essentials](/techtalk/elixir_essentials)
 
 [Return to the main article](/techtalk/techtalks)
 
