@@ -31,6 +31,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [Logger Using JMS and ActiveMQ](/techtalk/spring_jms_logger)
 * [Building with Gradle](/techtalk/spring_gradle)
 * [Managing Exceptions with HandlerExceptionResolver](/techtalk/spring_handler_exception_resolver)
+* [Email flow and Freemarker template](/techtalk/spring_freemarker)
 
 ## Spring Boot
 
