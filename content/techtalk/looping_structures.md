@@ -35,14 +35,17 @@ The for loop in Groovy is much simpler in collections.
 }
 
 // iterate over a map
-def map = [one:1, two:2, three:3]
+def map = ['one':1, 'two':2, 'three':3]
 
 for (item in map){
   println "key: ${item.key} value: ${item.value}"
 }
 
 //Map new value as simple as:
-map.four = 4
+map.'four' = 4
+
+//Getting an element from a map:
+assert map['one'] == 1
 
 // iterate over the characters in a string
 def text = "abc"
