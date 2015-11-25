@@ -5,7 +5,7 @@ title = "Elixir Practices"
 
 +++
 
-1 - Create an function called sum receives two integers and return sum operation.
+1 - Create a function called sum that receives two integers and return their sum operation.
 
 ```elixir
 sum = fn (a,b) -> a + b end
