@@ -74,6 +74,7 @@ Hello world from Elixir!
 * [FizzBuzz Example](/techtalk/elixir_fizzbuzz)
 * [BEAM](/techtalk/elixir_beam)
 * [Elixir Essentials](/techtalk/elixir_essentials)
+* [Elixir Practices One](/techtalk/elixir_practices_one)
 
 [Return to the main article](/techtalk/techtalks)
 
