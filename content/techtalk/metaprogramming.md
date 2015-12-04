@@ -180,4 +180,29 @@ name.doSomething()
 
 What is happening here is to say, when someone invoke doSomething method in the String class that by the way does not exist, do this.
 
+**Another example**
+
+```groovy
+def names = []
+
+class BusinessEntity {
+  String rfc
+}
+
+BusinessEntity.metaClass.appendName = { value -> names.add(value) }
+
+def be = new BusinessEntity(rfc:'rfc')
+String name = 'Jose Luis'
+String lastName = 'De la Cruz'
+String motherLastName = 'Morales'
+
+be.appendName(name)
+be.appendName(lastName)
+be.appendName(motherLastName)
+
+assert names == ['Jose Luis', 'De la Cruz', 'Morales']
+```
+
+Here, we defined a class called BusinessEntity and using metaprogramming we are adding a new method appendName which append at runtime a string to the names variable.
+
 [Return to the main article](/techtalk/groovy)
