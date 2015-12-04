@@ -203,6 +203,6 @@ be.appendName(motherLastName)
 assert names == ['Jose Luis', 'De la Cruz', 'Morales']
 ```
 
-Here, we defined a class called BusinessEntity and using metaprogramming we are adding a new method appendName which append at runtime a string to the names variable.
+Here, we defined a class called BusinessEntity and using metaprogramming we are adding a new method appendName, which append at runtime a string to the names variable.
 
 [Return to the main article](/techtalk/groovy)
