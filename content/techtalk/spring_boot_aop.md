@@ -7,7 +7,7 @@ title = "Spring Boot AOP"
 
 Apply same logic in several points in your application is called cross cutting concerns, and in Spring we can implement it using AOP, some basics aspects are:
 
-* Advice: Action taken. Different types of advice include “around,” “before” and “after” advice.
+* Advice: Action taken. Different types of advice include “around,” “before”, “after”, "AfterReturning" and "AfterThrowing" advice.
 * Pointcut: Where the action should be applied.
 
 In this example we are going to define an AfterThrowingAdvice which means an action is executed after some exception has been thrown, so first we need to define a general exception in our application.

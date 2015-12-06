@@ -8,7 +8,7 @@ title = "Jmailer Spring Boot"
 Let's create a project with web dependency from command line.
 
 ```bash
-spring init --dependencies=web --build=gradle jmailer-spring-boot
+spring init --dependencies=web --build=gradle --language=groovy jmailer-spring-boot
 ```
 
 That command will generate a Spring project structure under jmailer-spring-boot folder, I will show you a short version of build.gradle generated.
