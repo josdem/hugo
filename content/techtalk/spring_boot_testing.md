@@ -134,6 +134,12 @@ test {
 }
 ```
 
+We can run all the test whit this command:
+
+```bash
+gradle test -Dspring.config.location=$HOME/.spring/application-DEVELOPMENT.yml
+```
+
 To download the project
 
 ```bash
