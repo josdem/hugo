@@ -88,5 +88,8 @@ assert list.intersect(otherList) == [3]
 assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
 ```
 
-[Return to the main article](/techtalk/techtalks)
+```groovy
+assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
+```
 
+[Return to the main article](/techtalk/techtalks)
