@@ -42,7 +42,7 @@ RESTClient version:
 ```groovy
 try{
   def rest = new RESTClient('http://myhost/')
-  String token = mytoken
+  String token = 'mytoken'
   def response = rest.post(
     path: 'services/user',
     headers: [Authorization:"Bearer ${token}"],
