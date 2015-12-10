@@ -84,5 +84,9 @@ def otherList = [3,4]
 assert list.intersect(otherList) == [3]
 ```
 
+```groovy
+assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
+```
+
 [Return to the main article](/techtalk/techtalks)
 
