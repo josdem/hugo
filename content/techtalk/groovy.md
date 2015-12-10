@@ -16,6 +16,7 @@ Working with Groovy feels like a partnership between you and the language, rathe
 * [Design Patterns](/techtalk/design_patterns)
 * [Kata String Calculator](/techtalk/kata_string_calculator)
 * [Working with Strings](/techtalk/working_with_strings)
+* [Rest client, headers and data](/techtalk/groovy_restclient)
 
 ## Characteristics
 
