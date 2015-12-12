@@ -43,7 +43,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 
 ## Jmailer
 
-* [Spring Boot Poryecto Base](/techtalk/spring_boot_jmailer)
+* [Spring Boot Proyecto Base](/techtalk/spring_boot_jmailer)
 * [Spring Boot AOP](/techtalk/spring_boot_aop)
 * [Spring Boot Handler Exception](/techtalk/spring_boot_handler_exception)
 * [Spring Boot externalization](/techtalk/spring_boot_externalization)
