@@ -9,6 +9,7 @@ Apply same logic in several points in your application is called cross cutting c
 
 * Advice: Action taken. Different types of advice include “around,” “before”, “after”, "AfterReturning" and "AfterThrowing" advice.
 * Pointcut: Where the action should be applied.
+* Aspect: Is an advice and pointcut combination
 
 In this example we are going to define an AfterThrowingAdvice which means an action is executed after some exception has been thrown, so first we need to define a general exception in our application.
 
