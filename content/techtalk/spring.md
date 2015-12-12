@@ -41,4 +41,13 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Basics](/techtalk/spring_boot)
 * [Spring Boot with Jade](/techtalk/spring_boot_jade)
 
+## Jmailer
+
+* [Spring Boot Poryecto Base](/techtalk/spring_boot_jmailer)
+* [Spring Boot AOP](/techtalk/spring_boot_aop)
+* [Spring Boot Handler Exception](/techtalk/spring_boot_handler_exception)
+* [Spring Boot externalization](/techtalk/spring_boot_externalization)
+* [Spring Boot JMS](/techtalk/spring_boot_freemarker)
+* [Spring Boot testing](/techtalk/spring_boot_testing)
+
 [Return to the main article](/techtalk/techtalks)
