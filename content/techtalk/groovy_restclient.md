@@ -32,7 +32,7 @@ try{
 If we need to send some headers in curl format:
 
 ```bash
-curl -H "Content-Type: application/json" -H "Authorization: Bearer be41be7a-70ca-4988-89df-54beb212e6a9" -X POST -d '{"name":"josdem","email":"user@email.com"}' "http://myhost/services/user"
+curl -H "Content-Type: application/json" -H "Authorization: Bearer be41be7a-70ca-4988-89df-54beb212e6a9" -X POST -d '{"name":"josdem","email":"joseluis.delacruz@gmail.com"}' "http://myhost/services/user"
 ```
 
 Here we are sending JSON data with `Authorization: Bearer be41be7a-70ca-4988-89df-54beb212e6a9` as header.
@@ -46,7 +46,7 @@ try{
   def response = rest.post(
     path: 'services/user',
     headers: [Authorization:"Bearer ${token}"],
-    body: [name:"josdem",email:"user@email"],
+    body: [name:"josdem",email:"joseluis.delacruz@gmail.com"],
     requestContentType: 'application/json' )
   response.responseData
 } catch(Exception ex) {
