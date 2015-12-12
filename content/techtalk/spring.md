@@ -24,6 +24,8 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * Java Mail library
 * Bootstrap
 
+## Index
+
 * [Basic Spring MVC with Bootstrap](/techtalk/spring_mvc)
 * [Managing Exceptions With AOP](/techtalk/spring_aop)
 * [Logger Using JMS and ActiveMQ](/techtalk/spring_jms_logger)
