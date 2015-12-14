@@ -376,6 +376,8 @@ class JmailerApplication {
 
 Our message template look like this:
 
+File: $PROJECT_HOME/src/main/resources/templates/message.html
+
 ```html
 <!DOCTYPE html>
 <html>
