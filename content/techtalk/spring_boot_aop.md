@@ -126,4 +126,6 @@ git fetch
 git checkout feature/aop
 ```
 
+[<img src="https://farm1.staticflickr.com/650/23150308934_3864b02cec_b.jpg">](https://youtu.be/3xrRIesGneg)
+
 [Return to the main article](/techtalk/spring)
