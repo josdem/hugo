@@ -13,6 +13,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [Continuous Delivery](/techtalk/continuous_delivery)
 * [Spring](/techtalk/spring)
 * [Elixir](/techtalk/elixir)
+* [Python](/techtalk/python)
 * [Extreme Programming](/techtalk/extreme_programming)
 * [Clean Code](/techtalk/clean_code)
 * [Tomcat AJP](/techtalk/tomcat_domain)
