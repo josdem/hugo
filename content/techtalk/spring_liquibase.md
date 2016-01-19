@@ -61,6 +61,12 @@ INSERT INTO `BANK_CODE` VALUES ('2001','BANXICO');
 UNLOCK TABLES;
 ```
 
+Don't forget to include your liquibase dependency in your build.gradle
+
+```groovy
+compile "org.liquibase:liquibase-core:3.4.2"
+```
+
 [Return to the main article](/techtalk/spring)
 
 
