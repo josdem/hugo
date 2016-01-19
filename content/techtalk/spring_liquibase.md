@@ -61,6 +61,35 @@ INSERT INTO `BANK_CODE` VALUES ('2001','BANXICO');
 UNLOCK TABLES;
 ```
 
+This is an dataSource configuration in my application-context.xml notice the changelog-context.xml import
+
+```xml
+<import resource="classpath:/changelog-context.xml" />
+<context:property-placeholder location="classpath:/config/persistence.properties" />
+
+<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+  destroy-method="close">
+  <property name="driverClassName" value="${jdbc.driverClassName}" />
+  <property name="url" value="${jdbc.url}" />
+  <property name="username" value="${jdbc.username}" />
+  <property name="password" value="${jdbc.password}" />
+
+  <!-- Adding pooled connections -->
+  <property name="initialSize" value="${pooled.initialSize}" />
+  <property name="maxActive" value="${pooled.maxActive}" />
+  <property name="minIdle" value="${pooled.minIdle}" />
+  <property name="maxIdle" value="${pooled.maxIdle}" />
+  <property name="maxWait" value="${pooled.maxWait}" />
+  <property name="timeBetweenEvictionRunsMillis" value="${pooled.timeBetweenEvictionRunsMillis}" />
+  <property name="minEvictableIdleTimeMillis" value="${pooled.minEvictableIdleTimeMillis}" />
+  <property name="validationQuery" value="${pooled.validationQuery}" />
+  <property name="validationQueryTimeout" value="${pooled.validationQueryTimeout}" />
+  <property name="testOnBorrow" value="${pooled.testOnBorrow}" />
+  <property name="testWhileIdle" value="${pooled.testWhileIdle}" />
+  <property name="testOnReturn" value="${pooled.testOnReturn}" />
+</bean>
+```
+
 Don't forget to include your liquibase dependency in your build.gradle
 
 ```groovy
