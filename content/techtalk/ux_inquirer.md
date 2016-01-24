@@ -62,6 +62,12 @@ A question object is a hash containing question related values:
 
 inquirer.prompt uses a callback to receive the user response from command line as answers in our example.
 
+To execute our js file type in your terminal:
+
+```bash
+node inquirer.js
+```
+
 To download the project:
 
 ```bash
