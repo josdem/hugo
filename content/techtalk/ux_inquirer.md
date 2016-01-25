@@ -45,7 +45,7 @@ var questions = [{
 inquirer.prompt(questions, function(answers){
   var number = Number.parseInt(answers.number)
   if(number == guess){
-    console.log('That's the number')
+    console.log('That is the number')
   } else {
     console.log('Try again')
   }
