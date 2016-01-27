@@ -140,5 +140,11 @@ git fetch
 git checkout feature/testing
 ```
 
+To run this test:
+
+```bash
+gradle -Dtest.single=LoggerInterceptorSpec :web:test
+```
+
 [Return to the main article](/techtalk/spring)
 
