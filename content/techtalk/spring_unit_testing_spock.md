@@ -69,8 +69,8 @@ Regarding LogginInterceptorSpec we can consider the following aspects:
 
 * Any Spock test must extend Specification
 * Setup method is executed before any test defined in our test class
-* We are defining mock objects using Mock
-* In the Setup method we are assigning our mocks
+* We are defining mock objects using Mock annotation
+* In the setup method we are assigning our mocks
 
 ```groovy
 package com.jos.dem.jmailer.interceptor
