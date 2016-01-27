@@ -65,6 +65,13 @@ class LoggerInterceptor implements HandlerInterceptor {
 }
 ```
 
+Regarding LogginInterceptorSpec we can consider the following aspects:
+
+* Any Spock test must extend Specification
+* Setup method is executed before any test defined in our test class
+* We are defining mock objects using Mock
+* In the Setup method we are assigning our mocks
+
 ```groovy
 package com.jos.dem.jmailer.interceptor
 
@@ -114,3 +121,24 @@ class LoggerInterceptorSpec extends Specification {
   }
 }
 ```
+
+Regarding our first test method we should read as follow:
+
+* Given an ip address as String
+* When `request.remoteHost` return '127.0.0.1' // We are defining our mock behavior
+* `def result = interceptor.preHandle(request, response, new Object())` // In this line we are calling our testing method
+* Then we expect the result is `true`
+* `loggerService.notifyRequest(_ as Map)` // This method is called once with a Map as parameter
+
+For more information how to use Spock [Spock Framework Reference Documentation](http://spockframework.github.io/spock/docs/1.0/index.html)
+
+To download the project:
+
+```bash
+git clone git@github.com:josdem/jmailer-bootstrap.git
+git fetch
+git checkout feature/testing
+```
+
+[Return to the main article](/techtalk/spring)
+
