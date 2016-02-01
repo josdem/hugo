@@ -9,5 +9,6 @@ In this section I will post all referent about UX development such as Javascript
 
 * [Parsing JSON with ajax](/techtalk/ux_ajax_json)
 * [Inquirer & Callback](/techtalk/ux_inquirer)
+* [Mongoose](/techtalk/ux_mongoose)
 
 [Return to the main article](/techtalk/techtalks)
