@@ -73,7 +73,7 @@ In this example we are doing:
 * Using `Person.create` to create a new person in MongoDB
 * Using `Person.find` to get person collection from MongoDB
 
-Don't forget to create package.json with `npm init` and install MongoDB in your computer in order to create any js file.
+Don't forget to create package.json with `npm init` and install MongoDB in your computer before create any js file.
 
 To execute this js file type in your terminal:
 
