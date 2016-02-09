@@ -11,7 +11,7 @@ Express is a minimal and flexible Node.js web application framework. To install:
 npm install express --save
 ```
 
-A simple, powerful, and extendable JavaScript Template Engine. To install:
+Swig is a simple, powerful, and extendable JavaScript Template Engine. To install:
 
 ```bash
 npm install swig --save
