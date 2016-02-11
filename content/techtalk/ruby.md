@@ -18,6 +18,10 @@ A dynamic, open source programming language with a focus on simplicity and produ
 * Metaprogramming
 * Everything is an Object
 
+## Ruby Hints
+
+* Only `false` and `nil` are treated as false
+
 
 [Return to the main article](/techtalk/techtalks)
 

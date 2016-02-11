@@ -97,6 +97,14 @@ The Elvis operator is a special ternary operator shortcut which is handy to use 
 def result = name ?: "Unknown"
 ```
 
+Another expression-based way to make decision is the ternary operator.
+
+```groovy
+activity = programmer ? 'Java' : 'Futbol'
+```
+
+If the value of programmer is true, then the value of the whole expression is the thing between the question mark and colon, if the condition is false, the the expression evaluates the last part.
+
 ## Catch any exception
 If you don’t really care of the exception which are thrown inside your try block, you can simply catch any of them and simply omit the type of the caught exception. So instead of catching the exceptions like in:
 
