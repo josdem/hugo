@@ -28,4 +28,50 @@ Python is a general-purspose programming language that is often applied in scrip
 * It has a large collection of precoded library tools
 * It's mixable (Ex. Python's C API lets C programs call and be called by Python)
 
+**First Script**
 
+```python
+import sys
+print(sys.platform)
+print(2 ** 100)
+x = 'spam!'
+print(8 * x)
+```
+
+In this code we are:
+
+* Loading sys library
+* raise 2 to a 100 power
+* Uses x to string repetition
+
+To run this script type in your terminal:
+
+```bash
+python script1.py
+```
+
+**Module's files**
+
+To exemplify this create the folloing file: `myfile.py` and add this line:
+
+```python
+title='The Meaning of Life'
+```
+
+Then write a new file called: `use_myfile.py` and add this line:
+
+```python
+import myfile
+print('The secret is: ' + myfile.title)
+```
+
+Finally run your `use_myfile.py`:
+
+```bash
+python use_myfile.py
+```
+
+When this file is imported, its code is run to generate the module's attribute. That is, the assignment statement creates a variable and module attribute named title.
+
+
+[Return to the main article](/techtalk/techtalks)

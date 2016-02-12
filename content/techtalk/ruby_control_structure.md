@@ -13,7 +13,7 @@ if @writable
 end
 ```
 
-Consider, however, what would happen if we turned the logic around: If the document is read only, the natural tendency would be to simply throw in a ! or not::
+Consider, however, what would happen if we turned the logic around: If the document is read only, the natural tendency would be to simply throw in a ! or not:
 
 ```ruby
 if not @read_only
