@@ -18,18 +18,44 @@ end
 print_favorite_beers('josdem', beers)
 ```
 
-That is, you can send beers parameter with any size or you can omit it.
+That is, you can send beers as a collection with any elements or you can omit beers as parameter.
+
+**Each with index**
+
+```ruby
+["a","b","c"].each_with_index do |it, index|
+  puts "letter: #{it}, index: #{index}"
+end
+```
+
+**Hashes**
 
 You can use hashes in case needs a collection with elements and does not care about types.
 
 ```ruby
-hash = { :name => 'josdem', :number => 35 }
+hash = { name:'josdem', number:35 }
 
 def print_person(person)
   person.each{ |name, number| puts "#{name} : #{number}"}
 end
 
 print_person(hash)
+```
+
+The map method takes an enumerable object and a block, and runs the block for each element, outputting each returned value from the block.
+
+```ruby
+names = ['josdem','frederic']
+result = names.map {|name| name.capitalize}
+result.each { |it| puts "name: #{it}"}
+```
+
+**Range**
+
+Is a collection of numbers in order
+
+```ruby
+(0..5).each{|it| puts it}
 ```
 
 
