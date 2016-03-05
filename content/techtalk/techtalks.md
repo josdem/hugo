@@ -15,6 +15,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [Elixir](/techtalk/elixir)
 * [Python](/techtalk/python)
 * [Ruby](/techtalk/ruby)
+* [Camel](/techtalk/camel)
 * [Extreme Programming](/techtalk/extreme_programming)
 * [Clean Code](/techtalk/clean_code)
 * [Tomcat AJP](/techtalk/tomcat_domain)
