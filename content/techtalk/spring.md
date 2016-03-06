@@ -35,6 +35,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [IP Whitelist Using Interceptors](/techtalk/spring_interceptor)
 * [Unit Testing With Spock](/techtalk/spring_unit_testing_spock)
 * [Liquibase](/techtalk/spring_liquibase)
+* [Groovy WSLite SOAP](/techtalk/spring_wslite_soap)
 
 ## Spring Boot
 
