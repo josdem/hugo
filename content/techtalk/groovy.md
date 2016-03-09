@@ -92,4 +92,12 @@ assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.
 assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
 ```
 
+**Some collection operations**
+
+```groovy
+def vowels = ["A", "E", "I", "O", "U"]
+def consonants = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"]
+assert ["A", "E", "I", "O", "U", "B", "C", "D", "F", "G", "H", "J", "K", "L", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"] == vowels + consonants
+```
+
 [Return to the main article](/techtalk/techtalks)
