@@ -39,5 +39,33 @@ two lines
 three lines"
 ```
 
+Now that you have an string definition you can use some methods to manipulate it.
+
+```ruby
+collection = "One, Two, Three".split(',')
+```
+
+**String Operations**
+
+```ruby
+# Gets string size
+string.length
+
+# Concatenates other_str to str
+str + other_str
+
+# Tests str and obj for equality
+str == obj
+
+# Returns true if str is empty
+str.empty?
+
+# Returns a copy of str with all occurrences of pattern replaced
+str.gsub(pattern, replacement)
+
+# Returns the index of the first occurrence of the given substring
+str.index(substring [, offset])
+```
+
 [Return to the main article](/techtalk/ruby)
 
