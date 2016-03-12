@@ -28,7 +28,7 @@ puts "#{author} wrote #{title}"
 Ruby offers a way to avoid backslash
 
 ```ruby
-string = %q{"Yehaw" the cowboy yelled, I'm not going!}
+string = %q{"Yeehaw" the cowboy yelled, I'm not going!}
 ```
 
 Ruby can span lines
@@ -40,12 +40,6 @@ three lines"
 ```
 
 Now that you have an string definition you can use some methods to manipulate it.
-
-```ruby
-collection = "One, Two, Three".split(',')
-```
-
-**String Operations**
 
 ```ruby
 # Gets string size
@@ -65,6 +59,9 @@ str.gsub(pattern, replacement)
 
 # Returns the index of the first occurrence of the given substring
 str.index(substring [, offset])
+
+# Returns a collection with strings delimited by ','
+collection = "One, Two, Three".split(',')
 ```
 
 [Return to the main article](/techtalk/ruby)
