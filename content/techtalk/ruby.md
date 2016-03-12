@@ -9,6 +9,7 @@ A dynamic, open source programming language with a focus on simplicity and produ
 
 * [Control Structure](/techtalk/ruby_control_structure)
 * [Smart Collections](/techtalk/ruby_smart_collections)
+* [Smart Strings](/techtalk/ruby_smart_strings)
 
 ## Characteristics
 
