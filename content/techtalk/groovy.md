@@ -82,11 +82,18 @@ def list = [1,2,3]
 def otherList = [3,4]
 
 assert list.intersect(otherList) == [3]
+assert 3 == list.max()
+assert 1 == list.min()
 ```
 
 ```groovy
 def list = ['Java', 'Groovy', 'Grails', 'Spring']
+
+assert 1 == list.findIndexOf { it == 'Groovy' }
+assert ['Grails', 'Groovy', 'Java', 'Spring'] == list.sort()
 assert 'Groovy' == list.find { it == 'Groovy' }
+assert ['Groovy', 'Grails'] == list.grep (~/G.*/)
+assert 'Java,Groovy,Grails,Spring' == list.join(',')
 ```
 
 ```groovy
