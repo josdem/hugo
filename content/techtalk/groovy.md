@@ -85,10 +85,12 @@ assert list.intersect(otherList) == [3]
 ```
 
 ```groovy
-assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
+def list = ['Java', 'Groovy', 'Grails', 'Spring']
+assert 'Groovy' == list.find { it == 'Groovy' }
 ```
 
 ```groovy
+assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
 assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
 ```
 
