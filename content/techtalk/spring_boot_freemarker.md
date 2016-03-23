@@ -39,7 +39,7 @@ class EmailerController {
 
   @RequestMapping(method = POST, value = "/message", consumes="application/json")
   @ResponseBody
-  ResponseEntity<String> message(@RequestBody String json) {
+  ResponseEntity<String> message(@RequestBody MessageCommand command) {
     log.info "Sending contact email: ${command.email}"
     emailerService.sendEmail(command)
     new ResponseEntity<String>("OK", HttpStatus.OK)
