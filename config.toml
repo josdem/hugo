@@ -43,7 +43,7 @@ theme = "hugo-artists-theme"
 	# Replace the 'avatar.jpg' under 'static/img' with your own image.
 	[params.about]
 		title = "About me"
-		bio = "**Jose Luis is a software developer** eager to contribute in products. He has three public projects [Jmetadata](/jmetadata/jmetadata), [Jugoterapia](/jugoterapia/jugoterapia) and [Jmailer](jmailer/jmailer), he enjoy to write about technology so he has a [Techtalks](/techtalk/techtalks) section, his hobby is creating [Mixes](/music/myremixes) because he thinks that sharing is caring."
+		bio = "**Jose Luis is a software developer** eager to contribute in products. He has three public projects [Jmetadata](/jmetadata/jmetadata), [Jugoterapia](/jugoterapia/jugoterapia) and [Jmailer](http://jmailer.josdem.io/), he enjoy to write about technology so he has a [Techtalks](/techtalk/techtalks) section, his hobby is creating [Mixes](/music/myremixes) because he thinks that sharing is caring."
 
 		[[params.about.skills]]
 			name = "Communication"
