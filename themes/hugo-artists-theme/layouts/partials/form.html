@@ -1,7 +1,7 @@
 {{ "<!-- Form section -->" | safeHTML }}
 <section>
     <h3>{{ with .Site.Params.form.title }}{{ . }}{{ end }}</h3>
-    <form method="POST" action="//jmailer.josdem.io/register">
+    <form method="POST" action="//jmailer.josdem.io/form">
         <fieldset class="contact-info-group">
             <label><span>{{ with .Site.Params.form.name }}{{ . }}{{ end }}</span>
                 <input type="text" name="name">
@@ -17,5 +17,6 @@
             <input type="submit" value="{{ with .Site.Params.form.buttonText }}{{ . }}{{ end }}">
         </fieldset>
         <input type="hidden" value="josdem.io" name="source" />
+        <input type="hidden" value="REGISTER" name="type" />
     </form>
 </section>
