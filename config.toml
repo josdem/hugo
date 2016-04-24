@@ -133,11 +133,11 @@ theme = "hugo-artists-theme"
 			logo   = "makingdevs.png"
 
 		[[params.clients.list]]
-			avatar = "face-jackiesaik.jpg"
-			name   = "Stacy Lang"
-			title  = "Social Media Girl, Quebec Int."
-			quote  = "**Yea, I guess hes good at computers or something,** but let me ask you this: If a cat always lands on its feet, and buttered bread always lands butter side down, what would happen if you tied buttered bread on top of a cat?"
-			logo   = "logo3.png"
+			avatar = "temoc.png"
+			name   = "Cuauhtémoc Palma"
+			title  = "Software Developer, TIM"
+			quote  = "**Gran amigo, excelente compañero de trabajo y desarrollador de software profesional.** Además conocedor de la historia de méxico y universal, de la buena comida, y entusiasta del mezcal."
+			logo   = "techminds.png"
 
 		[[params.clients.list]]
 			avatar = "face-teleject.jpg"
