@@ -62,6 +62,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Introduce Parameter Object](/techtalk/introduce_parameter_object)
  * [Replace Error Code with Exception](/techtalk/replace_error_code_with_exception)
  * [Replace conditional with polymorphism](/techtalk/replace_conditional_with_polymorphism)
+* [Algorithms](/techtalk/algorithms)
 * [Python](/techtalk/python)
 * [Continuous Delivery](/techtalk/continuous_delivery)
 * [Camel](/techtalk/camel)
