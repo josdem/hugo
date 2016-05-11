@@ -109,4 +109,8 @@ public class Sorter{
 
 ```
 
+**More Algorithms**
+
+* [Fastman problem](/techtalk/algorithm_fastman)
+
 [Return to the main article](/techtalk/techtalks)
