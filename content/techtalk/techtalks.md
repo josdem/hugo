@@ -64,6 +64,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Replace conditional with polymorphism](/techtalk/replace_conditional_with_polymorphism)
 * [**Algorithms**](/techtalk/algorithms)
  * [Fastman problem](/techtalk/algorithm_fastman)
+ * [Binary Tree](/techtalk/algorithm_binary_tree)
 * [Python](/techtalk/python)
 * [Continuous Delivery](/techtalk/continuous_delivery)
 * [Camel](/techtalk/camel)
