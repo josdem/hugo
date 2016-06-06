@@ -11,7 +11,7 @@ Spring Boot uses the MessageSource configured with a MessageSourceAutoConfigurat
 spring.messages.basename=i18n/messages
 ```
 
-Once we create that file, you can define your application messages in the file `resources/i18n/messages.properties`:
+Once we create that line, you can define your application messages in the file `resources/i18n/messages.properties`:
 
 ```
 user.hello=Hello from internationalization!
