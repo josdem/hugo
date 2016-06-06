@@ -43,6 +43,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 
 * [Spring Boot Basics](/techtalk/spring_boot)
 * [Spring Boot with Jade](/techtalk/spring_boot_jade)
+* [Spring Boot internationalization](/techtalk/spring_boot_internationalization)
 
 ## Jmailer
 
