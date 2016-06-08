@@ -113,5 +113,6 @@ public class Sorter{
 
 * [Fastman problem](/techtalk/algorithm_fastman)
 * [Binary Tree](/techtalk/algorithm_binary_tree)
+* [Stream Merger](/techtalk/algorithm_stream_merger)
 
 [Return to the main article](/techtalk/techtalks)

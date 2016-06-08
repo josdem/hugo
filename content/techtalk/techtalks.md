@@ -67,6 +67,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**Algorithms**](/techtalk/algorithms)
  * [Fastman problem](/techtalk/algorithm_fastman)
  * [Binary Tree](/techtalk/algorithm_binary_tree)
+ * [Stream Merger](/techtalk/algorithm_stream_merger)
 * [Python](/techtalk/python)
 * [Continuous Delivery](/techtalk/continuous_delivery)
 * [Camel](/techtalk/camel)
