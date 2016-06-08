@@ -166,11 +166,9 @@ class InputStream implements Comparable<InputStream>{
 }
 
 class OutputStream {
-
   void emitValue(int value){
     System.out.println(value);
   }
-
 }
 
 public class StreamMerger {
