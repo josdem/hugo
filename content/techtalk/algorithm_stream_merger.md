@@ -188,8 +188,8 @@ public class StreamMerger {
   }
 
   public static void main(String[] args){
-    InputStream ist1 = new InputStream(2,0);
-    InputStream ist2 = new InputStream(1,0);
+    InputStream ist1 = new InputStream(2);
+    InputStream ist2 = new InputStream(1);
 
     Set<InputStream> streams = new HashSet<InputStream>();
     streams.add(ist1);
