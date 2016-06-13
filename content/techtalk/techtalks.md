@@ -7,6 +7,7 @@ title = "Techtalks"
 
 My main goal at writting techtalks is keeping me in touch with new tendencies in technology, improve my skills as developer and most important share knowledge with the community. My intention is to be very assertive when I write, trying to get clear with reproducible examples, so everyone can follow the steps in their environment.
 
+* [**C++**](/techtalk/c++)
 * [**Java8**](/techtalk/java)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy_and_other_languages)
