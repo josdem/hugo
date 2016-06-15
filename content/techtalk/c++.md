@@ -5,6 +5,8 @@ title = "C++"
 
 +++
 
+* [Basics](/techtalk/c++_types)
+
 ## Compiling and Executing a program
 
 Once we created a program we need to compile it. How your compile a program depends on your operating system and compiler. If we are using a command-line interface in a unix system we can compile it as follow:
