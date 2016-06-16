@@ -46,4 +46,38 @@ int main()
 
 `&reference` refers to number
 
+## Pointers
+
+A pointer is a compound type that "points to" another type. Like references, pointers are used fo inderect access to other objects. Unlike a reference, a pointer is an object in it's own right. Pointers can be assigned and copied; a single pointer can point to several different objects over its lifetime. Unlike a reference, a pointer need not be initialized at the time is defined.
+
+```c++
+#include <iostream>
+
+int main()
+{
+  int number = 1024;
+  int *pointer = &number;
+
+  std::cout << "pointer address:" << pointer << std::endl;
+}
+```
+
+**WARNING:** The address stored in a pointer can be a null pointer.
+
+Otherwise, we can use * to access that object.
+
+```c++
+#include <iostream>
+
+int main()
+{
+  int number = 1024;
+  int *pointer = &number;
+
+  std::cout << "pointer value:" << *pointer << std::endl;
+}
+```
+
+**WARNING** It is illegal to assign an `int` value to a pointer, even if the variable's value happens to be 0.
+
 [Return to the main article](/techtalk/c++)
