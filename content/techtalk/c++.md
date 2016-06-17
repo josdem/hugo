@@ -7,6 +7,7 @@ title = "C++"
 
 * [Basics](/techtalk/c++_types)
 * [Data Structures](/techtalk/c++_struct)
+* [Loops and Collections](/techtalk/c++_loops)
 
 ## Compiling and Executing a program
 

@@ -10,6 +10,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**C++**](/techtalk/c++)
  * [Basics](/techtalk/c++_types)
  * [Data Structures](/techtalk/c++_struct)
+ * [Loops and Collections](/techtalk/c++_loops)
 * [**Java8**](/techtalk/java)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy_and_other_languages)

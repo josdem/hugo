@@ -80,4 +80,5 @@ int main()
 
 **WARNING** It is illegal to assign an `int` value to a pointer, even if the variable's value happens to be 0.
 
+
 [Return to the main article](/techtalk/c++)
