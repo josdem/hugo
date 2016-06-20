@@ -10,6 +10,7 @@ title = "C++"
 * [Loops and Collections](/techtalk/c++_loops)
 * [Functions](/techtalk/c++_functions)
 * [Exception Handling](/techtalk/c++_exception)
+* [Classes](/techtalk/c++_classes)
 
 ## Compiling and Executing a program
 

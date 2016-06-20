@@ -13,6 +13,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Loops and Collections](/techtalk/c++_loops)
  * [Functions](/techtalk/c++_functions)
  * [Exception Handling](/techtalk/c++_exception)
+ * [Classes](/techtalk/c++_classes)
 * [**Java8**](/techtalk/java)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy_and_other_languages)

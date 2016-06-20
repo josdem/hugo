@@ -28,6 +28,17 @@ C++ is a statically typed language; type checking is done at compile time.
 
 A char is guaranted to be big enough to hold a basic character, wchar_t, w_char16_t and char32_t are used for extended character sets (unicode). The remaining integral types represent integer values of (potentially) different sizes. Except for bool and the extended character types, the integral types may be **signed** or **unsigned**. A signed type represents negative or positive numbers; an unsigned type represents only values greather than or equal to zero. The types `int, short, long, long long` are signed, we obtain the corresponding unsigned type by adding unsigned to the type.
 
+## Type Aliases
+
+A **type alias** is a name that is a synonym for another type. Type aliases let us simplify complicated type definitions, making those types easier to use.
+
+```c++
+typedef unsigned int size;
+size border = 10;
+```
+
+size is a synonym for unsigned int
+
 ## References
 
 A reference defines an alternative name for an object. We define a reference type by writting a declaration of the form &d, wherer id is the name being declared.

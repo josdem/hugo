@@ -127,6 +127,38 @@ value i: 40
 address i: 0x7ffd56db2444
 ```
 
+## Reference return
+
+Whether a function call is an lvalue depends on the return type of the function. Calls to functions that return references are lvalues.
+
+```c++
+#include <iostream>
+using namespace std;
+
+char &get_val(string &s, unsigned int index)
+{
+  return s[index];
+}
+
+int main()
+{
+  string s = "this is a value";
+  cout << s << endl;
+  get_val(s,0) = 'T';
+  cout << s << endl;
+  return 0;
+}
+```
+
+The return value is a reference.
+
+Output
+
+```
+this is a value
+This is a value
+```
+
 ## Default Arguments
 
 Some functions have parameters that are given a particular value in most, but not all calls. For example if we create a window we might want a particular height, width and title, also we might want to allow users to pass values other than defaults.
