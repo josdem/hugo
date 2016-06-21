@@ -75,12 +75,14 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Fastman problem](/techtalk/algorithm_fastman)
  * [Binary Tree](/techtalk/algorithm_binary_tree)
  * [Stream Merger](/techtalk/algorithm_stream_merger)
+* [**Sysadmin**](/techtalk/sysadmin)
+ * [Tomcat AJP](/techtalk/tomcat_domain)
+ * [Nginx Restrincting Access](/techtalk/nginx_restrincting_access)
 * [Python](/techtalk/python)
 * [Continuous Delivery](/techtalk/continuous_delivery)
 * [Camel](/techtalk/camel)
 * [Extreme Programming](/techtalk/extreme_programming)
 * [Clean Code](/techtalk/clean_code)
-* [Tomcat AJP](/techtalk/tomcat_domain)
 * [Security](/techtalk/security)
 
 If you have some doubts or comments about this, let me know I'll be more than happy to help.

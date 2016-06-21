@@ -201,4 +201,4 @@ Now, you should get your service in the: http://jmetadata.josdem.io base
 
 You may see your new service listed.
 
-[Return to the main article](/techtalk/techtalks)
+[Return to the main article](/techtalk/sysadmin)
