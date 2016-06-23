@@ -5,6 +5,8 @@ title = "Java8"
 
 +++
 
+* [FizzBuzz](/techtalk/java_fizz_buzz)
+
 **forEach() in a Map**
 
 Iterate over a collection in Java 8 is a really nice one, which lets you pass a method reference or a lambda to receive (key, value) pairs one by one.

@@ -15,6 +15,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Exception Handling](/techtalk/c++_exception)
  * [Classes](/techtalk/c++_classes)
 * [**Java8**](/techtalk/java)
+ * [FizzBuzz](/techtalk/java_fizz_buzz)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy_and_other_languages)
  * [Program Structure](/techtalk/program_structure)
