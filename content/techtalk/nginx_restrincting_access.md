@@ -27,5 +27,26 @@ Next the prompt will ask for a new password, as soon as we done this step, a new
 nginxUser:$apr1$TthgC50M$XNdndu.cVIQh6/wGQf.dV0
 ```
 
+## Filtering by IP
+
+Nginx comes with a simple module called `ngx_http_access_module` to allow or deny access to IP address. You need to create a file at `/etc/nginx/conf.d/blockip.conf`
+
+```
+allow   189.212.35.22;
+deny    all;
+```
+
+Be sure you have this line in your `/etc/nginx/nginx.conf` file
+
+```
+include /etc/nginx/conf.d/*.conf;
+```
+
+Finally restart your nginx service
+
+```
+sudo service nginx restart
+```
+
 [Return to the main article](/techtalk/sysadmin)
 
