@@ -11,6 +11,7 @@ title = "C++"
 * [Functions](/techtalk/c++_functions)
 * [Exception Handling](/techtalk/c++_exception)
 * [Classes](/techtalk/c++_classes)
+* [The IO Library: fstream](/techtalk/c++_library_io)
 
 ## Compiling and Executing a program
 
