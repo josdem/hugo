@@ -1,6 +1,8 @@
 +++
 date = "2016-07-01T17:45:34-05:00"
 draft = true
+categories = ["c++", "cplusplus", "g++"]
+tags = ["josdem", "techtalks", "c++", "fstream", "ofstream", "ifstream"]
 title = "The IO Library: fstream"
 
 +++
