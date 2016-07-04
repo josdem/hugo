@@ -26,32 +26,32 @@ In this section I'll go through a complete Spring MVC project starting from the 
 
 ## Index
 
-* [Basic Spring MVC with Bootstrap](/techtalk/spring_mvc)
-* [Managing Exceptions With AOP](/techtalk/spring_aop)
-* [Logger Using JMS and ActiveMQ](/techtalk/spring_jms_logger)
-* [Building with Gradle](/techtalk/spring_gradle)
-* [Managing Exceptions with HandlerExceptionResolver](/techtalk/spring_handler_exception_resolver)
-* [Email flow and Freemarker template](/techtalk/spring_freemarker)
-* [IP Whitelist Using Interceptors](/techtalk/spring_interceptor)
-* [Unit Testing With Spock](/techtalk/spring_unit_testing_spock)
-* [Liquibase](/techtalk/spring_liquibase)
-* [Groovy WSLite SOAP](/techtalk/spring_wslite_soap)
+* [Basic Spring MVC with Bootstrap](/techtalk/spring/spring_mvc)
+* [Managing Exceptions With AOP](/techtalk/spring/spring_aop)
+* [Logger Using JMS and ActiveMQ](/techtalk/spring/spring_jms_logger)
+* [Building with Gradle](/techtalk/spring/spring_gradle)
+* [Managing Exceptions with HandlerExceptionResolver](/techtalk/spring/spring_handler_exception_resolver)
+* [Email flow and Freemarker template](/techtalk/spring/spring_freemarker)
+* [IP Whitelist Using Interceptors](/techtalk/spring/spring_interceptor)
+* [Unit Testing With Spock](/techtalk/spring/spring_unit_testing_spock)
+* [Liquibase](/techtalk/spring/spring_liquibase)
+* [Groovy WSLite SOAP](/techtalk/spring/spring_wslite_soap)
 
 ## Spring Boot
 
 In this section I will cover small projects I'm doing using Spring Boot, what is called micro services.
 
-* [Spring Boot Basics](/techtalk/spring_boot)
-* [Spring Boot with Jade](/techtalk/spring_boot_jade)
-* [Spring Boot internationalization](/techtalk/spring_boot_internationalization)
+* [Spring Boot Basics](/techtalk/spring/spring_boot)
+* [Spring Boot with Jade](/techtalk/spring/spring_boot_jade)
+* [Spring Boot internationalization](/techtalk/spring/spring_boot_internationalization)
 
 ## Jmailer
 
-* [Spring Boot Proyecto Base](/techtalk/spring_boot_jmailer)
-* [Spring Boot AOP](/techtalk/spring_boot_aop)
-* [Spring Boot Handler Exception](/techtalk/spring_boot_handler_exception)
-* [Spring Boot externalization](/techtalk/spring_boot_externalization)
-* [Spring Boot JMS](/techtalk/spring_boot_freemarker)
-* [Spring Boot testing](/techtalk/spring_boot_testing)
+* [Spring Boot Proyecto Base](/techtalk/spring/spring_boot_jmailer)
+* [Spring Boot AOP](/techtalk/spring/spring_boot_aop)
+* [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)
+* [Spring Boot externalization](/techtalk/spring/spring_boot_externalization)
+* [Spring Boot JMS](/techtalk/spring/spring_boot_freemarker)
+* [Spring Boot testing](/techtalk/spring/spring_boot_testing)
 
 [Return to the main article](/techtalk/techtalks)
