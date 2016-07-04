@@ -8,15 +8,15 @@ Groovy is an optional typed, dynamic language for the Java platform with many fe
 
 Working with Groovy feels like a partnership between you and the language, rather than a battle to express what is clear in your mind in a way the computer can understand.
 
-* [Groovy and other languages](/techtalk/groovy_and_other_languages)
-* [Program Structure](/techtalk/program_structure)
-* [Looping structures](/techtalk/looping_structures)
-* [Closures](/techtalk/closures)
-* [Metaprogramming](/techtalk/metaprogramming)
-* [Design Patterns](/techtalk/design_patterns)
-* [Kata String Calculator](/techtalk/kata_string_calculator)
-* [Working with Strings](/techtalk/working_with_strings)
-* [Rest client, headers and data](/techtalk/groovy_restclient)
+* [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
+* [Program Structure](/techtalk/groovy/program_structure)
+* [Looping structures](/techtalk/groovy/looping_structures)
+* [Closures](/techtalk/groovy/closures)
+* [Metaprogramming](/techtalk/groovy/metaprogramming)
+* [Design Patterns](/techtalk/groovy/design_patterns)
+* [Kata String Calculator](/techtalk/groovy/kata_string_calculator)
+* [Working with Strings](/techtalk/groovy/working_with_strings)
+* [Rest client, headers and data](/techtalk/groovy/groovy_restclient)
 
 ## Characteristics
 
