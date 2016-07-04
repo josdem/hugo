@@ -4,6 +4,14 @@ draft = true
 title = "Elixir"
 
 +++
+
+* [Basic project in elixir](/techtalk/elixir/elixir_application)
+* [Elixir and processes](/techtalk/elixir/elixir_processes)
+* [FizzBuzz Example](/techtalk/elixir/elixir_fizzbuzz)
+* [BEAM](/techtalk/elixir/elixir_beam)
+* [Elixir Essentials](/techtalk/elixir/elixir_essentials)
+* [Elixir Practices One](/techtalk/elixir/elixir_practices_one)
+
 ## Description
 Elixir is a dynamic, functional language designed for building scalable and maintainable applications. Some of Elixir characteristics are:
 
@@ -68,13 +76,6 @@ IO.puts "Hello world from Elixir!"
 $ elixir simple.exs
 Hello world from Elixir!
 ```
-
-* [Basic project in elixir](/techtalk/elixir_application)
-* [Elixir and processes](/techtalk/elixir_processes)
-* [FizzBuzz Example](/techtalk/elixir_fizzbuzz)
-* [BEAM](/techtalk/elixir_beam)
-* [Elixir Essentials](/techtalk/elixir_essentials)
-* [Elixir Practices One](/techtalk/elixir_practices_one)
 
 [Return to the main article](/techtalk/techtalks)
 
