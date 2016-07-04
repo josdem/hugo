@@ -43,11 +43,11 @@ title = "Refactoring"
 You will have to develop you own sense of how many instance variables are too many instance variables and how many lines of code in a method are too many lines
 
 ## Examples
-* [Duplicated Code](/techtalk/duplicated_code)
-* [Replace Temp With Query](/techtalk/replace_temp_with_query)
-* [Introduce Parameter Object](/techtalk/introduce_parameter_object)
-* [Replace Error Code with Exception](/techtalk/replace_error_code_with_exception)
-* [Replace conditional with polymorphism](/techtalk/replace_conditional_with_polymorphism)
+* [Duplicated Code](/techtalk/refactoring/duplicated_code)
+* [Replace Temp With Query](/techtalk/refactoring/replace_temp_with_query)
+* [Introduce Parameter Object](/techtalk/refactoring/introduce_parameter_object)
+* [Replace Error Code with Exception](/techtalk/refactoring/replace_error_code_with_exception)
+* [Replace conditional with polymorphism](/techtalk/refactoring/replace_conditional_with_polymorphism)
 
 [Return to the main article](/techtalk/techtalks)
 
