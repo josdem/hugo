@@ -5,7 +5,7 @@ title = "Java8"
 
 +++
 
-* [FizzBuzz](/techtalk/java_fizz_buzz)
+* [FizzBuzz](/techtalk/java/java_fizz_buzz)
 
 **forEach() in a Map**
 
