@@ -5,6 +5,10 @@ title = "Algorithms"
 
 +++
 
+* [Fastman problem](/techtalk/algorithms/algorithm_fastman)
+* [Binary Tree](/techtalk/algorithms/algorithm_binary_tree)
+* [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
+
 ## Binary Search
 Is a search algorithm that finds the position of a target value within a sorted array.
 
@@ -109,10 +113,5 @@ public class Sorter{
 
 ```
 
-**More Algorithms**
-
-* [Fastman problem](/techtalk/algorithm_fastman)
-* [Binary Tree](/techtalk/algorithm_binary_tree)
-* [Stream Merger](/techtalk/algorithm_stream_merger)
 
 [Return to the main article](/techtalk/techtalks)
