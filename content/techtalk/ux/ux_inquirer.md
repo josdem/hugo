@@ -76,4 +76,4 @@ git fetch
 git checkout inquirer
 ```
 
-[Return to the main article](/techtalk/ux_development)
+[Return to the main article](/techtalk/ux)

@@ -95,5 +95,5 @@ git fetch
 git checkout templating
 ```
 
-[Return to the main article](/techtalk/ux_development)
+[Return to the main article](/techtalk/ux)
 

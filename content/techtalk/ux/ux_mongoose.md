@@ -89,5 +89,5 @@ git fetch
 git checkout mongoose
 ```
 
-[Return to the main article](/techtalk/ux_development)
+[Return to the main article](/techtalk/ux)
 

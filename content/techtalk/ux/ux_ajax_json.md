@@ -84,4 +84,4 @@ In this code we can see the following aspects:
 * When we receive data as JSON we fill our simulator form with find method
 * If fails we send data and status to the console
 
-[Return to the main article](/techtalk/ux_development)
+[Return to the main article](/techtalk/ux)
