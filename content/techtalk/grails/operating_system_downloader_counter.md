@@ -1,7 +1,7 @@
 +++
 date = "2015-08-29T18:15:08-05:00"
 draft = true
-title = "Grails Example Project (Downloader stat)"
+title = "Grails Example Project"
 
 +++
 Simple project with Grails

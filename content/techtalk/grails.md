@@ -123,7 +123,7 @@ Created file test/unit/com/josdem/ProjectControllerSpec.groovy
 
 Now you can explore your the application and the scaffolding
 
-* Project examaple in grails: [Download counter](/techtalk/operating_system_downloader_counter)
-* [Externalized configuration](/techtalk/grails_externalized_conf)
+* [Download counter](/techtalk/grails/operating_system_downloader_counter)
+* [Externalized configuration](/techtalk/grails/grails_externalized_conf)
 
 [Return to the main article](/techtalk/techtalks)
