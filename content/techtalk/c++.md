@@ -5,13 +5,14 @@ title = "C++"
 
 +++
 
-* [Basics](/techtalk/c++_types)
-* [Data Structures](/techtalk/c++_struct)
-* [Loops and Collections](/techtalk/c++_loops)
-* [Functions](/techtalk/c++_functions)
-* [Exception Handling](/techtalk/c++_exception)
-* [Classes](/techtalk/c++_classes)
-* [The IO Library: fstream](/techtalk/c++_library_io)
+* [Basics](/techtalk/cplusplus/c++_types)
+* [Data Structures](/techtalk/cplusplus/c++_struct)
+* [Loops and Collections](/techtalk/cplusplus/c++_loops)
+* [Functions](/techtalk/cplusplus/c++_functions)
+* [Exception Handling](/techtalk/cplusplus/c++_exception)
+* [Classes](/techtalk/cplusplus/c++_classes)
+* [The IO Library: fstream](/techtalk/cplusplus/c++_library_io)
+* [The IO Library: istringstream](/techtalk/cplusplus/c++_io_istringstream)
 
 ## Compiling and Executing a program
 
