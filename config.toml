@@ -86,7 +86,7 @@ theme = "hugo-artists-theme"
 			folder = "proj-1"
 
 		[[params.work.projects]]
-			name = "Grails"
+			name = "C++"
 			folder = "proj-2"
 
 		[[params.work.projects]]
