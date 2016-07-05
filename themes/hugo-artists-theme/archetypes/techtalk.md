@@ -1,4 +1,4 @@
 +++
 tags = ["josdem", "techtalks"]
-categories = ["algorithms", "pseudocode"]
+categories = ["techtalk", "code", "technology", "programming"]
 +++
