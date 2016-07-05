@@ -6,7 +6,7 @@ title = "The IO Library: istringstream"
 
 +++
 
-An istringstream is often used when we have some work yo do on an entire line, and other work to do with individual words within a line.
+An istringstream is often used when we have some work to do on an entire line, and other work to do with individual words within a line.
 
 As example, assume we have a file that list people and their associated phone numbers. Some people have only one number, but others have several, our ouptut file might look like the following:
 
@@ -40,7 +40,7 @@ struct Person
   vector<string> phones;
 };
 
-void printPerson(vector<Person> people){
+void print_person(vector<Person> people){
   for(Person p: people){
     cout << p.name << endl;
   }
@@ -63,7 +63,7 @@ int main()
     people.push_back(person);
   }
 
-  printPerson(people); // <5>
+  print_person(people); // <5>
 }
 ```
 1. `getline` read an entire record from the file
