@@ -5,8 +5,8 @@ title = "Algorithms"
 
 +++
 
-* [Simple algorithms](/techtalk/algorithms/simple)
-* [Fastman problem](/techtalk/algorithms/algorithm_fastman)
+* [Simple Algorithms](/techtalk/algorithms/simple)
+* [Fastman Problem](/techtalk/algorithms/algorithm_fastman)
 * [Binary Tree](/techtalk/algorithms/algorithm_binary_tree)
 * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
 
