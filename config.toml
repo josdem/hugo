@@ -90,7 +90,7 @@ theme = "hugo-artists-theme"
 			folder = "proj-2"
 
 		[[params.work.projects]]
-			name = "Spring Boot"
+			name = "Spring"
 			folder = "proj-3"
 
 		[[params.work.projects]]
