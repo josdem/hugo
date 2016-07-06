@@ -110,7 +110,7 @@ theme = "hugo-artists-theme"
 			folder = "proj-7"
 
 		[[params.work.projects]]
-			name = "Extreme Programming"
+			name = "Java"
 			folder = "proj-8"
 
 
