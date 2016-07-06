@@ -17,6 +17,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [The IO Library: fstream](/techtalk/cplusplus/c++_library_io)
  * [The IO Library: istringstream](/techtalk/cplusplus/c++_io_istringstream)
  * [Sequential Containers](/techtalk/cplusplus/c++_sequential_containers)
+ * [String Operations](/techtalk/cplusplus/c++_string_operations)
 * [**Java8**](/techtalk/java)
  * [FizzBuzz](/techtalk/java/java_fizz_buzz)
 * [**Groovy**](/techtalk/groovy)
