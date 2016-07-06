@@ -102,7 +102,7 @@ theme = "hugo-artists-theme"
 			folder = "proj-5"
 
 		[[params.work.projects]]
-			name = "Clean Code"
+			name = "Sysadmin"
 			folder = "proj-6"
 
 		[[params.work.projects]]
