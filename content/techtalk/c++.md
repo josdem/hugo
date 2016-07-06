@@ -13,6 +13,7 @@ title = "C++"
 * [Classes](/techtalk/cplusplus/c++_classes)
 * [The IO Library: fstream](/techtalk/cplusplus/c++_library_io)
 * [The IO Library: istringstream](/techtalk/cplusplus/c++_io_istringstream)
+* [Sequential Containers](/techtalk/cplusplus/c++_sequential_containers)
 
 ## Compiling and Executing a program
 

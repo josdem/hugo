@@ -1,4 +1,4 @@
 +++
-tags = ["josdem", "techtalks"]
-categories = ["techtalk", "code", "technology", "programming"]
+tags = ["josdem", "techtalks","programming","technology"]
+categories = ["techtalk", "code"]
 +++
