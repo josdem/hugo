@@ -98,7 +98,7 @@ theme = "hugo-artists-theme"
 			folder = "proj-4"
 
 		[[params.work.projects]]
-			name = "Refactoring"
+			name = "UX Design"
 			folder = "proj-5"
 
 		[[params.work.projects]]
