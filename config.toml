@@ -106,7 +106,7 @@ theme = "hugo-artists-theme"
 			folder = "proj-6"
 
 		[[params.work.projects]]
-			name = "Continuous Delivery"
+			name = "Algorithms"
 			folder = "proj-7"
 
 		[[params.work.projects]]
