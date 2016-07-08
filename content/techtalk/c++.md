@@ -15,6 +15,7 @@ title = "C++"
 * [The IO Library: istringstream](/techtalk/cplusplus/c++_io_istringstream)
 * [Sequential Containers](/techtalk/cplusplus/c++_sequential_containers)
 * [String Operations](/techtalk/cplusplus/c++_string_operations)
+* [Generic Algorithms](/techtalk/cplusplus/generic_algorithms)
 
 ## Compiling and Executing a program
 
