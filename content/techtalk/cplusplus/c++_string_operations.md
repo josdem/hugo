@@ -137,7 +137,7 @@ int main()
 }
 ```
 
-## Numeric Conversions
+## Numeric conversions
 
 The new standard introduced several functions that convert between numeric data and library `strings`
 
