@@ -48,7 +48,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**Spring Boot**](/techtalk/spring/spring)
  * [Spring Boot Basics](/techtalk/spring/spring_boot)
  * [Spring Boot with Jade](/techtalk/spring/spring_boot_jade)
- * [Spring Boot Proyecto Base](/techtalk/spring/spring_boot_jmailer)
+ * [Spring Boot Simple Project](/techtalk/spring/spring_boot_jmailer)
  * [Spring Boot AOP](/techtalk/spring/spring_boot_aop)
  * [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)
  * [Spring Boot externalization](/techtalk/spring/spring_boot_externalization)
