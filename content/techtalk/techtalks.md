@@ -60,7 +60,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Smart Collections](/techtalk/ruby/ruby_smart_collections)
  * [Smart Strings](/techtalk/ruby/ruby_smart_strings)
 * [**Elixir**](/techtalk/elixir)
- * [Basic project in elixir](/techtalk/elixir/elixir_application)
+ * [Basic project in Elixir](/techtalk/elixir/elixir_application)
  * [Elixir and processes](/techtalk/elixir/elixir_processes)
  * [FizzBuzz Example](/techtalk/elixir/elixir_fizzbuzz)
  * [BEAM](/techtalk/elixir/elixir_beam)

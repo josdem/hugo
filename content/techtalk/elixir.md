@@ -5,7 +5,7 @@ title = "Elixir"
 
 +++
 
-* [Basic project in elixir](/techtalk/elixir/elixir_application)
+* [Basic project in Elixir](/techtalk/elixir/elixir_application)
 * [Elixir and processes](/techtalk/elixir/elixir_processes)
 * [FizzBuzz Example](/techtalk/elixir/elixir_fizzbuzz)
 * [BEAM](/techtalk/elixir/elixir_beam)
