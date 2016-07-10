@@ -32,7 +32,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Working with Strings](/techtalk/groovy/working_with_strings)
  * [Rest client, headers and data](/techtalk/groovy/groovy_restclient)
 * [**Grails**](/techtalk/grails)
- * [Download counter (Example)](/techtalk/grails/operating_system_downloader_counter)
+ * [Download counter](/techtalk/grails/operating_system_downloader_counter)
  * [Externalized configuration](/techtalk/grails/grails_externalized_conf)
 * [**Spring**](/techtalk/spring)
  * [Basic Spring MVC with Bootstrap](/techtalk/spring/spring_mvc)
