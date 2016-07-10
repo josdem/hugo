@@ -107,7 +107,7 @@ int main()
 
 ## String search operations
 
-The string class provides six different search functions. Each operations returns a `size_type` value that is the index of where the match occurred. It there is no matchm the function returs a `static` member named `npos`. The library defines `npos` as `const size_type` initialized by -1.
+The string class provides six different search functions. Each operations returns a `size_type` value that is the index of where the match occurred. If there is no match the function returs a `static` member named `npos`. The library defines `npos` as `const size_type` initialized by -1.
 
 ```c++
 #include <iostream>
