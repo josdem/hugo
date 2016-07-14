@@ -21,7 +21,7 @@ This simple tutorial shows you how to create a simple Spring project with this f
 You can create this project from command line like this:
 
 ```bash
-spring init --dependencies=data-jpa,data-rest --build=gradle SimpleRestApplication
+spring init --dependencies=data-jpa,data-rest --build=gradle --language=groovy SimpleRestApplication
 ```
 
 That command will generate a Spring project structure under SimpleRestApplication folder, I will show you a short version of build.gradle generated.
