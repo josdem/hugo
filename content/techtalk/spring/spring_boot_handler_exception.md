@@ -70,6 +70,58 @@ To get this work, you only need to add Thymeleaf dependency to your build.gradle
 compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 ```
 
+Another common way to handle exceptions is to use `@ExceptionHandler` annotation in a method in a controller, I normally get this option when I'm builing an API.
+
+```groovy
+package com.jos.dem.jmailer.controller
+
+import static org.springframework.web.bind.annotation.RequestMethod.POST
+
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.Value
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.http.ResponseEntity
+import org.springframework.http.HttpStatus
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+import com.jos.dem.jmailer.service.EmailerService
+import com.jos.dem.jmailer.command.MessageCommand
+import com.jos.dem.jmailer.exception.BusinessException
+
+@RestController
+class EmailerController {
+
+  @Autowired
+  EmailerService emailerService
+
+  @Value('${email.redirect}')
+  String redirectUrl
+
+  Logger logger = LoggerFactory.getLogger(this.class)
+
+  @RequestMapping(method = POST, value = "/message", consumes="application/json")
+  ResponseEntity<String> message(@RequestBody MessageCommand command) {
+    logger.info "Sending contact email: ${command.email}"
+    emailerService.sendEmail(command)
+    new ResponseEntity<String>("OK", HttpStatus.OK)
+  }
+
+  @ResponseStatus(value=HttpStatus.UNAUTHORIZED, reason="Unauthorized")
+  @ExceptionHandler(BusinessException.class)
+  ResponseEntity<String> handleException(BusinessException be){
+    return new ResponseEntity<String>("Unauthorized", HttpStatus.UNAUTHORIZED)
+  }
+
+}
+
+```
+
+That's it, when a BusinessException occurs the method handleException will respond with a 401 `UNAUTHORIZED` to the client. In this way we avoid to use a `try` `catch` estructure to handle exceptions.
+
 To download the project:
 
 ```bash
