@@ -24,7 +24,10 @@ dependencies {
 The complete `build.gradle` looks like this:
 
 ```groovy
-ext.springVersion = "4.0.0.RELEASE"
+ext {
+  springVersion = '4.3.1.RELEASE'
+  springfoxVersion = '2.4.0'
+}
 
 apply plugin: "groovy"
 apply plugin: "application"
@@ -37,12 +40,16 @@ repositories {
 dependencies {
   compile 'org.codehaus.groovy:groovy-all:2.4.4'
   compile "org.springframework:spring-webmvc:$springVersion"
+  compile 'com.fasterxml.jackson.core:jackson-databind:2.8.0'
+  compile "io.springfox:springfox-swagger2:${springfoxVersion}"
+  compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
   testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 }
 
 jettyRun {
   reload = 'automatic'
   scanIntervalSeconds = 10
+  contextPath = ''
 }
 ```
 
