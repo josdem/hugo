@@ -1,19 +1,19 @@
 +++
 categories = ["techtalk", "code"]
-date = "2016-07-16T11:24:46-05:00"
-tags = ["josdem", "techtalks", "programming", "technology", "swagger", "springfox", "swagger in spring", "swagger Java Config"]
+date = "2016-07-17T11:13:06-05:00"
+tags = ["josdem", "techtalks", "programming", "technology", "swagger", "springfox", "swagger in spring", "swagger XML Configuration"]
 title = "Swagger in Spring"
 
 +++
 
 Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API.
 
-## Java Configuration
+## XML Configuration
 
 First you need to add swagger dependencies in your `build.gradle` file
 
 ```
-def springfoxVersion = '2.4.0'
+ext.springfoxVersion = '2.4.0'
 
 dependencies {
   compile "io.springfox:springfox-swagger2:${springfoxVersion}"
@@ -24,44 +24,25 @@ dependencies {
 The complete `build.gradle` looks like this:
 
 ```groovy
-buildscript {
-  repositories {
-    jcenter()
-  }
-
-  dependencies {
-    classpath 'com.bmuschko:gradle-tomcat-plugin:2.2.2'
-  }
-}
-
-ext{
-  springVersion = '4.3.1.RELEASE'
-  springfoxVersion = '2.4.0'
-}
+ext.springVersion = "4.0.0.RELEASE"
 
 apply plugin: "groovy"
 apply plugin: "application"
-apply plugin: 'com.bmuschko.tomcat'
+apply plugin: "jetty"
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  def tomcatVersion = '8.0.27'
-  compile 'org.codehaus.groovy:groovy-all:2.1.3'
+  compile 'org.codehaus.groovy:groovy-all:2.4.4'
   compile "org.springframework:spring-webmvc:$springVersion"
-  compile 'javax.servlet:javax.servlet-api:3.1.0'
-  compile 'com.fasterxml.jackson.core:jackson-databind:2.8.0'
-  compile "io.springfox:springfox-swagger2:${springfoxVersion}"
-  compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
-  tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-  "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}",
-  "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
+  testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
 }
 
-tomcat {
-  contextPath = '/'
+jettyRun {
+  reload = 'automatic'
+  scanIntervalSeconds = 10
 }
 ```
 
@@ -91,61 +72,12 @@ class ApplicationSwaggerConfig{
 }
 ```
 
-Add `ApplicationSwaggerConfiguration` to your ApplicationInitializer
+Add this lines to your web-servlet.xml
 
-```groovy
-package com.jos.dem.swagger.initializer
-
-import javax.servlet.ServletContext
-import javax.servlet.ServletRegistration.Dynamic
-import org.springframework.web.WebApplicationInitializer
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext
-import org.springframework.web.servlet.DispatcherServlet
-import javax.servlet.ServletException
-
-import com.jos.dem.swagger.config.AppConfig
-import com.jos.dem.swagger.config.ApplicationSwaggerConfig
-
-class ApplicationInitializer implements WebApplicationInitializer {
-
-  void onStartup(ServletContext servletContext) throws ServletException {
-    AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext()
-    ctx.register(AppConfig.class)
-    ctx.register(ApplicationSwaggerConfig.class)
-    ctx.setServletContext(servletContext)
-    Dynamic dynamic = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx))
-    dynamic.addMapping("/")
-    dynamic.setLoadOnStartup(1)
-  }
-
-}
-```
-
-Since is Java configuration, you don’t have the luxury of auto-configuration of your resource handlers. Swagger UI adds a set of resources which you must configure as part of a class that extends WebMvcConfigurerAdapter, and is annotated with @EnableWebMvc.
-
-```groovy
-package com.jos.dem.swagger.config
-
-import org.springframework.context.annotation.ComponentScan
-import org.springframework.context.annotation.Configuration
-import org.springframework.web.servlet.config.annotation.EnableWebMvc
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
-
-@Configuration
-@ComponentScan(basePackages ="com.jos.dem.swagger")
-@EnableWebMvc
-class AppConfig extends WebMvcConfigurerAdapter{
-
-  void addResourceHandlers(ResourceHandlerRegistry registry) {
-    registry.addResourceHandler("swagger-ui.html")
-    .addResourceLocations("classpath:/META-INF/resources/");
-
-    registry.addResourceHandler("/webjars/**")
-    .addResourceLocations("classpath:/META-INF/resources/webjars/");
-  }
-
-}
+```xml
+  <bean name="/applicationSwaggerConfig" class="com.jos.dem.swagger.config.ApplicationSwaggerConfig"/>
+  <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/"/>
+  <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 ```
 
 ## Controller Documentation
@@ -276,15 +208,13 @@ To download the project:
 ```bash
 git clone git@github.com:josdem/swagger-spring-mvc.git
 git fetch
-git checkout feature/swagger-java-conf
+git checkout feature/swagger-xml-conf
 ```
 
 To run the project.
 
 ```
-gradle tomcatRun
+gradle jettyRun
 ```
 
-
 [Return to the main article](/techtalk/spring)
-

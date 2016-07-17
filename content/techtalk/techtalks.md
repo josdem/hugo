@@ -47,6 +47,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Liquibase](/techtalk/spring/spring_liquibase)
  * [Groovy WSLite SOAP](/techtalk/spring/spring_wslite_soap)
  * [Swagger in Spring Java Configuration](/techtalk/spring/spring_swagger_java_configuration)
+ * [Swagger in Spring XML Configuration](/techtalk/spring/spring_swagger_xml_configuration)
 * [**Spring Boot**](/techtalk/spring/spring)
  * [Spring Boot Basics](/techtalk/spring/spring_boot)
  * [Spring Boot with Jade](/techtalk/spring/spring_boot_jade)

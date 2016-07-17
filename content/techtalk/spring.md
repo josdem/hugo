@@ -37,6 +37,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [Liquibase](/techtalk/spring/spring_liquibase)
 * [Groovy WSLite SOAP](/techtalk/spring/spring_wslite_soap)
 * [Swagger in Spring Java Configuration](/techtalk/spring/spring_swagger_java_configuration)
+* [Swagger in Spring XML Configuration](/techtalk/spring/spring_swagger_xml_configuration)
 
 ## Spring Boot
 
