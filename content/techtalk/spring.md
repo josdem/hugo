@@ -36,6 +36,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [Unit Testing With Spock](/techtalk/spring/spring_unit_testing_spock)
 * [Liquibase](/techtalk/spring/spring_liquibase)
 * [Groovy WSLite SOAP](/techtalk/spring/spring_wslite_soap)
+* [Swagger in Spring Java Configuration](/techtalk/spring/spring_swagger_java_configuration)
 
 ## Spring Boot
 
