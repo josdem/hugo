@@ -162,8 +162,9 @@ class HelloWorld {
 
 **Step Seven:**
 
-* Groovy supports Scripting style
+* Groovy supports scripting style
 * You can short System.out.println to println
+* Parenthesis are optional in there are at least one parameter
 
 ```groovy
 class HelloWorld {
@@ -175,7 +176,7 @@ class HelloWorld {
 }
 
 def helloWorld = new HelloWorld(name:'josdem')
-println(helloWorld.sayHello())
+println helloWorld.sayHello()
 ```
 
 To download the project:
