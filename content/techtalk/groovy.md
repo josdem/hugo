@@ -10,6 +10,7 @@ Working with Groovy feels like a partnership between you and the language, rathe
 
 * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
 * [Program Structure](/techtalk/groovy/program_structure)
+* [From Java to Groovy](/techtalk/groovy/from_java_to_groovy)
 * [Looping structures](/techtalk/groovy/looping_structures)
 * [Closures](/techtalk/groovy/closures)
 * [Metaprogramming](/techtalk/groovy/metaprogramming)
