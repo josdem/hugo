@@ -9,6 +9,7 @@ Groovy is an optional typed, dynamic language for the Java platform with many fe
 Working with Groovy feels like a partnership between you and the language, rather than a battle to express what is clear in your mind in a way the computer can understand.
 
 * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
+* [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)
 * [Program Structure](/techtalk/groovy/program_structure)
 * [From Java to Groovy](/techtalk/groovy/from_java_to_groovy)
 * [Looping structures](/techtalk/groovy/looping_structures)

@@ -105,4 +105,28 @@ greeting[1..4] = 'i'
 assert greeting.toString() == 'Hi Groovy!'
 ```
 
+**Spaceship operator**
+
+Groovy adds some nice operators to the language. One of them is the spaceship operator. The operator is another way of referring to the compareTo method of the Comparable interface.
+
+```groovy
+assert -1 == ('a' <=> 'b')
+assert 0 == (42 <=> 42)
+```
+
+Compare Persons
+
+```groovy
+class Person implements Comparable {
+  String username
+  String email
+
+  int compareTo(other) {
+      this.username <=> other.username
+  }
+}
+
+assert 1 == (new Person([username:'josdem', email: 'joseluis.delacruz@gmail.com']) <=> new Person([username:'eric', email:'eric@email.com']))
+```
+
 [Return to the main article](/techtalk/groovy)
