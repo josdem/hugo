@@ -4,6 +4,7 @@ draft = true
 title = "Working with Strings"
 
 +++
+
 Groovy strings come in two flavors: plain strings and GStrings. Plain strings are instances of java.lang.String, and GStrings are instances of groovy.lang.Gstring which allows placeholder expressions to be resolved and evaluated at runtime.
 
 | Start/End Characters  | Example                     |
@@ -14,7 +15,7 @@ Groovy strings come in two flavors: plain strings and GStrings. Plain strings ar
 |                       |     ====== '''              |
 | Triple double quote   | """ FirstName: $firstName   |
 |                       |     LastName: $lastName """ |
-| Forward slash         | /x(\d*)y/                   |
+| Forward slash         | /x(\d\*)y/                  |
 
 * The single-quoted never pays any attention to placeholders. This is closely equivalent to Java string literals.
 * The double-quoted form is the equivalent of the single-quoted form except if the text contains unescaped dollar signs, the dollar sign introduces a placeholder.
@@ -82,6 +83,7 @@ And so are you."
 def greeting = 'Hello Groovy!'
 
 assert greeting.startsWith('Hello')
+assert greeting.replaceAll('Hello', 'Hola') == "Hola Groovy!"
 assert greeting.getAt(0) == 'H'
 assert greeting.indexOf('Groovy') == 6
 assert greeting.contains('Groovy')
