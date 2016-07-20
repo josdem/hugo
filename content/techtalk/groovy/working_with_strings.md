@@ -91,6 +91,12 @@ assert greeting[6..11] == 'Groovy'
 assert 'Hi' + greeting - 'Hello' == 'Hi Groovy!'
 assert greeting.count('o') == 3
 assert 'x' * 3 == 'xxx'
+
+String nickname = 'josdem'
+assert nickname.contentEquals('josdem')
+assert nickname.contentEquals( new StringBuffer('josdem') )
+String string = nickname.replace('dem', 'xyz')
+assert string == 'josxyz'
 ```
 
 **Left operator and StringBuffer**
