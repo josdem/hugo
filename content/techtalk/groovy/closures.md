@@ -39,7 +39,7 @@ assert totalClinks == (partyPeople * (partyPeople-1)) / 2  // 3
 Another simple examples of closures would be:
 
 ```groovy
-def greeting = { "Hello, $it!" } (1)
+def greeting = { "Hello, $it!" }  // 1
 assert greeting('Patrick') == 'Hello, Patrick!'
 ```
 
@@ -47,7 +47,7 @@ assert greeting('Patrick') == 'Hello, Patrick!'
 
 ```groovy
 list.each{
-  print it (1)
+  print it  // 1
 }
 ```
 
@@ -56,7 +56,7 @@ list.each{
 ```groovy
 def number = 3
 number.times {
-  println "hi" (1)
+  println "hi"  // 1
 }
 ```
 
@@ -65,9 +65,11 @@ number.times {
 ```groovy
 def list = [1,2,3,4]
 println list.findAll{
-  it%2 == 0 (1)
+  it%2 == 0  // 1
 }
 ```
+
+1. For each element in the list is applied mod 2, in order to know the elements who remainder is zero
 
 You may want to pass an closure as parameter
 
@@ -79,7 +81,7 @@ def multiply(n, closure){
 assert 18 == multiply(3, { n -> n * 6 })
 ```
 
-Simplifying this code.
+Other version of this code.
 
 ```groovy
 def multiply(n, closure){
@@ -89,6 +91,40 @@ def multiply(n, closure){
 assert 18 == multiply(3) { n -> n * 6 }
 ```
 
-1. Go through the list and find all elements that is divisible by two
+*Example*: Find the square of odds numbers > 0 until n.
+
+```groovy
+def square(n,closure){
+  for(int i=1;i<=n;i++){
+    closure(i)
+  }
+}
+
+square(20, { if((it%2)==1) println "The square of $it is ${it*it}" })
+```
+
+*Example:* A Palindrome is a word phrase, or number that reads the same backward or forward. Find palindrome words using closure
+
+```groovy
+def isPalindrome(word,closure){
+  if(closure(word)){
+    println "${word} is palindrome"
+  }else{
+    println "${word} is NOT palindrome"
+  }
+}
+
+def closure =  { it == it.reverse() }
+
+isPalindrome("Hello World", closure)
+isPalindrome("anitalavalatina", closure)
+```
+
+Output:
+
+```
+Hello World is NOT palindrome
+anitalavalatina is palindrome
+```
 
 [Return to the main article](/techtalk/groovy)
