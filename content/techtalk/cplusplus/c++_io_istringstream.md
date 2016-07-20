@@ -51,19 +51,19 @@ int main()
   string line, word;
   vector<Person> people;
   ifstream file("persons.txt");
-  while(getline(file, line)) // <1>
+  while(getline(file, line))    // 1
   {
     Person person;
-    istringstream record(line); // <2>
-    record >> person.name; // <3>
-    while(record >> word) // <4>
+    istringstream record(line); // 2
+    record >> person.name;      // 3
+    while(record >> word)       // 4
     {
       person.phones.push_back(word);
     }
     people.push_back(person);
   }
 
-  print_person(people); // <5>
+  print_person(people);         // 5
 }
 ```
 1. `getline` read an entire record from the file
@@ -88,14 +88,14 @@ struct Person
 };
 
 void format(vector<Person> people){
-  for(Person &entry: people){ // <1>
+  for(Person &entry: people){        // 1
     ostringstream formatted;
     formatted << entry.name;
-    for(string &nums: entry.phones) // <2>
+    for(string &nums: entry.phones)  // 2
     {
       formatted << nums;
     }
-    cout << formatted.str() << endl; // <3>
+    cout << formatted.str() << endl; // 3
   }
 }
 

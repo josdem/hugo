@@ -9,8 +9,8 @@ Informally, a closure can be recognized as a list of statements within braces, l
 It’s easiest to undertands closures through examples, so let’s consider the following example:
 
 ```groovy
-def adder = {i,j -> i + j} (1)
-assert adder(40,60) == 100 (2)
+def adder = {i,j -> i + j}  // 1
+assert adder(40,60) == 100  // 2
 ```
 
 1. Define a closure which receive two parameters and then sum that parameters
@@ -25,11 +25,11 @@ def totalClinks = 0
 def partyPeople = 100
 
 1.upto(partyPeople) { guestNumber ->
-  clinksWithGuest = guestNumber - 1 (1)
-  totalClinks += clinksWithGuest    (2)
+  clinksWithGuest = guestNumber - 1                        // 1
+  totalClinks += clinksWithGuest                           // 2
 }
 
-assert totalClinks == (partyPeople * (partyPeople-1)) / 2 (3)
+assert totalClinks == (partyPeople * (partyPeople-1)) / 2  // 3
 ```
 
 1. Counting number of people already present
