@@ -1,7 +1,7 @@
 +++
 date = "2015-08-29T15:59:41-05:00"
 draft = true
-title = "Looping structures"
+title = "Looping and FizzBuzz"
 
 +++
 
