@@ -95,7 +95,7 @@ class SwaggerConfig{
 
 ## Controller Documentation
 
-If you need to pass parameters to your controller using pathVariable, you can document it as follow:
+If you need to pass parameters to your controller using `GET`, you can document it as follow:
 
 ```groovy
 package com.jos.dem.swagger.controller
