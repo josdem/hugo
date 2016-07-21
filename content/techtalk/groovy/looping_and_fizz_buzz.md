@@ -69,6 +69,37 @@ while ( y-- > 0 ) {
 assert x == 5
 ```
 
+*Example:* Count letters from all Strings in a list
+
+```groovy
+def list = ['Java', 'Groovy', 'Grails']
+
+Integer count = 0
+list.each {
+  if(it.class.name == "java.lang.String"){
+    return count += it.size()
+  }
+}
+
+assert count == 16
+```
+
+Example: Same that the last example but using collect
+
+```groovy
+def list = ['Java', 'Groovy', 'Grails']
+
+Integer count = list.collect {
+  if(it.class.name == "java.lang.String"){
+    it.size()
+  }
+}.sum()
+
+assert count == 16
+```
+
+**Note:** Use collect when you need to operate over all elements in a list
+
 ## FizzBuzz in Groovy
 
 Fizz buzz is a group word game for children to teach them about division. Players take turns to count incrementally, replacing any number divisible by three with the word "fizz", and any number divisible by five with the word "buzz".

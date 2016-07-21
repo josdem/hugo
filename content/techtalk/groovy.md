@@ -53,64 +53,11 @@ println x
 x = "Groovy"
 println x
 ```
-*Output*
+Output:
 
 `1
 3.14159
 false
 Groovy`
-
-## Collections
-
-```groovy
-/**
-*   Collections Management
-**/
-
-def technologies = ["Grails" ]
-technologies.add("Groovy")
-technologies << "Java" << "Griffon"
-println technologies.contains("Java")
-
-technologies.remove("Java")
-println technologies
-```
-
-`output: true
-[Groovy, Grails, Griffon]`
-
-**Some funtions in collections**
-
-```groovy
-def list = [1,2,3]
-def otherList = [3,4]
-
-assert list.intersect(otherList) == [3]
-assert 3 == list.max()
-assert 1 == list.min()
-```
-
-```groovy
-def list = ['Java', 'Groovy', 'Grails', 'Spring']
-
-assert 1 == list.findIndexOf { it == 'Groovy' }
-assert ['Grails', 'Groovy', 'Java', 'Spring'] == list.sort()
-assert 'Groovy' == list.find { it == 'Groovy' }
-assert ['Groovy', 'Grails'] == list.grep (~/G.*/)
-assert 'Java,Groovy,Grails,Spring' == list.join(',')
-```
-
-```groovy
-assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
-assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
-```
-
-**Some collection operations**
-
-```groovy
-def vowels = ["A", "E", "I", "O", "U"]
-def consonants = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"]
-assert ["A", "E", "I", "O", "U", "B", "C", "D", "F", "G", "H", "J", "K", "L", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"] == vowels + consonants
-```
 
 [Return to the main article](/techtalk/techtalks)
