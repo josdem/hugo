@@ -114,7 +114,7 @@ Person p2 = new Person(firstName:'Jose Luis', lastName:'De la Cruz')
 
 def map = ["eric":p1, "josdem":p2]
 assert map.getClass().getName() == 'java.util.LinkedHashMap'
-assert map.eric.lastName == 'de la Rosa'                                   // 1
+assert map.eric.lastName == 'de la Rosa'                               // 1
 map.each { println "key: $it.key value: $it.value" }                   // 2
 
 map.each { person ->                                                   // 3
@@ -151,5 +151,55 @@ Output: [eric:Person@3fb041ae, josdem:Person@22457c6c]
 6. Find an element with criteria in a map
 7. Find a group of elements with criteria in a map
 
+## Ranges
+
+Ranges are lists with sequential values. Each range is also a list object, because Range extends `java.util.List`
+
+```groovy
+def range = (0..10)
+
+assert range == [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+assert range.class.name == 'groovy.lang.IntRange'
+
+def range = ('a'..'z')
+assert range == [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]
+assert range.class.name == 'groovy.lang.ObjectRange'
+
+Date today = new Date()
+Date yesterday = today - 1
+Date theDayBeforeYesterday = yesterdayi - 1
+Date tomorroy = today + 1
+
+println "Date as range"
+def days = (theDayBeforeYesterday..tomorroy)
+println days
+```
+
+Output:
+Date as range
+[Tue Jul 19 15:20:44 CDT 2016, Wed Jul 20 15:20:44 CDT 2016, Thu Jul 21 15:20:44 CDT 2016, Fri Jul 22 15:20:44 CDT 2016]
+
+## Spread-Dot
+
+The Groovy spread-dot operator is described as "equivalent to calling the collect method."
+
+```groovy
+def result = (1..10).collect{it * 2}                    // 1
+def multiply = (1..10)*.multiply(2)
+assert result =  [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+assert multiply =  [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+
+def list = ['Java', 'Groovy', 'Grails']*.toUpperCase()  // 2
+assert list == ['JAVA', 'GROOVY', 'GRAILS']
+
+def range = (1..3)
+assert [0,1,2,3] == [0,*range]                          // 3
+def map = [a:1,b:2]
+assert [a:1, b:2, c:3] == [c:3, *:map]
+```
+
+1. Multiply Each Item in a List by Two
+2. It is on a collection of strings and toUpperCase() is used on each element of the collection via the spread-dot operator
+3. Purpose is to extract entries from a collection and provide them as individual entries.
 
 [Return to the main article](/techtalk/groovy)
