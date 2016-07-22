@@ -29,32 +29,34 @@ assert message == 'HI HI HI HI HI '
 The for loop in Groovy is much simpler in collections.
 
 ```groovy
-// iterate over a list
-["A","B","C"].each{
+["A","B","C"].each{                      // 1
   println it
 }
 
-// iterate over a map
 def map = ['one':1, 'two':2, 'three':3]
 
-for (item in map){
-  println "key: ${item.key} value: ${item.value}"
+map.each { key, value ->                 // 2
+  println "$key : $value"
 }
 
-//Map new value as simple as:
-map.'four' = 4
+map.'four' = 4                          // 3
 
-//Getting an element from a map:
-assert map['one'] == 1
+assert map['one'] == 1                  // 4
 
-// iterate over the characters in a string
 def text = "abc"
 def list = []
-for (c in text) {
+for (c in text) {                       // 5
     list.add(c)
 }
 assert list == ["a", "b", "c"]
 ```
+
+1. Iterate over a list
+2. Iterate over a map
+3. Adding a new value to the map
+4. Getting an element from a map
+5. Iterate over the characters in a string
+
 
 Groovy supports the usual while
 
@@ -69,7 +71,7 @@ while ( y-- > 0 ) {
 assert x == 5
 ```
 
-*Example:* Count letters from all Strings in a list
+Example: Count letters from all Strings in a list
 
 ```groovy
 def list = ['Java', 'Groovy', 'Grails']

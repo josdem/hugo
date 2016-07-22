@@ -16,13 +16,13 @@ class Book {
 }
 
 def create(klass, properties){
-  def instance = klass.newInstance() (1)
+  def instance = klass.newInstance() // 1
 
   properties.each { name, value ->
-    instance."$name" = value  (2)
+    instance."$name" = value         // 2
   }
 
-  instance (3)
+  instance                           // 3
 }
 
 println create(Book, [title: 'Who moved my cheese?'])

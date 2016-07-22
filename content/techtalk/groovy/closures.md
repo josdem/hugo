@@ -127,4 +127,60 @@ Hello World is NOT palindrome
 anitalavalatina is palindrome
 ```
 
+## Scope
+
+To fully understand the closures it's really important to understand the meaning of `this`, `owner` and `delegate`. In general:
+
+* **this:** refers to the instance of the class that the closure was defined in.
+* **owner:** is the same as this, unless the closure was defined inside another closure in which case the owner refers to the outer closure.
+* **delegate:** is the same as owner. But, it is the only one that can be programmatically changed, and it is the one that makes Groovy closures really powerful.
+
+Confused?. Me too, so let's take a look at this file called: `ClosureScope.groovy`
+
+```groovy
+class Owner {
+  def closure = {
+    assert this.class.name == 'Owner'               // 1
+    assert delegate.class.name == 'Owner'           // 2
+    def nestedClosure = {
+      assert owner.class.name == 'Owner$_closure1'  // 3
+    }
+    nestedClosure()
+  }
+}
+
+def closure = new Owner().closure
+closure()
+```
+
+
+1. The `this` value always refers to the instance of the enclosing class.
+2. Owner is always the same as this, except for nested closures.
+3. Delegate is the same as owner by default, but it can be changed.
+
+So how we can change delegate from a closure?, let's take a look at some code:
+
+```groovy
+class FirstClass {
+  String myString = "I am first class"
+}
+
+class SecondClass {
+  String myString = "I am second class"
+}
+
+class MainClass {
+  def closure = {
+    return myString
+  }
+}
+
+
+def closure = new MainClass().closure
+closure.delegate = new FirstClass()
+assert closure() == 'I am first class'
+```
+
+Even when the delegate is set it can be change to something else, this means we can make the behavior of the closure dynamic.
+
 [Return to the main article](/techtalk/groovy)
