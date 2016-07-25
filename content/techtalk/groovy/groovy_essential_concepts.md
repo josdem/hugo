@@ -92,7 +92,7 @@ assert matcher[0] == 'Groovy'
 assert 'Groovy rocks!' ==~ /Groovy rocks!/
 assert 'Groovy rocks!' ==~ /Groovy.*/
 
-String uuid = "TimbreFiscalDigital version=\"1.0\" UUID=\"84918EDD-17BE-4726-A217-8430B97B0BD9\" FechaTimbrado=\"2016-04-05T14:48:40\" selloCFD=\"Rgk8ofr4Ud35k2=\" selloSAT=\"z9DT2PLPg9Kg=\"
+String uuid = "TimbreFiscalDigital version=\"1.0\" UUID=\"84918EDD-17BE-4726-A217-8430B97B0BD9\" FechaTimbrado=\"2016-04-05T14:48:40\" selloCFD=\"Rgk8ofr4Ud35k2=\" selloSAT=\"z9DT2PLPg9Kg="
 def matcher = uuid =~ /[a-zA-Z0-9]{8}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{4}-[a-zA-Z0-9]{12}/
 assert matcher[0] == "84918EDD-17BE-4726-A217-8430B97B0BD9"
 ```
@@ -107,7 +107,7 @@ var = 1 ; assert var.class == Integer
 var = 2f ; assert var.class == Float
 var = 3d ; assert var.class == Double
 var = 3g ; assert var.class == BigInteger
-var = 'a' ; assert var.class == String
+var = 'Groovy' ; assert var.class == String
 var = true ; assert var.class == Boolean
 ```
 

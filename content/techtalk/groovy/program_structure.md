@@ -11,7 +11,7 @@ They allows us to separate the code base without any conflicts. Groovy classes m
 
 ```groovy
 // defining a package named com.yoursite
-package com.yoursite
+package com.project
 ```
 
 **Imports**
