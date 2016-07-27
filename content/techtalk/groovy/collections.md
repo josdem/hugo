@@ -11,15 +11,15 @@ Groovy provides native support for various collection types, including lists, ma
 ## List
 
 ```groovy
+def list = []                                         // 1
+assert list.class.name == 'java.util.ArrayList'
 
-def list = []                            // 1
-println list.class.name                  // 2
-def list = ["One", "Two", "Three"]       // 3
-list.each { print "$it " }               // 4
+def list = ["One", "Two", "Three"]                    // 2
+list.each { print "$it " }                            // 3
 
 def list = []
-list += 4                                // 5
-println list                             // 6
+list.add(4)
+assert list == [4]
 
 def list = ['Java', 'Groovy']
 assert list.contains('Java')
@@ -29,47 +29,37 @@ list.remove('Java')
 assert list == ['Groovy']
 
 def list = ['Java', 'Groovy']
-list << 'Spring'                         // 7
-println list                             // 8
+list << 'Spring'                                       // 4
+assert list == ['Java', 'Groovy', 'Spring']
 
 def list = ['Java', 'Groovy']
-list << 'Grails' << 'Spring'             // 9
-println list                             // 10
+list << 'Grails' << 'Spring'                           // 5
+assert list == ['Java', 'Groovy', 'Grails', 'Spring']
 
 def list = ['Java', 'Groovy']
-list = list - 'Java'                     // 11
-println list                             // 12
+list = list - 'Java'
+assert list == ['Groovy']
 
 def list = ['Java', 'Groovy', 'Grails']
-list = list - ['Java', 'Grails']         // 13
-println list                             // 14
+list = list - ['Java', 'Grails']
+assert list == ['Groovy']
 
 def list = ['Java', 'Groovy']
-list = list - 'Kotlin'                   // 15
-println list                             // 16
+list = list - 'Kotlin'                                 // 6
+assert list == ['Java', 'Groovy']
 
 def list = [0,1,2,3,4,5,6,7,8,9]
-def subList = list[4..6]                 // 17
-println subList
+def subList = list[4..6]                               // 7
+assert subList == [4, 5, 6]
 ```
 
 1. List definition
-2. Prints java.util.ArrayList
-3. Iniatilizing a list
-4. Iterate through the list
-5. Add an element to the list
-6. Prints `[4]`
-7. Add an element with leftShift
-8. Prints `[Java, Groovy, Spring]`
-9. Add two elements with leftShift
-10. Prints `[Java, Groovy, Groovy, Spring]`
-11. Removing an element
-12. Prints `[Groovy]`
-13. Removing elements defined in a list
-14. Prints `[Groovy]`
-15. Trying to remove an element that does not exist in the list and nothing happens
-16. Prints `[Java, Groovy]`
-17. We're creating a sublist defying a range as parameter
+2. Iniatilizing a list
+3. Iterate through the list
+4. Add an element with leftShift
+5. Add two elements with leftShift
+6. Trying to remove an element that does not exist in the list and nothing happens
+7. We're creating a sublist defying a range as parameter
 
 **Some functions in collections**
 

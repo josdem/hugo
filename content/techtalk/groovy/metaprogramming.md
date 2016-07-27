@@ -53,11 +53,11 @@ import spock.lang.Specification
 class MetaExpandoSpec extends Specification {
   void "should test property access"(){
   given:
-    def expando = new MetaExpando() (1)
+    def expando = new MetaExpando() // 1
   when:
-    expando.town = 'Mexico City'  (2)
+    expando.town = 'Mexico City'    // 2
   then:
-    expando.town == 'Mexico City' (3)
+    expando.town == 'Mexico City'   // 3
   }
 }
 ```
@@ -73,14 +73,14 @@ package com.demo
 
 class MetaExpando {
 
-  private dynamicProps = [:] (1)
+  private dynamicProps = [:]                // 1
 
   void setProperty(String propName, val) {
-    dynamicProps[propName] = val (2)
+    dynamicProps[propName] = val            // 2
   }
 
   def getProperty(String propName){
-    dynamicProps[propName] (3)
+    dynamicProps[propName]                  // 3
   }
 }
 ```
@@ -94,9 +94,9 @@ void "should invoke a method does not exist"(){
   given:
     def expando = new MetaExpando()
   when:
-    expando.addNumbers = { x, y, z -> x + y + z } (1)
+    expando.addNumbers = { x, y, z -> x + y + z }  // 1
   then:
-    100 == expando.addNumbers(30, 20, 50) (2)
+    100 == expando.addNumbers(30, 20, 50)          // 2
 }
 ```
 
@@ -118,10 +118,10 @@ class MetaExpando {
     dynamicProps[propName]
   }
 
-  def methodMissing(String methodName, args) { (1)
-    def prop = dynamicProps[methodName] (2)
-    if (prop instanceof Closure){ (3)
-      return prop(*args) (4)
+  def methodMissing(String methodName, args) {  // 1
+    def prop = dynamicProps[methodName]         // 2
+    if (prop instanceof Closure){               // 3
+      return prop(*args)                        // 4
     }
   }
 }
@@ -160,7 +160,7 @@ def sb = new StringBuffer()
 closure.delegate = sb
 closure()
 
-print "StringBuffer value: ${sb}"
+assert "${sb}" == 'oneTwo'
 ```
 
 The sb value is now 'oneTwo', since closure delegates the append functionality to the StringBuffer class. So when we use delegate, we are allowing to Groovy the oportunitty to delegate others respond to that method calls.
