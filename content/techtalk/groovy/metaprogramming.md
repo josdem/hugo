@@ -132,6 +132,20 @@ class MetaExpando {
 3. Verify if value from the map is a closure
 4. Execute closure and pass all the parameters
 
+
+To download the project:
+
+```bash
+git clone https://github.com/josdem/groovy-expando.git
+```
+
+To run the project.
+
+```
+gradle test
+```
+
+
 ## Closure delegates
 
 * Closure may be assignated a "delegate"
@@ -205,17 +219,5 @@ assert names == ['Jose Luis', 'De la Cruz', 'Morales']
 
 Here, we defined a class called BusinessEntity and using metaprogramming we are adding a new method appendName, which append at runtime a string to the names variable.
 
-
-To download the project:
-
-```bash
-git clone https://github.com/josdem/groovy-expando.git
-```
-
-To run the project.
-
-```
-gradle test
-```
 
 [Return to the main article](/techtalk/groovy)

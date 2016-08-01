@@ -12,11 +12,11 @@ Abstract out the creation of an object from its implementations. Let’s conside
 ```groovy
 class Book {
   String title
-  Integer page
+  Integer pages
 }
 
-def create(klass, properties){
-  def instance = klass.newInstance() // 1
+def create(clazz, properties){
+  def instance = clazz.newInstance() // 1
 
   properties.each { name, value ->
     instance."$name" = value         // 2
@@ -25,7 +25,7 @@ def create(klass, properties){
   instance                           // 3
 }
 
-println create(Book, [title: 'Who moved my cheese?'])
+assert create(Book, [title: 'Who moved my cheese?']) instanceof Book
 ```
 
 1. Create a new object based on it’s type
@@ -37,16 +37,16 @@ So now if we add a new class, let’s say CD that contains same title field but 
 ```groovy
 class Book {
   String title
-  Integer page
+  Integer pages
 }
 
-class CD {
+class CompactDisc {
   String title
   Integer volume
 }
 
-def create(klass, properties){
-  def instance = klass.newInstance()
+def create(clazz, properties){
+  def instance = clazz.newInstance()
 
   properties.each { name, value ->
     instance."$name" = value
@@ -55,7 +55,7 @@ def create(klass, properties){
   instance
 }
 
-println create(CD, [title: 'Tri-state', volume: 1]).dump()
+assert create(CompactDisc, [title: 'Tri-state', volume: 1]) instanceof CompactDisc
 ```
 
 ## Strategy
@@ -64,7 +64,7 @@ Enables an algorithm behavior to be selected at runtime.
 ```groovy
 def prices = [10, 20, 30, 40, 50]
 
-def totalPrices(prices) {
+def computeTotal(prices) {
   def total = 0
   for (price in prices){
     total += price
@@ -72,7 +72,7 @@ def totalPrices(prices) {
   total
 }
 
-println totalPrices(prices)
+assert 150 == computeTotal(prices)
 ```
 
 This code totalize all prices defined in the prices collection. But what if we want to get all prices under 35?, consider next code addition
@@ -80,7 +80,7 @@ This code totalize all prices defined in the prices collection. But what if we w
 ```groovy
 def prices = [10, 20, 30, 40, 50]
 
-def totalPrices(prices) {
+def computeTotal(prices) {
   def total = 0
   for (price in prices){
     total += price
@@ -88,7 +88,7 @@ def totalPrices(prices) {
   total
 }
 
-def totalPricesUnder35(prices) {
+def computeTotalUnder35(prices) {
   def total = 0
   for (price in prices){
     if (price < 35)
@@ -97,8 +97,8 @@ def totalPricesUnder35(prices) {
   total
 }
 
-println totalPrices(prices)
-println totalPricesUnder35(prices)
+assert 150 == computeTotal(prices)
+assert 60 == computeTotalUnder35(prices)
 ```
 
 This code definitely works, but goes against all good developer manners since we are duplicating code. And what if we want totalize all prices over 35, we should do copy and paste again? Using strategy pattern to this case we can get the following piece of code.
@@ -106,17 +106,18 @@ This code definitely works, but goes against all good developer manners since we
 ```groovy
 def prices = [10, 20, 30, 40, 50]
 
-def totalPrices(prices, selector) {
+def computeTotal(prices, closure) {
   def total = 0
   for (price in prices){
-    if (selector(price))
+    if (closure(price))
       total += price
   }
   total
 }
 
-println "Total prices:"  + totalPrices(prices, { true })
-println "Prices under 35:"  + totalPrices(prices, { it < 35 })
+assert 150 == computeTotal(prices, { true })
+assert 60 == computeTotal(prices, { it < 35 })
+assert 90 == computeTotal(prices, { it > 35 })
 ```
 
 Selector decides whether we should sumarize all prices or not, and if not what condition applies to sumarize them.
@@ -171,12 +172,12 @@ Delegation is better than inheritance since minimize dependency. Let’s see how
 
 ```groovy
 class Worker {
-  def work(){ println "working..." }
+  def work(){ 'working...' }
 }
 
 class Expert {
-  def work() { println "expert working..." }
-  def analyze() { println "analyzing..." }
+  def work() { 'Expert working...' }
+  def analyze() { 'analyzing...' }
 }
 
 class Manager {
@@ -185,15 +186,8 @@ class Manager {
 }
 
 def manager = new Manager()
-manager.work()
-manager.analyze()
-```
-
-Output
-
-```
-working...
-analyzing...
+assert 'working...' == manager.work()
+assert 'analyzing...' == manager.analyze()
 ```
 
 What happening here is Manager in compiling time add all Worker methods in to the Manager class and all methods from the Expert class but only those methods that are not included so far.
