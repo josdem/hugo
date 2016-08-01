@@ -192,4 +192,17 @@ assert 'analyzing...' == manager.analyze()
 
 What happening here is Manager in compiling time add all Worker methods in to the Manager class and all methods from the Expert class but only those methods that are not included so far.
 
+To download the project:
+
+```bash
+git clone https://github.com/josdem/groovy-design-patterns.git
+```
+
+To run the project.
+
+```
+gradle test
+```
+
+
 [Return to the main article](/techtalk/groovy)
