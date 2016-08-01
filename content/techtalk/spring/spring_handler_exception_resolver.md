@@ -128,7 +128,7 @@ Finally we specify our HandlerException class in our servlet xml.
 To download the project
 
 ```bash
-git clone git@github.com:josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/jmailer-bootstrap.git
 git fetch
 git checkout feature/java-mail
 ```

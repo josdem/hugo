@@ -90,7 +90,7 @@ node server.js
 To download the project:
 
 ```bash
-git clone git@github.com:josdem/ux-development.git
+git clone https://github.com/josdem/ux-development.git
 git fetch
 git checkout templating
 ```

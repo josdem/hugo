@@ -87,7 +87,7 @@ class FileCopierWithCamelSpec extends Specification {
 To download the project and execute the example:
 
 ```bash
-git clone git@github.com:josdem/camel-workshop.git
+git clone https://github.com/josdem/camel-workshop.git
 cd hello-camel
 gradle -Dtest.single=FileCopierWithCamelSpec test
 ```

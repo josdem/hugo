@@ -182,7 +182,7 @@ println helloWorld.sayHello()
 To download the project:
 
 ```bash
-git clone git@github.com:josdem/groovy-techtalks.git
+git clone https://github.com/josdem/groovy-techtalks.git
 git fetch
 git checkout feature/from-java-to-groovy
 ```

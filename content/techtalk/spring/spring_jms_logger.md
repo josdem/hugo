@@ -231,7 +231,7 @@ Finally we need to declare our jms context, and don't forget to import it to the
 To download the project
 
 ```bash
-git clone git@github.com:josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/jmailer-bootstrap.git
 git fetch
 git checkout feature/jms-logger
 ```

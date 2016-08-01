@@ -37,7 +37,7 @@ Note: You should find the third party Jars in /lib folder in Jmetadata source co
 Download code from repository
 
 ```bash
-git clone git@github.com:josdem/jmetadata.git
+git clone https://github.com/josdem/jmetadata.git
 ```
 Execute this command where you downloaded the code
 

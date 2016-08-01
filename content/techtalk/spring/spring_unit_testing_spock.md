@@ -135,7 +135,7 @@ For more information how to use Spock [Spock Framework Reference Documentation](
 To download the project:
 
 ```bash
-git clone git@github.com:josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/jmailer-bootstrap.git
 git fetch
 git checkout feature/testing
 ```

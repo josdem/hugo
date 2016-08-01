@@ -179,7 +179,7 @@ File: src/main/webapp/WEB-INF/dispatcher-servlet.xml
 To download the project
 
 ```bash
-git clone git@github.com:josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/jmailer-bootstrap.git
 git fetch
 git checkout feature/aop-business-exception
 ```

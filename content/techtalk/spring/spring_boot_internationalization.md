@@ -85,7 +85,7 @@ gradle bootRun
 To download the project
 
 ```bash
-git clone git@github.com:josdem/spring-boot-internationalization.git
+git clone https://github.com/josdem/spring-boot-internationalization.git
 ```
 
 [Return to the main article](/techtalk/spring)

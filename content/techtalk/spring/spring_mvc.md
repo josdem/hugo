@@ -302,7 +302,7 @@ Go in your browser to: http://localhost:8080/jmailer/
 To download the project
 
 ```bash
-git clone git@github.com:josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/jmailer-bootstrap.git
 git fetch
 git checkout setup
 ```

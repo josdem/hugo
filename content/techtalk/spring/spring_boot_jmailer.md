@@ -130,7 +130,7 @@ gradle bootRun
 To download the project:
 
 ```bash
-git clone git@github.com:josdem/jmailer-spring-boot.git
+git clone https://github.com/josdem/jmailer-spring-boot.git
 git fetch
 git checkout setup
 ```

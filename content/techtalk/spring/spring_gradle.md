@@ -148,7 +148,7 @@ Here we are defying war build, jetty server application, Java 8 compatibility, w
 To download the project
 
 ```bash
-git clone git@github.com:josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/jmailer-bootstrap.git
 git fetch
 git checkout feature/java-mail
 ```

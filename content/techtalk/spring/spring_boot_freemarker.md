@@ -397,7 +397,7 @@ FreeMarker will step in and transform the template on-the-fly to plain HTML by r
 To download the project
 
 ```bash
-git clone git@github.com:josdem/jmailer-spring-boot.git
+git clone https://github.com/josdem/jmailer-spring-boot.git
 git fetch
 git checkout feature/mail
 ```

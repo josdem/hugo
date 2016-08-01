@@ -96,7 +96,7 @@ IO.inspect Enum.map [1,2,3,4], &(&1 + 2)
 To download the project:
 
 ```bash
-git clone git@github.com:josdem/elixir-dojo.git
+git clone https://github.com/josdem/elixir-workshop.git
 git fetch
 git checkout practices_one
 ```

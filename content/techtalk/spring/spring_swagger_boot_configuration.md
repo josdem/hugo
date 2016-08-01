@@ -219,7 +219,7 @@ class UserController {
 To download the project:
 
 ```bash
-git clone git@github.com:josdem/swagger-spring-mvc.git
+git clone https://github.com/josdem/swagger-spring-mvc.git
 git fetch
 git checkout feature/swagger-boot-conf
 ```
