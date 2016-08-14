@@ -57,17 +57,16 @@ package com.jos.dem.jmailer.advice
 import org.aspectj.lang.annotation.AfterThrowing
 import org.aspectj.lang.annotation.Aspect
 import org.springframework.stereotype.Component
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
 import com.jos.dem.jmailer.exception.BusinessException
-
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
 
 @Aspect
 @Component
 class AfterThrowingAdvice {
 
-  Log log = LogFactory.getLog(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   @AfterThrowing(pointcut = "execution(* com.jos.dem.jmailer.service..**.*(..))", throwing = "ex")
   public void doRecoveryActions(RuntimeException ex) {
@@ -92,15 +91,15 @@ package com.jos.dem.jmailer.service
 
 import org.springframework.stereotype.Service
 import org.springframework.util.StringUtils
-import com.jos.dem.jmailer.exception.EmailerException
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 
-import org.apache.commons.logging.Log
-import org.apache.commons.logging.LogFactory
+import com.jos.dem.jmailer.exception.EmailerException
 
 @Service
 class EmailerService {
 
-  Log log = LogFactory.getLog(this.class)
+  Logger log = LoggerFactory.getLogger(this.class)
 
   def sendEmail(){
     log.debug 'Sending email'
@@ -111,6 +110,31 @@ class EmailerService {
 ```
 
 As you can see at EmailerService in the sendEmail() method we are throwing an EmailerException so our Advice will be called.
+
+Here is the EmailerController and a quick view how this controller is calling to the EmailerService.
+
+```groovy
+package com.jos.dem.jmailer.controller
+
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.beans.factory.annotation.Autowired
+
+import com.jos.dem.jmailer.service.EmailerService
+
+@RestController
+class EmailerController {
+
+  @Autowired
+  EmailerService emailerService
+
+  @RequestMapping("/")
+  String index() {
+    emailerService.sendEmail()
+  }
+
+}
+```
 
 To get this work, you only need to add aop dependency in your build.gradle
 
