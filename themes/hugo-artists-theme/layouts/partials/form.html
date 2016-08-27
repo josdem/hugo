@@ -16,7 +16,8 @@
         <fieldset class="submit-wrap">
             <input type="submit" value="{{ with .Site.Params.form.buttonText }}{{ . }}{{ end }}">
         </fieldset>
-        <input type="hidden" value="josdem.io" name="source" />
-        <input type="hidden" value="REGISTER" name="type" />
+        <input type="hidden" name="source" value="josdem.io"/>
+        <input type="hidden" name="redirect" value="{{ with .Site.Params.form.redirect }}{{ . }}{{ end }}"/>
+        <input type="hidden" name="type" value="REGISTER"/>
     </form>
 </section>
