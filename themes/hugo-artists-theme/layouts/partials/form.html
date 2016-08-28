@@ -17,6 +17,7 @@
             <input type="submit" value="{{ with .Site.Params.form.buttonText }}{{ . }}{{ end }}">
         </fieldset>
         <input type="hidden" name="source" value="josdem.io"/>
+        <input type="hidden" name="email" value="{{ with .Site.Params.form.destination }}{{ . }}{{ end }}"/>
         <input type="hidden" name="redirect" value="{{ with .Site.Params.form.redirect }}{{ . }}{{ end }}"/>
         <input type="hidden" name="type" value="REGISTER"/>
     </form>

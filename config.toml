@@ -185,6 +185,7 @@ disqusShortname = "josdem"
 		email = "Your Email"
 		message = "Send me some message"
     redirect = "http://josdem.io/flyer/jmailer/"
+    destination = "joseluis.delacruz@gmail.com"
 		buttonText = "Send"
 
 
