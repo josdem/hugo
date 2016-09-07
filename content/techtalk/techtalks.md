@@ -38,6 +38,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**Grails**](/techtalk/grails)
  * [Download counter](/techtalk/grails/operating_system_downloader_counter)
  * [Externalized configuration](/techtalk/grails/grails_externalized_conf)
+ * [Login functionality with Spring Security](/techtalk/grails/spring_security_login)
 * [**Spring**](/techtalk/spring)
  * [Basic Spring MVC with Bootstrap](/techtalk/spring/spring_mvc)
  * [Managing Exceptions With AOP](/techtalk/spring/spring_aop)

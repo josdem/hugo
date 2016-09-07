@@ -125,5 +125,6 @@ Now you can explore your the application and the scaffolding
 
 * [Download counter](/techtalk/grails/operating_system_downloader_counter)
 * [Externalized configuration](/techtalk/grails/grails_externalized_conf)
+* [Login functionality with Spring Security](/techtalk/grails/spring_security_login)
 
 [Return to the main article](/techtalk/techtalks)
