@@ -1,6 +1,7 @@
 +++
+categories = ["techtalk", "code","Java"]
 date = "2016-06-23T15:24:28-05:00"
-draft = true
+tags = ["josdem", "techtalks", "programming", "technology","Java"]
 title = "FizzBuzz"
 
 +++

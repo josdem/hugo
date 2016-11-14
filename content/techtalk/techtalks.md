@@ -90,6 +90,8 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Fastman Problem](/techtalk/algorithms/algorithm_fastman)
  * [Binary Tree](/techtalk/algorithms/algorithm_binary_tree)
  * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
+* [**Machine Learning**](/techtalk/machine_learning)
+ * [Linear Regression](/techtalk/machine_learning/linear_regression)
 * [**Sysadmin**](/techtalk/sysadmin)
  * [Tomcat AJP](/techtalk/sysadmin/tomcat_domain)
  * [Nginx Restrincting Access](/techtalk/sysadmin/nginx_restrincting_access)
