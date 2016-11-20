@@ -59,4 +59,4 @@ $$\beta1 = 3.5$$
 $$\beta2 = 1.4$$
 
 
-[Return to the main article](/techtalk/techtalks)
+[Return to the main article](/techtalk/machine_learning/machine_learning)
