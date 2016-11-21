@@ -33,6 +33,7 @@ Continuous data are not restricted to defined separate values, but can occupy an
 
 * Supervised Learning
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
+ * [Linear Algebra](/techtalk/machine_learning/linear_algebra)
 
 
 [Return to the main article](/techtalk/techtalks)
