@@ -29,10 +29,13 @@ Discrete data can only take particular values. There may potentially be an infin
 
 Continuous data are not restricted to defined separate values, but can occupy any value over a continuous range. Example a person's height, time in a race, etc.
 
-**Examples:**
+**Examples**
 
 * Supervised Learning
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
+
+**Tools**
+
  * [Linear Algebra](/techtalk/machine_learning/linear_algebra)
 
 
