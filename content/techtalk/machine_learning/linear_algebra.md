@@ -53,11 +53,15 @@ Using the command window in Octave you can create a matrix manually like this:
 A = [1,3;4,0;2,1]
 ```
 
+and a vector like this:
+
 ```bash
 b = [1;5]
 ```
 
-So we have that:
+Note: By convention, matrices are represented by uppercase letter and vectors with lowercase
+
+So we have that if we type this command in Octave:
 
 ```bash
 >> A * b
