@@ -19,7 +19,7 @@ Some important things that we have to know about the `java.time API` is the foll
 import java.time.LocalDate;
 import java.time.Month;
 
-public class DateTimeOperations {
+public class DateOperations {
 
   private void operations(){
     LocalDate today = LocalDate.now();
@@ -29,7 +29,7 @@ public class DateTimeOperations {
     System.out.println("Is a Leap Year?: " + today.isLeapYear());
 
     LocalDate chrismas = LocalDate.of(2016, Month.DECEMBER, 25);
-    System.out.println("Today is bafore Chirsmas?: " + today.isBefore(chrismas));
+    System.out.println("Today is before Christmas?: " + today.isBefore(chrismas));
   }
 
   public static void main(String[] args){
@@ -56,16 +56,17 @@ When you want to perform calculations between days, temporal unit interface unit
 
 ```java
 import java.time.Month;
+import java.time.Period;
 import java.time.LocalDate;
 import static java.time.temporal.ChronoUnit.*;
 
 public class BetweenDays {
 
   private void compute(){
-    LocalDate chrismas = LocalDate.of(2016, Month.DECEMBER, 25);
+    LocalDate christmas = LocalDate.of(2016, Month.DECEMBER, 25);
     LocalDate today = LocalDate.now();
-    long days = DAYS.between(today, chrismas);
-    System.out.println("There are " + days + " shopping days until Chrismas");
+    long days = DAYS.between(today, christmas);
+    System.out.println("There are " + days + " shopping days until Christmas");
   }
 
   public static void main(String[] args){
@@ -77,7 +78,7 @@ public class BetweenDays {
 *output*
 
 ```bash
-There are 29 shopping days until Chrismas
+There are 29 shopping days until Christmas
 ```
 
 A period class also have a between method and you can use to figure out how many days or months are between dates.
@@ -93,12 +94,12 @@ import static java.time.temporal.ChronoUnit.*;
 public class BetweenDays {
 
   private void compute(){
-    LocalDate chrismas = LocalDate.of(2016, Month.DECEMBER, 25);
+    LocalDate christmas = LocalDate.of(2016, Month.DECEMBER, 25);
     LocalDate today = LocalDate.now();
-    long days = DAYS.between(today, chrismas);
-    System.out.println("There are " + days + " shopping days until Chrismas");
+    long days = DAYS.between(today, christmas);
+    System.out.println("There are " + days + " shopping days until Christmas");
 
-    Period untilChristmas = Period.between(today, chrismas);
+    Period untilChristmas = Period.between(today, christmas);
     System.out.println("There are " + untilChristmas.getMonths() + " months and " + untilChristmas.getDays() + " days until Christmas");
   }
 
