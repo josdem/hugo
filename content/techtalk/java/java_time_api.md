@@ -28,12 +28,12 @@ public class DateOperations {
     System.out.println("Next week: " + today.plusDays(7));
     System.out.println("Is a Leap Year?: " + today.isLeapYear());
 
-    LocalDate chrismas = LocalDate.of(2016, Month.DECEMBER, 25);
-    System.out.println("Today is before Christmas?: " + today.isBefore(chrismas));
+    LocalDate christmas = LocalDate.of(2016, Month.DECEMBER, 25);
+    System.out.println("Today is before Christmas?: " + today.isBefore(christmas));
   }
 
   public static void main(String[] args){
-    new DateTimeOperations().operations();
+    new DateOperations().operations();
   }
 }
 ```
@@ -45,7 +45,7 @@ today in YYYY-MM-DD format: 2016-11-26
 Day of the week: SATURDAY
 Next week: 2016-12-03
 Is a Leap Year?: true
-Today is bafore Chirsmas?: true
+Today is before Christmas?: true
 ```
 
 **Calculating Between Days**
