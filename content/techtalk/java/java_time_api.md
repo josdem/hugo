@@ -112,7 +112,7 @@ public class BetweenDays {
 *output*
 
 ```bash
-There are 29 shopping days until Chrismas
+There are 29 shopping days until Christmas
 There are 0 months and 29 days until Christmas
 ```
 
