@@ -116,4 +116,11 @@ There are 29 shopping days until Christmas
 There are 0 months and 29 days until Christmas
 ```
 
+To download the code:
+
+```bash
+git clone https://github.com/josdem/java-topics.git
+cd date-and-time
+```
+
 [Return to the main article](/techtalk/java)
