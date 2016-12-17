@@ -57,7 +57,7 @@ public class MainAnalyzer {
 }
 ```
 
-Since we are defining a interface `StringAnalyzer` we can use a lambda expression to implement this interface, that's it, you define or use a functional interface that accepts and returns exactly what you want.
+Since we are defining a interface `StringAnalyzer` we can use a lambda expression to implement this interface, that's it, you define or use a functional interface that accepts and returns exactly what you want. In this case we are replacing `ContainsAnalyzer` by a lambda expression.
 
 ```java
 public class MainAnalyzer {
