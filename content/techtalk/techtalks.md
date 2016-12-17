@@ -21,6 +21,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Generic Algorithms](/techtalk/cplusplus/generic_algorithms)
 * [**Java8**](/techtalk/java)
  * [Java time API](/techtalk/java/java_time_api)
+ * [Lambda Expressions](/techtalk/java/lambda_expressions)
  * [FizzBuzz](/techtalk/java/java_fizz_buzz)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
