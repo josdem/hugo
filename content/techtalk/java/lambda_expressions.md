@@ -70,7 +70,33 @@ public class MainAnalyzer {
 }
 ```
 
-Lambda expressions also can be treated like a variables, it could be assigned, it could be pass as parameter, so therefore the code is easily reuse.
+Lambda expressions also can be treated like a variables, it could be assigned, it could be pass as parameter, so therefore the code is easily reuse. Let's create a new class so you can see how we can use lambda as parameters:
+
+```java
+public class AnalyzerTool {
+
+  public Boolean analyze(String text, String keyword, StringAnalyzer analizer){
+    return analizer.analyze(text,keyword);
+  }
+
+}
+```
+
+So now we can pass an StringAnalyzer as parameter which could be a lambda expression
+
+```java
+public class MainAnalyzer {
+
+  public static void main(String[] args){
+    StringAnalyzer analyzerContains = (String text, String keyword) -> text.contains(keyword);
+    StringAnalyzer analyzerEndsWith = (String text, String keyword) -> text.endsWith(keyword);
+
+    assert analyzerContains.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life");
+    assert analyzerEndsWith.analyze("In the end, it's not the years in your life that count. It's the life in your years", "years");
+
+  }
+}
+```
 
 To download the code:
 
