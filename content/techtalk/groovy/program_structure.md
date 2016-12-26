@@ -80,7 +80,9 @@ package com.josdem
 All objects can be 'coerced' to a boolean value: everything that’s null, void, equal to zero, or empty evaluates to false, and if not, evaluates to true.
 
 ```groovy
+def name = 'josdem'
 if (name) {
+  println "hello $name"
 }
 ```
 
@@ -99,13 +101,18 @@ Nulls are checked throughout the call chain and no NullPointerException will be 
 The Elvis operator is a special ternary operator shortcut which is handy to use for default values.
 
 ```groovy
-def result = name ?: "Unknown"
+def name = 'josdem' //1
+def result = name!=null ? name : "Unknown"  //2
+result = name ?: "Unknown" //3
 ```
+
+**Note:** Line 2 and 3 are equivalents
 
 Another expression-based way to make decision is the ternary operator.
 
 ```groovy
-activity = programmer ? 'Java' : 'Futbol'
+def programmer = true
+def activity = programmer ? 'Java' : 'Futbol'
 ```
 
 If the value of programmer is true, then the value of the whole expression is the thing between the question mark and colon, if the condition is false, the the expression evaluates the last part.
