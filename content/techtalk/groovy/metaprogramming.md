@@ -11,7 +11,7 @@ title = "Metaprogramming"
 * Capabilities are introduced at runtime
 
 ## Groovy is dynamic
-In Grails, for example, you see statements like Album.findByArtist('Oscar Peterson') but the Album class has no such method! Neither has any superclass. No class has such a method! The trick is that method calls are funneled through an object called MetaClass, which in this case regognizes that there’s no corresponding method in the bytecode of Album and therefore relays the call to its missingMethod handler. This knows about the naming convention of Grails' dynamic finder methods and fetches your favorite albums from the database.
+In Grails, for example, you see statements like Album.findByArtist('Oscar Peterson') but the Album class has no such method! Neither has any superclass. No class has such a method! The trick is that method calls are funneled through an object called MetaClass, which in this case recognizes that there’s no corresponding method in the bytecode of Album and therefore relays the call to its missingMethod handler. This knows about the naming convention of Grails' dynamic finder methods and fetches your favorite albums from the database.
 
 ## Expando
 Dynamically expanding an object.
