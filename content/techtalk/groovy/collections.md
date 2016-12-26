@@ -87,8 +87,8 @@ assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
 
 ```groovy
 def vowels = ["A", "E", "I", "O", "U"]
-def consonants = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"]
-assert ["A", "E", "I", "O", "U", "B", "C", "D", "F", "G", "H", "J", "K", "L", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"] == vowels + consonants
+def consonants = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"]
+assert ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"] == (vowels + consonants).sort()
 ```
 
 ## Maps
