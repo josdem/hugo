@@ -64,6 +64,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot JMS](/techtalk/spring/spring_boot_freemarker)
  * [Spring Boot testing](/techtalk/spring/spring_boot_testing)
  * [Spring Boot internationalization](/techtalk/spring/spring_boot_internationalization)
+ * [Spring Boot Bower Plugin](/techtalk/spring/spring_boot_bower_plugin)
  * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
 * [**Ruby**](/techtalk/ruby)
  * [Control Structure](/techtalk/ruby/ruby_control_structure)

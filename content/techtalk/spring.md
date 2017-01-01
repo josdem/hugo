@@ -52,6 +52,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot JMS](/techtalk/spring/spring_boot_freemarker)
 * [Spring Boot testing](/techtalk/spring/spring_boot_testing)
 * [Spring Boot internationalization](/techtalk/spring/spring_boot_internationalization)
+* [Spring Boot Bower Plugin](/techtalk/spring/spring_boot_bower_plugin)
 * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
 
 [Return to the main article](/techtalk/techtalks)
