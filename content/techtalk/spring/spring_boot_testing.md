@@ -5,7 +5,9 @@ title = "Spring Boot Testing"
 
 +++
 
-We can test our application using Junit or Spock, and we will see both.
+We can test our application using Junit or Spock, and we will see both. Also you can make unit, integration and functional testing.
+
+## Integration testing
 
 Spring Boot provides a @SpringApplicationConfiguration annotation as an alternative to the standard @ContextConfiguration annotation.
 
@@ -137,6 +139,46 @@ We can run all the test whit this command:
 
 ```bash
 gradle test -Dspring.config.location=$HOME/.spring/application-DEVELOPMENT.yml
+```
+
+## Unit testing
+
+Unit testing is normally used when you want to test a single class with its methods
+
+```groovy
+package com.jos.dem.jmailer
+
+import spock.lang.Specification
+
+import com.jos.dem.jmailer.controller.EmailerController
+import com.jos.dem.jmailer.service.EmailerFormatter
+import com.jos.dem.jmailer.service.EmailerService
+import com.jos.dem.jmailer.command.Command
+import com.jos.dem.jmailer.command.MessageCommand
+
+class EmailerControllerSpec extends Specification{
+
+  EmailerController controller = new EmailerController()
+
+  EmailerFormatter emailerFormatter = Mock(EmailerFormatter)
+  EmailerService emailerService = Mock(EmailerService)
+
+  def setup(){
+    controller.emailerFormatter = emailerFormatter
+    controller.emailerService = emailerService
+  }
+
+  void "should send a message from a form"(){
+    given:"A messageCommand"
+      Command command = new MessageCommand(email:'josdem@email.com')
+    when:"We send message"
+      emailerFormatter.format(command) >> command
+      controller.form(command)
+    then:"We expect message sent"
+    1 * emailerService.sendEmail(command)
+  }
+
+}
 ```
 
 To download the project
