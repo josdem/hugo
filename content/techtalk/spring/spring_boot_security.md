@@ -59,7 +59,7 @@ When a user successfully logs in, they will be redirected to the previously requ
 
 As for the `configureGlobal(AuthenticationManagerBuilder)` method, it sets up an in-memory user store with a single user. That user is given a username of `"user"`, a password of `"password"`, and a role of `"USER"`.
 
-Now we need to create the login page. There’s already a view controller for the "login" view, so you only need to create the login view itself:
+Now we need to create the login page. There’s already a view controller for the `"login"` view, so you only need to create the login view itself:
 
 ```html
 <!DOCTYPE html>
