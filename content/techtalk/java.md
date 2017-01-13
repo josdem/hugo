@@ -11,6 +11,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Java time API](/techtalk/java/java_time_api)
 * [Lambda Expressions](/techtalk/java/lambda_expressions)
 * [FizzBuzz](/techtalk/java/java_fizz_buzz)
+* [Hello AWS Lambda](/techtalk/java/hello_aws_lambda)
 
 **forEach() in a Map**
 
