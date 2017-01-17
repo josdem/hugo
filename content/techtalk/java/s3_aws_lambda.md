@@ -8,7 +8,7 @@ tags = ["josdem","techtalks","programming","technology", "aws lambda", "java", "
 
 Suppose you want to process a file that is uploaded to a bucket. You can create a Lambda function (BucketFileTransfer) that Amazon S3 can invoke when objects are created. Then, the Lambda function can read the image object from the source bucket and create a copy image target bucket.
 
-In this post I will show you how to create a Java Lambda function in orde to copy a file from one bucket to another. First we need to create a Java basic project this time using lazybones.
+In this post I will show you how to create a Java Lambda function in orde to copy a file (HappyFace.jpg) from one bucket to another. First we need to create a Java basic project this time using lazybones.
 
 ```bash
 lazybones create java-basic s3-aws-lambda
@@ -40,10 +40,10 @@ version = '0.0.1'
 
 task buildZip(type: Zip) {
     from compileJava
-    from processResources              
+    from processResources
     into('lib') {
         from configurations.runtime
-    }           
+    }
 }
 
 repositories {
@@ -150,8 +150,8 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 
 public class AWSClient {
-  
-  String sourceBucket; 
+
+  String sourceBucket;
   String sourceKey;
   AmazonS3 s3Client;
 
@@ -163,7 +163,7 @@ public class AWSClient {
     this.s3Client = new AmazonS3Client(credentials, clientConfig);
   }
 
-  public S3Object getS3Object() {    
+  public S3Object getS3Object() {
     return getS3Client().getObject(new GetObjectRequest(sourceBucket, sourceKey));
   }
 
@@ -182,6 +182,70 @@ gradle buildZip
 ```
 
 Then go to your [AWS console](console.aws.amazon.com) and create a new Lambda AWS function to upload this project.
+
+You can invoke your lambda function installing command line interface [AWS CLI](http://docs.aws.amazon.com/cli/latest/userguide/cli-chap-welcome.html)
+
+```bash
+aws lambda invoke \
+--invocation-type Event \
+--function-name s3-aws-lambda \
+--region us-west-1 \
+--payload file://inputfile.txt \
+outputfile.txt
+```
+
+Where `inputfile.txt` is:
+
+```json
+{
+  "Records": [
+    {
+      "eventVersion": "2.0",
+      "eventTime": "1970-01-01T00:00:00.000Z",
+      "requestParameters": {
+        "sourceIPAddress": "127.0.0.1"
+      },
+      "s3": {
+        "configurationId": "testConfigRule",
+        "object": {
+          "eTag": "0123456789abcdef0123456789abcdef",
+          "sequencer": "0A1B2C3D4E5F678901",
+          "key": "HappyFace.jpg",
+          "size": 1024
+        },
+        "bucket": {
+          "arn": "arn:aws:s3:::josdem-s3-source",
+          "name": "josdem-s3-source",
+          "ownerIdentity": {
+            "principalId": "EXAMPLE"
+          }
+        },
+        "s3SchemaVersion": "1.0"
+      },
+      "responseElements": {
+        "x-amz-id-2": "EXAMPLE123/5678abcdefghijklambdaisawesome/mnopqrstuvwxyzABCDEFGH",
+        "x-amz-request-id": "EXAMPLE123456789"
+      },
+      "awsRegion": "us-east-1",
+      "eventName": "ObjectCreated:Put",
+      "userIdentity": {
+        "principalId": "EXAMPLE"
+      },
+      "eventSource": "aws:s3"
+    }
+  ]
+}
+```
+
+After invoke command you should see this output:
+
+```json
+{
+  "StatusCode": 202
+}
+```
+
+And the HappyFace.jpg image copied.
 
 To download the code:
 
