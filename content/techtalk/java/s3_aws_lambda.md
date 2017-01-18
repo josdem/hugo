@@ -8,7 +8,7 @@ tags = ["josdem","techtalks","programming","technology", "aws lambda", "java", "
 
 Suppose you want to process a file that is uploaded to a bucket. You can create a Lambda function (BucketFileTransfer) that Amazon S3 can invoke when objects are created. Then, the Lambda function can read the image object from the source bucket and create a copy image target bucket.
 
-In this post I will show you how to create a Java Lambda function in orde to copy a file (HappyFace.jpg) from one bucket to another. First we need to create a Java basic project this time using lazybones.
+In this post I will show you how to create a Java Lambda function in order to copy a file (HappyFace.jpg) from one bucket to another. First we need to create a Java basic project this time using lazybones.
 
 ```bash
 lazybones create java-basic s3-aws-lambda
@@ -75,7 +75,7 @@ public class BucketFileTransfer implements RequestHandler<S3Event, Integer> {
   @Override
   public Integer handleRequest(S3Event event, Context context) {
     LambdaLogger logger = context.getLogger();
-    logger.log("STRARTING to copy file");
+    logger.log("STARTING to copy file");
 
     MetadataFileHelper metadataFileHelper = new MetadataFileHelper(event);
     String sourceBucket = metadataFileHelper.getSourceBucketName();
