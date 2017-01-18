@@ -8,7 +8,7 @@ tags = ["josdem","techtalks","programming","technology","Java"]
 
 The Commons Configuration software library provides a generic configuration interface which enables a Java application to read configuration data from a variety of sources. Go here for more information about [Apache Commons](http://commons.apache.org/)
 
-In this post I will show you how to read a properties file using Apache commons. First we need to create a Java basic project this time using lazybones.
+In this post I will show you how to read a properties file using Apache commons. First we need to create a Java basic project this time using [lazybones](https://github.com/pledbrook/lazybones).
 
 ```bash
 lazybones create java-basic properties-apache-commons
