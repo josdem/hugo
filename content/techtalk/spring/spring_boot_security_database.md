@@ -6,13 +6,13 @@ categories = ["techtalk","code"]
 
 +++
 
-This post walks you through the process of creating a simple registration and login example with Spring Security using database. Please read this previous [post](/techtalk/spring/spring_boot_security) before conitnue with this information. First we need to add dependency to the build.gradle
+This post walks you through the process of creating a simple registration and login example with Spring Security using database. Please read this previous [post](/techtalk/spring/spring_boot_security) before conitnue with this information. First we need to add Spring Data JPA dependency to the build.gradle
 
 ```groovy
 compile 'org.springframework.boot:spring-boot-starter-data-jpa'
 ```
 
-Then we need to change Spring secutiry Java config class in order to add `userDetailsService` to implement database access functionality:
+Then we need to change Spring security Java config class in order to add `userDetailsService` to implement database access functionality:
 
 ```groovy
 package com.jos.dem.vetlog.config
@@ -59,7 +59,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
 }
 ```
 
-This is the `userDetailsService implementation`
+This is the `userDetailsService` implementation
 
 ```groovy
 package com.jos.dem.vetlog.service.impl
@@ -144,7 +144,7 @@ enum Role {
 }
 ```
 
-That's it, when the controller call to save an new user, we call this `userService` implementation:
+That's it, when the controller call to save a new user, we will call this `userService` implementation:
 
 ```groovy
 package com.jos.dem.vetlog.service.impl
