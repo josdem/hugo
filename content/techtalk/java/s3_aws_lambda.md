@@ -251,6 +251,8 @@ To download the code:
 
 ```bash
 git clone https://github.com/josdem/java-topics.git
+git fetch
+git checkout feature/copy-bucket-file
 cd s3-aws-lambda
 ```
 
