@@ -201,7 +201,7 @@ git fetch
 git checkout feature/7
 ```
 
-To run the project, please read the [wiki](https://github.com/josdem/vetlog-spring-boot/wiki) and execute this command:
+To run the project, please read the [wiki](https://github.com/josdem/vetlog-spring-boot/wiki/YAML%20File) and execute this command:
 
 ```bash
 gradle bootRun -Dspring.config.location=$HOME/.vetlog-spring-boot/application-development.yml
