@@ -163,5 +163,11 @@ To run the project, please read the [wiki](https://github.com/josdem/vetlog-spri
 gradle bootRun -Dspring.config.location=$HOME/.vetlog-spring-boot/application-development.yml
 ```
 
+To run only this test:
+
+```bash
+gradle -Dtest.single=UserValidatorSpec test -Dspring.config.location=$HOME/.vetlog-spring-boot/application-development.yml
+```
+
 [Return to the main article](/techtalk/spring)
 
