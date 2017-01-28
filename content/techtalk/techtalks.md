@@ -27,6 +27,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [S3 AWS Lambda](/techtalk/java/s3_aws_lambda)
  * [Configuration with Apache Commons](/techtalk/java/configuration_apache_commons)
  * [Java NIO File Copy](/techtalk/java/java_nio_copy)
+ * [CSV with Apache Commons](/techtalk/java/csv_apache_commons)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
  * [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)
