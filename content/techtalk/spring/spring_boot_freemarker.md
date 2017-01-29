@@ -7,8 +7,6 @@ title = "Spring Boot and JMS"
 
 We’re going to explore all flowing from controller to the freemarker html template to send an email.
 
-![jmailer](../../images/jmailer.png)
-
 ```groovy
 package com.jos.dem.jmailer.controller
 
