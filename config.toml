@@ -1,7 +1,5 @@
 # Site settings
 baseurl = "http://josdem.io/"
-jmailerFormService = "//jmailer.josdem/emailer/form"
-source = "josdem.io"
 languageCode = "en-us"
 title = "josdem"
 theme = "hugo-artists-theme"
@@ -63,7 +61,6 @@ disqusShortname = "josdem"
 		[[params.about.skills]]
 			name = "Teaching"
 			value = 9
-
 		[[params.about.skills]]
 			name = "Planning"
 			value = 8
@@ -183,6 +180,9 @@ disqusShortname = "josdem"
 	[params.form]
 		title = "Let's do stuff together"
 		# Form fields
+		service = "//jmailer.josdem.io/emailer/form"
+    source = "josdem.io"
+    template = "third_party.ftl"
 		name = "Your Name"
 		email = "Your Email"
 		message = "Send me some message"
