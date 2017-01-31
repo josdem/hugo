@@ -1,5 +1,7 @@
 # Site settings
 baseurl = "http://josdem.io/"
+jmailerFormService = "//jmailer.josdem/emailer/form"
+source = "josdem.io"
 languageCode = "en-us"
 title = "josdem"
 theme = "hugo-artists-theme"
