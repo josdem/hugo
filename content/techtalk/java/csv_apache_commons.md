@@ -20,8 +20,8 @@ Previous command will create this structure
       +- src
           |
           +- main
-          |     |
-          |     +- java
+          |   |
+          |   +- java
           |
           +- test
           |   |
