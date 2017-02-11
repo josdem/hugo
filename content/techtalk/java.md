@@ -16,6 +16,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Configuration with Apache Commons](/techtalk/java/configuration_apache_commons)
 * [Java NIO File Copy](/techtalk/java/java_nio_copy)
 * [CSV with Apache Commons](/techtalk/java/csv_apache_commons)
+* [Read Excel with Apache POI](/techtalk/java/apache_poi_excel)
 
 **forEach() in a Map**
 
