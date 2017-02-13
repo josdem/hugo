@@ -109,6 +109,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**Sysadmin**](/techtalk/sysadmin)
  * [Tomcat AJP](/techtalk/sysadmin/tomcat_domain)
  * [Nginx Restrincting Access](/techtalk/sysadmin/nginx_restrincting_access)
+ * [Launching an EC2 using CloudFormation](/techtalk/sysadmin/cloud_formation_ec2	)
 * [Python](/techtalk/python)
 * [Continuous Delivery](/techtalk/continuous_delivery)
 * [Camel](/techtalk/camel)
