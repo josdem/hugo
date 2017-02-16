@@ -52,9 +52,12 @@ Others who see that commented-out code won’t have the courage to delete it. Th
 * Boolean logic is hard enough to understand without having to see it in the context of an if or while statement. Extract functions that explain the intent of the conditional.
 
 ## Tips
+* Write simple code
+* DRY Don't repeat yourself
+* Avoid Overdesign
 * Don’t return null
 * Don’t pass null as parameter
-* Take care about quality on Junit test code
+* Take care about quality in testing code
 * Follow SRP (Single Responsibility Principle)
 * Maintain cohesion, when classes lose cohesion split them.
 * If you do something a certain way, do all similar things in the same way.
@@ -70,5 +73,7 @@ is preferable to
 ```java
  if(!buffer.shouldNotCompact())
 ```
+
+*Most of the good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.* ~ Linus Torvalds
 
 [Return to the main article](/techtalk/techtalks)
