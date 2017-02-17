@@ -56,7 +56,8 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Validation](/techtalk/spring/spring_boot_validation)
 * [Spring Boot Testing Validation](/techtalk/spring/spring_boot_validation_testing)
 * [Spring Boot Security](/techtalk/spring/spring_boot_security)
-* [Spring Boot Security using Database](/techtalk/spring/spring_boot_security_database)
+* [Spring Boot Liquibase](/techtalk/spring/spring_boot_liquibase)
+* [Spring Boot ](/techtalk/spring/spring_boot_security_database)
 * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
 
 [Return to the main article](/techtalk/techtalks)
