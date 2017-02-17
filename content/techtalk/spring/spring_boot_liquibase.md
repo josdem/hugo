@@ -6,7 +6,7 @@ tags = ["josdem","techtalks","programming","technology"]
 
 +++
 
-Liquibase is a source control for your databases. This time I will show you how to add Liquibase to your project Spring Boot. First you need to add your Liquibase dependency in your `build.gradle` file
+Liquibase is a source control for your databases. This time I will show you how to add Liquibase to a Spring Boot project. First you need to add your Liquibase dependency in your `build.gradle` file
 
 ```groovy
 compile "org.liquibase:liquibase-core:3.5.3"
