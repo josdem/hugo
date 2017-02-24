@@ -8,7 +8,7 @@ categories = ["techtalk","code"]
 
 Logback is a logging framework wheter console or file, is nowadays the best option for logging your Spring Boot application. [Here](https://logback.qos.ch/) you can find more information about it. This time I will show you how to configure Logback.
 
-First you need to add logback into gradle as dependencies.
+First you need to add logback dependencies into your `build.gradle` file.
 
 ```groovy
 compile "ch.qos.logback:logback-classic:1.2.1"
