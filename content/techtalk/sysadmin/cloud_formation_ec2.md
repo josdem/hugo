@@ -113,8 +113,8 @@ Here is how my Micro RedHat instance template looks like:
       ],
       "ConstraintDescription": "T2 micro 1GB RAM instance type."
     },
-    "SSHLocation": {
-      "Description": "The IP address range that can be used to SSH to the EC2 instances",
+    "ProtocolLocation": {
+      "Description": "The IP address range that can be used to IpProtocol to the EC2 instances",
       "Type": "String",
       "MinLength": "9",
       "MaxLength": "18",
@@ -566,14 +566,22 @@ Here is how my Micro RedHat instance template looks like:
     "InstanceSecurityGroup": {
       "Type": "AWS::EC2::SecurityGroup",
       "Properties": {
-        "GroupDescription": "Enable SSH access via port 22",
+        "GroupDescription": "Enable access Inbound to the EC2Instance",
         "SecurityGroupIngress": [
           {
             "IpProtocol": "tcp",
             "FromPort": "22",
             "ToPort": "22",
             "CidrIp": {
-              "Ref": "SSHLocation"
+              "Ref": "ProtocolLocation"
+            }
+          },
+          {
+            "IpProtocol": "tcp",
+            "FromPort": "80",
+            "ToPort": "80",
+            "CidrIp": {
+              "Ref": "ProtocolLocation"
             }
           }
         ]
@@ -653,6 +661,10 @@ Here is how my Micro RedHat instance template looks like:
   }
 }
 ```
+
+**hints**
+
+* `InstanceSecurityGroup` Creates an Amazon EC2 security group. Here we are defining 22 and 80 inbound rules, for more information about Security Groups go [Here](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html)
 
 That's it, to launch your EC2 instance execute this command from terminal:
 
