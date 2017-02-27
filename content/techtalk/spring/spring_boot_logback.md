@@ -41,7 +41,7 @@ root(WARN, ["STDOUT"])
  If you want to send your loggin to a file, use this Groovy structure:
 
  ```groovy
- import ch.qos.logback.core.ConsoleAppender
+import ch.qos.logback.core.ConsoleAppender
 import ch.qos.logback.core.rolling.RollingFileAppender
 import ch.qos.logback.classic.encoder.PatternLayoutEncoder
 
