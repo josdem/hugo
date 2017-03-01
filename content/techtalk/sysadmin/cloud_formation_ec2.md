@@ -19,7 +19,7 @@ $ aws help
 
 **Working with Stacks**
 
-A stack is a collection of AWS resources that you can manage as a single unit. In other words, you can create, update, or delete a collection of resources by creating, updating, or deleting stacks. 
+A stack is a collection of AWS resources that you can manage as a single unit. In other words, you can create, update, or delete a collection of resources by creating, updating, or deleting stacks.
 
 To create a stack you run the `aws cloudformation create-stack command`. You must provide the stack name, the location of a valid template, and any input parameters.
 
@@ -37,7 +37,7 @@ Where:
 
 **Working with AWS CloudFormation Templates**
 
-You can author AWS CloudFormation templates in JSON or YAML formats. [Here](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-us-west-1.html#d0e203908) you can see Amazon EC2 sample templates. 
+You can author AWS CloudFormation templates in JSON or YAML formats. [Here](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/sample-templates-services-us-west-1.html#d0e203908) you can see Amazon EC2 sample templates.
 
 Here is how my Micro RedHat instance template looks like:
 
@@ -555,12 +555,11 @@ Here is how my Micro RedHat instance template looks like:
               ]
             }
           ]
-        }
-      },
-      "Metadata": {
-        "AWS::CloudFormation::Designer": {
-          "id": "c089c0be-f05d-4d5a-a9d0-323935f6a33b"
-        }
+        },
+        "UserData":{ "Fn::Base64" : { "Fn::Join" : ["", [
+          "#!/bin/bash \n",
+          "yum install -y git"
+        ]]}}
       }
     },
     "InstanceSecurityGroup": {
@@ -665,6 +664,7 @@ Here is how my Micro RedHat instance template looks like:
 **hints**
 
 * `InstanceSecurityGroup` Creates an Amazon EC2 security group. Here we are defining 22 and 80 inbound rules, for more information about Security Groups go [Here](http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-ec2-security-group.html)
+* `UserData` property runs a shell command in order to install last git version
 
 That's it, to launch your EC2 instance execute this command from terminal:
 
