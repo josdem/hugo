@@ -672,5 +672,10 @@ That's it, to launch your EC2 instance execute this command from terminal:
 aws cloudformation create-stack --stack-name micro-redhat --template-body file:////home/ec2-user/AWS/micro-redhat.json --parameters ParameterKey=KeyName,ParameterValue=b612
 ```
 
+**Where**
+
+* `--parameters` A list of parameter structures that specify input parameters for the stack. Go [here](http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html) for more information.
+* In this case `b612` is the key pair name, the key I need in order to connect to my EC2 instance.
+
 
 [Return to the main article](/techtalk/sysadmin)
