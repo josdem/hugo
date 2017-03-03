@@ -674,7 +674,7 @@ aws cloudformation create-stack --stack-name micro-redhat --template-body file:/
 
 **Where**
 
-* `--parameters` A list of parameter structures that specify input parameters for the stack. Go [here](http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html) for more information.
+* `--parameters` A list of parameter structure that specify input key and value for the stack. Go [here](http://docs.aws.amazon.com/AWSCloudFormation/latest/APIReference/API_Parameter.html) for more information.
 * In this case `b612` is the key pair name, the key I need in order to connect to my EC2 instance.
 
 
