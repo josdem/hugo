@@ -66,7 +66,7 @@ As you can see, in a single index page we are adding several elements such as li
 ${PROJECT_HOME}/resources/templates/fragments/include.html
 
 ```html
-<head> 
+<head>
   <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="/assets/third-party/font-awesome/font-awesome.less" />
 </head>
@@ -98,14 +98,14 @@ ${PROJECT_HOME}/resources/templates/fragments/header.html
 ${PROJECT_HOME}/resources/templates/fragments/footer.html
 
 ```html
-<footer>   
+<footer>
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
 		<a class="navbar-brand" href="http://josdem.io">© josdem.io 2017</a>
 	</nav>
 </footer>
 ```
 
-So we can reuse html code from our layout files using `<th:block layout:include="fragments/include"/>` In this case, the entire fragments/include.html template will be replaced by th block.
+Here we are using an html code from our layout file using `<th:block layout:include="fragments/include"/>` In this case, the entire fragments/include.html template will be replaced in the `th` block.
 
 ${PROJECT_HOME}/resources/templates/home/home.html
 
