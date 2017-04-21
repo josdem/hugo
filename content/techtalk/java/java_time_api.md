@@ -116,6 +116,37 @@ There are 29 shopping days until Christmas
 There are 0 months and 29 days until Christmas
 ```
 
+**How to format LocalDate**
+
+To format a LocalDate object, uses DateTimeFormatter
+
+*example*
+
+```java
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class DateFormatter {
+
+  private void format(){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MMM");
+    LocalDate today = LocalDate.now();
+    System.out.println("YYYY-MMM format from now is: " + today.format(formatter));
+  }
+
+  public static void main(String[] args){
+    new DateFormatter().format();
+  }
+  
+}
+```
+
+*output*
+
+```bash
+YYYY-MMM format from now is: 2017-abr
+```
+
 To download the code:
 
 ```bash
