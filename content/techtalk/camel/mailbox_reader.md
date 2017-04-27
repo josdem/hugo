@@ -92,7 +92,7 @@ class InboxReader {
 }
 ```
 
-In the prevuous class I am creating a Apache Camel component with a route to read Gmail mailbox and process it using `exchange.getIn()` we got the message and within a body which can be `multipart/mixed` or `text/plain` as content type.
+In the previous class I am creating a Apache Camel component with a route to read Gmail mailbox and process it using `exchange.getIn()` we got the message and within a body which can be `multipart/mixed` or `text/plain` as content type.
 
 This is the launcher to start and stop the Apache Camel component:
 
