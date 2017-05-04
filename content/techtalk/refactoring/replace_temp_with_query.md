@@ -71,4 +71,19 @@ private Double getTotal() {
 
 *When I’m working on a method, I like to replace temp with query to get rid of any temporary variables that I can remove. If the temp is used for many things, I use split temporary variable first to make the temp easier to replace.* ~ Martin Fowler.
 
+To download the project:
+
+```bash
+git clone https://github.com/josdem/refactoring.git
+git fetch
+git checkout replace_temp_with_query_setup
+git checkout replace_temp_with_query_complete
+```
+
+To run the project:
+
+```bash
+gradle test
+```
+
 Read more, returning to the main article. [Refactoring](/techtalk/refactoring)

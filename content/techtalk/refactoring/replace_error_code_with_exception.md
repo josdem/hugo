@@ -80,4 +80,19 @@ public class TransactionApplier {
 }
 ```
 
-Read more, returning to the main article. [Refactoring](/techtalk/refactoring)
+To download the project:
+
+```bash
+git clone https://github.com/josdem/refactoring.git
+git fetch
+git checkout replace_error_code_with_exception_setup
+git checkout replace_error_code_with_exception_complete
+```
+
+To run the project:
+
+```bash
+gradle test
+```
+
+Return to the main article. [Refactoring](/techtalk/refactoring)

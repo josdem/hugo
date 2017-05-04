@@ -87,5 +87,21 @@ public class Account {
 }
 ```
 
+To download the project:
+
+```bash
+git clone https://github.com/josdem/refactoring.git
+git fetch
+git checkout introduce_parameter_object_setup
+git checkout introduce_parameter_object_complete
+```
+
+To run the project:
+
+```bash
+gradle test
+```
+
+
 Read more, returning to the main article. [Refactoring](/techtalk/refactoring)
 
