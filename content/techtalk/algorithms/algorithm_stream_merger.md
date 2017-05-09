@@ -200,5 +200,19 @@ public class StreamMerger {
 
 Finally we are using a TreeSet since a HashSet does not guarantee any order of its elements.
 
+To run the project:
+
+```bash
+javac StreamMerger.java
+java StreamMerger
+```
+
+To download the code:
+
+```bash
+git clone https://github.com/josdem/algorithms-workshop.git
+cd stream-merger
+```
+
 
 [Return to the main article](/techtalk/algorithms)
