@@ -9,6 +9,8 @@ title = "Algorithms"
 * [Fastman Problem](/techtalk/algorithms/algorithm_fastman)
 * [Binary Tree](/techtalk/algorithms/algorithm_binary_tree)
 * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
+* [GitHub Repository](https://github.com/josdem/algorithms-workshop)
+
 
 ## Binary Search
 Is a search algorithm that finds the position of a target value within a sorted array.
