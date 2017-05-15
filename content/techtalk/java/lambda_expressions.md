@@ -102,7 +102,7 @@ To download the code:
 
 ```bash
 git clone https://github.com/josdem/java-topics.git
-cd lambda/string-analyzer
+cd lambda-expressions/string-analyzer
 ```
 
 [Return to the main article](/techtalk/java)

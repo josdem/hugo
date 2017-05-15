@@ -1,13 +1,13 @@
 +++
 date = "2016-03-05T07:18:24-06:00"
 draft = true
-title = "Camel"
+title = "Apache Camel"
 
 +++
 
 Camel is an integration framework aims to simplify this task using a routing engine builder. Camel is a mature open source started in 2007 under the liberal Apache 2 licence, and it has a strong community.
 
-## Camel Characteristics
+## Apache Camel Characteristics
 
 * Routing and meditation engine
 * Domain Specific Language (DSL)
@@ -20,6 +20,8 @@ Camel is an integration framework aims to simplify this task using a routing eng
 * Easy configuration
 * Lightweight core
 * Vibrant community
+
+* [Mailbox Reader](/techtalk/camel/mailbox_reader)
 
 ## Hello World with Camel
 

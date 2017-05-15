@@ -38,6 +38,41 @@ public class Employee {
 }
 ```
 
+Use this JUnit test to cover conditional implementation
+
+```java
+package com.josdem.refactoring;
+
+import static org.junit.Assert.assertEquals;
+import java.math.BigDecimal;
+import org.junit.Test;
+import com.josdem.bean.EmployeeType;
+
+public class TestEmployee {
+  
+  private Employee employee = new Employee();
+  
+  @Test
+  public void shouldGetEngineerSalary() throws Exception {
+    BigDecimal salary = new BigDecimal(100.00);
+    assertEquals(salary, employee.getPaymentAmount(EmployeeType.ENGINEER));
+  }
+  
+  @Test
+  public void shouldGetSalesmanSalary() throws Exception {
+    BigDecimal salary = new BigDecimal(110.00);
+    assertEquals(salary, employee.getPaymentAmount(EmployeeType.SALESMAN));
+  }
+  
+  @Test
+  public void shouldGetManagerSalary() throws Exception {
+    BigDecimal salary = new BigDecimal(120.00);
+    assertEquals(salary, employee.getPaymentAmount(EmployeeType.MANAGER));
+  }
+
+}
+```
+
 Before you can begin with *Replace Conditional With Polymorphism* you need to have the necessary inheritance structure. The simpliest way to establish this structure is replace type code with subclasses for each type code.
 
 ```java
@@ -92,6 +127,56 @@ public class Manager implements Employee {
   }
 
 }
+```
+
+Use this JUnit test to cover classes implementation
+
+```java
+package com.josdem.refactoring;
+
+import static org.junit.Assert.assertEquals;
+import java.math.BigDecimal;
+import org.junit.Test;
+
+public class TestEmployee {
+  
+  @Test
+  public void shouldGetEngineerSalary() throws Exception {
+    BigDecimal salary = new BigDecimal(100);
+    Employee engineer = new Engineer();
+    assertEquals(salary, engineer.getPaymentAmount());
+  }
+  
+  @Test
+  public void shouldGetSalesmanSalary() throws Exception {
+    BigDecimal salary = new BigDecimal(110);
+    Employee salesman = new Salesman();
+    assertEquals(salary, salesman.getPaymentAmount());
+  }
+  
+  @Test
+  public void shouldGetManagerSalary() throws Exception {
+    BigDecimal salary = new BigDecimal(120);
+    Employee manager = new Manager();
+    assertEquals(salary, manager.getPaymentAmount());
+  }
+
+}
+```
+
+To download the project:
+
+```bash
+git clone https://github.com/josdem/refactoring.git
+git fetch
+git checkout replace_conditional_switch
+git checkout replace_conditional_classes
+```
+
+To run the project:
+
+```bash
+gradle test
 ```
 
 Read more, returning to the main article. [Refactoring](/techtalk/refactoring)

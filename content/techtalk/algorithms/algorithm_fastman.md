@@ -15,21 +15,45 @@ Write a program that breaks up a string of words with no spaces into a string wi
 **Solution**
 
 ```groovy
-def dictionary = ["fast","fat","man","woman"]
-String string = "fastman"
-String result = ""
+class Fastman {
 
-if(string?.length() > 0){
-  for(i=0;i<string.length()-1;i++){
-    for(j=string.length();j!=i;j--){
-     if(dictionary.contains(string.substring(i,j))){
-       result += "${string.substring(i,j)} "
-     }
-    }
-  }
+	def dictionary = ["fast","fat","man","woman"]
+
+	private String find(String string){
+		String result = ''
+
+		if(string?.length() > 0){
+			for(int i=0;i<string.length()-1;i++){
+				for(int j=string.length();j!=i;j--){
+					if(dictionary.contains(string.substring(i,j))){
+						result += "${string.substring(i,j)} "
+					}
+				}
+			}
+			result
+		}
+	}
+
+	static void main(String[] args){
+		Fastman fastman = new Fastman()
+		String result = fastman.find('fastman')
+		assert 'fast man' == result.trim()
+	}
+
 }
+```
 
-assert 'fast man' == result.trim()
+To run the project:
+
+```bash
+groovy Fastman.groovy
+```
+
+To download the code:
+
+```bash
+git clone https://github.com/josdem/algorithms-workshop.git
+cd fastman-problem
 ```
 
 [Return to the main article](/techtalk/algorithms)

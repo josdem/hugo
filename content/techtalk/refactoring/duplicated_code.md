@@ -60,4 +60,19 @@ private void fullMyParkingLot() throws ParkingLotOverFlowException {
 
 *The biggest problem with extract method is dealing with local variables, and temps are one of the main resources of this issue.* ~ Martin Fowler.
 
+To download the project:
+
+```bash
+git clone https://github.com/josdem/refactoring.git
+git fetch
+git checkout duplicated_code_setup
+git checkout duplicated_code_complete
+```
+
+To run the project:
+
+```bash
+gradle test
+```
+
 Read more, returning to the main article. [Refactoring](/techtalk/refactoring)

@@ -10,20 +10,20 @@ In this example we will create a rooted binary tree witch has a root node and ev
 
 
 ```groovy
-interface Node {
+interface TreeNode {
   Boolean isRoot()
   Boolean isLeaf()
-  List<Node> getChildren()
-  void setParent(Node node)
-  void addChild(Node node)
+  List<TreeNode> getChildren()
+  void setParent(TreeNode node)
+  void addChild(TreeNode node)
 }
 ```
 
 The inteface helps to define our methods in terms of functionality description
 
 ```groovy
-class NodeImpl implements Node {
-  Node parent
+class TreeNodeImpl implements TreeNode {
+  TreeNode parent
   def children = []
 
   Boolean isRoot(){
@@ -34,18 +34,18 @@ class NodeImpl implements Node {
     false
   }
 
-  List<Node> getChildren(){
+  List<TreeNode> getChildren(){
     children
   }
 
-  void addChild(Node node){
+  void addChild(TreeNode node){
     if(children.size() > 1){
       throw new RuntimeException()
     }
     children.add(node)
   }
 
-  void setParent(Node node){
+  void setParent(TreeNode node){
     this.parent = node
     parent.addChild(this)
   }
@@ -55,23 +55,44 @@ class NodeImpl implements Node {
 Then we assert our functionality
 
 ```groovy
-Node root = new NodeImpl()
-assert root.isRoot()
+import static groovy.test.GroovyAssert.shouldFail
 
-Node leftChild = new NodeImpl()
-leftChild.setParent(root)
-assert !leftChild.isRoot()
-assert root.getChildren().size() == 1
+class Launcher {
+  
+  static void main(String[] args){
+    TreeNode root = new TreeNodeImpl()
+    assert root.isRoot()
 
-Node rightChild = new NodeImpl()
-rightChild.setParent(root)
-assert !rightChild.isRoot()
-assert root.getChildren().size() == 2
+    TreeNode leftChild = new TreeNodeImpl()
+    leftChild.setParent(root)
+    assert !leftChild.isRoot()
+    assert root.getChildren().size() == 1
 
-Node otherChild = new NodeImpl()
-shouldFail(RuntimeException){
-  otherChild.setParent(root)
+    TreeNode rightChild = new TreeNodeImpl()
+    rightChild.setParent(root)
+    assert !rightChild.isRoot()
+    assert root.getChildren().size() == 2
+
+    TreeNode otherChild = new TreeNodeImpl()
+    shouldFail(RuntimeException){
+      otherChild.setParent(root)
+    }
+  }
+
 }
+```
+
+To run the project:
+
+```bash
+groovy Launcher.groovy
+```
+
+To download the code:
+
+```bash
+git clone https://github.com/josdem/algorithms-workshop.git
+cd binary-tree
 ```
 
 
