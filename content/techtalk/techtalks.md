@@ -29,6 +29,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Java NIO File Copy](/techtalk/java/java_nio_copy)
  * [CSV with Apache Commons](/techtalk/java/csv_apache_commons)
  * [Read Excel with Apache POI](/techtalk/java/apache_poi_excel)
+ * [GMail Mailbox Reader with POP3](/techtalk/java/mailbox_reader_pop3)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
  * [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)
