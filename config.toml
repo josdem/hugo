@@ -13,7 +13,7 @@ disqusShortname = "josdem"
 	# To provide some metadata for search engines feel free to add a few
     # information about you and your website.
 	name = "Jose Luis De la Cruz"
-	description = "Software developer"
+	description = "Software Developer"
 
 	# Since this template is static, the contact form uses www.formspree.io as a
 	# proxy. The form makes a POST request to their servers to send the actual
