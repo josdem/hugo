@@ -9,14 +9,14 @@ tags = ["josdem","techtalks","programming","technology", "mailbox reader", "gmai
 This time I will show you how to read a Gmail mailbox using IMAP protocol and Java Mail. With IMAP you will have access to a specific folders in your GMail account such as:
 
 * INBOX
-* [Gmail]
-* [Gmail]/All
-* [Gmail]/Sent Mail
-* [Gmail]/Starred
-* [Gmail]/Drafts
-* [Gmail]/Important
-* [Gmail]/Spam
-* [Gmail]/Trash
+* Gmail
+* Gmail/All
+* Gmail/Sent Mail
+* Gmail/Starred
+* Gmail/Drafts
+* Gmail/Important
+* Gmail/Spam
+* Gmail/Trash
 
 First you need to define your `build.gradle` as follow:
 
