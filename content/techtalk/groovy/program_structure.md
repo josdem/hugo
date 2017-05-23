@@ -77,9 +77,18 @@ package com.josdem
 
 **Groovy Truth**
 
-All objects can be 'coerced' to a boolean value: everything that’s null, void, equal to zero, or empty evaluates to false, and if not, evaluates to true.
+All objects can be 'coerced' to a boolean value: everything that’s null, equal to zero, or empty evaluates to false, and if not, evaluates to true.
 
 ```groovy
+def var
+assert !var
+
+var = 0
+assert !var
+
+var = []
+assert !var
+
 def name = 'josdem'
 if (name) {
   println "hello $name"
