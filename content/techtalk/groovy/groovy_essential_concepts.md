@@ -79,12 +79,12 @@ assert 'AbcdE'.equalsIgnoreCase('aBCDe')
 In Groovy we use the =~ operator (find operator) to create a new matcher object. We can use a second operator, ==~ (match operator), to do exact matches. With this operator the matches() method is invoked on the matcher object. The result is a Boolean value.
 
 ```groovy
-def finder = ('groovy' =~ /[a-z]*/)
-assert finder instanceof java.util.regex.Matcher
-assert finder[0] == 'groovy'
+def matcher = ('groovy' =~ /[a-z]*/)
+assert matcher instanceof java.util.regex.Matcher
+assert matcher[0] == 'groovy'
 
-def matcher = ('groovy' ==~ /[a-z]*/)
-assert matcher instanceof Boolean
+def match = ('groovy' ==~ /[a-z]*/)
+assert match instanceof Boolean
 
 def matcher =  'Groovy rocks!' =~ /Groovy/
 assert matcher[0] == 'Groovy'
@@ -103,12 +103,12 @@ A language is dynamically typed if the type of a variable is interpreted at runt
 
 ```groovy
 def var
-var = 1 ; assert var.class == Integer
-var = 2f ; assert var.class == Float
-var = 3d ; assert var.class == Double
-var = 3g ; assert var.class == BigInteger
-var = 'Groovy' ; assert var.class == String
-var = true ; assert var.class == Boolean
+var = 1; assert var.class == java.lang.Integer
+var = 2f; assert var.class == java.lang.Float
+var = 3d; assert var.class == java.lang.Double
+var = 4g; assert var.class == java.math.BigInteger
+var = 'Groovy'; assert var.class == java.lang.String
+var = true; assert var.class == java.lang.Boolean
 ```
 
 [Return to the main article](/techtalk/groovy)
