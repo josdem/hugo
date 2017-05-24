@@ -149,7 +149,7 @@ class User {
   String twitter
 }
 
-print new User(name:'Jose Luis',twitter:'josdem')
+print new User(name:'Jose Luis',twitter:'@josdem')
 ```
 
 `output: User(Jose Luis, josdem)`
