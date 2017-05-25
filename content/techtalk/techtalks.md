@@ -31,7 +31,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Read Excel with Apache POI](/techtalk/java/apache_poi_excel)
  * [GMail Mailbox Reader with POP3](/techtalk/java/mailbox_reader_pop3)
  * [GMail Mailbox Reader with IMAP](/techtalk/java/mailbox_reader_imap)
- * [GMail Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
+ * [Outlook Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
  * [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)

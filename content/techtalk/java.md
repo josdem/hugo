@@ -19,7 +19,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Read Excel with Apache POI](/techtalk/java/apache_poi_excel)
 * [GMail Mailbox Reader with POP3](/techtalk/java/mailbox_reader_pop3)
 * [GMail Mailbox Reader with IMAP](/techtalk/java/mailbox_reader_imap)
-* [GMail Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
+* [Outlook Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
 * [GitHub Repository](https://github.com/josdem/java-topics)
 
 
