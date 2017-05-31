@@ -5,7 +5,7 @@ tags = ["josdem", "jmetadata"]
 title = "Jmetadata.dmg"
 
 +++
-File: [JMetadata.dmg](http://jmetadata.josdem.io/jmetadata-download-stats/downloader/downloadMacVersion) 18.8 MB
+File: [JMetadata.dmg](https://mega.nz/#!EFRxAIiY!4vE9TET6lZZ8QzRy1we0jhj4kQok62RwQB5IoTZyBNk) 18.8 MB
 
 ## Instructions:
 1. Download the installer

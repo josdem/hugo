@@ -5,7 +5,7 @@ tags = ["josdem", "jmetadata"]
 title = "Jmetadata.exe"
 
 +++
-File: [JMetadata.exe](http://jmetadata.josdem.io/jmetadata-download-stats/downloader/downloadWindowsVersion) 7.5 MB
+File: [JMetadata.exe](https://mega.nz/#!dYYxxLpZ!mABh1_uAKPrlO7f9ttMCyJhZyItby-lTF_LcnxXwaUs) 7.5 MB
 
 ## Instructions:
 1. Download installer.
