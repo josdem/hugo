@@ -82,6 +82,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot Logback](/techtalk/spring/spring_boot_logback)
  * [Spring Boot Thymeleaf Layouts](/techtalk/spring/spring_boot_thymeleaf_layouts)
  * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
+ * [Spring Boot Flyway](/techtalk/spring/spring_boot_flyway)
 * [**Ruby**](/techtalk/ruby)
  * [Control Structure](/techtalk/ruby/ruby_control_structure)
  * [Smart Collections](/techtalk/ruby/ruby_smart_collections)

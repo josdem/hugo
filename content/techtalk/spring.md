@@ -61,6 +61,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Logback](/techtalk/spring/spring_boot_logback)
 * [Spring Boot Thymeleaf Layouts](/techtalk/spring/spring_boot_thymeleaf_layouts)
 * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
+* [Spring Boot Flyway](/techtalk/spring/spring_boot_flyway)
 
 [Return to the main article](/techtalk/techtalks)
  
