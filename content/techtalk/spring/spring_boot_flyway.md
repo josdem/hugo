@@ -53,7 +53,7 @@ dependencies {
 bootRun.dependsOn rootProject.tasks['flywayMigrate']
 ```
 
-The last line in `gradle.properties` set `bootRun` task as dependent from `flywayMigrate` which migrates the schema to the latest version. Flyway will create the metadata table automatically if it doesn't exist. Flyway will read the schema form `${PROJECT_HOME}/src/main/resources/db/migration`
+The last line we added `flywayMigrate` as dependency to `bootRun` task. `flywayMigrate` migrates the schema to the latest version. Flyway will create the metadata table automatically if it doesn't exist. Flyway will read the schema form `${PROJECT_HOME}/src/main/resources/db/migration`
 
 ```sql
 DROP TABLE IF EXISTS `person`;
@@ -119,7 +119,7 @@ this will create the Person table in the `flyway_demo` database. Finally add a n
 INSERT INTO `person` VALUES (1, 'Jose Luis', 'De la Cruz Morales'), (2, 'Eric', 'Haddad')
 ```
 
-If you executes the project again you should see the changelog applied.
+Execute again the project and you should see the changelog applied.
 
 To download the project:
 
