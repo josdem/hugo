@@ -116,5 +116,11 @@ public class Sorter{
 
 ```
 
+To download the code:
+
+```bash
+git clone https://github.com/josdem/algorithms-workshop.git
+```
+
 
 [Return to the main article](/techtalk/techtalks)
