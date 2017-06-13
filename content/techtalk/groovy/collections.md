@@ -52,7 +52,8 @@ def list = [0,1,2,3,4,5,6,7,8,9]
 def subList = list[4..6]                               // 7
 assert subList == [4, 5, 6]
 
-def ["a", "b", "c", "c"] as Set                        // 8
+def list = ['a', 'b', 'c', 'c']
+assert list.toSet() == ['a','b','c'] as Set            // 8
 ```
 
 1. List definition
@@ -62,7 +63,7 @@ def ["a", "b", "c", "c"] as Set                        // 8
 5. Add two elements with leftShift
 6. Trying to remove an element that does not exist in the list and nothing happens
 7. We're creating a sublist defying a range as parameter
-8. Defining a `Set`
+8. We can convert an array to a `Set`, We use the `toSet()` method to do this.
 
 **Some functions in collections**
 
