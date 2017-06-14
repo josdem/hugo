@@ -83,9 +83,10 @@ assert 'Groovy' == list.find { it == 'Groovy' }
 assert ['Groovy', 'Grails'] == list.grep (~/G.*/)
 assert 'Java,Groovy,Grails,Spring' == list.join(',')
 
-assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
-assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
+assert [0,2,4,6] == (0..3).collect { it * 2 } // 1
 ```
+
+1. `The collect()` method in Groovy can be used to iterate over collections and transform each element of the collection. The transformation is defined in as a closure and is passed to the `collect()`.
 
 **Some collection operations**
 
@@ -135,6 +136,11 @@ def result = map.findAll { nickname, person ->                         // 7
 }
 
 Output: [eric:Person@3fb041ae, josdem:Person@22457c6c]
+
+// Some operations with Maps
+
+assert ['Groovy','Grails'] == [Language:'Groovy',Framework:'Grails'].collect{it.value}
+assert ['Groovy','Grails'] == ['Groovy','Grails',null].findResults{it}
 ```
 
 1. Find a specific person in a map by key
