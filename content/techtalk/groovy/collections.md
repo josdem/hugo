@@ -165,9 +165,11 @@ def range = ('a'..'z')
 assert range == [a, b, c, d, e, f, g, h, i, j, k, l, m, n, o, p, q, r, s, t, u, v, w, x, y, z]
 assert range.class.name == 'groovy.lang.ObjectRange'
 
+// Range with dates
+
 Date today = new Date()
 Date yesterday = today - 1
-Date theDayBeforeYesterday = yesterdayi - 1
+Date theDayBeforeYesterday = yesterday - 1
 Date tomorroy = today + 1
 
 println "Date as range"
@@ -177,7 +179,10 @@ println days
 
 Output:
 Date as range
-[Tue Jul 19 15:20:44 CDT 2016, Wed Jul 20 15:20:44 CDT 2016, Thu Jul 21 15:20:44 CDT 2016, Fri Jul 22 15:20:44 CDT 2016]
+
+```
+[Sun Jun 11 19:49:43 CDT 2017, Mon Jun 12 19:49:43 CDT 2017, Tue Jun 13 19:49:43 CDT 2017, Wed Jun 14 19:49:43 CDT 2017]
+```
 
 ## Spread-Dot
 
@@ -186,20 +191,21 @@ The Groovy spread-dot operator is described as "equivalent to calling the collec
 ```groovy
 def result = (1..10).collect{it * 2}                    // 1
 def multiply = (1..10)*.multiply(2)
-assert result =  [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
-assert multiply =  [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+assert result ==  [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
+assert multiply ==  [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]
 
 def list = ['Java', 'Groovy', 'Grails']*.toUpperCase()  // 2
 assert list == ['JAVA', 'GROOVY', 'GRAILS']
 
 def range = (1..3)
 assert [0,1,2,3] == [0,*range]                          // 3
-def map = [a:1,b:2]
-assert [a:1, b:2, c:3] == [c:3, *:map]
+def map = [b:2,c:3]
+assert [a:1, b:2, c:3] == [a:1,*:map]
 ```
 
 1. Multiply Each Item in a List by Two
 2. It is on a collection of strings and toUpperCase() is used on each element of the collection via the spread-dot operator
 3. Purpose is to extract entries from a collection and provide them as individual entries.
+
 
 [Return to the main article](/techtalk/groovy)
