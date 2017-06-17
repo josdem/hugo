@@ -136,7 +136,8 @@ class MetaExpando {
 To download the project:
 
 ```bash
-git clone https://github.com/josdem/groovy-expando.git
+git clone https://github.com/josdem/groovy-techtalks.git
+cd metaprogramming
 ```
 
 To run the project.
