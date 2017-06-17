@@ -16,26 +16,6 @@ assert adder(40,60) == 100  // 2
 1. Define a closure which receive two parameters and then sum that parameters
 2. Verify that calling adder closure with 40 and 60 as parameters returns 100
 
-Let’s consider a slightly more complicated question: If n people are at a party and everyone clinks glasses with everybody else, how many clinks do you hear?.
-
-To answer the question, you can use Integer’s upto method which does something for every Integer starting at the current value. You apply this method to the problem by imaginating people arriving at the party at one by one. As people arrive, they clink glasses with everyone who is already present. This way, everyone clinks glasses with everyone else exactly once.
-
-```groovy
-def totalClinks = 0
-def partyPeople = 100
-
-1.upto(partyPeople) { guestNumber ->
-  clinksWithGuest = guestNumber - 1                        // 1
-  totalClinks += clinksWithGuest                           // 2
-}
-
-assert totalClinks == (partyPeople * (partyPeople-1)) / 2  // 3
-```
-
-1. Counting number of people already present
-2. Keep running total of the number of clinks
-3. Test the result using Gauss' formula
-
 Another simple examples of closures would be:
 
 ```groovy
@@ -199,5 +179,26 @@ assert closure() == 'I am first class'
 ```
 
 Even when the delegate is set it can be change to something else, this means we can make the behavior of the closure dynamic.
+
+Let’s consider a slightly more complicated question: If n people are at a party and everyone clinks glasses with everybody else, how many clinks do you hear?.
+
+To answer the question, you can use Integer’s upto method which does something for every Integer starting at the current value. You apply this method to the problem by imaginating people arriving at the party at one by one. As people arrive, they clink glasses with everyone who is already present. This way, everyone clinks glasses with everyone else exactly once.
+
+```groovy
+def totalClinks = 0
+def partyPeople = 100
+
+1.upto(partyPeople) { guestNumber ->
+  clinksWithGuest = guestNumber - 1                        // 1
+  totalClinks += clinksWithGuest                           // 2
+}
+
+assert totalClinks == (partyPeople * (partyPeople-1)) / 2  // 3
+```
+
+1. Counting number of people already present
+2. Keep running total of the number of clinks
+3. Test the result using Gauss' formula
+
 
 [Return to the main article](/techtalk/groovy)
