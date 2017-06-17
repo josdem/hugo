@@ -137,7 +137,7 @@ To download the project:
 
 ```bash
 git clone https://github.com/josdem/groovy-techtalks.git
-cd metaprogramming
+cd metaprogramming/expando
 ```
 
 To run the project.
