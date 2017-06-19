@@ -6,10 +6,10 @@ tags = ["josdem","techtalks","programming","technology","java"]
 
 +++
 
-Apache POI is a popular API that allows programmers to create, modify, and display MS Office files using Java programs. This time I will show you how to read Microsoft Office 2016. First we need to create a Java basic project using [lazybones](https://github.com/pledbrook/lazybones).
+Apache POI is a popular API that allows programmers to create, modify, and display MS Office files using Java programs. This time I will show you how to read an Excel file. First we need to create a Java basic project using [lazybones](https://github.com/pledbrook/lazybones).
 
 ```bash
-lazybones create java-basic csv-apache-commons
+lazybones create java-basic excel-reader
 ```
 
 Previous command will create this structure

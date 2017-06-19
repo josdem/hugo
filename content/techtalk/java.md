@@ -17,6 +17,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Java NIO File Copy](/techtalk/java/java_nio_copy)
 * [CSV with Apache Commons](/techtalk/java/csv_apache_commons)
 * [Read Excel with Apache POI](/techtalk/java/apache_poi_excel)
+* [Read Filtered Excel with Apache POI](/techtalk/java/apache_poi_excel_filter_reader)
 * [GMail Mailbox Reader with POP3](/techtalk/java/mailbox_reader_pop3)
 * [GMail Mailbox Reader with IMAP](/techtalk/java/mailbox_reader_imap)
 * [Outlook Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
