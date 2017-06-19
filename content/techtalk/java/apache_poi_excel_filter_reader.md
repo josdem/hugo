@@ -82,15 +82,16 @@ dependencies {
 
 ```
 
-This is the Excel file we are going to read:
+
+We are filtering ranking column, so we are showing only ranking 5 rows 
 
 <img src="/img/techtalks/java/excel_filter.png">
 
-We are filtering ranking and we are showing only the rows with ranking 5. This is the file without filters:
+This is the file without filter applied::
 
 <img src="/img/techtalks/java/excel_without_filter.png">
 
-The below code explains how to read an Excel file using Apache POI **but only those rows not filtered**.
+The below code explains how to read an Excel file using Apache POI but only those rows not filtered, **see `isHidden()` method below**.
 
 ```groovy
 package com.example
@@ -141,7 +142,7 @@ class ExcelFilterReader {
 }
 ```
 
-This is the ExelException:
+This is the ExcelException class:
 
 ```groovy
 package com.example
