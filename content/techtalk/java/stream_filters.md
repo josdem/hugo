@@ -30,7 +30,7 @@ public class StringFilter {
 }
 ```
 
-1. After creating a Stream of Strings we filtered by those starts with letter J.
+(1) After creating a Stream of Strings we filtered by those starts with letter J.
 
 If we want to filter a list, array or map based in any condition, we can do it easily using lambda expression with stream `filter()` method.
 
