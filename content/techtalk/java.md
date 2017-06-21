@@ -21,6 +21,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [GMail Mailbox Reader with POP3](/techtalk/java/mailbox_reader_pop3)
 * [GMail Mailbox Reader with IMAP](/techtalk/java/mailbox_reader_imap)
 * [Outlook Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
+* [Stream Filters](/techtalk/java/stream_filters)
 * [GitHub Repository](https://github.com/josdem/java-topics)
 
 
