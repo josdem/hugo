@@ -12,7 +12,6 @@ A stream represents a sequence of elements and supports different operations to 
 import java.util.List;
 import java.util.Arrays;
 import java.util.stream.Collectors;
-import java.util.function.Predicate;
 
 public class StringFilter {
 
