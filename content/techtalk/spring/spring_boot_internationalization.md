@@ -51,7 +51,7 @@ class LocaleServiceImpl implements LocaleService {
 }
 ```
 
-As you can see we are creating an abstration to use message source, so we only need to pass as parameter the message code. Here we are using it in a controller:
+As you can see we are creating an abstraction to use message source, so we only need to pass as parameter the message code. Here we are using it in a controller:
 
 ```groovy
 package com.jos.dem.internationalization
