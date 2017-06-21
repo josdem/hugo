@@ -107,7 +107,7 @@ class Person {
 }
 ```
 
-To Run the project ejecute in your command line:
+To Run the project execute in your command line:
 
 ```bash
 gradle bootRun
