@@ -112,7 +112,9 @@ Output:
 
 ## Power set
 
-The power set is the set of all subsets of a set. For example, the power set of the set {a, b, c} consists of the sets:
+**Problem**
+
+Solve power set algorithm. Power set is the set of all subsets of a set. For example, the power set of the set {a, b, c} consists of the sets:
 
 ```
 {}
@@ -129,6 +131,8 @@ Note that:
 
 * The empty set {} is in the power set
 * The set itself is in the power set
+
+**Solution**
 
 A subset can be represented as an array of boolean values of the same size as the set, called a characteristic vector. Each boolean value indicates whether the corresponding element in the set is present or absent in the subset.
 
