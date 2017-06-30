@@ -195,7 +195,7 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 To download the project
 
 ```bash
-git clone https://github.com/josdem/jmailer-bootstrap.git
+git clone https://github.com/josdem/spring-boot-jdbc-template.git
 ```
 
 To run the project
