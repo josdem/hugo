@@ -62,6 +62,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Thymeleaf Layouts](/techtalk/spring/spring_boot_thymeleaf_layouts)
 * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
 * [Spring Boot Flyway](/techtalk/spring/spring_boot_flyway)
+* [Spring Boot JDBC Template](/techtalk/spring/spring_boot_jdbc_template)
 
 [Return to the main article](/techtalk/techtalks)
  
