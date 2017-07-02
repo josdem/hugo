@@ -16,6 +16,34 @@ Boolean isPalindrome(String string){
 assert isPalindrome('anitalavalatina')
 ```
 
+## Biggest Number
+
+From a string list with character, number pair elements, extract number and get the biggest
+
+example: "a1", "b2", "c3" biggest: 3
+
+```java
+import java.util.OptionalInt;
+import java.util.Arrays;
+import java.util.List;
+
+public class BiggestNumber {
+
+  private OptionalInt find(List<String> strings){
+    return strings.stream().map(s -> s.substring(1))
+           .mapToInt(Integer::parseInt)
+           .max();
+  }
+
+  public static void main(String[] args){
+    List<String> strings = Arrays.asList("a1","b2","c3");
+    OptionalInt result = new BiggestNumber().find(strings);
+    assert result.getAsInt() == 3;
+  }
+
+}
+```
+
 ## Sum a collection
 
 Given an array of  integers, find the sum of its elements.
@@ -32,8 +60,8 @@ println array.sum{it}
 
 ```java
 import java.util.List;
+import java.util.Arrays;
 import java.util.stream.IntStream;
-import java.util.ArrayList;
 
 public class CollectionSum {
 
@@ -42,13 +70,7 @@ public class CollectionSum {
   }
 
   public static void main(String[] args){
-    List<Integer> array = new ArrayList<Integer>();
-    array.add(1);
-    array.add(2);
-    array.add(3);
-    array.add(4);
-    array.add(10);
-    array.add(11);
+    List<Integer> array = Arrays.asList(1,2,3,4,10,11);
     Integer result = new CollectionSum().sum(array);
     System.out.println(result);
   }
