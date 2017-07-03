@@ -6,7 +6,7 @@ title = "Streams"
 
 +++
 
-Stream interface is defined in `java.util.stream package`. In Java 8, collections will start having methods that return Stream. Streams support Aggregate Operations. The common aggregate operations are filter, map, reduce, find, match, sort.
+Stream interface is defined in `java.util.stream package`. In Java 8, collections will start having methods that return Stream. Streams support Aggregate Operations. The common aggregate operations are filter, map, reduce, find, match and sort.
 
 The `map` method is used to map each element to its corresponding result. The following Java code gets squares of numbers using map.
 
