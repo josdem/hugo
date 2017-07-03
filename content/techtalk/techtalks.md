@@ -33,6 +33,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [GMail Mailbox Reader with POP3](/techtalk/java/mailbox_reader_pop3)
  * [GMail Mailbox Reader with IMAP](/techtalk/java/mailbox_reader_imap)
  * [Outlook Mailbox Reader with Exchange](/techtalk/java/mailbox_reader_exchange)
+ * [Streams](/techtalk/java/streams)
  * [Stream Filters](/techtalk/java/stream_filters)
  * [Stream Collectors](/techtalk/java/stream_collectors)
 * [**Groovy**](/techtalk/groovy)
