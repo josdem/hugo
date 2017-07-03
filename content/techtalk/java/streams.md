@@ -133,7 +133,7 @@ public class PersonMatcher {
   public static void main(String[] args){
     List<Person> persons = Arrays.asList(
       new Person("josdem", RoleType.DEVELOPER),
-      new Person("tgtip", RoleType.DEVELOPER),
+      new Person("tgrip", RoleType.DEVELOPER),
       new Person("skuarch", RoleType.DEVELOPER)
     );
     PersonMatcher matcher = new PersonMatcher();
