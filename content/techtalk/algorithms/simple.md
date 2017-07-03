@@ -78,6 +78,39 @@ public class CollectionSum {
 }
 ```
 
+## Staircase
+
+Consider a staircase of size 4:
+
+```
+#
+##
+###
+####
+```
+
+Observe that its base and height are both equal. Write a program that prints a staircase of size `n`.
+
+```java
+public class Staircase {
+
+  private void printStair(Integer size){
+    for(int j=1; j<=size; j++){
+      for(int i=1; i<=j; i++){
+        System.out.print("#");
+      }
+      System.out.print("\n");
+    }
+  }
+
+  public static void main(String[] args){
+    Integer size = 4;
+    new Staircase().printStair(size);
+  }
+
+}
+```
+
 ## Most popular in the array
 
 Assume I have an array that looks like the following:
