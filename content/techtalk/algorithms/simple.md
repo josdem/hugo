@@ -121,6 +121,8 @@ def array = [34,31,34,56,12,35,24,34,69,18]
 
 Write a function that can determine what is the most popular in the array, in this case "34" because it is the number that appears the most often.
 
+**Groovy Version**
+
 ```groovy
 Integer mostPopular(def array){
   Integer occurrences = 0
@@ -134,6 +136,42 @@ Integer mostPopular(def array){
   mostPopular
 }
 ```
+
+**Java Version**
+
+```java
+import java.util.Map;
+import java.util.List;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.stream.Collectors;
+
+public class PopularDetector {
+
+  private Integer find(List<Integer> numbers){
+     Integer value = numbers.stream()
+       .collect(Collectors.groupingBy(it -> it, Collectors.counting()))
+       .entrySet()                                     // 1
+       .stream()
+       .max(Comparator.comparing(Map.Entry::getValue))
+       .get()                                          // 2
+       .getKey();
+     return value;
+  }
+
+
+  public static void main(String[] args){
+    List<Integer> numbers = Arrays.asList(34,31,34,56,12,35,24,34,69,18);
+    Integer result = new PopularDetector().find(numbers);
+    assert result == 34;
+  }
+
+}
+```
+
+1. Gets Map.Entry interface
+2. Gets entry resultant from max comparator
+
 
 ## Find the center point of coordinate 2d array
 
