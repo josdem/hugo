@@ -6,7 +6,7 @@ tags = ["josdem","techtalks","programming","technology", "android", "dagger"]
 
 +++
 
-Dependency injecton is when objects define their dependencies. Dependency Injection is build upon the concept Inversion of Control. Inversion of control is used to increase modularity of the program and make it extensible and make it easy to test.
+Dependency injecton is when objects define their dependencies. Dependency Injection is build upon the concept Inversion of Control it is used to increase modularity of the program and make it extensible and make it easy to test.
 
 Dagger is a dependency injection framework for both Java and Android. This time I will show you how to create a basic project using [Dagger2](https://google.github.io/dagger/).
 
