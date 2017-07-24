@@ -88,6 +88,8 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
  * [Spring Boot Flyway](/techtalk/spring/spring_boot_flyway)
  * [Spring Boot JDBC Template](/techtalk/spring/spring_boot_jdbc_template)
+* [**Android**](/techtalk/android)
+ * [Dependency Injection with Dagger](/techtalk/android/dagger2)
 * [**Ruby**](/techtalk/ruby)
  * [Control Structure](/techtalk/ruby/ruby_control_structure)
  * [Smart Collections](/techtalk/ruby/ruby_smart_collections)
