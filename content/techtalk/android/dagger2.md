@@ -367,6 +367,8 @@ public interface ApplicationComponent {
 }
 ```
 
+That's it, we are injecting `UserService` into out `MainActivity` and with that we are getting user data information.
+
 To download the code:
 
 ```bash
