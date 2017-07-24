@@ -87,7 +87,7 @@ public class User {
 }
 ```
 
-Now let's reate few custom annotations: ActivityContext, ApplicationContext and PerActivity.
+Now let's create few custom annotations: ActivityContext, ApplicationContext and PerActivity.
 
 **Activity Context**
 
@@ -367,7 +367,7 @@ public interface ApplicationComponent {
 }
 ```
 
-That's it, we are injecting `UserService` into out `MainActivity` and with that we are getting user data information.
+That's it, we are injecting `UserService` into our `MainActivity` and with that we are getting user data information.
 
 <img src="/img/techtalks/android/dagger.png">
 
