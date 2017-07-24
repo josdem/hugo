@@ -21,7 +21,7 @@ android {
   compileSdkVersion 25
   buildToolsVersion "26.0.0"
   defaultConfig {
-    applicationId "com.jos.dem.daggler"
+    applicationId "com.jos.dem.dagger"
     minSdkVersion 15
     targetSdkVersion 25
     versionCode 1
@@ -56,7 +56,7 @@ Here we are using the `annotationProcessor` for generating the dependency graph 
 Let's create a basic model user class
 
 ```java
-package com.jos.dem.daggler.model;
+package com.jos.dem.dagger.model;
 
 public class User {
 
@@ -92,7 +92,7 @@ Now let's reate few custom annotations: ActivityContext, ApplicationContext and 
 **Activity Context**
 
 ```java
-package com.jos.dem.daggler.context;
+package com.jos.dem.dagger.context;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -107,7 +107,7 @@ public @interface ActivityContext {}
 **Application Context**
 
 ```java
-package com.jos.dem.daggler.context;
+package com.jos.dem.dagger.context;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -123,7 +123,7 @@ public @interface ApplicationContext {}
 **Per Activity**
 
 ```java
-package com.jos.dem.daggler.context;
+package com.jos.dem.dagger.context;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -138,12 +138,12 @@ public @interface PerActivity {}
 `@Qualifier` is used to distinguish between objects of the same type but with different instances. Now let's create a `UserService` as dependency to inject
 
 ```java
-package com.jos.dem.daggler.service;
+package com.jos.dem.dagger.service;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import com.jos.dem.daggler.model.User;
+import com.jos.dem.dagger.model.User;
 
 @Singleton
 public class UserService {
@@ -166,14 +166,14 @@ public class UserService {
 Next, create `DemoApplication` class that extends `android.app.Application`
 
 ```java
-package com.jos.dem.daggler;
+package com.jos.dem.dagger;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.jos.dem.daggler.component.ApplicationComponent;
-import com.jos.dem.daggler.component.DaggerApplicationComponent;
-import com.jos.dem.daggler.module.ApplicationModule;
+import com.jos.dem.dagger.component.ApplicationComponent;
+import com.jos.dem.dagger.component.DaggerApplicationComponent;
+import com.jos.dem.dagger.module.ApplicationModule;
 
 public class DemoApplication extends Application {
 
@@ -205,12 +205,12 @@ You should add this class as application name in the `AndroidManifest.xml`
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.jos.dem.daggler">
+        package="com.jos.dem.dagger">
 
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
-    android:label="@string/app_name"
+    android:label="Dagger"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
     android:name=".DemoApplication"
@@ -230,16 +230,16 @@ You should add this class as application name in the `AndroidManifest.xml`
 Now let's create class `MainActivity`
 
 ```java
-package com.jos.dem.daggler;
+package com.jos.dem.dagger;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
-import com.jos.dem.daggler.component.ActivityComponent;
-import com.jos.dem.daggler.component.DaggerActivityComponent;
-import com.jos.dem.daggler.module.ActivityModule;
-import com.jos.dem.daggler.service.UserService;
+import com.jos.dem.dagger.component.ActivityComponent;
+import com.jos.dem.dagger.component.DaggerActivityComponent;
+import com.jos.dem.dagger.module.ActivityModule;
+import com.jos.dem.dagger.service.UserService;
 
 import javax.inject.Inject;
 
@@ -303,12 +303,12 @@ Now let's create `ApplicationModule` This class defines the methods that provide
 
 ```java
 
-ckage com.jos.dem.daggler.module;
+ckage com.jos.dem.dagger.module;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.jos.dem.daggler.context.ApplicationContext;
+import com.jos.dem.dagger.context.ApplicationContext;
 
 import dagger.Module;
 import dagger.Provides;
@@ -337,15 +337,15 @@ public class ApplicationModule {
 Now let's create a component which links the `DemoApplication` with the `ApplicationModule`
 
 ```java
-package com.jos.dem.daggler.component;
+package com.jos.dem.dagger.component;
 
 import android.app.Application;
 import android.content.Context;
 
-import com.jos.dem.daggler.context.ApplicationContext;
-import com.jos.dem.daggler.DemoApplication;
-import com.jos.dem.daggler.module.ApplicationModule;
-import com.jos.dem.daggler.service.UserService;
+import com.jos.dem.dagger.context.ApplicationContext;
+import com.jos.dem.dagger.DemoApplication;
+import com.jos.dem.dagger.module.ApplicationModule;
+import com.jos.dem.dagger.service.UserService;
 
 import javax.inject.Singleton;
 
@@ -369,10 +369,12 @@ public interface ApplicationComponent {
 
 That's it, we are injecting `UserService` into out `MainActivity` and with that we are getting user data information.
 
+<img src="/img/techtalks/android/dagger.png">
+
 To download the code:
 
 ```bash
-git clone https://github.com/josdem/android-daggler2-workshop.git
+git clone https://github.com/josdem/android-dagger2-workshop.git
 ```
 
 
