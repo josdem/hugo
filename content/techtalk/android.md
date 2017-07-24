@@ -12,7 +12,7 @@ With every mobile comes version and a numerical code a name that’s themed betw
 
 <img src="/img/techtalks/android/versions.jpg">
 
-Here you can find some important topics regardings to Android development:
+Here you can find some important topics regarding to Android development:
 
 * [Dependency Injection with Dagger](/techtalk/android/dagger2)
 
