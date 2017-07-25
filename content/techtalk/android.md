@@ -15,6 +15,7 @@ With every mobile comes version and a numerical code a name that’s themed betw
 Here you can find some important topics regarding to Android development:
 
 * [Dependency Injection with Dagger](/techtalk/android/dagger2)
+* [REST Calls with Retrofit](/techtalk/android/retrofit)
 
 
 [Return to the main article](/techtalk/techtalks)
