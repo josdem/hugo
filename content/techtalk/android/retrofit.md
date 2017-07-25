@@ -107,6 +107,88 @@ public class Category {
 }
 ```
 
+Now we can create the `JugoterapiaService` interface that will embody our HTTP response.
+
+```java
+package com.jos.dem.retrofit.service;
+
+import com.jos.dem.retrofit.model.Category;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+
+public interface JugoterapiaService {
+
+  @GET("/jugoterapia-server/beverage/categories")
+  public Call<List<Category>> getCategories();
+
+  public static final Retrofit retrofit = new Retrofit.Builder()
+    .baseUrl("http://jugoterapia.josdem.io/")
+    .addConverterFactory(GsonConverterFactory.create())
+    .build();
+
+}
+```
+
+Finally we are going to call asynchronously and provide the callback to be executed upon completion.
+
+```java
+package com.jos.dem.retrofit;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.jos.dem.retrofit.model.Category;
+import com.jos.dem.retrofit.service.JugoterapiaService;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity {
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    JugoterapiaService jugoterapiaService = JugoterapiaService.retrofit.create(JugoterapiaService.class);
+    Call<List<Category>> call = jugoterapiaService.getCategories();
+    call.enqueue(new Callback<List<Category>>() {
+
+      @Override
+      public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
+        for(Category category: response.body()){
+          Log.d("category", category.toString());
+        }
+      }
+
+      @Override
+      public void onFailure(Call<List<Category>> call, Throwable t) {
+        Log.d("error", t.getMessage());
+      }
+    });
+
+  }
+
+}
+```
+
+That's it when you run the project, you will see the categories in the logcat Android Monitor.
+
+```bash
+07-24 21:53:46.364 14516-14516/dem.jos.com.retrofit D/category: id: 1 name: Curativos
+07-24 21:53:46.364 14516-14516/dem.jos.com.retrofit D/category: id: 2 name: Energizantes
+07-24 21:53:46.364 14516-14516/dem.jos.com.retrofit D/category: id: 3 name: Saludables
+07-24 21:53:46.365 14516-14516/dem.jos.com.retrofit D/category: id: 4 name: Estimulantes
+```
+
 To download the code:
 
 ```bash
