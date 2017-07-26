@@ -14,7 +14,7 @@ Los jugos son una forma sencilla de suministrar al organismo vitaminas y mineral
 
 Esta aplicación para Android concentra 80 diferentes recetas de jugos y verdura que ayudarán a mejorar tu salud e incluso ayuda a sanar algunas enfermedades. Pasa el tip a quien amas búscando que esté más sano.
 
-## Aportaciones Recientes
+**Aportaciones Recientes**
 
 La versión Beta está dispoinible. Lo cual significa es una versión completamente estable. He eliminado algunos bugs que hacían que la aplicación se detuviera cuando la aplicación se quedaba sin Internet o inactiva por mucho tiempo.
 
@@ -23,6 +23,11 @@ He cambiado de la versión "target" Ice Cream Sandwich 4.0.3 a la versión Froyo
 Espero que te sea útil.
 
 * [API](/jugoterapia/api)
-* [Jugoterapia Aplicación](https://play.google.com/store/apps/details?id=com.jugoterapia.josdem)
+* [Jugoterapia Play Store](https://play.google.com/store/apps/details?id=com.jugoterapia.josdem)
+
+**Jugoterapia es Opensource**
+
+* [Jugoterapia Mobile](https://github.com/josdem/jugoterapia-mobile)
+* [Jugoterapia Server](https://github.com/josdem/jugoterapia-spring-boot)
 
 [Home](/)
