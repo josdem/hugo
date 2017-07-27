@@ -18,7 +18,7 @@ Esta aplicación para Android concentra 80 diferentes recetas de jugos y verdura
 
 La versión Beta está dispoinible. Lo cual significa es una versión completamente estable. He eliminado algunos bugs que hacían que la aplicación se detuviera cuando la aplicación se quedaba sin Internet o inactiva por mucho tiempo.
 
-He cambiado de la versión "target" Ice Cream Sandwich 4.0.3 a la versión Froyo 2.2 como mínimo, ésto después de probar la aplicación en dispositivos con ésa versión de sistema operativo. Con lo cual más de 3523 dispositivos están soportados ahora.
+He cambiado de la versión target a Nougat 7.1 e Ice Cream Sandwich 4.0.3 como mínimo, esto después de probar la aplicación en dispositivos con ésa versión de sistema operativo.
 
 Espero que te sea útil.
 
