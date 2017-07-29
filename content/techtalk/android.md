@@ -16,6 +16,7 @@ Here you can find some important topics regarding to Android development:
 
 * [Dependency Injection with Dagger](/techtalk/android/dagger2)
 * [REST Calls with Retrofit](/techtalk/android/retrofit)
+* [Material Design Creating Lists](/techtalk/android/material_design_lists)
 
 
 [Return to the main article](/techtalk/techtalks)
