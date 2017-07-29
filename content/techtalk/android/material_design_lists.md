@@ -121,6 +121,18 @@ public class MainActivity extends Activity implements ItemClickListener {
 
 1. Use this setting to improve performance if you know that changes in content do not change the layout size of the `RecyclerView`
 
+Here is the `ItemClickListener` interface
+
+```java
+package com.jos.dem.list;
+
+import android.view.View;
+
+public interface ItemClickListener {
+  void onItemClick(View view, int position);
+}
+```
+
 Here is the `recycler_view` layout
 
 ```xml
