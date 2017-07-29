@@ -214,6 +214,9 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 3. `onBindViewHolder` replaces the contents of a view invoked by the layout manager
 4. `getItemCount` returns the size of your dataset invoked by the layout manager
 
+This is the List view using `RecyclerView`
+
+<img src="/img/techtalks/android/material_design_lists.png">
 
 To download the code:
 
