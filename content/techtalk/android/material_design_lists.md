@@ -18,7 +18,7 @@ android {
   compileSdkVersion 25
   buildToolsVersion "26.0.0"
   defaultConfig {
-    applicationId "com.jos.dem.android_material_design_workshop"
+    applicationId "com.jos.dem.list"
     minSdkVersion 21
     targetSdkVersion 25
     versionCode 1
@@ -61,7 +61,7 @@ Here we are adding the `RecyclerView` to the main layout
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context="com.jos.dem.android_material_design_workshop.MainActivity">
+  tools:context="com.jos.dem.list.MainActivity">
 
   <android.support.v7.widget.RecyclerView
     android:id="@+id/recycler_view"
@@ -75,7 +75,7 @@ Here we are adding the `RecyclerView` to the main layout
 Now is time to connect it to a layout manager and attach an adapter for the data to be displayed using this `Activity`
 
 ```java
-package com.jos.dem.android_material_design_workshop;
+package com.jos.dem.list;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -124,8 +124,12 @@ public class MainActivity extends Activity implements ItemClickListener {
 Here is the `ItemClickListener` interface
 
 ```java
-package com.jos.dem.list;
 
+mport android.view.View;
+
+public interface ItemClickListener {
+  void onItemClick(View view, int position);
+}
 import android.view.View;
 
 public interface ItemClickListener {
@@ -157,7 +161,7 @@ Here is the `recycler_view` layout
 Here is our adapter:
 
 ```java
-package com.jos.dem.android_material_design_workshop;
+package com.jos.dem.list;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -234,6 +238,7 @@ To download the code:
 
 ```bash
 git clone https://github.com/josdem/android-material-design-workshop.git
+cd list
 ```
 
 [Return to the main article](/techtalk/android)
