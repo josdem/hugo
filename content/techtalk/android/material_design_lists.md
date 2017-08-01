@@ -124,6 +124,8 @@ public class MainActivity extends Activity implements ItemClickListener {
 Here is the `ItemClickListener` interface
 
 ```java
+package com.jos.dem.list;
+
 import android.view.View;
 
 public interface ItemClickListener {
