@@ -44,7 +44,7 @@ In this section I'll go through a complete Spring MVC project starting from the 
 In this section I will cover small projects I'm doing using Spring Boot, what is called micro services.
 
 * [Spring Boot Basics](/techtalk/spring/spring_boot)
-* [Spring Boot with Jade](/techtalk/spring/spring_boot_jade)
+* [Spring Boot with Thymeleaf](/techtalk/spring/spring_boot_thymeleaf)
 * [Spring Boot Simple Project](/techtalk/spring/spring_boot_jmailer)
 * [Spring Boot AOP](/techtalk/spring/spring_boot_aop)
 * [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)
@@ -65,4 +65,4 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot JDBC Template](/techtalk/spring/spring_boot_jdbc_template)
 
 [Return to the main article](/techtalk/techtalks)
- 
+
