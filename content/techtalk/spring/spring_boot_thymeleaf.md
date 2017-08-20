@@ -5,7 +5,7 @@ title = "Spring Boot with Thymeleaf"
 
 +++
 ## Setup
-This this I will show you how to create a basic project in Spring Boot with Thymeleaf, in order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
+This time I will show you how to create a basic project in Spring Boot with Thymeleaf, in order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
 
 * Spring Boot
 * Groovy
@@ -41,7 +41,6 @@ sourceCompatibility = 1.8
 repositories {
   mavenCentral()
 }
-
 
 dependencies {
   compile('org.springframework.boot:spring-boot-starter-web')
