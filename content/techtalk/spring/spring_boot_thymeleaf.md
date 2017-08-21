@@ -152,7 +152,7 @@ class Person{
 }
 ```
 
-Another change we must do in the `Controller` is to return model and view to the template:
+Another change we must do in the `Controller` is to return model and view:
 
 ```groovy
 package com.example.springbootthymeleaf.controller
@@ -189,7 +189,7 @@ And you can see the model in the template using some Thymeleaf tags:
 To Download the Project:
 
 ```bash
-git checkout https://github.com/josdem/spring-boot-thymeleaf.git
+git clone https://github.com/josdem/spring-boot-thymeleaf.git
 ```
 
 [Return to the main article](/techtalk/spring)
