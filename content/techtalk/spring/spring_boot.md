@@ -11,7 +11,7 @@ It is a Spring project aim to create easy web or stand-alone applications. It pr
 * Tomcat or Jetty embedded
 * Very little Spring configuration
 
-This simple tutorial shows you how to create a simple Spring project with this features:
+This tutorial shows you how to create a simple Spring Boot project with this features:
 
 * Groovy support
 * Gradle construction
@@ -24,7 +24,15 @@ You can create this project from command line like this:
 spring init --dependencies=data-jpa,data-rest --build=gradle --language=groovy SimpleRestApplication
 ```
 
-That command will generate a Spring project structure under SimpleRestApplication folder, I will show you a short version of build.gradle generated.
+That command will generate a Spring project structure under SimpleRestApplication folder.
+
+In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
+
+* Spring Boot
+* Groovy
+* Gradle
+
+I will show you a short version of build.gradle generated.
 
 ```groovy
 buildscript {
