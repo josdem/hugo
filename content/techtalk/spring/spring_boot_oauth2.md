@@ -169,6 +169,8 @@ class UserController {
 }
 ```
 
+<img src="/img/techtalks/spring/oauth2_google.png">
+
 This is the user web page showing data retieved by Google:
 
 ```html
@@ -180,7 +182,9 @@ This is the user web page showing data retieved by Google:
 </html>
 ```
 
-To Download the Project:
+<img src="/img/techtalks/spring/oauth2_google_user.png">
+
+To download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-oauth2.git
