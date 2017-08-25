@@ -62,7 +62,7 @@ security:
       userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
 ```
 
-In order to get an `clientId` and `clientSecret` you need t go to https://console.developers.google.com and login with your Google account, then in Credentials section create new Oauth client ID.
+In order to get an `clientId` and `clientSecret` you need to go to https://console.developers.google.com and login with your Google account, then in Credentials section create new Oauth client ID.
 
 This is our `DemoApplication`
 
