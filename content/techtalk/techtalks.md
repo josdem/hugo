@@ -94,6 +94,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [REST Calls with Retrofit](/techtalk/android/retrofit)
  * [Material Design Creating Lists](/techtalk/android/material_design_lists)
  * [Material Design Card View](/techtalk/android/material_design_cards)
+ * [Oauth2 Google Sign-In](/techtalk/android/oauth2_google)
 * [**Ruby**](/techtalk/ruby)
  * [Control Structure](/techtalk/ruby/ruby_control_structure)
  * [Smart Collections](/techtalk/ruby/ruby_smart_collections)

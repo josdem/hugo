@@ -18,6 +18,7 @@ Here you can find some important topics regarding to Android development:
 * [REST Calls with Retrofit](/techtalk/android/retrofit)
 * [Material Design Creating Lists](/techtalk/android/material_design_lists)
 * [Material Design Card View](/techtalk/android/material_design_cards)
+* [Oauth2 Google Sign-In](/techtalk/android/oauth2_google)
 
 
 [Return to the main article](/techtalk/techtalks)
