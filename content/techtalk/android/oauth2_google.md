@@ -134,7 +134,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener {
 
   private static final int RC_SIGN_IN = 9001;
-  private static final String TAG = "Oauth2 by Google";
+  private static final String TAG = "Oauth2Google";
 
   private GoogleApiClient mGoogleApiClient;
   private TextView statusTextView;
