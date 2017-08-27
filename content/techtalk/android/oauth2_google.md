@@ -192,19 +192,19 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
       statusTextView.setText("Signed as: " + account.getEmail());
       signInButton.setVisibility(View.GONE);
     } else {
-      statusTextView.setText("Singed in unsuccessfully");
+      statusTextView.setText("Signed in unsuccessfully");
     }
   }
 
 }
 ```
 
-This is the SignIn Google Intent:
+This is the Sign-In Google Intent:
 
 <img src="/img/techtalks/android/oauth2_google_2.png">
 
 1. A `GoogleSignInOptions` object with the `DEFAULT_SIGN_IN` parameter and requesting users' email addresses as well with the `requestEmail()` option.
-2. A `GoogleApiClient` object with access to the Google Sign-In API. `enableAutoManage` requires `FragmentActivity` or `AppCompatActivity` as first parameter and `OnConnectionFailedListener` as second parameter, in our case this will be our `MainActivity`.
+2. A `GoogleApiClient` object with access to the Google Sign-In API. `enableAutoManage` requires `FragmentActivity` or `AppCompatActivity` as first parameter and `OnConnectionFailedListener` as second parameter, in our case this will be both our `MainActivity`.
 3. Prompts the user to select a Google account to sign in with.
 4. `onActivityResult` method, retrieve the sign-in result with `getSignInResultFromIntent`.
 
