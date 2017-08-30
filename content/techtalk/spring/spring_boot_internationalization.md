@@ -1,7 +1,7 @@
 +++
 date = "2016-06-06T14:56:49-05:00"
 draft = true
-title = "Internationalization"
+title = "Spring Boot Internationalization"
 
 +++
 
