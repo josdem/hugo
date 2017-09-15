@@ -2,7 +2,7 @@
 categories = ["techtalk", "code"]
 date = "2016-07-17T14:56:13-05:00"
 tags = ["josdem", "techtalks", "programming", "technology", "swagger", "springfox", "swagger in spring", "swagger spring boot configuration"]
-title = "Swagger in Spring"
+title = "Spring Boot Swagger"
 
 +++
 

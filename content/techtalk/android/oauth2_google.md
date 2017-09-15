@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
   private static final int RC_SIGN_IN = 9001;
   private static final String TAG = "Oauth2Google";
 
-  private GoogleApiClient mGoogleApiClient;
+  private GoogleApiClient googleApiClient;
   private TextView statusTextView;
   private SignInButton signInButton;
 
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
             .requestEmail()
             .build();
 
-    mGoogleApiClient = new GoogleApiClient.Builder(this)  // 2
+    googleApiClient = new GoogleApiClient.Builder(this)  // 2
             .enableAutoManage(this, this)
             .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
             .build();
@@ -166,7 +166,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
   }
 
   private void signIn() {
-    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);  // 3
+    Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(googleApiClient);  // 3
     startActivityForResult(signInIntent, RC_SIGN_IN);
   }
 
@@ -180,7 +180,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.O
     super.onActivityResult(requestCode, resultCode, data);
 
     if (requestCode == RC_SIGN_IN) {
-      GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data); // 4
+      GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);  // 4
       handleSignInResult(result);
     }
   }

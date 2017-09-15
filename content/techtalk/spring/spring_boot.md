@@ -9,7 +9,9 @@ It is a Spring project aim to create easy web or stand-alone applications. It pr
 
 * No requirement for XML configuration
 * Tomcat or Jetty embedded
-* Very little Spring configuration
+* Convention over configuration
+* Easy setup
+* You can create web, standalone, API or executable applications
 
 This tutorial shows you how to create a simple Spring Boot project with this features:
 
