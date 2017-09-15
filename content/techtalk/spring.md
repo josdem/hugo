@@ -64,6 +64,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Flyway](/techtalk/spring/spring_boot_flyway)
 * [Spring Boot JDBC Template](/techtalk/spring/spring_boot_jdbc_template)
 * [Spring Boot Oauth2 with Google](/techtalk/spring/spring_boot_oauth2)
+* [Spring Boot Rest Client](/techtalk/spring/spring_boot_rest_client)
 
 [Return to the main article](/techtalk/techtalks)
 
