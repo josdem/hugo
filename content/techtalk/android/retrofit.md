@@ -52,7 +52,7 @@ Here we are using [Gson](https://github.com/google/gson) converter to transform 
 
 In this example we are going to use a Jugoterapia API to get juice categories: http://jugoterapia.josdem.io/jugoterapia-server/beverage/categories
 
-This is the Json output
+This is the JSON output
 
 ```json
 [
