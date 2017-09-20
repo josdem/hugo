@@ -197,7 +197,7 @@ git fetch
 git checkout feature/get
 ```
 
-Now, we are going to see what we need to do in order to send a Json post message, first you need to create a POJO.
+Now, we are going to see what we need to do in order to send a JSON post message, first you need to create a POJO.
 
 ```java
 package com.jos.dem.retrofit.model;
