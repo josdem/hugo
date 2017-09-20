@@ -193,6 +193,149 @@ To download the code:
 
 ```bash
 git clone https://github.com/josdem/android-retrofit-workshop.git
+git fetch
+git checkout feature/get
+```
+
+Now, we are going to see what we need to do in order to send a Json post message, first you need to create a POJO.
+
+```java
+package com.jos.dem.retrofit.model;
+
+public class Credentials {
+
+  private String name;
+  private String email;
+  private String token;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getToken() {
+    return token;
+  }
+
+  public void setToken(String token) {
+    this.token = token;
+  }
+
+  @Override
+  public String toString() {
+    return "name:" + this.name + " email:" + this.email + " token:" + this.token;
+  }
+
+}
+```
+Then we need to add a `@Post` method in Retrofit service:
+
+```java
+package com.jos.dem.retrofit.service;
+
+import com.jos.dem.retrofit.model.Category;
+import com.jos.dem.retrofit.model.Credentials;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
+import retrofit2.http.GET;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+
+public interface JugoterapiaService {
+
+  @GET("/jugoterapia-server/beverage/categories")
+  public Call<List<Category>> getCategories();
+
+  @Headers("Content-Type: application/json")
+  @POST("http://jugoterapia.josdem.io/auth/validate")
+  public Call<Credentials> sendCredentials(@Body Credentials credentials);
+
+  public static final Retrofit retrofit = new Retrofit.Builder()
+          .baseUrl("http://jugoterapia.josdem.io/")
+          .addConverterFactory(GsonConverterFactory.create())
+          .build();
+
+}
+```
+
+Finally we are going to call asynchronously and provide the callback to be executed upon completion.
+
+```java
+package com.jos.dem.retrofit;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.jos.dem.retrofit.model.Category;
+import com.jos.dem.retrofit.model.Credentials;
+import com.jos.dem.retrofit.service.JugoterapiaService;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+public class MainActivity extends AppCompatActivity {
+
+  @Override
+  protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    JugoterapiaService jugoterapiaService = JugoterapiaService.retrofit.create(JugoterapiaService.class);
+
+    Credentials credentials = createCredentials();
+
+    Call<Credentials> call = jugoterapiaService.sendCredentials(credentials);
+    call.enqueue(new Callback<Credentials>() {
+
+      @Override
+      public void onResponse(Call<Credentials> call, Response<Credentials> response) {
+        Log.d("credentials:", response.body().toString());
+      }
+
+      @Override
+      public void onFailure(Call<Credentials> call, Throwable t) {
+        Log.d("error", t.getMessage());
+      }
+    });
+
+  }
+
+  private Credentials createCredentials() {
+    Credentials credentials = new Credentials();
+    credentials.setName("josdem");
+    credentials.setEmail("joseluis.delacruz@gmail.com");
+    credentials.setToken("token");
+    return credentials;
+  }
+
+}
+```
+
+To download the code:
+
+```bash
+git clone https://github.com/josdem/android-retrofit-workshop.git
+git fetch
+git checkout feature/post
 ```
 
 
