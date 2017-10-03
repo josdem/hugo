@@ -23,3 +23,4 @@ Hugo is open source and completely free.
 	* [Jmetadata](http://josdem.io/jmetadata/jmetadata)
 	* [Jugoterapia](http://josdem.io/jugoterapia/jugoterapia)
 	* [Jmailer](http://jmailer.josdem.io/)
+	* [Vetlog](http://vetlog.josdem.io/)
