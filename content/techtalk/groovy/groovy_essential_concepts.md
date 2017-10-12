@@ -62,7 +62,7 @@ import java.math.BigDecimal
 
 **Finders**
 
-The `findXXX()` methods take a closure and if an element matches the condition defined in the closure we get a result. We can also use the `any()` method to verify if at least one element applies to the closure condition, or we use the `every()` method to everify all elements that confirm to the closure condition. Both the `any()` and `every()` method return a `Boolean` value.
+The `findXXX()` methods take a closure and if an element matches the condition defined in the closure we get a result. We can also use the `any()` method to verify if at least one element applies to the closure condition, or we use the `every()` method to verify all elements that confirm to the closure condition. Both the `any()` and `every()` method return a `Boolean` value.
 
 ```groovy
 assert 'abcde'.find{ it > 'b' } == 'c'
