@@ -1,6 +1,5 @@
 <section id="head">
-  {{ partial "head.html" . }}
-  {{ partial "adsense.html" . }}
+  {{ partial "head.html" . }}  
 </section>
 <section id="main">
   <style>
@@ -28,6 +27,10 @@
   </script>
   <div id="background">
     <img src="/images/hero-bg.jpg" class="header" alt="header" />
+  </div>
+  <br/>
+  <div align="center">
+  {{ partial "adsense.html" . }}
   </div>
   <h1 id="title">{{ .Title }}</h1>  
   <div>
