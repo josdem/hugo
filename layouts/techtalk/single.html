@@ -30,15 +30,17 @@
   </div>
   <br/>
   <div align="center">
-  {{ partial "adsense.html" . }}
+  {{ partial "adsense_header.html" . }}
   </div>
   <h1 id="title">{{ .Title }}</h1>  
   <div>
     <article id="content">
-      {{ .Content }}        
-    </article>
-  </div>
-  {{ partial "paypal_website.html" . }}
+      {{ .Content }}      
+      {{ partial "adsense_in_article.html" . }}        
+    </article>    
+  </div>    
+  <br/>
+  {{ partial "paypal_website.html" . }}  
   <br/>
   {{ partial "disqus.html" . }}
 </section>
