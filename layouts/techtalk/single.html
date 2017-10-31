@@ -35,12 +35,13 @@
   <h1 id="title">{{ .Title }}</h1>  
   <div>
     <article id="content">
-      {{ .Content }}      
-      {{ partial "adsense_in_article.html" . }}        
+      {{ .Content }}            
     </article>    
   </div>    
   <br/>
   {{ partial "paypal_website.html" . }}  
+  <br/><br/>
+  {{ partial "adsense_in_article.html" . }}
   <br/>
   {{ partial "disqus.html" . }}
 </section>
