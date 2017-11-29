@@ -26,13 +26,9 @@ isPangram(sentence) = false.
 **Solution**
 
 ```java
-import java.util.List;
-import java.util.Arrays;
-import java.lang.Character;
-
 public class PangramVerifier {
 
-	private Boolean isPangram(String quote){
+  private Boolean isPangram(String quote){
 		Integer sum = quote.toUpperCase().chars().filter(x -> x > 64 & x < 91).distinct().sum();
 		return sum == 2015;
 	}
