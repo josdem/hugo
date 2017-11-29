@@ -9,6 +9,7 @@ title = "Algorithms"
 * [Fastman Problem](/techtalk/algorithms/algorithm_fastman)
 * [Binary Tree](/techtalk/algorithms/algorithm_binary_tree)
 * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
+* [Is Pangram](/techtalk/algorithms/algorithm_is_pangram)
 * [GitHub Repository](https://github.com/josdem/algorithms-workshop)
 
 
