@@ -10,6 +10,7 @@ title = "Algorithms"
 * [Binary Tree](/techtalk/algorithms/algorithm_binary_tree)
 * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
 * [Is Pangram](/techtalk/algorithms/algorithm_is_pangram)
+* [Get Month Name](/techtalk/algorithms/get-month-name)
 * [GitHub Repository](https://github.com/josdem/algorithms-workshop)
 
 
