@@ -9,12 +9,21 @@ Sort sum digits from elements in a collection.
 
 **Explanation**
 
-You are given an array of integers. Sort it in such a way that if `a` comes before `b` then the sum of digits of a is less than or equal to the sum of digits of `b`.
+You are given an array of integers. Sort it in such a way that if `A` comes before `B` then the sum of digits of a is less than or equal to the sum of digits of `B`.
 
 **Example**
 
-For `a = [15, 20, 4, 8]`, the output should be
-`digitalSumSort(a) = [2, 4, 6, 8]`
+For:
+
+```
+a = [15, 20, 4, 8]
+```
+
+The output should be:
+
+```
+digitalSumSort(a) = [2, 4, 6, 8]
+```
 
 
 **Solution**
@@ -28,8 +37,7 @@ import java.util.stream.Collectors;
 public class DigitalSumSorter {
 
   private List<Integer> sort(List<Integer> numbers){
-    List<String> numbersAsString = new ArrayList<String>();
-    numbersAsString = numbers.stream().map(it -> it.toString()).collect(Collectors.toList());
+    List<String> numbersAsString = numbers.stream().map(it -> it.toString()).collect(Collectors.toList());
     List<Integer> result = numbersAsString.stream().map(it -> it.chars().map( ch -> Integer.parseInt(Character.toString((char) ch))).sum()).sorted().collect(Collectors.toList());
     return result;
   }
