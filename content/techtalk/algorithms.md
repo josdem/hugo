@@ -11,6 +11,7 @@ title = "Algorithms"
 * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
 * [Is Pangram](/techtalk/algorithms/algorithm_is_pangram)
 * [Get Month Name](/techtalk/algorithms/get_month_name)
+* [Digital Sum Sort](/techtalk/algorithms/digital_sum_sort)
 * [GitHub Repository](https://github.com/josdem/algorithms-workshop)
 
 

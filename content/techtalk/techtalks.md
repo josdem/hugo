@@ -125,6 +125,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
  * [Is Pangram](/techtalk/algorithms/algorithm_is_pangram)
  * [Get Month Name](/techtalk/algorithms/get_month_name)
+ * [Digital Sum Sort](/techtalk/algorithms/digital_sum_sort)
 * [**Machine Learning**](/techtalk/machine_learning/machine_learning)
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
  * [Linear Algebra](/techtalk/machine_learning/linear_algebra)
