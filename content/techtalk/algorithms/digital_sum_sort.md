@@ -9,7 +9,7 @@ Sort sum digits from elements in a collection.
 
 **Explanation**
 
-You are given an array of integers. Sort it in such a way that if `A` comes before `B` then the sum of digits of a is less than or equal to the sum of digits of `B`.
+You are given an array of integers. Sort it in such a way that if `A` comes before `B` then the sum of digits of `A` is less than or equal to the sum of digits of `B`.
 
 **Example**
 
