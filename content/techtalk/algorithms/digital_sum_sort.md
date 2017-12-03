@@ -16,13 +16,13 @@ You are given an array of integers. Sort it in such a way that if `A` comes befo
 For:
 
 ```
-a = [15, 20, 4, 8]
+collection = [15, 20, 4, 8]
 ```
 
 The output should be:
 
 ```
-digitalSumSort(a) = [2, 4, 6, 8]
+digitalSumSort(collection) = [2, 4, 6, 8]
 ```
 
 
