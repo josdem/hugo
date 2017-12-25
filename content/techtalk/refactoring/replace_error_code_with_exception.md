@@ -85,8 +85,8 @@ To download the project:
 ```bash
 git clone https://github.com/josdem/refactoring.git
 git fetch
-git checkout replace_error_code_with_exception_setup
-git checkout replace_error_code_with_exception_complete
+git checkout feature/replace-error-code-with-exception-setup
+git checkout feature/replace-error-code-with-exception-complete
 ```
 
 To run the project:
