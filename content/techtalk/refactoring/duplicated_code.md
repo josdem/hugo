@@ -65,8 +65,8 @@ To download the project:
 ```bash
 git clone https://github.com/josdem/refactoring.git
 git fetch
-git checkout duplicated_code_setup
-git checkout duplicated_code_complete
+git checkout feature/duplicated-code-setup
+git checkout feature/duplicated-code-complete
 ```
 
 To run the project:
