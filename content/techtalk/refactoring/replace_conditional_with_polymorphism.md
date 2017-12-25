@@ -169,8 +169,8 @@ To download the project:
 ```bash
 git clone https://github.com/josdem/refactoring.git
 git fetch
-git checkout replace_conditional_switch
-git checkout replace_conditional_classes
+git checkout feature/replace-conditional-with-polymorphism-setup
+git checkout feature/replace-conditional-with-polymorphism-complete
 ```
 
 To run the project:
