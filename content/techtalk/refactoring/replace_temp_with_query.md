@@ -76,8 +76,8 @@ To download the project:
 ```bash
 git clone https://github.com/josdem/refactoring.git
 git fetch
-git checkout replace_temp_with_query_setup
-git checkout replace_temp_with_query_complete
+git checkout feature/replace-temp-with-query-setup
+git checkout feature/replace-temp-with-query-complete
 ```
 
 To run the project:
