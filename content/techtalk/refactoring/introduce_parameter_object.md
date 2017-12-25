@@ -92,8 +92,8 @@ To download the project:
 ```bash
 git clone https://github.com/josdem/refactoring.git
 git fetch
-git checkout introduce_parameter_object_setup
-git checkout introduce_parameter_object_complete
+git checkout feature/introduce-parameter-object-setup
+git checkout feature/introduce-parameter-object-complete
 ```
 
 To run the project:
