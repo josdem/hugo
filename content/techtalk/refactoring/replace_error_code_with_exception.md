@@ -45,7 +45,7 @@ public class AmountValidator {
 }
 ```
 
-Now refactor, first we change AmountValidator to throw an exception if user has not funds
+Now refactor, first we change AmountValidator to throw an exception if user has no funds
 
 ```java
 package com.josdem.refactoring;
@@ -55,7 +55,7 @@ public class AmountValidator {
 
   public void hasFunds(User user, BigDecimal amount) {
     if(user.getBalance().compareTo(amount) < 0){
-      throw new BusinessException();
+      throw new RuntimeException("No Sufficient Funds");
     }
   }
 
