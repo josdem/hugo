@@ -46,7 +46,7 @@ public class BiggestNumber {
 
 ## Sum a collection
 
-Given an array of  integers, find the sum of its elements.
+Given an array of integers, find the sum of its elements.
 
 **Groovy Version**
 
@@ -272,11 +272,128 @@ Output
 [[], [a], [b], [c], [a, b], [a, c], [b, c], [a, b, c]]
 ```
 
+## Collection Adder
+
+**Problem**
+
+You have two arrays, sum each element from right to left following same rules we know about sum.
+
+**Solution**
+
+1. If first collection and second collection size is zero then return empty list
+2. Iterate every collection from right to left sum each element and storing carrier as local variable
+3. Store the resultant value in the specific index in the resultant array list
+
+**Example**
+
+```bash
+[1,0] => 10
+[  5] =>  5
+------------
+[1,5]
+```
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+public class CollectionAdder {
+
+  List<Integer> integerAdder(int[] first, int[] second) {
+    int carrier = 0;
+    List<Integer> result = new ArrayList<Integer>();
+
+    if(first.length == 0 && second.length == 0){
+      return new ArrayList<Integer>();
+    }
+
+    int j = second.length-1;
+    for(int i=first.length-1; i>=0; i--){
+      int valueA = first[i];
+      int valueB = 0;
+
+      if(j>=0){
+        valueB = second[j];
+      }
+
+      int parcialValue = valueA + valueB + carrier;
+      int mod = parcialValue % 10;
+      result.add(0,mod);
+
+      carrier = parcialValue / 10;
+      j--;
+    }
+
+    if(carrier > 0){
+      result.add(0,carrier);
+    }
+
+    return result;
+  }
+
+
+  public static void main(String[] args){
+    int[] first = {1,0};
+    int[] second = {5};
+    List<Integer> result = new CollectionAdder().integerAdder(first, second);
+    assert new ArrayList<Integer>(Arrays.asList(1,5)).equals(result);
+  }
+
+}
+```
+
+## Common Elements in two Collections
+
+I have two arrays with integers. I want to return elements in common.
+
+**Example**
+
+```bash
+first = [1,2,3,4,5]
+second = [1,3,5,7,9]
+result = [1,3,5]
+```
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+public class CommonElementsFinder {
+
+  private List<Integer> find(List<Integer> first, List<Integer> second){
+    return first.stream().filter(second::contains).collect(Collectors.toList());
+  }
+
+  public static void main(String[] args){
+    List<Integer> first = Arrays.asList(1, 2, 3, 4, 5);
+    List<Integer> second = Arrays.asList(1, 3, 5, 7, 9);
+    List<Integer> result = new CommonElementsFinder().find(first, second);
+    assert new ArrayList<Integer>(Arrays.asList(1,3,5)).equals(result);
+  }
+
+}
+```
+
+
+```
+
 To download the code:
 
 ```bash
 git clone https://github.com/josdem/algorithms-workshop.git
 cd simple-algorithms
+```
+
+To run the code:
+
+```bash
+java -ea ${PROGRAM_NAME.java}
 ```
 
 
