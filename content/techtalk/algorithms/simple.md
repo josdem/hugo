@@ -380,9 +380,6 @@ public class CommonElementsFinder {
 }
 ```
 
-
-```
-
 To download the code:
 
 ```bash
@@ -390,10 +387,17 @@ git clone https://github.com/josdem/algorithms-workshop.git
 cd simple-algorithms
 ```
 
-To run the code:
+To run Java code:
 
 ```bash
-java -ea ${PROGRAM_NAME.java}
+javac ${PROGRAM_NAME}.java
+java -ea ${PROGRAM_NAME}
+```
+
+To run Groovy code:
+
+```bash
+groovy ${PROGRAM_NAME}.groovy
 ```
 
 
