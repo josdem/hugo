@@ -90,6 +90,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot JDBC Template](/techtalk/spring/spring_boot_jdbc_template)
  * [Spring Boot Oauth2 with Google](/techtalk/spring/spring_boot_oauth2)
  * [Spring Boot Rest Client](/techtalk/spring/spring_boot_rest_client)
+ * [Spring Boot Actuator](/techtalk/spring/spring_boot_actuator)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
  * [REST Calls with Retrofit](/techtalk/android/retrofit)
