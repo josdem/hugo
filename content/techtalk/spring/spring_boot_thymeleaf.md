@@ -22,7 +22,7 @@ This is the build.gradle file generated:
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '1.5.6.RELEASE'
+    springBootVersion = '1.5.9.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -52,7 +52,7 @@ dependencies {
 Now, let's create a `RestController`
 
 ```groovy
-package com.example.springbootthymeleaf.controller
+package com.jos.dem.springboot.thymeleaf.controller
 
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
@@ -74,12 +74,12 @@ At this point you have an application Spring Boot running in 8080 port. Execute 
 gradle bootRun
 ```
 
-## Hello World Concept
+## Changing to Web Page
 
 Next step is change from `RestController` to a `Controller` so we can render the Hello World message to a web page:
 
 ```groovy
-package com.example.springbootthymeleaf.controller
+package com.jos.dem.springboot.thymeleaf.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.RequestMapping
@@ -100,7 +100,7 @@ Next we need to add Thymeleaf dependency to the `build.gradle` file
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '1.5.6.RELEASE'
+    springBootVersion = '1.5.9.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -144,7 +144,7 @@ If you run the application again, you should see the index web page showing the 
 [Thymeleaf](http://www.thymeleaf.org/) is a modern template engine for both web and standalone environments. Let’s create a simple model so we can send it to a web page
 
 ```groovy
-package com.example.springbootthymeleaf.model
+package com.jos.dem.springboot.thymeleaf.model
 
 class Person{
   String nickname
@@ -155,13 +155,13 @@ class Person{
 Another change we must do in the `Controller` is to return model and view:
 
 ```groovy
-package com.example.springbootthymeleaf.controller
+package com.jos.dem.springboot.thymeleaf.controller
 
 import org.springframework.stereotype.Controller
 import org.springframework.web.servlet.ModelAndView
 import org.springframework.web.bind.annotation.RequestMapping
 
-import com.example.springbootthymeleaf.model.Person
+import com.jos.dem.springboot.thymeleaf.model.Person
 
 @Controller
 class DemoController{
