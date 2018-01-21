@@ -139,7 +139,7 @@ Finally we can create a simple web page in `$PROJECT_HOME/src/main/resources/tem
 
 If you run the application again, you should see the index web page showing the Hello World message in `localhost:8080`
 
-## Sending model using Thymeleaf Template
+## Sending Model Using Thymeleaf Template
 
 [Thymeleaf](http://www.thymeleaf.org/) is a modern template engine for both web and standalone environments. Let’s create a simple model so we can send it to a web page
 
