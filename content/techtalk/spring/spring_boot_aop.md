@@ -185,4 +185,10 @@ To download the project:
 git clone https://github.com/josdem/spring-boot-aop.git
 ```
 
+To run the project:
+
+```bash
+gradle bootRun
+```
+
 [Return to the main article](/techtalk/spring)
