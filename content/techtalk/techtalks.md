@@ -72,6 +72,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot with Thymeleaf](/techtalk/spring/spring_boot_thymeleaf)
  * [Spring Boot Simple Project](/techtalk/spring/spring_boot_jmailer)
  * [Spring Boot AOP](/techtalk/spring/spring_boot_aop)
+ * [Spring Boot RESTful](/techtalk/spring/spring_boot_restful)
  * [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)
  * [Spring Boot externalization](/techtalk/spring/spring_boot_externalization)
  * [Spring Boot JMS](/techtalk/spring/spring_boot_freemarker)
