@@ -15,7 +15,7 @@ So we can have:
 * GET /persons/1234 - Retrieves a specific person
 * POST /persons - Creates a new person
 * PUT /persons/1234 - Updates #1234 person
-* DELETE /tickets/1234 - Deletes #1234 person
+* DELETE /persons/1234 - Deletes #1234 person
 
 
 **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
