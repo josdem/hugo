@@ -20,7 +20,7 @@ user.hello=Hello from internationalization!
 Spring boot create a MessageSource bean and is automatically added to the context, so you can use it in your services, let's create a service that use it.
 
 ```groovy
-package com.jos.dem.internationalization.services
+package com.jos.dem.springboot.internationalization.services
 
 interface LocaleService {
   String getMessage(String code)
@@ -30,13 +30,13 @@ interface LocaleService {
 This is the implementation:
 
 ```groovy
-package com.jos.dem.internationalization.services.impl
+package com.jos.dem.springboot.internationalization.services.impl
 
 import org.springframework.context.MessageSource
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 
-import com.jos.dem.internationalization.services.LocaleService
+import com.jos.dem.springboot.internationalization.services.LocaleService
 
 @Service
 class LocaleServiceImpl implements LocaleService {
@@ -54,13 +54,13 @@ class LocaleServiceImpl implements LocaleService {
 As you can see we are creating an abstraction to use message source, so we only need to pass as parameter the message code. Here we are using it in a controller:
 
 ```groovy
-package com.jos.dem.internationalization
+package com.jos.dem.springboot.internationalization.controller
 
 import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.beans.factory.annotation.Autowired
 
-import com.jos.dem.internationalization.services.LocaleService
+import com.jos.dem.springboot.internationalization.services.LocaleService
 
 @RestController
 class InternationalizationController {
@@ -82,7 +82,7 @@ We can run our project as follow:
 gradle bootRun
 ```
 
-To download the project
+To download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-internationalization.git
@@ -93,7 +93,7 @@ git checkout feature/specific-locale
 If you need to detect the locale from the client, then you need to create this implementation:
 
 ```groovy
-package com.jos.dem.internationalization.helper
+package com.jos.dem.springboot.internationalization.helper
 
 import org.springframework.stereotype.Component
 import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver
@@ -128,7 +128,7 @@ That's it, from the request we are reading the `Accept-Language` so we can know 
 So our `LocaleServiceImpl` now delegates the locale resolver to the previous class:
 
 ```groovy
-package com.jos.dem.internationalization.services.impl
+package com.jos.dem.springboot.internationalization.services.impl
 
 import org.springframework.context.MessageSource
 import org.springframework.stereotype.Service
@@ -136,8 +136,8 @@ import org.springframework.beans.factory.annotation.Autowired
 
 import javax.servlet.http.HttpServletRequest
 
-import com.jos.dem.internationalization.services.LocaleService
-import com.jos.dem.internationalization.helper.LocaleResolver
+import com.jos.dem.springboot.internationalization.helper.LocaleResolver
+import com.jos.dem.springboot.internationalization.services.LocaleService
 
 @Service
 class LocaleServiceImpl implements LocaleService {
@@ -163,12 +163,10 @@ user.hello=¡Hola Internacionalización!
 Finally this is our [Spock](http://spockframework.org/) testing case, to cover functionality:
 
 ```groovy
-package com.jos.dem.internationalization
+package com.jos.dem.springboot.internationalization
 
 import javax.servlet.http.HttpServletRequest
-
-import com.jos.dem.internationalization.helper.LocaleResolver
-
+import com.jos.dem.springboot.internationalization.helper.LocaleResolver
 import spock.lang.Specification
 
 class LocaleResolverSpec extends Specification {
