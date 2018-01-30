@@ -160,6 +160,32 @@ Don't forget to create `message_es.properties` to detect messages.
 user.hello=¡Hola Internacionalización!
 ```
 
+Here is our controller passing http request in order to get user language preferences.
+
+```groovy
+package com.jos.dem.springboot.internationalization.controller
+
+import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.beans.factory.annotation.Autowired
+
+import javax.servlet.http.HttpServletRequest
+import com.jos.dem.springboot.internationalization.services.LocaleService
+
+@RestController
+class InternationalizationController {
+
+  @Autowired
+  LocaleService localeService
+
+  @RequestMapping("/")
+  String index(HttpServletRequest request){
+    localeService.getMessage('user.hello', request)
+  }
+
+}
+```
+
 Finally this is our [Spock](http://spockframework.org/) testing case, to cover functionality:
 
 ```groovy
