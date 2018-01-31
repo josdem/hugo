@@ -12,6 +12,7 @@ title = "Algorithms"
 * [Is Pangram](/techtalk/algorithms/algorithm_is_pangram)
 * [Get Month Name](/techtalk/algorithms/get_month_name)
 * [Digital Sum Sort](/techtalk/algorithms/digital_sum_sort)
+* [Matrix Diagonal Difference](/techtalk/algorithms/matrix_diagonal_difference)
 * [GitHub Repository](https://github.com/josdem/algorithms-workshop)
 
 
