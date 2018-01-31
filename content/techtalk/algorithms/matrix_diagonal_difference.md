@@ -90,6 +90,8 @@ public class MatrixDiagonalSubstractor {
 }
 ```
 
+This kind of solution has `$O(N^2)$` complexity, since it's performance is directly proportional to the square of the size of the input data set. This is common with algorithms that involve nested iterations over the data set. For more information about it, please refer [A Beginner's Guide to Big O nottation](https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/)
+
 To download the code:
 
 ```bash
