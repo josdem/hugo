@@ -435,7 +435,7 @@ Given an array of integers, calculate which fraction of its elements are positiv
 
 There are `3` positive numbers, `2` negative numbers, and `1` zero in the array.
 
-The respective fractions of positive numbers, negative numbers and zeroes are: `$\frac{3}{6} = 0.5, \frac{2}{6} = 0.333333, \frac{2}{6} = 0.166667$` respectively.
+The respective fractions of positive numbers, negative numbers and zeroes are: `$\frac{3}{6} = 0.5, \frac{2}{6} = 0.333333, \frac{1}{6} = 0.166667$` respectively.
 
 **Solution**
 
