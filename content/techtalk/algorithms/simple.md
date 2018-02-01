@@ -6,7 +6,7 @@ title = "Algorithms"
 
 +++
 
-This section is about solving simple algorithms, coding challenges, puzzles and more.
+This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy.
 
 <a name="Palindrome">
 ## Palindrome
