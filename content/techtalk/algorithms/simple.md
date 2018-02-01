@@ -6,6 +6,12 @@ title = "Algorithms"
 
 +++
 
+This section is about solving simple algorithms, coding challenges, puzzles and more.
+
+<a name="Palindrome">
+## Palindrome
+</a>  
+
 A Palindrome is a word phrase, or number that reads the same backward or forward.
 
 ```groovy
@@ -16,7 +22,9 @@ Boolean isPalindrome(String string){
 assert isPalindrome('anitalavalatina')
 ```
 
+<a name="Biggest_Number">
 ## Biggest Number
+</a>
 
 From a string list with character, number pair elements, extract number and get the biggest
 
@@ -44,7 +52,9 @@ public class BiggestNumber {
 }
 ```
 
-## Sum a collection
+<a name="Sum_a_Collection">
+## Sum a Collection
+</a>
 
 Given an array of integers, find the sum of its elements.
 
@@ -78,7 +88,9 @@ public class CollectionSum {
 }
 ```
 
+<a name="Staircase">
 ## Staircase
+</a>
 
 Consider a staircase of size 4:
 
@@ -111,7 +123,9 @@ public class Staircase {
 }
 ```
 
-## Most popular in the array
+<a name="Most_Popular_in_the_Array">
+## Most Popular in the Array
+</a>
 
 Assume I have an array that looks like the following:
 
@@ -173,7 +187,9 @@ public class PopularDetector {
 2. Gets entry resultant from max comparator
 
 
-## Find the center point of coordinate 2d array
+<a name="Center_Point_in_2d_Array">
+## Center Point in 2d Array
+</a>
 
 Compute average all the x, y coordinates and find the location in the dead center of them.
 
@@ -203,7 +219,9 @@ Output:
 [2.5, 2.5]
 ```
 
-## Power set
+<a name="Power_Set">
+## Power Set
+</a>
 
 **Problem**
 
@@ -272,7 +290,9 @@ Output
 [[], [a], [b], [c], [a, b], [a, c], [b, c], [a, b, c]]
 ```
 
+<a name="Collection_Adder">
 ## Collection Adder
+</a>
 
 **Problem**
 
@@ -344,7 +364,9 @@ public class CollectionAdder {
 }
 ```
 
+<a name="Common_Elements_in_two_Collections">
 ## Common Elements in two Collections
+</a>
 
 I have two arrays with integers. I want to return elements in common.
 
@@ -381,7 +403,9 @@ public class CommonElementsFinder {
 ```
 
 
+<a name="Plus_Minus">
 ## Plus Minus
+</a>
 
 Given an array of integers, calculate which fraction of its elements are positive, which fraction of its elements are negative, and which fraction of its elements are zeroes, respectively.
 
