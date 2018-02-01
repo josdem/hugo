@@ -380,6 +380,67 @@ public class CommonElementsFinder {
 }
 ```
 
+
+## Plus Minus
+
+Given an array of integers, calculate which fraction of its elements are positive, which fraction of its elements are negative, and which fraction of its elements are zeroes, respectively.
+
+**Output**
+
+* A decimal representing of the fraction of positive numbers in the array compared to its size.
+* A decimal representing of the fraction of negative numbers in the array compared to its size.
+* A decimal representing of the fraction of zeroes in the array compared to its size.
+
+
+**Sample Input**
+
+```bash
+[-4,3,-9,0,4,1]
+```
+
+
+**Sample Output**
+
+```bash
+0.5
+0.333333
+0.166667
+```
+
+**Explanation**
+
+There are `3` positive numbers, `2` negative numbers, and `1` zero in the array.
+
+The respective fractions of positive numbers, negative numbers and zeroes are: `$\frac{3}{6} = 0.5, \frac{2}{6} = 0.333333, \frac{2}{6} = 0.166667$` respectively.
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class PlusMinusFinder {
+
+  private float[] find(List<Integer> numbers){
+    float[] result = new float[3];
+    result[0] = numbers.stream().filter(it -> it > 0).count() / (float)numbers.size();
+    result[1] = numbers.stream().filter(it -> it < 0).count() / (float)numbers.size();
+    result[2] = numbers.stream().filter(it -> it == 0).count() / (float)numbers.size();
+    return result;
+  }
+
+  public static void main(String[] args){
+    List<Integer> numbers = Arrays.asList(-4,3,-9,0,4,1);
+    float[] result = new PlusMinusFinder().find(numbers);
+    assert 0.5f == result[0];
+    assert 0.33333334f == result[1];
+    assert 0.16666667f == result[2];
+  }
+
+}
+```
+
 To download the code:
 
 ```bash
