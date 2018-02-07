@@ -50,6 +50,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot RESTful](/techtalk/spring/spring_boot_restful)
 * [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)
 * [Spring Boot Internationalization](/techtalk/spring/spring_boot_internationalization)
+* [Spring Boot JPA](/techtalk/spring/spring_boot_jpa)
 * [Spring Boot externalization](/techtalk/spring/spring_boot_externalization)
 * [Spring Boot JMS](/techtalk/spring/spring_boot_freemarker)
 * [Spring Boot Testing](/techtalk/spring/spring_boot_testing)
