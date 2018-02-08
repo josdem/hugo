@@ -8,6 +8,18 @@ title = "Algorithms"
 
 This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy.
 
+* [Find Palindrome](#Palindrome)
+* [Biggest Number](#Biggest_Number)
+* [Sum a Collection](#Sum_a_Collection)
+* [Staircase](#Staircase)
+* [Most Popular in the array](#Most_Popular_in_the_Array)
+* [Center Point in 2d Array](#Center_Point_in_2d_Array)
+* [Power Set](#Power_Set)
+* [Collection Adder](#Collection_Adder)
+* [Common Elements in two Collections](#Common_Elements_in_two_Collections)
+* [Plus Minus](#Plus_Minus)
+* [Min-Max Sum](#Min_Max_Sum)
+
 <a name="Palindrome">
 ## Palindrome
 </a>  
@@ -490,13 +502,13 @@ Given five positive integers, find the minimum and maximum values that can be ca
 
 **Explanation**
 
-Our initial numbers are `1,2 ,3 ,4` and `5`. We can calculate the following sums using four of the five integers:
+Our initial numbers are `1, 2, 3, 4` and `5`. We can calculate the following sums using four of the five integers:
 
-If we sum everything except `1`, our sum is `2 + 3 + 4 + 5 = 14`.
-If we sum everything except `2`, our sum is `1 + 3 + 4 + 5 = 13`.
-If we sum everything except `3`, our sum is `1 + 2 + 4 + 5 = 12`.
-If we sum everything except `4`, our sum is `1 + 2 + 3 + 5 = 11`.
-If we sum everything except `5`, our sum is `1 + 2 + 3 + 4 = 10`.
+* If we sum everything except `1`, our sum is `2 + 3 + 4 + 5 = 14`.
+* If we sum everything except `2`, our sum is `1 + 3 + 4 + 5 = 13`.
+* If we sum everything except `3`, our sum is `1 + 2 + 4 + 5 = 12`.
+* If we sum everything except `4`, our sum is `1 + 2 + 3 + 5 = 11`.
+* If we sum everything except `5`, our sum is `1 + 2 + 3 + 4 = 10`.
 
 As you can see, the minimal sum is `10` and the maximal sum is `14`. 
 
