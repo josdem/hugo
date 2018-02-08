@@ -465,6 +465,69 @@ public class PlusMinusFinder {
 }
 ```
 
+<a name="Min_Max_Sum">
+## Min-Max Sum
+</a>
+
+Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then get the respective minimum and maximum values.
+
+**Output**
+
+* A integer denoting minimum value that can be calculated by summing exactly four of the five integers.
+* A integer denoting maximum value that can be calculated by summing exactly four of the five integers.
+
+**Sample Input**
+
+```bash
+[1,2,3,4,5]
+```
+
+**Sample Output**
+
+```bash
+10 14
+```
+
+**Explanation**
+
+Our initial numbers are `1,2 ,3 ,4` and `5`. We can calculate the following sums using four of the five integers:
+
+If we sum everything except `1`, our sum is `2 + 3 + 4 + 5 = 14`.
+If we sum everything except `2`, our sum is `1 + 3 + 4 + 5 = 13`.
+If we sum everything except `3`, our sum is `1 + 2 + 4 + 5 = 12`.
+If we sum everything except `4`, our sum is `1 + 2 + 3 + 5 = 11`.
+If we sum everything except `5`, our sum is `1 + 2 + 3 + 4 = 10`.
+
+As you can see, the minimal sum is `10` and the maximal sum is `14`. 
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.Arrays;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+public class MinMaxFinder {
+
+  private SortedSet<Integer> find(List<Integer> numbers){
+    SortedSet<Integer> collection = new TreeSet<Integer>();
+    for(int i=0; i<numbers.size(); i++){
+      collection.add(numbers.stream().mapToInt(it -> it).sum() - numbers.get(i));
+    }
+    return collection;
+  }
+
+  public static void main(String[] args){
+    List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+    SortedSet<Integer> result = new MinMaxFinder().find(numbers);
+    assert 10 == result.first();
+    assert 14 == result.last();
+  }
+  
+}
+```
+
 To download the code:
 
 ```bash
