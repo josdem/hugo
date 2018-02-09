@@ -6,6 +6,24 @@ title = "Algorithms"
 
 +++
 
+This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy.
+
+* [Find Palindrome](#Palindrome)
+* [Biggest Number](#Biggest_Number)
+* [Sum a Collection](#Sum_a_Collection)
+* [Staircase](#Staircase)
+* [Most Popular in the array](#Most_Popular_in_the_Array)
+* [Center Point in 2d Array](#Center_Point_in_2d_Array)
+* [Power Set](#Power_Set)
+* [Collection Adder](#Collection_Adder)
+* [Common Elements in two Collections](#Common_Elements_in_two_Collections)
+* [Plus Minus](#Plus_Minus)
+* [Min-Max Sum](#Min_Max_Sum)
+
+<a name="Palindrome">
+## Palindrome
+</a>  
+
 A Palindrome is a word phrase, or number that reads the same backward or forward.
 
 ```groovy
@@ -16,7 +34,9 @@ Boolean isPalindrome(String string){
 assert isPalindrome('anitalavalatina')
 ```
 
+<a name="Biggest_Number">
 ## Biggest Number
+</a>
 
 From a string list with character, number pair elements, extract number and get the biggest
 
@@ -44,7 +64,9 @@ public class BiggestNumber {
 }
 ```
 
-## Sum a collection
+<a name="Sum_a_Collection">
+## Sum a Collection
+</a>
 
 Given an array of integers, find the sum of its elements.
 
@@ -78,7 +100,9 @@ public class CollectionSum {
 }
 ```
 
+<a name="Staircase">
 ## Staircase
+</a>
 
 Consider a staircase of size 4:
 
@@ -111,7 +135,9 @@ public class Staircase {
 }
 ```
 
-## Most popular in the array
+<a name="Most_Popular_in_the_Array">
+## Most Popular in the Array
+</a>
 
 Assume I have an array that looks like the following:
 
@@ -173,7 +199,9 @@ public class PopularDetector {
 2. Gets entry resultant from max comparator
 
 
-## Find the center point of coordinate 2d array
+<a name="Center_Point_in_2d_Array">
+## Center Point in 2d Array
+</a>
 
 Compute average all the x, y coordinates and find the location in the dead center of them.
 
@@ -203,7 +231,9 @@ Output:
 [2.5, 2.5]
 ```
 
-## Power set
+<a name="Power_Set">
+## Power Set
+</a>
 
 **Problem**
 
@@ -272,7 +302,9 @@ Output
 [[], [a], [b], [c], [a, b], [a, c], [b, c], [a, b, c]]
 ```
 
+<a name="Collection_Adder">
 ## Collection Adder
+</a>
 
 **Problem**
 
@@ -344,7 +376,9 @@ public class CollectionAdder {
 }
 ```
 
+<a name="Common_Elements_in_two_Collections">
 ## Common Elements in two Collections
+</a>
 
 I have two arrays with integers. I want to return elements in common.
 
@@ -377,6 +411,132 @@ public class CommonElementsFinder {
     assert new ArrayList<Integer>(Arrays.asList(1,3,5)).equals(result);
   }
 
+}
+```
+
+
+<a name="Plus_Minus">
+## Plus Minus
+</a>
+
+Given an array of integers, calculate which fraction of its elements are positive, which fraction of its elements are negative, and which fraction of its elements are zeroes, respectively.
+
+**Output**
+
+* A decimal representing of the fraction of positive numbers in the array compared to its size.
+* A decimal representing of the fraction of negative numbers in the array compared to its size.
+* A decimal representing of the fraction of zeroes in the array compared to its size.
+
+
+**Sample Input**
+
+```bash
+[-4,3,-9,0,4,1]
+```
+
+
+**Sample Output**
+
+```bash
+0.5
+0.333333
+0.166667
+```
+
+**Explanation**
+
+There are `3` positive numbers, `2` negative numbers, and `1` zero in the array.
+
+The respective fractions of positive numbers, negative numbers and zeroes are: `$\frac{3}{6} = 0.5, \frac{2}{6} = 0.333333, \frac{1}{6} = 0.166667$` respectively.
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+
+public class PlusMinusFinder {
+
+  private float[] find(List<Integer> numbers){
+    float[] result = new float[3];
+    result[0] = numbers.stream().filter(it -> it > 0).count() / (float)numbers.size();
+    result[1] = numbers.stream().filter(it -> it < 0).count() / (float)numbers.size();
+    result[2] = numbers.stream().filter(it -> it == 0).count() / (float)numbers.size();
+    return result;
+  }
+
+  public static void main(String[] args){
+    List<Integer> numbers = Arrays.asList(-4,3,-9,0,4,1);
+    float[] result = new PlusMinusFinder().find(numbers);
+    assert 0.5f == result[0];
+    assert 0.33333334f == result[1];
+    assert 0.16666667f == result[2];
+  }
+
+}
+```
+
+<a name="Min_Max_Sum">
+## Min-Max Sum
+</a>
+
+Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then get the respective minimum and maximum values.
+
+**Output**
+
+* A integer denoting minimum value that can be calculated by summing exactly four of the five integers.
+* A integer denoting maximum value that can be calculated by summing exactly four of the five integers.
+
+**Sample Input**
+
+```bash
+[1,2,3,4,5]
+```
+
+**Sample Output**
+
+```bash
+10 14
+```
+
+**Explanation**
+
+Our initial numbers are `1, 2, 3, 4` and `5`. We can calculate the following sums using four of the five integers:
+
+* If we sum everything except `1`, our sum is `2 + 3 + 4 + 5 = 14`.
+* If we sum everything except `2`, our sum is `1 + 3 + 4 + 5 = 13`.
+* If we sum everything except `3`, our sum is `1 + 2 + 4 + 5 = 12`.
+* If we sum everything except `4`, our sum is `1 + 2 + 3 + 5 = 11`.
+* If we sum everything except `5`, our sum is `1 + 2 + 3 + 4 = 10`.
+
+As you can see, the minimal sum is `10` and the maximal sum is `14`. 
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.Arrays;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+public class MinMaxFinder {
+
+  private SortedSet<Integer> find(List<Integer> numbers){
+    SortedSet<Integer> collection = new TreeSet<Integer>();
+    for(int i=0; i<numbers.size(); i++){
+      collection.add(numbers.stream().mapToInt(it -> it).sum() - numbers.get(i));
+    }
+    return collection;
+  }
+
+  public static void main(String[] args){
+    List<Integer> numbers = Arrays.asList(1,2,3,4,5);
+    SortedSet<Integer> result = new MinMaxFinder().find(numbers);
+    assert 10 == result.first();
+    assert 14 == result.last();
+  }
+  
 }
 ```
 
