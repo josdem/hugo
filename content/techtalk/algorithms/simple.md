@@ -19,6 +19,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Common Elements in two Collections](#Common_Elements_in_two_Collections)
 * [Plus Minus](#Plus_Minus)
 * [Min-Max Sum](#Min_Max_Sum)
+* [Birthday Cake Candles](#Birthday_Cake_Candles)
 
 <a name="Palindrome">
 ## Palindrome
@@ -537,6 +538,56 @@ public class MinMaxFinder {
     assert 14 == result.last();
   }
   
+}
+```
+
+<a name="Birthday_Cake_Candles">
+## Birthday Cake Candles
+</a>
+
+Colleen is having a birthday! She will have a cake with one candle for each year of her age. When she blows out the candles, she’ll only be able to blow out the tallest ones.
+
+**Output**
+
+* A integer denoting the number of candles the can be blown out.
+
+**Sample Input**
+
+```bash
+[3,2,1,3]
+```
+
+**Sample Output**
+
+```bash
+2
+```
+
+**Explanation**
+
+The maximum candle height is 3 and there are two candles of that height.
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.Arrays;
+import java.util.Optional;
+
+public class BirthdayCakeCandlesCounter {
+
+  private Integer count(List<Integer> sizes){
+    Optional<Integer> max = sizes.stream().max(Integer::compare);
+    Long result = sizes.stream().filter(it -> it == max.get()).count();
+    return result.intValue();
+  }
+  
+  public static void main(String[] args){
+    List<Integer> sizes = Arrays.asList(3, 2, 1, 3);
+    Integer result = new BirthdayCakeCandlesCounter().count(sizes);
+    assert 2 == result;
+  }
+
 }
 ```
 
