@@ -549,7 +549,7 @@ Colleen is having a birthday! She will have a cake with one candle for each year
 
 **Output**
 
-* A integer denoting the number of candles the can be blown out.
+A integer denoting the number of candles the can be blown out.
 
 **Sample Input**
 
