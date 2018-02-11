@@ -14,8 +14,8 @@ Automate the rounding process then round a list of grades and print the results.
 
 **Constraints**
 
-* `$1 \ge n \le 60$`
-* `$0 \ge gradei \le 100$`
+* `$1 \le n \le 60$`
+* `$0 \le gradei \le 100$`
 
 **Sample Input**
 

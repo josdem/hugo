@@ -14,6 +14,7 @@ title = "Algorithms"
 * [Digital Sum Sort](/techtalk/algorithms/digital_sum_sort)
 * [Matrix Diagonal Difference](/techtalk/algorithms/matrix_diagonal_difference)
 * [Grading Students](/techtalk/algorithms/grading_students)
+* [Apple and Orange](/techtalk/algorithms/apple_orange)
 * [GitHub Repository](https://github.com/josdem/algorithms-workshop)
 
 
