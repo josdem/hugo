@@ -47,7 +47,7 @@ You will be given a list of distances the fruits are thrown. Negative distances 
 * The first apple falls at position `5 - 2 = 3`
 * The second apple falls at position `5 + 2 = 7`
 * The third apple falls at position `5 + 1 = 6`
-* The first orange falls at position `15 + 5 = 7`
+* The first orange falls at position `15 + 5 = 20`
 * The second orange falls at position `15 - 6 = 9`
 
 Only one fruit (the second apple) falls within the region between `7` and `11`, so Larry’s score is `1`.
