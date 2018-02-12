@@ -15,6 +15,7 @@ title = "Algorithms"
 * [Matrix Diagonal Difference](/techtalk/algorithms/matrix_diagonal_difference)
 * [Grading Students](/techtalk/algorithms/grading_students)
 * [Apple and Orange](/techtalk/algorithms/apple_orange)
+* [Kangaroo](/techtalk/algorithms/kangaroo)
 * [GitHub Repository](https://github.com/josdem/algorithms-workshop)
 
 
