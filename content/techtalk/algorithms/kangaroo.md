@@ -1,6 +1,6 @@
 +++
 date = "2018-02-12T13:53:51-06:00"
-title = "kangaroo"
+title = "Kangaroo"
 categories = ["techtalk","code"]
 tags = ["josdem", "techtalks","programming","technology","algorithms", "coding challenge","code"]
 
