@@ -28,8 +28,8 @@ Boolean value denoting if they can land on the same location at the same time.
 
 ```bash
 x1 = 0
-v1 = 3 
-x2 = 4 
+v1 = 3
+x2 = 4
 v2 = 2
 ```
 
@@ -41,7 +41,7 @@ true
 
 **Explanation**
 
-The two kangaroos jump through the following sequence of locations: 
+The two kangaroos jump through the following sequence of locations:
 
 <img src="/img/techtalks/algorithms/kangaroo.png"/>
 
@@ -51,7 +51,7 @@ The kangaroos meet after 4 jumps.
 
 This is a linear equation problem and we can represent them as:
 
-`$ k1 = 3x$`
+`$ k1 = 3x + 0$`
 
 `$ k2 = 2x + 4$`
 
@@ -69,7 +69,7 @@ The kangaroos meet after 4 jumps. So the equation result must be a positive and 
 public class KangarooMeasurer {
 
 	private Boolean measure(
-		Integer x1, 
+		Integer x1,
 		Integer v1,
 		Integer x2,
 		Integer v2){
@@ -82,7 +82,7 @@ public class KangarooMeasurer {
 			right = right * -1;
 		}
 
-		double result = right / left;		
+		double result = right / left;
 		return right > 0 && result % 1 == 0;
 	}
 
@@ -94,7 +94,7 @@ public class KangarooMeasurer {
 		Boolean meets = new KangarooMeasurer().measure(x1, v1, x2, v2);
 		assert true == meets;
 	}
-	
+
 }
 ```
 
