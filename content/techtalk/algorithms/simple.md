@@ -600,7 +600,7 @@ public class BirthdayCakeCandlesCounter {
 Maria plays `n` games of college basketball in a season. Because she wants to go pro, she tracks her points scored per game sequentially in an array defined as: 
 
 ```bash
-score = [s0, s1, s2, .... sn]
+score = [s0, s1, s2, ..., sn]
 ```
 
 After each game `i`, she checks to see if score `s` breaks her record for most or least points scored so far during that season.
