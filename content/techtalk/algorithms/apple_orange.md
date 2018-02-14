@@ -107,35 +107,9 @@ public class AppleOrangeScorer {
   }
 
 }
-
-class Pair {
-  private Integer first;
-  private Integer last;
-
-  public Pair(){}
-
-  public Pair(Integer first, Integer last){
-    this.first = first;
-    this.last = last;
-  }
-
-  public void setFirst(Integer first){
-    this.first = first;
-  }
-
-  public void setLast(Integer last){
-    this.last = last;
-  }
-
-  public Integer getFirst(){
-    return first;
-  }
-
-  public Integer getLast(){
-    return last;
-  }
-}
 ```
+
+Pair is just a POJO for containing first and last values.
 
 This solution kind is `O(N)` since the algorithm performance will grow linearly and in direct proportion to the size of the input data set.
 
@@ -178,34 +152,6 @@ public class AppleOrangeScorer {
     assert 1 == result.getLast();
   }
 
-}
-
-class Pair {
-  private Integer first;
-  private Integer last;
-
-  public Pair(){}
-
-  public Pair(Integer first, Integer last){
-    this.first = first;
-    this.last = last;
-  }
-
-  public void setFirst(Integer first){
-    this.first = first;
-  }
-
-  public void setLast(Integer last){
-    this.last = last;
-  }
-
-  public Integer getFirst(){
-    return first;
-  }
-
-  public Integer getLast(){
-    return last;
-  }
 }
 ```
 
