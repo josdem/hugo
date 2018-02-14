@@ -597,9 +597,15 @@ public class BirthdayCakeCandlesCounter {
 ## Breaking The Records
 </a>
 
-Maria plays `n` games of college basketball in a season. Because she wants to go pro, she tracks her points scored per game sequentially in an array defined as `score = [s0, s1, s2, .... sn]`. After each game `i`, she checks to see if score `s` breaks her record for most or least points scored so far during that season.
+Maria plays `n` games of college basketball in a season. Because she wants to go pro, she tracks her points scored per game sequentially in an array defined as: 
 
-Given Maria's array of `scores` for a season of `n` games, find and print the number of times she breaks her record for most and least points scored during the season.
+```bash
+score = [s0, s1, s2, .... sn]
+```
+
+After each game `i`, she checks to see if score `s` breaks her record for most or least points scored so far during that season.
+
+Given Maria's array of `scores` for a season of `n` games, find the number of times she breaks her record for most and least points scored during the season.
 
 **Note:** Assume her records for most and least points at the start of the season are the number of points scored during the first game of the season.
 
@@ -623,7 +629,7 @@ She broke her best record twice and her worst record four times.
 
 **Solution**
 
-```Java
+```java
 import java.util.List;
 import java.util.Arrays;
 
