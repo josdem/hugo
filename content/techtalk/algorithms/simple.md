@@ -21,10 +21,11 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Min-Max Sum](#Min_Max_Sum)
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [Breaking the Records](#Breaking_Records)
+* [Birthday Chocolate](#Birthday_Chocolate)
 
 <a name="Palindrome">
 ## Palindrome
-</a>  
+</a>
 
 A Palindrome is a word phrase, or number that reads the same backward or forward.
 
@@ -512,7 +513,7 @@ Our initial numbers are `1, 2, 3, 4` and `5`. We can calculate the following sum
 * If we sum everything except `4`, our sum is `1 + 2 + 3 + 5 = 11`.
 * If we sum everything except `5`, our sum is `1 + 2 + 3 + 4 = 10`.
 
-As you can see, the minimal sum is `10` and the maximal sum is `14`. 
+As you can see, the minimal sum is `10` and the maximal sum is `14`.
 
 **Solution**
 
@@ -538,7 +539,7 @@ public class MinMaxFinder {
     assert 10 == result.first();
     assert 14 == result.last();
   }
-  
+
 }
 ```
 
@@ -582,7 +583,7 @@ public class BirthdayCakeCandlesCounter {
     Long result = sizes.stream().filter(it -> it == max.get()).count();
     return result.intValue();
   }
-  
+
   public static void main(String[] args){
     List<Integer> sizes = Arrays.asList(3, 2, 1, 3);
     Integer result = new BirthdayCakeCandlesCounter().count(sizes);
@@ -597,7 +598,7 @@ public class BirthdayCakeCandlesCounter {
 ## Breaking The Records
 </a>
 
-Maria plays `n` games of college basketball in a season. Because she wants to go pro, she tracks her points scored per game sequentially in an array defined as: 
+Maria plays `n` games of college basketball in a season. Because she wants to go pro, she tracks her points scored per game sequentially in an array defined as:
 
 ```bash
 score = [s0, s1, s2, ..., sn]
@@ -640,7 +641,7 @@ public class BreackingRecordsCounter {
     Integer lowest = scores.get(0);
     Integer highestCounter = 0;
     Integer lowestCoutner = 0;
- 
+
     for(Integer score : scores){
       if(score > highest) {
         highestCounter++;
@@ -651,7 +652,7 @@ public class BreackingRecordsCounter {
         lowest = score;
       }
     }
- 
+
     return new Pair(highestCounter, lowestCoutner);
   }
 
@@ -670,6 +671,92 @@ Pair is just a POJO for containing highest and lowest values.
 
 This solution kind is `O(N)` since the algorithm performance will grow linearly and in direct proportion to the size of the input data set.
 
+<a name="Birthday_Chocolate">
+## Birthday Chocolate
+</a>
+
+Lily has a chocolate bar consisting of a row of `n` squares where each square has an integer written on it. She wants to share it with Ron for his birthday, which falls on month `m` and day `d`. Lily wants to give Ron a piece of chocolate only if it contains `m` consecutive squares whose integers sum to `d`.
+
+Given `m`, `d`, and the sequence of integers written on each square of Lily's chocolate bar, how many different ways can Lily break off a piece of chocolate to give to Ron?
+
+For example, if `m=2`, `d=3` and the chocolate bar contains `n` squares with the integers
+
+```bash
+[1, 2, 1, 3, 2]
+```
+
+written on them from left to right, the following diagram shows two ways to break off a piece:
+
+<img src="/img/techtalks/algorithms/birthday_chocolate.png" />
+
+**Input Format**
+
+* Integer array describing the respective values of `s0, s1, s2, s3, ..., sn` (the numbers written on each consecutive square of chocolate).
+* Integer Ron's birth day
+* Integer Ron's birth month
+
+**Constraints**
+
+* `$1 \le n \le 100$`
+* `$1 \le s1 \le 5, where(0 \le i \le n)$`
+* `$1 \le d \le 31$`
+* `$1 \le m \le 12$`
+
+**Output Format**
+
+Print an integer denoting the total number of ways that Lily can give a piece of chocolate to Ron.
+
+**Sample Input**
+
+```bash
+numbers = [1, 2, 1, 3, 2]
+day = 3
+month = 2
+```
+
+**Sample Output**
+
+```bash
+2
+```
+
+```java
+import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+public class BirthdayChocolateCalculator {
+
+  private Integer compute(List<Integer> numbers, final Integer month, final Integer day) {
+    Integer types = 0;
+
+    List<List<Integer>> sets =
+      IntStream.range(1, numbers.size() - month)
+      .mapToObj(it -> numbers.subList(it - 1, it + month - 1))
+      .collect(Collectors.toList());
+
+    for(List<Integer> set : sets){
+      if(set.stream().mapToInt(Integer::intValue).sum() == day){
+        types++;
+      }
+    }
+
+    return types;
+  }
+
+  public static void main(String[] args){
+    Integer month = 2;
+    Integer day = 3;
+    List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 2);
+    Integer result = new BirthdayChocolateCalculator().compute(numbers, month, day);
+    assert 2 == result;
+  }
+
+}
+```
 
 To download the code:
 
