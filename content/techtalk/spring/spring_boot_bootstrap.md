@@ -80,7 +80,7 @@ This is a complete html example with header, footer, form and jumbotron integrat
     <div class="container">
       <h1>Welcome!</h1>
       <p>Spring Boot Workshop</p>
-      <a href="https://github.com/josdem/spring-boot-bootstrap" class="btn btn-primary btn-lg" role="button">Learn more</a>
+      <a href="https://github.com/josdem/spring-boot-jpa" class="btn btn-primary btn-lg" role="button">Learn more</a>
     </div>
   </div>
   <div class="container">
@@ -95,14 +95,14 @@ This is a complete html example with header, footer, form and jumbotron integrat
   	  <label class="col-sm-1 col-form-label-lg" for="email">Email:</label>
   	  <input class="form-control form-control-lg" type="text" name="email" th:field="*{email}" placeholder="email" id="email"/>
   	  <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
-    </div>  
+    </div>
   	<br/><br/>
-  	<button class="btn btn-success" id="btn-success" type="submit">Submit</button> 
+  	<button class="btn btn-success" id="btn-success" type="submit">Submit</button>
   </form>
   </div>
   <footer>
     <nav class="navbar navbar-inverse navbar-fixed-bottom">
-      <a class="navbar-brand" href="https://github.com/josdem/spring-boot-bootstrap">josdem 2018</a>
+      <a class="navbar-brand" href="https://github.com/josdem/spring-boot-jpa">josdem 2018</a>
     </nav>
   </footer>
 </body>
