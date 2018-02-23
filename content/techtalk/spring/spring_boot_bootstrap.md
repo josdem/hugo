@@ -40,7 +40,7 @@ Next, we are going to add header and footer to a simple html page using [navbar]
 ```html
 <footer>
   <nav class="navbar navbar-inverse navbar-fixed-bottom">
-    <a class="navbar-brand" href="https://github.com/josdem/spring-boot-bootstrap">josdem 2018</a>
+    <a class="navbar-brand" href="https://github.com/josdem/spring-boot-jpa">josdem 2018</a>
   </nav>
 </footer>
 ```
@@ -60,7 +60,7 @@ Another component we are going to use is [Jumbotron](https://v4-alpha.getbootstr
   <div class="container">
     <h1>Welcome!</h1>
     <p>Spring Boot Workshop</p>
-    <a href="https://github.com/josdem/spring-boot-bootstrap" class="btn btn-primary btn-lg" role="button">Learn more</a>
+    <a href="https://github.com/josdem/spring-boot-jpa" class="btn btn-primary btn-lg" role="button">Learn more</a>
   </div>
 </div>
 ```
