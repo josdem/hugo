@@ -5,7 +5,7 @@ title = "Spring Boot Externalization"
 categories = ["techtalk","code"]
 +++
 
-In this example we are going to externalize MySQL database connection using yaml. In order to get the setup for this example, please refer my previous post [Spring Boot JPA](/techtalk/spring/spring_boot_jpa)
+In this example we are going to externalize MySQL database connection using a yaml file. In order to get the setup for this example, please refer my previous post [Spring Boot JPA](/techtalk/spring/spring_boot_jpa)
 
 First we need to create our yml file in ${USER_HOME}/.spring-boot-jpa/application-DEVELOPMENT.yml
 
@@ -13,14 +13,14 @@ First we need to create our yml file in ${USER_HOME}/.spring-boot-jpa/applicatio
 spring:
   datasource:
     url: jdbc:mysql://localhost/spring_boot_jpa
-    username: springBootJpaUser
-    password: spr1ngb00tjp4DB
+    username: username
+    password: password
     driverClassName: com.mysql.jdbc.Driver
   jpa:
     generateDdl: true
 ```
 
-Next we need to add bootRun system properties in our `build.gradle` file
+Next we need to add bootRun closure and specify a system properties in our `build.gradle` file
 
 ```groovy
 buildscript {
@@ -61,10 +61,16 @@ bootRun {
 }
 ```
 
-That's it, now we can get our database credentials and connection from an externalized yaml file. In order to read our yaml file as system properties we need to execute this command:
+That's it, now we can get our database credentials and connection from an externalized yaml file. In order to read our yaml file as system properties we need to execute this command in Mac or Linux:
 
 ```bash
 gradle bootRun -Dspring.config.location=$HOME/.spring-boot-jpa/application-DEVELOPMENT.yml
+```
+
+If you are using Windows platform, use this command:
+
+```bash
+gradle bootRun "-Dspring.config.location=$HOME/.spring-boot-jpa/application-DEVELOPMENT.yml"
 ```
 
 To download the project
