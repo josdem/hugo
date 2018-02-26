@@ -155,7 +155,7 @@ class MessageListener {
   Logger log = LoggerFactory.getLogger(this.class)
 
   @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
-  public void receiveMessage(Message message) {
+  void receiveMessage(Message message) {
     Object command =  ((ObjectMessage) message).getObject()
     log.info "Message Received ${command.dump()}"    
   }
