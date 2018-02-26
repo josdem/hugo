@@ -230,6 +230,13 @@ MessageServiceImpl : Sending message
 MessageListener    : Message Received <com.jos.dem.springboot.jms.command.PersonCommand@3a85a88c nickname=josdem email=joseluis.delacruz@gmail.com>
 ```
 
+Do not forget to add ActiveMQ and JMS dependency to your `build.gradle` file
+
+```groovy
+  compile('org.apache.activemq:activemq-broker')
+  compile('org.springframework:spring-jms')
+```
+
 To run the project
 
 ```bash
