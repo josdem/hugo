@@ -22,6 +22,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [Breaking the Records](#Breaking_Records)
 * [Birthday Chocolate](#Birthday_Chocolate)
+* [String Compressor](#String_Compressor)
 
 <a name="Palindrome">
 ## Palindrome
@@ -755,6 +756,57 @@ public class BirthdayChocolateCalculator {
     List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 2);
     Integer result = new BirthdayChocolateCalculator().compute(numbers, month, day);
     assert 2 == result;
+  }
+
+}
+```
+
+<a name="String_Compressor">
+## String Compressor
+</a>
+
+Given a String "aaabbbbcc" compress it in such a way that you get pairs: letter, count as: a3b4c2.
+
+**Constraints**
+
+* `$a \le letter \le z$`
+* `$1 \le string(length) \le 1000$`
+
+**Sample Input**
+
+```bash
+String = "aaabbbbcc"
+```
+
+**Sample Output**
+
+```bash
+a3b4c2
+```
+
+**Solution**
+
+```java
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class StringCompressor {
+
+  private String compress(String string){
+    Map<Character, Long> map = string.chars()
+        .mapToObj(i -> (char)i)
+        .collect(Collectors.groupingBy(it -> it, Collectors.counting()));
+
+    StringBuffer sb = new StringBuffer();    
+
+    map.forEach((k,v) -> sb.append(k.toString() + v.toString()));    
+    return sb.toString();
+  }
+  
+  public static void main(String[] args){
+    String string = "aaabbbbcc";
+    String result = new StringCompressor().compress(string);
+    System.out.println(result);   
   }
 
 }
