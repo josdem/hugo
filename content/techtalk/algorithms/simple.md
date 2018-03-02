@@ -828,7 +828,7 @@ An integer arrray where each integer `$i$` denotes the cost, `$c[i]$`, of item  
 
 **Constraints**
 
-* `$0 \le K \le n$`
+* `$0 \le K \le N$`
 * `$0 \le c[i] \le 10^4$` 
 
 **Output Format**
