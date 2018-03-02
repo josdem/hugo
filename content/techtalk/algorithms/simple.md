@@ -850,7 +850,7 @@ prices = [3, 10, 2, 9]
 
 **Explanation**
 
-Anna didn't eat item `$c[i] = 10  $`, but she shared the rest of the items with Brian. The total cost of the shared items is  `$3 + 2 + 9 = 14$`and, split in half, the cost per person is `$Bactual = 7$`. Brian charged her `$Bcharged = 12$` for her portion of the bill, which is more than the `$7$` dollars worth of food that she actually shared with him. Thus, we get the amount Anna was overcharged, `$Bcharged-Bactual = 12 - 7 = 5$`.
+Anna didn't eat item `$c[i] = 10  $`, but she shared the rest of the items with Brian. The total cost of the shared items is  `$3 + 2 + 9 = 14$` and, split in half, the cost per person is `$Bactual = 7$`. Brian charged her `$Bcharged = 12$` for her portion of the bill, which is more than the `$7$` dollars worth of food that she actually shared with him. Thus, we get the amount Anna was overcharged, `$Bcharged-Bactual = 12 - 7 = 5$`.
 
 **Solution**
 
