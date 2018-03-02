@@ -838,7 +838,7 @@ The difference (i.e., `$Bcharged - Bactual  $`) that Brian must refund to Anna (
 **Sample Input**
 
 ```bash
-itemAvoidided = 1
+itemAvoided = 1
 prices = [3, 10, 2, 9]
 ```
 
