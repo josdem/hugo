@@ -24,6 +24,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Birthday Chocolate](#Birthday_Chocolate)
 * [String Compressor](#String_Compressor)
 * [Bon Appetit](#Bon_Appetit)
+* [Sock Merchant](#Sock_Merchant)
 
 <a name="Palindrome">
 ## Palindrome
@@ -798,16 +799,16 @@ public class StringCompressor {
         .mapToObj(i -> (char)i)
         .collect(Collectors.groupingBy(it -> it, Collectors.counting()));
 
-    StringBuffer sb = new StringBuffer();    
+    StringBuffer sb = new StringBuffer();
 
-    map.forEach((k,v) -> sb.append(k.toString() + v.toString()));    
+    map.forEach((k,v) -> sb.append(k.toString() + v.toString()));
     return sb.toString();
   }
-  
+
   public static void main(String[] args){
     String string = "aaabbbbcc";
     String result = new StringCompressor().compress(string);
-    System.out.println(result);   
+    System.out.println(result);
   }
 
 }
@@ -823,13 +824,13 @@ You are given `$N, K,$` the cost of each of the  items, and the total amount of 
 
 **Input Format**
 
-An integer denoting `$K$`(the `$0$`-based index of the item that Anna did not eat). 
+An integer denoting `$K$`(the `$0$`-based index of the item that Anna did not eat).
 An integer arrray where each integer `$i$` denotes the cost, `$c[i]$`, of item  `$i$` (where `$0 \le i \le N$`).
 
 **Constraints**
 
 * `$0 \le K \le N$`
-* `$0 \le c[i] \le 10^4$` 
+* `$0 \le c[i] \le 10^4$`
 
 **Output Format**
 
@@ -875,9 +876,90 @@ public class BonAppetitCalculator {
     Integer result = new BonAppetitCalculator().compute(prices, itemAvoided);
     assert 5 == result;
   }
-  
+
 }
 ```
+
+<a name="Sock_Merchant">
+## Sock Merchant
+</a>
+
+John works at a clothing store and he's going through a pile of socks to find the number of matching pairs. More specifically, he has a pile of `$N$` loose socks where each sock `$i$`  is labeled with an integer, `$Ci$`, denoting its color. He wants to sell as many socks as possible, but his customers will only buy them in matching pairs. Two socks, `$i, j$`, are a single matching pair if they have the same color `$(Ci == Cj)$`.
+
+Given `$N$` and the color of each sock, how many pairs of socks can John sell?
+
+**Input Format**
+
+An integers collection describing the respective values of `$c0, c1, c2,..., cN-1$`.
+
+**Constraints**
+
+* `$1 \le N \le 100$`
+* `$1 \le Ci \le 100$`
+
+**Output Format**
+
+Total number of matching pairs of socks that John can sell.
+
+**Sample Input**
+
+```bash
+colors = [10, 20, 20, 10, 10, 30, 50, 10, 20]
+```
+
+**Sample Output**
+
+```bash
+3
+```
+
+**Explanation**
+
+<img src="/img/techtalks/algorithms/sock_merchant.png"/>
+
+As you can see from the figure above, we can match three pairs of socks.
+
+**Solution**
+
+```java
+import java.util.Map;
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
+
+public class SockPairMatcher{
+
+  private Integer match(List<Integer> colors){
+    Map<Integer, Long> map = colors.stream()
+      .collect(Collectors.groupingBy(it->it, Collectors.counting()));
+
+    List<Long> values = map.entrySet().stream()
+      .filter(it -> it.getValue() / 2 > 0)
+      .map(Map.Entry::getValue)
+      .collect(Collectors.toList());
+
+    Long result = values.stream()
+      .mapToLong(it -> it / 2)
+      .sum();
+
+    return result.intValue();
+  }
+
+  public static void main(String[] args){
+    List<Integer> colors = Arrays.asList(10, 20, 20, 10, 10, 30, 50, 10, 20);
+    Integer result = new SockPairMatcher().match(colors);
+    assert 3 == result;
+  }
+
+}
+```
+
+We are solving this challenge in three steps:
+
+1. We are grouping by occurrences
+2. From a map we are getting `Map.Entry` as stream and we filtered them which are divisible by 2, then we get value from our `Map.Entry` with that criteria and finally we are storing resultant values in a list.
+3. We are counting how many pairs we can create divide them by 2
 
 To download the code:
 
