@@ -958,8 +958,8 @@ public class SockPairMatcher{
 We are solving this challenge in three steps:
 
 1. We are grouping by occurrences
-2. From a map we are getting `Map.Entry` as stream and we filtered them which are divisible by 2, then we get value from our `Map.Entry` with that criteria and finally we are storing resultant values in a list.
-3. We are counting how many pairs we can create divide them by 2
+2. From a map we are getting `Map.Entry` collection as stream, then we filtered every item value by which one is divisible by 2, finally we stored filtered values as a list.
+3. We are counting how many pairs we can create by dividing every item from long collection by 2
 
 To download the code:
 
