@@ -37,7 +37,7 @@ This piece of code will return as output:
 242
 ```
 
-So the time to coumpute Fibonacci from 30 took 242 milliseconds. The reason being that the compiler is doing a lot of redundant work. If we add `@Memoized` annotation we can use cache to store calculated values and avoid this redudant work.
+So the time to coumpute Fibonacci from 30 took 242 milliseconds. The reason being that the computer is doing a lot of redundant work. If we add `@Memoized` annotation we can use cache to store calculated values and avoid this redudant work.
 
 **Fibonacci Implementation using @Memoized Annotation**
 
