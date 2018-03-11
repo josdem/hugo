@@ -50,6 +50,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Working with Strings](/techtalk/groovy/working_with_strings)
  * [Rest client, headers and data](/techtalk/groovy/groovy_restclient)
  * [Bindable](/techtalk/groovy/bindable)
+ * [Memoized](/techtalk/groovy/memoized)
 * [**Grails**](/techtalk/grails)
  * [Download counter](/techtalk/grails/operating_system_downloader_counter)
  * [Externalized configuration](/techtalk/grails/grails_externalized_conf)
