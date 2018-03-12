@@ -1047,6 +1047,11 @@ public class ShopCalculator {
 }
 ```
 
+I solved this challenge in three steps:
+
+1. We are creating keyboard and usb price combination using a `Map.Entry` pair object
+2. We are summarizing those price combinations and stored as a `List`
+3. We are getting max result combination comparing with equals or less that our amount
 
 To download the code:
 
