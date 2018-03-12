@@ -25,6 +25,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [String Compressor](#String_Compressor)
 * [Bon Appetit](#Bon_Appetit)
 * [Sock Merchant](#Sock_Merchant)
+* [Electronics Shop](#Electronics_Shop)
 
 <a name="Palindrome">
 ## Palindrome
@@ -960,6 +961,92 @@ We are solving this challenge in three steps:
 1. We are grouping by occurrences
 2. From a map we are getting `Map.Entry` collection as stream, then we filtered every item value by which one is divisible by 2, finally we stored filtered values as a list.
 3. We are counting how many pairs we can create by dividing every item from long collection by 2
+
+<a name="Electronics_Shop">
+## Electronics Shop
+</a>
+
+Monica wants to buy exactly one keyboard and one USB drive from her favorite electronics store. The store sells `$N$` different brands of keyboards and `$M$` different brands of USB drives. Monica has exactly `$S$` dollars to spend, and she wants to spend as much of it as possible (i.e., the total cost of her purchase must be maximal).
+
+Given the price lists for the store's keyboards and USB drives, find and print the amount of money Monica will spend. If she doesn't have enough money to buy one keyboard and one USB drive, print `$-1$` instead.
+
+**Note:** She will never buy more than one keyboard and one USB drive even if she has the leftover money to do so.
+
+**Input Format**
+
+* Amount of money Monica has to spend in electronics. 
+* Integer collection denoting the prices of each keyboard brand. 
+* Integer collection denoting the prices of each USB drive brand.
+
+**Constraints**
+
+* `$1 \le N,M \le 1000$`
+* `$1 \le S \le 10^6$`
+* `$1 \le price \le 10^6$`
+
+**Output Format**
+
+Single integer denoting the amount of money Monica will spend. If she doesn't have enough money to buy one keyboard and one USB drive `-1` instead.
+
+**Sample Input**
+
+```bash
+keyboards = [3, 1]
+usbs = [5, 2, 8]
+amount = 10
+```
+
+**Sample Output**
+
+```bash
+9
+```
+
+**Explanation**
+
+She can buy the `$2nd$` keyboard and the `$3rd$` USB drive for a total cost of `$8 + 1 = 9$`.
+
+**Solution**
+
+```java
+import java.util.Map;
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.Optional;
+import java.util.AbstractMap.SimpleEntry;
+
+import java.util.stream.Collectors;
+
+public class ShopCalculator {
+
+  private Integer calculate(final Integer amount, List<Integer> keyboards, List<Integer> usbs){
+    List<Map.Entry<Integer,Integer>> pairList = new ArrayList<Map.Entry<Integer,Integer>>();
+
+    keyboards.forEach( k ->
+      usbs.forEach( u ->        
+        pairList.add(new SimpleEntry<Integer,Integer>(k,u))
+      )
+    );
+
+    List<Integer> electronicsCost = pairList.stream().map(entry -> entry.getKey() + entry.getValue()).collect(Collectors.toList());
+
+    Optional<Integer> result = electronicsCost.stream().filter(it -> it <= amount).max(Integer::compare);
+
+    return result.isPresent() ? result.get() : -1;
+  }
+
+  public static void main(String[] args){
+    List<Integer> keyboards = Arrays.asList(3, 1);
+    List<Integer> usbs = Arrays.asList(5, 2, 8);
+    Integer amount = 10;
+    Integer result = new ShopCalculator().calculate(amount, keyboards, usbs);
+    assert 9 == result;
+  }
+  
+}
+```
+
 
 To download the code:
 
