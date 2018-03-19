@@ -6,16 +6,46 @@ categories = ["techtalk","code"]
 
 +++
 
-Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Boot project. First we need to add dependency to the `build.gradle`
+Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Boot project. First you set up a basic build script.`build.gradle`
 
 ```groovy
-compile 'org.springframework.boot:spring-boot-starter-security'
+buildscript {
+  ext {
+    springBootVersion = '2.0.0.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.jos.dem.springboot.security'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.boot:spring-boot-starter-security')
+  compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+  compile('org.codehaus.groovy:groovy-all')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+}
 ```
 
-Then we need to configure Spring secutiry using Java config class:
+Spring Security’s `WebSecurityConfigurerAdapter` provides some convenient defaults to get our application up and running quickly. Let’s see how we can update our configuration to use a custom form.
 
 ```groovy
-package com.jos.dem.vetlog.config
+package com.jos.dem.springboot.security.config
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.context.annotation.Configuration
@@ -27,18 +57,16 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 @Configuration
 @EnableWebSecurity
 class SecurityConfig extends WebSecurityConfigurerAdapter {
+
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http
     .authorizeRequests()
-    .antMatchers("/", "/assets/**","/home/**").permitAll()
-    .anyRequest().authenticated()
+    .antMatchers("/assets/**").permitAll() // 1
+    .anyRequest().authenticated()          // 2
     .and()
-    .formLogin()
-    .loginPage("/login")
-    .permitAll()
-    .and()
-    .logout()
+    .formLogin()                           // 3
+    .loginPage("/login")                   // 4
     .permitAll()
   }
 
@@ -46,84 +74,66 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
   void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
     auth
     .inMemoryAuthentication()
-    .withUser("user").password("password").roles("USER")
+    .withUser("josdem").password("12345678").roles("USER")
   }
+
 }
 ```
 
+1. We grant full access to the assets folder (JavaScript and CSS)
+2. Every request requires the user to be authenticated
+3. Form based authentication is supported
+4. Login request mapping
+
+**Besides**
+
 The `SecurityConfig` class is annotated with `@EnableWebSecurity` to enable Spring Security’s web security support and provide the Spring MVC integration.
 
-The `configure(HttpSecurity)` method defines which URL paths should be secured and which should not. Specifically, the `"/"`, `"/home"` and `"/assets"` paths are configured to not require any authentication. All other paths must be authenticated.
+The `configure(HttpSecurity)` method defines which URL paths should be secured and which should not.
 
-When a user successfully logs in, they will be redirected to the previously requested page that required authentication. There is a custom `"/login"` page specified by `loginPage()`, and everyone is allowed to view it.
+The `configureGlobal(AuthenticationManagerBuilder)` method, it sets up an in-memory user store with a single user. That user is given a username of `"user"`, a password of `"12345678"`, and a role of `"USER"`.
 
-As for the `configureGlobal(AuthenticationManagerBuilder)` method, it sets up an in-memory user store with a single user. That user is given a username of `"user"`, a password of `"password"`, and a role of `"USER"`.
-
-Now we need to create the login page. There’s already a view controller for the `"login"` view, so you only need to create the login view itself:
+Now we need to create the login page:
 
 ```html
-<!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="/assets/third-party/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/assets/third-party/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="/assets/third-party/vetlog-theme/css/style.css" />
-    <link rel="stylesheet" href="/assets/third-party/vetlog-theme/css/plugins.css" />
-    <link rel="stylesheet" href="/assets/third-party/vetlog-theme/css/demo.css" />
+    <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/dist/css/bootstrap.min.css}" />
   </head>
-  <body class="login">
-
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <font color="white"><h3 th:text="#{login.header}"/></font>
+    </nav>
+    <br/><br/><br/><br/>
     <div class="container">
-      <div class="row">
-        <div class="col-md-4 col-md-offset-4">
-          <div class="login-banner text-center">
-            <h1>
-              <img src="/assets/third-party/vetlog-theme/img/flex-admin-logo.png" th:src="@{/assets/third-party/vetlog-theme/img/flex-admin-logo.png}"/>
-            </h1>
-          </div>
-          <div class="portlet portlet-green">
-            <div class="portlet-heading login-heading">
-              <div class="portlet-title">
-                <h4 th:text="#{login.welcome}"/>
-              </div>
-              <div class="clearfix"></div>
-            </div>
-            <div class="portlet-body">
-              <div th:if="${error}">
-                <div align="center">
-                  <p th:text="${error}"/>
-                </div>
-              </div>
-              <form th:action="@{/login}" method='POST' id='loginForm' class='cssform' autocomplete='off'>
-                <fieldset>
-                  <label for="username"><h4 th:text="#{login.username}"/></label>
-                  <input type="text" name='username' class="form-control" placeholder="username" id='username'/>
-                  <label for="password"><h4 th:text="#{login.password}"/></label>
-                  <input type="password" name='password' class="form-control" placeholder="password" id='password'/>
-                  <br/>
-                  <button id="btn-success" type="submit" class="btn btn-lg btn-primary btn-block"><h5 th:text="#{login.action}"/></button>
-                  <hr/>
-                  <a th:href="@{'/users/create'}" class="btn btn-primary btn-block"><h5 th:text="#{login.register}"/></a>
-                </fieldset>
-                <br/>
-                <p class="small">
-                <g:link controller="recovery" action="forgotPassword"><h5 th:text="#{login.forgot}"/></g:link>
-                </p>
-              </form>
-            </div>
-          </div>
+      <form th:action="@{/login}" method='POST' id='loginForm' class='cssform' autocomplete='off'>
+        <div class="form-group">
+          <label for="username"><h4 th:text="#{login.username}"/></label>
+          <input type="text" name='username' class="form-control" placeholder="username" id='username'/>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="password"><h4 th:text="#{login.password}"/></label>
+          <input type="password" name='password' class="form-control" placeholder="password" id='password'/>
+        </div>
+        <br/>
+        <button id="btn-success" type="submit" class="btn btn-lg btn-primary btn-block"><h5 th:text="#{login.action}"/></button>
+        <br/>
+      </form>
     </div>
+    <footer>
+      <nav class="navbar navbar-inverse navbar-fixed-bottom">
+        <a class="navbar-brand" th:href="#{project.repository}"><p th:text="#{login.footer}"/></a>
+      </nav>
+    </footer>
   </body>
 </html>
 ```
 
-Finally in the `LoginController` we render error object message in case that the attempt to login failed and the view is specified.
+This is our `LoginController` we are rendering error object message in case that the attempt to login failed and the view is specified.
 
 
 ```groovy
-package com.jos.dem.vetlog.controller
+package com.jos.dem.springboot.security.controller
 
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -132,17 +142,11 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Controller
 
-import com.jos.dem.vetlog.service.LocaleService
-import com.jos.dem.vetlog.service.VetlogService
-
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 @Controller
 class LoginController {
-
-  @Autowired
-  LocaleService localeService
 
   Logger log = LoggerFactory.getLogger(this.class)
 
@@ -151,7 +155,7 @@ class LoginController {
     log.info "Calling login"
     ModelAndView modelAndView = new ModelAndView('login/login')
     if(error.isPresent()){
-      modelAndView.addObject('error', localeService.getMessage('login.error'))
+      modelAndView.addObject('error', 'Invalid Credentials')
     }
     modelAndView
   }
@@ -159,12 +163,35 @@ class LoginController {
 }
 ```
 
+In Spring Boot 2.0.0.RELEASE we need to specify `PasswordEncoder` therefore we need to add that bean to the configuration. I am attaching here our `SpringBootApplication` class
+
+```groovy
+package com.jos.dem.springboot.security
+
+import org.springframework.boot.SpringApplication
+import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.context.annotation.Bean
+import org.springframework.security.crypto.password.PasswordEncoder
+import org.springframework.security.crypto.password.NoOpPasswordEncoder
+
+@SpringBootApplication
+class DemoApplication {
+
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    NoOpPasswordEncoder.getInstance()
+  }
+
+  static void main(String[] args) {
+    SpringApplication.run DemoApplication, args
+  }
+}
+```
+
 To download the project
 
 ```bash
-git clone https://github.com/josdem/vetlog-spring-boot.git
-git fetch
-git checkout feature/6
+git clone https://github.com/josdem/spring-boot-security.git
 ```
 
 To run the project:
