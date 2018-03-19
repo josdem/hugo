@@ -1,7 +1,7 @@
 +++
 date = "2017-01-10T19:25:41-06:00"
 title = "Spring Boot Security"
-tags = ["josdem","techtalks","programming","technology","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot","Custom Login Form Spring Boot"]
 categories = ["techtalk","code"]
 
 +++
@@ -187,6 +187,41 @@ class DemoApplication {
   }
 }
 ```
+
+Finally this is our `HomeController` with a protected message:
+
+```groovy
+package com.jos.dem.springboot.security.controller
+
+import org.springframework.stereotype.Controller
+import org.springframework.web.bind.annotation.RequestMapping
+
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
+
+@Controller
+class HomeController {
+
+  Logger log = LoggerFactory.getLogger(this.class)
+
+  @RequestMapping('/')
+  String index(){
+    log.info 'Calling Index'
+    'index'
+  }
+
+}
+```
+
+A protected messsage is just a `Hello World!` page
+
+```html
+<html>
+  Hello World!
+</html>
+```
+
+Now run the project and try visiting http://localhost:8080/ to see a Hello World message previous authentication using our custom login page.
 
 To download the project
 
