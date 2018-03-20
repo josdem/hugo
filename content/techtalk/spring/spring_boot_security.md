@@ -105,6 +105,11 @@ Now we need to create the login page:
       <font color="white"><h3 th:text="#{login.header}"/></font>
     </nav>
     <br/><br/><br/><br/>
+    <div th:if="${error}">
+      <div align="center">
+        <p th:text="${error}"/>
+      </div>
+    </div>
     <div class="container">
       <form th:action="@{/login}" method='POST' id='loginForm' class='cssform' autocomplete='off'>
         <div class="form-group">
@@ -227,6 +232,8 @@ To download the project
 
 ```bash
 git clone https://github.com/josdem/spring-boot-security.git
+git fetch
+git checkout feature/in-memory
 ```
 
 To run the project:
