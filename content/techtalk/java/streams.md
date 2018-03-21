@@ -209,7 +209,7 @@ public class FileStreamer {
 To download the code:
 
 ```bash
-git clone https://github.com/josdem/java-topics.git
+git clone https://github.com/josdem/java-workshop.git
 cd streams/examples
 ```
 
