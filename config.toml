@@ -142,7 +142,7 @@ disqusShortname = "josdem"
 		[[params.clients.list]]
 			avatar = "josue.png"
 			name   = "Josué Santiago"
-			title  = "Tech Lead"
+			title  = "Tech Lead, Softtek"
 			quote  = "**José Luis is an excellent professional but a better human being.** Always willing to share their knowledge with others, and especially looking to learn. One of the people who leaves a mark."
 			logo   = "softtek.png"
 
