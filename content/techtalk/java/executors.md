@@ -55,6 +55,28 @@ public class ExecutorCounter {
 }
 ```
 
+We might have this output:
+
+```bash
+I have been saying hello: 1 times
+I have been saying hello: 2 times
+I have been saying hello: 3 times
+```
+
+Or this one:
+
+```bash
+I have been saying hello: 2 times
+I have been saying hello: 3 times
+I have been saying hello: 1 times
+```
+
+This is because when executed, it will produce unpredictable results due to the threads running independently, that is common known as [Race Condition](https://en.wikipedia.org/wiki/Race_condition). Java supports thread-synchronization via the synchronized keyword. We can utilize synchronized to fix the above race conditions when incrementing the count
+
+```java
+
+```
+
 
 ```bash
 git clone https://github.com/josdem/java-workshop.git
