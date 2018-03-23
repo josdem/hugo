@@ -47,7 +47,7 @@ public class ExecutorCounter {
 		count++;
 		System.out.println("I have been saying hello: " + count + " times");
 	}
-	
+
 	public static void main(String[] args) throws InterruptedException {
 		new ExecutorCounter().start();
 	}
@@ -74,9 +74,91 @@ I have been saying hello: 1 times
 This is because when executed, it will produce unpredictable results due to the threads running independently, that is common known as [Race Condition](https://en.wikipedia.org/wiki/Race_condition). Java supports thread-synchronization via the synchronized keyword. We can utilize synchronized to fix the above race conditions when incrementing the count
 
 ```java
+import java.util.stream.IntStream;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
 
+public class ExecutorCounter {
+
+  private final static Integer MAX_PERIOD_TIME = 30;
+
+  private Integer count = 0;
+  private ExecutorService executor = Executors.newFixedThreadPool(3);
+
+  private Integer start() throws InterruptedException {
+    IntStream.range(0, 3).forEach(i -> executor.submit(this::incrementSync));
+    executor.shutdown();
+
+    executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
+    return count;
+  }
+
+  private synchronized void incrementSync() {
+    count++;
+    System.out.println("I have been saying hello: " + count + " times");
+  }
+
+  public static void main(String[] args) throws InterruptedException {
+    new ExecutorCounter().start();
+  }
+
+}
 ```
 
+**Callables and Futures**
+
+Executors support another kind of task named Callable. Callables are functional interfaces just like runnables but instead of being void they return a value.
+
+Callables can be submitted to executor services. Since `submit()` doesn't wait until the task completes, the executor service cannot return the result of the callable directly. Instead the executor returns a special result of type Future which can be used to retrieve the actual result at a later point in time.
+
+```java
+import java.util.concurrent.Future;
+import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ExecutionException;
+
+public class ExecutorCallable {
+
+  private final static Integer MAX_PERIOD_TIME = 30;
+
+  private ExecutorService executor = Executors.newFixedThreadPool(3);
+
+  private void start() throws InterruptedException, ExecutionException {
+    Future<Integer> future = executor.submit(new CallableThread());
+    final Integer result = future.get();
+    executor.shutdown();
+
+    System.out.println("I have been sleeping: " + result + " seconds");
+    executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
+  }
+
+  public static void main(String[] args) throws InterruptedException, ExecutionException {
+    new ExecutorCallableCounter().start();
+  }
+}
+
+class CallableThread implements Callable<Integer> {
+
+  @Override
+  public Integer call() throws InterruptedException{
+    final Integer wait = 3;
+    TimeUnit.SECONDS.sleep(wait);
+    return wait;
+  }
+
+}
+```
+
+*Output*
+
+```bash
+I have been sleeping: 3 seconds
+```
+
+To download the project:
 
 ```bash
 git clone https://github.com/josdem/java-workshop.git
