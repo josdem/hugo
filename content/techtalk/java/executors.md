@@ -189,7 +189,7 @@ class CallableThread implements Callable<Integer> {
 I have been sleeping: 3 seconds
 ```
 
-In Java 8, the `CompletableFuture` class was introduced. Along with the Future interface.
+In Java 8, the `CompletableFuture` class was introduced and also implements this `Future` interface.
 
 ```java
 import java.util.concurrent.TimeUnit;
@@ -237,7 +237,7 @@ public class ExecutorCompletableFuture {
 I have been sleeping: 3 seconds
 ```
 
-A common way to avoid boilerplate is simply execute some asynchronous methods: `runAsync`, `supplyAsync` and `applyAsync`:
+A common way to avoid boilerplate is simply execute some asynchronous methods with `runAsync`, `supplyAsync` and `applyAsync`:
 
 ```java
 import java.util.concurrent.TimeUnit;
