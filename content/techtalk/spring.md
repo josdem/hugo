@@ -69,6 +69,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Oauth2 with Google](/techtalk/spring/spring_boot_oauth2)
 * [Spring Boot Rest Client](/techtalk/spring/spring_boot_rest_client)
 * [Spring Boot Actuator](/techtalk/spring/spring_boot_actuator)
+* [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
 
 [Return to the main article](/techtalk/techtalks)
 
