@@ -50,7 +50,7 @@ dependencies {
 }
 ```
 
-Now let's create a simple POJO object to store and retrieve information from our MongoDB.
+Now let's create a simple POJO to store and retrieve information from our MongoDB.
 
 ```java
 package com.jos.dem.webflux.model;
@@ -80,7 +80,7 @@ public class Person {
 
 Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/)
 
-In Spring Data some API are supporting a full reactive experience including MongoDB, Couchbase and Casandra, in this case let's create a `PersonRepository` as we going to be reactive.
+Spring Data now is supporting a full reactive experience with MongoDB, Couchbase, Redis and Casandra, in this case let's create a `PersonRepository` using `ReactiveMongoRepository` as we going to be reactive.
 
 ```java
 package com.jos.dem.webflux.repository;
@@ -92,7 +92,7 @@ import com.jos.dem.webflux.model.Person;
 public interface PersonRepository extends ReactiveMongoRepository<Person, String> {}
 ```
 
-Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in through a run internal method the provided parameters.
+Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
 
 ```java
 package com.jos.dem.webflux;
@@ -119,7 +119,7 @@ public class PersonApplication {
 }
 ```
 
-Now we are going to create a list of persons and store them in our MongoDB
+It is time to create a list of persons and store them in our MongoDB
 
 ```java
 package com.jos.dem.webflux;
