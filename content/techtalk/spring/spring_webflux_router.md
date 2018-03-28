@@ -94,7 +94,7 @@ And this one is the endpoint to get a person by id: [http://localhost:8080/perso
 
 **Conclusion**
 
-This ends the introduction to Spring’s new functional style web framework. Let me conclude by giving a short summary:
+Let me conclude by giving a short summary:
 
 * Spring Boot now embraces reactive programming
 * Router functions route to handler functions

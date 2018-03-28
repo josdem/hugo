@@ -71,6 +71,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Actuator](/techtalk/spring/spring_boot_actuator)
 * [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
 * [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
+* [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
 
 [Return to the main article](/techtalk/techtalks)
 
