@@ -192,4 +192,4 @@ disqusShortname = "josdem"
 
 
 	[params.footer]
-		copyright = "Published under the Unlicense License."
+		copyright = "Published under Apache 2.0 license."
