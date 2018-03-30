@@ -11,7 +11,7 @@ In previous [post](/techtalk/spring/spring_webflux_router) we covered web reacti
 spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --language=java client
 ```
 
-Here is the complete `build.gradle` file:
+Here is the complete `build.gradle` file generated:
 
 ```groovy
 buildscript {
@@ -116,6 +116,12 @@ public class PersonApplication {
 ```
  
 `WebClient` defined as `@Bean` is a non-blocking, reactive client for performing HTTP requests with our reactive web server, and again Netty is used by default.
+
+Do not forget to run this client in different port using the following specification in our `application.properties` file
+
+```properties
+server.port=8081
+```
 
 To download the project:
 
