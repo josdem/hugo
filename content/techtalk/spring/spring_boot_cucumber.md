@@ -5,7 +5,7 @@ tags = ["josdem", "techtalks","programming","technology","Java", "Cucumber"]
 categories = ["techtalk", "code"]
 +++
 
-BDD (Behavior-driven development) is a great technique to replace UAT (User Acceptance Testing). Usually is a good idea to use BDD to reprecent how users can define application behaviour in plain text.
+BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing.
 
 This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology. 
 
