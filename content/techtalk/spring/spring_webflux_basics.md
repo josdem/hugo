@@ -13,7 +13,7 @@ Let's start creating a new Spring Boot project with Webflux, Mongo Reactive and 
 spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --language=java reactive-webflux-workshop
 ```
 
-Here is the complete `build.gradle` file:
+Here is the complete `build.gradle` file generated:
 
 ```groovy
 buildscript {
