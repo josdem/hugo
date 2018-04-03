@@ -193,7 +193,7 @@ import cucumber.api.junit.Cucumber;
 public class CucumberTest {}
 ```
 
-Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherking feature definition:
+Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition:
 
 ```gherkin
 Feature: Persons can be retrieved  

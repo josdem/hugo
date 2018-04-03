@@ -5,7 +5,7 @@ categories = ["techtalk", "code"]
 title = "Spring Boot RESTFul"
 +++
 
-The main idea behind creating a RESTfull application is that you will create logical resources (GET, POST, UPDATE and DELETE) consumed by clients usign HTTP request.
+The main idea behind creating a RESTful application is that you will create logical resources (GET, POST, UPDATE and DELETE) consumed by clients usign HTTP request.
 
 This resources should be nouns no verbs. In this example we will create a RESTful application using a person resource.
 
