@@ -100,6 +100,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
  * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
  * [Spring Boot Cucumber](/techtalk/spring/spring_boot_cucumber)
+ * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
  * [REST Calls with Retrofit](/techtalk/android/retrofit)
