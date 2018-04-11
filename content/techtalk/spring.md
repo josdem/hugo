@@ -74,6 +74,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
 * [Spring Boot Cucumber](/techtalk/spring/spring_boot_cucumber)
 * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
+* [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
 
 [Return to the main article](/techtalk/techtalks)
 

@@ -145,6 +145,8 @@ To download the project:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-security.git
+git fetch
+git checkout feature/in-memory
 ```
 
 To run the project:
