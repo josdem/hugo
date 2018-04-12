@@ -94,8 +94,8 @@ import lombok.ToString;
 @Data
 @Document
 @ToString
-public class User implements UserDetails {  
-  
+public class User implements UserDetails {
+
   @Id
   private String uuid;
   private String username;
@@ -149,6 +149,73 @@ public class User implements UserDetails {
 
 }
 ```
+
+Now, we are going to use `CommandLineRunner` to create a defaul user. `CommandLineRunner` is a call back interface in Spring Boot, so when Spring Boot starts will call it and pass in args through a `run()` internal method.
+
+```java
+package com.jos.dem.security;
+
+import java.util.UUID;
+
+import com.jos.dem.security.repository.UserRepository;
+import com.jos.dem.security.model.User;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
+
+@SpringBootApplication
+public class DemoApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
+  }
+
+  @Bean
+  PasswordEncoder passwordEncoder() {
+    return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+  }
+
+  @Bean
+  CommandLineRunner start(UserRepository userRepository, PasswordEncoder passwordEncoder){
+    return args -> {
+      userRepository.deleteAll().subscribe();
+
+      User user = new User(UUID.randomUUID().toString(), "josdem", passwordEncoder.encode("12345678"));
+      userRepository.save(user).subscribe();
+
+      userRepository.findAll().log().subscribe(System.out::println);
+    };
+  }
+
+}
+```
+
+Do not forget to create a mongo database in your local environment and specify your credentials in the `application.properties` file:
+
+```properties
+spring.data.mongodb.database=webflux_security
+spring.data.mongodb.host=localhost
+spring.data.mongodb.username=username
+spring.data.mongodb.password=password
+```
+
+We can start our application using `gradle bootRun` command and then list our user collection in mongoDB:
+
+```bash
+{ "_id" : "c72c0a87-b4fe-4e3f-854f-6ea289707be8", "username" : "josdem", "password" : "{bcrypt}$2a$10$L8J6n1xMX.OM8Og.6Q/1keDqwpiv/PCCTD5cbvEiKuH7kWUh/aw4m", "active" : true, "roles" : [ { "role" : "ROLE_USER", "_class" : "org.springframework.security.core.authority.SimpleGrantedAuthority" } ], "_class" : "com.jos.dem.security.model.User" }
+```
+
+Now if we open the main page of the application: [http://localhost:8080](http://localhost:8080) we’ll see a nicely Bootstrap 4 form to accept our credentials.
+
+<img src="/img/techtalks/spring/login_form.png">
+
+After a successful login you can see a greeting
+
+<img src="/img/techtalks/spring/form_greeting.png">
 
 
 To download the project:
