@@ -127,12 +127,143 @@ public class PersonController {
 }
 ```
 
+In order to complete our basement let’s create PersonService to bring data:
 
+```java
+package com.jos.dem.springboot.geb.service;
+
+import com.jos.dem.springboot.geb.model.Person;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+public interface PersonService {
+  Flux<Person> getAll();
+  Mono<Person> getByNickname(String nickname);
+  void save(Person person);
+}
+```
+
+Implementation:
+
+```java
+package com.jos.dem.springboot.geb.service.impl;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.jos.dem.springboot.geb.model.Person;
+import com.jos.dem.springboot.geb.service.PersonService;
+
+import org.springframework.stereotype.Service;
+
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+
+@Service
+public class PersonServiceImpl implements PersonService {
+
+  private Map<String, Person> persons = new HashMap<String, Person>();
+
+  public Flux<Person> getAll(){
+    return Flux.fromIterable(persons.values());    
+  }
+
+  public Mono<Person> getByNickname(String nickname){
+    return Mono.just(persons.get(nickname));
+  }
+
+  public void save(Person person){
+    persons.put(person.getNickname(), person);
+  }
+
+}
+```
+
+Now all is set in our service, let’s continue adding Groovy, Geb and Spock as dependencies in our `build.gradle` file:
+
+```groovy
+compile('org.codehaus.groovy:groovy-all')
+testCompile('org.gebish:geb-spock:2.1')
+testCompile('org.seleniumhq.selenium:selenium-firefox-driver:3.11.0')
+testCompile('org.spockframework:spock-spring')
+testCompile('org.spockframework:spock-spring:1.1-groovy-2.4')
+testCompile("io.github.bonigarcia:webdrivermanager:1.5.0") {
+  exclude group: 'org.seleniumhq.selenium'
+}
+```
+
+Geb by convention will look for a `src/test/resources/GebConfig.groovy` file which contains web driver definition Firefox by default and reports directory where Geb saves the screenshots and HTML dumps at the end of each test:
+
+```groovy
+import io.github.bonigarcia.wdm.FirefoxDriverManager
+import org.openqa.selenium.firefox.FirefoxDriver
+
+reportsDir = 'build/test-reports'
+
+atCheckWaiting = true
+
+driver = {
+  FirefoxDriverManager.getInstance().setup()
+  new FirefoxDriver()
+}
+```
+
+Next step is to define page object, since is a good idea to separate page layout from logic behaviour:
+
+```groovy
+package com.jos.dem.springboot.geb.pages
+
+import geb.Page
+
+class PersonList extends Page {
+
+  static url = "list"
+  static at = { title == "Person List" }
+  static content = {
+  }
+
+}
+```
+
+Now we can define our test behaviour using [Spock Framework](http://spockframework.org/)
+
+```groovy
+package com.jos.dem.springboot.geb
+
+import geb.spock.GebReportingSpec
+import com.jos.dem.springboot.geb.pages.PersonList
+
+class CreatePersonSpec extends GebReportingSpec {
+
+  void 'should create person'() {
+    given:
+      go "http://localhost:8080/create"
+
+    when:
+      $("input", name: "nickname").value("josdem")
+      $("input", name: "email").value("joseluis.delacruz@gmail.com")
+      $("button", name: "submit").click()
+
+    then:
+      at PersonList
+    }
+
+}
+```
+
+This test represent happy path:
+
+* **given:** A url and go instruction that directs the web driver to the page.
+* **when:** Fills out name and email text fields in the form and clicks the submit button. 
+* **then:** Is just making sure we going to the right place. We could add any other assertions.
+
+Geb is using a JQuery like style to access to our html elements, Geb call it [Navigator API](http://www.gebish.org/manual/current/#navigator).
 
 To download the project:
 
 ```bash
-git clone https://github.com/josdem/spring_boot_cucumber.git
+git clone https://github.com/josdem/spring_boot_geb.git
 ```
 
 To run the project:
