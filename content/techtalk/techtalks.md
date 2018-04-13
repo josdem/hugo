@@ -100,6 +100,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
  * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
  * [Spring Boot Cucumber](/techtalk/spring/spring_boot_cucumber)
+ * [Spring Boot Geb](/techtalk/spring/spring_boot_geb)
  * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
  * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
 * [**Android**](/techtalk/android)
