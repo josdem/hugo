@@ -100,7 +100,7 @@ public class PersonController {
   @Autowired
   private PersonService personService;
 
-  Logger log = LoggerFactory.getLogger(this.getClass());
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @RequestMapping(method=GET)
   public String persons(final Model model){
@@ -166,7 +166,7 @@ public class PersonServiceImpl implements PersonService {
   private Map<String, Person> persons = new HashMap<String, Person>();
 
   public Flux<Person> getAll(){
-    return Flux.fromIterable(persons.values());    
+    return Flux.fromIterable(persons.values());
   }
 
   public Mono<Person> getByNickname(String nickname){
@@ -193,7 +193,7 @@ testCompile("io.github.bonigarcia:webdrivermanager:1.5.0") {
 }
 ```
 
-Geb by convention will look for a `src/test/resources/GebConfig.groovy` file which contains web driver definition Firefox by default and reports directory where Geb saves the screenshots and HTML dumps at the end of each test:
+Geb by convention will look for a `src/test/resources/GebConfig.groovy` file which contains web driver definition Firefox by default, another important configuration is reports directory where Geb saves the screenshots and HTML dumps at the end of each test:
 
 ```groovy
 import io.github.bonigarcia.wdm.FirefoxDriverManager
@@ -254,8 +254,8 @@ class CreatePersonSpec extends GebReportingSpec {
 
 This test represent happy path:
 
-* **given:** A url and go instruction that directs the web driver to the page.
-* **when:** Fills out name and email text fields in the form and clicks the submit button. 
+* **given:** A url and go instruction that directs the web driver to the create person page.
+* **when:** Fills out name and email text fields in the form and clicks the submit button.
 * **then:** Is just making sure we going to the right place. We could add any other assertions.
 
 Geb is using a JQuery like style to access to our html elements, Geb call it [Navigator API](http://www.gebish.org/manual/current/#navigator).
