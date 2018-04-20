@@ -143,6 +143,10 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Grading Students](/techtalk/algorithms/grading_students)
  * [Apple and Orange](/techtalk/algorithms/apple_orange)
  * [Kangaroo](/techtalk/algorithms/kangaroo)
+* [**Best Practices**](/techtalk/best_practices/best_practices)
+ * [Continuous Delivery](/techtalk/best_practices/continuous_delivery)
+ * [Extreme Programming](/techtalk/best_practices/extreme_programming)
+ * [Clean Code](/techtalk/clean_code)
 * [**Machine Learning**](/techtalk/machine_learning/machine_learning)
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
  * [Linear Algebra](/techtalk/machine_learning/linear_algebra)
@@ -153,9 +157,6 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**Apache Camel**](/techtalk/camel)
   * [Mailbox Reader](/techtalk/camel/mailbox_reader)
 * [Python](/techtalk/python)
-* [Continuous Delivery](/techtalk/continuous_delivery)
-* [Extreme Programming](/techtalk/extreme_programming)
-* [Clean Code](/techtalk/clean_code)
 * [Security](/techtalk/security)
 
 If you have some doubts or comments about this, let me know I'll be more than happy to help.
