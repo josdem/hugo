@@ -14,7 +14,7 @@ In object-oriented programming SOLID is a term developed by [Robert C. Martin](h
 * [D — Dependency Inversion Principle](#dip)
 
 <a name="srp">
-## Single responsibility principle
+## Single Responsibility Principle
 </a>
 
 Every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. When a class has more than one reason to be changed, it is more fragile, so a change in one location might lead to some unexpected behavior in totally other places.
