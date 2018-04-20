@@ -7,13 +7,15 @@ categories = ["techtalk", "code"]
 
 In object-oriented programming SOLID is a term developed by [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin) and the intention is to describe five important design principles to create good software, those concepts are:
 
-* S — Single responsibility principle
-* O — Open closed principle
-* L — Liskov substitution principle
-* I — Interface segregation principle
-* D — Dependency Inversion principle
+* [S — Single Responsibility Principle](#srp)
+* [O — Open closed Principle](#ocp)
+* [L — Liskov Substitution Principle](#lsp)
+* [I — Interface Segregation Principle](#isp)
+* [D — Dependency Inversion Principle](#dip)
 
-**Single responsibility principle**
+<a name="srp">
+## Single responsibility principle
+</a>
 
 Every class should have a single responsibility, and that responsibility should be entirely encapsulated by the class. When a class has more than one reason to be changed, it is more fragile, so a change in one location might lead to some unexpected behavior in totally other places.
 
@@ -152,7 +154,9 @@ class FuelPumpSpec extends Specification {
 }
 ```
 
-**Open-closed Principle**
+<a name="ocp">
+## Open-closed Principle
+</a>
 
 Objects or entities should be open for extension, but closed for modification.
 
@@ -331,7 +335,9 @@ public class EmployeeTest {
 
 That's it, if we need to add a new employee type, we only need to create a new employee implementation.
 
-**Liskov substitution principle**
+<a name="lsp">
+## Liskov Substitution Principle
+</a>
 
 Every subclass/derived class should be substitutable for their base/parent class.
 
@@ -368,7 +374,9 @@ public class EmployeeTest {
 
 In this case we are iterating over employees concrete implementations and getting payment amount using their abstraction, that's it, from client's point of view we can use a concrete or abstraction elements.
 
-**Interface segregation principle**
+<a name="isp">
+## Interface Segregation Principle
+</a>
 
 Clients should not be forced to implement unnecessary methods which they will not use.
 
@@ -510,7 +518,9 @@ public class EmployeeTest {
 }
 ```
 
-**Dependency inversion principle**
+<a name="dip">
+## Dependency Inversion Principle
+</a>
 
 Entities must depend on abstractions not on concretions.
 
