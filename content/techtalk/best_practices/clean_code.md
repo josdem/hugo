@@ -76,4 +76,4 @@ is preferable to
 
 *Most of the good programmers do programming not because they expect to get paid or get adulation by the public, but because it is fun to program.* ~ Linus Torvalds
 
-[Return to the main article](/techtalk/techtalks)
+[Return to the main article](/techtalk/best_practices)

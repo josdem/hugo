@@ -64,4 +64,4 @@ Stories: When your team are doing estimation be sure that your story has all con
 * Take initiative when their partner is stuck, thus lowering frustration.
 * Hold each other accountable to the team’s practices. In addition: Rotate pairs frequently, personal hygiene and health are important issues when pairing.
 
-[Return to the main article](/techtalk/techtalks)
+[Return to the main article](/techtalk/best_practices)
