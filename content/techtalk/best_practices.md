@@ -16,6 +16,7 @@ In general this concepts are widely accepted over developers with some experienc
 * [Clean Code](/techtalk/best_practices/clean_code)
 * [Continious Delivery](/techtalk/best_practices/continuous_delivery)
 * [Extreme Programming](/techtalk/best_practices/extreme_programming)
+* [SOLID Principles](/techtalk/best_practices/solid_principles)
 
 [Return to the main article](/techtalk/techtalks)
 
