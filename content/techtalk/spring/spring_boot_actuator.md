@@ -6,50 +6,47 @@ tags = ["josdem","techtalks","programming","technology","Spring Boot Actuator"]
 
 +++
 
-## Setup
-This time I will show you how to create a basic project in Spring Boot with Actuator, in order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
+Spring Boot includes a number of additional features to help you monitor and manage your application. The `spring-boot-actuator` module provides all of Spring Boot’s production-ready features.
 
-* Spring Boot
-* Groovy
-* Gradle
-
-Then execute this command in your terminal.
+Let’s start creating a new Spring Boot project with web and actuator dependencies:
 
 ```bash
-spring init --dependencies=web --language=groovy --build=gradle spring-boot-actuator
+spring init --dependencies=web,actuator --language=groovy --build=gradle spring-boot-actuator
 ```
 
-This is the build.gradle file generated:
+This is the `build.gradle` file generated:
 
 ```groovy
 buildscript {
-	ext {
-		springBootVersion = '1.5.9.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+  ext {
+    springBootVersion = '1.5.12.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
 }
 
 apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
 
-group = 'com.example'
+group = 'com.jos.dem.springboot.actuator'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.codehaus.groovy:groovy')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.boot:spring-boot-starter-actuator')
+  compile('org.codehaus.groovy:groovy')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
 }
+
 ```
 
 Now, let's create a `RestController`
@@ -71,57 +68,20 @@ class DemoController {
 }
 ```
 
-At this point you have an application Spring Boot running in 8080 port. Execute this command in order to see the Hello World message:
+At this point you have an application Spring Boot running. Execute this command in order to see the Hello World message in [http://localhost:8080/](http://localhost:8080/)
 
 ```bash
 gradle bootRun
 ```
 
-Spring Boot Actuator enable you to monitor and manage your application, usually using HTTP endpoints. You can monitor in terms of memory, uptime, threads, environment variables, beans created and more.
-
-In order to activate Actuator in you Spring Boot project, you need to add the proper depdendency.
-
-```groovy
-buildscript {
-	ext {
-		springBootVersion = '1.5.9.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
-}
-
-apply plugin: 'groovy'
-apply plugin: 'org.springframework.boot'
-
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
-
-repositories {
-	mavenCentral()
-}
-
-
-dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-actuator')
-	compile('org.codehaus.groovy:groovy')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-}
-```
-
-Spring Boot Actuator defaults run on port 8080. Let's change this in our `application.properties` file.
+Spring Boot Actuator enable you to monitor and manage your application, usually using HTTP end-points. You can monitor in terms of memory, uptime, threads, environment variables, beans created and more. Spring Boot Actuator defaults run on port 8080 as well. Let's change this in our `application.properties` file.
 
 ```properties
 management.port: 9090
 management.address: 127.0.0.1
 ```
 
-By default Actuator endpoints are protected by Spring Security. 
+By default Actuator end-points are protected by Spring Security. 
 
 ```json
 {
@@ -133,7 +93,7 @@ By default Actuator endpoints are protected by Spring Security.
 }
 ```
 
-In order to disable this you need to add this line in our `application.properties` file
+Let's deactivate Spring Security in order to simplify this example, to disable this you need to add this line in our `application.properties` file:
 
 
 ```properties
@@ -254,10 +214,17 @@ Now we can get this metrics version:
 }
 ```
 
-To Download the Project:
+To download project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-actuator.git
 ```
+
+To run project:
+
+```bash
+gradle bootRun
+```
+
 
 [Return to the main article](/techtalk/spring)
