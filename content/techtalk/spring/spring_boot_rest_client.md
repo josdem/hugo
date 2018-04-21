@@ -6,13 +6,21 @@ tags = ["josdem","techtalks","programming","technology"]
 
 +++
 
-This time I will show you how to consume a rest service using Spring Boot and a Groovy library based in HTTPBuilder [RESTClient](https://github.com/jgritman/httpbuilder/wiki/RESTClient) by jgritman. First you need to add the `RESTClient` dependency, this is our complete `build.gradle`
+This time I will show you how to consume a REST service using Spring Boot and a Groovy library based in HTTPBuilder [RESTClient](https://github.com/jgritman/httpbuilder/wiki/RESTClient) by jgritman. 
+
+Let’s start creating a new Spring Boot project with web dependencies:
+
+```bash
+spring init --dependencies=web --build=gradle --language=groovy spring-boot-rest-client
+``` 
+
+Here is the complete build.gradle file generated:
 
 
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '1.5.6.RELEASE'
+    springBootVersion = '1.5.12.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -32,16 +40,20 @@ repositories {
   mavenCentral()
 }
 
-
 dependencies {
   compile('org.springframework.boot:spring-boot-starter-web')
-  compile('org.codehaus.groovy.modules.http-builder:http-builder:0.7.1')
   compile('org.codehaus.groovy:groovy-all')
   testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 ```
 
-In this example we are going to consume a rest service for this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service.
+Then add the `RESTClient` dependency to the `build.gradle` file
+
+```groovy
+compile('org.codehaus.groovy.modules.http-builder:http-builder:0.7.1')
+```
+
+In this example we are going to consume a RESTClient service for this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service.
 
 And we will request this recipe as example: http://jugoterapia.josdem.io/jugoterapia-server/beverage/beverage?beverageId=35
 
@@ -54,7 +66,7 @@ And we will request this recipe as example: http://jugoterapia.josdem.io/jugoter
 }
 ```
 
-So let's create a service to consume:
+So let's create a service to consume this end-point:
 
 ```groovy
 package com.jos.dem.rest.client.service
@@ -66,7 +78,7 @@ interface RestClient {
 }
 ```
 
-`RestServiceImpl`
+And this is the implementation `RestServiceImpl`
 
 ```groovy
 package com.jos.dem.rest.client.service.impl
@@ -93,7 +105,7 @@ class RestClientImpl implements RestClient {
       def result = restClient.get(
         uri : 'http://jugoterapia.josdem.io/jugoterapia-server/beverage/beverage?beverageId=35'
       )
-      result.data
+      result.data      
     } catch(Exception ex) {
       log.warn "Error ${ex.message}"
       throw new BusinessException(ex.message)
@@ -103,7 +115,7 @@ class RestClientImpl implements RestClient {
 }
 ```
 
-That's it, we are requesting from the endpoint our beverage as an GET request and if something fails we are throwing an `BusinessException`
+That's it, we are requesting from the end-point our beverage as an GET request and if something fails we are throwing an `BusinessException` which is a wrapper exception.
 
 ```groovy
 package com.jos.dem.rest.client.exception
@@ -121,7 +133,9 @@ class BusinessException extends RuntimeException {
 }
 ```
 
-In order to consume our service we will get the bean from the Spring application context so we can call `getBeverage()` method.
+After calling `restClient.get()` in our `RestClientImpl` we get an [HttpResponseDecortator](javadox.com/org.codehaus.groovy.modules.http-builder/http-builder/0.6/groovyx/net/http/HttpResponseDecorator.html) with headers, response status, body, etc. So we can call `getData()` to get body response as a Map. In that way we can use Spring unmarshalling to convert that map to a beverage object. 
+
+In order to consume that service we will get the bean from the Spring application context so we can call `getBeverage()` method.
 
 ```groovy
 package com.jos.dem.rest.client
