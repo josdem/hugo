@@ -5,10 +5,10 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In object-oriented programming SOLID is a term developed by [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin) and the intention is to describe five important design principles to create good software, those concepts are:
+In object-oriented programming S.O.L.I.D is a term developed by [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin) and the intention is to describe five important software development design principles, those concepts are:
 
 * [S — Single Responsibility Principle](#srp)
-* [O — Open closed Principle](#ocp)
+* [O — Open-closed Principle](#ocp)
 * [L — Liskov Substitution Principle](#lsp)
 * [I — Interface Segregation Principle](#isp)
 * [D — Dependency Inversion Principle](#dip)
@@ -111,7 +111,7 @@ public class Car {
 }
 ```
 
-Here is the Car's Spock test:
+Here is the Car's [Spock](http://spockframework.org/) test:
 
 ```groovy
 package com.jos.dem.solid.srp
@@ -130,7 +130,7 @@ class CarSpec extends Specification {
 }
 ```
 
-And FuelPump Spock test:
+And `FuelPump` [Spock](http://spockframework.org/) test:
 
 ```groovy
 package com.jos.dem.solid.srp
@@ -194,7 +194,7 @@ public class Employee {
 }
 ```
 
-Here is the Junit test to cover this functionality:
+Here is the [Junit](https://junit.org/junit5/) test to cover this functionality:
 
 ```java
 package com.jos.dem.solid.ocp;
@@ -524,7 +524,7 @@ public class EmployeeTest {
 
 Entities must depend on abstractions not on concretions.
 
-The classical use of this principle of `BeanFactory` in spring framework. In spring framework, all modules are provided as separate components which can work together by simply injected dependencies in other module.
+The classical use of this principle is `BeanFactory` in [Spring Framework](https://spring.io/). In Spring, components can work together by simply injected dependencies in other components.
 
 Let's consider a `PersonService` and inject a `PersonRepository` as dependency.
 
@@ -548,7 +548,7 @@ public class PersonService {
 }
 ```
 
-Person Repository
+Person Repository:
 
 ```java
 package com.jos.dem.solid.dip;
@@ -580,25 +580,7 @@ public class PersonMemoryRepository implements PersonRepository {
 }
 ```
 
-In that case, we are using an in-memory repository and we can easily change it to a database repository and our service will not notice that change.
-
-```java
-package com.jos.dem.solid.dip;
-
-public class Person {
-
-  private String nickname;
-
-  public Person(String nickname){
-    this.nickname = nickname;
-  }
-
-  public String getNickname(){
-    return this.nickname;
-  }
-
-}
-```
+In this case, we are using an in-memory repository and we can easily change it to a database repository and our service will not notice that change.
 
 To download the project:
 
