@@ -1,8 +1,9 @@
 +++
 date = "2016-05-09T19:09:56-05:00"
-draft = true
+categories = ["algorithms", "pseudocode"]
+tags = ["josdem", "techtalks", "algorithms", "algorithm"]
 title = "Algorithms"
-
+description = "This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy."
 +++
 
 * [Simple Algorithms](/techtalk/algorithms/simple)
