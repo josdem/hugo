@@ -1,9 +1,9 @@
 +++
 date = "2017-07-24T22:02:39-05:00"
 title = "REST Calls using Retrofit"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","android"]
 tags = ["josdem","techtalks","programming","technology", "android", "retrofit2"]
-
+description = "Retrofit is a HTTP client for Android and Java, it turns your HTTP API into a Java interface. This time I will show you how to create a basic project using Retrofit."
 +++
 
 Retrofit is a HTTP client for Android and Java, it turns your HTTP API into a Java interface. This time I will show you how to create a basic project using [Retrofit](http://square.github.io/retrofit/).

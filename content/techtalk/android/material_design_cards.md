@@ -1,9 +1,9 @@
 +++
 date = "2017-08-01T08:23:35-05:00"
 title = "Material Design Card View"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","android"]
 tags = ["josdem","techtalks","programming","technology", "android", "material design","card view"]
-
+description = "Material design is used to create visual, motion, and interaction design across Android devices. I will show you how to create card views and how to respond to user event."
 +++
 
 Material design is used to create visual, motion, and interaction design across Android devices. Go [Here](https://developer.android.com/training/material/index.html) for more information. This time I will show you how to create card views and how to respond to user event.

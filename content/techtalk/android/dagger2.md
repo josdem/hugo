@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk","code"]
+categories = ["techtalk","code","android"]
 date = "2017-07-23T14:12:24-05:00"
 title = "Dependency Injection with Dagger"
 tags = ["josdem","techtalks","programming","technology", "android", "dagger"]
-
+description = "Dependency injecton is when objects define their dependencies. Dependency Injection is build upon the concept Inversion of Control it is used to increase modularity of the program, make it extensible and make it easy to test."
 +++
 
 Dependency injecton is when objects define their dependencies. Dependency Injection is build upon the concept Inversion of Control it is used to increase modularity of the program, make it extensible and make it easy to test.

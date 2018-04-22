@@ -1,9 +1,9 @@
 +++
 date = "2017-08-27T10:53:17-05:00"
 title = "Google Sign-In for Android"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","android"]
 tags = ["josdem","techtalks","programming","technology","Google SignIn","Oauth2 Google"]
-
+description = "This time I will show you how to integrate Google Sing-In to an Android application."
 +++
 
 This time I will show you how to integrate Google Sing-In to an Android application. First you need to add Google play services SDK. In Android Studio select: Tools > Android > SDK Manager, then in SDK Tools tab check the Google Play Services checkbox button.

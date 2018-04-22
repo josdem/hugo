@@ -1,9 +1,9 @@
 +++
 date = "2017-07-23T14:13:14-05:00"
 title = "Android"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","android"]
 tags = ["josdem","techtalks","programming","technology","android"]
-
+description = "Android is the most popular mobile operating system in the world, also Android is growing and spreading it lands on more devices and in more people’s awaiting hands."
 +++
 
 Android is the most popular mobile operating system in the world, also Android is growing and spreading it lands on more devices and in more people’s awaiting hands.
