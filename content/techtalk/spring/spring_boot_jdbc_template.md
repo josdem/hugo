@@ -6,25 +6,34 @@ title = "Spring Boot JDBC Template"
 
 +++
 
-This time I will show you how to use JDBC template in a Spring Boot application, first you need to integrate JDBC template in your `build.gradle` file.
+This time I will show you how to use JDBC template in a Spring Boot application. Spring [JdbcTemplate](https://docs.spring.io/spring-framework/docs/1.0.0/api/org/springframework/jdbc/core/JdbcTemplate.html) is a powerful mechanism to connect to a relational database and execute SQL queries.
+
+Let’s start creating a new Spring Boot project with web and jdbc dependencies:
+
+```bash
+spring init --dependencies=web,jdbc --language=groovy --build=gradle spring-boot-jdbc-template
+```
+
+This is the `build.gradle` file generated:
 
 
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '1.5.4.RELEASE'
+    springBootVersion = '1.5.12.RELEASE'
   }
   repositories {
-	mavenCentral()
+    mavenCentral()
   }
   dependencies {
-	classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
   }
 }
 
 apply plugin: 'groovy'
 apply plugin: 'org.springframework.boot'
 
+group = 'com.jos.dem.springboot.jdbc'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -32,33 +41,36 @@ repositories {
   mavenCentral()
 }
 
-
 dependencies {
   compile 'org.springframework.boot:spring-boot-starter'
   compile 'org.springframework.boot:spring-boot-starter-jdbc'
-  compile 'org.springframework:spring-jdbc:4.3.9.RELEASE'
-  compile 'org.codehaus.groovy:groovy'
-  compile 'mysql:mysql-connector-java:5.1.34'
+  compile 'org.codehaus.groovy:groovy'  
   testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 ```
 
-Then we will create a `person` model object
+Do not forget to add MySQL dependency to the `build.gradle` file:
 
 ```groovy
-package com.jos.dem.jdbc.model
+compile 'mysql:mysql-connector-java:5.1.34'
+```
+
+Then we will create a `person` model object that represent person table in a MySQL database.
+
+```groovy
+package com.jos.dem.springboot.jdbc.model
 
 class Person {
-
-  Long id	
+  
+  Long id
   String nickname
   String email
   Integer ranking
-	
+  
 }
 ```
 
-Let's suppose you have a MySQL database called `spring_boot_jdbc_template` with a person table.
+Let's take a look to the MySQL database called `spring_boot_jdbc_template` with a person table.
 
 ```sql
 CREATE TABLE `person` (
@@ -82,17 +94,17 @@ With this data:
 +----+----------+-----------------------------+---------+
 ```
 
-Spring provides a template class called `JdbcTemplate` that makes it easy to work with SQL relational databases and JDBC, so let's create a `PersonRepository`
+Spring provides a template class called `JdbcTemplate` that makes it easy to work with SQL relational databases and JDBC, so let's create a `PersonRepository` to use it.
 
 ```groovy
-package com.jos.dem.jdbc.repository
+package com.jos.dem.springboot.jdbc.repository
 
 import org.springframework.stereotype.Repository
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.beans.factory.annotation.Autowired
 
-import com.jos.dem.jdbc.model.Person
+import com.jos.dem.springboot.jdbc.model.Person
 
 @Repository
 class PersonRepository {
@@ -107,7 +119,7 @@ class PersonRepository {
     )
   }
 
-}
+} 
 ```
 
 `BeanPropertyRowMapper` can maps a row’s column value to a property by matching their names in a model object.
@@ -115,9 +127,9 @@ class PersonRepository {
 Now let's create a service to delegate data access to the repository:
 
 ```groovy
-package com.jos.dem.jdbc.service
+package com.jos.dem.springboot.jdbc.service
 
-import com.jos.dem.jdbc.model.Person
+import com.jos.dem.springboot.jdbc.model.Person
 
 interface PersonService {
 
@@ -129,14 +141,14 @@ interface PersonService {
 This is the implementation
 
 ```groovy
-package com.jos.dem.jdbc.service.impl
+package com.jos.dem.springboot.jdbc.service.impl
 
 import org.springframework.stereotype.Service
 import org.springframework.beans.factory.annotation.Autowired
 
-import com.jos.dem.jdbc.model.Person
-import com.jos.dem.jdbc.service.PersonService
-import com.jos.dem.jdbc.repository.PersonRepository
+import com.jos.dem.springboot.jdbc.model.Person
+import com.jos.dem.springboot.jdbc.service.PersonService
+import com.jos.dem.springboot.jdbc.repository.PersonRepository
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -160,20 +172,20 @@ class PersonServiceImpl implements PersonService {
 Finally we get `PersonService` bean from the spring application context and execute the `getPersons()` method:
 
 ```groovy
-package com.jos.dem.jdbc
+package com.jos.dem.springboot.jdbc
 
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.ConfigurableApplicationContext
 
-import com.jos.dem.jdbc.model.Person
-import com.jos.dem.jdbc.service.PersonService
+import com.jos.dem.springboot.jdbc.model.Person
+import com.jos.dem.springboot.jdbc.service.PersonService
 
 @SpringBootApplication
 class JdbcApplication {
 
   static void main(String[] args) {
-	ConfigurableApplicationContext context = SpringApplication.run JdbcApplication, args
+    ConfigurableApplicationContext context = SpringApplication.run JdbcApplication, args
     List<Person> persons = context.getBean(PersonService.class).getPersons()
     persons.each {
       println "person: ${it.dump()}"
