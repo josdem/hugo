@@ -3,6 +3,7 @@ date = "2017-12-03T12:01:18-06:00"
 title = "Digital Sum Sort"
 tags = ["josdem", "techtalks","programming","technology","Algorithms","Java"]
 categories = ["techtalk", "code","Algorithms"]
+description = "Sort sum digits from elements in a collection."
 +++
 
 Sort sum digits from elements in a collection.

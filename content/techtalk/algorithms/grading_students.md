@@ -3,6 +3,7 @@ date = "2018-02-10T20:52:26-05:00"
 tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code","grading students", "coding challenge", "algorithms"]
 title = "Grading Students"
+description = "At HackerLand University, a passing grade is any grade 40 points or higher on a 100 point scale. Sam is a professor at the university and likes to round each student’s grade according to the rules"
 +++
 
 At HackerLand University, a passing grade is any grade `40` points or higher on a `100` point scale. Sam is a professor at the university and likes to round each student’s grade according to the following rules:

@@ -3,7 +3,7 @@ categories = ["algorithms", "pseudocode"]
 date = "2016-07-04T21:00:30-05:00"
 tags = ["josdem", "techtalks", "algorithms", "power set", "palindrome"]
 title = "Algorithms"
-
+description = "This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy."
 +++
 
 This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy.

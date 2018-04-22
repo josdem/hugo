@@ -3,6 +3,7 @@ title = "Is Pangram"
 categories = ["techtalk","code"]
 tags = ["josdem","techtalks","programming","technology","algorithms","java"]
 date = "2017-11-29T15:42:15-06:00"
+description = "Given a sentence, check whether it is a pangram or not."
 +++
 
 

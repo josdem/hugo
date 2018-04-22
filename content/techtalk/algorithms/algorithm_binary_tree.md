@@ -1,8 +1,9 @@
 +++
+title =  "Binary Tree"
+description = "In computer science, a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child."
 date = "2016-05-23T14:07:56-05:00"
-draft = true
-title = "Binary Tree"
-
+tags = ["josdem", "techtalks","programming","technology","algorithms"]
+categories = ["techtalk", "code"]
 +++
 
 In computer science, a binary tree is a tree data structure in which each node has at most two children, which are referred to as the left child and the right child.

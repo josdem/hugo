@@ -1,8 +1,9 @@
 +++
 date = "2016-06-07T20:50:43-05:00"
-draft = true
 title = "Stream Merger"
-
+categories = ["techtalk","code","algorithms"]
+tags = ["josdem","techtalks","programming","technology","algorithms","java"]
+description = "Stream Merger Algorithm"
 +++
 
 Let's consider the following class:

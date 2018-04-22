@@ -3,7 +3,7 @@ date = "2018-02-12T13:53:51-06:00"
 title = "Kangaroo"
 categories = ["techtalk","code"]
 tags = ["josdem", "techtalks","programming","technology","algorithms", "coding challenge","code"]
-
+description = "There are two kangaroos on a number line ready to jump in the positive direction. Each kangaroo takes the same amount of time to make a jump, regardless of distance. That is, if kangaroo one jumps 3 meters and kangaroo two jumps 5 meters, they each do it in one second"
 +++
 
 There are two kangaroos on a number line ready to jump in the positive direction. Each kangaroo takes the same amount of time to make a jump, regardless of distance. That is, if kangaroo one jumps `3` meters and kangaroo two jumps `5` meters, they each do it in one second, for example.

@@ -1,8 +1,9 @@
 +++
 date = "2016-05-10T20:52:26-05:00"
-draft = true
 title = "Fastman"
-
+description = "Write a program that breaks up a string of words with no spaces into a string with appropiate spaces."
+tags = ["josdem", "techtalks","programming","technology","algorithms"]
+categories = ["techtalk", "code"]
 +++
 
 Write a program that breaks up a string of words with no spaces into a string with appropiate spaces.

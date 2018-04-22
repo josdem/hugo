@@ -3,7 +3,7 @@ date = "2017-11-30T12:01:18-06:00"
 title = "Get Month Name"
 categories = ["techtalk","code"]
 tags = ["josdem","techtalks","programming","technology","Java","Algorithms"]
-
+description = "Map the given integer to a month."
 +++
 
 

@@ -3,6 +3,7 @@ date = "2018-01-31T20:52:26-05:00"
 tags = ["josdem", "techtalks","programming","technology","algorithms"]
 categories = ["techtalk", "code"]
 title = "Matrix Diagonal Difference"
+description = "Given a square matrix of size N x N, calculate the absolute difference between the sums of its diagonals."
 +++
 
 **Input**
