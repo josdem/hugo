@@ -1,8 +1,9 @@
 +++
 title =  "SOLID Principles"
 date = "2018-04-20T12:10:46-05:00"
-tags = ["josdem", "techtalks","programming","technology"]
-categories = ["techtalk", "code"]
+tags = ["josdem", "techtalks","programming","technology","best practices"]
+categories = ["techtalk", "code", "best practices"]
+description = "In object-oriented programming S.O.L.I.D is a term developed by Robert C. Martin and the intention is to describe five important software development design principles."
 +++
 
 In object-oriented programming S.O.L.I.D is a term developed by [Robert C. Martin](https://en.wikipedia.org/wiki/Robert_C._Martin) and the intention is to describe five important software development design principles, those concepts are:

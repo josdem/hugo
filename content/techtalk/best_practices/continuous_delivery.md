@@ -1,11 +1,13 @@
 +++
 date = "2015-08-29T20:07:44-05:00"
-draft = true
 title = "Continuous Delivery"
-
+categories = ["techtalk","code","best practices","continuous delivery"]
+tags = ["josdem","techtalks","programming","technology", "best practices", "continuous delivery"]
+description = "The most important problem that we face as software professionals is this: How we deliver to users as quickly as possible? Development pipeline is, in essence, an automated implementation of your application’s build, deploy, test and releases process."
 +++
+
 ## Introduction
-The most important problem that we face as software professionals is this: How we deliver to users as quicly as possible? Development pipeline is, in essence, an automated implementation of your application’s build, deploy, test and releases process. The aim in the deployment pipe line is to make every part of the process if building, deploying, testing, and relasing software visible to everybody involved, aiding collaboration, it improves feedback so that problems are identified, and so resolved, as early in the process as possible, finally it enables teams to deploy and release any version of their software to any environment at will through a fully automated process.
+The most important problem that we face as software professionals is this: How we deliver to users as quickly as possible? Development pipeline is, in essence, an automated implementation of your application’s build, deploy, test and releases process. The aim in the deployment pipe line is to make every part of the process if building, deploying, testing, and relasing software visible to everybody involved, aiding collaboration, it improves feedback so that problems are identified, and so resolved, as early in the process as possible, finally it enables teams to deploy and release any version of their software to any environment at will through a fully automated process.
 
 
 *TIP: So while it is important to deliver our software as quickly as possible, it is essential to maintain an appropiate level of quality.*

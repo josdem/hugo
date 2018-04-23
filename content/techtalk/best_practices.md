@@ -3,6 +3,7 @@ title =  "Best Practices"
 date = "2018-04-20T11:38:04-05:00"
 tags = ["josdem", "techtalks","programming","technology", "clean code", "Extreme Programming", "SOLID principles"]
 categories = ["techtalk", "code"]
+description = "In software development is really important to use techniques and methods to garantee quality results in process and products, so I decided to write up the software engineering practices and principles I’ve learned over the years."
 +++
 
 *Give me a lever long enough and a fulcrum on which to place it, and I shall move the world. ~ Archimedes.*

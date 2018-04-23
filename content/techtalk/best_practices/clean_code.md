@@ -1,9 +1,11 @@
 +++
 date = "2015-08-29T21:48:43-05:00"
-draft = true
 title = "Clean Code"
-
+categories = ["techtalk","code","best practices"]
+tags = ["josdem","techtalks","programming","technology", "best practices", "clean code"]
+description = "Programmers create problems for themselves when they write code solely to satisfy a compiler or interpreter. Have you ever been significantly impeded by bad code? If you’re a programmer if any experience then you’ve felt this impediment many times. Indeed, we have a name for it wading"
 +++
+
 |   |   |
 |---|---|
 |![CleanCode](/img/techtalks/best_practices/clean_code.jpg) |Programmers create problems for themselves when they write code solely to satisfy a compiler or interpreter. Have you ever been significantly impeded by bad code? If you’re a programmer if any experience then you’ve felt this impediment many times. Indeed, we have a name for it "wading".|

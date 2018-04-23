@@ -1,9 +1,11 @@
 +++
 date = "2015-08-29T21:38:02-05:00"
-draft = true
 title = "Extreme Programming Explained"
-
+categories = ["techtalk","code","best practices","extreme programming"]
+tags = ["josdem","techtalks","programming","technology", "best practices", "extreme programming"]
+description = "XP is a style of software development focusing on excellent application of programming techniques, clear communication, and teamwork which allow us to accomplish things we previously could not even imagine."
 +++
+
 |   |   |
 |---|---|
 |![ExtremeProgramming](/img/techtalks/best_practices/extreme_programming.jpg) | XP is a style of software development focusing on excellent application of programming techniques, clear communication, and teamwork which allow us to accomplish things we previously could not even imagine. XP Includes:|
