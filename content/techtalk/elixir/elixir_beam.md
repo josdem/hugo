@@ -1,8 +1,9 @@
 +++
 date = "2015-10-11T10:54:41-05:00"
-draft = true
 title = "The Beam"
-
+categories = ["techtalk","code","elixir"]
+tags = ["josdem","techtalks","programming","technology","elixir"]
+description = "Beam is the Erlang virtual machine, by default runs one OS thread per processor core to achieve maximum performance. BEAM has mechanism to communicate with other processes outside VM and it uses ports. BEAM does not have JIT compiler."
 +++
 
 Beam is the Erlang virtual machine, by default runs one OS thread per processor core to achieve maximum performance. BEAM has mechanism to communicate with other processes outside VM and it uses ports. BEAM does not have JIT compiler.

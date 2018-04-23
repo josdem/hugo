@@ -1,8 +1,9 @@
 +++
 date = "2015-11-25T11:05:36-06:00"
-draft = true
 title = "Elixir Practices"
-
+categories = ["techtalk","code","elixir"]
+tags = ["josdem","techtalks","programming","technology","elixir"]
+description = "Create a function called sum that receives two integers and return their sum operation."
 +++
 
 1 - Create a function called sum that receives two integers and return their sum operation.

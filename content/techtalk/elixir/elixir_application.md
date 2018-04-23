@@ -1,8 +1,9 @@
 +++
 date = "2015-08-29T21:29:11-05:00"
-draft = true
 title = "Writting basic project in Elixir"
-
+categories = ["techtalk","code","elixir"]
+tags = ["josdem","techtalks","programming","technology","elixir"]
+description = "Introduction in Elixr language and Mix command, among other things."
 +++
 
 Let’s create a basic project scructure by invoking mix new from the command line. Type:

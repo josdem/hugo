@@ -1,9 +1,11 @@
 +++
 date = "2015-08-29T21:33:05-05:00"
-draft = true
 title = "Elixir Processes"
-
+categories = ["techtalk","code","elixir"]
+tags = ["josdem","techtalks","programming","technology","elixir"]
+description = "In Elixir, all code runs inside processes. Processes are isolated from each other, run concurrent to one another and communicate via message passing, they also provide the means for building distributed and fault-tolerant programs."
 +++
+
 In Elixir, all code runs inside processes. Processes are isolated from each other, run concurrent to one another and communicate via message passing, they also provide the means for building distributed and fault-tolerant programs.
 
 Elixir manages concurrency in this way, since it can spawn process and send/receive messsages between them. Each process has its own queue, and each process can manage its own queue.

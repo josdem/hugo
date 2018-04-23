@@ -1,8 +1,9 @@
 +++
 date = "2015-08-29T21:23:22-05:00"
-draft = true
 title = "Elixir"
-
+categories = ["techtalk","code","elixir"]
+tags = ["josdem","techtalks","programming","technology","elixir"]
+description = "Elixir is a dynamic, functional language designed for building scalable and maintainable applications."
 +++
 
 * [Basic project in Elixir](/techtalk/elixir/elixir_application)

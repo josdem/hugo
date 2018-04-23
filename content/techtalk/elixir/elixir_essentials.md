@@ -1,8 +1,9 @@
 +++
 date = "2015-11-16T14:16:54-06:00"
-draft = true
 title = "Elixir Essentials"
-
+categories = ["techtalk","code","elixir"]
+tags = ["josdem","techtalks","programming","technology","elixir"]
+description = "Let's consider the following aspect, Unix utilities can be combined in ways undreamed of by their authors. And each one multiplies the potential of the others. A command pipeline can operate in parallel."
 +++
 
 Let's consider the following aspect, Unix utilities can be combined in ways undreamed of by their authors. And each one multiplies the potential of the others. A command pipeline can operate in parallel. If I write:
