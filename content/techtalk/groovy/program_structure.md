@@ -1,8 +1,9 @@
 +++
-date = "2015-08-29T14:33:15-05:00"
-draft = true
 title = "Program structure"
-
+date = "2015-08-29T14:33:15-05:00"
+categories = ["techtalk", "code", "groovy"]
+tags = ["josdem", "techtalks","programming","technology","groovy","memoized","cache"]
+description = "Groovy classes must specify their package before the class definition. As Java does."
 +++
 
 **Package names**

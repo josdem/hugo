@@ -1,8 +1,9 @@
 +++
 date = "2015-08-29T16:11:13-05:00"
-draft = true
 title = "Metaprogramming"
-
+categories = ["techtalk", "code", "groovy"]
+tags = ["josdem", "techtalks","programming","technology","groovy","memoized","cache"]
+description = "Metaprogramming: Behavior changes at runtime, capabilities are introduced at runtime."
 +++
 
 ## What is?

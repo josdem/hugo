@@ -1,8 +1,9 @@
 +++
 date = "2015-12-10T15:33:18-06:00"
-draft = true
 title = "RESTClient, headers and data"
-
+categories = ["techtalk", "code","groovy"]
+tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "Essential Concepts"]
+description = "Posting request using RESTClient from groovyx net"
 +++
 
 Let's consider the following curl command:

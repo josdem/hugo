@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
-date = "2016-07-18T20:29:41-05:00"
-tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "From Java to Groovy"]
 title = "From Java to Groovy"
-
+date = "2016-07-18T20:29:41-05:00"
+categories = ["techtalk", "code","groovy"]
+tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "From Java to Groovy"]
+description = "Evolving a Java class to Groovy class definition in seven steps."
 +++
 
 You can convert a Java class to Groovy class in seven steps. Let's consider this example:

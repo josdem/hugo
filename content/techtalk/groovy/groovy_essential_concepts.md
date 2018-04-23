@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
-date = "2016-07-18T21:50:29-05:00"
-tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "Essential Concepts"]
 title = "Essential Concepts"
-
+date = "2016-07-18T21:50:29-05:00"
+categories = ["techtalk", "code","groovy"]
+tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "Essential Concepts"]
+description = "Groovy essential concepts, Assert, everything is an object, finders."
 +++
 
 **Assert** is a way to evaluate an expresion if it is `true`

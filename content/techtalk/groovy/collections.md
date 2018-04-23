@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
 date = "2016-07-20T16:08:01-05:00"
-tags = ["josdem", "techtalks", "programming", "technology", "groovy", "collections", "groovy collections"]
 title = "Collections"
-
+categories = ["techtalk", "code"]
+tags = ["josdem", "techtalks", "programming", "technology", "groovy", "collections", "groovy collections"]
+description = "Groovy provides native support for various collection types, including lists, maps or ranges. Most of those are based on the Java collection types and decorated with additional methods."
 +++
 
 Groovy provides native support for various collection types, including lists, maps or ranges. Most of those are based on the Java collection types and decorated with additional methods.

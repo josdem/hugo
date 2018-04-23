@@ -1,8 +1,9 @@
 +++
-date = "2015-09-23T18:34:14-05:00"
-draft = true
 title = "Working with Strings"
-
+date = "2015-09-23T18:34:14-05:00"
+categories = ["techtalk", "code", "groovy"]
+tags = ["josdem", "techtalks","programming","technology","groovy"]
+description = "Groovy strings come in two flavors: plain strings and GStrings. Plain strings are instances of java.lang.String, and GStrings are instances of groovy.lang.Gstring which allows placeholder expressions to be resolved and evaluated at runtime."
 +++
 
 Groovy strings come in two flavors: plain strings and GStrings. Plain strings are instances of java.lang.String, and GStrings are instances of groovy.lang.Gstring which allows placeholder expressions to be resolved and evaluated at runtime.

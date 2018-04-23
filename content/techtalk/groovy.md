@@ -1,9 +1,11 @@
 +++
-date = "2015-08-29T14:03:12-05:00"
-draft = true
 title = "Groovy"
-
+date = "2015-08-29T14:03:12-05:00"
+categories = ["techtalk", "code", "groovy"]
+tags = ["josdem", "techtalks","programming","technology","groovy"]
+description = "Groovy is an optional typed, dynamic language for the Java platform with many features that are inspired by languages like Phyton, Ruby and Smalltalk, making them available to Java developers using Java-like syntax."
 +++
+
 Groovy is an optional typed, dynamic language for the Java platform with many features that are inspired by languages like Phyton, Ruby and Smalltalk, making them available to Java developers using Java-like syntax.
 
 Working with Groovy feels like a partnership between you and the language, rather than a battle to express what is clear in your mind in a way the computer can understand.

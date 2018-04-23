@@ -1,9 +1,11 @@
 +++
-date = "2015-08-29T14:25:41-05:00"
-draft = true
 title = "Comparison between Groovy and other languages"
-
+date = "2015-08-29T14:25:41-05:00"
+categories = ["techtalk", "code","groovy"]
+tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "From Java to Groovy"]
+description = "Groovy is very assertive, let’s compare the different mechanisms to obtain today’s date in varioys languages to demonstrate it"
 +++
+
 Groovy is very assertive, let’s compare the different mechanisms to obtain today’s date in varioys languages to demonstrate it
 
 ```

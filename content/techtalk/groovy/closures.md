@@ -1,6 +1,5 @@
 +++
 date = "2015-08-29T16:05:19-05:00"
-draft = true
 title = "Closures"
 
 +++

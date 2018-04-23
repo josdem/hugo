@@ -1,9 +1,11 @@
 +++
 date = "2015-08-29T16:18:31-05:00"
-draft = true
 title = "Groovy and design patterns"
-
+categories = ["techtalk", "code","groovy"]
+tags = ["josdem", "techtalks", "programming", "technology", "groovy", "collections"]
+description = "A design pattern is a general reusable solition to commonly occurring problem with a given context in software design. With Groovy is easier to implement design patterns than other languages such as C++ or Java. Using design patters we can share to the development teams a way to communicate solitions in the software design."
 +++
+
 A design pattern is a general reusable solition to commonly occurring problem with a given context in software design. With Groovy is easier to implement design patterns than other languages such as C++ or Java. Using design patters we can share to the development teams a way to communicate solitions in the software design.
 
 ## Abstract factory

@@ -1,9 +1,11 @@
 +++
 date = "2015-09-18T19:10:06-05:00"
-draft = true
 title = "Kata String Calculator"
-
+categories = ["techtalk", "code","groovy"]
+tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "Essential Concepts"]
+description = "Create a function add() that take a string and return a integer with sum as result."
 +++
+
 This is the main goal for this kata:
 
 1. A method receive an empty string and return 0
