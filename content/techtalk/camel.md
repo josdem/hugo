@@ -1,8 +1,9 @@
 +++
 date = "2016-03-05T07:18:24-06:00"
-draft = true
 title = "Apache Camel"
-
+categories = ["techtalk","code","camel"]
+tags = ["josdem","techtalks","programming","technology","camel"]
+description = "Camel is an integration framework aims to simplify this task using a routing engine builder. Camel is a mature open source started in 2007 under the liberal Apache 2 licence, and it has a strong community."
 +++
 
 Camel is an integration framework aims to simplify this task using a routing engine builder. Camel is a mature open source started in 2007 under the liberal Apache 2 licence, and it has a strong community.

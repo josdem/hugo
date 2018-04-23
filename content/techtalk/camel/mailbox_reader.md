@@ -1,9 +1,9 @@
 +++
 date = "2017-04-27T14:54:50-05:00"
 title = "Mailbox Reader"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","Gmail reader", "IMAP reader"]
-
+categories = ["techtalk","code","camel"]
+tags = ["josdem","techtalks","programming","technology","Gmail reader", "IMAP reader","camel"]
+description = "The mail component provides access to Email via Spring's Mail support and the underlying JavaMail system."
 +++
 
 
