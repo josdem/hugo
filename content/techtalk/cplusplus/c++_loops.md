@@ -1,8 +1,9 @@
 +++
 date = "2016-06-16T17:53:14-05:00"
-draft = true
 title = "Loops and Collections"
-
+categories = ["c++", "cplusplus", "g++"]
+tags = ["josdem", "techtalks", "c++", "fstream", "ofstream", "ifstream"]
+description = "If we want to change the value of the character in a string, we must define the loop variable as a reference type."
 +++
 
 If we want to change the value of the character in a string, we must define the loop variable as a reference type.

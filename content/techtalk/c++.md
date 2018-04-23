@@ -1,8 +1,9 @@
 +++
 date = "2016-06-13T16:49:12-05:00"
-draft = true
 title = "C++"
-
+categories = ["techtalk", "code","c++"]
+tags = ["josdem", "techtalks", "programming", "technology","cplusplus","c++"]
+description = "C++ is a general-purpose programming language. It has imperative, object-oriented and generic programming features, while also providing facilities for low-level memory manipulation."
 +++
 
 * [Basics](/techtalk/cplusplus/c++_types)

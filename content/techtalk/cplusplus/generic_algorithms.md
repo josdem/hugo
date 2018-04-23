@@ -3,7 +3,7 @@ categories = ["techtalk", "code"]
 date = "2016-07-08T13:30:03-05:00"
 tags = ["josdem", "techtalks", "programming", "technology","cplusplus","c++ algorithms"]
 title = "Generic Algorithms"
-
+description = "The library provides a set of algorithms, most of which are independent of any particular container type. Those algorithms implement common functions such as sorting and searching. Most of the algorithms are defined in the algorithm header. In general, the algorithms do not work directly on a container. Instead, they operate by traversing a range of elements bounded by two operators."
 +++
 
 The library provides a set of algorithms, most of which are independent of any particular container type. Those algorithms implement common functions such as sorting and searching. Most of the algorithms are defined in the algorithm header. In general, the algorithms do not work directly on a container. Instead, they operate by traversing a range of elements bounded by two operators.

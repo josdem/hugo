@@ -1,8 +1,9 @@
 +++
 date = "2016-06-19T13:06:03-05:00"
-draft = true
 title = "Classes"
-
+categories = ["techtalk","code","c++"]
+tags = ["josdem","techtalks","programming","technology","c++"]
+description = "Classes provides great level of data abstraction. Any C++ program where you implement a class with public and private members is an example of data abstraction."
 +++
 
 Classes provides great level of data abstraction and provides two important advantages:

@@ -3,7 +3,7 @@ categories = ["techtalk", "code"]
 date = "2016-07-06T16:28:09-05:00"
 tags = ["josdem", "techtalks", "programming", "technology","c++","cplusplus", "strings operations"]
 title = "String Operations"
-
+description = "There are some additional ways to construct strings, let's see them."
 +++
 
 There are some additional ways to construct strings

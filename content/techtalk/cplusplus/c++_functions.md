@@ -1,8 +1,9 @@
 +++
 date = "2016-06-18T10:38:11-05:00"
-draft = true
 title = "Functions"
-
+categories = ["techtalk","code","c++"]
+tags = ["josdem","techtalks","programming","technology","c++"]
+description = "A function is a group of statements that together perform a task. Every C++ program has at least one function, which is main(), and all the most trivial programs can define additional functions."
 +++
 
 As an example, we'll write a function to determine the factorial of a given number. 5 Factorial is: 1 * 2 * 3 * 4 * 5 = 120

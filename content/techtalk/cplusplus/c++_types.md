@@ -1,8 +1,9 @@
 +++
 date = "2016-06-14T17:35:25-05:00"
-draft = true
 title = "C++ Basics"
-
+categories = ["techtalk", "code","c++"]
+tags = ["josdem", "techtalks", "programming", "technology","c++","cplusplus", "C++ basics"]
+description = "C++ is a statically typed language; type checking is done at compile time."
 +++
 
 ## Types

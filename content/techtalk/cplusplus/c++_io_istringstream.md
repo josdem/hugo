@@ -3,7 +3,7 @@ categories = ["c++", "cplusplus", "g++"]
 date = "2016-07-03T11:33:29-05:00"
 tags = ["josdem", "techtalks", "c++", "istringstream"]
 title = "The IO Library: istringstream"
-
+description = "An istringstream is often used when we have some work to do on an entire line, and other work to do with individual words within a line."
 +++
 
 An istringstream is often used when we have some work to do on an entire line, and other work to do with individual words within a line.

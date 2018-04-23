@@ -1,8 +1,9 @@
 +++
 date = "2016-06-17T18:11:00-05:00"
-draft = true
 title = "Exception Handling"
-
+categories = ["techtalk","code","c++"]
+tags = ["josdem","techtalks","programming","technology","c++"]
+description = "Dealing with unexpected behaviour can be one of the most difficult parts in a system, even though there is so common, so we need a way to detect such behaviour as exceptions and handle it in a proper manner."
 +++
 
 Dealing with unexpected behaviour can be one of the most difficult parts in a system, even though there is so common, so we need a way to detect such behaviour as exceptions and handle it in a proper manner.

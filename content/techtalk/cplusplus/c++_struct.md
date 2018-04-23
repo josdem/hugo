@@ -1,8 +1,9 @@
 +++
 date = "2016-06-15T20:56:52-05:00"
-draft = true
 title = "Data Structures"
-
+categories = ["techtalk", "code","c++"]
+tags = ["josdem", "techtalks", "programming", "technology","c++","cplusplus", "Data Structures"]
+description = "A data structure is a way to group together related data elements and a strategy for using those data."
 +++
 
 A data structure is a way to group together related data elements and a strategy for using those data.

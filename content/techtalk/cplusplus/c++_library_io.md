@@ -4,7 +4,7 @@ draft = true
 categories = ["c++", "cplusplus", "g++"]
 tags = ["josdem", "techtalks", "c++", "fstream", "ofstream", "ifstream"]
 title = "The IO Library: fstream"
-
+description = "C++ provides important classes to perform output and input of characters to/from files"
 +++
 
 C++ provides the following classes to perform output and input of characters to/from files:
