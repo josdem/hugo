@@ -1,8 +1,9 @@
 +++
 date = "2015-10-29T20:33:10-06:00"
-draft = true
 title = "Grails 3 Externalized Configuration"
-
+categories = ["techtalk","code","grails"]
+tags = ["josdem","techtalks","programming","technology","grails"]
+description = "Grails 3 externalization configuration strategy"
 +++
 
 In Grails 3 is not longer valid this configuration in the Config.groovy

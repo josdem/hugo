@@ -1,10 +1,12 @@
 +++
 date = "2015-08-29T18:15:08-05:00"
-draft = true
 title = "Grails Example Project"
-
+categories = ["techtalk","code","grails"]
+tags = ["josdem","techtalks","programming","technology","grails"]
+description = "Simple project in Grails"
 +++
-Simple project with Grails
+
+Simple project in Grails
 
 ## Project user story
 As application owner I want to deliver my application installer so the client can download it.

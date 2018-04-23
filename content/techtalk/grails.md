@@ -1,8 +1,9 @@
 +++
 date = "2015-08-29T18:06:10-05:00"
-draft = true
 title = "Grails"
-
+categories = ["techtalk","code","grails"]
+tags = ["josdem","techtalks","programming","technology","grails"]
+description = "Grails is an open source web application framework it is intended to be a high-productivity framework by following the coding by convention paradigm and ready-to-use development environment."
 +++
 
 Grails is an open source web application framework it is intended to be a high-productivity framework by following the "coding by convention" paradigm and ready-to-use development environment

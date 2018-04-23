@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
 date = "2016-09-06T21:06:21-05:00"
-tags = ["josdem", "techtalks", "programming", "technology", "grails", "spring security","login flow"]
+tags = ["josdem", "techtalks", "programming", "technology", "grails", "grails spring security","grails login flow"]
 title = "Spring Security & Login Functionality"
-
+categories = ["techtalk","code","grails"]
+desciption = "Let's use the Spring Security Core to create login functionality Specification."
 +++
 
 Let's use the [Spring Security Core](https://grails-plugins.github.io/grails-spring-security-core/) to create login functionality Specification.
