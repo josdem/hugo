@@ -1,9 +1,9 @@
 +++
-date = "2017-06-19T14:12:19-05:00"
 title = "Apache POI Excel Filter Reader"
+date = "2017-06-19T14:12:19-05:00"
 categories = ["techtalk","code", "excel", "apache POI"]
 tags = ["josdem","techtalks","programming","technology","hidden cells", "apache poi"]
-
+description = "Apache POI is a popular API that allows programmers to create, modify, and display MS Office files using Java programs. This time I will show you how to read an Excel file."
 +++
 
 

@@ -1,6 +1,6 @@
 +++
-categories = ["techtalk", "code", "groovy"]
 date = "2016-07-12T18:46:49-05:00"
+categories = ["techtalk", "code", "groovy"]
 tags = ["josdem", "techtalks", "programming", "technology", "groovy", "bindable"]
 title = "Bindable"
 description = "Bindable is an annotation that can go either on a Groovy class property or a Groovy class itself. A bound property is a bean property for which a change to the property results in a notification being sent to some other bean."

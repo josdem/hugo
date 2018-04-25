@@ -3,7 +3,7 @@ date = "2017-02-10T19:21:27-06:00"
 title = "Apache POI Excel"
 categories = ["techtalk","code"]
 tags = ["josdem","techtalks","programming","technology","java"]
-
+description = "Apache POI is a popular API that allows programmers to create, modify, and display MS Office files using Java programs. This time I will show you how to read an Excel file."
 +++
 
 Apache POI is a popular API that allows programmers to create, modify, and display MS Office files using Java programs. This time I will show you how to read an Excel file. First we need to create a Java basic project using [lazybones](https://github.com/pledbrook/lazybones).
