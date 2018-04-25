@@ -1,8 +1,9 @@
 +++
-date = "2015-10-25T12:31:44-06:00"
-draft = true
 title = "UX Development"
-
+categories = ["techtalk","code","UX development"]
+tags = ["josdem","techtalks","programming","technology","UX development"]
+date = "2015-10-25T12:31:44-06:00"
+description = "In this section I will post all referent about UX development such as Javascript, CSS and HTML5 specs."
 +++
 
 In this section I will post all referent about UX development such as Javascript, CSS and HTML5 specs.

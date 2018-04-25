@@ -1,8 +1,9 @@
 +++
-date = "2015-10-25T12:36:25-06:00"
-draft = true
 title = "Parsing Json with Ajax"
-
+categories = ["techtalk","code","UX development"]
+tags = ["josdem","techtalks","programming","technology","UX development"]
+date = "2015-10-25T12:36:25-06:00"
+description = "We want to consume a GET service and parsing an JSON response using Ajax and JQuery, so here is what we need."
 +++
 
 We want to consume a GET service and parsing an JSON response using Ajax and JQuery, so here is what we need.

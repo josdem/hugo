@@ -1,9 +1,11 @@
 +++
+title = "Tomcat Listening in a Domain"
+categories = ["techtalk","code","sysadmin"]
+tags = ["josdem","techtalks","programming","technology","sysadmin","tomcat configuration"]
 date = "2015-09-07T18:02:25-05:00"
-draft = true
-title = "Tomcat listening in a domain"
-
+description = "When we want to publish our services in a specific domain such as api.josdem.io and that services are hosted in a Tomcat, the best way I can recommend you to do it is using a AJP connector. In this post I'll show you how to do it."
 +++
+
 When we want to publish our services in a specific domain such as api.josdem.io and that services are hosted in a Tomcat, the best way I can recommend you to do it is using a AJP connector. In this post I'll show you how to do it.
 
 ## Light Tomcat

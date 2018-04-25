@@ -1,8 +1,9 @@
 +++
-date = "2016-02-08T18:50:20-06:00"
-draft = true
 title = "Templating with Swig & Express"
-
+categories = ["techtalk","code","UX development"]
+tags = ["josdem","techtalks","programming","technology","UX development"]
+date = "2016-02-08T18:50:20-06:00"
+description = "Express is a minimal and flexible Node.js web application framework."
 +++
 
 Express is a minimal and flexible Node.js web application framework. To install:

@@ -1,8 +1,9 @@
 +++
-date = "2016-01-23T21:18:41-06:00"
-draft = true
 title = "Inquirer & Callback"
-
+categories = ["techtalk","code","UX development"]
+tags = ["josdem","techtalks","programming","technology","UX development"]
+date = "2016-01-23T21:18:41-06:00"
+description = "Inquirer.js strives to be an easily embeddable and beautiful command line interface for Node.js"
 +++
 
 Inquirer.js strives to be an easily embeddable and beautiful command line interface for Node.js

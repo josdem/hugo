@@ -1,8 +1,9 @@
 +++
-date = "2016-06-21T17:41:09-05:00"
-draft = true
 title = "Nginx Restrincting Access"
-
+categories = ["techtalk","code","sysadmin"]
+tags = ["josdem","techtalks","programming","technology","sysadmin"]
+date = "2016-06-21T17:41:09-05:00"
+description = "Access can be denied by using HTTP basic authentication. To enable authentication, use the auth_basic directive. Users then must enter their valid username and password to get access to the website."
 +++
 
 Access can be denied by using HTTP basic authentication. To enable authentication, use the `auth_basic directive`. Users then must enter their valid username and password to get access to the website

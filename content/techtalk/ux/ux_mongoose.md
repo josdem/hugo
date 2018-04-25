@@ -1,8 +1,9 @@
 +++
-date = "2016-02-01T11:27:02-06:00"
-draft = true
 title = "Mongoose"
-
+categories = ["techtalk","code","UX development"]
+tags = ["josdem","techtalks","programming","technology","UX development"]
+date = "2016-02-01T11:27:02-06:00"
+description = "Mongoose allows us to have access to the MongoDB commands"
 +++
 
 Mongoose allows us to have access to the MongoDB commands, to include mongoose library type in your terminal:

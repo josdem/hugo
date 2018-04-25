@@ -1,9 +1,9 @@
 +++
-date = "2017-02-13T15:11:39-06:00"
 title = "Launching an EC2 using CloudFormation"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology", "AWS"]
-
+categories = ["techtalk","code","sysadmin"]
+tags = ["josdem","techtalks","programming","technology", "AWS","sysadmin"]
+date = "2017-02-13T15:11:39-06:00"
+description = "AWS CloudFormation is a service that helps you to set up your Amazon Web Services resources, so that you can spend less time managing those resources and more time focusing on your applications that run in AWS. This time I will show you how to create and launch an EC2 instance using CloudFormation and Amazon command line interface."
 +++
 
 AWS CloudFormation is a service that helps you to set up your Amazon Web Services resources, so that you can spend less time managing those resources and more time focusing on your applications that run in AWS. This time I will show you how to create and launch an EC2 instance using CloudFormation and Amazon command line interface.
