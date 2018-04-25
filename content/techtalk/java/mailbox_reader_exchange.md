@@ -1,9 +1,9 @@
 +++
 title = "Mailbox Reader Exchange"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","mailbox reader","exchange client"]
+categories = ["techtalk","code","java"]
+tags = ["josdem","techtalks","programming","technology","mailbox reader","exchange client","java"]
 date = "2017-05-25T17:52:58-05:00"
-
+description = "This time I will show you how to read an Outlook Exchange mailbox using Exchange Web Services Java API."
 +++
 
 This time I will show you how to read an Outlook Exchange mailbox using Exchange Web Services Java API [ews-java-api](https://github.com/OfficeDev/ews-java-api). First you need to define your `build.gradle` as follow:

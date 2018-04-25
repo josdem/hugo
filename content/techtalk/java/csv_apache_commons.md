@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk","code"]
+categories = ["techtalk","code","java"]
 tags = ["josdem","techtalks","programming","technology","Java"]
 date = "2017-01-28T11:13:59-06:00"
 title = "CSV with Apache Commons"
-
+description = "Apache Commons CSV Commons software library provides a write and read files funtionality in variations of the Comma Separated Value (CSV) format."
 +++
 
 Apache Commons CSV Commons software library provides a write and read files funtionality in variations of the Comma Separated Value (CSV) format, for more information go [here](https://commons.apache.org/proper/commons-csv/). This time I will show how to write/read CSV tab delimeted files in java. First we need to create a Java basic project this time using [lazybones](https://github.com/pledbrook/lazybones).

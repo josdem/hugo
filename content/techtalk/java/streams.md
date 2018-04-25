@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology", "streams java 8"]
-date = "2017-07-02T10:13:38-05:00"
 title = "Streams"
-
+categories = ["techtalk","code","java"]
+tags = ["josdem","techtalks","programming","technology", "streams java", "java"]
+date = "2017-07-02T10:13:38-05:00"
+description = "Stream interface is defined in java.util.stream package. In Java 8, collections will start having methods that return Stream. Streams support Aggregate Operations. The common aggregate operations are filter, map, reduce, find, match and sort."
 +++
 
 Stream interface is defined in `java.util.stream package`. In Java 8, collections will start having methods that return Stream. Streams support Aggregate Operations. The common aggregate operations are filter, map, reduce, find, match and sort.

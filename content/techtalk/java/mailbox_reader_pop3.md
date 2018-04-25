@@ -1,9 +1,9 @@
 +++
-date = "2017-05-18T16:29:30-05:00"
 title = "GMail Mailbox Reader with POP3"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","mailbox reader","pop3 client"]
-
+date = "2017-05-18T16:29:30-05:00"
+categories = ["techtalk","code","java"]
+tags = ["josdem","techtalks","programming","technology","mailbox reader","pop3 client","java"]
+description = "This time I will show you how to read a Gmail mailbox using POP3 protocol and Java Mail."
 +++
 
 This time I will show you how to read a Gmail mailbox using POP3 protocol and Java Mail. First you need to define your `build.gradle` as follow:

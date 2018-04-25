@@ -1,9 +1,9 @@
 +++
+title = "Java NIO File Copy"
 categories = ["techtalk","code","java"]
 tags = ["josdem","techtalks","programming","technology","java"]
 date = "2017-01-20T12:10:01-06:00"
-title = "Java NIO File Copy"
-
+description = "Before Java 7, if we need to copy a file we need to make a method or call the copyFile File srcFile, File destFile) method of FileUtils using Apache commons io package. In Java 7, file copy function is very simple."
 +++
 
 Before Java 7, if we need to copy a file we need to make a method or call the `copyFile(File srcFile, File destFile)` method of `FileUtils` using Apache commons io package. In Java 7, file copy function is very simple, let's consider the following example:

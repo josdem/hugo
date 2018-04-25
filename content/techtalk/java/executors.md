@@ -1,8 +1,9 @@
 +++
 date = "2018-03-21T11:13:59-06:00"
 title = "Executors"
-tags = ["josdem", "techtalks","programming","technology"]
-categories = ["techtalk", "code"]
+tags = ["josdem", "techtalks","programming","technology","java"]
+categories = ["techtalk", "code","java"]
+description = "Executors is part of concurrency Java API, and it is a high level manging threads. Executors typically manage a pool of threads."
 +++
 
 Executors is part of concurrency Java API, and it is a high level manging threads. Executors typically manage a pool of threads.

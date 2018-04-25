@@ -1,9 +1,9 @@
 +++
-date = "2017-06-21T15:27:41-05:00"
 title = "Stream Filters"
-tags = ["josdem","techtalks","programming","technology", "Java 8", "streams java", "filters java"]
-categories = ["techtalk","code"]
-
+categories = ["techtalk","code","java"]
+tags = ["josdem","techtalks","programming","technology", "Java", "streams java", "filters java"]
+date = "2017-06-21T15:27:41-05:00"
+description = "A stream represents a sequence of elements and supports different operations to perform calculations in those elements."
 +++
 
 A stream represents a sequence of elements and supports different operations to perform calculations in those elements:

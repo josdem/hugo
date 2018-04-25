@@ -19,7 +19,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Sequential Containers](/techtalk/cplusplus/c++_sequential_containers)
  * [String Operations](/techtalk/cplusplus/c++_string_operations)
  * [Generic Algorithms](/techtalk/cplusplus/generic_algorithms)
-* [**Java Topics**](/techtalk/java)
+* [**Java**](/techtalk/java)
  * [Java time API](/techtalk/java/java_time_api)
  * [Lambda Expressions](/techtalk/java/lambda_expressions)
  * [FizzBuzz](/techtalk/java/java_fizz_buzz)

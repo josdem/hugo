@@ -1,9 +1,9 @@
 +++
-date = "2017-05-19T12:14:01-05:00"
 title = "GMail Mailbox Reader with IMAP"
-categories = ["techtalk","code"]
+date = "2017-05-19T12:14:01-05:00"
+categories = ["techtalk","code","java"]
 tags = ["josdem","techtalks","programming","technology", "mailbox reader", "gmail client", "gmail imap"]
-
+description = "This time I will show you how to read a Gmail mailbox using IMAP protocol and Java Mail. With IMAP you will have access to a specific folders in your GMail account."
 +++
 
 This time I will show you how to read a Gmail mailbox using IMAP protocol and Java Mail. With IMAP you will have access to a specific folders in your GMail account such as:

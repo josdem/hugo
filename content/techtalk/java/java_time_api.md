@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
-date = "2016-11-26T10:46:26-06:00"
-tags = ["josdem", "techtalks", "programming", "technology", "Java"]
 title = "Java Time API"
-
+categories = ["techtalk", "code","java"]
+tags = ["josdem", "techtalks", "programming", "technology", "Java"]
+date = "2016-11-26T10:46:26-06:00"
+description = "Is an evolution from the previous java.util.Date (Calendar, TimeZone & DateFormat), instances of time/date now are immutable, time and Date operations now are thread safe, API support strong typing, which enables you to write better code."
 +++
 
 Some important things that we have to know about the `java.time API` is the following:

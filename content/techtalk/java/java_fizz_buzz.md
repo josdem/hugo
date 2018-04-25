@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code","Java"]
-date = "2016-06-23T15:24:28-05:00"
-tags = ["josdem", "techtalks", "programming", "technology","Java"]
 title = "FizzBuzz"
-
+date = "2016-06-23T15:24:28-05:00"
+categories = ["techtalk", "code","Java"]
+tags = ["josdem", "techtalks", "programming", "technology","Java"]
+description = "Fizz buzz is a group word game for children to teach them about division. Players take turns to count incrementally, replacing any number divisible by three with the word fizz, and any number divisible by five with the word buzz."
 +++
 
 Fizz buzz is a group word game for children to teach them about division. Players take turns to count incrementally, replacing any number divisible by three with the word “fizz”, and any number divisible by five with the word “buzz”.

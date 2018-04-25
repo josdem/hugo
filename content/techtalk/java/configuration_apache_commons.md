@@ -1,9 +1,9 @@
 +++
 date = "2017-01-17T18:55:39-06:00"
 title = "Configuration with Apache Commons"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","Java"]
-
+categories = ["techtalk","code","java"]
+tags = ["josdem","techtalks","programming","technology","java"]
+description = "The Commons Configuration software library provides a generic configuration interface which enables a Java application to read configuration data from a variety of sources."
 +++
 
 The Commons Configuration software library provides a generic configuration interface which enables a Java application to read configuration data from a variety of sources. Go here for more information about [Apache Commons](http://commons.apache.org/)

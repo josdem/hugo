@@ -1,9 +1,9 @@
 +++
-title =  "Generics"
 description = "Generics"
 date = "2018-04-25T09:57:11-05:00"
-tags = ["josdem", "techtalks","programming","technology","generics"]
+tags = ["josdem", "techtalks","programming","technology","generics","java"]
 categories = ["techtalk", "code","java"]
+title =  "Generics is a great way to prevent bugs at compilation time since provide compile-time type checking and removing risk of ClassCastException that was common while working with collection classes. Another important advantage in using generics is that you can write code that use abstractions instead using concrete classes, so you can create maintainable and extendable code."
 +++
 
 Generics is a great way to prevent bugs at compilation time since provide compile-time type checking and removing risk of `ClassCastException` that was common while working with collection classes. Another important advantage in using generics is that you can write code that use abstractions instead using concrete classes, so you can create maintainable and extendable code.

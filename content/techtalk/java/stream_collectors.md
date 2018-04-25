@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology", "Java 8", "streams java", "collectors java"]
-date = "2017-06-25T10:48:05-05:00"
 title = "Stream Collectors"
-
+categories = ["techtalk","code","java"]
+tags = ["josdem","techtalks","programming","technology", "Java", "streams java", "collectors java"]
+date = "2017-06-25T10:48:05-05:00"
+description = "This time I will show you how to use collectors over streams to group by, concatenate, map and list."
 +++
 
 This time I will show you how to use collectors over streams to group by, concatenate, map and list.

@@ -1,9 +1,9 @@
 +++
-tags = ["josdem","techtalks","programming","technology"]
-categories = ["techtalk","code"]
+tags = ["josdem","techtalks","programming","technology","java"]
+categories = ["techtalk","code","java"]
 date = "2017-01-12T18:20:33-06:00"
 title = "AWS Hello Lambda"
-
+description = "AWS Lambda is currently an option to implement Serverless architecture which is a name to refer to applications that run in ephemeral containers, such architectures remove the need for the traditional always on server and with that we save a lot of money in up time server consuming."
 +++
 
 AWS Lambda is currently an option to implement Serverless architecture which is a name to refer to applications that run in ephemeral containers, such architectures remove the need for the traditional 'always on' server and with that we save a lot of money in up time server consuming.

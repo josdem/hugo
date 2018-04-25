@@ -1,9 +1,9 @@
 +++
-date = "2017-01-16T13:27:45-06:00"
 title = "S3 AWS Lambda"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","java"]
 tags = ["josdem","techtalks","programming","technology", "aws lambda", "java", "serverless"]
-
+date = "2017-01-16T13:27:45-06:00"
+description = "Suppose you want to process a file that is uploaded to a bucket. You can create a Lambda function (BucketFileTransfer) that Amazon S3 can invoke when objects are created. Then, the Lambda function can read the image object from the source bucket and create a copy image target bucket."
 +++
 
 Suppose you want to process a file that is uploaded to a bucket. You can create a Lambda function (BucketFileTransfer) that Amazon S3 can invoke when objects are created. Then, the Lambda function can read the image object from the source bucket and create a copy image target bucket.

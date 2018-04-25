@@ -1,19 +1,9 @@
 +++
-tags = [
-  "josdem",
-  "techtalks",
-  "programming",
-  "technology",
-  "java",
-  "lambda"
-]
-categories = [
-  "techtalk",
-  "code",
-]
+tags = ["josdem","techtalks","programming","technology","java","lambda"]
+categories = ["techtalk","code","java"]
 date = "2016-12-17T10:05:56-06:00"
 title = "Lambda Expressions"
-
+description = "Lambda expression is an argument list follow by an arrow token and a body or code expression."
 +++
 
 Lambda expression is an argument list follow by an arrow token and a body or code expression.
