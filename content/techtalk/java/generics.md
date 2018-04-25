@@ -246,7 +246,7 @@ public class CollectionAdder {
  }
 ```
 
-In this way, we can sum list of Integers or Doubles even though we know that List<Integer> and List<Double> are not related, this is when upper bounded wildcard is helpful.
+In this way, we can sum list of Integers or Doubles even though we know that `List<Integer>` and `List<Double>` are not related, this is when upper bounded wildcard is helpful.
 
 Here is the code to test this functionality:
 
