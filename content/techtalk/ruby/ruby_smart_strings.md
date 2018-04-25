@@ -1,8 +1,9 @@
 +++
-date = "2016-03-12T09:46:29-06:00"
-draft = true
 title = "Ruby Smart Strings"
-
+categories = ["techtalk", "code","ruby"]
+tags = ["josdem", "techtalks", "programming", "technology","ruby"]
+date = "2016-03-12T09:46:29-06:00"
+description = "You can define a single-quoted String escaped by a backslash, using placeholders, span lines."
 +++
 
 You can define a single-quoted String escaped by a backslash:

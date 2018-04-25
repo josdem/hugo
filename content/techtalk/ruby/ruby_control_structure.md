@@ -1,8 +1,9 @@
 +++
-date = "2016-02-10T16:32:01-06:00"
-draft = true
 title = "Ruby Control Structure"
-
+categories = ["techtalk", "code","ruby"]
+tags = ["josdem", "techtalks", "programming", "technology","ruby"]
+date = "2016-02-10T16:32:01-06:00"
+description = "Ruby's most basic control structure."
 +++
 
 Ruby's most basic control structure: if statement

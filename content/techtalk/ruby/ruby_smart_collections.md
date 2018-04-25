@@ -1,8 +1,9 @@
 +++
-date = "2016-02-12T12:48:09-06:00"
-draft = true
 title = "Smart Collections"
-
+categories = ["techtalk", "code","ruby"]
+tags = ["josdem", "techtalks", "programming", "technology","ruby"]
+date = "2016-02-12T12:48:09-06:00"
+description = "If, in any method definition, you stick an asterisk before your parameter name, that parameter will soak up any extra arguments passed to the method. The value of the starred parameter will be an array containing all the extra arguments."
 +++
 
 If, in any method definition, you stick an asterisk before your parameter name, that parameter will soak up any extra arguments passed to the method. The value of the starred parameter will be an array containing all the extra arguments.
