@@ -1,8 +1,9 @@
 +++
-date = "2016-01-18T21:20:32-06:00"
-draft = true
 title = "Spring Liquibase"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2016-01-18T21:20:32-06:00"
+description = "Liquibase can be run in a Spring environment by declaring a liquibase.spring.SpringLiquibase bean."
 +++
 
 Liquibase can be run in a Spring environment by declaring a liquibase.spring.SpringLiquibase bean.

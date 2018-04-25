@@ -1,8 +1,9 @@
 +++
-date = "2015-11-21T16:09:45-06:00"
-draft = true
 title = "Spring JavaMail and Freemarker"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-11-21T16:09:45-06:00"
+description = "We're going to explore all flowing from controller to the freemarker html template to send an email."
 +++
 
 We're going to explore all flowing from controller to the freemarker html template to send an email.

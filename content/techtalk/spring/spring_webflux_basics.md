@@ -1,8 +1,9 @@
 +++
-date = "2018-03-25T12:57:29-06:00"
 title = "Getting Started with Spring Webflux"
-tags = ["josdem", "techtalks","programming","technology", "Webflux", "Reactive Webflux"]
-categories = ["techtalk", "code"]
+categories = ["techtalk", "code","spring webflux"]
+tags = ["josdem", "techtalks","programming","technology", "Webflux", "Reactive Webflux","spring webflux"]
+date = "2018-03-25T12:57:29-06:00"
+description = "Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono."
 +++
 
 Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono.

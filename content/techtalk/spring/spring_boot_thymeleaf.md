@@ -1,9 +1,11 @@
 +++
-date = "2017-08-29T20:18:08-05:00"
-draft = true
 title = "Spring Boot with Thymeleaf"
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot"]
+date = "2017-08-29T20:18:08-05:00"
+description = "This time I will show you how to create a basic project in Spring Boot with Thymeleaf"
 +++
+
 ## Setup
 This time I will show you how to create a basic project in Spring Boot with Thymeleaf, in order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
 

@@ -1,8 +1,9 @@
 +++
+title = "Spring Boot JMS"
+categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology", "spring boot jms", "java message service", "spring boot"]
 date = "2018-02-26T09:08:25-06:00"
-title = "Spring Boot JMS"
-categories = ["techtalk","code"]
+description = "The Java Message Service is an API for sending messages between two or more clients. It is an implementation to Producer-Consumer Design Pattern"
 +++
 
 The Java Message Service is an API for sending messages between two or more clients. It is an implementation to [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). This technique is usually implemented when you have time consuming process and you need to avoid client waiting time. To put this in context let’s think about a scenario where we could use it. The first thing that comes to my mind is an email delivery process. Sending an email consumes too much time and we can put email delivery as a task in a queue, so we can continue with our business flow without force to the client to wait until its email is deliver.

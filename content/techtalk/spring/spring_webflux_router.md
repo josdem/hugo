@@ -1,8 +1,9 @@
 +++
 title =  "Spring Webflux Router"
+categories = ["techtalk", "code","spring webflux"]
+tags = ["josdem", "techtalks","programming","technology", "Reactive Programming", "WebFlux", "Reactor", "Java","spring webflux"]
 date = "2018-03-26T16:10:59-06:00"
-tags = ["josdem", "techtalks","programming","technology", "Reactive Programming", "WebFlux", "Reactor", "Java"]
-categories = ["techtalk", "code"]
+description = "This post walks you through the process of creating endpoints using Spring Webflux routers."
 +++
 
 This post walks you through the process of creating endpoints using Spring Webflux routers. Please read this previous [post](/techtalk/spring/spring_webflux_basics) before conitnue with this information.

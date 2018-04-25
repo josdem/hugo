@@ -1,8 +1,9 @@
 +++
-date = "2015-11-21T21:41:45-06:00"
-draft = true
 title = "Spring Interceptor"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-11-21T21:41:45-06:00"
+description = "Spring MVC provides a powerful mechanism to intercept an http request, provides a way to define special classes called Interceptors that gets called before and after a request is served."
 +++
 
 Spring MVC provides a powerful mechanism to intercept an http request, provides a way to define special classes called Interceptors that gets called before and after a request is served.

@@ -1,9 +1,9 @@
 +++
 title = "Spring Boot JPA"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology","spring boot","spring boot jpa", "groovy", "gradle"]
 date = "2018-02-07T12:33:50-06:00"
-
+description = "The key goal of Spring Data repository abstraction is to significantly reduce the amount of code required to implement data access layers for various persistence stores."
 +++
 
 The key goal of Spring Data repository abstraction is to significantly reduce the amount of code required to implement data access layers for various persistence stores.

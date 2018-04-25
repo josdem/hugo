@@ -1,8 +1,9 @@
 +++
-date = "2015-12-02T22:18:18-06:00"
-draft = true
 title = "Spring Boot Testing"
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot"]
+date = "2015-12-02T22:18:18-06:00"
+description = "We can test our application using Junit or Spock, and we will see both. Also you can make unit, integration and functional testing."
 +++
 
 We can test our application using Junit or Spock, and we will see both. Also you can make unit, integration and functional testing.

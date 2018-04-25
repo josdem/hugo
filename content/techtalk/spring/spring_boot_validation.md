@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","java validation"]
-date = "2017-01-08T09:54:20-06:00"
 title = "Spring Boot Validation"
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","java validation","spring boot"]
+date = "2017-01-08T09:54:20-06:00"
+description = "Spring has a Validation interface that we can use in order to create custom object validation, if some errors occur in the validation process it store them in a BindingResult object so you can test for and retrieve validation errors."
 +++
 
 Spring has a `Validation` interface that we can use in order to create custom object validation, if some errors occur in the validation process it store them in a `BindingResult` object so you can test for and retrieve validation errors. Let's consider the following validator:

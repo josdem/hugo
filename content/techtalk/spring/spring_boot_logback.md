@@ -1,9 +1,9 @@
 +++
-date = "2017-02-24T16:01:07-06:00"
 title = "Spring Boot Logback"
-tags = ["josdem","techtalks","programming","technology","logback"]
-categories = ["techtalk","code"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","logback","spring boot"]
+date = "2017-02-24T16:01:07-06:00"
+description = "Logback is a logging framework wheter console or file, is nowadays the best option for logging your Spring Boot application. This time I will show you how to configure Logback."
 +++
 
 Logback is a logging framework wheter console or file, is nowadays the best option for logging your Spring Boot application. [Here](https://logback.qos.ch/) you can find more information about it. This time I will show you how to configure Logback.

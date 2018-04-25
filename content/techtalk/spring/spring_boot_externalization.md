@@ -1,8 +1,9 @@
 +++
-date = "2015-12-06T15:43:14-06:00"
-tags = ["josdem","techtalks","programming","technology","Spring Boot","Spring Boot yaml"]
 title = "Spring Boot Externalization"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","Spring Boot","Spring Boot yaml"]
+date = "2015-12-06T15:43:14-06:00"
+description = "In this example we are going to externalize MySQL database connection using a yaml file. In order to get the setup for this example, please refer my previous post Spring Boot JPA"
 +++
 
 In this example we are going to externalize MySQL database connection using a yaml file. In order to get the setup for this example, please refer my previous post [Spring Boot JPA](/techtalk/spring/spring_boot_jpa)

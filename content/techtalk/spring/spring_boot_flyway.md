@@ -1,8 +1,9 @@
 +++
-date = "2017-06-05T14:45:09-05:00"
 title = "Spring Boot Flyway"
 categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology","flyway","spring boot", "Gradle", "control version database"]
+date = "2017-06-05T14:45:09-05:00"
+description = "You know the benefits using version of control in software development such as Git or Subversion. This time I will show you Flyway to manage version control for your database, so you can track schema's evolution across all your environments with ease using Gradle and Spring Boot."
 +++
 
 You know the benefits using version of control in software development such as [Git](https://git-scm.com/) or [Subversion](https://subversion.apache.org/). This time I will show you [Flyway](https://flywaydb.org/) to manage version control for your database, so you can track schema's evolution across all your environments with ease using [Gradle](https://gradle.org/) and Spring Boot. 

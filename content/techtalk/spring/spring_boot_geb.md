@@ -1,8 +1,9 @@
 +++
 title =  "Spring Boot Geb"
+categories = ["techtalk", "code","spring boot"]
+tags = ["josdem", "techtalks","programming","technology","Geb Framework", "Geb and Spock", "BDD", "Functional Testing","spring boot"]
 date = "2018-04-12T21:16:59-05:00"
-tags = ["josdem", "techtalks","programming","technology","Geb Framework", "Geb and Spock", "BDD", "Functional Testing"]
-categories = ["techtalk", "code"]
+description = "BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing."
 +++
 
 BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing.

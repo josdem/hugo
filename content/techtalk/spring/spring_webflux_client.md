@@ -1,8 +1,9 @@
 +++
 title =  "Spring Webflux Client"
+categories = ["techtalk", "code","spring webflux"]
+tags = ["josdem", "techtalks","programming","technology", "Spring WebFlux", "Reactive Web", "Java","spring webflux"]
 date = "2018-03-28T11:36:40-06:00"
-tags = ["josdem", "techtalks","programming","technology", "Spring WebFlux", "Reactive Web", "Java"]
-categories = ["techtalk", "code"]
+description = "This time we will see the client side in a Spring Webflux project."
 +++
 
 In previous [post](/techtalk/spring/spring_webflux_router) we covered web reactive server, this time we will see the client side. Let's start creating a new project with Webflux, Mongo Reactive and Lombok as dependencies:

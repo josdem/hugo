@@ -1,9 +1,9 @@
 +++
-date = "2018-01-15T15:45:00-06:00"
 title = "Spring Boot Actuator"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","Spring Boot Actuator"]
-
+date = "2018-01-15T15:45:00-06:00"
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","Spring Boot Actuator", "spring boot"]
+description = "Spring Boot includes a number of additional features to help you monitor and manage your application. The spring-boot-actuator module provides all of Spring Boot’s production-ready features."
 +++
 
 Spring Boot includes a number of additional features to help you monitor and manage your application. The `spring-boot-actuator` module provides all of Spring Boot’s production-ready features.

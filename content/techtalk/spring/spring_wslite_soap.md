@@ -1,8 +1,9 @@
 +++
-date = "2016-03-05T19:24:14-06:00"
-draft = true
 title = "groovy-wslite SOAP"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2016-03-05T19:24:14-06:00"
+description = "Recently I needed to consume an SOAP service from an Spring application, my first approach was creating an snippet that works from Groovy console."
 +++
 
 Recently I needed to consume an SOAP service from an Spring application, my first approach was creating an snippet that works from Groovy console, my code worked and looks like this:

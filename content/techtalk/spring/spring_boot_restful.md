@@ -1,8 +1,9 @@
 +++
-date = "2018-01-27T15:45:00-06:00"
-tags = ["josdem", "techtalks","programming","technology","Spring Boot RESTful"]
-categories = ["techtalk", "code"]
 title = "Spring Boot RESTFul"
+categories = ["techtalk", "code","spring boot"]
+tags = ["josdem", "techtalks","programming","technology","Spring Boot RESTful","spring boot"]
+date = "2018-01-27T15:45:00-06:00"
+description = "The main idea behind creating a RESTful application is that you will create logical resources (GET, POST, UPDATE and DELETE) consumed by clients usign HTTP request."
 +++
 
 The main idea behind creating a RESTful application is that you will create logical resources (GET, POST, UPDATE and DELETE) consumed by clients usign HTTP request.

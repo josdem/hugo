@@ -1,9 +1,11 @@
 +++
-date = "2015-08-29T20:12:17-05:00"
-draft = true
 title = "Spring Boot"
-
+date = "2015-08-29T20:12:17-05:00"
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","java validation","spring boot"]
+description = "It is a Spring project aim to create easy web or stand-alone applications."
 +++
+
 ## What is Spring Boot?
 It is a Spring project aim to create easy web or stand-alone applications. It provides the next features:
 

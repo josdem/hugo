@@ -1,9 +1,9 @@
 +++
-date = "2017-01-22T21:19:21-06:00"
 title = "Spring Boot Validation Testing"
-tags = ["josdem","techtalks","programming","technology"]
-categories = ["techtalk","code"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot"]
+date = "2017-01-22T21:19:21-06:00"
+description = "This time I will show you how create a unit testing using Spock, which is a testing and specification framework for Java and Groovy applications it is highly expressive and easy to use."
 +++
 
 This time I will show you how create a unit testing using [Spock](http://spockframework.org/), Spock is a testing and specification framework for Java and Groovy applications it is highly expressive and easy to use. First you need to add `Spock dependency` in your `build.gradle`

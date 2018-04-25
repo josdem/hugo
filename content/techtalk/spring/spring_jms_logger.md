@@ -1,8 +1,9 @@
 +++
-date = "2015-10-14T21:41:43-05:00"
-draft = true
 title = "JMS Logger with ActiveMQ"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-10-14T21:41:43-05:00"
+description = "The main beneffit to log our application with JMS is to use asynchronous logging, meaning services creates some log messages, sends them across the network to a JMS provider and then the receiver store that message in our log system."
 +++
 
 The main beneffit to log our application with JMS is to use asynchronous logging, meaning services creates some log messages, sends them across the network to a JMS provider and then the receiver store that message in our log system.

@@ -45,7 +45,6 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 
 * [Spring Boot Basics](/techtalk/spring/spring_boot)
 * [Spring Boot with Thymeleaf](/techtalk/spring/spring_boot_thymeleaf)
-* [Spring Boot Simple Project](/techtalk/spring/spring_boot_jmailer)
 * [Spring Boot AOP](/techtalk/spring/spring_boot_aop)
 * [Spring Boot RESTful](/techtalk/spring/spring_boot_restful)
 * [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)

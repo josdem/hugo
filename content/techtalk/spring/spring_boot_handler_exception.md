@@ -1,8 +1,9 @@
 +++
-date = "2015-11-29T21:34:44-06:00"
-draft = true
 title = "Spring Boot Handler Exception"
-
+categories = ["techtalk", "code","spring boot"]
+tags = ["josdem", "techtalks","programming","technology","spring boot"]
+date = "2015-11-29T21:34:44-06:00"
+description = "The common way to manage exceptions in Spring is using an HandlerExceptionResolver class, in this example I will show you how to manage an generic exception in our code."
 +++
 
 There are several reasons why we should manage exceptions such as:

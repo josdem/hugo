@@ -1,9 +1,9 @@
 +++
-date = "2017-09-15T08:06:41-05:00"
 title = "Spring Boot Rest Client"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot"]
+date = "2017-09-15T08:06:41-05:00"
+description = "This time I will show you how to consume a REST service using Spring Boot and a Groovy library based in HTTPBuilder RESTClient by jgritman."
 +++
 
 This time I will show you how to consume a REST service using Spring Boot and a Groovy library based in HTTPBuilder [RESTClient](https://github.com/jgritman/httpbuilder/wiki/RESTClient) by jgritman. 

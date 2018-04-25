@@ -1,8 +1,9 @@
 +++
-date = "2015-10-18T22:05:02-05:00"
-draft = true
 title = "Building with Gradle"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-10-18T22:05:02-05:00"
+description = "Using DSL language you write your build script like you write your code and this is based on Groovy."
 +++
 
 Using DSL language you write your build script like you write your code and this is based on Groovy. The main advantages tu use Gradle are:

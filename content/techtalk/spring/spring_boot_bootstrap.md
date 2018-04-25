@@ -1,9 +1,9 @@
 +++
-date = "2018-02-20T15:07:04-06:00"
 title = "Spring Boot Bootstrap"
+categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology","Spring Boot","Bootstrap"]
-categories = ["techtalk","code"]
-
+date = "2018-02-20T15:07:04-06:00"
+description = "In this technical post I will show you how to add Bootstrap to your Spring Boot project."
 +++
 
 [Boostrap](https://getbootstrap.com/) was originally created by a designer and a developer at Twitter, Bootstrap has become one of the most popular front-end frameworks and open source projects in the world.

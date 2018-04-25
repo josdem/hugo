@@ -1,8 +1,9 @@
 +++
-date = "2016-01-25T18:27:38-06:00"
-draft = true
 title = "Unit Testing With Spock"
-
+categories = ["techtalk","code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2016-01-25T18:27:38-06:00"
+description = "We are going to test using unit test with Spock the LoggerInterceptor class."
 +++
 
 We are going to test using unit test with Spock the LoggerInterceptor class, for more information regarding what this class does, please visit this post: [IP Whitelist Using Interceptors](/techtalk/spring_interceptor)

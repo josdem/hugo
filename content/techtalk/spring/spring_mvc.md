@@ -1,8 +1,9 @@
 +++
-date = "2015-10-12T20:26:12-05:00"
-draft = true
 title = "Basic Spring MVC with Bootstrap"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-10-12T20:26:12-05:00"
+description = "Creating a simple Spring MVC application using Bootstrap and XML configuration"
 +++
 
 ## Technologies

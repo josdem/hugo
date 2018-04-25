@@ -1,8 +1,9 @@
 +++
-date = "2015-11-12T20:28:41-06:00"
-draft = true
 title = "Handler Exception Resolver"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-11-12T20:28:41-06:00"
+description = "There are several reasons why we should manage exceptions such as: customize an error page, business logic, reduce logic."
 +++
 
 There are several reasons why we should manage exceptions such as:

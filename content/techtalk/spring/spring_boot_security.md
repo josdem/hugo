@@ -1,9 +1,9 @@
 +++
-date = "2017-01-10T19:25:41-06:00"
 title = "Spring Boot Security"
+categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology","spring boot","Custom Login Form Spring Boot"]
-categories = ["techtalk","code"]
-
+date = "2017-01-10T19:25:41-06:00"
+description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Boot project."
 +++
 
 Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Boot project. First you set up a basic build script.`build.gradle`

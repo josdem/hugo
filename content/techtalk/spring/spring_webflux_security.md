@@ -1,8 +1,9 @@
 +++
 title =  "Spring Webflux Security"
+categories = ["techtalk", "code","spring webflux"]
+tags = ["josdem", "techtalks","programming","technology", "webflux", "spring security","spring webflux"]
 date = "2018-04-10T09:46:11-05:00"
-tags = ["josdem", "techtalks","programming","technology", "webflux", "spring security"]
-categories = ["techtalk", "code"]
+description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project."
 +++
 
 Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project. 

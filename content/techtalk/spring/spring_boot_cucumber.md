@@ -1,8 +1,9 @@
 +++
 title =  "Spring Boot Cucumber"
+categories = ["techtalk", "code","spring boot"]
+tags = ["josdem", "techtalks","programming","technology","Java", "Cucumber","spring boot"]
 date = "2018-03-30T19:42:17-06:00"
-tags = ["josdem", "techtalks","programming","technology","Java", "Cucumber"]
-categories = ["techtalk", "code"]
+description = "BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing."
 +++
 
 BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing.

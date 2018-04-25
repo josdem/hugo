@@ -1,8 +1,9 @@
 +++
-date = "2015-10-13T22:00:48-05:00"
-draft = true
 title = "Aspect Oriented Programming"
-
+categories = ["techtalk", "code","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+date = "2015-10-13T22:00:48-05:00"
+description = "Apply same logic in several points in your application is called cross cutting concerns, and in Spring we can implement it using AOP"
 +++
 
 Apply same logic in several points in your application is called cross cutting concerns, and in Spring we can implement it using AOP, some basics aspects are:

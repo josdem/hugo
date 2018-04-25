@@ -1,9 +1,9 @@
 +++
-date = "2017-02-17T12:07:56-06:00"
 title = "Spring Boot Liquibase"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot"]
+date = "2017-02-17T12:07:56-06:00"
+description = "Liquibase is a source control for your databases. This time I will show you how to add Liquibase to a Spring Boot project. First you need to add your Liquibase dependency in your build.gradle file"
 +++
 
 Liquibase is a source control for your databases. This time I will show you how to add Liquibase to a Spring Boot project. First you need to add your Liquibase dependency in your `build.gradle` file

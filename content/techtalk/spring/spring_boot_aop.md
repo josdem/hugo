@@ -1,8 +1,9 @@
 +++
-date = "2015-11-29T21:25:06-06:00"
-draft = true
 title = "Spring Boot AOP"
-
+date = "2015-11-29T21:25:06-06:00"
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","Spring Boot AOP", "spring boot"]
+description = "This time I will show you how to create a basic project in Spring Boot using AOP"
 +++
 
 ## Setup

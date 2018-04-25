@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
-date = "2016-07-17T14:56:13-05:00"
-tags = ["josdem", "techtalks", "programming", "technology", "swagger", "springfox", "swagger in spring", "swagger spring boot configuration"]
 title = "Spring Boot Swagger"
-
+categories = ["techtalk", "code","spring boot"]
+tags = ["josdem", "techtalks", "programming", "technology", "swagger", "springfox", "swagger in spring", "swagger spring boot configuration","spring boot"]
+date = "2016-07-17T14:56:13-05:00"
+description = "Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API."
 +++
 
 Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API.

@@ -1,9 +1,9 @@
 +++
-date = "2017-01-01T15:00:01-06:00"
 title = "Spring Boot Bower Plugin"
-categories = ["techtalk","code"]
-tags = ["josdem","techtalks","programming","technology","bower","gradle"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","bower","gradle","spring boot"]
+date = "2017-01-01T15:00:01-06:00"
+description = "Applying a plugin to a project allows the plugin to extend the project's capabilities. In this example I will apply Bower plugin to a Spring Boot project."
 +++
 
 Applying a plugin to a project allows the plugin to extend the project's capabilities. In this example I will apply Bower plugin to a Spring Boot project. Bower is a package manager for the web specifically HTML, Javascript libraries, CSS fonts even image files. Look here for more information: [Bower](https://bower.io/)

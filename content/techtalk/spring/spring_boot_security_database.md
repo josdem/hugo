@@ -1,9 +1,9 @@
 +++
-tags = ["josdem","techtalks","programming","technology", "Spring"]
-date = "2017-01-21T20:55:53-06:00"
 title = "Spring Boot Security using Database"
-categories = ["techtalk","code"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology", "Spring", "spring boot"]
+date = "2017-01-21T20:55:53-06:00"
+description = "This post walks you through the process of creating a simple registration and login example with Spring Security using database."
 +++
 
 This post walks you through the process of creating a simple registration and login example with Spring Security using database. Please read this previous [post](/techtalk/spring/spring_boot_security) before conitnue with this information. First we need to add Spring Data JPA dependency to the `build.gradle`

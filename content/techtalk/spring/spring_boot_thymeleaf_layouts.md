@@ -1,9 +1,9 @@
 +++
-tags = ["josdem","techtalks","programming","technology"]
-date = "2017-03-07T13:10:45-06:00"
 title = "Spring Boot Thymeleaf Layouts"
-categories = ["techtalk","code"]
-
+categories = ["techtalk","code","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot"]
+date = "2017-03-07T13:10:45-06:00"
+description = "This time I will show you how to share common page components like header, footer called layouts using Thymeleaf."
 +++
 
 This time I will show you how to share common page components like header, footer called layouts using Thymeleaf. Go [here](http://www.thymeleaf.org/doc/articles/layouts.html) for more information. Let's consider the following home page:

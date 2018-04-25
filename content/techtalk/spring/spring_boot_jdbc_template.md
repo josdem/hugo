@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk","code"]
+title = "Spring Boot JDBC Template"
+categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology", "spring boot", "spring boot jdbc template"]
 date = "2017-06-30T11:03:38-05:00"
-title = "Spring Boot JDBC Template"
-
+description = "This time I will show you how to use JDBC template in a Spring Boot application. Spring JdbcTemplate is a powerful mechanism to connect to a relational database and execute SQL queries."
 +++
 
 This time I will show you how to use JDBC template in a Spring Boot application. Spring [JdbcTemplate](https://docs.spring.io/spring-framework/docs/1.0.0/api/org/springframework/jdbc/core/JdbcTemplate.html) is a powerful mechanism to connect to a relational database and execute SQL queries.

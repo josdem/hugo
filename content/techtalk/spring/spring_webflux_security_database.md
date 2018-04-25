@@ -1,8 +1,9 @@
 +++
 title =  "Spring Webflux Security Database"
+categories = ["techtalk", "code","spring webflux"]
+tags = ["josdem", "techtalks","programming","technology","Spring Security", "Webflux Security","spring webflux"]
 date = "2018-04-11T16:12:30-05:00"
-tags = ["josdem", "techtalks","programming","technology","Spring Security", "Webflux Security"]
-categories = ["techtalk", "code"]
+description = "This post walks you through the process of creating a simple registration and login example with Spring WebFlux Security using MongoDB database."
 +++
 
 This post walks you through the process of creating a simple registration and login example with Spring WebFlux Security using MongoDB database. Please read this previous [post](/techtalk/spring/spring_webflux_security) before conitnue with this information. First we need to add MongoDB and Lombok dependencies to the `build.gradle` file

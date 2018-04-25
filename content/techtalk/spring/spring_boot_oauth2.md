@@ -1,9 +1,9 @@
 +++
-date = "2017-08-24T20:14:00-05:00"
 title = "Spring Boot Oauth2 with Google"
-categories = ["techtalk","code"]
+categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology", "Spring Boot", "Oauth2"]
-
+date = "2017-08-24T20:14:00-05:00"
+description = "This time I will show you how to build a basic Spring Boot application with Google authentication by Oauth2."
 +++
 
 This time I will show you how to build a basic Spring Boot application with Google authentication by Oauth2. First you need to add Spring Security dependencies, this is the complete `build.gradle` file:

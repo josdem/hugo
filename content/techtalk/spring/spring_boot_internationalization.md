@@ -1,8 +1,9 @@
 +++
-date = "2016-06-06T14:56:49-05:00"
-draft = true
 title = "Spring Boot Internationalization"
-
+categories = ["techtalk", "code","spring boot"]
+tags = ["josdem", "techtalks","programming","technology","spring boot"]
+date = "2016-06-06T14:56:49-05:00"
+description = "Spring Boot uses the MessageSource configured with a MessageSourceAutoConfiguration. These settings can be easily changed in the application.properties file"
 +++
 
 Spring Boot uses the MessageSource configured with a MessageSourceAutoConfiguration. These settings can be easily changed in the `application.properties` file:
