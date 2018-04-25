@@ -1,11 +1,12 @@
 +++
+title = "Java"
 date = "2016-06-07T16:31:36-05:00"
-draft = true
-title = "Java Topics"
-
+tags = ["josdem", "techtalks","programming","technology","generics","java","lambda"]
+categories = ["techtalk", "code","java"]
+description = "There are three main features in Java 8 that I love, one of them is the lambda expressions, it will have enormous implications for simplifying development. The another one is the new java.util.stream package provide a Stream API to support functional-style operations on streams of elements. The Stream API is integrated into the Collections API, which enables bulk operations on collections, such as sequential or parallel map-reduce transformations. And lastly but not least the java.time API that now are compatible with lambda, thread safe and simplified usage."
 +++
 
-There are three main features in Java 8 that I love, one of them is the lambda expressions is like syntactic sugar for an anonymous class, it will have enormous implications for simplifying development. The another one is the new `java.util.stream` package provide a Stream API to support functional-style operations on streams of elements. The Stream API is integrated into the Collections API, which enables bulk operations on collections, such as sequential or parallel map-reduce transformations. And lastly but not least the `java.time` API that now are compatible with lambda, thread safe and simplified usage.
+There are three main features in Java 8 that I love, one of them is the lambda expressions, it will have enormous implications for simplifying development. The another one is the new `java.util.stream` package provide a Stream API to support functional-style operations on streams of elements. The Stream API is integrated into the Collections API, which enables bulk operations on collections, such as sequential or parallel map-reduce transformations. And lastly but not least the `java.time` API that now are compatible with lambda, thread safe and simplified usage.
 
 
 * [Java time API](/techtalk/java/java_time_api)
@@ -25,6 +26,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Stream Filters](/techtalk/java/stream_filters)
 * [Stream Collectors](/techtalk/java/stream_collectors)
 * [Executors](/techtalk/java/executors)
+* [Generics](/techtalk/java/generics)
 * [GitHub Repository](https://github.com/josdem/java-topics)
 
 

@@ -37,6 +37,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Stream Filters](/techtalk/java/stream_filters)
  * [Stream Collectors](/techtalk/java/stream_collectors)
  * [Executors](/techtalk/java/executors)
+ * [Generics](/techtalk/java/generics)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
  * [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)
