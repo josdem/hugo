@@ -1,9 +1,11 @@
 +++
-date = "2015-08-29T18:43:23-05:00"
-draft = true
 title = "Duplicated code"
-
+date = "2015-08-29T18:43:23-05:00"
+categories = ["techtalk", "code","refactoring"]
+tags = ["josdem", "techtalks", "programming", "technology","clean code", "refactoring"]
+description = "Number one in the stink parade is duplicated code. If you see the same code structure in more than one place, you can be sure that your program will be better if you find a way to unify them."
 +++
+
 Number one in the stink parade is duplicated code. If you see the same code structure in more than one place, you can be sure that your program will be better if you find a way to unify them.
 
 When coding I focus mostly on duplication. *When the same thing is done over and over, its a sign that there is an idea in our mind that is no well represented in the code. I try to figure out what it is, then I try to express that idea more clearly.* ~ Ron Jeffries

@@ -1,9 +1,11 @@
 +++
-date = "2015-08-29T18:32:00-05:00"
-draft = true
 title = "Refactoring"
-
+date = "2015-08-29T18:32:00-05:00"
+categories = ["techtalk", "code","refactoring"]
+tags = ["josdem", "techtalks", "programming", "technology","clean code", "refactoring"]
+description = "Refactoring is the process of changing a software system in such a way that it does not alter the external behavior of the code yet improves its internal structure. It is a disciplined way to clean up code that minimizes the chances of introduce bugs. In essence when you refactor you are improving the design of the code after it has been written."
 +++
+
 **What is refactor?**
 
 * Refactoring is the process of changing a software system in such a way that it does not alter the external behavior of the code yet improves its internal structure.
