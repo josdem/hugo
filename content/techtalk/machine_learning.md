@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
+title = "Machine Learning"
+categories = ["techtalk", "code","machine learning"]
 date = "2016-11-20T09:31:26-06:00"
 tags = ["josdem", "techtalks", "programming", "technology", "machine learning", "artificial intelligence"]
-title = "Machine Learning"
-
+description = "Field of study that gives computers the ability to learn without being explicitly programmed. ~ Arthur Samuel (1959)"
 +++
 
 Field of study that gives computers the ability to learn without being explicitly programmed. ~ Arthur Samuel (1959)
@@ -31,7 +31,8 @@ Continuous data are not restricted to defined separate values, but can occupy an
 
 **Examples**
 
-* Supervised Learning
+Supervised Learning:
+
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
 
 **Tools**

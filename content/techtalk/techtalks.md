@@ -149,7 +149,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Continuous Delivery](/techtalk/best_practices/continuous_delivery)
  * [Extreme Programming](/techtalk/best_practices/extreme_programming)
  * [SOLID Principles](/techtalk/best_practices/solid_principles)
-* [**Machine Learning**](/techtalk/machine_learning/machine_learning)
+* [**Machine Learning**](/techtalk/machine_learning)
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
  * [Linear Algebra](/techtalk/machine_learning/linear_algebra)
 * [**Sysadmin**](/techtalk/sysadmin)

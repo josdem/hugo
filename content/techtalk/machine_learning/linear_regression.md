@@ -1,9 +1,9 @@
 +++
-categories = ["techtalk", "code"]
-date = "2016-11-13T17:15:45-06:00"
-tags = ["josdem", "techtalks", "programming", "technology"]
 title = "Linear Regression"
-
+categories = ["techtalk", "code","java"]
+tags = ["josdem", "techtalks", "programming", "technology","java"]
+date = "2016-11-13T17:15:45-06:00"
+description = "In supervised learning, we are given a data set and already know what our correct output should look like, having the idea that there is a relationship between the input and the output."
 +++
 
 ## Model Representation
@@ -59,4 +59,4 @@ $$\beta1 = 3.5$$
 $$\beta2 = 1.4$$
 
 
-[Return to the main article](/techtalk/machine_learning/machine_learning)
+[Return to the main article](/techtalk/machine_learning)
