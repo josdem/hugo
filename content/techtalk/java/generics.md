@@ -8,7 +8,7 @@ categories = ["techtalk", "code","java"]
 
 Generics is a great way to prevent bugs at compilation time since provide compile-time type checking and removing risk of `ClassCastException` that was common while working with collection classes. Another important advantage in using generics is that you can write code that use abstractions instead using concrete classes, so you can create maintainable and extendable code.
 
-Following example illustrates how we can print an array of different type using a single Generic method
+Following example illustrates how we can print an array containing different types using a single Generic method:
 
 ```java
 import java.util.List;
