@@ -166,7 +166,8 @@ public class NaturalNumberTest {
   
 }
 ```
-As you can see, bounded type parameters allow you to invoke methods defined in the bounds, in this case Number type or subtype, also since you extends Number you can use some defined methods such as `isEven()` and `intValue()`.
+
+As you can see, bounded type parameters helps you to restrict the types that can be used as type arguments in a parameterized type. A method that operates on numbers might only want to accept instances of Number or its subclasses. This is what bounded type parameters are for, in that way you can use some defined methods such as `isEven()` and `intValue()`.
 
 This is another example using Generics in a class level and in a method level:
 
