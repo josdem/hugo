@@ -90,16 +90,24 @@ Could be substituted by:
 String::toLowerCase;
 ```
 
+**The Power of Lambda Expressions**
+
+Java uses [functional interfaces](/techtalk/java/functional_interfaces) to represent lambda expression types. While it's best to use a built-in functional interface whenever possible, you sometimes need a custom functional interface.
+
+To create your own functional interface, do two things:
+
+* Annotate the interface with `@FunctionalInterface`, which is the Java 8 convention for custom functional interfaces.
+* Ensure that the interface has just one abstract method.
+
 Let's consider the following code:
 
 ```java
-@FunctionalInterface
 public interface StringAnalyzer {
   public Boolean analyze(String text, String keyword);
 }
 ```
 
-StringAnalyzer implementation:
+StringAnalyzer implementation in a traditional way could be:
 
 ```java
 public class ContainsAnalyzer implements StringAnalyzer {
@@ -111,57 +119,47 @@ public class ContainsAnalyzer implements StringAnalyzer {
 }
 ```
 
-Analyzer launcher:
+We can test code functionality as follow:
 
 ```java
-public class MainAnalyzer {
+@Test
+public void shouldKnowContainKeyword(){
+  StringAnalyzer analyzer = new ContainsAnalyzer();
+  assertTrue(analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
+}
+```
 
-  public static void main(String[] args){
-    StringAnalyzer analyzer = new ContainsAnalyzer();
-    assert analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life");
-  }
+Using functional interfaces could be:
 
+```java
+@FunctionalInterface
+public interface StringAnalyzer {
+  public Boolean analyze(String text, String keyword);
+}
+```
+
+Test implementation:
+
+```java
+@Test
+public void shouldKnowContainKeywordUsingLambda(){
+  StringAnalyzer analyzer = (text, keyword) -> text.contains(keyword);
+  assertTrue(analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
 }
 ```
 
 Since we are defining a interface `StringAnalyzer` we can use a lambda expression to implement this interface, that's it, you define or use a functional interface that accepts and returns exactly what you want. In this case we are replacing `ContainsAnalyzer` by a lambda expression.
 
-```java
-public class MainAnalyzer {
-
-  public static void main(String[] args){
-    StringAnalyzer analyzer = (text, keyword) -> text.contains(keyword);
-    assert analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life");
-  }
-
-}
-```
-
-Lambda expressions also can be treated like a variables, it could be assigned, it could be pass as parameter, so therefore the code is easily reuse. Let's create a new class so you can see how we can use lambda as parameters:
+Using lambda expressions we can create more expressive code like this one:
 
 ```java
-public class AnalyzerTool {
+@Test
+public void shouldAnalyzeUsingContainsAndEndsWith(){
+  StringAnalyzer analyzerContains = (text, keyword) -> text.contains(keyword);
+  StringAnalyzer analyzerEndsWith = (text, keyword) -> text.endsWith(keyword);
 
-  public Boolean analyze(String text, String keyword, StringAnalyzer analizer){
-    return analizer.analyze(text, keyword);
-  }
-
-}
-```
-
-So now we can pass an StringAnalyzer as parameter which could be a lambda expression
-
-```java
-public class MainAnalyzer {
-
-  public static void main(String[] args){
-    StringAnalyzer analyzerContains = (text, keyword) -> text.contains(keyword);
-    StringAnalyzer analyzerEndsWith = (text, keyword) -> text.endsWith(keyword);
-
-    assert analyzerContains.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life");
-    assert analyzerEndsWith.analyze("In the end, it's not the years in your life that count. It's the life in your years", "years");
-
-  }
+  assertTrue(analyzerContains.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
+  assertTrue(analyzerEndsWith.analyze("In the end, it's not the years in your life that count. It's the life in your years", "years"));
 }
 ```
 
