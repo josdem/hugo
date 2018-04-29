@@ -3,10 +3,10 @@ tags = ["josdem","techtalks","programming","technology","java","lambda"]
 categories = ["techtalk","code","java"]
 date = "2016-12-17T10:05:56-06:00"
 title = "Lambda Expressions"
-description = "Lambda expression is an argument list follow by an arrow token and a body or code expression."
+description = "Since Java 8 we have Lambda expressions which is a function defined under some interface contract and the main purpose is to implement functional programming in Java. Basically lambda expression is an argument list follow by an arrow token and a body or code expression."
 +++
 
-Lambda expression is an argument list follow by an arrow token and a body or code expression.
+Since Java 8 we have Lambda expressions which is a function defined under some interface contract and the main purpose is to implement functional programming in Java. Basically lambda expression is an argument list follow by an arrow token and a body or code expression.
 
 Example 1:
 
