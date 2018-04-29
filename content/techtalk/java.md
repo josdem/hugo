@@ -27,6 +27,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Stream Collectors](/techtalk/java/stream_collectors)
 * [Executors](/techtalk/java/executors)
 * [Generics](/techtalk/java/generics)
+* [Functional Interfaces](/techtalk/java/functional_interfaces)
 * [GitHub Repository](https://github.com/josdem/java-topics)
 
 

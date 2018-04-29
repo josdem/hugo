@@ -8,23 +8,84 @@ description = "Lambda expression is an argument list follow by an arrow token an
 
 Lambda expression is an argument list follow by an arrow token and a body or code expression.
 
-|Argument List   | Arrow Token  | Body |
-|---|---|---|
-| (int x, int y) | -> | x + y |
+```java
+(x, y)  ->  x + y 
+```
 
-**Basic Lambda examples**
+*Lambdas should be an expression, not a narrative*
+
+**Avoid Specifying Parameter Types:**
+
+Type to the parameters is optional and can be omitted.
+
+Do this:
 
 ```java
-(Integer x, Integer y) -> x + y
-(String s) -> s.contains("word")
+(x, y) -> x + y;
 ```
+
+Instead of this:
+
+```java
+(Integer x, Integer y) -> x + y;
+```
+
+**Avoid Parentheses Around a Single Parameter:**
+
+Do this:
+
+```java
+x -> x.toLowerCase();
+```
+
+Instead of this:
+
+```java
+(x) -> x.toLowerCase();
+```
+
+**Avoid Return Statement and Braces:**
+
+Braces and return statements are optional in one-line lambda bodies.
+
+Do this:
+
+```java
+x -> x.toLowerCase();
+```
+
+Instead of this:
+
+```java
+x -> { return x.toLowerCase() };
+```
+
+**Use Method References:**
+
+It is very useful to use another Java 8 feature: [method references](https://docs.oracle.com/javase/tutorial/java/javaOO/methodreferences.html).
+
+So, the lambda expression:
+
+```java
+string -> string.toLowerCase();
+```
+
+Could be substituted by:
+
+```java
+String::toLowerCase;
+```
+
 Let's consider the following code:
 
 ```java
+@FunctionalInterface
 public interface StringAnalyzer {
   public Boolean analyze(String text, String keyword);
 }
 ```
+
+StringAnalyzer implementation:
 
 ```java
 public class ContainsAnalyzer implements StringAnalyzer {
@@ -35,6 +96,8 @@ public class ContainsAnalyzer implements StringAnalyzer {
 
 }
 ```
+
+Analyzer launcher:
 
 ```java
 public class MainAnalyzer {
@@ -53,7 +116,7 @@ Since we are defining a interface `StringAnalyzer` we can use a lambda expressio
 public class MainAnalyzer {
 
   public static void main(String[] args){
-    StringAnalyzer analyzer = (String text, String keyword) -> text.contains(keyword);
+    StringAnalyzer analyzer = (text, keyword) -> text.contains(keyword);
     assert analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life");
   }
 
@@ -66,7 +129,7 @@ Lambda expressions also can be treated like a variables, it could be assigned, i
 public class AnalyzerTool {
 
   public Boolean analyze(String text, String keyword, StringAnalyzer analizer){
-    return analizer.analyze(text,keyword);
+    return analizer.analyze(text, keyword);
   }
 
 }
@@ -78,8 +141,8 @@ So now we can pass an StringAnalyzer as parameter which could be a lambda expres
 public class MainAnalyzer {
 
   public static void main(String[] args){
-    StringAnalyzer analyzerContains = (String text, String keyword) -> text.contains(keyword);
-    StringAnalyzer analyzerEndsWith = (String text, String keyword) -> text.endsWith(keyword);
+    StringAnalyzer analyzerContains = (text, keyword) -> text.contains(keyword);
+    StringAnalyzer analyzerEndsWith = (text, keyword) -> text.endsWith(keyword);
 
     assert analyzerContains.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life");
     assert analyzerEndsWith.analyze("In the end, it's not the years in your life that count. It's the life in your years", "years");
