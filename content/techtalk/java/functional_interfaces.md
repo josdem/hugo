@@ -17,10 +17,10 @@ import java.util.function.Consumer;
 
 public class ConsumerExample {
 
-	public static void main(String[] args) {		
-		Consumer<String> consumer = x -> System.out.println(x.toLowerCase());
-		consumer.accept("JOSDEM");
-	}
+  public static void main(String[] args) {		
+    Consumer<String> consumer = x -> System.out.println(x.toLowerCase());
+    consumer.accept("JOSDEM");
+  }
 
 }
 ```
@@ -43,11 +43,11 @@ import java.util.function.Supplier;
 
 public class SupplierTest {
 
-	@Test
-	public void shouldSupplyAnString(){
-		Supplier<String> supplier = () -> "josdem";
-		assertEquals("josdem", supplier.get());
-	}
+  @Test
+  public void shouldSupplyAnString(){
+    Supplier<String> supplier = () -> "josdem";
+    assertEquals("josdem", supplier.get());
+  }
 	
 }
 ```
@@ -64,12 +64,12 @@ import org.junit.jupiter.api.Test;
 
 public class FunctionTest {
 
-	@Test
-	public void shouldGetStringLenght(){
-		Integer expectedResult = 6;
-		Function<String, Integer> function = string -> string.length();
-		assertEquals(expectedResult, function.apply("josdem"));
-	}
+  @Test
+  public void shouldGetStringLenght(){
+    Integer expectedResult = 6;
+    Function<String, Integer> function = string -> string.length();
+    assertEquals(expectedResult, function.apply("josdem"));
+  }
 	
 }
 ```
