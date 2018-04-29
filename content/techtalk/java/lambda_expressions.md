@@ -8,8 +8,22 @@ description = "Lambda expression is an argument list follow by an arrow token an
 
 Lambda expression is an argument list follow by an arrow token and a body or code expression.
 
+Example 1:
+
 ```java
-(x, y)  ->  x + y 
+(x, y)  ->  x + y;
+```
+
+Example 2:
+
+```java
+() -> "Hello World!";   
+```
+
+Example 3:
+
+```java
+x -> x.toLowerCase();
 ```
 
 *Lambdas should be an expression, not a narrative*

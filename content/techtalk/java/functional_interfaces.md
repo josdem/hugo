@@ -56,7 +56,7 @@ To download the code:
 
 ```bash
 git clone https://github.com/josdem/java-workshop.git
-cd functional_interfaces
+cd functional-interfaces
 ```
 
 To run the code:
