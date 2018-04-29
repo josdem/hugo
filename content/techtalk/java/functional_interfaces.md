@@ -31,6 +31,27 @@ Output:
 josdem
 ```
 
+`Supplier` can be used in all contexts where there is no input but an output is expected. Functional method is `get()`. Let's consider the following example:
+
+```java
+package com.jos.dem.functional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import java.util.function.Supplier;
+
+public class SupplierTest {
+
+	@Test
+	public void shouldSupplyAnString(){
+		Supplier<String> supplier = () -> "josdem";
+		assertEquals("josdem", supplier.get());
+	}
+	
+}
+```
+
 To download the code:
 
 ```bash
