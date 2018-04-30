@@ -119,7 +119,7 @@ Supplier that returns a value:
 Function that returns a constant k:
 
 ```java
-x -> k
+x -> k;
 ```
 
 `Predicate` is also a functional interface, therefore we can pass lambda expressions wherever predicate is expected. This is `filter()` formal definition: Returns a stream consisting of the elements of this stream that match the given predicate.
