@@ -42,9 +42,7 @@ import java.util.HashMap;
 class ForEachMap {
 
   void iterate(Map<String, Integer> items){
-    items.forEach((k,v)->{
-      System.out.println("Item : " + k + " Count : " + v);
-    });
+    items.forEach((k,v) -> System.out.println("Item : " + k + " Count : " + v));
   }
 
   public static void main(String[] args){
