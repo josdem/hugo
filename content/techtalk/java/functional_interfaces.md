@@ -96,8 +96,31 @@ public void shouldGetFunctionIdentity(){
 }
  ```
 
- That's it, in fact, we can write `x -> x` instead of `Function.identity()` and in some cases it’s clearer.
+ That's it, in fact, we can write `x -> x` instead of `Function.identity()` and in some cases it’s clearer. Here is a list of common basic functions and how they can be written using lambda.
 
+Runnable:
+
+```java
+() -> System.out.println("hello world");
+```
+
+Consumer:
+
+```java
+x -> System.out.println(x);
+```
+
+Supplier that returns a value:
+
+```java
+() -> "Hello World!";
+```
+
+Function that returns a constant k:
+
+```java
+x -> k
+```
 
 `Predicate` is also a functional interface, therefore we can pass lambda expressions wherever predicate is expected. This is `filter()` formal definition: Returns a stream consisting of the elements of this stream that match the given predicate.
 
