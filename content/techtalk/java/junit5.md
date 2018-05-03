@@ -246,6 +246,45 @@ class StandardTest {
 
 Please, notice `TestInfo` and how is it used to inject information about the current test as method argument. Also notice how in Junit 5 neither test classes nor test methods need to be public.
 
+**Assumptions**
+
+JUnit Jupiter or Junit 5 comes with a subset of the assumption methods and are used to run tests only if certain conditions are met, this is typically used for external conditions that are required for the test to run properly.
+
+
+```java
+package com.jos.dem.junit;
+
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
+import java.util.logging.Logger;
+
+class AssumptionShowTest {
+
+  private final Logger log = Logger.getLogger(AssumptionShowTest.class.getName());
+  private final Person person = new Person("josdem", "joseluis.delacruz@gmail.com");
+
+  @Test
+  @DisplayName("Assume that is a Gmail account")
+  void shouldKnowIfIsGmailAccount(){
+    assumeTrue(person.getEmail().endsWith("gmail.com"));
+    log.info("Test continues ...");
+    assertEquals("josdem", person.getNickname());
+  }
+
+   @Test
+   @DisplayName("Assuming something based in conditions")
+   void testAssumingThat() {
+     assumingThat(2 > 1, () -> log.info("This should happen!"));
+     assumingThat(2 < 1, () -> log.info("This should never happen!"));
+   }
+
+}
+```
 
 To download the code:
 
