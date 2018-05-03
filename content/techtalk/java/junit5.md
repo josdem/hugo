@@ -8,7 +8,7 @@ categories = ["techtalk", "code", "java"]
 
 Junit 5 is the next generation of Junit, it requires Java 8 since it was born as JUnit Lambda project, that project wanted to take full advantage of the new features from Java 8, especially lambda expressions.
 
-With Gradle this is the minimal structure needed in a `build.gradle` file:
+Using Gradle, you need to create a `build.gradle` file with the following structure:
 
 ```groovy
 apply plugin: "java"
