@@ -6,9 +6,9 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code", "java"]
 +++
 
-Junit 5 is the next generation of Junit. JUnit 5 requires Java 8 since it was born as JUnit Lambda project, that project wanted to take full advantage of the new features from Java 8, especially lambda expressions.
+Junit 5 is the next generation of Junit, it requires Java 8 since it was born as JUnit Lambda project, that project wanted to take full advantage of the new features from Java 8, especially lambda expressions.
 
-For Gradle you need to create a `build.gradle`project with this dependencies:
+With Gradle this is the minimal structure needed in a `build.gradle` file:
 
 ```groovy
 apply plugin: "java"
@@ -19,12 +19,12 @@ repositories {
 }
 
 dependencies {
-  testCompile 'org.junit.jupiter:junit-jupiter-api:5.1.1'
-  testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.1.1'
+  testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
+  testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 }
 ```
 
-Dependencies shows how to configure support for JUnit Jupiter based tests, configuring a `testCompile` dependency on the JUnit Jupiter API and a `testRuntime` dependency on the JUnit Jupiter TestEngine.
+Dependencies section shows how to configure support for JUnit Jupiter based tests, configuring a `testCompile` dependency on the JUnit Jupiter API and a `testRuntime` dependency on the JUnit Jupiter TestEngine.
 
 **Assertions**
 
