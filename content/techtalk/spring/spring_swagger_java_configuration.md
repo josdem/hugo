@@ -257,6 +257,9 @@ class UserController {
 }
 ```
 
+The endpoint to create request to your API using Swagger is: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+
+
 ## Swagger Results
 
 **View**
@@ -274,9 +277,8 @@ class UserController {
 To download the project:
 
 ```bash
-git clone https://github.com/josdem/swagger-spring-mvc.git
-git fetch
-git checkout feature/swagger-java-conf
+git clone https://github.com/josdem/swagger-spring.git
+cd xml-configuration
 ```
 
 To run the project.
