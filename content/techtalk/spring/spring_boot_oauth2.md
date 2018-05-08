@@ -6,7 +6,17 @@ date = "2017-08-24T20:14:00-05:00"
 description = "This time I will show you how to build a basic Spring Boot application with Google authentication by Oauth2."
 +++
 
-This time I will show you how to build a basic Spring Boot application with Google authentication by Oauth2. First you need to add Spring Security dependencies, this is the complete `build.gradle` file:
+This time I will show you how to build a basic Spring Boot application with Google authentication using Oauth2.
+
+**NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
+
+Then execute this command in your terminal:
+
+```groovy
+spring init --dependencies=web,security --language=groovy --build=gradle spring-boot-oauth2
+```
+
+This is the `build.gradle` generated file:
 
 ```groovy
 buildscript {
@@ -45,7 +55,7 @@ bootRun {
 }
 ```
 
-We need to create some configuration file, in your computer's home directory: ${home}, create a directory called: .oauth2 then inside create a file called application-development.yml with this content:
+We need to create a configuration file, in this case we are going to use a yaml. In your computer's home directory: ${home}, please create a directory called: `.oauth2` then inside create a file called `application-development.yml` with this content:
 
 ```yml
 security:
