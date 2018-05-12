@@ -33,6 +33,14 @@ Grails is an open source web application framework it is intended to be a high-p
 * Spring support
 * Highly productive
 
+## Content
+
+* [Hello World](/techtalk/grails/hello_world)
+* [Download counter](/techtalk/grails/operating_system_downloader_counter)
+* [Externalized configuration](/techtalk/grails/grails_externalized_conf)
+* [Login functionality with Spring Security](/techtalk/grails/spring_security_login)
+
+
 ## Creating a simple structure in Grails
 Creating an application
 In order to create an application type this command in your command line:
