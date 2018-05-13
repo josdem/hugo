@@ -57,6 +57,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Memoized](/techtalk/groovy/memoized)
 * [**Grails**](/techtalk/grails)
  * [Hello World](/techtalk/grails/hello_world)
+ * [Java Melody](/techtalk/grails/java_melody)
  * [Download counter](/techtalk/grails/operating_system_downloader_counter)
  * [Externalized configuration](/techtalk/grails/grails_externalized_conf)
  * [Login functionality with Spring Security](/techtalk/grails/spring_security_login)

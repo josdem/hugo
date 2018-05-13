@@ -129,7 +129,7 @@ class Person {
 
 **Creating Controller**
  
-Let’s now create Person controller with the `create-controller` command:
+Let’s now create Person controller with the `generate-controller` command:
 
 ```bash
 grails> generate-controller com.jos.dem.Person
