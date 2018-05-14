@@ -8,13 +8,13 @@ description = "The goal of JavaMelody is to monitor Java applications in product
 
 The goal of [JavaMelody](https://github.com/javamelody/javamelody) is to monitor Java applications in production environments. It is a tool to measure and calculate statistics on real operation of an application depending on the usage of the application by users.
 
-This post go through the configuration needed in a Grails application, in this post we are using Grails 3.3.5 version. First let's create a new fresh Grails project:
+This post go through the configuration needed in a Grails application, we are going to use Grails 3.3.5 version, so let's create a new fresh Grails project:
 
 ```bash
 grails create-app grails-java-melody
 ```
 
-**NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Grails basic project, please refer my previous post: [Grails Hello World](/techtalk/grails/hello_world)
+**NOTE:** If you want to know what tools you need to have installed in yout computer in order to create a Grails basic project, please refer my previous post: [Grails Hello World](/techtalk/grails/hello_world)
 
 **Installation**
 
