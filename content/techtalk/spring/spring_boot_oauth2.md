@@ -13,7 +13,7 @@ This time I will show you how to build a basic Spring Boot application with Goog
 Then execute this command in your terminal:
 
 ```groovy
-spring init --dependencies=web,security --language=groovy --build=gradle spring-boot-oauth2
+spring init --dependencies=web,security,thymeleaf --language=groovy --build=gradle spring-boot-oauth2
 ```
 
 This is the `build.gradle` generated file:
@@ -21,7 +21,7 @@ This is the `build.gradle` generated file:
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '1.5.6.RELEASE'
+    springBootVersion = '1.5.12.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -44,18 +44,27 @@ repositories {
 dependencies {
   compile 'org.springframework.boot:spring-boot-starter-web'
   compile 'org.springframework.boot:spring-boot-starter-security'
-  compile 'org.springframework.security.oauth:spring-security-oauth2'
   compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
   compile 'org.codehaus.groovy:groovy'
   testCompile'org.springframework.boot:spring-boot-starter-test'
 }
+```
 
+Next, we are going to add `security-oauth2` dependency:
+
+```groovy
+compile 'org.springframework.security.oauth:spring-security-oauth2'
+```
+
+Since we need to pass some options such as cliendId, clientSecret, etc. to the application the common way is to use `bootRun` task to specify them as system properties.
+
+```
 bootRun {
   systemProperties = System.properties
 }
 ```
 
-We need to create a configuration file, in this case we are going to use a yaml. In your computer's home directory: ${home}, please create a directory called: `.oauth2` then inside create a file called `application-development.yml` with this content:
+Not is time to create a configuration file, in this case we are going to use a yaml format. In your computer's home directory: ${home}, please create a directory called: `.oauth2` then inside create a file called `application-development.yml` with this content:
 
 ```yml
 security:
@@ -111,7 +120,7 @@ class SecurityConfig extends WebSecurityConfigurerAdapter {
     http
     .antMatcher("/**")
     .authorizeRequests()
-    .antMatchers("/", "/login**")
+    .antMatchers("/")
     .permitAll()
     .anyRequest()
     .authenticated();
