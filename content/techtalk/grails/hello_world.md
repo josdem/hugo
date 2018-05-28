@@ -127,6 +127,12 @@ class Person {
 }
 ```
 
+Now Grails needs to download some plugins and dependencies, let's start our Grails application before continue with next steps.
+
+```bash
+grails> run-app
+```
+
 **Creating Controller**
  
 Let’s now create Person controller with the `generate-controller` command:
