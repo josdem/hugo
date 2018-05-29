@@ -37,7 +37,7 @@ Grails is an open source web application framework it is intended to be a high-p
 
 * [Hello World](/techtalk/grails/hello_world)
 * [Java Melody](/techtalk/grails/java_melody)
-* [Grails2 and Bower Integration](/techtalk/grails/grails2_bower)
+* [Grails and Bower Integration](/techtalk/grails/grails_bower)
 * [Download counter](/techtalk/grails/operating_system_downloader_counter)
 * [Externalized configuration](/techtalk/grails/grails_externalized_conf)
 * [Login functionality with Spring Security](/techtalk/grails/spring_security_login)
