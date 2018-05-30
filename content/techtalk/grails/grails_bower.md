@@ -54,7 +54,7 @@ Now Grails needs to download some plugins and dependencies, let's start our Grai
 grails> run-app
 ```
 
-Next step is create a Person's controller and Person's views, please refer my previous post: [Grails Hello World](/techtalk/grails/hello_world) for more information. At this point you can do CRUD operations over Person model. So let's continue installing Bower, as requirement you also need install [nodejs](https://nodejs.org/en/) so follow installation instructions and proceed forming `bower.json` file structure as follow:
+Once your Grails proyect is up an running you will be able to create a Person's controller and Person's views, please refer my previous post: [Grails Hello World](/techtalk/grails/hello_world) for more information. At this point you can do CRUD operations over Person model. So let's continue installing Bower, as requirement you also need install [nodejs](https://nodejs.org/en/) so follow installation instructions and proceed forming `bower.json` file structure as follow:
 
 ```bash
 bower init
