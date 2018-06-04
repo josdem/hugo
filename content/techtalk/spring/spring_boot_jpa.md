@@ -234,11 +234,12 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.generate-ddl=true
 ```
 
-Do not forget to add Spring Data JPA and Thymeleaf dependencies in your `build.gradle` file.
+Do not forget to add Spring Data JPA, MySQL and Thymeleaf dependencies in your `build.gradle` file.
 
 ```groovy
 compile('org.springframework.boot:spring-boot-starter-data-jpa')
 compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+compile('mysql:mysql-connector-java:5.1.34')
 ```
 
 To Download the Project:

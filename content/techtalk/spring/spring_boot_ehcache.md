@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology", "ehcache"]
 categories = ["techtalk", "code", "spring boot"]
 +++
 
-[Ehcache](http://www.ehcache.org/) is an open source, standards-based cache that boosts performance. It's the most widely-used Java-based cache because it's robust, proven, full-featured, and integrates with other popular libraries and frameworks. In this example I will show you how to use Ehcache in a Spring Boot application. **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
+[Ehcache](http://www.ehcache.org/) is an open source, standards-based cache that boosts performance. It's the most widely-used Java-based cache because it's robust, proven, full-featured, and integrates with other popular libraries and frameworks. In this example I will show you how to use Ehcache in a Spring Boot application. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
 Then execute this command in your terminal.
 
