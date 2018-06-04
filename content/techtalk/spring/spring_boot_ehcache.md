@@ -224,7 +224,7 @@ That's it, now if you start up your Spring Boot application and hit the index pa
 [
   {
     "id": 5,
-    "nickname": "edrix",
+    "nickname": "siedrix",
     "email": "siedrix@email.com"
   },
   {
