@@ -130,7 +130,7 @@ public class CacheApplication {
     new Person(2L, "tgrip", "tgrip@email.com"),
     new Person(3L, "edzero", "edzero@email.com"),
     new Person(4L, "jeduan", "jeduan@email.com"),
-    new Person(5L, "edrix", "siedrix@email.com")
+    new Person(5L, "siedrix", "siedrix@email.com")
   );
 
 
