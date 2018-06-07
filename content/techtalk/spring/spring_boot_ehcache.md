@@ -203,7 +203,7 @@ Ehcache has a lot configuration options, you can configure the cache size, time 
 </ehcache>
 ```
 
-As you can see, we created a `<cache>` with the name "persons", with 1000 items that can be stored in memory and a time to live in 5 minutes. To understand more, read this official [ehcache.xml](http://www.ehcache.org/ehcache.xml) example. The next step is to configure Spring Boot to use this configuration file along with the MySQL configuration, please add the following structure in the `application.properties`:
+As you can see, we created a `<cache>` with the name "persons", with 1000 items that can be stored in memory and a time to live in 5 minutes. To understand more, read this official [ehcache.xml](http://www.ehcache.org/ehcache.xml) example. Next step is to configure Spring Boot to use this configuration file along with the MySQL configuration, please add the following structure in the `application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost/spring_boot_ehcache
