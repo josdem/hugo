@@ -67,11 +67,9 @@ import javax.persistence.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Data;
 
 @Data
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
