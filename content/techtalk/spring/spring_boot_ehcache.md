@@ -196,8 +196,7 @@ Ehcache has a lot configuration options, you can configure the cache size, time 
   <cache name="persons"
     maxElementsInMemory="1000" eternal="false"
     overflowToDisk="false"
-    timeToLiveSeconds="300" timeToIdleSeconds="0"
-    memoryStoreEvictionPolicy="LFU" transactionalMode="off">
+    timeToLiveSeconds="300">
   </cache>
 
 </ehcache>
