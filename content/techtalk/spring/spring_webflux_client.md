@@ -115,7 +115,7 @@ public class PersonApplication {
 
 }
 ```
- 
+
 `WebClient` defined as `@Bean` is a non-blocking, reactive client for performing HTTP requests with our reactive web server, and again Netty is used by default.
 
 Do not forget to run this client in different port using the following specification in our `application.properties` file
@@ -139,4 +139,4 @@ gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

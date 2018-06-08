@@ -169,5 +169,4 @@ To run only this test:
 gradle -Dtest.single=UserValidatorSpec test -Dspring.config.location=$HOME/.vetlog-spring-boot/application-development.yml
 ```
 
-[Return to the main article](/techtalk/spring)
-
+[Return to the main article](/techtalk/spring#Spring_Boot)

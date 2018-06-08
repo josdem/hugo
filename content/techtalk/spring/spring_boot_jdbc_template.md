@@ -44,7 +44,7 @@ repositories {
 dependencies {
   compile 'org.springframework.boot:spring-boot-starter'
   compile 'org.springframework.boot:spring-boot-starter-jdbc'
-  compile 'org.codehaus.groovy:groovy'  
+  compile 'org.codehaus.groovy:groovy'
   testCompile 'org.springframework.boot:spring-boot-starter-test'
 }
 ```
@@ -61,12 +61,12 @@ Then we will create a `person` model object that represent person table in a MyS
 package com.jos.dem.springboot.jdbc.model
 
 class Person {
-  
+
   Long id
   String nickname
   String email
   Integer ranking
-  
+
 }
 ```
 
@@ -119,7 +119,7 @@ class PersonRepository {
     )
   }
 
-} 
+}
 ```
 
 `BeanPropertyRowMapper` can maps a row’s column value to a property by matching their names in a model object.
@@ -202,7 +202,7 @@ spring.datasource.url=jdbc:mysql://localhost/spring_boot_jdbc_template
 spring.datasource.username=username
 spring.datasource.password=password
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-``` 
+```
 
 To download the project
 
@@ -216,4 +216,4 @@ To run the project
 gradle bootRun
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

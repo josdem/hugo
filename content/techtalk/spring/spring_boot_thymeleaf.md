@@ -194,6 +194,4 @@ To Download the Project:
 git clone https://github.com/josdem/spring-boot-thymeleaf.git
 ```
 
-[Return to the main article](/techtalk/spring)
-
-
+[Return to the main article](/techtalk/spring#Spring_Boot)

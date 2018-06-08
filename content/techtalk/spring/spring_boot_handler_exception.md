@@ -131,4 +131,4 @@ git fetch
 git checkout feature/handler-exception
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

@@ -74,10 +74,10 @@ class Person{
 
   @Column(nullable=false)
   String nickname
-  
+
   @Column(unique=true, nullable=false)
   String email
-	
+
 }
 ```
 
@@ -93,7 +93,7 @@ interface PersonRepository extends JpaRepository<Person, Long>{
 
 	Person save(Person person)
 	List<Person> findAll()
-	
+
 }
 ```
 
@@ -134,7 +134,7 @@ class PersonController {
 	@RequestMapping(method=GET)
 	ModelAndView getAll(){
 		log.info 'Listing all persons'
-		ModelAndView modelAndView = new ModelAndView('persons/list')		
+		ModelAndView modelAndView = new ModelAndView('persons/list')
 		List<Person> persons = personRepository.findAll()
 		modelAndView.addObject('persons', persons)
 		modelAndView
@@ -164,7 +164,7 @@ class PersonController {
 		modelAndView.addObject('persons', persons)
 		modelAndView
 	}
-	
+
 }
 ```
 
@@ -215,7 +215,7 @@ interface Command extends Serializable{}
   	<input type="text" name="email" th:field="*{email}" placeholder="email" id="email"/>
   	<label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></label>
   	<br/><br/>
-  	<button id="btn-success" type="submit">Submit</button> 
+  	<button id="btn-success" type="submit">Submit</button>
   </form>
 </body>
 </html>
@@ -256,4 +256,4 @@ To Run the project:
 gradle bootRun
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

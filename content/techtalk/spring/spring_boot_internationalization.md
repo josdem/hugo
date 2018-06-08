@@ -252,5 +252,5 @@ git fetch
 git checkout feature/detect-locale
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)
 

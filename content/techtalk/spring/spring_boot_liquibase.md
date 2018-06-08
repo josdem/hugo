@@ -254,4 +254,4 @@ gradle bootRun -Dspring.config.location=$HOME/.vetlog-spring-boot/application-de
 ```
 
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

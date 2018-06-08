@@ -232,5 +232,4 @@ gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring)
-
+[Return to the main article](/techtalk/spring#Spring_Boot)

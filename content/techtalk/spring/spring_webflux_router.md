@@ -42,7 +42,7 @@ public class WebConfig {
     return RouterFunctions
       .route(GET("/persons"),
       request -> ServerResponse.ok().body(personRepository.findAll(), Person.class))
-      .andRoute(GET("/persons/{id}"), 
+      .andRoute(GET("/persons/{id}"),
       request -> ServerResponse.ok().body(personRepository.findById(request.pathVariable("id")), Person.class));
   }
 
@@ -118,4 +118,4 @@ gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

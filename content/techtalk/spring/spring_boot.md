@@ -13,7 +13,7 @@ It is a Spring project aim to create easy web or stand-alone applications. It pr
 * Tomcat or Jetty embedded
 * Convention over configuration
 * Easy setup
-* Very lightweight 
+* Very lightweight
 * Easy to test
 * You can create web, standalone, API or executable applications
 
@@ -130,4 +130,4 @@ Finally run it from command line.
 gradle bootRun
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

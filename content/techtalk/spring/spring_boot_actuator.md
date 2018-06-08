@@ -81,7 +81,7 @@ management.port: 9090
 management.address: 127.0.0.1
 ```
 
-By default Actuator end-points are protected by Spring Security. 
+By default Actuator end-points are protected by Spring Security.
 
 ```json
 {
@@ -227,4 +227,4 @@ gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

@@ -158,7 +158,7 @@ class MessageListener {
   @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
   void receiveMessage(Message message) {
     Object command =  ((ObjectMessage) message).getObject()
-    log.info "Message Received ${command.dump()}"    
+    log.info "Message Received ${command.dump()}"
   }
 
 }
@@ -220,7 +220,7 @@ class DemoController {
     messageService.sendMessage(person)
     'Java Message Service'
   }
-  
+
 }
 ```
 
@@ -250,7 +250,4 @@ To download the project
 git clone https://github.com/josdem/spring-boot-jms.git
 ```
 
-[Return to the main article](/techtalk/spring)
-
-
-
+[Return to the main article](/techtalk/spring#Spring_Boot)

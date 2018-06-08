@@ -6,7 +6,7 @@ date = "2017-06-05T14:45:09-05:00"
 description = "You know the benefits using version of control in software development such as Git or Subversion. This time I will show you Flyway to manage version control for your database, so you can track schema's evolution across all your environments with ease using Gradle and Spring Boot."
 +++
 
-You know the benefits using version of control in software development such as [Git](https://git-scm.com/) or [Subversion](https://subversion.apache.org/). This time I will show you [Flyway](https://flywaydb.org/) to manage version control for your database, so you can track schema's evolution across all your environments with ease using [Gradle](https://gradle.org/) and Spring Boot. 
+You know the benefits using version of control in software development such as [Git](https://git-scm.com/) or [Subversion](https://subversion.apache.org/). This time I will show you [Flyway](https://flywaydb.org/) to manage version control for your database, so you can track schema's evolution across all your environments with ease using [Gradle](https://gradle.org/) and Spring Boot.
 
 Let’s start creating a new Spring Boot project with web and jpa dependencies:
 
@@ -123,7 +123,7 @@ JPA has features for DDL generation, and these can be set up to run on startup a
 * `spring.jpa.generate-ddl` (boolean) switches the feature on and off and is vendor independent.
 * `spring.jpa.hibernate.ddl-auto` (enum) is a Hibernate feature that controls the behavior in a more fine-grained way. This features are: `create`, `create-drop`, `validate`, and `update`.
 
-In production or using Flyway version control it is highly recommended you use `none` or simply do not specify this property. 
+In production or using Flyway version control it is highly recommended you use `none` or simply do not specify this property.
 
 Here is our `Person` entity:
 
@@ -149,7 +149,7 @@ class Person {
 
   @Column(nullable = false)
   String lastname
-  
+
 }
 ```
 
@@ -166,4 +166,4 @@ gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

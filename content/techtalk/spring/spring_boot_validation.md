@@ -330,4 +330,4 @@ To test the project:
 gradle test
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

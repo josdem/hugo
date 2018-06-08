@@ -6,13 +6,13 @@ date = "2017-09-15T08:06:41-05:00"
 description = "This time I will show you how to consume a REST service using Spring Boot and a Groovy library based in HTTPBuilder RESTClient by jgritman."
 +++
 
-This time I will show you how to consume a REST service using Spring Boot and a Groovy library based in HTTPBuilder [RESTClient](https://github.com/jgritman/httpbuilder/wiki/RESTClient) by jgritman. 
+This time I will show you how to consume a REST service using Spring Boot and a Groovy library based in HTTPBuilder [RESTClient](https://github.com/jgritman/httpbuilder/wiki/RESTClient) by jgritman.
 
 Let’s start creating a new Spring Boot project with web dependencies:
 
 ```bash
 spring init --dependencies=web --build=gradle --language=groovy spring-boot-rest-client
-``` 
+```
 
 Here is the complete build.gradle file generated:
 
@@ -105,7 +105,7 @@ class RestClientImpl implements RestClient {
       def result = restClient.get(
         uri : 'http://jugoterapia.josdem.io/jugoterapia-server/beverage/beverage?beverageId=35'
       )
-      result.data      
+      result.data
     } catch(Exception ex) {
       log.warn "Error ${ex.message}"
       throw new BusinessException(ex.message)
@@ -133,7 +133,7 @@ class BusinessException extends RuntimeException {
 }
 ```
 
-After calling `restClient.get()` in our `RestClientImpl` we get an [HttpResponseDecortator](javadox.com/org.codehaus.groovy.modules.http-builder/http-builder/0.6/groovyx/net/http/HttpResponseDecorator.html) with headers, response status, body, etc. So we can call `getData()` to get body response as a Map. In that way we can use Spring unmarshalling to convert that map to a beverage object. 
+After calling `restClient.get()` in our `RestClientImpl` we get an [HttpResponseDecortator](javadox.com/org.codehaus.groovy.modules.http-builder/http-builder/0.6/groovyx/net/http/HttpResponseDecorator.html) with headers, response status, body, etc. So we can call `getData()` to get body response as a Map. In that way we can use Spring unmarshalling to convert that map to a beverage object.
 
 In order to consume that service we will get the bean from the Spring application context so we can call `getBeverage()` method.
 
@@ -172,5 +172,4 @@ To run the project:
 gradle bootRun
 ```
 
-[Return to the main article](/techtalk/spring)
-
+[Return to the main article](/techtalk/spring#Spring_Boot)

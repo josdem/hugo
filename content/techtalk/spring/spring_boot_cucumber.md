@@ -8,7 +8,7 @@ description = "BDD (Behavior-driven development) is a technique very similar to 
 
 BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing.
 
-This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology. 
+This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology.
 
 Let's start creating a new Spring Boot project with Webflux and Lombok as dependencies:
 
@@ -102,7 +102,7 @@ public class WebConfig {
     return RouterFunctions
       .route(GET("/persons"),
       request -> ServerResponse.ok().body(personService.getAll(), Person.class))
-      .andRoute(GET("/persons/{nickname}"), 
+      .andRoute(GET("/persons/{nickname}"),
       request -> ServerResponse.ok().body(personService.getByNickname(request.pathVariable("nickname")), Person.class));
   }
 
@@ -152,16 +152,16 @@ public class PersonServiceImpl implements PersonService {
 
   @PostConstruct
   public void setup(){
-    Stream.of(new Person("josdem", "joseluis.delacruz@gmail.com"), 
-              new Person("tgrip", "tgrip@email.com"), 
+    Stream.of(new Person("josdem", "joseluis.delacruz@gmail.com"),
+              new Person("tgrip", "tgrip@email.com"),
               new Person("edzero", "edzero@email.com"),
               new Person("skuarch", "skuarch@email.com"),
               new Person("jeduan", "jeduan@email.com"))
-      .forEach(person -> persons.put(person.getNickname(), person));   
+      .forEach(person -> persons.put(person.getNickname(), person));
   }
 
   public Flux<Person> getAll(){
-    return Flux.fromIterable(persons.values());    
+    return Flux.fromIterable(persons.values());
   }
 
   public Mono<Person> getByNickname(String nickname){
@@ -197,8 +197,8 @@ public class CucumberTest {}
 Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition:
 
 ```gherkin
-Feature: Persons can be retrieved  
-  Scenario: client makes call to GET persons    
+Feature: Persons can be retrieved
+  Scenario: client makes call to GET persons
     When the client wants persons
     Then the client receives persons
 ```
@@ -228,7 +228,7 @@ public class SpringIntegrationTest {
     return webClient.get().uri("").retrieve()
     .bodyToFlux(Person.class);
   }
-  
+
 }
 ```
 
@@ -247,7 +247,7 @@ public class DemoApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
-  }  
+  }
 
   @Bean
   WebClient getWebClient() {
@@ -276,14 +276,14 @@ import reactor.core.publisher.Flux;
 public class DefinitionIntegrationTest extends SpringIntegrationTest {
   private List<Person> persons;
 
-  @When("^the client wants persons$")	
+  @When("^the client wants persons$")
   public void shouldCallPersons() throws Exception {
-    Flux<Person> result = executeGet();  
+    Flux<Person> result = executeGet();
     persons = result.collectList().block();
   }
 
   @Then("^the client receives persons$")
-  public void shouldGetPersons() throws Exception {      
+  public void shouldGetPersons() throws Exception {
     assertEquals(5 , persons.size());
     assertTrue(persons.contains(new Person("josdem", "joseluis.delacruz@gmail.com")));
     assertTrue(persons.contains(new Person("tgrip", "tgrip@email.com")));
@@ -295,7 +295,7 @@ public class DefinitionIntegrationTest extends SpringIntegrationTest {
 }
 ```
 
-We can do a test run via Gradle task using command line as follow: 
+We can do a test run via Gradle task using command line as follow:
 
 ```bash
 gradle test
@@ -322,5 +322,5 @@ gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)
 

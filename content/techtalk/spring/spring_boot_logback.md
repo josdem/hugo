@@ -78,4 +78,4 @@ To run the project, please read the [wiki](https://github.com/josdem/vetlog-spri
 gradle bootRun -Dspring.config.location=$HOME/.vetlog-spring-boot/application-development.yml
 ```
 
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/spring#Spring_Boot)

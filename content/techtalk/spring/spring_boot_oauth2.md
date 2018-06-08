@@ -215,5 +215,4 @@ To run the project:
 gradle -Dspring.config.location=$HOME/.oauth2/application-development.yml bootRun
 ```
 
-[Return to the main article](/techtalk/spring)
-
+[Return to the main article](/techtalk/spring#Spring_Boot)
