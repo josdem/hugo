@@ -194,15 +194,14 @@ Ehcache has a lot configuration options, you can configure the cache size, time 
   updateCheck="true" monitoring="autodetect" dynamicConfig="true">
 
   <cache name="persons"
-    maxElementsInMemory="1000" eternal="false"
-    overflowToDisk="false"
-    timeToLiveSeconds="300">
+    maxEntriesLocalHeap="10000" eternal="false"
+    timeToIdleSeconds="300" timeToLiveSeconds="600">
   </cache>
 
 </ehcache>
 ```
 
-As you can see, we created a `<cache>` with the name "persons", with 1000 items that can be stored in memory and a time to live in 5 minutes. To understand more, read this official [ehcache.xml](http://www.ehcache.org/ehcache.xml) example. Next step is to configure Spring Boot to use this configuration file along with the MySQL configuration, please add the following structure in the `application.properties`:
+As you can see, we created a `<cache>` with the name "persons", with 10,000 items that can be stored in memory, and will expire an element if it is idle for more than 5 minutes and lives for more than 10 minutes. To understand more, read this official [ehcache.xml](http://www.ehcache.org/ehcache.xml) example. Next step is to configure Spring Boot to use this configuration file along with the MySQL configuration, please add the following structure in the `application.properties`:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost/spring_boot_ehcache
