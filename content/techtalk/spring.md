@@ -1,11 +1,16 @@
 +++
 date = "2015-10-12T20:33:41-05:00"
 draft = true
-title = "Spring"
+title = "Spring Framework"
 
 +++
 
+* [Spring MVC](#Spring_MVC)
+* [Spring Boot](#Spring_Boot)
+
+<a name="Spring_MVC">
 ## Spring MVC
+</a>
 
 In this section I'll go through a complete Spring MVC project starting from the begining, means I'll explain every part of building it. The project is Jmailer, an email delivery service and this is its features:
 
@@ -39,7 +44,9 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [Swagger in Spring Java Configuration](/techtalk/spring/spring_swagger_java_configuration)
 * [Swagger in Spring XML Configuration](/techtalk/spring/spring_swagger_xml_configuration)
 
+<a name="Spring_Boot">
 ## Spring Boot
+</a>
 
 In this section I will cover small projects I'm doing using Spring Boot, what is called micro services.
 
