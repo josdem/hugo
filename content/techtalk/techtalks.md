@@ -109,6 +109,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot Ehcache](/techtalk/spring/spring_boot_ehcache)
  * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
  * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
+ * [Spring Boot WebClient](/techtalk/spring/spring_boot_web_client)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
  * [REST Calls with Retrofit](/techtalk/android/retrofit)

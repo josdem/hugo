@@ -83,6 +83,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Ehcache](/techtalk/spring/spring_boot_ehcache)
 * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
 * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
+* [Spring Boot WebClient](/techtalk/spring/spring_boot_web_client)
 
 [Return to the main article](/techtalk/techtalks)
 
