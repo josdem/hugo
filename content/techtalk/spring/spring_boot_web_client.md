@@ -8,7 +8,7 @@ categories = ["techtalk", "code", "WebFlux"]
 
 WebClient is a reactive client that provides an alternative to the RestTemplate. It exposes a functional, fluent API and relies on non-blocking I/O which allows it to support high concurrency more efficiently than the RestTemplate. WebClient is a natural fit for streaming scenarios and depends on a lower level HTTP client library to execute requests and that support is pluggable.
 
-WebClient uses the same codecs as WebFlux server applications do, and shares a common base package, some common APIs, and infrastructure with the server functional web framework. The API exposes Reactor Flux and Mono types. By default it uses it uses Reactor Netty as the HTTP client library but others can be plugged in through a custom ClientHttpConnector.
+WebClient uses the same codecs as WebFlux server applications do, and shares a common base package, some common APIs, and infrastructure with the server functional web framework. The API exposes Reactor Flux and Mono types. By default it uses Reactor Netty as the HTTP client library but others can be plugged in through a custom ClientHttpConnector.
 
 By comparison to the RestTemplate, the WebClient is:
 
@@ -24,13 +24,84 @@ The RestTemplate is not a good fit for use in non-blocking applications, and the
 The `retrieve()` method is the easiest way to get a response body and decode it:
 
 ```java
-WebClient client = WebClient.create("http://jugoterapia.josdem.io/jugoterapia-server");
+package com.jos.dem.springboot.webclient.service.impl;
 
-Mono<Beverage> result = client.get()
-  .uri("/beverages/{id}", id).accept(MediaType.APPLICATION_JSON)
-  .retrieve()
-  .bodyToMono(Beverage.class);
+import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import com.jos.dem.springboot.webclient.model.Beverage;
+
+@Service
+public class BeverageService {
+
+  private WebClient client = WebClient.create("http://jugoterapia.josdem.io/jugoterapia-server");
+  
+  public Mono<Beverage> getBeverage(Long id){
+    client.get()
+      .uri("/beverages/{id}", id).accept(MediaType.APPLICATION_JSON)
+      .retrieve()
+      .bodyToMono(Beverage.class);
+  }
+  
+}
 ```
+
+In this example we are going to consume a RESTClient service for this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service.
+
+Now let's create a simple POJO to retrieve information from our API.
+
+```java
+package com.jos.dem.springboot.model;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Beverage {
+
+  private Long id;
+  private String name;
+  private String ingredients;
+  private String recipe;
+
+}
+```
+
+Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/)
+
+Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
+
+```java
+package com.jos.dem.springboot.webclient;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.jos.dem.springboot.webclient.service.BeverageService;
+
+@SpringBootApplication
+public class DemoApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
+  }
+  
+  @Bean
+  CommandLineRunner run(BeverageService beverageService){
+    return args -> {
+      beverageService.getBeverage(35)
+      .subscribe(System.out::println);
+    };
+  }
+  
+}
+```
+
 
 To run the project:
 
