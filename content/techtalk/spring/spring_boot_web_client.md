@@ -101,18 +101,16 @@ public class DemoApplication {
   
 }
 ```
+To download the project:
 
+```bash
+git clone https://github.com/josdem/spring-boot-web-client.git
+```
 
 To run the project:
 
 ```bash
 gradle bootRun
-```
-
-To test the project:
-
-```bash
-gradle test
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
