@@ -47,9 +47,7 @@ public class BeverageService {
 }
 ```
 
-In this example we are going to consume a RESTClient service for this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service.
-
-Now let's create a simple POJO to retrieve information from our API.
+In this example we are going to consume a RESTClient service for this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service. Now let's create a simple POJO to retrieve information from our API.
 
 ```java
 package com.jos.dem.springboot.model;
@@ -87,8 +85,8 @@ import com.jos.dem.springboot.webclient.service.BeverageService;
 @SpringBootApplication
 public class DemoApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DemoApplication.class, args);
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
   }
   
   @Bean
