@@ -99,6 +99,21 @@ public class DemoApplication {
   
 }
 ```
+
+Now if you run the project:
+
+```bash
+gradle bootRun
+```
+
+You will see a request to the API service and a Json response:
+
+```bash
+2018-06-15 22:55:38.550  INFO 1454 --- [NettyWebServer  : Netty started on port(s): 8080
+2018-06-15 22:55:38.554  INFO 1454 --- [DemoApplication : Started DemoApplication 
+Beverage(id=35, name=Jugo nutritivo (Zanahoria), ingredients=4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas, recipe=Lava perfectamente todos los ingrendientes. Pasa la zanahoria por el extractor, el apio, las espinacas y la pera. Mezcla todo perfectamente y bebe de inmediato. La espinaca es una excelente fuente de hierro. Promueve el transporte y depósito de oxí­geno en los tejidos, aumenta la fuerza muscular, ayuda a bajar de peso, favorece el tránsito intestinal, beneficia a mujeres embarazadas y niños debido a su contenido de ácido fólico (vitamina B9), mejora la visión y mantiene la presión arterial balanceada.)
+```
+
 To download the project:
 
 ```bash
