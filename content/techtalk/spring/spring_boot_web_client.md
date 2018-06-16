@@ -19,38 +19,41 @@ By comparison to the RestTemplate, the WebClient is:
 
 The RestTemplate is not a good fit for use in non-blocking applications, and therefore Spring WebFlux application should always use the WebClient. The WebClient should also be preferred in Spring MVC, in most high concurrency scenarios, and for composing a sequence of remote, inter-dependent calls.
 
-## Retrieve 
+## Retrieve
 
 The `retrieve()` method is the easiest way to get a response body and decode it:
 
 ```java
 package com.jos.dem.springboot.webclient.service.impl;
 
-import org.springframework.http.MediaType;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+
+import reactor.core.publisher.Mono;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.jos.dem.springboot.webclient.model.Beverage;
+import com.jos.dem.springboot.webclient.service.BeverageService;
 
 @Service
-public class BeverageService {
+public class BeverageService implements BeverageService {
 
   private WebClient client = WebClient.create("http://jugoterapia.josdem.io/jugoterapia-server");
-  
+
   public Mono<Beverage> getBeverage(Long id){
-    client.get()
-      .uri("/beverages/{id}", id).accept(MediaType.APPLICATION_JSON)
+    return client.get()
+      .uri("/beverages/{id}", id).accept(APPLICATION_JSON)
       .retrieve()
       .bodyToMono(Beverage.class);
   }
-  
+
 }
 ```
 
 In this example we are going to consume a RESTClient service for this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service. Now let's create a simple POJO to retrieve information from our API.
 
 ```java
-package com.jos.dem.springboot.model;
+package com.jos.dem.springboot.webclient.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -76,6 +79,7 @@ Next, we are going to use `CommandLineRunner` to start our workflow. The `Comman
 ```java
 package com.jos.dem.springboot.webclient;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -88,7 +92,7 @@ public class DemoApplication {
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
   }
-  
+
   @Bean
   CommandLineRunner run(BeverageService beverageService){
     return args -> {
@@ -96,7 +100,7 @@ public class DemoApplication {
       .subscribe(System.out::println);
     };
   }
-  
+
 }
 ```
 
@@ -110,7 +114,7 @@ You will see a request to the API service and a Json response:
 
 ```bash
 2018-06-15 22:55:38.550  INFO 1454 --- [NettyWebServer  : Netty started on port(s): 8080
-2018-06-15 22:55:38.554  INFO 1454 --- [DemoApplication : Started DemoApplication 
+2018-06-15 22:55:38.554  INFO 1454 --- [DemoApplication : Started DemoApplication
 Beverage(id=35, name=Jugo nutritivo (Zanahoria), ingredients=4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas, recipe=Lava perfectamente todos los ingrendientes. Pasa la zanahoria por el extractor, el apio, las espinacas y la pera. Mezcla todo perfectamente y bebe de inmediato. La espinaca es una excelente fuente de hierro. Promueve el transporte y depósito de oxí­geno en los tejidos, aumenta la fuerza muscular, ayuda a bajar de peso, favorece el tránsito intestinal, beneficia a mujeres embarazadas y niños debido a su contenido de ácido fólico (vitamina B9), mejora la visión y mantiene la presión arterial balanceada.)
 ```
 
