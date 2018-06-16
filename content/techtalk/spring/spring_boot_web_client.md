@@ -36,7 +36,7 @@ import com.jos.dem.springboot.webclient.model.Beverage;
 import com.jos.dem.springboot.webclient.service.BeverageService;
 
 @Service
-public class BeverageService implements BeverageService {
+public class BeverageServiceImpl implements BeverageService {
 
   private WebClient client = WebClient.create("http://jugoterapia.josdem.io/jugoterapia-server");
 
@@ -50,7 +50,24 @@ public class BeverageService implements BeverageService {
 }
 ```
 
-In this example we are going to consume a RESTFul service within this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service. Now let's create a simple POJO to retrieve information from our API.
+In this example we are going to consume a RESTFul service within this project [Jugoterapia](https://github.com/josdem/jugoterapia-spring-boot) Which is an Android application mainly focused in improve your healty based in juice recipes, this project is the server side, it is exposing recipes and beverages as API service.
+
+Beverage service interface:
+
+```java
+package com.jos.dem.springboot.webclient.service;
+
+import reactor.core.publisher.Mono;
+import com.jos.dem.springboot.webclient.model.Beverage;
+
+public interface BeverageService {
+
+  Mono<Beverage> getBeverage(Long id);
+
+}
+```
+
+Now let's create a simple POJO to retrieve information from our API.
 
 ```java
 package com.jos.dem.springboot.webclient.model;
