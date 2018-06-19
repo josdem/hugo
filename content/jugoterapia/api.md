@@ -11,13 +11,14 @@ Jugoterapia has three services
 
 Returns all juice categories
 
-* URL: http://jugoterapia.josdem.io/jugoterapia-server/beverage/categories
+* URL: http://jugoterapia.josdem.io/jugoterapia-server/categories
 * Method: GET
 * Response format: Json
 
-Example request using httpie:
+Example request:
+
 ```bash
-http http://jugoterapia.josdem.io/jugoterapia-server/beverage/categories
+curl http://jugoterapia.josdem.io/jugoterapia-server/beverage/categories
 ```
 
 Example result:
@@ -86,27 +87,27 @@ Example result:
 ]
 ```
 
-**Get beverage from id**
+**Get beverage by id**
 
-Returns beverage given a beverage id
+Returns beverage given its id
 
-* URL http://jugoterapia.josdem.io/jugoterapia-server/beverage/beverage
-* Parameter: beverageId
-* Method: POST
+* URL http://jugoterapia.josdem.io/jugoterapia-server/beverages/35
+* Path Variable: Id
+* Method: GET
 * Response format: Json
 
-Example request using httpie:
+Example request:
 ```bash
-http --form POST http://jugoterapia.josdem.io/jugoterapia-server/beverage/beverage beverageId=83
+curl http://jugoterapia.josdem.io/jugoterapia-server/beverages/35
 ```
 
 Example result:
 ```json
 {
-    "id": 83,
-    "ingredients": "* 2 Naranjas\n* 1 Toronja\n* 1 Ramito de perejil",
-    "name": "Jugo antigripal (Perejil)",
-    "recipe": "Exprime el jugo de las naranjas y de la toronja, pasa por el extractor de jugos el perejil, revuelve todos los jugos en un vaso y toma recién hecho diariamente."
+  "id": 35,
+  "name": "Jugo nutritivo (Zanahoria)",
+  "ingredients": "4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas",
+  "recipe": "Lava perfectamente todos los ingrendientes. Pasa la zanahoria por el extractor, el apio, las espinacas y la pera. Mezcla todo perfectamente y bebe de inmediato. La espinaca es una excelente fuente de hierro. Promueve el transporte y depósito de oxí­geno en los tejidos, aumenta la fuerza muscular, ayuda a bajar de peso, favorece el tránsito intestinal, beneficia a mujeres embarazadas y niños debido a su contenido de ácido fólico (vitamina B9), mejora la visión y mantiene la presión arterial balanceada."
 }
 ```
 
