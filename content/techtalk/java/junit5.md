@@ -289,7 +289,7 @@ class AssumptionShowTest {
 To download the code:
 
 ```bash
-git clone https://github.com/josdem/junit-workshop.git
+git clone https://github.com/josdem/junit5-workshop.git
 ```
 
 To test the code:
