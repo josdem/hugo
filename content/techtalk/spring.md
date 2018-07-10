@@ -84,6 +84,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
 * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
 * [Spring Boot WebClient](/techtalk/spring/spring_boot_web_client)
+* [Spring Boot WebClient Cucumber and Junit5](/techtalk/spring/webclient_cucumber_junit5)
 
 [Return to the main article](/techtalk/techtalks)
 
