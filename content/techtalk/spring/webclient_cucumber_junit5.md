@@ -138,8 +138,25 @@ public class WebClientApplication {
 }
 ```
 
-This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token that you can generate from here: [Personal Access Token](https://github.com/settings/tokens).
+This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token that you can generate from here: [Personal Access Token](https://github.com/settings/tokens). The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
+```java
+package com.jos.dem.webclient;
+
+import org.junit.runner.RunWith;
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources")
+public class CucumberTest {}
+```
+
+Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition file src/test/resources/person.feature:
+
+```
+
+```
 
 
 To download the project:
