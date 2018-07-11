@@ -154,10 +154,68 @@ public class CucumberTest {}
 
 Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition file src/test/resources/person.feature:
 
+```gherkin
+Feature: As a user I can get my public emails
+  Scenario: User call to get his public emails
+    Then User gets his public emails
 ```
 
+The next step is to create a class with a user service so we can call our get email endpoint:
+
+```java
+package com.jos.dem.webclient;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import com.jos.dem.webclient.model.PublicEmail;
+import com.jos.dem.webclient.service.UserService;
+
+import reactor.core.publisher.Flux;
+
+@ContextConfiguration(classes = WebClientApplication.class)
+@WebAppConfiguration
+public class UserIntegrationTest {
+
+  @Autowired
+  private UserService userService;
+
+  Flux<PublicEmail> getEmails() throws Exception {
+    return userService.getEmails();
+  }
+
+}
 ```
 
+Now let’s create the method in the Java class to correspond to this test case scenario:
+
+```java
+package com.jos.dem.webclient;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import com.jos.dem.webclient.model.PublicEmail;
+
+import java.util.List;
+
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import reactor.core.publisher.Flux;
+
+public class UserGetTest extends UserIntegrationTest {
+
+  @Then("^User gets his public emails$")
+  public void shouldGetEmails() throws Exception {
+    List<PublicEmail> emails = getEmails()
+      .collectList()
+      .block();
+
+    assertTrue(emails.size() == 1,  () -> "Should be 1 email");
+    assertTrue(emails.contains(new PublicEmail("joseluis.delacruz@gmail.com", true, true, "public")), () -> "Should contains josdem's primary email");
+  }
+
+}
+```
 
 To download the project:
 
