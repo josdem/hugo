@@ -193,9 +193,11 @@ Now let’s create the method in the Java class to correspond to this test case 
 ```java
 package com.jos.dem.webclient;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import com.jos.dem.webclient.model.PublicEmail;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import com.jos.dem.webclient.model.PublicEmail;
 import java.util.List;
 
 import cucumber.api.java.en.Then;
@@ -209,9 +211,15 @@ public class UserGetTest extends UserIntegrationTest {
     List<PublicEmail> emails = getEmails()
       .collectList()
       .block();
+    PublicEmail email = emails.get(0);
 
     assertTrue(emails.size() == 1,  () -> "Should be 1 email");
-    assertTrue(emails.contains(new PublicEmail("joseluis.delacruz@gmail.com", true, true, "public")), () -> "Should contains josdem's primary email");
+    assertAll("email",
+        () -> assertEquals("joseluis.delacruz@gmail.com", email.getEmail(), "Should contains josdem's email"),
+        () -> assertTrue(email.getVerified(), "Should be verified"),
+        () -> assertTrue(email.getPrimary(), "Should be primary"),
+        () -> assertEquals("public", email.getVisibility(), "Should be public")
+    );
   }
 
 }
