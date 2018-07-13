@@ -225,6 +225,41 @@ public class UserGetTest extends UserIntegrationTest {
 }
 ```
 
+## POST
+
+Example: Create a label
+
+**Endpoint**
+
+```bash
+POST /repos/:owner/:repo/labels
+```
+
+**Request**
+
+```json
+{
+  "name": "cucumber",
+  "description": "Cucumber is a very powerful testing framework written in the Ruby programming language",
+  "color": "ed14c5"
+}
+```
+
+**Response**
+
+```json
+{
+  "id": 208045946,
+  "node_id": "MDU6TGFiZWwyMDgwNDU5NDY=",
+  "url": "https://api.github.com/repos/josdem/webclient-workshop/labels/cucumber",
+  "name": "cucumber",
+  "description": "Cucumber is a very powerful testing framework written in the Ruby programming language",
+  "color": "ed14c5"
+  "default": true
+}
+```
+
+
 To download the project:
 
 ```bash
