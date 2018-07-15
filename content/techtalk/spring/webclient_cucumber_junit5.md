@@ -406,6 +406,33 @@ public class LabelPostTest extends LabelIntegrationTest {
 }
 ```
 
+## PATCH
+
+Example: Update  a label
+
+**Endpoint**
+
+```bash
+PATCH /repos/:owner/:repo/labels/:current_name
+```
+
+**Request**
+
+```json
+{
+  "name": "spock",
+  "description": "Spock is a testing and specification framework for Java and Groovy applications. It is beautiful and highly expressive",
+  "color": "ff0000"
+}
+```
+
+**Response**
+
+```bash
+Status: 200 OK
+```
+
+
 To download the project:
 
 ```bash
