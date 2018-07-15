@@ -296,14 +296,14 @@ public interface LabelService {
 
 Label service implementation
 
-```javapackage com.jos.dem.webclient.service.impl;
+```java
+package com.jos.dem.webclient.service.impl;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -337,7 +337,13 @@ public class LabelServiceImpl implements LabelService {
 
 ```
 
-Label creator is just a collaboratior helping to create label model and fill data on it
+Label creator is just a collaboratior helping to create label model and fill data on it, now let see create lable scenario definition.
+
+```gherkin
+Feature: As a user I want to create a label
+  Scenario: User call to create new label with cucumer as a name
+    Then User creates a new label
+```
 
 To download the project:
 
