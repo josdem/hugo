@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","spring boot", "webclie
 categories = ["techtalk", "code", "spring boot", "cucumber", "junit5"]
 +++
 
-This time I will show you how to combine Webflux [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) to create client test automation to the [GitHub API v3](https://developer.github.com/v3/?) Webflux [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) to create client test automation to the [GitHub API v3](https://developer.github.com/v3/?)
+This time I will show you how to combine Webflux [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) in order to create client test automation using a public REST API [GitHub API v3](https://developer.github.com/v3/?).
 
 ## GET
 
