@@ -767,6 +767,22 @@ public class LabelServiceImpl implements LabelService {
 }
 ```
 
+**Ordering Feature Test Execution**
+
+Cucumber features run in alphabetical order by feature file name by default. However, you can specify different order using `@CucumberOptions` annotation as follow:
+
+```java
+package com.jos.dem.webclient;
+
+import org.junit.runner.RunWith;
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = {"src/test/resources/user.feature", "src/test/resources/label.feature"})
+public class CucumberTest {}
+```
+
 To download the project:
 
 ```bash
