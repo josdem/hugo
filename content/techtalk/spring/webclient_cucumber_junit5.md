@@ -499,6 +499,76 @@ public class LabelServiceImpl implements LabelService {
 }
 ```
 
+Feature definition updated:
+
+```gherkin
+Feature: As a user I want to create a label
+  Scenario: User call to create new label with cucumer as a name
+    Then User creates a new label
+  Scenario: User call to update label to spock as a name
+    Then User updates label
+```
+
+Label test integration client definition updated:
+
+```java
+package com.jos.dem.webclient;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.reactive.function.client.ClientResponse;
+
+import com.jos.dem.webclient.model.LabelResponse;
+import com.jos.dem.webclient.service.LabelService;
+
+import reactor.core.publisher.Mono;
+
+@ContextConfiguration(classes = WebClientApplication.class)
+@WebAppConfiguration
+public class LabelIntegrationTest {
+
+  @Autowired
+  private LabelService labelService;
+
+  Mono<LabelResponse> create() throws Exception {
+    return labelService.create();
+  }
+
+  Mono<ClientResponse> update(String name) throws Exception {
+    return labelService.update(name);
+  }
+
+}
+```
+
+This is the Junit 5 test implementation updated:
+
+```java
+package com.jos.dem.webclient;
+
+import static org.springframework.http.HttpStatus.OK;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.springframework.web.reactive.function.client.ClientResponse;
+import java.util.List;
+
+import cucumber.api.java.en.Then;
+
+public class LabelUpdateTest extends LabelIntegrationTest {
+
+  @Then("^User updates label$")
+  public void shouldCreateLabel() throws Exception {
+    ClientResponse response = update("cucumber")
+      .block();
+
+    assertEquals(OK, response.statusCode(), "Should update to spock information");
+  }
+
+}
+```
 
 To download the project:
 
