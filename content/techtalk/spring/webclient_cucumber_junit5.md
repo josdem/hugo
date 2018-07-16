@@ -408,7 +408,7 @@ public class LabelPostTest extends LabelIntegrationTest {
 
 ## PATCH
 
-Example: Update  a label
+Example: Update a label
 
 **Endpoint**
 
@@ -565,6 +565,203 @@ public class LabelUpdateTest extends LabelIntegrationTest {
       .block();
 
     assertEquals(OK, response.statusCode(), "Should update to spock information");
+  }
+
+}
+```
+
+## DELETE
+
+Example: Delete a label
+
+**Endpoint**
+
+```bash
+DELETE /repos/:owner/:repo/labels/:name
+```
+
+**Response**
+
+```bash
+Status: 204 No Content
+```
+
+Label service definition updated:
+
+```java
+package com.jos.dem.webclient.service;
+
+import reactor.core.publisher.Mono;
+import com.jos.dem.webclient.model.LabelResponse;
+import org.springframework.web.reactive.function.client.ClientResponse;
+
+public interface LabelService {
+
+  Mono<LabelResponse> create();
+  Mono<ClientResponse> update(String name);
+  Mono<ClientResponse> delete(String name);
+
+}
+```
+
+Label service implementation updated:
+
+```java
+package com.jos.dem.webclient.service.impl;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+
+import javax.annotation.PostConstruct;
+
+import com.jos.dem.webclient.model.Label;
+import com.jos.dem.webclient.model.LabelResponse;
+import com.jos.dem.webclient.service.LabelService;
+import com.jos.dem.webclient.util.LabelCreator;
+
+@Service
+public class LabelServiceImpl implements LabelService {
+
+  @Autowired
+  private WebClient webClient;
+  @Autowired
+  private LabelCreator labelCreator;
+
+  @Value("${github.labels.path}")
+  private String githubLabelsPath;
+
+  public Mono<LabelResponse> create() {
+    return webClient.post()
+      .uri(githubLabelsPath).accept(APPLICATION_JSON)
+      .body(Mono.just(labelCreator.create()), Label.class)
+      .retrieve()
+      .bodyToMono(LabelResponse.class);
+  }
+
+  public Mono<ClientResponse> update(String name){
+    return webClient.patch()
+      .uri(githubLabelsPath + "/" + name).accept(APPLICATION_JSON)
+      .body(Mono.just(labelCreator.update()), Label.class)
+      .exchange();
+  }
+
+  public Mono<ClientResponse> delete(String name){
+    return webClient.delete()
+      .uri(githubLabelsPath + "/" + name).accept(APPLICATION_JSON)
+      .exchange();
+  }
+
+}
+```
+
+Feature definition updated:
+
+```gherkin
+Feature: As a user I want to create a label
+  Scenario: User call to create new label with cucumer as a name
+    Then User creates a new label
+  Scenario: User call to update label to spock as a name
+    Then User updates label
+  Scenario: User call to delete a label spock as a name
+    Then User deletes label
+```
+
+Label test integration client definition updated:
+
+```java
+package com.jos.dem.webclient;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.web.reactive.function.client.ClientResponse;
+
+import com.jos.dem.webclient.model.LabelResponse;
+import com.jos.dem.webclient.service.LabelService;
+
+import reactor.core.publisher.Mono;
+
+@ContextConfiguration(classes = WebClientApplication.class)
+@WebAppConfiguration
+public class LabelIntegrationTest {
+
+  @Autowired
+  private LabelService labelService;
+
+  Mono<LabelResponse> create() throws Exception {
+    return labelService.create();
+  }
+
+  Mono<ClientResponse> update(String name) throws Exception {
+    return labelService.update(name);
+  }
+
+  Mono<ClientResponse> delete(String name) throws Exception {
+    return labelService.delete(name);
+  }
+
+}
+```
+
+This is the Junit 5 test implementation updated:
+
+```java
+package com.jos.dem.webclient.service.impl;
+
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.web.reactive.function.client.ClientResponse;
+import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
+
+import javax.annotation.PostConstruct;
+
+import com.jos.dem.webclient.model.Label;
+import com.jos.dem.webclient.model.LabelResponse;
+import com.jos.dem.webclient.service.LabelService;
+import com.jos.dem.webclient.util.LabelCreator;
+
+@Service
+public class LabelServiceImpl implements LabelService {
+
+  @Autowired
+  private WebClient webClient;
+  @Autowired
+  private LabelCreator labelCreator;
+
+  @Value("${github.labels.path}")
+  private String githubLabelsPath;
+
+  public Mono<LabelResponse> create() {
+    return webClient.post()
+      .uri(githubLabelsPath).accept(APPLICATION_JSON)
+      .body(Mono.just(labelCreator.create()), Label.class)
+      .retrieve()
+      .bodyToMono(LabelResponse.class);
+  }
+
+  public Mono<ClientResponse> update(String name){
+    return webClient.patch()
+      .uri(githubLabelsPath + "/" + name).accept(APPLICATION_JSON)
+      .body(Mono.just(labelCreator.update()), Label.class)
+      .exchange();
+  }
+
+  public Mono<ClientResponse> delete(String name){
+    return webClient.delete()
+      .uri(githubLabelsPath + "/" + name).accept(APPLICATION_JSON)
+      .exchange();
   }
 
 }
