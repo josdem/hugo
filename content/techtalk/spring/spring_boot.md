@@ -9,7 +9,7 @@ description = "It is a Spring project aim to create easy web or stand-alone appl
 ## What is Spring Boot?
 It is a Spring project aim to create easy web or stand-alone applications. It provides the next features:
 
-* No requirement for XML configuration
+* No XML configuration is required
 * Tomcat or Jetty embedded
 * Convention over configuration
 * Easy setup
@@ -19,15 +19,16 @@ It is a Spring project aim to create easy web or stand-alone applications. It pr
 
 This tutorial shows you how to create a simple Spring Boot project with this features:
 
-* Groovy support
-* Gradle construction
-* Mysql databse support
+* Gradle Build
+* Maven Build
 * Basic configuration
 
 You can create this project from command line like this:
 
+**Using Gradle**
+
 ```bash
-spring init --dependencies=data-jpa,data-rest --build=gradle --language=groovy SimpleRestApplication
+spring init --dependencies=web --build=gradle --language=java spring-boot-setup
 ```
 
 That command will generate a Spring project structure under SimpleRestApplication folder.
@@ -35,45 +36,38 @@ That command will generate a Spring project structure under SimpleRestApplicatio
 In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
 
 * Spring Boot
-* Groovy
-* Gradle
+* Gradle or Maven
 
-I will show you a short version of build.gradle generated.
+I will show you a short version of `build.gradle` generated.
 
 ```groovy
 buildscript {
-  ext {
-    springBootVersion = '1.2.5.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+	ext {
+		springBootVersion = '2.0.3.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
 }
 
-apply plugin: 'groovy'
-apply plugin: 'idea'
-apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-jar {
-  baseName = 'demo'
-  version = '0.0.1-SNAPSHOT'
-}
-sourceCompatibility = 1.7
-targetCompatibility = 1.7
+group = 'com.jos.dem.springboot.setup'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
 
 repositories {
-  mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-  compile("org.springframework.boot:spring-boot-starter-data-jpa")
-  compile("org.springframework.boot:spring-boot-starter-data-rest")
-  compile('org.codehaus.groovy:groovy:2.4.3')
-  compile("mysql:mysql-connector-java:5.1.34")
-  testCompile("org.springframework.boot:spring-boot-starter-test")
+	compile('org.springframework.boot:spring-boot-starter-web')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 ```
 
