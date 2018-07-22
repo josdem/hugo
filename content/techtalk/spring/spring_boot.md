@@ -71,57 +71,49 @@ dependencies {
 }
 ```
 
-This project will generate an DemoApplication.java file, rename it as DemoApplication.groovy in a package structure you want.
+This project will generate an DemoApplication.java file.
 
 ```groovy
-package com.josdem
+package com.jos.dem.springboot.setup;
 
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-class DemoApplication {
+public class DemoApplication {
 
-  static void main(String[] args) {
-    SpringApplication.run(DemoApplication.class, args)
+	public static void main(String[] args) {
+		SpringApplication.run(DemoApplication.class, args);
   }
+
 }
 ```
 
-Next create a groovy file with simple rest controller description as follow:
+Next let's create a simple rest controller as follow:
 
 ```groovy
-package com.josdem
+package com.jos.dem.springboot.setup;
 
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-class SimpleController {
+public class DemoController {
 
   @RequestMapping("/")
-  String index() {
-    "Greetings from Spring Boot!"
+  public String index(){
+    return "Hello World!";
   }
 
 }
 ```
 
-Mysql configuration keeps url connection, username and password description in the application.properties file.
-
-```groovy
-spring.datasource.url=jdbc:mysql://localhost/springboot
-spring.datasource.username=josdem
-spring.datasource.password=josdem
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-
-spring.jpa.generate-ddl=true
-```
-
-Finally run it from command line.
+Now, in order to run it, use this command line.
 
 ```
 gradle bootRun
 ```
+
+Finally you can go to this address: [http://localhost:8080/](http://localhost:8080/) and you will see our hello word message.
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
