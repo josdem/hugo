@@ -10,7 +10,7 @@ description = "It is a Spring project aim to create easy web or stand-alone appl
 It is a Spring project aim to create easy web or stand-alone applications. It provides the next features:
 
 * No XML configuration is required
-* Tomcat or Jetty embedded
+* Tomcat embedded
 * Convention over configuration
 * Easy setup
 * Very lightweight
