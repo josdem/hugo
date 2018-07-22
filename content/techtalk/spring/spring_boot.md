@@ -116,4 +116,19 @@ gradle bootRun
 
 Finally you can go to this address: [http://localhost:8080/](http://localhost:8080/) and you will see our hello word message.
 
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=web --build=maven --language=java spring-boot-setup
+```
+
+And when you run your project use this command:
+
+```bash
+mvn spring-boot:run
+```
+
+
 [Return to the main article](/techtalk/spring#Spring_Boot)
