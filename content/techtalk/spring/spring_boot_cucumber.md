@@ -398,7 +398,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-	</dependencies>
+  </dependencies>
 
 	<build>
 		<plugins>
