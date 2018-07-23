@@ -386,7 +386,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-junit</artifactId>
       <version>${cucumber.version}</version>
-      </dependency>
+    </dependency>
     <dependency>
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-spring</artifactId>
