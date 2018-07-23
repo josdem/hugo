@@ -31,7 +31,7 @@ You can create this project from command line like this:
 spring init --dependencies=web --build=gradle --language=java spring-boot-setup
 ```
 
-That command will generate a Spring project structure under spring-boot-setup folder.
+That command will generate a Spring project structure under `spring-boot-setup` folder.
 
 In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
 
