@@ -174,10 +174,11 @@ public class PersonServiceImpl implements PersonService {
 Now all is set in our service, let's continue adding Cucumber and Junit as dependencies in our `build.gradle`:
 
 ```groovy
-testCompile('info.cukes:cucumber-java:1.2.5')
-testCompile('info.cukes:cucumber-junit:1.2.5')
-testCompile('info.cukes:cucumber-spring:1.2.5')
-testCompile('junit:junit:4.12')
+testCompile('info.cukes:cucumber-java:$cucumberVersion')
+testCompile('info.cukes:cucumber-junit:$cucumberVersion')
+testCompile('info.cukes:cucumber-spring:$cucumberVersion')
+testCompile("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 ```
 
 The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
@@ -199,7 +200,6 @@ Gherkin is a DSL language used to describe an application feature that needs to 
 ```gherkin
 Feature: Persons can be retrieved
   Scenario: client makes call to GET persons
-    When the client wants persons
     Then the client receives persons
 ```
 
@@ -268,34 +268,31 @@ Now let's create the method in the Java class to correspond to this test case sc
 ```java
 package com.jos.dem.springboot.cucumber;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.jos.dem.springboot.cucumber.model.Person;
 
 import java.util.List;
 
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import reactor.core.publisher.Flux;
 
 public class DefinitionIntegrationTest extends SpringIntegrationTest {
-  private List<Person> persons;
-
-  @When("^the client wants persons$")
-  public void shouldCallPersons() throws Exception {
-    Flux<Person> result = executeGet();
-    persons = result.collectList().block();
-  }
 
   @Then("^the client receives persons$")
   public void shouldGetPersons() throws Exception {
+    List<Person> persons = executeGet().collectList().block();
+
     assertEquals(5 , persons.size());
-    assertTrue(persons.contains(new Person("josdem", "joseluis.delacruz@gmail.com")));
-    assertTrue(persons.contains(new Person("tgrip", "tgrip@email.com")));
-    assertTrue(persons.contains(new Person("edzero", "edzero@email.com")));
-    assertTrue(persons.contains(new Person("skuarch", "skuarch@email.com")));
-    assertTrue(persons.contains(new Person("jeduan", "jeduan@email.com")));
+    assertAll("person",
+      () -> assertTrue(persons.contains(new Person("josdem", "joseluis.delacruz@gmail.com"))),
+      () -> assertTrue(persons.contains(new Person("tgrip", "tgrip@email.com"))),
+      () -> assertTrue(persons.contains(new Person("edzero", "edzero@email.com"))),
+      () -> assertTrue(persons.contains(new Person("skuarch", "skuarch@email.com"))),
+      () -> assertTrue(persons.contains(new Person("jeduan", "jeduan@email.com")))
+    );
   }
 
 }
@@ -346,14 +343,15 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
 		<relativePath/>
 	</parent>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <cucumber.version>1.2.5</cucumber.version>
-  </properties>
+    <junit.jupiter.version>5.2.0</junit.jupiter.version>
+	</properties>
 
-  <dependencies>
+	<dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
@@ -386,16 +384,22 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-junit</artifactId>
       <version>${cucumber.version}</version>
-    </dependency>
+      </dependency>
     <dependency>
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-spring</artifactId>
       <version>${cucumber.version}</version>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.12</version>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
