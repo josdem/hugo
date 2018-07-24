@@ -172,9 +172,9 @@ public class PersonServiceImpl implements PersonService {
 Now all is set in our service, let's continue adding Cucumber and Junit as dependencies in our `build.gradle`:
 
 ```groovy
-testCompile('info.cukes:cucumber-java:$cucumberVersion')
-testCompile('info.cukes:cucumber-junit:$cucumberVersion')
-testCompile('info.cukes:cucumber-spring:$cucumberVersion')
+testCompile("info.cukes:cucumber-java:$cucumberVersion")
+testCompile("info.cukes:cucumber-junit:$cucumberVersion")
+testCompile("info.cukes:cucumber-spring:$cucumberVersion")
 testCompile("org.junit.jupiter:junit-jupiter-api:$junitVersion")
 testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 ```
