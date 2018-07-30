@@ -6,9 +6,9 @@ date = "2018-03-30T19:42:17-06:00"
 description = "BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing."
 +++
 
-BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing.
+BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing. This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology.
 
-This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology.
+**Using Gradle**
 
 Let's start creating a new Spring Boot project with Webflux and Lombok as dependencies:
 
@@ -20,15 +20,15 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 buildscript {
-	ext {
-		springBootVersion = '2.0.0.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+  ext {
+    springBootVersion = '2.0.3.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
 }
 
 apply plugin: 'java'
@@ -57,11 +57,9 @@ package com.jos.dem.springboot.cucumber.model;
 
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Data;
 
 @AllArgsConstructor
-@ToString
 @NoArgsConstructor
 @Data
 public class Person {
@@ -174,10 +172,11 @@ public class PersonServiceImpl implements PersonService {
 Now all is set in our service, let's continue adding Cucumber and Junit as dependencies in our `build.gradle`:
 
 ```groovy
-testCompile('info.cukes:cucumber-java:1.2.5')
-testCompile('info.cukes:cucumber-junit:1.2.5')
-testCompile('info.cukes:cucumber-spring:1.2.5')
-testCompile('junit:junit:4.12')
+testCompile("info.cukes:cucumber-java:$cucumberVersion")
+testCompile("info.cukes:cucumber-junit:$cucumberVersion")
+testCompile("info.cukes:cucumber-spring:$cucumberVersion")
+testCompile("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 ```
 
 The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
@@ -199,7 +198,6 @@ Gherkin is a DSL language used to describe an application feature that needs to 
 ```gherkin
 Feature: Persons can be retrieved
   Scenario: client makes call to GET persons
-    When the client wants persons
     Then the client receives persons
 ```
 
@@ -257,39 +255,42 @@ public class DemoApplication {
 }
 ```
 
+It is time to execute this command, so we can get our Spring Boot application up and running.
+
+```bash
+gradle bootRun
+```
+
 Now let's create the method in the Java class to correspond to this test case scenario:
 
 ```java
 package com.jos.dem.springboot.cucumber;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import com.jos.dem.springboot.cucumber.model.Person;
 
 import java.util.List;
 
 import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
 import reactor.core.publisher.Flux;
 
 public class DefinitionIntegrationTest extends SpringIntegrationTest {
-  private List<Person> persons;
-
-  @When("^the client wants persons$")
-  public void shouldCallPersons() throws Exception {
-    Flux<Person> result = executeGet();
-    persons = result.collectList().block();
-  }
 
   @Then("^the client receives persons$")
   public void shouldGetPersons() throws Exception {
+    List<Person> persons = executeGet().collectList().block();
+
     assertEquals(5 , persons.size());
-    assertTrue(persons.contains(new Person("josdem", "joseluis.delacruz@gmail.com")));
-    assertTrue(persons.contains(new Person("tgrip", "tgrip@email.com")));
-    assertTrue(persons.contains(new Person("edzero", "edzero@email.com")));
-    assertTrue(persons.contains(new Person("skuarch", "skuarch@email.com")));
-    assertTrue(persons.contains(new Person("jeduan", "jeduan@email.com")));
+    assertAll("person",
+      () -> assertTrue(persons.contains(new Person("josdem", "joseluis.delacruz@gmail.com"))),
+      () -> assertTrue(persons.contains(new Person("tgrip", "tgrip@email.com"))),
+      () -> assertTrue(persons.contains(new Person("edzero", "edzero@email.com"))),
+      () -> assertTrue(persons.contains(new Person("skuarch", "skuarch@email.com"))),
+      () -> assertTrue(persons.contains(new Person("jeduan", "jeduan@email.com")))
+    );
   }
 
 }
@@ -309,16 +310,126 @@ BUILD SUCCESSFUL in 19s
 5 actionable tasks: 2 executed, 3 up-to-date
 ```
 
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
+
+```bash
+spring init --dependencies=webflux,lombok --build=maven --language=java spring-boot-cucumber
+```
+
+This is the `pom.xml` file generated along with Cucumber and Junit as dependencies on it added manualy:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.jos.dem.springboot</groupId>
+	<artifactId>cucumber</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>spring-boot-cucumber</name>
+	<description>Shows how to integrate Cucumber to your Spring Boot application</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath/>
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <cucumber.version>1.2.5</cucumber.version>
+    <junit.jupiter.version>5.2.0</junit.jupiter.version>
+	</properties>
+
+	<dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>${cucumber.version}</version>
+      </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-spring</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+      </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+```
+
+Now you can execute this command, so we can get our Spring Boot application up and running with Maven.
+
+```bash
+mvn spring-boot:run
+```
+
+Finally this command to run our test scenario:
+
+```bash
+mvn test
+```
+
 To download the project:
 
 ```bash
 git clone https://github.com/josdem/spring_boot_cucumber.git
-```
-
-To run the project:
-
-```bash
-gradle bootRun
 ```
 
 
