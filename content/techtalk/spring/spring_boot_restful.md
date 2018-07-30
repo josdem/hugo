@@ -19,7 +19,7 @@ So we can have:
 * DELETE /persons/1234 - Deletes #1234 person
 
 
-**NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
+**NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
 Then execute this command in your terminal.
 
