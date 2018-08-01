@@ -49,10 +49,23 @@ dependencies {
 
 **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
+Now add Retrofit, Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
+
+```groovy
+implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+testCompile('org.springframework.boot:spring-boot-starter-test')
+testCompile("info.cukes:cucumber-java:$cucumberVersion")
+testCompile("info.cukes:cucumber-junit:$cucumberVersion")
+testCompile("info.cukes:cucumber-spring:$cucumberVersion")
+testCompile("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+```
+
+Next we are going to create a `GET` request example using the GitHub API V3.
 
 ## GET
 
-Example: we are going to list public email addresses for a user.
+Example: How to list public email addresses for a user.
 
 **Endpoint**
 
