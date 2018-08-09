@@ -33,6 +33,61 @@ test {
 
 Dependencies includes Junit Jupiter also know as Junit 5, configuring a `testCompile` dependency on the JUnit Jupiter API and a `testRuntime` dependency on the JUnit Jupiter TestEngine it is minimum required configuration. Also `test` task definition is supported since Gradle 4.6 version and specify Junit platform support, besides with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does.
 
+If you want to use Maven, please create the following `pom.xml` structure in the root project:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jos.dem</groupId>
+  <artifactId>junit5</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
+
+    <junit.jupiter.version>5.2.0</junit.jupiter.version>
+    <junit.platform.version>1.2.0</junit.platform.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.22.0</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+```
+
 **Assertions**
 
 Assertions have been moved to `org.junit.jupiter.api.Assertions` and have been improved significantly. As mentioned earlier, you can now use lambdas in assertions:
@@ -299,11 +354,18 @@ To download the code:
 git clone https://github.com/josdem/junit5-workshop.git
 ```
 
-To test the code:
+To run the project using Gradle:
 
 ```bash
 gradle test
 ```
+
+To run the project using Maven:
+
+```bash
+mvn test
+```
+
 
 [Return to the main article](/techtalk/java)
 
