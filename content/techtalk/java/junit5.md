@@ -12,7 +12,6 @@ Using Gradle, you need to create a `build.gradle` file with the following struct
 
 ```groovy
 apply plugin: "java"
-apply plugin: "application"
 
 repositories {
   mavenCentral()
@@ -22,9 +21,17 @@ dependencies {
   testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
   testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
 }
+
+test {
+  useJUnitPlatform()
+
+  reports {
+    html.enabled = true
+  }
+}
 ```
 
-Dependencies section shows how to configure support for JUnit Jupiter based tests, configuring a `testCompile` dependency on the JUnit Jupiter API and a `testRuntime` dependency on the JUnit Jupiter TestEngine.
+Dependencies includes Junit Jupiter also know as Junit 5, configuring a `testCompile` dependency on the JUnit Jupiter API and a `testRuntime` dependency on the JUnit Jupiter TestEngine it is minimum required configuration. Also `test` task definition is supported since Gradle 4.6 version and specify Junit platform support, besides with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does.
 
 **Assertions**
 
