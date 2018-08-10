@@ -31,6 +31,8 @@ test {
 }
 ```
 
+We are going to use Junit 5 in order to create test and validate we are building the right functionality. If you want to know more about Junit 5, please go to my previois post [JUnit 5](/techtalk/java/junit5/).
+
 ```bash
 git clone https://github.com/josdem/junit5-workshop.git
 ```
