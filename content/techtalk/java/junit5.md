@@ -31,7 +31,7 @@ test {
 }
 ```
 
-In dependencies section we are defining Junit Jupiter api, engine version, `jupiter-engine` is only required at runtime. Also `test` task definition is supported since Gradle 4.6 version and specify Junit platform support, besides with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does.
+In dependencies section we are defining Junit Jupiter api, engine version, `jupiter-engine` is only required at runtime. Also `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html), with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does.
 
 If you want to use Maven, please create the following `pom.xml` structure in the root project:
 
