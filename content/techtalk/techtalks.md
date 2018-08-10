@@ -40,7 +40,6 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Functional Interfaces](/techtalk/java/functional_interfaces)
  * [Lambda Expressions](/techtalk/java/lambda_expressions)
  * [Junit 5](/techtalk/java/junit5)
- * [From Anonymous to Lambda](/techtalk/java/from_anonymous_to_lambda)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
  * [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)
