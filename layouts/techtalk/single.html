@@ -1,5 +1,5 @@
 <section id="head">
-  {{ partial "head.html" . }}  
+  {{ partial "head.html" . }}
 </section>
 <section id="main">
   <style>
@@ -32,15 +32,13 @@
   <div align="center">
   {{ partial "adsense_header.html" . }}
   </div>
-  <h1 id="title">{{ .Title }}</h1>  
+  <h1 id="title">{{ .Title }}</h1>
   <div>
     <article id="content">
-      {{ .Content }}            
-    </article>    
-  </div>    
-  {{ partial "paypal_website.html" . }}  
-  <br/><br/>
-  {{ partial "adsense_in_article.html" . }}
+      {{ .Content }}
+    </article>
+  </div>
+  {{ partial "paypal_website.html" . }}
   <br/><br/>
   {{ partial "disqus.html" . }}
 </section>
