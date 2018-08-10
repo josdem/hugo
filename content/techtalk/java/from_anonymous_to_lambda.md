@@ -31,7 +31,18 @@ test {
 }
 ```
 
-We are going to use Junit 5 in order to create test and validate we are building the right functionality. If you want to know more about Junit 5, please go to my previois post [JUnit 5](/techtalk/java/junit5/).
+We are going to use [JUnit 5](/techtalk/java/junit5/) in order to create test and validate we are building the right functionality. Now it is time to create a [Functional Interface](http://josdem.io/techtalk/java/functional_interfaces/), in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](http://josdem.io/techtalk/java/lambda_expressions/).
+
+```java
+package com.jos.dem.anonymous;
+
+@FunctionalInterface
+public interface Greeting {
+
+  String hello();
+
+}
+```
 
 ```bash
 git clone https://github.com/josdem/junit5-workshop.git
