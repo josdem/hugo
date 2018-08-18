@@ -7,7 +7,8 @@ title = "Jmetadata.exe"
 +++
 File: [JMetadata.exe](https://mega.nz/#!dYYxxLpZ!mABh1_uAKPrlO7f9ttMCyJhZyItby-lTF_LcnxXwaUs) 7.5 MB
 
-## Instructions:
+**Instructions**
+
 1. Download installer.
 2. Double click on it.
 3. Select your installation directory.

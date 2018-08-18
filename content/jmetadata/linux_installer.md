@@ -7,7 +7,8 @@ title = "Jmetadata Linux.zip"
 +++
 File: [JMetadata-Linux.zip](https://mega.nz/#!RdRhQCwZ!G3zqJJwk2z4ueq1ToZo7fcP8wVsZ08uXew9mdNUHWjk) 7.7 MB
 
-## Instructions:
+**Instructions**
+
 1. Unzip.
 2. Set $JAVA_HOME/bin in your path system environment.
 3. chmod 755 JMetadata.sh

@@ -7,7 +7,8 @@ title = "Jmetadata.dmg"
 +++
 File: [JMetadata.dmg](https://mega.nz/#!EFRxAIiY!4vE9TET6lZZ8QzRy1we0jhj4kQok62RwQB5IoTZyBNk) 18.8 MB
 
-## Instructions:
+**Instructions**
+
 1. Download the installer
 2. Double click on Installer
 3. Drag & Drop JMetadata Application to the Applications folder
