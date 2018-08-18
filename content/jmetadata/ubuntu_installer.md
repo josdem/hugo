@@ -9,7 +9,12 @@ File: [JMetadata.deb](https://mega.nz/#!FEh3UY5Z!pOqQyDm7poFuWeqbYOPTKnpRySMtj3Y
 
 **Instructions**
 
-1. In a terminal: sudo dpkg -i JMetadata.deb
+1. In a terminal:
+
+```bash
+sudo dpkg -i JMetadata.deb
+```
+
 2. Go to Ubuntu Launcher and search for JMetadata or you can run it from command line:
 
 ```bash
