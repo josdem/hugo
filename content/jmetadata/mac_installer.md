@@ -5,7 +5,12 @@ tags = ["josdem", "jmetadata"]
 title = "Jmetadata.dmg"
 
 +++
-File: [JMetadata.dmg](https://mega.nz/#!EFRxAIiY!4vE9TET6lZZ8QzRy1we0jhj4kQok62RwQB5IoTZyBNk) 18.8 MB
+
+**Important:** After testing this installer in macOS Sierra platform we discovered that Java 6 is deprecated in this version, so this installer will not work, therefore we need to update it, please go [here](https://github.com/josdem/jmetadata/issues/1) for more information.
+
+**Previous information:**
+
+File: JMetadata.dmg 18.8 MB
 
 **Instructions**
 
