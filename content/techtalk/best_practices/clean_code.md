@@ -10,7 +10,9 @@ description = "Programmers create problems for themselves when they write code s
 |---|---|
 |![CleanCode](/img/techtalks/best_practices/clean_code.jpg) |Programmers create problems for themselves when they write code solely to satisfy a compiler or interpreter. Have you ever been significantly impeded by bad code? If you’re a programmer if any experience then you’ve felt this impediment many times. Indeed, we have a name for it "wading".|
 
-## Attitude
+
+**Attitude**
+
 Most managers want good code, even when they are obsessing about the schedule. They may defend the schedule and requirements with passion; but that’s their job. It’s our job to defend the code with equal passion.
 
 To drive this point home, what if you were a doctor and had a patient who demanded that you stop all the silly hand-washing in preparation for surgery because it was taking too much time? Clearly the patient is the boss; and yet the doctor should absolutely refuse to comply. Why? Because the doctor knows more than the patient about the risks of disease and infection. It would be unprofressional (never mind criminal) for the doctor to comply with the patient.

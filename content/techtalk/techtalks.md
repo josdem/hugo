@@ -153,7 +153,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Apple and Orange](/techtalk/algorithms/apple_orange)
  * [Kangaroo](/techtalk/algorithms/kangaroo)
 * [**Best Practices**](/techtalk/best_practices/best_practices)
- * [Clean Code](/techtalk/clean_code)
+ * [Clean Code](/techtalk/best_practices/clean_code)
  * [Continuous Delivery](/techtalk/best_practices/continuous_delivery)
  * [Extreme Programming](/techtalk/best_practices/extreme_programming)
  * [SOLID Principles](/techtalk/best_practices/solid_principles)
