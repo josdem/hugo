@@ -34,7 +34,7 @@ Why we wrote bad code?, Were you trying to go fast? Were you in a rush? Probably
 
 * Too many arguments The ideal number of arguments in a function is zero (niladic). Next comes one (monadic), followed closely by two (dyadic). Three arguments (triadic) should be avoided where possible. More than three (polyadic) requires very special justification and then shouldn’t be used anyway.
 
-* Flag arguments Flag arguments are ugly. Passing a boolean into a function is a truly terrible practice. It immediately complicates the signature of the method, loudly proclaiming that this function does more than one thing.
+* Flag arguments are ugly. Passing a boolean into a function is a truly terrible practice. It immediately complicates the signature of the method, loudly proclaiming that this function does more than one thing.
 
 * Dead functions Methods that are never called should be discarded. Keeping dead code around is wasteful. Don’t be afraid to delete the function, your source code control system still remembers it.
 
