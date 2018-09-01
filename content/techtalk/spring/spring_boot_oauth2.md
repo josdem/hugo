@@ -203,7 +203,7 @@ This is the user web page showing data retieved by Google:
 
 <img src="/img/techtalks/spring/oauth2_google_user.png">
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/spring-boot-oauth2), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-oauth2.git

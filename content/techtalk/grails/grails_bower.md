@@ -218,7 +218,7 @@ $('#datepicker').datepicker()
 
 Now when you run your Grails project and create a new Person you will be able to use datepicker calendar component, go [here](https://bootstrap-datepicker.readthedocs.io/en/latest/) for more information how to use it.
 
-To browse the project go [here](https://github.com/josdem/grails2-bower-workshop),to download the project:
+To browse the project go [here](https://github.com/josdem/grails2-bower-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/grails2-bower-workshop.git
