@@ -159,8 +159,7 @@ class RestClientApplication {
 }
 ```
 
-
-To download the project:
+To browse the project go [here](https://github.com/josdem/spring-boot-rest-client), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-rest-client.git
