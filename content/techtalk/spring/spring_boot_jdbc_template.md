@@ -204,7 +204,7 @@ spring.datasource.password=password
 spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 ```
 
-To download the project
+To browse the project go [here](https://github.com/josdem/spring-boot-jdbc-template), to download the project
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jdbc-template.git
