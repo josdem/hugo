@@ -142,7 +142,7 @@ After a successful login you can see a greeting
 
 <img src="/img/techtalks/spring/form_greeting.png">
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/reactive-webflux-security), to download the project:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-security.git
