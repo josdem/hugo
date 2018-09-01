@@ -244,7 +244,7 @@ To run the project
 gradle bootRun
 ```
 
-To download the project
+To browse the project go [here](https://github.com/josdem/spring-boot-jms), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jms.git
