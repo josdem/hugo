@@ -27,7 +27,7 @@ package com.jos.dem.solid.srp;
 
 public class Car {
   private static final int MAX_FUEL = 40;
-  private int fuel;  
+  private int fuel;
 
   public void fillUp() {
     this.fuel = MAX_FUEL;
@@ -56,16 +56,16 @@ class CarSpec extends Specification {
   void "should start with empty tank"(){
     when:'A car'
       Car car = new Car()
-    then:'We expect is empty gas'  
+    then:'We expect is empty gas'
       car.isEmpty() == true
   }
 
   void "should do a gas fill up"(){
     given:'A car'
       Car car = new Car()
-    when:'We do a gas fill up'        
+    when:'We do a gas fill up'
       car.fillUp()
-    then:'Car is full of gas'  
+    then:'Car is full of gas'
       car.isFull() == true
   }
 
@@ -95,7 +95,7 @@ package com.jos.dem.solid.srp;
 
 public class Car {
   private static final int MAX_FUEL = 40;
-  private int fuel;  
+  private int fuel;
 
   public void increment() {
     this.fuel++;
@@ -124,7 +124,7 @@ class CarSpec extends Specification {
   void "should start with empty tank"(){
     when:'A car'
       Car car = new Car()
-    then:'We expect is empty gas'  
+    then:'We expect is empty gas'
       car.isEmpty() == true
   }
 
@@ -145,9 +145,9 @@ class FuelPumpSpec extends Specification {
   void "should fuel a car"(){
     given:'A car'
       Car car = new Car()
-    when:'We do a gas fill up'        
+    when:'We do a gas fill up'
       fuelPump.reFuel(car)
-    then:'Car is full of gas'  
+    then:'Car is full of gas'
       car.isFull() == true
 
   }
@@ -179,14 +179,14 @@ public class Employee {
 	private final BigDecimal commission = new BigDecimal(10.00);
 
 	public BigDecimal getPaymentAmount(EmployeeType type) {
-		
+
 		switch(type){
 			case ENGINEER:
 				return monltySalary;
 			case SALESMAN:
 				return monltySalary.add(commission);
 			case MANAGER:
-				return monltySalary.add(bonus);	
+				return monltySalary.add(bonus);
 			default:
 				throw new RuntimeException("Incorrect Employee");
 		}
@@ -206,21 +206,21 @@ import org.junit.Test;
 import com.jos.dem.solid.ocp.EmployeeType;
 
 public class EmployeeTest {
-	
+
 	private Employee employee = new Employee();
-	
+
 	@Test
 	public void shouldGetEngineerSalary() {
 		BigDecimal salary = new BigDecimal(100.00);
 		assertEquals(salary, employee.getPaymentAmount(EmployeeType.ENGINEER));
 	}
-	
+
 	@Test
 	public void shouldGetSalesmanSalary() {
 		BigDecimal salary = new BigDecimal(110.00);
 		assertEquals(salary, employee.getPaymentAmount(EmployeeType.SALESMAN));
 	}
-	
+
 	@Test
 	public void shouldGetManagerSalary() {
 		BigDecimal salary = new BigDecimal(120.00);
@@ -240,7 +240,7 @@ package com.jos.dem.solid.ocp;
 import java.math.BigDecimal;
 
 public interface Employee {
-	
+
 	final BigDecimal monthlySalary = new BigDecimal(100);
 	BigDecimal getPaymentAmount();
 
@@ -255,7 +255,7 @@ package com.jos.dem.solid.ocp;
 import java.math.BigDecimal;
 
 public class Engineer implements Employee {
-	
+
 	public BigDecimal getPaymentAmount() {
 		return monthlySalary;
 	}
@@ -271,7 +271,7 @@ package com.jos.dem.solid.ocp;
 import java.math.BigDecimal;
 
 public class Manager implements Employee {
-	
+
 	private BigDecimal bonus = new BigDecimal(20);
 
 	public BigDecimal getPaymentAmount() {
@@ -289,7 +289,7 @@ package com.jos.dem.solid.ocp;
 import java.math.BigDecimal;
 
 public class Salesman implements Employee {
-	
+
 	private BigDecimal commission = new BigDecimal(10);
 
 	public BigDecimal getPaymentAmount() {
@@ -309,21 +309,21 @@ import java.math.BigDecimal;
 import org.junit.Test;
 
 public class EmployeeTest {
-	
+
 	@Test
 	public void shouldGetEngineerSalary() {
 		BigDecimal salary = new BigDecimal(100);
 		Employee engineer = new Engineer();
 		assertEquals(salary, engineer.getPaymentAmount());
 	}
-	
+
 	@Test
 	public void shouldGetSalesmanSalary() {
 		BigDecimal salary = new BigDecimal(110);
 		Employee salesman = new Salesman();
 		assertEquals(salary, salesman.getPaymentAmount());
 	}
-	
+
 	@Test
 	public void shouldGetManagerSalary() {
 		BigDecimal salary = new BigDecimal(120);
@@ -355,7 +355,7 @@ import java.math.BigDecimal;
 import org.junit.Test;
 
 public class EmployeeTest {
-	
+
 	@Test
   public void shouldGetTotalSalary() {
     BigDecimal expectedTotal = new BigDecimal(330);
@@ -498,7 +498,7 @@ public class EmployeeTest {
 
   @Test
   public void shouldGetTotalPartnersAmount(){
-    BigDecimal expectedTotal = new BigDecimal(5400);    
+    BigDecimal expectedTotal = new BigDecimal(5400);
     List<Partner> partners = Arrays.asList(new PartnerImpl(10), new PartnerImpl(15), new PartnerImpl(20));
 
     assertEquals(expectedTotal, partners.stream()
@@ -508,7 +508,7 @@ public class EmployeeTest {
 
   @Test
   public void shouldGetTotalContractorAmount(){
-    BigDecimal expectedTotal = new BigDecimal(4050);    
+    BigDecimal expectedTotal = new BigDecimal(4050);
     List<Contractor> contractors = Arrays.asList(new ContractorImpl(10), new ContractorImpl(15), new ContractorImpl(20));
 
     assertEquals(expectedTotal, contractors.stream()
@@ -583,7 +583,7 @@ public class PersonMemoryRepository implements PersonRepository {
 
 In this case, we are using an in-memory repository and we can easily change it to a database repository and our service will not notice that change.
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/solid-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/solid-principles.git
