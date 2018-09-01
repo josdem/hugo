@@ -209,7 +209,7 @@ spring.data.mongodb.username=username
 spring.data.mongodb.password=password
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/reactive-webflux-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git

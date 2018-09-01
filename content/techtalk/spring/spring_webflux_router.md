@@ -103,7 +103,7 @@ Let me conclude by giving a short summary:
 * WebFlux combines well with Java functional programming
 * WebFlux runs on Netty server by default
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/reactive-webflux-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git

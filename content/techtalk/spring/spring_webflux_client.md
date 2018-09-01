@@ -124,7 +124,7 @@ Do not forget to run this client in different port using the following specifica
 server.port=8081
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/reactive-webflux-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git
