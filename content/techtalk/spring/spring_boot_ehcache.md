@@ -246,7 +246,7 @@ That's it, now if you start up your Spring Boot application and hit the index pa
 ]
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/spring-boot-ehcache), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-ehcache.git
