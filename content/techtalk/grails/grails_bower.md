@@ -124,7 +124,7 @@ That's it, now Bower will not create a `bower_component` directory but a `grails
 //
 // Any JavaScript file within this directory can be referenced here using a relative path.
 //
-// You're free to add application-wide JavaScript to this file, but it's generally better 
+// You're free to add application-wide JavaScript to this file, but it's generally better
 // to create separate JavaScript files as needed.
 //
 //= require jquery
@@ -141,9 +141,9 @@ Let's open `grails-app/views/person/create.gsp` and add css and javascript link 
     <meta name="layout" content="main">
     <g:set var="entityName" value="${message(code: 'person.label', default: 'Person')}" />
     <title><g:message code="default.create.label" args="[entityName]" /></title>
-    <asset:stylesheet src="third-party/bootstrap-datepicker/dist/css/bootstrap-datepicker.css"/>    
+    <asset:stylesheet src="third-party/bootstrap-datepicker/dist/css/bootstrap-datepicker.css"/>
     <asset:javascript src="third-party/jquery/dist/jquery.js"/>
-    <asset:javascript src="third-party/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"/>    
+    <asset:javascript src="third-party/bootstrap-datepicker/dist/js/bootstrap-datepicker.js"/>
   </head>
   <body>
     <a href="#create-person" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
@@ -173,8 +173,8 @@ Let's open `grails-app/views/person/create.gsp` and add css and javascript link 
           <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
         </fieldset>
       </g:form>
-    </div>    
-    <asset:javascript src="datepicker.js"/>   
+    </div>
+    <asset:javascript src="datepicker.js"/>
   </body>
 </html>
 ```
@@ -204,7 +204,7 @@ As a final step, we need to create a `g:textField` html component with `datepick
 
 <div class="fieldcontain">
   <label for="birthdate">
-    <g:message code="person.birthdate.label" default="Birthdate" />   
+    <g:message code="person.birthdate.label" default="Birthdate" />
   </label>
   <g:textField id='datepicker' name="birthDate" maxlength="250"/>
 </div>
@@ -218,7 +218,7 @@ $('#datepicker').datepicker()
 
 Now when you run your Grails project and create a new Person you will be able to use datepicker calendar component, go [here](https://bootstrap-datepicker.readthedocs.io/en/latest/) for more information how to use it.
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/grails2-bower-workshop),to download the project:
 
 ```bash
 git clone https://github.com/josdem/grails2-bower-workshop.git
