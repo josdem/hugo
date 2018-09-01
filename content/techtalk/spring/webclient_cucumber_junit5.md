@@ -926,7 +926,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
 </project>
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/webclient-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/webclient-workshop.git
