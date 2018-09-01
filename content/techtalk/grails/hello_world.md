@@ -81,13 +81,13 @@ Instead of configuration Grails use specific names and locations to store files 
 * `build.gradle` Build, plugins and dependencies specification.
 * `grails-app` Source code structure
 	*  `assets` Images, JavaScript and Stylesheets
-	* `conf` Application configuration 
+	* `conf` Application configuration
 	* `controllers` Web MVC controllers
 	* `services` Business layer services
-	* `domain` Application model 
+	* `domain` Application model
 	* `view` Groovy Server Pages
 	* `i18n` Internationalization files
-* `src` Groovy and Java files including test	
+* `src` Groovy and Java files including test
 
 **Creating Model**
 
@@ -134,7 +134,7 @@ grails> run-app
 ```
 
 **Creating Controller**
- 
+
 Let’s now create Person controller with the `generate-controller` command:
 
 ```bash
@@ -150,7 +150,7 @@ output:
 | Scaffolding completed for grails-app\domain\com\jos\dem\Person.groovy
 ```
 
-Previous command is using static scaffolding, it lets you generate a controller based in templates and it provides you necessary code to create CRUD (Create/Read/Update/Delete) operations over Person model. 
+Previous command is using static scaffolding, it lets you generate a controller based in templates and it provides you necessary code to create CRUD (Create/Read/Update/Delete) operations over Person model.
 
 ```groovy
 package com.jos.dem
@@ -283,7 +283,7 @@ Going to `http://localhost:8080/` you can see a link to Person controller where 
 <img src="/img/techtalks/grails/hello_world.png">
 
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/grails-hello-world), to download the project:
 
 ```bash
 git clone https://github.com/josdem/grails-hello-world.git
