@@ -261,7 +261,7 @@ This test represent happy path:
 
 Geb is using a JQuery like style to access to our html elements, Geb call it [Navigator API](http://www.gebish.org/manual/current/#navigator).
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/spring-boot-geb), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring_boot_geb.git
