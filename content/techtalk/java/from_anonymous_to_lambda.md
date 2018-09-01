@@ -214,7 +214,7 @@ If you want to run this project using Maven, add this file instead of `build.gra
 </project>
 ```
 
-To download the code:
+To browse the project go [here](https://github.com/josdem/anonymous-to-lambda-workshop), to download the code:
 
 ```bash
 git clone https://github.com/josdem/anonymous-to-lambda-workshop.git
