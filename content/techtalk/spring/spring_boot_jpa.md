@@ -242,7 +242,7 @@ compile('org.springframework.boot:spring-boot-starter-thymeleaf')
 compile('mysql:mysql-connector-java:5.1.34')
 ```
 
-To Download the Project:
+To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jpa.git
