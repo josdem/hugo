@@ -185,5 +185,6 @@ This is the `pom.xml` file generated:
 </project>
 ```
 
+To browse the project, go [here](https://github.com/josdem/spring-boot-setup)
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
