@@ -244,7 +244,7 @@ To run the test:
 gradle test
 ```
 
-To download the project
+To browse the project go [here](https://github.com/josdem/spring-boot-internationalization), to download the project
 
 ```bash
 git clone https://github.com/josdem/spring-boot-internationalization.git
