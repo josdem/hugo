@@ -30,7 +30,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [Lambda Expressions](/techtalk/java/lambda_expressions)
 * [Junit 5](/techtalk/java/junit5)
 * [From Anonymous to Lambda](/techtalk/java/from_anonymous_to_lambda)
-* [GitHub Repository](https://github.com/josdem/java-topics)
+* [GitHub Repository](https://github.com/josdem/java-workshop)
 
 
 **forEach() in a Map**
