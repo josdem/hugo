@@ -214,7 +214,7 @@ Now we can get this metrics version:
 }
 ```
 
-To download project:
+To browse the project go [here](https://github.com/josdem/spring-boot-actuator), to download project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-actuator.git
