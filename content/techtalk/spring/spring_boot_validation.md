@@ -312,7 +312,7 @@ dependencies {
 }
 ```
 
-To download the project
+To browse the project go [here](https://github.com/josdem/spring-boot-validation), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-validation.git
