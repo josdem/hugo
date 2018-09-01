@@ -47,7 +47,7 @@ Also all parameters described in the [JavaMelody User's guide](https://github.co
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [ [pattern: '/monitoring', access: ['ROLE_ADMIN']] ]
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/grails-java-melody), to download the project:
 
 ```bash
 git clone https://github.com/josdem/grails-java-melody.git
