@@ -47,13 +47,11 @@ dependencies {
 }
 ```
 
-**NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
+**NOTE:** If you want to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
-Now add Retrofit, Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
+Now add Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
 
 ```groovy
-implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-testCompile('org.springframework.boot:spring-boot-starter-test')
 testCompile("info.cukes:cucumber-java:$cucumberVersion")
 testCompile("info.cukes:cucumber-junit:$cucumberVersion")
 testCompile("info.cukes:cucumber-spring:$cucumberVersion")
@@ -193,7 +191,7 @@ public class WebClientApplication {
 }
 ```
 
-This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token that you can generate from here: [Personal Access Token](https://github.com/settings/tokens). The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
+This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token that you can generate from here: [Personal Access Token](https://github.com/settings/tokens). Once you have that token you need to provide it to our Spring Boot project, this time we will use an `application.properties` file, please go to the [Project Configuration](https://github.com/josdem/webclient-workshop/wiki/Properties-File) for getting more information. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
 package com.jos.dem.webclient;
