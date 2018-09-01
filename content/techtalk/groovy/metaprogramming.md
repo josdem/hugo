@@ -219,5 +219,7 @@ assert names == ['Jose Luis', 'De la Cruz Morales']
 
 Here, we defined a class called BusinessEntity and using metaprogramming we are adding a new method appendName, which append at runtime a string to the names variable.
 
+To browse examples go [here](https://github.com/josdem/groovy-techtalks)
+
 
 [Return to the main article](/techtalk/groovy)

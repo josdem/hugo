@@ -63,4 +63,7 @@ Output:
 false
 Groovy`
 
+
+To browse examples go [here](https://github.com/josdem/groovy-techtalks)
+
 [Return to the main article](/techtalk/techtalks)

@@ -179,7 +179,7 @@ def helloWorld = new HelloWorld(name:'josdem')
 println helloWorld.sayHello()
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/groovy-techtalks), to download the project:
 
 ```bash
 git clone https://github.com/josdem/groovy-techtalks.git
