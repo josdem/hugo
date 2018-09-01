@@ -228,7 +228,7 @@ A protected messsage is just a `Hello World!` page
 
 Now run the project and try visiting http://localhost:8080/ to see a Hello World message previous authentication using our custom login page.
 
-To download the project
+To browse the project go [here](https://github.com/josdem/spring-boot-security), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-security.git
