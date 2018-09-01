@@ -426,7 +426,7 @@ Finally this command to run our test scenario:
 mvn test
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/spring-boot-cucumber), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring_boot_cucumber.git
