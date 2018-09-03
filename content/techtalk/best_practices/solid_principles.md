@@ -589,10 +589,17 @@ To browse the project go [here](https://github.com/josdem/solid-workshop), to do
 git clone https://github.com/josdem/solid-principles.git
 ```
 
-To run the project:
+To run the project using Gradle:
 
 ```bash
 gradle test
 ```
+
+To run the project using Maven:
+
+```bash
+mvn test
+```
+
 
 [Return to the main article](/techtalk/best_practices)
