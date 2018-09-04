@@ -112,7 +112,7 @@ public class Car {
 }
 ```
 
-Here is the Car's [Spock](https://github.com/spockframework/spock) test:
+Here is the Car's [Spock](https://github.com/spockframework) test:
 
 ```groovy
 package com.jos.dem.solid.srp
