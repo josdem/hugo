@@ -8,7 +8,7 @@ description = "A functional interface in Java is any with `@FunctionalInterface`
 
 A functional interface in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](/techtalk/java/lambda_expressions). Since a lambda function can only provide the implementation for one method, it is mandatory for the functional interfaces to have only one abstract method.
 
-Java 8 has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`. 
+Java 8 has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`.
 
 `Consumer` has an `accept(Object)` method and represents an operation that accepts a single input argument and returns no result. Let's consider the following example:
 
@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 
 public class ConsumerExample {
 
-  public static void main(String[] args) {		
+  public static void main(String[] args) {
     Consumer<String> consumer = x -> System.out.println(x.toLowerCase());
     consumer.accept("JOSDEM");
   }
@@ -48,7 +48,7 @@ public class SupplierTest {
     Supplier<String> supplier = () -> "josdem";
     assertEquals("josdem", supplier.get());
   }
-	
+
 }
 ```
 
@@ -70,7 +70,7 @@ public class FunctionTest {
     Function<String, Integer> function = string -> string.length();
     assertEquals(expectedResult, function.apply("josdem"));
   }
-	
+
 }
 ```
 
@@ -132,10 +132,10 @@ Let's consider the following example:
 
 ```java
 private List<Person> persons = Arrays.asList(
-	new Person("josdem", 5), 
-	new Person("tgrip", 4), 
-	new Person("edzero", 3), 
-	new Person("jeduan", 5), 
+	new Person("josdem", 5),
+	new Person("tgrip", 4),
+	new Person("edzero", 3),
+	new Person("jeduan", 5),
 	new Person("siedrix", 5)
 );
 
@@ -175,10 +175,10 @@ import org.junit.jupiter.api.Test;
 public class PredicateTest {
 
 	private List<Person> persons = Arrays.asList(
-		new Person("josdem", 5), 
-		new Person("tgrip", 4), 
-		new Person("edzero", 3), 
-		new Person("jeduan", 5), 
+		new Person("josdem", 5),
+		new Person("tgrip", 4),
+		new Person("edzero", 3),
+		new Person("jeduan", 5),
 		new Person("siedrix", 5)
 	);
 
@@ -216,10 +216,17 @@ javac ${JAVA_PROGRAM}.java
 java ${JAVA_PROGRAM}
 ```
 
-To test the code:
+To test the code using Gradle:
 
 ```bash
 gradle test
 ```
+
+To test the code using Maven:
+
+```bash
+mvn test
+```
+
 
 [Return to the main article](/techtalk/java)
