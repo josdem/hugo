@@ -100,8 +100,27 @@ public void shouldGetFunctionIdentity(){
 
 Runnable:
 
+Since Java 8 Runnable is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference. Please consider this silly example of Runnable
+
 ```java
-() -> System.out.println("hello world");
+package com.jos.dem.functional;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
+public class RunnableTest {
+
+  Runnable runnable = () -> System.out.println("Hello World!");
+
+  @Test
+  @DisplayName("Understands runnable instance as lambda expression")
+  public void shouldKnowValidateRunnableInstance(){
+    assertTrue(runnable instanceof Runnable);
+  }
+
+}
 ```
 
 Consumer:
