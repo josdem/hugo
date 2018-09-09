@@ -17,7 +17,7 @@ Here is the complete `build.gradle` file generated:
 ```groovy
 buildscript {
 	ext {
-		springBootVersion = '2.0.3.RELEASE'
+		springBootVersion = '2.0.4.RELEASE'
 	}
 	repositories {
 		mavenCentral()
