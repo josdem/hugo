@@ -49,7 +49,7 @@ dependencies {
 
 **NOTE:** If you want to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
-Now add Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
+Now add latest Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
 
 ```groovy
 testCompile("info.cukes:cucumber-java:$cucumberVersion")
