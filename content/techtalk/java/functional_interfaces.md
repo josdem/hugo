@@ -93,7 +93,7 @@ public void shouldKnowIfNicknameLengthIsEven(){
  Static method `Function.identity()` it just returns back the parameter which it gets as input.
 
  ```java
- @Test
+@Test
 @DisplayName("Understands how to get function identity")
 public void shouldGetFunctionIdentity(){
   Function<String, String> function = Function.identity();
@@ -115,7 +115,7 @@ import org.junit.jupiter.api.DisplayName;
 
 public class FunctionTest {
 
-	@Test
+  @Test
   @DisplayName("Understands how to get string lenght")
 	public void shouldGetStringLenght(){
 		Integer expectedResult = 6;
@@ -123,7 +123,7 @@ public class FunctionTest {
 		assertEquals(expectedResult, function.apply("josdem"));
 	}
 
-	@Test
+  @Test
   @DisplayName("Understands how to get josdem lenght and if it is even")
 	public void shouldKnowIfNicknameLengthIsEven(){
 		Function<String, Integer> lenghtFunction = string -> string.length();
@@ -132,7 +132,7 @@ public class FunctionTest {
 		assertTrue(lenghtFunction.andThen(evenFunction).apply("josdem"));
 	}
 
-	@Test
+  @Test
   @DisplayName("Understands how to get function identity")
 	public void shouldGetFunctionIdentity(){
 		Function<String, String> function = Function.identity();
