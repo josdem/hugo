@@ -123,6 +123,7 @@ We can test code functionality as follow:
 
 ```java
 @Test
+@DisplayName("Understands how to validate a keyword is present")
 public void shouldKnowContainKeyword(){
   StringAnalyzer analyzer = new ContainsAnalyzer();
   assertTrue(analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
@@ -142,6 +143,7 @@ Test implementation:
 
 ```java
 @Test
+@DisplayName("Understands how to validate a keyword is present using lambda expressions")
 public void shouldKnowContainKeywordUsingLambda(){
   StringAnalyzer analyzer = (text, keyword) -> text.contains(keyword);
   assertTrue(analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
@@ -154,6 +156,7 @@ Using lambda expressions we can create more expressive code like this one:
 
 ```java
 @Test
+@DisplayName("Understands how to validate a keyword is present and ends with using lambda expressions")
 public void shouldAnalyzeUsingContainsAndEndsWith(){
   StringAnalyzer analyzerContains = (text, keyword) -> text.contains(keyword);
   StringAnalyzer analyzerEndsWith = (text, keyword) -> text.endsWith(keyword);
@@ -163,11 +166,62 @@ public void shouldAnalyzeUsingContainsAndEndsWith(){
 }
 ```
 
-To download the code:
+Here is the complete test:
+
+```java
+package com.jos.dem.lambda.analyzer;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
+public class AnalyzerTest {
+
+  @Test
+  @DisplayName("Understands how to validate a keyword is present")
+	public void shouldKnowContainKeyword(){
+		StringAnalyzer analyzer = new ContainsAnalyzer();
+		assertTrue(analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
+	}
+
+  @Test
+  @DisplayName("Understands how to validate a keyword is present using lambda expressions")
+	public void shouldKnowContainKeywordUsingLambda(){
+		StringAnalyzer analyzer = (text, keyword) -> text.contains(keyword);
+		assertTrue(analyzer.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
+	}
+
+  @Test
+  @DisplayName("Understands how to validate a keyword is present and ends with using lambda expressions")
+	public void shouldAnalyzeUsingContainsAndEndsWith(){
+		StringAnalyzer analyzerContains = (text, keyword) -> text.contains(keyword);
+		StringAnalyzer analyzerEndsWith = (text, keyword) -> text.endsWith(keyword);
+
+		assertTrue(analyzerContains.analyze("In the end, it's not the years in your life that count. It's the life in your years", "life"));
+		assertTrue(analyzerEndsWith.analyze("In the end, it's not the years in your life that count. It's the life in your years", "years"));
+	}
+
+}
+```
+
+To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
 git clone git@github.com:josdem/java-workshop.git
 cd lambda-expressions/string-analyzer
+```
+
+To test the code using Gradle:
+
+```bash
+gradle test
+```
+
+To test the code using Maven:
+
+```bash
+mvn test
 ```
 
 [Return to the main article](/techtalk/java)
