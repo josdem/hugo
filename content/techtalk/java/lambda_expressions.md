@@ -17,7 +17,7 @@ Example 1:
 Example 2:
 
 ```java
-() -> "Hello World!";   
+() -> "Hello World!";
 ```
 
 Example 3:
@@ -166,7 +166,7 @@ public void shouldAnalyzeUsingContainsAndEndsWith(){
 To download the code:
 
 ```bash
-git clone https://github.com/josdem/java-topics.git
+git clone git@github.com:josdem/java-workshop.git
 cd lambda-expressions/string-analyzer
 ```
 
