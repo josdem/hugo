@@ -184,6 +184,7 @@ private List<Person> persons = Arrays.asList(
 );
 
 @Test
+@DisplayName("Understands how to get persons with four in ranking or more")
 public void shouldGetPersonsWithFourInRankingOrMore(){
 	Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
 	assertEquals(4, persons.stream().filter(isHighRanked).count());
@@ -194,6 +195,7 @@ public void shouldGetPersonsWithFourInRankingOrMore(){
 
 ```java
 @Test
+@DisplayName("Understands how to get persons high ranked and starts with J")
 public void shouldGetPersonsHihgRankedAndStartsWithJ(){
 	Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
 	Predicate<Person> startsWithJ = person -> person.getNickname().startsWith("j");
@@ -215,6 +217,7 @@ import java.util.List;
 import java.util.Arrays;
 import java.util.function.Predicate;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
 public class PredicateTest {
 
@@ -227,12 +230,14 @@ public class PredicateTest {
 	);
 
 	@Test
+  @DisplayName("Understands how to get persons with four in ranking or more")
 	public void shouldGetPersonsWithFourInRankingOrMore(){
 		Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
 		assertEquals(4, persons.stream().filter(isHighRanked).count());
 	}
 
 	@Test
+  @DisplayName("Understands how to get persons high ranked and starts with J")
 	public void shouldGetPersonsHihgRankedAndStartsWithJ(){
 		Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
 		Predicate<Person> startsWithJ = person -> person.getNickname().startsWith("j");
