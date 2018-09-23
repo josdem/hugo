@@ -180,7 +180,7 @@ jeduan
 tgrip
 ```
 
-And you want to get each line as a String element in a List
+And you want to get each line as a String element in a List. In Java 8, you can use `Files.lines` to read file as Stream.
 
 ```java
 import java.util.List;
@@ -206,7 +206,7 @@ public class FileStreamer {
 }
 ```
 
-To download the code:
+To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
 git clone https://github.com/josdem/java-workshop.git
