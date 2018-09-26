@@ -104,7 +104,7 @@ public class IntegerFilter {
 To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
-git clone https://github.com/josdem/java-topics.git
+git clone https://github.com/josdem/java-workshop.git
 cd streams/filters
 ```
 
