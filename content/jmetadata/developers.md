@@ -19,12 +19,14 @@ Usually it’s not enough only download the source code and "running the code", 
 
 **Details**
 
-In order to set up you environment I recommend you
+In order to set up you environment I recommend you to install the following tools, if you are using Eclipse:
 
-* In Eclipse
-  * Maven plugin
-  * EMMA plugin
-  * GIT plugin
+* Maven plugin
+* EMMA plugin
+* GIT plugin
+
+For Eclipse and Command Line:
+
 * Maven in your system environment path
 * Install Musicbrainz and LastFM third party jar’s manually in your .m2 repository
 
@@ -33,7 +35,7 @@ mvn install:install-file -Dfile=path-to-file -DgroupId=de.umass.lastfm -Dartifac
 mvn install:install-file -Dfile=path-to-file -DgroupId=com.skychief.javamusicbrainz -DartifactId=javamusicbrainz -Dversion=1.0 -Dpackaging=jar
 ```
 
-*Note:* You should find the third party Jars in /lib folder in Jmetadata source code.
+*Note:* You should find the third party Jars in `lib` folder in Jmetadata source code.
 
 **To run JMetadata**
 
@@ -54,7 +56,7 @@ Go to the `$JMETADATA_HOME/target/` directory and unzip the `JMetadata-bin.zip` 
 sh JMetadata.sh
 ```
 
-*Note:* To create installers read the INSTALL file included.
+*Note:* To create installers read the `INSTALL` file included.
 
 
 [Return to the main article](/jmetadata/jmetadata)
