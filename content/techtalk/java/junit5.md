@@ -11,6 +11,8 @@ Junit 5 is the next generation of Junit, it requires Java 8 since it was born as
 Using Gradle, you need to create a `build.gradle` file with the following structure:
 
 ```groovy
+def junitJupiterVersion = '5.3.1'
+
 apply plugin: "java"
 
 repositories {
@@ -18,8 +20,8 @@ repositories {
 }
 
 dependencies {
-  testCompile 'org.junit.jupiter:junit-jupiter-api:5.2.0'
-  testRuntime 'org.junit.jupiter:junit-jupiter-engine:5.2.0'
+  testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+  testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 }
 
 test {
@@ -50,7 +52,7 @@ If you want to use Maven, please create the following `pom.xml` structure in the
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
-    <junit.jupiter.version>5.2.0</junit.jupiter.version>
+    <junit.jupiter.version>5.3.1</junit.jupiter.version>
     <junit.platform.version>1.2.0</junit.platform.version>
   </properties>
 
