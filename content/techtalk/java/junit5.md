@@ -51,21 +51,13 @@ If you want to use Maven, please create the following `pom.xml` structure in the
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-
     <junit.jupiter.version>5.3.1</junit.jupiter.version>
-    <junit.platform.version>1.2.0</junit.platform.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit.jupiter.version}</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-params</artifactId>
       <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
