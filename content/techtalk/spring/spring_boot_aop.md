@@ -23,21 +23,22 @@ This is the build.gradle file generated:
 
 ```groovy
 buildscript {
-	ext {
-		springBootVersion = '1.5.9.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+  ext {
+    springBootVersion = '2.0.5.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
 }
 
-apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-group = 'com.example'
+group = 'com.jos.dem.springboot.aop'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -46,9 +47,10 @@ repositories {
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.codehaus.groovy:groovy')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+  compile('org.springframework.boot:spring-boot-starter-web')
+  compile('org.springframework.boot:spring-boot-starter-aop')
+  compile('org.codehaus.groovy:groovy')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 ```
 
@@ -183,7 +185,7 @@ compile 'org.springframework.boot:spring-boot-starter-aop'
 To download the project:
 
 ```bash
-git clone https://github.com/josdem/spring-boot-aop.git
+git clone git@github.com:josdem/spring-boot-aop.git
 ```
 
 To run the project:
