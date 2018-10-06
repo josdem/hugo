@@ -15,7 +15,7 @@ This time I will show you how to create a basic project in Spring Boot using AOP
 Then execute this command in your terminal.
 
 ```bash
-spring init --dependencies=web --language=groovy --build=gradle spring-boot-aop
+spring init --dependencies=web --language=java --build=gradle spring-boot-aop
 ```
 
 This is the build.gradle file generated:
