@@ -15,7 +15,6 @@ In software development is really important to use techniques and methods to gar
 In general this concepts are widely accepted over developers with some experience, some of this concepts are extracted from books, another from posts, other by courses. At the end, what tools and techniques you are using will provide you the resultant achieve in software development.
 
 * [Clean Code](/techtalk/best_practices/clean_code)
-* [Continious Delivery](/techtalk/best_practices/continuous_delivery)
 * [Extreme Programming](/techtalk/best_practices/extreme_programming)
 * [SOLID Principles](/techtalk/best_practices/solid_principles)
 
