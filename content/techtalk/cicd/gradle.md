@@ -1,5 +1,5 @@
 +++
-title = "Building with Gradle"
+title = "Building Software with Gradle"
 categories = ["techtalk", "code","spring framework"]
 tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
 date = "2015-10-18T22:05:02-05:00"

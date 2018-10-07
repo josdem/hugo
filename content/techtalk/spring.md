@@ -16,7 +16,6 @@ In this section I'll go through a complete Spring MVC project starting from the 
 
 * Spring MVC
 * XML Configuration
-* Building with Gradle
 * Managing exceptions with AOP
 * Managing exceptions with HandlerExceptionResolver
 * Logger using JMS and ActiveMQ
@@ -34,7 +33,6 @@ In this section I'll go through a complete Spring MVC project starting from the 
 * [Basic Spring MVC with Bootstrap](/techtalk/spring/spring_mvc)
 * [Managing Exceptions With AOP](/techtalk/spring/spring_aop)
 * [Logger Using JMS and ActiveMQ](/techtalk/spring/spring_jms_logger)
-* [Building with Gradle](/techtalk/spring/spring_gradle)
 * [Managing Exceptions with HandlerExceptionResolver](/techtalk/spring/spring_handler_exception_resolver)
 * [Email flow and Freemarker template](/techtalk/spring/spring_freemarker)
 * [IP Whitelist Using Interceptors](/techtalk/spring/spring_interceptor)
