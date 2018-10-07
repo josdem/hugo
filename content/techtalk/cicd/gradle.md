@@ -6,46 +6,35 @@ date = "2015-10-18T22:05:02-05:00"
 description = "Using DSL language you write your build script like you write your code and this is based on Groovy."
 +++
 
-Using DSL language you write your build script like you write your code and this is based on Groovy. The main advantages tu use Gradle are:
+Gradle is an open-source build automation tool focused on flexibility and performance. Gradle build scripts are written using a Groovy or Kotlin DSL. Using DSL language you write your build script file as you write your development code. Some advantages in use Gradle are:
 
-* Declarative Builds
+* Acelerate development productivity
 * Build by convention
-* It scales very well
+* Automate everything
+* Deliver faster persuing performance
 * Multy-module projects
 * Reusable pieces of build logic
 * Intelligent tasks that can check if they need to be executed or not
 
-In this post I will show you how to build Jmailer project using Gradle.
-
-Our project has the following directory structure:
-
-```bash
-.
-├── build
-├── build.gradle
-├── emailer
-├── settings.gradle
-├── src
-└── web
-
-4 directories, 2 files
-```
-## build.gradle
-
-**Variables**
+In this post I will show you how to build software using simply but useful Gradle functionality. Firstly lets create a `build.gradle` file with a single task called helloWorld and add an action to it. The scripting language we are using here is Groovy, if you want to know more please go here: [Groovy](/techtalk/groovy/)
 
 ```groovy
-def springVersion = '4.1.7.RELEASE'
-def aspectjVersion = '1.8.7'
-def groovyVersion = '2.4.5'
-def jmsApiVersion = '1.1-rev-1'
-def javassistVersion = '3.8.0.GA'
-def hibernateValidatorVersion = '5.1.3.Final'
-def currentEnvironment = project.hasProperty("environment")?environment:"development"
-def jmailerConfigurationDir = "${System.getProperty('user.home')}/.jmailer"
+task helloWorld {
+  println "I am saying hello in the year of our lord: ${new Date()}"
+}
 ```
 
-Here we're defying variables in the top of the file in order to declare our dependencies. Notice that we can use Groovy to store user home path in the jmailerConfigurationDir.
+Then execute this command in your terminal:
+
+```bash
+gradle helloWorld
+```
+
+*Output:*
+
+```bash
+I am saying hello in the year of our lord: Sun Oct 07 15:28:16 EDT 2018
+```
 
 **Subprojects**
 
@@ -146,12 +135,5 @@ Here we are defying war build, jetty server application, Java 8 compatibility, w
 * **include** is our file to copy in this task
 * **rename and replace** do the trick to manage environments
 
-To download the project
 
-```bash
-git clone https://github.com/josdem/jmailer-bootstrap.git
-git fetch
-git checkout feature/java-mail
-```
-
-[Return to the main article](/techtalk/spring)
+[Return to the main article](/techtalk/continuous_integration_delivery)
