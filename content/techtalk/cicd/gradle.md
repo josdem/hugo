@@ -49,7 +49,7 @@ task showRootProject {
 }
 ```
 
-In previous task we are displaying `projectDescription` value using Groovy placeholders in Strings and in addition wer are desplaying the project properties, a variable already defined in Gradle for your convenience.
+In previous task we are displaying `projectDescription` value using Groovy placeholders in addition we are desplaying the project properties, a variable already defined in Gradle for our convenience.
 
 *Output:*
 
