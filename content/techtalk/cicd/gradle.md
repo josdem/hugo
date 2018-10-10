@@ -1,7 +1,7 @@
 +++
-title = "Building Software with Gradle"
+title = "Defining and Executing Tasks in Gradle"
 categories = ["techtalk", "code","spring framework"]
-tags = ["josdem", "techtalks", "programming", "technology","spring framework"]
+tags = ["josdem", "techtalks", "programming", "technology","Gradle"]
 date = "2015-10-18T22:05:02-05:00"
 description = "Using DSL language you write your build script like you write your code and this is based on Groovy."
 +++
