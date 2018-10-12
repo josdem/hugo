@@ -43,7 +43,7 @@ I will show you a short version of `build.gradle` generated.
 ```groovy
 buildscript {
 	ext {
-		springBootVersion = '2.0.3.RELEASE'
+		springBootVersion = '2.0.5.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -149,7 +149,7 @@ This is the `pom.xml` file generated:
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
+		<version>2.0.5.RELEASE</version>
 		<relativePath/>
 	</parent>
 
