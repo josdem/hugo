@@ -342,10 +342,10 @@ class AssumptionShowTest {
 }
 ```
 
-To download the code:
+To browse the code go [here](https://github.com/josdem/junit5-workshop), to download the code:
 
 ```bash
-git clone https://github.com/josdem/junit5-workshop.git
+git clone git@github.com:josdem/junit5-workshop.git
 ```
 
 To run the project using Gradle:
