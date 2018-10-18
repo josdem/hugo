@@ -56,7 +56,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Internationalization](/techtalk/spring/spring_boot_internationalization)
 * [Spring Boot JPA](/techtalk/spring/spring_boot_jpa)
 * [Spring Boot Bootstrap](/techtalk/spring/spring_boot_bootstrap)
-* [Spring Boot externalization](/techtalk/spring/spring_boot_externalization)
+* [Spring Boot Externalization](/techtalk/spring/spring_boot_externalization)
 * [Spring Boot JMS](/techtalk/spring/spring_boot_jms)
 * [Spring Boot Testing](/techtalk/spring/spring_boot_testing)
 * [Spring Boot Bower Plugin](/techtalk/spring/spring_boot_bower_plugin)
