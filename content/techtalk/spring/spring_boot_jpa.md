@@ -22,7 +22,7 @@ This is the `build.gradle file` generated:
 ```groovy
 buildscript {
 	ext {
-		springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '2.0.6.RELEASE'
 	}
 	repositories {
 		mavenCentral()
