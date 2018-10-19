@@ -70,7 +70,15 @@ info AppiumDoctor Everything looks good, bye!
 info AppiumDoctor
 ```
 
-You can browse the code [here](https://github.com/josdem/jugoterapia-appium), you can download the code here:
+You can browse a project that shows how to implement Appium [here](https://github.com/josdem/jugoterapia-appium), this project is using this technologies:
+
+* Appium Server
+* Appium Java Client
+* Selenium
+* Junit 5
+* Cucumber
+
+You can download the code here:
 
 ```bash
 git clone git@github.com:josdem/jugoterapia-appium.git
