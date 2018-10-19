@@ -14,12 +14,12 @@ The key goal of Spring Data repository abstraction is to significantly reduce th
 Then execute this command in your terminal.
 
 ```bash
-spring init --dependencies=web --language=groovy --build=gradle spring-boot-jpa
+spring init --dependencies=web,jpa,thymeleaf --language=java --build=gradle spring-boot-jpa
 ```
 
 This is the `build.gradle file` generated:
 
-```groovy
+```java
 buildscript {
 	ext {
 		springBootVersion = '2.0.6.RELEASE'
@@ -32,10 +32,11 @@ buildscript {
 	}
 }
 
-apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-group = 'com.example'
+group = 'com.jos.dem.springboot.jpa'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
@@ -43,124 +44,140 @@ repositories {
 	mavenCentral()
 }
 
+
 dependencies {
 	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.codehaus.groovy:groovy')
+	compile('org.springframework.boot:spring-boot-starter-thymeleaf')
+	compile('org.springframework.boot:spring-boot-starter-data-jpa')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 ```
 
-
-In this example, you store `Person` objects, annotated as a JPA entity.
+Now add lombok and mysql-connector dependencies to your `build.gradle` file:
 
 ```groovy
-package com.jos.dem.springboot.jpa.model
+compile("mysql:mysql-connector-java:5.1.34")
+compileOnly('org.projectlombok:lombok')
+```
 
-import static javax.persistence.GenerationType.AUTO
+Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). In this example, you store `Person` objects, annotated as a JPA entity.
 
-import javax.persistence.Id
-import javax.persistence.Entity
-import javax.persistence.Column
-import javax.persistence.GeneratedValue
+```java
+package com.jos.dem.springboot.jpa.model;
 
+import static javax.persistence.GenerationType.AUTO;
+
+import javax.persistence.Id;
+import javax.persistence.Entity;
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+
+import lombok.Data;
+
+@Data
 @Entity
-class Person{
+public class Person {
 
   @Id
   @GeneratedValue(strategy=AUTO)
-  Long id
+  private Long id;
 
   @Column(nullable=false)
-  String nickname
+  private String nickname;
 
   @Column(unique=true, nullable=false)
-  String email
+  private String email;
 
 }
 ```
 
 And here is our `PersonRepository`, by extending `JpaRepository` we get a bunch of generic `CRUD` methods into our type that allows save, find all persons and so on. Even we can define specific queries such as `findByNickname('josdem')`. Second, this will allow the Spring Data JPA repository infrastructure to scan the classpath for this interface and create a Spring bean for it.
 
-```groovy
-package com.jos.dem.springboot.jpa.repository
+```java
+package com.jos.dem.springboot.jpa.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository
-import com.jos.dem.springboot.jpa.model.Person
+import java.util.List;
 
-interface PersonRepository extends JpaRepository<Person, Long>{
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.jos.dem.springboot.jpa.model.Person;
 
-	Person save(Person person)
-	List<Person> findAll()
+public interface PersonRepository extends JpaRepository<Person, Long>{
+
+	Person save(Person person);
+	List<Person> findAll();
 
 }
 ```
 
 Now, let's take a look to our controller.
 
-```groovy
-package com.jos.dem.springboot.jpa.controller
+```java
+package com.jos.dem.springboot.jpa.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET
-import static org.springframework.web.bind.annotation.RequestMethod.POST
+import static org.springframework.web.bind.annotation.RequestMethod.GET;
+import static org.springframework.web.bind.annotation.RequestMethod.POST;
 
-import javax.validation.Valid
+import java.util.List;
+import javax.validation.Valid;
 
-import org.springframework.stereotype.Controller
-import org.springframework.web.servlet.ModelAndView
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.ResponseBody
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.validation.BindingResult
+import org.springframework.stereotype.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.BindingResult;
 
-import com.jos.dem.springboot.jpa.model.Person
-import com.jos.dem.springboot.jpa.command.Command
-import com.jos.dem.springboot.jpa.command.PersonCommand
-import com.jos.dem.springboot.jpa.repository.PersonRepository
+import com.jos.dem.springboot.jpa.model.Person;
+import com.jos.dem.springboot.jpa.command.Command;
+import com.jos.dem.springboot.jpa.command.PersonCommand;
+import com.jos.dem.springboot.jpa.repository.PersonRepository;
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Controller
-@RequestMapping('persons/**')
-class PersonController {
+@RequestMapping("persons/**")
+public class PersonController {
 
 	@Autowired
-	PersonRepository personRepository
+	private PersonRepository personRepository;
 
-	Logger log = LoggerFactory.getLogger(this.class)
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	@RequestMapping(method=GET)
-	ModelAndView getAll(){
-		log.info 'Listing all persons'
-		ModelAndView modelAndView = new ModelAndView('persons/list')
-		List<Person> persons = personRepository.findAll()
-		modelAndView.addObject('persons', persons)
-		modelAndView
+	public ModelAndView getAll(){
+		log.info("Listing all persons");
+		ModelAndView modelAndView = new ModelAndView("persons/list");
+		List<Person> persons = personRepository.findAll();
+		modelAndView.addObject("persons", persons);
+		return modelAndView;
 	}
 
-	@RequestMapping(value='create', method=GET)
-	ModelAndView create(){
-		log.info 'Creating person'
-		ModelAndView modelAndView = new ModelAndView('persons/create')
-		Command personCommand = new PersonCommand()
-		modelAndView.addObject('personCommand', personCommand)
-		modelAndView
+	@RequestMapping(value="create", method=GET)
+	public ModelAndView create(){
+		log.info("Creating person");
+		ModelAndView modelAndView = new ModelAndView("persons/create");
+		Command personCommand = new PersonCommand();
+		modelAndView.addObject("personCommand", personCommand);
+		return modelAndView;
 	}
 
 	@RequestMapping(method=POST)
-	ModelAndView save(@Valid PersonCommand personCommand, BindingResult bindingResult){
-		log.info "Registering new Person: ${personCommand.nickname}"
-		ModelAndView modelAndView = new ModelAndView('persons/list')
+	public ModelAndView save(@Valid PersonCommand personCommand, BindingResult bindingResult){
+		log.info("Registering new Person: " + personCommand.getNickname());
+		ModelAndView modelAndView = new ModelAndView("persons/list");
 		if(bindingResult.hasErrors()){
-			modelAndView.setViewName('persons/create')
-			modelAndView.addObject('personCommand', personCommand)
-			return modelAndView
+			modelAndView.setViewName("persons/create");
+			modelAndView.addObject("personCommand", personCommand);
+			return modelAndView;
 		}
-		Person person = new Person(nickname:personCommand.nickname, email:personCommand.email)
-		personRepository.save(person)
-		List<Person> persons = personRepository.findAll()
-		modelAndView.addObject('persons', persons)
-		modelAndView
+		Person person = new Person();
+    person.setNickname(personCommand.getNickname());
+    person.setEmail(personCommand.getEmail());
+		personRepository.save(person);
+		List<Person> persons = personRepository.findAll();
+		modelAndView.addObject("persons", persons);
+		return modelAndView;
 	}
 
 }
@@ -168,35 +185,38 @@ class PersonController {
 
 It is important to notice that we are using a `PersonCommand` to receive the person's requested information from a client.
 
-```groovy
-package com.jos.dem.springboot.jpa.command
+```java
+package com.jos.dem.springboot.jpa.command;
 
-import javax.validation.constraints.Size
-import javax.validation.constraints.NotNull
-import org.hibernate.validator.constraints.Email
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Email;
 
-class PersonCommand implements Command{
+import lombok.Data;
+
+@Data
+public class PersonCommand implements Command {
 
 	@NotNull
 	@Size(min=3, max=50)
-	String nickname
+	private String nickname;
 
 	@Email
 	@NotNull
 	@Size(min=1, max=250)
-	String email
+	private String email;
 
 }
 ```
 
 That's it, we are using `javax.validation` and `org.hibernate.validator` to validate that the fields meets required constraints.
 
-```groovy
-package com.jos.dem.springboot.jpa.command
+```java
+package com.jos.dem.springboot.jpa.command;
 
-import java.io.Serializable
+import java.io.Serializable;
 
-interface Command extends Serializable{}
+public interface Command extends Serializable{}
 ```
 
 `Command` is just an interface that extends `java.io.Serializable`
@@ -232,20 +252,10 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.generate-ddl=true
 ```
 
-Do not forget to add Spring Data JPA, MySQL and Thymeleaf dependencies in your `build.gradle` file.
-
-```groovy
-compile('org.springframework.boot:spring-boot-starter-data-jpa')
-compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-compile('mysql:mysql-connector-java:5.1.34')
-```
-
 To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jpa.git
-git fetch
-git checkout feature/jpa
 ```
 
 To Run the project:
