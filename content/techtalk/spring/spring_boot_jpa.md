@@ -21,15 +21,15 @@ This is the `build.gradle file` generated:
 
 ```java
 buildscript {
-	ext {
-		springBootVersion = '2.0.6.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+  ext {
+    springBootVersion = '2.0.6.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
 }
 
 apply plugin: 'java'
@@ -252,9 +252,7 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.generate-ddl=true
 ```
 
-Finally you can go to this address: [http://localhost:8080/persons/create](http://localhost:8080/persons/create) and you will see our create person form.
-
-To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
+Finally you can go to this address: [http://localhost:8080/persons/create](http://localhost:8080/persons/create) and you will see our create person form. To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jpa.git
