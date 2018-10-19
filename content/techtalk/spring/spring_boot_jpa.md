@@ -252,6 +252,8 @@ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
 spring.jpa.generate-ddl=true
 ```
 
+Finally you can go to this address: [http://localhost:8080/persons/create](http://localhost:8080/persons/create) and you will see our create person form.
+
 To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
 
 ```bash
