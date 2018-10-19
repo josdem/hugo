@@ -139,45 +139,45 @@ import org.slf4j.LoggerFactory;
 @RequestMapping("persons/**")
 public class PersonController {
 
-	@Autowired
-	private PersonRepository personRepository;
+  @Autowired
+  private PersonRepository personRepository;
 
-	private Logger log = LoggerFactory.getLogger(this.getClass());
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@RequestMapping(method=GET)
-	public ModelAndView getAll(){
-		log.info("Listing all persons");
-		ModelAndView modelAndView = new ModelAndView("persons/list");
-		List<Person> persons = personRepository.findAll();
-		modelAndView.addObject("persons", persons);
-		return modelAndView;
-	}
+  @RequestMapping(method=GET)
+  public ModelAndView getAll(){
+    log.info("Listing all persons");
+    ModelAndView modelAndView = new ModelAndView("persons/list");
+    List<Person> persons = personRepository.findAll();
+    modelAndView.addObject("persons", persons);
+    return modelAndView;
+  }
 
-	@RequestMapping(value="create", method=GET)
-	public ModelAndView create(){
-		log.info("Creating person");
-		ModelAndView modelAndView = new ModelAndView("persons/create");
-		Command personCommand = new PersonCommand();
-		modelAndView.addObject("personCommand", personCommand);
-		return modelAndView;
-	}
+  @RequestMapping(value="create", method=GET)
+  public ModelAndView create(){
+    log.info("Creating person");
+    ModelAndView modelAndView = new ModelAndView("persons/create");
+    Command personCommand = new PersonCommand();
+    modelAndView.addObject("personCommand", personCommand);
+    return modelAndView;
+  }
 
-	@RequestMapping(method=POST)
-	public ModelAndView save(@Valid PersonCommand personCommand, BindingResult bindingResult){
-		log.info("Registering new Person: " + personCommand.getNickname());
-		ModelAndView modelAndView = new ModelAndView("persons/list");
-		if(bindingResult.hasErrors()){
-			modelAndView.setViewName("persons/create");
-			modelAndView.addObject("personCommand", personCommand);
-			return modelAndView;
-		}
-		Person person = new Person();
+  @RequestMapping(method=POST)
+  public ModelAndView save(@Valid PersonCommand personCommand, BindingResult bindingResult){
+    log.info("Registering new Person: " + personCommand.getNickname());
+    ModelAndView modelAndView = new ModelAndView("persons/list");
+    if(bindingResult.hasErrors()){
+      modelAndView.setViewName("persons/create");
+      modelAndView.addObject("personCommand", personCommand);
+      return modelAndView;
+    }
+    Person person = new Person();
     person.setNickname(personCommand.getNickname());
     person.setEmail(personCommand.getEmail());
-		personRepository.save(person);
-		List<Person> persons = personRepository.findAll();
-		modelAndView.addObject("persons", persons);
-		return modelAndView;
+    personRepository.save(person);
+    List<Person> persons = personRepository.findAll();
+    modelAndView.addObject("persons", persons);
+    return modelAndView;
 	}
 
 }
