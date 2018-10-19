@@ -330,13 +330,12 @@ public class MainActivity extends AppCompatActivity {
 }
 ```
 
-To download the code:
+You can browse the code [here](https://github.com/josdem/android-retrofit-workshop), you can download the code here:
 
 ```bash
 git clone https://github.com/josdem/android-retrofit-workshop.git
 git fetch
 git checkout feature/post
 ```
-
 
 [Return to the main article](/techtalk/android)
