@@ -256,6 +256,8 @@ Finally you can go to this address: [http://localhost:8080/persons/create](http:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jpa.git
+git fetch
+git checkout feature/jpa
 ```
 
 To Run the project:
