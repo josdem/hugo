@@ -6,10 +6,7 @@ date = "2018-02-07T12:33:50-06:00"
 description = "The key goal of Spring Data repository abstraction is to significantly reduce the amount of code required to implement data access layers for various persistence stores."
 +++
 
-The key goal of Spring Data repository abstraction is to significantly reduce the amount of code required to implement data access layers for various persistence stores. In this example I will show you how to create a JPA repository to save and retrieve all `Person` model.
-
-
-**NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
+The key goal of Spring Data repository abstraction is to significantly reduce the amount of code required to implement data access layers for various persistence stores. In this example I will show you how to create a JPA repository to save and retrieve all `Person` model. **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
 
 Then execute this command in your terminal.
 
