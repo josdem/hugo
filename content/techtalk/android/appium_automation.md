@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","android","appium","aut
 categories = ["techtalk", "code"]
 +++
 
-Appium is an open-source tool for automating native, mobile web, and hybrid applications on both iOS and Android. Appium supports app automation across a variety of platforms, like iOS, Android, and Windows. Each platform is supported by one or more "drivers", which know how to automate that particular platform.
+[Appium](http://appium.io/) is an open-source tool for automating native, mobile web, and hybrid applications on both iOS and Android. Appium supports app automation across a variety of platforms, like iOS, Android, and Windows. Each platform is supported by one or more "drivers", which know how to automate that particular platform.
 
 **Appium Philosophy**
 

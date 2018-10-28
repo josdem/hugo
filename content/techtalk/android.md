@@ -20,6 +20,7 @@ Here you can find some important topics regarding to Android development:
 * [Material Design Card View](/techtalk/android/material_design_cards)
 * [Oauth2 Google Sign-In](/techtalk/android/oauth2_google)
 * [Appium Automation](/techtalk/android/appium_automation)
+* [Appium Cucumber and Junit5](/techtalk/android/appium_cucumber_junit5)
 
 
 [Return to the main article](/techtalk/techtalks)
