@@ -69,7 +69,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 ```
-`org.springframework.boot` plugin activate `spring-boot-gradle-plugin`, `io.spring.dependency.management` plugin supports Maven. `boot:spring-boot-starter-test` pulls in Spring Boot Junit, Mockito, Spring Test and more.This project will generate an DemoApplication.java file.
+`org.springframework.boot` plugin activate `spring-boot-gradle-plugin`, `io.spring.dependency.management` plugin supports Maven. `boot:spring-boot-starter-test` pulls in Spring Boot Junit, Mockito, Spring Test and more.This project will generate an `DemoApplication.java` file.
 
 ```groovy
 package com.jos.dem.springboot.setup;
@@ -86,7 +86,8 @@ public class DemoApplication {
 
 }
 ```
-`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package and register them also indicates this class is a source of beans definitions. Next let's create a simple rest controller as follow:
+`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package and register them, also indicates this class is a source of beans definitions. Next let's create a simple rest controller as follow:
+
 
 ```groovy
 package com.jos.dem.springboot.setup;
