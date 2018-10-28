@@ -1,5 +1,5 @@
 # Site settings
-baseurl = "http://josdem.io/"
+baseurl = "https://josdem.io/"
 languageCode = "en-us"
 title = "josdem"
 theme = "hugo-artists-theme"
