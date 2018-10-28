@@ -218,7 +218,7 @@ BUILD SUCCESSFUL in 28s
 
 Video
 
-<iframe width="300" height="550" src="https://www.youtube.com/embed/9uizmsQdg_4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="300" height="550" src="https://www.youtube.com/embed/_hK2ahdHGsA" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
 To browse the code go [here](https://github.com/josdem/jugoterapia-appium), to download the project:
