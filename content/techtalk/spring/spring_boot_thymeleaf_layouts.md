@@ -54,7 +54,7 @@ This time I will show you how to share common page components like header, foote
     </div>
     <footer>
       <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <a class="navbar-brand" href="http://josdem.io">© josdem.io 2017</a>
+        <a class="navbar-brand" href="https://josdem.io">© josdem.io 2017</a>
       </nav>
     </footer>
   </body>
@@ -100,7 +100,7 @@ ${PROJECT_HOME}/resources/templates/fragments/footer.html
 ```html
 <footer>
 	<nav class="navbar navbar-inverse navbar-fixed-bottom">
-		<a class="navbar-brand" href="http://josdem.io">© josdem.io 2017</a>
+		<a class="navbar-brand" href="https://josdem.io">© josdem.io 2017</a>
 	</nav>
 </footer>
 ```
