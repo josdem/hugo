@@ -10,14 +10,14 @@ description = "It is a Spring project aim to create easy web or stand-alone appl
 It is a Spring project aim to create easy web or stand-alone applications. It provides the next features:
 
 * No XML configuration is required
-* Tomcat embedded
+* Netty (Starter Webflux) or Tomcat (Starter Web)
 * Convention over configuration
 * Easy setup
 * Very lightweight
 * Easy to test
 * You can create web, standalone, API or executable applications
 
-This tutorial shows you how to create a simple Spring Boot project with this features:
+This post shows you how to create a simple Spring Boot project with this features:
 
 * Gradle Build
 * Maven Build
@@ -31,12 +31,11 @@ You can create this project from command line like this:
 spring init --dependencies=web --build=gradle --language=java spring-boot-setup
 ```
 
-That command will generate a Spring project structure under `spring-boot-setup` folder.
-
-In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
+That command will generate a Spring project structure under `spring-boot-setup` folder. In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
 
 * Spring Boot
 * Gradle or Maven
+* Java
 
 I will show you a short version of `build.gradle` generated.
 
@@ -70,8 +69,7 @@ dependencies {
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 ```
-
-This project will generate an DemoApplication.java file.
+`org.springframework.boot` plugin activate `spring-boot-gradle-plugin`, `io.spring.dependency.management` plugin supports Maven. `boot:spring-boot-starter-test` pulls in Spring Boot Junit, Mockito, Spring Test and more.This project will generate an DemoApplication.java file.
 
 ```groovy
 package com.jos.dem.springboot.setup;
@@ -88,8 +86,7 @@ public class DemoApplication {
 
 }
 ```
-
-Next let's create a simple rest controller as follow:
+`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package and register them also indicates this class is a source of beans definitions. Next let's create a simple rest controller as follow:
 
 ```groovy
 package com.jos.dem.springboot.setup;
