@@ -7,6 +7,7 @@ title = "Spring Framework"
 
 * [Spring MVC](#Spring_MVC)
 * [Spring Boot](#Spring_Boot)
+* [Spring Boot Reactive](#Spring_Boot_Reactive)
 
 <a name="Spring_MVC">
 ## Spring MVC
@@ -73,12 +74,19 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Thymeleaf Layouts](/techtalk/spring/spring_boot_thymeleaf_layouts)
 * [Swagger Spring Boot Configuration](/techtalk/spring/spring_swagger_boot_configuration)
 * [Spring Boot Oauth2 with Google](/techtalk/spring/spring_boot_oauth2)
-* [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
-* [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
-* [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
 * [Spring Boot Cucumber](/techtalk/spring/spring_boot_cucumber)
 * [Spring Boot Geb](/techtalk/spring/spring_boot_geb)
 * [Spring Boot Ehcache](/techtalk/spring/spring_boot_ehcache)
+
+<a name="Spring_Boot_Reactive">
+## Spring Boot Reactive
+</a>
+
+This section will explore a new paradigm introduced in Spring Framework 5, reactive programming.
+
+* [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
+* [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
+* [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
 * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
 * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
 * [Spring Boot WebClient](/techtalk/spring/spring_boot_web_client)
