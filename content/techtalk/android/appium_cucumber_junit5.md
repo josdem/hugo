@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","appium","appium cucumb
 categories = ["techtalk", "code","android"]
 +++
 
-[Appium](http://appium.io/) is an open-source tool for automating native, mobile web, and hybrid applications on both iOS and Android. In this post we will review how to do feature testing using Appium Cucumber and Junit5. **NOTE:** If you want to know how to setup Appium, please refer my previous post: [Appium Automation](/techtalk/android/appium_automation)
+[Appium](http://appium.io/) is an open-source tool for automating native, mobile web, and hybrid applications on both iOS and Android. In this post we will review how to do feature testing using Appium, [Cucumber](https://cucumber.io/) and [Junit5](https://junit.org/junit5/). **NOTE:** If you want to know how to setup Appium, please refer my previous post: [Appium Automation](/techtalk/android/appium_automation)
 
 First, create a new project in android studio with no Activity, default options and set the following dependencies in `build.gradle`
 
@@ -202,9 +202,26 @@ public class CategoryStep {
 }
 ```
 
+**Note:** This project uses Jugoterapia project as an Android application for testing, download it from Google Play Store [here](https://play.google.com/store/apps/details?id=com.jugoterapia.josdem), to know more about this project go [here](http://josdem.io/jugoterapia/jugoterapia/). Now you can go to the `$PROJECT_HOME` and run:
+
+```bash
+gradle testDebug
+```
+
+This is the output:
+
+```bash
+Task :app:testDebugUnitTest
+BUILD SUCCESSFUL in 28s
+19 actionable tasks: 2 executed, 17 up-to-date
+```
+
+Video
+
+<iframe width="300" height="550" src="https://www.youtube.com/embed/9uizmsQdg_4" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 
-You can browse the code [here](https://github.com/josdem/jugoterapia-appium), you can download the source code here:
+To browse the code go [here](https://github.com/josdem/jugoterapia-appium), to download the project:
 
 ```bash
 git clone git@github.com:josdem/jugoterapia-appium.git
