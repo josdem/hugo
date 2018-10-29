@@ -6,9 +6,7 @@ date = "2018-03-25T12:57:29-06:00"
 description = "Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono."
 +++
 
-Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono.
-
-Let's start creating a new Spring Boot project with Webflux, Mongo Reactive and Lombok as dependencies:
+Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux, Mongo Reactive and Lombok as dependencies:
 
 ```bash
 spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --language=java reactive-webflux-workshop
