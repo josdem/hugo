@@ -191,13 +191,95 @@ public class PersonApplication {
 }
 ```
 
-Do not forget to add your MongoDB credentials information to your `application.properties` file:
+In order to run this example you need to create a database in MongoDB with `authorization: "enabled"`. Also do not forget to add your MongoDB credentials information to your `application.properties` file:
 
 ```properties
 spring.data.mongodb.database=reactive_webflux
 spring.data.mongodb.host=localhost
 spring.data.mongodb.username=username
 spring.data.mongodb.password=password
+```
+
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=maven --language=java reactive-webflux-workshop
+```
+
+And when you run your project use this command:
+
+```bash
+mvn spring-boot:run
+```
+
+This is the pom.xml file generated:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.example</groupId>
+	<artifactId>reactive-webflux-workshop</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>demo</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.6.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
 ```
 
 To browse the project go [here](https://github.com/josdem/reactive-webflux-workshop), to download the project:
