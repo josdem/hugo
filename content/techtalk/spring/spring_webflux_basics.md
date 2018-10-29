@@ -43,7 +43,6 @@ repositories {
 
 dependencies {
   compile('org.springframework.boot:spring-boot-starter-webflux')
-  compile('org.codehaus.groovy:groovy')
   compile('org.projectlombok:lombok')
   compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
   testCompile('org.springframework.boot:spring-boot-starter-test')
@@ -59,16 +58,12 @@ package com.jos.dem.webflux.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 
+@Data
 @Document
 @AllArgsConstructor
-@ToString
-@NoArgsConstructor
-@Data
 public class Person {
 
   @Id
@@ -79,9 +74,7 @@ public class Person {
 }
 ```
 
-Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/)
-
-Spring Data now is supporting a full reactive experience with MongoDB, Couchbase, Redis and Casandra, in this case let's create a `PersonRepository` using `ReactiveMongoRepository` as we going to be reactive.
+The `@Data` annotation generates setters and getters, `toString()`, `equals()`, `hashcode()` and a constructor for every required field. Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Spring Data now is supporting a full reactive experience with MongoDB, Couchbase, Redis and Casandra, in this case let's create a `PersonRepository` using `ReactiveMongoRepository` as we going to be reactive.
 
 ```java
 package com.jos.dem.webflux.repository;
@@ -157,9 +150,7 @@ public class PersonApplication {
 }
 ```
 
-**IMPORTANT:** The logic implemented in the operators is only executed when data starts to flow, and that does not happen until you use `subscribe()` method.
-
-That's it, now we are storing `Person` objects to our MongoDB, let's add some code to clean our database, insert and show persons.
+**IMPORTANT:** The logic implemented in the operators is only executed when data starts to flow, and that does not happen until you use `subscribe()` method. That's it, now we are storing `Person` objects to our MongoDB, let's add some code to clean our database, insert and show persons.
 
 ```java
 package com.jos.dem.webflux;
