@@ -19,7 +19,7 @@ Here is the complete `build.gradle` file generated:
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '2.0.0.RELEASE'
+    springBootVersion = '2.0.6.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -43,7 +43,7 @@ repositories {
 
 dependencies {
   compile('org.springframework.boot:spring-boot-starter-webflux')
-  compile('org.projectlombok:lombok')
+  compile('org.projectlombok:lombok:1.18.2')
   compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
   testCompile('org.springframework.boot:spring-boot-starter-test')
   testCompile('io.projectreactor:reactor-test')
