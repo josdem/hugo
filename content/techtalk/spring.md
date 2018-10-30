@@ -85,7 +85,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 This section will explore a new paradigm introduced in Spring Framework 5, reactive programming.
 
 * [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
-* [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
+* [Spring Webflux Server](/techtalk/spring/spring_webflux_server)
 * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
 * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
 * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)

@@ -106,7 +106,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot Ehcache](/techtalk/spring/spring_boot_ehcache)
 * [**Spring Boot Reactive**](/techtalk/spring#Spring_Boot_Reactive)
  * [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
- * [Spring Webflux Router](/techtalk/spring/spring_webflux_router)
+ * [Spring Webflux Server](/techtalk/spring/spring_webflux_server)
  * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
  * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
  * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
