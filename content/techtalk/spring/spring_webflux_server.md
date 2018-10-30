@@ -1,52 +1,14 @@
 +++
-title =  "Spring Webflux Router"
+title =  "Spring Webflux Server"
 categories = ["techtalk", "code","spring webflux"]
 tags = ["josdem", "techtalks","programming","technology", "Reactive Programming", "WebFlux", "Reactor", "Java","spring webflux"]
 date = "2018-03-26T16:10:59-06:00"
 description = "This post walks you through the process of creating endpoints using Spring Webflux routers."
 +++
 
-This post walks you through the process of creating endpoints using Spring Webflux routers. Please read this previous [post](/techtalk/spring/spring_webflux_basics) before conitnue with this information.
-
-In Spring MVC we are using `@Controller` in WebFlux we are using:
-
-**Router Function**
-
-Incoming requests are routed to handler functions with a `RouterFunction<T>` it has a similar purpose as a `@RequestMapping` annotation.
-
-Let's consider the following example:
+This post walks you through the process of creating endpoints using Spring Webflux. Please read this previous [post](/techtalk/spring/spring_webflux_basics) before conitnue with this information. We are going to use `@RestController` to serve data from our `PersonRepository`. Let's consider the following example:
 
 ```java
-package com.jos.dem.webflux.config;
-
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
-
-import com.jos.dem.webflux.model.Person;
-import com.jos.dem.webflux.repository.PersonRepository;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.ServerResponse;
-import org.springframework.web.reactive.function.server.RouterFunctions;
-
-@Configuration
-public class WebConfig {
-
-  @Autowired
-  private PersonRepository personRepository;
-
-  @Bean
-  public RouterFunction<ServerResponse> routes(){
-    return RouterFunctions
-      .route(GET("/persons"),
-      request -> ServerResponse.ok().body(personRepository.findAll(), Person.class))
-      .andRoute(GET("/persons/{id}"),
-      request -> ServerResponse.ok().body(personRepository.findById(request.pathVariable("id")), Person.class));
-  }
-
-}
 ```
 
 The original Spring Web MVC was running on Tomcat and was purpose built for the Servlet API and Servlet containers. The reactive web framework Spring WebFlux is fully non-blocking, supports Reactive Streams and runs on Netty server, but at the end from the client perspective we hit them in the same way.
