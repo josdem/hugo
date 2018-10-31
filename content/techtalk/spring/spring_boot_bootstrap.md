@@ -6,11 +6,7 @@ date = "2018-02-20T15:07:04-06:00"
 description = "In this technical post I will show you how to add Bootstrap to your Spring Boot project."
 +++
 
-[Boostrap](https://getbootstrap.com/) was originally created by a designer and a developer at Twitter, Bootstrap has become one of the most popular front-end frameworks and open source projects in the world.
-
-In this technical post I will show you how to add Bootstrap to your Spring Boot project. In order to get the setup for this example, please refer my previous post [Spring Boot JPA](/techtalk/spring/spring_boot_jpa)
-
-First you need to add Bootstrap dependency to your project, the way you should do it is add it as a [Bower](https://bower.io/) plugin to your `build.gradle` file in this way, you delegate to Gradle the responsability to orchestrate Bootstrap dependency management.
+[Boostrap](https://getbootstrap.com/) was originally created by a designer and a developer at Twitter, Bootstrap has become one of the most popular front-end frameworks and open source projects in the world. In this technical post I will show you how to add Bootstrap to your Spring Boot project. In order to get the setup for this example, please refer my previous posts [Spring Boot JPA](/techtalk/spring/spring_boot_jpa) and [Spring Boot Externalization](/techtalk/spring/spring_boot_externalization). First you need to add Bootstrap dependency to your project, the way you should do it is add it as a [Bower](https://bower.io/) plugin to your `build.gradle` file in this way, you delegate to Gradle the responsability to orchestrate Bootstrap dependency management.
 
 ```groovy
 plugins {
@@ -25,7 +21,7 @@ bower {
 }
 ```
 
-Next, we are going to add header and footer to a simple html page using [navbar](https://v4-alpha.getbootstrap.com/components/navbar/) component.
+For a complete setup instructions about this great plugin, please go [here](https://github.com/craigburke/bower-installer-gradle). Next, we are going to add header and footer to a simple html page using [navbar](https://v4-alpha.getbootstrap.com/components/navbar/) component.
 
 **Header**
 
@@ -116,7 +112,7 @@ Here is how it looks like:
 For more information regarding to [Bootstrap components](https://getbootstrap.com/docs/3.3/components/) please visit this official documentation.
 
 
-To Download the Project:
+To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jpa.git
@@ -127,7 +123,7 @@ git checkout feature/bootstrap
 To Run the project:
 
 ```bash
-gradle bootRun
+gradle bootRun -Dspring.config.location=$HOME/.spring-boot-jpa/application-development.yaml
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
