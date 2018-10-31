@@ -109,10 +109,7 @@ Here is how it looks like:
 
 <img src="/img/techtalks/spring/bootstrap.png"/>
 
-For more information regarding to [Bootstrap components](https://getbootstrap.com/docs/3.3/components/) please visit this official documentation.
-
-
-To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
+For more information regarding to [Bootstrap components](https://getbootstrap.com/docs/3.3/components/) please visit this official documentation. To browse the project go [here](https://github.com/josdem/spring-boot-jpa), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-jpa.git
