@@ -112,12 +112,22 @@ public class PersonApplication {
 }
 ```
 
-`WebClient` defined as `@Bean` is a non-blocking, reactive client for performing HTTP requests with our reactive web server, and again Netty is used by default.
-
-Do not forget to run this client in different port using the following specification in our `application.properties` file
+`WebClient` defined as `@Bean` is a non-blocking, reactive client for performing HTTP requests with our reactive web server, and again Netty is used by default. Do not forget to run this client in different port using the following specification in our `application.properties` file
 
 ```properties
 server.port=8081
+```
+
+To run the project:
+
+```bash
+gradle bootRun
+```
+
+To run the project with Maven:
+
+```bash
+mvn spring-boot:run
 ```
 
 To browse the project go [here](https://github.com/josdem/reactive-webflux-workshop), to download the project:
@@ -126,12 +136,6 @@ To browse the project go [here](https://github.com/josdem/reactive-webflux-works
 git clone https://github.com/josdem/reactive-webflux-workshop.git
 git fetch
 git checkout feature/client
-```
-
-To run the project:
-
-```bash
-gradle bootRun
 ```
 
 
