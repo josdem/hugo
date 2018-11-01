@@ -6,7 +6,7 @@ date = "2018-03-28T11:36:40-06:00"
 description = "This time we will see the client side in a Spring Webflux project."
 +++
 
-In previous [post](/techtalk/spring/spring_webflux_router) we covered web reactive server, this time we will see the client side. Let's start creating a new project with Webflux, Mongo Reactive and Lombok as dependencies:
+In previous [Spring Boot Server](/techtalk/spring/spring_webflux_server) we covered web reactive server, this time we will see the client side. Let's start creating a new project with Webflux, Mongo Reactive and Lombok as dependencies:
 
 ```bash
 spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --language=java client
@@ -17,7 +17,7 @@ Here is the complete `build.gradle` file generated:
 ```groovy
 buildscript {
 	ext {
-		springBootVersion = '2.0.0.RELEASE'
+		springBootVersion = '2.0.6.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -57,16 +57,14 @@ package com.jos.dem.webflux.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
 
-@Document
-@AllArgsConstructor
-@ToString
-@NoArgsConstructor
 @Data
+@Document
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
   @Id
@@ -77,9 +75,7 @@ public class Person {
 }
 ```
 
-Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/)
-
-Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
+Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
 
 ```java
 package com.jos.dem.webflux;
