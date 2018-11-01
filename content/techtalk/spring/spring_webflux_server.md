@@ -6,7 +6,7 @@ date = "2018-03-26T16:10:59-06:00"
 description = "This post walks you through the process of creating endpoints using Spring Webflux routers."
 +++
 
-This post walks you through the process of creating endpoints using Spring Webflux. Please read this previous [post](/techtalk/spring/spring_webflux_basics) before conitnue with this information. We are going to use `@RestController` to serve data from our `PersonRepository`. Let's consider the following example:
+This post walks you through the process of creating endpoints using Spring Webflux. Please read this previous [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics) before conitnue with this information. We are going to use `@RestController` to serve data from our `PersonRepository`. Let's consider the following example:
 
 ```java
 package com.jos.dem.webflux.controller;

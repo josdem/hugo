@@ -198,6 +198,12 @@ spring.data.mongodb.username=username
 spring.data.mongodb.password=password
 ```
 
+To run the project:
+
+```bash
+gradle bootRun
+```
+
 **Using Maven**
 
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
@@ -287,12 +293,5 @@ git clone https://github.com/josdem/reactive-webflux-workshop.git
 git fetch
 git checkout feature/setup
 ```
-
-To run the project:
-
-```bash
-gradle bootRun
-```
-
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
