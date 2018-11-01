@@ -342,7 +342,7 @@ public class CompletableFutureThenApplyAsync {
 I have been sleeping: 3 seconds
 ```
 
-To download the project:
+To browse the project go [here](https://github.com/josdem/java-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/java-workshop.git
