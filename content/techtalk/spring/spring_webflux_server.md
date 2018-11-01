@@ -119,11 +119,5 @@ git fetch
 git checkout feature/server
 ```
 
-To run the project:
-
-```bash
-gradle bootRun
-```
-
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
