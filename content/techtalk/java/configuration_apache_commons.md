@@ -6,9 +6,7 @@ tags = ["josdem","techtalks","programming","technology","java"]
 description = "The Commons Configuration software library provides a generic configuration interface which enables a Java application to read configuration data from a variety of sources."
 +++
 
-The Commons Configuration software library provides a generic configuration interface which enables a Java application to read configuration data from a variety of sources. Go here for more information about [Apache Commons](http://commons.apache.org/)
-
-In this post I will show you how to read a properties file using Apache commons. First we need to create a Java basic project this time using [lazybones](https://github.com/pledbrook/lazybones).
+The Commons Configuration software library provides a generic configuration interface which enables a Java application to read configuration data from a variety of sources. Go here for more information: [Apache Commons](http://commons.apache.org/). In this post I will show you how to read a properties file using Apache commons. First we need to create a Java basic project and a cool way to do it is with: [lazybones](https://github.com/pledbrook/lazybones).
 
 ```bash
 lazybones create java-basic properties-apache-commons
@@ -54,7 +52,7 @@ repositories {
 }
 
 dependencies {
-  compile 'org.apache.commons:commons-configuration2:2.0'
+  compile 'org.apache.commons:commons-configuration2:2.4'
   compile 'commons-beanutils:commons-beanutils:1.9.3'
 }
 ```
@@ -77,14 +75,13 @@ import org.apache.commons.configuration2.ex.ConfigurationException;
 public class ConfigurationLauncher {
 
   private void readProperties(){
-    Configurations configs = new Configurations();
+    Configurations configurations = new Configurations();
     try{
-      Configuration config = configs.properties(new File("configuration.properties"));
-      String username = config.getString("username");
-      String password = config.getString("password");
+      Configuration configuration = configurations.properties(new File("configuration.properties"));
+      String username = configuration.getString("username");
+      String password = configuration.getString("password");
       System.out.println("{username:" + username + ",password:"+ password + "}");
-    }
-    catch (ConfigurationException cex) {
+    } catch (ConfigurationException cex) {
       System.out.println("Error: " + cex.getMessage());
     }
   }
@@ -96,14 +93,14 @@ public class ConfigurationLauncher {
 }
 ```
 
-Configuration information is frequently stored in properties files. Consider the following simple file that defines some properties related to storing user's credentials.
+Configuration information is frequently stored in a properties file. Consider the following simple file that defines some properties related to storing user's credentials.
 
-```
+```properties
 username=josdem
 password=12345678
 ```
 
-That's it `configs.properties` will read our `configuration.properties` file from the class path.
+That's it `configurations.properties` will read our `configuration.properties` file from the class path.
 
 To build the project type:
 
@@ -123,6 +120,5 @@ To download the code:
 git clone https://github.com/josdem/java-topics.git
 cd properties-apache-commons
 ```
-
 
 [Return to the main article](/techtalk/java)
