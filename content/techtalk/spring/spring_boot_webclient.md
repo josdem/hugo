@@ -26,6 +26,41 @@ The RestTemplate is not a good fit for use in non-blocking applications, and the
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-boot-webclient
 ```
 
+Here is the `build.gradle` file generated:
+
+```groovy
+buildscript {
+  ext {
+    springBootVersion = '2.1.0.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.jos.dem.springboot.webclient'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  compile('org.springframework.boot:spring-boot-starter-webflux')
+  compile('org.springframework.boot:spring-boot-starter')
+  compile('org.projectlombok:lombok')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+```
+
 **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Next step is to create a service with WebClient so we can send request and get responses in our project.
 
 ## Retrieve
