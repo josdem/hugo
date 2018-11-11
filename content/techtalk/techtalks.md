@@ -110,7 +110,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
  * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
  * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
- * [Spring Boot WebClient](/techtalk/spring/spring_boot_web_client)
+ * [Spring Boot WebClient](/techtalk/spring/spring_boot_webclient)
  * [Spring Boot WebClient Cucumber and Junit5](/techtalk/spring/webclient_cucumber_junit5)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
