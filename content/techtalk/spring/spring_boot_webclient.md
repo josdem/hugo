@@ -6,9 +6,7 @@ tags = ["josdem", "techtalks","programming","technology", "Spring Boot WebClient
 categories = ["techtalk", "code", "WebFlux"]
 +++
 
-[WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) is a reactive client that provides an alternative to RestTemplate. It exposes a functional, fluent API and relies on non-blocking I/O which allows it to support high concurrency more efficiently than the RestTemplate. WebClient is a natural fit for streaming scenarios and depends on a lower level HTTP client library to execute requests and that support is pluggable.
-
-WebClient uses the same codecs as WebFlux server applications do, and shares a common base package, some common APIs, and infrastructure with the server functional web framework. The API exposes Reactor Flux and Mono types. By default it uses Reactor Netty as the HTTP client library but others can be plugged in through a custom ClientHttpConnector.
+[WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) is a reactive client that provides an alternative to RestTemplate. It exposes a functional, fluent API and relies on non-blocking I/O which allows it to support high concurrency more efficiently than the RestTemplate. WebClient is a natural fit for streaming scenarios and depends on a lower level HTTP client library to execute requests and that support is pluggable. WebClient uses the same codecs as WebFlux server applications do, and shares a common base package, some common APIs, and infrastructure with the server functional web framework. The API exposes Reactor Flux and Mono types. By default it uses Reactor Netty as the HTTP client library but others can be plugged in through a custom ClientHttpConnector.
 
 By comparison to the RestTemplate, the WebClient is:
 
@@ -82,7 +80,7 @@ import com.jos.dem.springboot.webclient.service.BeverageService;
 @Service
 public class BeverageServiceImpl implements BeverageService {
 
-  private WebClient client = WebClient.create("http://jugoterapia.josdem.io/jugoterapia-server");
+  private WebClient client = WebClient.create("https://jugoterapia.josdem.io/jugoterapia-server");
 
   public Mono<Beverage> getBeverage(Long id){
     return client.get()
