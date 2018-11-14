@@ -41,11 +41,11 @@ repositories {
 
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
-	compile('org.springframework.boot:spring-boot-starter-webflux')
-	compileOnly('org.projectlombok:lombok')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
+  compileOnly('org.projectlombok:lombok')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('io.projectreactor:reactor-test')
 }
 ```
 
