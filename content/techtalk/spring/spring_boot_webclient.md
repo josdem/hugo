@@ -252,7 +252,7 @@ This is the `pom.xml` file generated:
 </project>
 ```
 
-To browse the project go [here](https://josdem.io/techtalk/spring/spring_boot_webclient/), to download the project:
+To browse the project go [here](https://github.com/josdem/spring-boot-webclient), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-webclient.git
