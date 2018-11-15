@@ -77,6 +77,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Cucumber](/techtalk/spring/spring_boot_cucumber)
 * [Spring Boot Geb](/techtalk/spring/spring_boot_geb)
 * [Spring Boot Ehcache](/techtalk/spring/spring_boot_ehcache)
+* [Spring Boot Appium Cucumber](/techtalk/spring/spring_boot_appium_cucumber)
 
 <a name="Spring_Boot_Reactive">
 ## Spring Boot Reactive
