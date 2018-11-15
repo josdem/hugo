@@ -42,7 +42,6 @@ android {
 }
 
 dependencies {
-  implementation fileTree(include: ['*.jar'], dir: 'libs')
   implementation 'com.android.support:appcompat-v7:28.0.0-rc01'
   implementation 'com.android.support.constraint:constraint-layout:1.1.2'
   implementation 'com.android.support:design:28.0.0-rc01'
@@ -54,19 +53,10 @@ dependencies {
   implementation "info.cukes:cucumber-java:$cucumberVersion"
   implementation "info.cukes:cucumber-junit:$cucumberVersion"
   implementation "io.appium:java-client:$appiumJavaClient"
-  implementation files('libs/byte-buddy-1.8.15.jar')
-  implementation files('libs/commons-codec-1.10.jar')
-  implementation files('libs/commons-exec-1.3.jar')
-  implementation files('libs/commons-logging-1.2.jar')
-  implementation files('libs/httpclient-4.5.5.jar')
-  implementation files('libs/httpcore-4.4.9.jar')
-  implementation files('libs/okhttp-3.10.0.jar')
-  implementation files('libs/okio-1.14.1.jar')
-  implementation files('libs/client-combined-3.14.0.jar')
+  implementation 'org.apache.commons:commons-configuration2:2.4'
+  implementation 'commons-beanutils:commons-beanutils:1.9.3'
 }
 ```
-
-**NOTE:** In order to get Java Selenium Client & WebDriver, please download it from [here](https://www.seleniumhq.org/download/) then copy the required jar files in `$PROJECT_HOME/app/libs`
 
 Now, lets create an service to take care about Android capabilities.
 
@@ -103,7 +93,7 @@ public class CategoryServiceImpl implements CategoryService {
 }
 ```
 
-Desired Capabilities are keys and values encoded in a JSON object, sent by Appium clients to the server when a new automation session is requested. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
+Desired Capabilities are keys and values encoded in a JSON object, sent by Appium clients to the server when a new automation session is requested. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
 package com.jos.dem.appium;
@@ -118,30 +108,38 @@ import cucumber.api.CucumberOptions;
 public class CucumberTest {}
 ```
 
-Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our category Gherkin feature definition file: `src/test/resources/Cateogry.feature`
+Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our category Gherkin feature definition file: `src/test/resources/jugoterapia.feature`
 
 ```gherkin
-Feature: Display all categories
-  Scenario: As a user I should be able to display all categories
+Feature: Jugoterapia run an end-to-end user flow
+  Scenario: As a user I should be able to select a category, beverage and recipe
     When I launch the application
     Then I should be able to see the category list
       And I should be able to click in the category
+      And I should be able to list beverages
+      And I should be able to click in a beverage
+      And I should be able to view a recipe
+      And I should back to beverage section
+      And I should back to category section
+      And I should be able to close application
 ```
 
-Now let’s create the step in the Java to represent to this test case scenario
+Now let’s create a test case in the Java to represent to this feature scenarios
 
 ```java
 package com.jos.dem.appium.step;
 
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Sleeper;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URL;
+import java.time.Duration;
 import java.util.List;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
@@ -150,34 +148,26 @@ import java.util.logging.Logger;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
 
-import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
+import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.android.nativekey.AndroidKey;
 
-import com.jos.dem.appium.service.CategoryService;
-import com.jos.dem.appium.service.impl.CategoryServiceImpl;
+import com.jos.dem.appium.util.ConfigurationReader;
 
-public class CategoryStep {
+public class JugoterapiaStep extends BaseStep {
 
-  private WebElement textView;
-  private AppiumDriver<WebElement> driver;
-  private DesiredCapabilities capabilities = new DesiredCapabilities();
-  private CategoryService categoryService = new CategoryServiceImpl();
+  private AndroidElement textView;
+  private AndroidDriver<AndroidElement> driver;
+  private Long timeToSleep = Long.parseLong(ConfigurationReader.getProperty("appium.sleep"));
 
   private Logger log = Logger.getLogger(this.getClass().getName());
-
-  @Before
-  public void setup(){
-    categoryService.setCapabilities(capabilities);
-  }
 
   @When("I launch the application")
   public void shouldLaunchTheApplication() throws Exception {
     log.info("Running: I launch the application at " + new Date());
-    driver = new AppiumDriver(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
-    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+    driver = getDriver();
   }
 
   @Then("I should be able to see the category list")
@@ -191,12 +181,99 @@ public class CategoryStep {
   @And("I should be able to click in the category")
   public void shouldClickInCategory() throws Exception {
     log.info("Running: I should be able to click in the category at " + new Date());
-    textView.click();
+    waitForElement(textView).click();
   }
 
-  @After
-  public void end(){
-    driver.quit();
+  @And("I should be able to list beverages")
+  public void shouldListBeverages() throws Exception {
+    log.info("Running: I should be able to list beverages at " + new Date());
+    assertNotNull(driver.findElement(By.id("action_bar_container")));
+    assumeTrue(driver.findElement(By.id("content")) != null);
+    assumeTrue(driver.findElement(By.id("listViewBeverages")) != null);
+
+    log.info("Beverages container and beverage list are there");
+    textView = driver.findElement(By.id("beverageTextView"));
+    assertEquals("Jugo para evitar los calambres", textView.getText());
+  }
+
+  @And("I should be able to click in a beverage")
+  public void shouldClickInBeverage() throws Exception {
+    log.info("Running: I should be able to click in a beverage at " + new Date());
+    waitForElement(textView).click();
+  }
+
+  @And("I should be able to view a recipe")
+  public void shouldViewRecipe() throws Exception {
+    log.info("Running: I should be able to view a recipe at " + new Date());
+    assertNotNull(driver.findElement(By.id("name")));
+    assertNotNull(driver.findElement(By.id("image")));
+    assertNotNull(driver.findElement(By.id("ingredients")));
+    assertNotNull(driver.findElement(By.id("recipe")));
+  }
+
+  @And("I should back to beverage section")
+  public void shouldBackToBeverageSection() throws Exception {
+    log.info("Running: I should back to the beverage section at " + new Date());
+    driver.pressKey(new KeyEvent(AndroidKey.BACK));
+    Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(timeToSleep));
+  }
+
+  @And("I should back to category section")
+  public void shouldBackToCategorySection() throws Exception {
+    log.info("Running: I should back to the category section at " + new Date());
+    driver.pressKey(new KeyEvent(AndroidKey.BACK));
+    Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(timeToSleep));
+  }
+
+  @And("I should be able to close application")
+  public void shouldCloseTheApplication() throws Exception {
+    log.info("Running: I should be able to close the application at " + new Date());
+    driver.pressKey(new KeyEvent(AndroidKey.BACK));
+    Sleeper.SYSTEM_SLEEPER.sleep(Duration.ofSeconds(timeToSleep));
+  }
+
+}
+```
+
+`BaseTest` has Appium and AppiumDriver management, in that way we can delegate in our test cases Appium commands.
+
+```java
+package com.jos.dem.appium.step;
+
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+import java.io.IOException;
+
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.AndroidElement;
+
+import com.jos.dem.appium.util.ConfigurationReader;
+import com.jos.dem.appium.service.AppiumService;
+import com.jos.dem.appium.service.impl.AppiumServiceImpl;
+
+public class BaseStep {
+
+  private static AndroidDriver<AndroidElement> driver;
+  private static DesiredCapabilities capabilities = new DesiredCapabilities();
+  private static AppiumService appiumService = new AppiumServiceImpl();
+
+  public static AndroidDriver<AndroidElement> getDriver() throws IOException {
+    if(driver == null){
+      appiumService.setCapabilities(capabilities);
+      driver = new AndroidDriver(new URL(ConfigurationReader.getProperty("appium.server")), capabilities);
+      driver.manage().timeouts().implicitlyWait(Long.parseLong(ConfigurationReader.getProperty("appium.wait")), TimeUnit.SECONDS);
+    }
+    return driver;
+  }
+
+  public static AndroidElement waitForElement(AndroidElement element){
+    WebDriverWait wait =  new WebDriverWait(driver, 20);
+    wait.until(ExpectedConditions.visibilityOf(element));
+    return element;
   }
 
 }
@@ -206,14 +283,6 @@ public class CategoryStep {
 
 ```bash
 gradle testDebug
-```
-
-This is the output:
-
-```bash
-Task :app:testDebugUnitTest
-BUILD SUCCESSFUL in 28s
-19 actionable tasks: 2 executed, 17 up-to-date
 ```
 
 Video
