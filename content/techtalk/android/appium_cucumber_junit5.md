@@ -271,7 +271,7 @@ public class BaseStep {
   }
 
   public static AndroidElement waitForElement(AndroidElement element){
-    WebDriverWait wait =  new WebDriverWait(driver, 20);
+    WebDriverWait wait =  new WebDriverWait(driver, Long.parseLong(ConfigurationReader.getProperty("appium.timeout")));
     wait.until(ExpectedConditions.visibilityOf(element));
     return element;
   }
