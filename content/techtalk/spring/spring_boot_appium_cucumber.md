@@ -59,8 +59,7 @@ implementation "io.appium:java-client:$appiumJavaClient"
 testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
 testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 ```
-
-Now, lets create an service to take care about Android capabilities.
+**NOTE:** If you want to know how to setup Appium, please refer my previous post: [Appium Automation](/techtalk/android/appium_automation). Now, lets create an service to take care about Android capabilities.
 
 ```java
 package com.jos.dem.springboot.appium.jugoterapia.service;
