@@ -348,6 +348,11 @@ If you prefer Maven
 mvn test
 ```
 
+Video
+
+<iframe width="300" height="550" src="https://www.youtube.com/embed/rlxkgI0WE8s" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+
 To browse the code go [here](https://github.com/josdem/spring-boot-appium-jugoterapia), to download the project:
 
 ```bash
