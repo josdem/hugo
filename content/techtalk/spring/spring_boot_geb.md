@@ -57,7 +57,6 @@ Now add latest Groovy, Selenium Firefox Driver, Spock and WebDriverManager depen
 implementation('org.codehaus.groovy:groovy-all:2.5.0')
 testImplementation('org.gebish:geb-spock:2.2')
 testImplementation('org.seleniumhq.selenium:selenium-firefox-driver:3.141.59')
-testImplementation('org.spockframework:spock-spring')
 testImplementation('org.spockframework:spock-spring:1.1-groovy-2.4')
 testImplementation("io.github.bonigarcia:webdrivermanager:2.2.5")
 ```
