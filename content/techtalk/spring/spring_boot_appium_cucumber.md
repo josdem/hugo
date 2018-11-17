@@ -49,7 +49,7 @@ dependencies {
 }
 ```
 
-Now add latest Appium, Cucumber and Junit 5 Framework dependencies to your build.gradle file:
+Now add latest Appium, Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
 
 ```groovy
 implementation "info.cukes:cucumber-java:$cucumberVersion"
