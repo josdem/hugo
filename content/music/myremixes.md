@@ -4,9 +4,16 @@ draft = true
 title = "DJing"
 
 +++
-Music has been always part of my life, as a child I use to connect speakers, microphones and walkmans together. Now is my hobbie create mixes and upload them to the cloud, so anyone who enjoy music as I do can listen and share them.
+Music has been always part of my life, as a child I use to connect speakers, microphones and walkmans together. Now is my hobbie create mixes and upload them to the cloud, so anyone who enjoy music as I do can listen and share them. **NOTE:** I’m going to put my mixes from 2010 to nowadays, I hope you enjoy them.
 
-*NOTE:* I’m going to put my mixes from 2010 to nowadays, I hope you enjoy them.
+
+## Plymouth - Trance (2018)
+
+<iframe width="660" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Fplymouth%2F" frameborder="0" ></iframe>
+<br/>
+
+Aiera Osiris - Supra (Daniel Kandi Pres. Timmus Mix) + Heatbeat - Ask The Cat (Original Mix) + Alex M.O.R.P.H. Feat. Ana Criado - Sunset Boulevard (Daniel Kandi Remix) + Smith & Pledger - White (Original Mix) + Markus Schulz - Rain (Extended Mix) + Dinka, Morttagua - In Caelo (LTN Remix) + Gareth Emery - Long Way Home (Extended Mix) + Late Night Alumni, Myon, Shane 54 - Under Your Cloud (Extended Mix)
+
 
 ## Sonderling - Tech House (2017)
 
