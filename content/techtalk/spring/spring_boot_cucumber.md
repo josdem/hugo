@@ -21,7 +21,7 @@ Here is the complete `build.gradle` file generated:
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '2.0.3.RELEASE'
+    springBootVersion = '2.1.0.RELEASE'
   }
   repositories {
     mavenCentral()
@@ -40,14 +40,14 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-webflux')
-	compileOnly('org.projectlombok:lombok')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
+  compile('org.springframework.boot:spring-boot-starter-webflux')
+  compileOnly('org.projectlombok:lombok')
+  testCompile('org.springframework.boot:spring-boot-starter-test')
+  testCompile('io.projectreactor:reactor-test')
 }
 ```
 Now let's create a simple POJO retrieve information from an end point using Spring WebFlux.
@@ -59,9 +59,9 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.Data;
 
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Person {
 
   private String nickname;
@@ -70,44 +70,49 @@ public class Person {
 }
 ```
 
-Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/)
-
-Next step is to create our routers to define `GET/persons` and `GET/persons` by nickname:
+Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Next step is to create person controller so we can define `GET/persons` and `GET/persons` by nickname endpoints. `@RestController` indicates that we don't want to render views, but write the results straight into the response body instead.`@GetMapping` tells Spring that this is the place to route persons calls, it is the shorthand annotation for `@RequestMapping(method=RequestMethod.GET)`.
 
 ```java
-package com.jos.dem.springboot.cucumber.config;
+package com.jos.dem.springboot.cucumber.controller;
 
-import static org.springframework.web.reactive.function.server.RequestPredicates.GET;
+import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jos.dem.springboot.cucumber.model.Person;
 import com.jos.dem.springboot.cucumber.service.PersonService;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.web.reactive.function.server.RouterFunction;
-import org.springframework.web.reactive.function.server.ServerResponse;
-import org.springframework.web.reactive.function.server.RouterFunctions;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Configuration
-public class WebConfig {
+@RestController
+public class PersonController {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @Autowired
   private PersonService personService;
 
-  @Bean
-  public RouterFunction<ServerResponse> routes(){
-    return RouterFunctions
-      .route(GET("/persons"),
-      request -> ServerResponse.ok().body(personService.getAll(), Person.class))
-      .andRoute(GET("/persons/{nickname}"),
-      request -> ServerResponse.ok().body(personService.getByNickname(request.pathVariable("nickname")), Person.class));
+  @GetMapping("/persons")
+  public Flux<Person> findAll(){
+    log.info("Calling find persons");
+    return personService.getAll();
+  }
+
+  @GetMapping("/persons/{nickname}")
+  public Mono<Person> findById(@PathVariable String nickname){
+    log.info("Calling find person by nickname: " + nickname);
+    return personService.getByNickname(nickname);
   }
 
 }
 ```
 
-In order to complete our basement let's create `PersonService` to bring data:
+In order to complete our project base let's create `PersonService` to bring data:
 
 ```java
 package com.jos.dem.springboot.cucumber.service;
@@ -334,22 +339,22 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
 	<name>spring-boot-cucumber</name>
 	<description>Shows how to integrate Cucumber to your Spring Boot application</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.3.RELEASE</version>
-		<relativePath/>
-	</parent>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.0.RELEASE</version>
+    <relativePath/>
+  </parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
     <cucumber.version>1.2.5</cucumber.version>
     <junit.jupiter.version>5.2.0</junit.jupiter.version>
-	</properties>
+  </properties>
 
-	<dependencies>
+  <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
@@ -402,14 +407,14 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
     </dependency>
   </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>
 ```

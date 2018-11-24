@@ -48,7 +48,7 @@ public class PersonController {
 }
 ```
 
-The original Spring Web MVC was running on Tomcat and was purpose built for the Servlet API and Servlet containers. The reactive web framework Spring WebFlux is fully non-blocking, supports Reactive Streams and runs on Netty server. `@RestController` indicates that we dont want to render views, but write the results straight into the response body instead.`@GetMapping` tells Spring that this is the place to route persons calls, it is the shorthand annotation for `@RequestMapping(method=RequestMethod.GET)`. So, after adding this controller class to your project and run Spring Boot, you can go to: [http://localhost:8080/persons](http://localhost:8080/persons)
+The original Spring Web MVC was running on Tomcat and was purpose built for the Servlet API and Servlet containers. The reactive web framework Spring WebFlux is fully non-blocking, supports Reactive Streams and runs on Netty server. `@RestController` indicates that we don't want to render views, but write the results straight into the response body instead.`@GetMapping` tells Spring that this is the place to route persons calls, it is the shorthand annotation for `@RequestMapping(method=RequestMethod.GET)`. So, after adding this controller class to your project and run Spring Boot, you can go to: [http://localhost:8080/persons](http://localhost:8080/persons)
 
 ```json
 [
