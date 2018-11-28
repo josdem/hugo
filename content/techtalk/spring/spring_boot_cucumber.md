@@ -328,16 +328,16 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.jos.dem.springboot</groupId>
-	<artifactId>cucumber</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+  <groupId>com.jos.dem.springboot</groupId>
+  <artifactId>cucumber</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-	<name>spring-boot-cucumber</name>
-	<description>Shows how to integrate Cucumber to your Spring Boot application</description>
+  <name>spring-boot-cucumber</name>
+  <description>Shows how to integrate Cucumber to your Spring Boot application</description>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -349,6 +349,10 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.surefire.version>2.18</maven.surefire.version>
+    <maven-compiler.version>3.8.0</maven-compiler.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <java.version>1.8</java.version>
     <cucumber.version>1.2.5</cucumber.version>
     <junit.jupiter.version>5.2.0</junit.jupiter.version>
@@ -387,7 +391,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-junit</artifactId>
       <version>${cucumber.version}</version>
-      </dependency>
+    </dependency>
     <dependency>
       <groupId>info.cukes</groupId>
       <artifactId>cucumber-spring</artifactId>
@@ -398,7 +402,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.jupiter.version}</version>
       <scope>test</scope>
-      </dependency>
+    </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-engine</artifactId>
@@ -412,6 +416,38 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.version}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <testRunID>${environment}</testRunID>
+          </systemPropertyVariables>
+        </configuration>
+        <executions>
+          <execution>
+            <id>surefire-it</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+            <configuration>
+              <skip>false</skip>
+              <testFailureIgnore>true</testFailureIgnore>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
