@@ -430,19 +430,6 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>${maven.surefire.version}</version>
-        <executions>
-          <execution>
-            <id>surefire-it</id>
-            <phase>integration-test</phase>
-            <goals>
-              <goal>test</goal>
-            </goals>
-            <configuration>
-              <skip>false</skip>
-              <testFailureIgnore>true</testFailureIgnore>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
