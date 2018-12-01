@@ -47,53 +47,59 @@ dependencies {
   implementation 'com.android.support:design:28.0.0-rc01'
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
   testImplementation "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+  testImplementation "io.appium:java-client:$appiumJavaClient"
   androidTestImplementation 'com.android.support.test:runner:1.0.2'
   implementation 'com.android.support.test.espresso:espresso-core:3.0.2'
   implementation 'org.apache.commons:commons-lang3:3.8.1'
   implementation "info.cukes:cucumber-java:$cucumberVersion"
   implementation "info.cukes:cucumber-junit:$cucumberVersion"
-  implementation "io.appium:java-client:$appiumJavaClient"
   implementation 'org.apache.commons:commons-configuration2:2.4'
   implementation 'commons-beanutils:commons-beanutils:1.9.3'
 }
 ```
 
-Now, lets create an service to take care about Android capabilities.
+Now, lets create a helper to take care about Android capabilities.
 
 ```java
-package com.jos.dem.appium.service;
+package com.jos.dem.appium.helper;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
+import com.jos.dem.appium.util.ConfigurationReader;
 
-public interface CategoryService {
-  void setCapabilities(DesiredCapabilities capabilities);
-}
-```
+public class CapabilitiesHelper {
 
-Here is the implementation
+  private  DesiredCapabilities capabilities = new DesiredCapabilities();
 
-```java
-package com.jos.dem.appium.service.impl;
+  public CapabilitiesHelper(){
+    capabilities.setCapability("deviceName", ConfigurationReader.getProperty("device.name"));
+    capabilities.setCapability("platformName", ConfigurationReader.getProperty("device.platform"));
+    capabilities.setCapability("platformVersion", ConfigurationReader.getProperty("device.version"));
+    capabilities.setCapability("appPackage", ConfigurationReader.getProperty("application.package"));
+    capabilities.setCapability("appActivity", ConfigurationReader.getProperty("application.activity"));
+  }
 
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-
-import com.jos.dem.appium.service.CategoryService;
-
-public class CategoryServiceImpl implements CategoryService {
-
-  public void setCapabilities(DesiredCapabilities capabilities){
-    capabilities.setCapability("deviceName", "Pixel 2");
-    capabilities.setCapability(CapabilityType.VERSION, "9");
-    capabilities.setCapability("platformName", "Android");
-    capabilities.setCapability("appPackage", "com.jugoterapia.josdem");
-    capabilities.setCapability("appActivity", "com.jugoterapia.josdem.activity.CategoryActivity");
+  public DesiredCapabilities getCapabilities(){
+    return capabilities;
   }
 
 }
 ```
 
-Desired Capabilities are keys and values encoded in a JSON object, sent by Appium clients to the server when a new automation session is requested. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
+Desired Capabilities are keys and values encoded in a JSON object, sent by Appium clients to the server when a new automation session is requested. Here is our `$PROJECT_HOME/app/src/main/res/configuration.properties` file.
+
+```properties
+device.name=Google Pixel
+device.version=9
+device.platform=Android
+application.package=com.jugoterapia.josdem
+application.activity=com.jugoterapia.josdem.activity.CategoryActivity
+appium.server=http://127.0.0.1:4723/wd/hub
+appium.wait=10
+appium.sleep=2
+appium.timeout=20
+```
+
+**Note:** If you want to know how to read a properties file using Apache Commons, please go to my technical post [here](/techtalk/java/configuration_apache_commons/). The JUnit runner uses the JUnit framework to run Cucumber test cases, so we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
 package com.jos.dem.appium;
@@ -252,19 +258,17 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
 import com.jos.dem.appium.util.ConfigurationReader;
-import com.jos.dem.appium.service.AppiumService;
-import com.jos.dem.appium.service.impl.AppiumServiceImpl;
+import com.jos.dem.appium.helper.CapabilitiesHelper;
 
 public class BaseStep {
 
   private static AndroidDriver<AndroidElement> driver;
-  private static DesiredCapabilities capabilities = new DesiredCapabilities();
-  private static AppiumService appiumService = new AppiumServiceImpl();
+  private static CapabilitiesHelper helper = new CapabilitiesHelper();
 
   public static AndroidDriver<AndroidElement> getDriver() throws IOException {
     if(driver == null){
       appiumService.setCapabilities(capabilities);
-      driver = new AndroidDriver(new URL(ConfigurationReader.getProperty("appium.server")), capabilities);
+      driver = new AndroidDriver(new URL(ConfigurationReader.getProperty("appium.server")), helper.getCapabilities());
       driver.manage().timeouts().implicitlyWait(Long.parseLong(ConfigurationReader.getProperty("appium.wait")), TimeUnit.SECONDS);
     }
     return driver;
