@@ -17,7 +17,7 @@ User=josdem
 Type=simple
 
 [Service]
-ExecStart=/bin/java -jar /opt/spring-boot-setup0.0.1-SNAPSHOT.jar
+ExecStart=/bin/java -jar /opt/springboot-setup-0.0.1-SNAPSHOT.jar
 Restart=always
 StandardOutput=syslog
 StandardError=syslog
