@@ -11,5 +11,6 @@ The duties of a system administrator are wide-ranging, and vary widely from one 
 * [Tomcat AJP](/techtalk/sysadmin/tomcat_domain)
 * [Nginx Restrincting Access](/techtalk/sysadmin/nginx_restrincting_access)
 * [Launching an EC2 using CloudFormation](/techtalk/sysadmin/cloud_formation_ec2)
+* [Spring Boot in Nginx Server](/techtalk/sysadmin/spring_boot_nginx)
 
 [Return to the main article](/techtalk/techtalks)
