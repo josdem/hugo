@@ -318,6 +318,12 @@ Build the library first and then run the application. From `$PROJECT_HOME`:
 mvn install spring-boot:run -pl application
 ```
 
+To see the results go to this URL in your browser:
+
+```bash
+ http://localhost:8080/
+```
+
 To browse the project go [here](https://github.com/josdem/spring-boot-modules), to download the project:
 
 ```bash
