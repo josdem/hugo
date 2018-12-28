@@ -107,6 +107,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot Appium Cucumber](/techtalk/spring/spring_boot_appium_cucumber)
  * [Spring Boot Parameters](/techtalk/spring/spring_boot_parameters)
  * [Spring Boot Profiles](/techtalk/spring/spring_boot_profiles)
+ * [Spring Boot Retrofit2 Cucumber & Junit5](/techtalk/spring/spring_boot_retrofit_cucumber_junit5)
 * [**Spring Boot Reactive**](/techtalk/spring#Spring_Boot_Reactive)
  * [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics)
  * [Spring Webflux Server](/techtalk/spring/spring_webflux_server)
