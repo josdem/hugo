@@ -253,4 +253,227 @@ Feature: As a user I can get my public information
     Then User gets his public emails
 ```
 
+The next step is to create an abstraction for our user service test so we can call our get email endpoint:
+
+```java
+package com.jos.dem.retrofit.workshop;
+
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+@ContextConfiguration(classes = RetrofitWorkshopApplication.class)
+@WebAppConfiguration
+public class UserIntegrationTest {}
+```
+
+Now let’s create the method in the Java class to correspond to this test case scenario:
+
+```java
+package com.jos.dem.retrofit.workshop;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.List;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import retrofit2.Call;
+import retrofit2.Response;
+
+import com.jos.dem.retrofit.workshop.model.SSHKey;
+import com.jos.dem.retrofit.workshop.model.PublicEmail;
+import com.jos.dem.retrofit.workshop.service.UserService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class UserTest extends UserIntegrationTest {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Autowired
+  private UserService userService;
+
+  @Before
+  public void setup() {
+    log.info("Before any test execution");
+  }
+
+  @Then("^User gets his public emails$")
+  public void shouldGetEmails() throws Exception {
+    log.info("Validating collection integrity");
+
+    Call<List<PublicEmail>> call = userService.getEmails();
+    Response<List<PublicEmail>> response = call.execute();
+    List<PublicEmail> emails = response.body();
+
+    assertFalse(emails.isEmpty(), () -> "Should not be empty");
+    assertTrue(emails.size() == 1,  () -> "Should be 1 email");
+
+    PublicEmail email = emails.get(0);
+    log.info("Validating email attributes");
+      assertAll("email",
+        () -> assertEquals("joseluis.delacruz@gmail.com", email.getEmail(), "Should contains josdem's email"),
+        () -> assertTrue(email.isVerified(), "Should be verified"),
+        () -> assertTrue(email.isPrimary(), "Should be primary"),
+        () -> assertEquals("public", email.getVisibility(), "Should be public")
+      );
+  }
+
+  @After
+  public void tearDown() {
+    log.info("After all test execution");
+  }
+
+}
+```
+
+## POST
+
+Example: Create a label
+
+**Endpoint**
+
+```bash
+POST /repos/:owner/:repo/labels
+```
+
+**Request**
+
+```json
+{
+  "name": "cucumber",
+  "description": "Cucumber is a very powerful testing framework written in the Ruby programming language",
+  "color": "ed14c5"
+}
+```
+
+**Response**
+
+```json
+{
+  "id": 208045946,
+  "node_id": "MDU6TGFiZWwyMDgwNDU5NDY=",
+  "url": "https://api.github.com/repos/josdem/webclient-workshop/labels/cucumber",
+  "name": "cucumber",
+  "description": "Cucumber is a very powerful testing framework written in the Ruby programming language",
+  "color": "ed14c5"
+  "default": true
+}
+```
+
+Label model definition
+
+```java
+package com.jos.dem.retrofit.workshop.model;
+
+public class Label {
+
+  private String name;
+  private String description;
+  private String color;
+
+  public Label(String name, String description, String color){
+    this.name = name;
+    this.description = description;
+    this.color = color;
+  }
+
+  public void setName(String name){
+    this.name = name;
+  }
+
+  public String getName(){
+    return name;
+  }
+
+  public void setDescription(String description){
+    this.description = description;
+  }
+
+  public String getDescription(){
+    return description;
+  }
+
+  public void setColor(String color){
+    this.color = color;
+  }
+
+  public String getColor(){
+    return color;
+  }
+
+}
+```
+
+Label service definition
+
+```java
+package com.jos.dem.retrofit.workshop.service;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.POST;
+
+import com.jos.dem.retrofit.workshop.model.Label;
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+
+public interface LabelService {
+
+  @POST("repos/josdem/retrofit-workshop/labels")
+  Call<LabelResponse> create(@Body Label label);
+
+}
+```
+
+Label service implementation
+
+```java
+package com.jos.dem.retrofit.workshop.service.impl;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.retrofit.workshop.model.Label;
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+import com.jos.dem.retrofit.workshop.service.LabelService;
+
+@Service
+public class LabelServiceImpl implements LabelService {
+
+  @Autowired
+  private Retrofit retrofit;
+
+  private LabelService labelService;
+
+  @PostConstruct
+  public void setup() {
+    labelService = retrofit.create(LabelService.class);
+  }
+
+  public Call<LabelResponse> create(@Body Label label) {
+    return labelService.create(label);
+  }
+
+}
+```
+
 [Return to the main article](/techtalk/spring#Spring_Boot)
