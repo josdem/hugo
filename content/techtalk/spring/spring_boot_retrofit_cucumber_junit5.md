@@ -543,4 +543,490 @@ public class LabelCreateTest extends LabelIntegrationTest {
 }
 ```
 
+## PATCH
+
+Example: Update a label
+
+**Endpoint**
+
+```bash
+PATCH /repos/:owner/:repo/labels/:current_name
+```
+
+**Request**
+
+```json
+{
+  "name": "spock",
+  "description": "Spock is a testing and specification framework for Java and Groovy applications. It is beautiful and highly expressive",
+  "color": "ff0000"
+}
+```
+
+**Response**
+
+```bash
+Status: 200 OK
+```
+
+Label service definition updated:
+
+```java
+package com.jos.dem.retrofit.workshop.service;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+import retrofit2.http.POST;
+import retrofit2.http.PATCH;
+
+import com.jos.dem.retrofit.workshop.model.Label;
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+
+public interface LabelService {
+
+  @POST("repos/josdem/retrofit-workshop/labels")
+  Call<LabelResponse> create(@Body Label label);
+  @PATCH("repos/josdem/retrofit-workshop/labels/{name}")
+  Call<LabelResponse> update(@Body Label label, @Path("name") String name);
+
+}
+
+```
+
+Label service implementation updated:
+
+
+```java
+package com.jos.dem.retrofit.workshop.service.impl;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.retrofit.workshop.model.Label;
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+import com.jos.dem.retrofit.workshop.service.LabelService;
+
+@Service
+public class LabelServiceImpl implements LabelService {
+
+  @Autowired
+  private Retrofit retrofit;
+
+  private LabelService labelService;
+
+  @PostConstruct
+  public void setup() {
+    labelService = retrofit.create(LabelService.class);
+  }
+
+  public Call<LabelResponse> create(@Body Label label) {
+    return labelService.create(label);
+  }
+
+  public Call<LabelResponse> update(@Body Label label, @Path("name") String name) {
+    return labelService.update(label, name);
+  }
+
+
+}
+```
+
+Feature definition updated:
+
+```gherkin
+Feature: As a user I want to create a label
+  Scenario: User call to create new label with cucumer as a name
+    Then User creates a new label
+  Scenario: User call to update label to spock as a name
+    Then User updates label
+```
+
+Label update test definition:
+
+```java
+package com.jos.dem.retrofit.workshop;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Then;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+import com.jos.dem.retrofit.workshop.service.LabelService;
+import com.jos.dem.retrofit.workshop.util.LabelCreator;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class LabelUpdateTest extends LabelIntegrationTest {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Autowired
+  private LabelService labelService;
+  @Autowired
+  private LabelCreator labelCreator;
+
+  @Before
+  public void setup() {
+    log.info("Before any test execution");
+  }
+
+  @Then("User updates label")
+  public void shouldUpdateLabel() throws Exception {
+    log.info("Running: User updates label");
+
+    Call<LabelResponse> call = labelService.update(labelCreator.update(), "cucumber");
+    Response<LabelResponse> response = call.execute();
+    LabelResponse label = response.body();
+
+    assertAll("response",
+      () -> assertEquals("spock", label.getName()),
+      () -> assertEquals("ff0000", label.getColor())
+    );
+  }
+
+  @After
+  public void tearDown() {
+    log.info("After all test execution");
+  }
+
+}
+```
+## DELETE
+
+Example: Delete a label
+
+**Endpoint**
+
+```bash
+DELETE /repos/:owner/:repo/labels/:name
+```
+
+**Response**
+
+```bash
+Status: 204 No Content
+```
+
+Label service definition updated:
+
+```java
+package com.jos.dem.retrofit.workshop.service;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+import retrofit2.http.POST;
+import retrofit2.http.PATCH;
+import retrofit2.http.DELETE;
+
+import com.jos.dem.retrofit.workshop.model.Label;
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+
+public interface LabelService {
+
+  @POST("repos/josdem/retrofit-workshop/labels")
+  Call<LabelResponse> create(@Body Label label);
+  @PATCH("repos/josdem/retrofit-workshop/labels/{name}")
+  Call<LabelResponse> update(@Body Label label, @Path("name") String name);
+  @DELETE("repos/josdem/retrofit-workshop/labels/{name}")
+  Call<Response<Void>> delete(@Path("name") String name);
+
+}
+```
+
+Label service implementation updated:
+
+```java
+package com.jos.dem.retrofit.workshop.service.impl;
+
+import retrofit2.Call;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.http.Body;
+import retrofit2.http.Path;
+
+
+import javax.annotation.PostConstruct;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.retrofit.workshop.model.Label;
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+import com.jos.dem.retrofit.workshop.service.LabelService;
+
+@Service
+public class LabelServiceImpl implements LabelService {
+
+  @Autowired
+  private Retrofit retrofit;
+
+  private LabelService labelService;
+
+  @PostConstruct
+  public void setup() {
+    labelService = retrofit.create(LabelService.class);
+  }
+
+  public Call<LabelResponse> create(@Body Label label) {
+    return labelService.create(label);
+  }
+
+  public Call<LabelResponse> update(@Body Label label, @Path("name") String name) {
+    return labelService.update(label, name);
+  }
+
+  public Call<Response<Void>> delete(@Path("name") String name) {
+    return labelService.delete(name);
+  }
+
+}
+```
+
+Feature definition updated:
+
+```gherkin
+Feature: As a user I want to create a label
+  Scenario: User call to create new label with cucumer as a name
+    Then User creates a new label
+  Scenario: User call to update label to spock as a name
+    Then User updates label
+  Scenario: User call to delete a label spock as a name
+    Then User deletes label
+```
+
+Label delete test definition:
+
+```java
+package com.jos.dem.retrofit.workshop;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.Then;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.retrofit.workshop.model.LabelResponse;
+import com.jos.dem.retrofit.workshop.service.LabelService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class LabelDeleteTest extends LabelIntegrationTest {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Autowired
+  private LabelService labelService;
+
+  @Before
+  public void setup() {
+    log.info("Before any test execution");
+  }
+
+  @Then("User deletes label")
+  public void shouldUpdateLabel() throws Exception {
+    log.info("Running: User updates label");
+
+    Call<Response<Void>> call = labelService.delete("spock");
+    Response<Response<Void>> response = call.execute();
+    assertEquals(204, response.code());
+
+  }
+
+  @After
+  public void tearDown() {
+    log.info("After all test execution");
+  }
+
+}
+```
+
+**Important:** Regarding to ordering feature test execution Cucumber features run in alphabetical order by feature file name.
+
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify --build=maven parameter in the spring init command line:
+
+```bash
+spring init --dependencies=webflux,lombok --build=maven --language=java spring-boot-web-client
+```
+
+This is the `pom.xml` file generated along with Cucumber and Junit as dependencies on it added manualy:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jos.dem</groupId>
+  <artifactId>retrofit</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>retorfit-workshop</name>
+  <description>Retrofit configuration and examples to consume GitHub API v3</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.1.RELEASE</version>
+    <relativePath/>
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.surefire.version>2.18</maven.surefire.version>
+    <maven-compiler.version>3.8.0</maven-compiler.version>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>1.8</java.version>
+    <cucumber.version>1.2.5</cucumber.version>
+    <junit.jupiter.version>5.3.1</junit.jupiter.version>
+    <retrofit.version>2.5.0</retrofit.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>retrofit</artifactId>
+      <version>${retrofit.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.squareup.retrofit2</groupId>
+      <artifactId>converter-gson</artifactId>
+      <version>${retrofit.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.7</version>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-java</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-junit</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>info.cukes</groupId>
+      <artifactId>cucumber-spring</artifactId>
+      <version>${cucumber.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.0</version>
+        <configuration>
+          <source>1.8</source>
+          <target>1.8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven.surefire.version}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+```
+
+To browse the project go [here](https://github.com/josdem/retrofit-workshop), to download the project:
+
+```bash
+git clone https://github.com/josdem/retrofit-workshop.git
+```
+
+To run the project with Gradle:
+
+```bash
+gradle test
+```
+
+To run the project with Maven:
+
+```bash
+mvn test
+```
+
 [Return to the main article](/techtalk/spring#Spring_Boot)
