@@ -446,7 +446,6 @@ import retrofit2.Retrofit;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
 
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
@@ -607,7 +606,6 @@ import retrofit2.Retrofit;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
 
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
@@ -767,7 +765,6 @@ import retrofit2.Retrofit;
 import retrofit2.http.Body;
 import retrofit2.http.Path;
 
-
 import javax.annotation.PostConstruct;
 
 import org.springframework.stereotype.Service;
@@ -875,13 +872,13 @@ public class LabelDeleteTest extends LabelIntegrationTest {
 
 **Using Maven**
 
-You can do the same using Maven, the only difference is that you need to specify --build=maven parameter in the spring init command line:
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
 
 ```bash
 spring init --dependencies=webflux,lombok --build=maven --language=java spring-boot-web-client
 ```
 
-This is the `pom.xml` file generated along with Cucumber and Junit as dependencies on it added manualy:
+This is the `pom.xml` file generated along with Retrofit, Cucumber and Junit as dependencies on it added manualy:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
