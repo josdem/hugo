@@ -11,7 +11,7 @@ Junit 5 is the next generation of Junit, it requires Java 8 since it was born as
 Using Gradle, you need to create a `build.gradle` file with the following structure:
 
 ```groovy
-def junitJupiterVersion = '5.3.1'
+def junitJupiterVersion = '5.3.2'
 
 apply plugin: "java"
 
@@ -51,7 +51,7 @@ If you want to use Maven, please create the following `pom.xml` structure in the
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-    <junit.jupiter.version>5.3.1</junit.jupiter.version>
+    <junit.jupiter.version>5.3.2</junit.jupiter.version>
   </properties>
 
   <dependencies>
@@ -74,7 +74,7 @@ If you want to use Maven, please create the following `pom.xml` structure in the
       <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.0</version>
+        <version>2.22.1</version>
       </plugin>
     </plugins>
   </build>
@@ -118,15 +118,15 @@ You can write dependent assertions, so if an assertion fails the subsequent code
 @DisplayName("Should show how works dependent assertions")
 void shouldTestDependentAssertions(){
   assertAll("person",
-               () -> {
-                 String nickname = person.getNickname();
-                 assertNotNull(nickname);
+    () -> {
+      String nickname = person.getNickname();
+      assertNotNull(nickname, "Nickname should not be null");
 
-                 assertAll("nickname",
-                   () -> assertTrue(nickname.startsWith("j")),
-                   () -> assertTrue(nickname.endsWith("m"))
-                 );
-            });
+      assertAll("nickname",
+        () -> assertTrue(nickname.startsWith("j"), "Should starts with j"),
+        () -> assertTrue(nickname.endsWith("m"), "Should ends with m")
+      );
+    });
 }
 ```
 
