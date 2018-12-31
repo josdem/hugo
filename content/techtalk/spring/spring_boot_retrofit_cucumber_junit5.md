@@ -86,7 +86,7 @@ GET /user/public_emails
 ]
 ```
 
-First, we are going to create our model definition:
+Here is our model definition:
 
 ```java
 package com.jos.dem.retrofit.workshop.model;
@@ -116,7 +116,7 @@ public class PublicEmail {
 }
 ```
 
-Next step is to create service definition:
+Now, we are going to create service definition:
 
 ```java
 package com.jos.dem.retrofit.workshop.service;
@@ -174,7 +174,7 @@ public class UserServiceImpl implements UserService {
 }
 ```
 
-Retrofit turns your HTTP API into a Java interface and in the `@PostConstruct` Retrofit is creating UserService based in that interface.
+Retrofit turns your HTTP API into a Java interface and in the `@PostConstruct` Retrofit is creating a user service implementation based in that interface.
 
 ```java
 package com.jos.dem.retrofit.workshop;
@@ -231,7 +231,7 @@ public class RetrofitWorkshopApplication {
 }
 ```
 
-Here we are using the Authorization header in order to set the API Github token. This strategy is using a Interceptor with request headers. This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token that you can generate from here: [Personal Access Token](https://github.com/settings/tokens). Once you have that token you need to provide it to our Spring Boot project, this time we will use an `application.properties` file, please go to the [Project Configuration](https://github.com/josdem/retrofit-workshop/wiki/Properties-File) for getting more information. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
+Here we are using the Authorization header in order to set the API Github token. This strategy is using a Interceptor with request headers. This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires a PAT [Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Once you have that token you need to provide it to our Spring Boot project, this time we will use an `application.properties` file, please go to the [Project Configuration](https://github.com/josdem/retrofit-workshop/wiki/Properties-File) for getting more information. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
 package com.jos.dem.retrofit.workshop;
