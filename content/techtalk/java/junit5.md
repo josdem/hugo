@@ -30,6 +30,8 @@ test {
   reports {
     html.enabled = true
   }
+
+  systemProperties = System.properties
 }
 ```
 
