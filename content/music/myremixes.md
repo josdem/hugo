@@ -6,6 +6,13 @@ title = "DJing"
 +++
 Music has been always part of my life, as a child I use to connect speakers, microphones and walkmans together. Now is my hobbie create mixes and upload them to the cloud, so anyone who enjoy music as I do can listen and share them. **NOTE:** I’m going to put my mixes from 2010 to nowadays, I hope you enjoy them.
 
+## Tension - Trance (2018)
+
+<iframe width="660" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Ftension%2F" frameborder="0" ></iframe>
+<br/>
+
+Arnej - Dust In The Wind (Original Mix) + Arnej - Ping Pong (Original Mix) + Jerome Isma-Ae Feat. Ilan Bluestone - Tension (Original Mix) + John O'Callaghan - Never Fade Away feat. Lo-Fi Sugar (Andy Duguid Remix) + Julian Jeweil -  Air Conditionne (Sebastien Leger Long Mix) + Gabriel & Dresden - Tracking Treasure Down (Original Mix) + Andain - Promises (Myon & Shane 54 Summer Of Love Mix) + David Guetta Feat. Kelly Rowland - When Love Takes Over (Albin Myers Remix)
+
 
 ## Plymouth - Trance (2018)
 
