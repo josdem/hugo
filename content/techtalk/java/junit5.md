@@ -342,6 +342,90 @@ class AssumptionShowTest {
 }
 ```
 
+**Conditions**
+
+A test may be enable if meets some system environment conditions
+
+```java
+@Test
+@DisplayName("Should run if DEV environment")
+@EnabledIfSystemProperty(named = "environment", matches = "DEV")
+void shouldRunIfDevelopmentEnvironment(){
+  log.info("Running: Conditions if is development");
+  assertTrue(true);
+}
+```
+
+JUnit Jupiter provides the ability to enable test depending on the evaluation of a script configured via the `@EnabledIf`
+
+```java
+@Test
+@DisplayName("Should run if Monday")
+@EnabledIf("(java.time.LocalDate).now().getDayOfWeek() == 'MONDAY'")
+void shouldRunIfMonday() {
+  log.info("Running: Conditions if is Monday");
+  assertTrue(true);
+}
+```
+
+A test may be enabled on a particular operating system via the `@EnabledOnOs`
+
+```java
+@Test
+@EnabledOnOs({ LINUX, MAC })
+void shouldRunOnLinuxOrMac() {
+  log.info("Running: Conditions if Linux or Mac");
+  assertTrue(true);
+}
+```
+
+Here is the complete Junit test case:
+
+```java
+package com.jos.dem.junit;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.condition.OS.MAC;
+import static org.junit.jupiter.api.condition.OS.LINUX;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.condition.EnabledIf;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
+
+import java.util.logging.Logger;
+
+class ConditionsShowTest {
+
+  private final Logger log = Logger.getLogger(ConditionsShowTest.class.getName());
+
+  @Test
+  @DisplayName("Should run if DEV environment")
+  @EnabledIfSystemProperty(named = "environment", matches = "DEV")
+  void shouldRunIfDevelopmentEnvironment(){
+    log.info("Running: Conditions if is development");
+    assertTrue(true);
+  }
+
+  @Test
+  @DisplayName("Should run if Monday")
+  @EnabledIf("(java.time.LocalDate).now().getDayOfWeek() == 'MONDAY'")
+  void shouldRunIfMonday() {
+    log.info("Running: Conditions if is Monday");
+    assertTrue(true);
+  }
+
+  @Test
+  @EnabledOnOs({ LINUX, MAC })
+  void shouldRunOnLinuxOrMac() {
+    log.info("Running: Conditions if Linux or Mac");
+    assertTrue(true);
+  }
+
+}
+```
+
 To browse the code go [here](https://github.com/josdem/junit5-workshop), to download the code:
 
 ```bash
@@ -351,13 +435,13 @@ git clone git@github.com:josdem/junit5-workshop.git
 To run the project using Gradle:
 
 ```bash
-gradle test
+gradle -Denvironment=DEV test
 ```
 
 To run the project using Maven:
 
 ```bash
-mvn test
+mvn -Denvironment=DEV test
 ```
 
 
