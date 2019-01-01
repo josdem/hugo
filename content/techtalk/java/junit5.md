@@ -36,7 +36,7 @@ test {
 }
 ```
 
-In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params and engine version, `jupiter-engine` is only required at runtime. Also `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html), with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does. Last but not least `systemProperties = System.properties` allows Gradle to read system properties values.
+In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params and engine version, `jupiter-engine` is only required at runtime. Also in `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html), with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does. Last but not least `systemProperties = System.properties` allows Gradle to read system properties values.
 
 If you want to use Maven, please create the following `pom.xml` structure in the root project:
 
@@ -61,6 +61,12 @@ If you want to use Maven, please create the following `pom.xml` structure in the
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-params</artifactId>
       <version>${junit.jupiter.version}</version>
       <scope>test</scope>
     </dependency>
