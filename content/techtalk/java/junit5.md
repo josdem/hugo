@@ -467,12 +467,80 @@ void shouldAllowCertainEnumAsParameters(Environment environment) {
 `@CsvFileSource` lets you use CSV files.
 
 ```java
+@DisplayName("Allow csv files as parameters")
 @ParameterizedTest
 @CsvFileSource(resources = "/csv.txt", numLinesToSkip = 1)
-void testWithCsvFileSource(int id, String nickname, String email) {
+void shouldAllowCsvFileSource(int id, String nickname, String email) {
   assertNotNull(id);
   assertTrue(nickname.length() > 3);
   assertTrue(email.endsWith("email.com"));
+}
+```
+
+Here is our `csv.txt` file
+
+```csv
+id,name,email
+1,eric,erich@email.com
+2,martin,martinv@email.com
+3,josdem,josdem@email.com
+```
+
+Here is the complete Junit test case:
+
+```java
+package com.jos.dem.junit;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.EnumSet;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvFileSource;
+
+import java.util.logging.Logger;
+
+class ParameterizedShowTest {
+
+  private PalindromeEvaluator evaluator = new PalindromeEvaluator();
+  private final Logger log = Logger.getLogger(ParameterizedShowTest.class.getName());
+
+  @DisplayName("Allow string as parameters")
+  @ParameterizedTest
+  @ValueSource(strings = { "radar", "anitalavalatina" })
+  void shouldAllowStringAsParamters(String word) {
+    log.info("Running: Parameters as string");
+    assertTrue(evaluator.isPalindrome(word));
+  }
+
+  @DisplayName("Allow enum as parameters")
+  @ParameterizedTest
+  @EnumSource(Environment.class)
+  void shouldAllowEnumAsParameters(Environment environment) {
+    assertNotNull(environment);
+  }
+
+
+  @DisplayName("Allow certain enum as parameters")
+  @ParameterizedTest
+  @EnumSource(value = Environment.class, names = {"DEVELOPMENT", "QA"})
+  void shouldAllowCertainEnumAsParameters(Environment environment) {
+    assertTrue(EnumSet.of(Environment.DEVELOPMENT, Environment.QA).contains(environment));
+  }
+
+  @DisplayName("Allow csv files as parameters")
+  @ParameterizedTest
+  @CsvFileSource(resources = "/csv.txt", numLinesToSkip = 1)
+  void shouldAllowCsvFileSource(int id, String nickname, String email) {
+    assertNotNull(id);
+    assertTrue(nickname.length() > 3);
+    assertTrue(email.endsWith("email.com"));
+  }
+
 }
 ```
 
