@@ -524,7 +524,6 @@ class ParameterizedShowTest {
     assertNotNull(environment);
   }
 
-
   @DisplayName("Allow certain enum as parameters")
   @ParameterizedTest
   @EnumSource(value = Environment.class, names = {"DEVELOPMENT", "QA"})
