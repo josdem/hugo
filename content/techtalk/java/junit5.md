@@ -428,6 +428,54 @@ class ConditionsShowTest {
 }
 ```
 
+**Parameterized Tests**
+
+Parameterized tests make it possible to run a test multiple times with different arguments. Here we are defining a string parameters using `@ValueSource`.
+
+```java
+@DisplayName("Allow string as parameters")
+@ParameterizedTest
+@ValueSource(strings = { "radar", "anitalavalatina" })
+void shouldAllowStringAsParamters(String word) {
+  log.info("Running: Parameters as string");
+  assertTrue(evaluator.isPalindrome(word));
+}
+```
+
+`@EnumSource` provides a convenient way to use Enum constants.
+
+```java
+@DisplayName("Allow enum as parameters")
+@ParameterizedTest
+@EnumSource(Environment.class)
+void shouldAllowEnumAsParameters(Environment environment) {
+  assertNotNull(environment);
+}
+```
+
+The annotation provides an optional names parameter that lets you specify which constants shall be used.
+
+```java
+@DisplayName("Allow certain enum as parameters")
+@ParameterizedTest
+@EnumSource(value = Environment.class, names = {"DEVELOPMENT", "QA"})
+void shouldAllowCertainEnumAsParameters(Environment environment) {
+  assertTrue(EnumSet.of(Environment.DEVELOPMENT, Environment.QA).contains(environment));
+}
+```
+
+`@CsvFileSource` lets you use CSV files.
+
+```java
+@ParameterizedTest
+@CsvFileSource(resources = "/csv.txt", numLinesToSkip = 1)
+void testWithCsvFileSource(int id, String nickname, String email) {
+  assertNotNull(id);
+  assertTrue(nickname.length() > 3);
+  assertTrue(email.endsWith("email.com"));
+}
+```
+
 To browse the code go [here](https://github.com/josdem/junit5-workshop), to download the code:
 
 ```bash
