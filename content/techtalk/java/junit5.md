@@ -21,6 +21,7 @@ repositories {
 
 dependencies {
   testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+  testCompile "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
   testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 }
 
@@ -35,7 +36,7 @@ test {
 }
 ```
 
-In dependencies section we are defining Junit Jupiter api, engine version, `jupiter-engine` is only required at runtime. Also `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html), with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does.
+In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params and engine version, `jupiter-engine` is only required at runtime. Also `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html), with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does. Last but not least `systemProperties = System.properties` allows Gradle to read system properties values.
 
 If you want to use Maven, please create the following `pom.xml` structure in the root project:
 
