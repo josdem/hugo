@@ -217,7 +217,7 @@ Finally, let's get a user by UUID
 
 <img src="/img/techtalks/spring/swagger3.png">
 
-To download the project:
+To browse the code go [here](https://github.com/josdem/swagger-spring), to download the project:
 
 ```bash
 git clone https://github.com/josdem/swagger-spring.git
