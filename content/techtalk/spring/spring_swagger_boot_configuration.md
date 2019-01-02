@@ -13,7 +13,7 @@ Swagger is a simple yet powerful representation of your RESTful API. With Swagge
 Then execute this command in your terminal:
 
 ```groovy
-spring init --dependencies=web,lombok --language=java --build=gradle boot-configuration
+spring init --dependencies=web --language=java --build=gradle boot-configuration
 ```
 
 This is the `build.gradle` generated file:
@@ -21,38 +21,37 @@ This is the `build.gradle` generated file:
 
 ```groovy
 buildscript {
-	ext {
-    springBootVersion = '1.5.12.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+  ext {
+    springBootVersion = '2.1.1.RELEASE'
+    springfoxVersion = '2.9.2'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
 }
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 repositories {
-  mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-  compile 'org.springframework.boot:spring-boot-starter-web'
-  compile 'org.projectlombok:lombok'
-  testCompile 'org.springframework.boot:spring-boot-starter-test'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
+  implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 ```
 
 Then add swagger dependencies in your `build.gradle` file
 
 ```groovy
-ext {
-  springfoxVersion = '2.8.0'
-}
-
 dependencies {
   compile "io.springfox:springfox-swagger2:${springfoxVersion}"
   compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
@@ -88,11 +87,9 @@ public class SwaggerConfig {
 }
 ```
 
-Swagger 2 is enabled through the `@EnableSwagger2` annotation. After the [Docket](http://springfox.github.io/springfox/javadoc/2.7.0/index.html?springfox/documentation/spring/web/plugins/Docket.html) bean is defined, its `select()` method returns an instance of `ApiSelectorBuilder`, which provides a way to control the endpoints exposed by Swagger.
+Swagger 2 is enabled through the `@EnableSwagger2` annotation. With [Docket](http://springfox.github.io/springfox/javadoc/2.7.0/index.html?springfox/documentation/spring/web/plugins/Docket.html) bean definition we are able to provide methods for configuration, it has a `select()` method and returns an instance of `ApiSelectorBuilder`, which provides a way to control the endpoints exposed by Swagger. Predicates in `RequestHandlers` can be configured with the help of `RequestHandlerSelectors` and `PathSelectors`. Using `any()` for both will make documentation for your entire API available through Swagger.
 
-Predicates for selection of `RequestHandlers` can be configured with the help of `RequestHandlerSelectors` and `PathSelectors`. Using `any()` for both will make documentation for your entire API available through Swagger.
-
-## Controller Documentation
+**Controller Documentation**
 
 Now it is time to see the most common annotations in a `RestController` in order to create our API documentation.
 
@@ -200,19 +197,21 @@ public class UserCommand {
 }
 ```
 
-`@ApiModel` Provides additional information about Swagger models. This translates to the [Model Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/1.2.md#527-model-object) in the Swagger Specification.
+`@ApiModel` Provides additional information about Swagger models. This translates to the [Model Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/1.2.md#527-model-object) in the Swagger Specification. The endpoint to create request to your API using Swagger is: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-The endpoint to create request to your API using Swagger is: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+**Swagger Results**
 
-## Swagger Results
-
-**View**
+Let's start creating a new user.
 
 <img src="/img/techtalks/spring/swagger1.png">
+
+As you can see we have a Json as response with the new user created. So now we can call to retieve all users
 
 **Get all users**
 
 <img src="/img/techtalks/spring/swagger2.png">
+
+Finally, let's get a user by UUID
 
 **Get user by uuid**
 
