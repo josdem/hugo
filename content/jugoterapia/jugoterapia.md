@@ -22,7 +22,8 @@ He cambiado de la versión target a Nougat 7.1 e Ice Cream Sandwich 4.0.3 como m
 
 Espero que te sea útil.
 
-* [API](/jugoterapia/api)
+* [API Description](/jugoterapia/api)
+* [Swagger Documentation](https://webflux.josdem.io/swagger-ui.html)
 * [Jugoterapia Play Store](https://play.google.com/store/apps/details?id=com.jugoterapia.josdem)
 
 **Jugoterapia es Opensource**
