@@ -12,11 +12,11 @@ Recetas para preparar jugos naturales que te darán alternativas para curar, ene
 
 Los jugos son una forma sencilla de suministrar al organismo vitaminas y minerales y sustancias benéficas para la salud. Son, además, una manera deliciosa de consumir vegetales al natural, pues los jugos curativos no sólo son de frutas, sino que las verduras pueden ser perfectamente combinables para darle al cuerpo lo que el cuerpo necesita.
 
-Esta aplicación para Android concentra 80 diferentes recetas de jugos y verdura que ayudarán a mejorar tu salud e incluso ayuda a sanar algunas enfermedades. Pasa el tip a quien amas búscando que esté más sano.
+Esta aplicación para Android concentra 81 diferentes recetas de jugos de frutas y verduras que ayudarán a mejorar tu salud e incluso ayuda a sanar algunas enfermedades. Pasa el tip a quien amas búscando que esté más sano.
 
 **Aportaciones Recientes**
 
-La versión Beta está dispoinible. Lo cual significa es una versión estable. 
+La versión Beta está dispoinible. Lo cual significa es una versión estable.
 
 He cambiado de la versión target a Nougat 7.1 e Ice Cream Sandwich 4.0.3 como mínimo, esto después de probar la aplicación en dispositivos con ésa versión de sistema operativo.
 
@@ -28,6 +28,6 @@ Espero que te sea útil.
 **Jugoterapia es Opensource**
 
 * [Jugoterapia Mobile](https://github.com/josdem/jugoterapia-mobile)
-* [Jugoterapia Server](https://github.com/josdem/jugoterapia-spring-boot)
+* [Jugoterapia Server](https://github.com/josdem/jugoterapia-webflux)
 
 [Home](/)
