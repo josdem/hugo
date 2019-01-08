@@ -3,10 +3,11 @@ title = "Spring Boot Internationalization"
 categories = ["techtalk", "code","spring boot"]
 tags = ["josdem", "techtalks","programming","technology","spring boot"]
 date = "2016-06-06T14:56:49-05:00"
-description = "Spring Boot uses the MessageSource configured with a MessageSourceAutoConfiguration. These settings can be easily changed in the application.properties file"
+description = "In this technical post, we will see how to manage different languages at your Spring Boot application aka. internationalization"
 +++
 
-Spring Boot uses the MessageSource configured with a MessageSourceAutoConfiguration. These settings can be easily changed in the `application.properties` file:
+In this technical post, we will see how to manage different languages at your Spring Boot application aka. internationalization. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Spring Boot uses `MessageSource` configured with a MessageSourceAutoConfiguration. These settings can be easily changed in the `application.properties` file:
+
 
 ```
 spring.messages.basename=i18n/messages
@@ -17,225 +18,202 @@ Once we create that line, you can define your application messages in the file `
 ```
 user.hello=Hello from internationalization!
 ```
+Spring boot create a `MessageSource` bean and is automatically added to the context, so you can use it in your services. Let's create a new project using this command:
 
-Spring boot create a MessageSource bean and is automatically added to the context, so you can use it in your services, let's create a service that use it.
-
-```groovy
-package com.jos.dem.springboot.internationalization.services
-
-interface LocaleService {
-  String getMessage(String code)
-}
+```bash
+spring init --dependencies=web --build=gradle --language=java spring-boot-internationalization
 ```
 
-This is the implementation:
+Then we can create a `LocaleResolver` class that will be responsible for defining user’s locale.
 
-```groovy
-package com.jos.dem.springboot.internationalization.services.impl
+```java
+package com.jos.dem.springboot.internationalization.helper;
 
-import org.springframework.context.MessageSource
-import org.springframework.stereotype.Service
-import org.springframework.beans.factory.annotation.Autowired
+import java.util.List;
+import java.util.Arrays;
+import java.util.Locale;
 
-import com.jos.dem.springboot.internationalization.services.LocaleService
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver;
 
-@Service
-class LocaleServiceImpl implements LocaleService {
+import javax.servlet.http.HttpServletRequest;
 
-  @Autowired
-  MessageSource messageSource
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-  String getMessage(String code){
-    messageSource.getMessage(code, null, new Locale("en"))
+@Component
+public class LocaleResolver extends AcceptHeaderLocaleResolver {
+
+  private static final List<Locale> LOCALES = Arrays.asList(new Locale("en"), new Locale("es"));
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Override
+  public Locale resolveLocale(HttpServletRequest request) {
+    String language = request.getHeader("Accept-Language");
+    if (language == null || language.isEmpty()) {
+      return Locale.getDefault();
+    }
+    List<Locale.LanguageRange> list = Locale.LanguageRange.parse(language);
+    Locale locale = Locale.lookup(list, LOCALES);
+    return locale;
   }
 
 }
 ```
 
-As you can see we are creating an abstraction to use message source, so we only need to pass as parameter the message code. Here we are using it in a controller:
+That's it, here we have two locales supported: en and es. The locale should be passed in the header called "Accept-Language". In Spring Boot we can read that header using `HttpServletRequest`, please consider the following controller:
 
-```groovy
-package com.jos.dem.springboot.internationalization.controller
 
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.beans.factory.annotation.Autowired
+```java
+package com.jos.dem.springboot.internationalization.controller;
 
-import com.jos.dem.springboot.internationalization.services.LocaleService
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.servlet.http.HttpServletRequest;
+import com.jos.dem.springboot.internationalization.services.LocaleService;
 
 @RestController
 class InternationalizationController {
 
   @Autowired
-  LocaleService localeService
+  private LocaleService localeService;
 
   @RequestMapping("/")
-  String index(){
-    localeService.getMessage('user.hello')
+  public String index(HttpServletRequest request){
+    return localeService.getMessage("user.hello", request);
   }
 
 }
 ```
 
-We can run our project as follow:
+As you can see we are creating an abstraction to use locale service and will be responsible for choosing right message according to specified locale.
 
-```bash
-gradle bootRun
-```
+```java
+package com.jos.dem.springboot.internationalization.services;
 
-To download the project:
+import javax.servlet.http.HttpServletRequest;
 
-```bash
-git clone https://github.com/josdem/spring-boot-internationalization.git
-git fetch
-git checkout feature/specific-locale
-```
-
-If you need to detect the locale from the client, then you need to create this implementation:
-
-```groovy
-package com.jos.dem.springboot.internationalization.helper
-
-import org.springframework.stereotype.Component
-import org.springframework.web.servlet.i18n.AcceptHeaderLocaleResolver
-
-import javax.servlet.http.HttpServletRequest
-
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
-@Component
-class LocaleResolver extends AcceptHeaderLocaleResolver {
-
-  private static final List<Locale> LOCALES = [new Locale("en"), new Locale("es")]
-
-  Logger log = LoggerFactory.getLogger(this.class)
-
-  @Override
-  Locale resolveLocale(HttpServletRequest request) {
-    if (!request.getHeader('Accept-Language')) {
-      return Locale.getDefault()
-    }
-    List<Locale.LanguageRange> list = Locale.LanguageRange.parse(request.getHeader('Accept-Language'))
-    Locale locale = Locale.lookup(list, LOCALES)
-    return locale
-  }
-
+public interface LocaleService {
+  String getMessage(String code, HttpServletRequest request);
 }
 ```
 
-That's it, from the request we are reading the `Accept-Language` so we can know what is the preferred user's language for displaying pages.
+Here is the implementation:
 
-So our `LocaleServiceImpl` now delegates the locale resolver to the previous class:
+```java
+package com.jos.dem.springboot.internationalization.services.impl;
 
-```groovy
-package com.jos.dem.springboot.internationalization.services.impl
+import org.springframework.stereotype.Service;
+import org.springframework.context.MessageSource;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.context.MessageSource
-import org.springframework.stereotype.Service
-import org.springframework.beans.factory.annotation.Autowired
+import javax.servlet.http.HttpServletRequest;
 
-import javax.servlet.http.HttpServletRequest
-
-import com.jos.dem.springboot.internationalization.helper.LocaleResolver
-import com.jos.dem.springboot.internationalization.services.LocaleService
+import com.jos.dem.springboot.internationalization.helper.LocaleResolver;
+import com.jos.dem.springboot.internationalization.services.LocaleService;
 
 @Service
-class LocaleServiceImpl implements LocaleService {
+public class LocaleServiceImpl implements LocaleService {
 
   @Autowired
-  MessageSource messageSource
+  private MessageSource messageSource;
   @Autowired
-  LocaleResolver localeResolver
+  private LocaleResolver localeResolver;
 
-  String getMessage(String code, HttpServletRequest request){
-    messageSource.getMessage(code, null, localeResolver.resolveLocale(request))
+  public String getMessage(String code, HttpServletRequest request){
+    return messageSource.getMessage(code, null, localeResolver.resolveLocale(request));
   }
 
 }
 ```
 
-Don't forget to create `message_es.properties` to detect messages.
+Under the resources folder we created two files: `src/main/resources/i18n/messages.properties` and `src/main/resources/i18n/messages_es.properties`. Here is the content of `messages.properties`:
+
+```properties
+user.hello=Hello from internationalization!
+```
+
+And here is content of `messages_es.properties`:
 
 ```properties
 user.hello=¡Hola Internacionalización!
 ```
 
-Here is our controller passing http request in order to get user language preferences.
-
-```groovy
-package com.jos.dem.springboot.internationalization.controller
-
-import org.springframework.web.bind.annotation.RestController
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.beans.factory.annotation.Autowired
-
-import javax.servlet.http.HttpServletRequest
-import com.jos.dem.springboot.internationalization.services.LocaleService
-
-@RestController
-class InternationalizationController {
-
-  @Autowired
-  LocaleService localeService
-
-  @RequestMapping("/")
-  String index(HttpServletRequest request){
-    localeService.getMessage('user.hello', request)
-  }
-
-}
-```
-
-Finally this is our [Spock](http://spockframework.org/) testing case, to cover functionality:
-
-```groovy
-package com.jos.dem.springboot.internationalization
-
-import javax.servlet.http.HttpServletRequest
-import com.jos.dem.springboot.internationalization.helper.LocaleResolver
-import spock.lang.Specification
-
-class LocaleResolverSpec extends Specification {
-
-  LocaleResolver resolver = new LocaleResolver()
-
-  void "should get locale default"(){
-    given:'A request'
-      HttpServletRequest request = Mock(HttpServletRequest)
-    when:'We call resolve'
-      Locale result = resolver.resolveLocale(request)
-    then:'We expect default'
-      Locale.getDefault() == result
-  }
-
-  void "should get en-US as locale"(){
-    given:'A request'
-      HttpServletRequest request = Mock(HttpServletRequest)
-    when:'We call resolve'
-      request.getHeader('Accept-Language') >> 'en-US,en;q=0.8'
-      Locale result = resolver.resolveLocale(request)
-    then:'We expect default'
-      result  == new Locale('en')
-  }
-
-  void "should get es-MX as locale"(){
-    given:'A request'
-      HttpServletRequest request = Mock(HttpServletRequest)
-    when:'We call resolve'
-      request.getHeader('Accept-Language') >> 'es-MX,en-US;q=0.7,en;q=0.3'
-      Locale result = resolver.resolveLocale(request)
-    then:'We expect default'
-      result  == new Locale('es')
-  }
-
-}
-```
-
-To run the project:
+Now you can run the project:
 
 ```bash
 gradle bootRun
+```
+
+In your browser go to this url: [http://localhost:8080/](http://localhost:8080) and you should see the message based in your browser language.
+
+Here is our Junit Jupiter testing case, to cover `LocaleResolver` functionality:
+
+```java
+package com.jos.dem.springboot.internationalization;
+
+import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+
+import org.mockito.Mock;
+import org.mockito.InjectMocks;
+import org.mockito.MockitoAnnotations;
+
+import com.jos.dem.springboot.internationalization.helper.LocaleResolver;
+
+class LocaleResolverTest {
+
+  @InjectMocks
+  private LocaleResolver resolver = new LocaleResolver();
+
+  @Mock
+  private HttpServletRequest request;
+
+  @BeforeEach
+  void setup() {
+    MockitoAnnotations.initMocks(this);
+  }
+
+  @Test
+  @DisplayName("should get locale default")
+  void shouldGetDefaultLocale() {
+    Locale result = resolver.resolveLocale(request);
+    assertEquals(Locale.getDefault(), result);
+  }
+
+  @Test
+  @DisplayName("should get en-US as locale")
+  void shodldGetEnLocale() {
+    when(request.getHeader("Accept-Language")).thenReturn("en-US,en;q=0.8");
+    Locale result = resolver.resolveLocale(request);
+    assertEquals(new Locale("en"), result);
+  }
+
+  @Test
+  @DisplayName("should get es-MX as locale")
+  void shouldGetEsLocale() {
+    when(request.getHeader("Accept-Language")).thenReturn("es-MX,en-US;q=0.7,en;q=0.3");
+    Locale result = resolver.resolveLocale(request);
+    assertEquals(new Locale("es"), result);
+  }
+
+}
+```
+
+To browse the code go [here](https://github.com/josdem/spring-boot-internationalization), to download the project:
+
+```bash
+git clone git@github.com:josdem/spring-boot-internationalization.git
 ```
 
 To run the test:
@@ -244,13 +222,4 @@ To run the test:
 gradle test
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-internationalization), to download the project
-
-```bash
-git clone https://github.com/josdem/spring-boot-internationalization.git
-git fetch
-git checkout feature/detect-locale
-```
-
 [Return to the main article](/techtalk/spring#Spring_Boot)
-
