@@ -68,8 +68,8 @@ That's it, here we have two locales supported: en and es. The locale should be p
 ```java
 package com.jos.dem.springboot.internationalization.controller;
 
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.servlet.http.HttpServletRequest;
@@ -81,7 +81,7 @@ class InternationalizationController {
   @Autowired
   private LocaleService localeService;
 
-  @RequestMapping("/")
+  @GetMapping("/")
   public String index(HttpServletRequest request){
     return localeService.getMessage("user.hello", request);
   }
