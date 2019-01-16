@@ -96,6 +96,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Boot WebClient](/techtalk/spring/spring_boot_webclient)
 * [Spring Boot WebClient Cucumber and Junit5](/techtalk/spring/webclient_cucumber_junit5)
 * [Spring Boot Multi-Module](/techtalk/spring/spring_webflux_modules)
+* [Spring Weblux Internationalization](/techtalk/spring/spring_webflux_internationalization)
 
 [Return to the main article](/techtalk/techtalks)
 
