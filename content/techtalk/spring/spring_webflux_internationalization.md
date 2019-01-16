@@ -12,6 +12,46 @@ In this technical post, we will see how to use different languages in your Sprin
 spring init --dependencies=webflux --build=gradle --language=java spring-webflux-internationalization
 ```
 
+This is the `build.gradle` generated file:
+
+```groovy
+buildscript {
+  ext {
+    springBootVersion = '2.1.2.RELEASE'
+  }
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+  }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.jos.dem.spring.webflux.internationalization'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('io.projectreactor:reactor-test')
+}
+```
+
+Then add Thymeleaf dependency to your `build.gradle` file
+
+```groovy
+implementation('org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE')
+```
+
 Spring Boot has an strategy interface for resolving messages, with support for internationalization of such messages.
 
 ```java
