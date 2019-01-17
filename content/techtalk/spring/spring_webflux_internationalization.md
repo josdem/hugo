@@ -285,6 +285,129 @@ Then go to this address: [http://localhost:8080](http://localhost:8080). To brow
 
 ```bash
 git clone git@github.com:josdem/spring-boot-internationalization.git
+git fetch
+git checkout thymeleaf
+```
+
+## REST internationalization
+
+If you need to use internationalization using REST api instead of Thymeleaf you need to do this changes to this project.
+
+```java
+package com.jos.dem.spring.webflux.internationalization.handler;
+
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.spring.webflux.internationalization.service.LocaleService;
+
+@RestController
+public class InternationalizationController {
+
+  @Autowired
+  private LocaleService localeService;
+
+  @GetMapping("/")
+  public String index(ServerWebExchange exchange) {
+    return localeService.getMessage("user.hello", exchange);
+  }
+
+}
+```
+
+Now we are using a locale service to resolve our messages.
+
+```java
+package com.jos.dem.spring.webflux.internationalization.service;
+
+import org.springframework.web.server.ServerWebExchange;
+
+public interface LocaleService {
+  String getMessage(String code, ServerWebExchange exchange);
+}
+```
+
+Here is the implementation
+
+```java
+package com.jos.dem.spring.webflux.internationalization.service.impl;
+
+import org.springframework.stereotype.Service;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.spring.webflux.internationalization.service.LocaleService;
+import com.jos.dem.spring.webflux.internationalization.helper.LocaleResolver;
+
+@Service
+public class LocaleServiceImpl implements LocaleService {
+
+  @Autowired
+  private MessageSource messageSource;
+  @Autowired
+  private LocaleResolver localeResolver;
+
+  @Override
+  public String getMessage(String code, ServerWebExchange exchange) {
+    LocaleContext localeContext = localeResolver.resolveLocaleContext(exchange);
+    return messageSource.getMessage(code, null, localeContext.getLocale());
+  }
+
+}
+```
+
+That't it, we are using the same locale resolver as Thymeleaf but now is a `@Component` so we can use `@Autowired` to inject it
+
+```java
+package com.jos.dem.spring.webflux.internationalization.helper;
+
+import java.util.List;
+import java.util.Locale;
+
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+import org.springframework.web.server.i18n.LocaleContextResolver;
+import org.springframework.context.i18n.LocaleContext;
+import org.springframework.context.i18n.SimpleLocaleContext;
+
+@Component
+public class LocaleResolver implements LocaleContextResolver {
+
+  @Override
+  public LocaleContext resolveLocaleContext(ServerWebExchange exchange) {
+    String language = exchange.getRequest().getHeaders().getFirst("Accept-Language");
+
+    Locale targetLocale = Locale.getDefault();
+    if (language != null && !language.isEmpty()) {
+      targetLocale = Locale.forLanguageTag(language);
+    }
+    return new SimpleLocaleContext(targetLocale);
+  }
+
+  @Override
+  public void setLocaleContext(ServerWebExchange exchange, LocaleContext localeContext) {
+    throw new UnsupportedOperationException("Not Supported");
+  }
+
+}
+```
+
+To run the project:
+
+```bash
+gradle bootRun
+```
+
+Then go to this address: [http://localhost:8080](http://localhost:8080). To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
+
+```bash
+git clone git@github.com:josdem/spring-boot-internationalization.git
+git fetch
+git checkout rest
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
