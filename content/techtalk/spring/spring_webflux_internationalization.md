@@ -291,7 +291,7 @@ git checkout thymeleaf
 
 ## REST internationalization
 
-If you need to use internationalization using REST api instead of Thymeleaf you need to do this changes to this project.
+If you need to use internationalization in a REST api instead of Thymeleaf, please consider this following changes.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.handler;
