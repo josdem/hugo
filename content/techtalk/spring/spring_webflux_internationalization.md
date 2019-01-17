@@ -317,7 +317,7 @@ public class InternationalizationController {
 }
 ```
 
-Now we are using a locale service to resolve our messages.
+Now we are using `@RestController` instead of `@Controller` and a locale service to resolve our messages.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.service;
@@ -360,7 +360,7 @@ public class LocaleServiceImpl implements LocaleService {
 }
 ```
 
-That't it, we are using the same locale resolver as Thymeleaf but now is a `@Component` so we can use `@Autowired` to inject it
+That's it, we are using the same locale resolver as Thymeleaf but now is a `@Component` so we can use `@Autowired` to inject it
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.helper;
