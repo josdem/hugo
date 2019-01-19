@@ -1,10 +1,56 @@
 +++
 date = "2015-12-10T15:33:18-06:00"
-title = "RESTClient, headers and data"
+title = "RESTClient with Groovy WSLite"
 categories = ["techtalk", "code","groovy"]
 tags = ["josdem", "techtalks", "programming", "technology", "Groovy", "Essential Concepts"]
-description = "Posting request using RESTClient from groovyx net"
+description = "Creating requests using RESTClient from Groovy WSLite"
 +++
+
+[Groovy-WSLite](https://github.com/jwagenleitner/groovy-wslite) is a library for Groovy that provides an easy way to consume SOAP and REST webservices. Let's consider the following [CURL](https://curl.haxx.se/) command:
+
+```bash
+curl https://weblux.josdem.io/sanity/ping
+```
+
+Response
+
+```bash
+pong
+```
+
+So using Groovy-WSLite we can create an script like this:
+
+```groovy
+#!/usr/bin/env groovy
+
+@Grab('com.github.groovy-wslite:groovy-wslite:1.1.3')
+
+import wslite.rest.RESTClient
+
+def sanityStarter(){
+  println 'Starting sanity check'
+  def client = new RESTClient("https://webflux.josdem.io/")
+  def response = client.get(path:'/sanity/ping')
+  assert 200 == response.statusCode
+  println 'Sanity check completed'
+}
+
+sanityStarter()
+```
+
+In order to execute previous script save it in a file named `sanityCheck.groovy` and provide the following privileges:
+
+```bash
+chmod 755 sanityCheck.groovy
+```
+
+Then you can execute this command:
+
+```bash
+./sanityCheck.groovy
+```
+
+## Post with Headers
 
 Let's consider the following curl command:
 
