@@ -53,7 +53,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Design Patterns](/techtalk/groovy/design_patterns)
  * [Kata String Calculator](/techtalk/groovy/kata_string_calculator)
  * [Working with Strings](/techtalk/groovy/working_with_strings)
- * [Rest client, headers and data](/techtalk/groovy/groovy_restclient)
+ * [Rest client with Groovy-WSLite](/techtalk/groovy/groovy_restclient)
  * [Bindable](/techtalk/groovy/bindable)
  * [Memoized](/techtalk/groovy/memoized)
 * [**Grails**](/techtalk/grails)
