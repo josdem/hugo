@@ -32,7 +32,7 @@ def sanityStarter(){
   def client = new RESTClient("https://webflux.josdem.io/")
   def response = client.get(path:'/sanity/ping')
   assert 200 == response.statusCode
-  println 'Sanity check completed'
+  println 'Up and running!'
 }
 
 sanityStarter()
