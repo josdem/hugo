@@ -1,5 +1,5 @@
 +++
-title =  "Travis Configuration"
+title =  "Travis CI Configuration"
 description = "Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub"
 date = "2019-02-02T13:42:30-05:00"
 tags = ["josdem", "techtalks","programming","technology"]
