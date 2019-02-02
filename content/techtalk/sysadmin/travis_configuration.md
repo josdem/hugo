@@ -57,7 +57,7 @@ Sonar login is an user token, in your Sonarqube account go to `User>My Account>S
 
 <img src="/img/techtalks/sysadmin/travis.png">
 
-Finally in your `.travis.yml` file  you need to add Gradle command to activate Sonarqube scanner process
+Finally in your `.travis.yml` file you need to add the command required to start Sonarqube scanner process
 
 ```yml
 language: java
