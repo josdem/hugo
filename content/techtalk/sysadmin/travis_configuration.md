@@ -53,7 +53,7 @@ Next step is to set three environment variables in your Travis project configura
 * SONAR_PROJECT
 * SONAR_URL
 
-Sonar login is an user token, in your Sonarqube account to go `User>My Account>Security` Your existing tokens are listed here, each with a Revoke button. Sonar project is Project Key defined in the Sonar project section and sonar url es your Sonar server.
+Sonar login is an user token, in your Sonarqube account go to `User>My Account>Security` Your existing tokens are listed here, each with a Revoke button. Sonar project is your Project Key defined in the Sonar project main section and sonar url is your Sonar server.
 
 <img src="/img/techtalks/sysadmin/travis.png">
 
