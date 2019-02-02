@@ -2,8 +2,8 @@
 title =  "Travis CI Configuration"
 description = "Travis CI is a hosted, distributed continuous integration service used to build and test software projects hosted at GitHub"
 date = "2019-02-02T13:42:30-05:00"
-tags = ["josdem", "techtalks","programming","technology"]
-categories = ["techtalk", "code"]
+tags = ["josdem", "techtalks","programming","technology","CI","Travis CI"]
+categories = ["techtalk", "code","sysadmin","CI"]
 +++
 
 [Travis](https://travis-ci.com/) is a hosted, distributed continuous integration service used to build and test software projects hosted at [GitHub](https://github.com/). Travis is configured by adding a file named `.travis.yml` which is a [YAML](https://en.wikipedia.org/wiki/YAML) format text file, to the root directory of the repository. This is the most basic example:
