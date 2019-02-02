@@ -174,6 +174,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Nginx Restrincting Access](/techtalk/sysadmin/nginx_restrincting_access)
  * [Launching an EC2 using CloudFormation](/techtalk/sysadmin/cloud_formation_ec2	)
  * [Spring Boot in Nginx Server](/techtalk/sysadmin/spring_boot_nginx)
+ * [Travis Configuration](/techtalk/sysadmin/travis_configuration)
 * [**Apache Camel**](/techtalk/camel)
   * [Mailbox Reader](/techtalk/camel/mailbox_reader)
 * [Python](/techtalk/python)
