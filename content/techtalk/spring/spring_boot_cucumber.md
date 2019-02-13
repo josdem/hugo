@@ -21,7 +21,9 @@ Here is the complete `build.gradle` file generated:
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '2.1.0.RELEASE'
+    springBootVersion = '2.1.2.RELEASE'
+    cucumberVersion = '1.2.5'
+    junitVersion = '5.4.0'
   }
   repositories {
     mavenCentral()
@@ -44,12 +46,24 @@ repositories {
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-tomcat')
   compileOnly('org.projectlombok:lombok')
-  testCompile('org.springframework.boot:spring-boot-starter-test')
-  testCompile('io.projectreactor:reactor-test')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('io.projectreactor:reactor-test')
 }
 ```
+
+Then add Junit5 and Cucumber dependencies
+
+```groovy
+testImplementation("info.cukes:cucumber-java:$cucumberVersion")
+testImplementation("info.cukes:cucumber-junit:$cucumberVersion")
+testImplementation("info.cukes:cucumber-spring:$cucumberVersion")
+testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
+testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
+```
+
 Now let's create a simple POJO retrieve information from an end point using Spring WebFlux.
 
 ```java
@@ -81,6 +95,7 @@ import reactor.core.publisher.Flux;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jos.dem.springboot.cucumber.model.Person;
@@ -90,6 +105,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @RestController
+@RequestMapping("/persons")
 public class PersonController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
@@ -97,13 +113,13 @@ public class PersonController {
   @Autowired
   private PersonService personService;
 
-  @GetMapping("/persons")
+  @GetMapping("/")
   public Flux<Person> findAll(){
     log.info("Calling find persons");
     return personService.getAll();
   }
 
-  @GetMapping("/persons/{nickname}")
+  @GetMapping("/{nickname}")
   public Mono<Person> findById(@PathVariable String nickname){
     log.info("Calling find person by nickname: " + nickname);
     return personService.getByNickname(nickname);
@@ -112,7 +128,7 @@ public class PersonController {
 }
 ```
 
-In order to complete our project base let's create `PersonService` to bring data:
+In order to complete our base project let's create `PersonService` to bring our person data:
 
 ```java
 package com.jos.dem.springboot.cucumber.service;
@@ -174,16 +190,6 @@ public class PersonServiceImpl implements PersonService {
 }
 ```
 
-Now all is set in our service, let's continue adding Cucumber and Junit as dependencies in our `build.gradle`:
-
-```groovy
-testCompile("info.cukes:cucumber-java:$cucumberVersion")
-testCompile("info.cukes:cucumber-junit:$cucumberVersion")
-testCompile("info.cukes:cucumber-spring:$cucumberVersion")
-testCompile("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
-```
-
 The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
@@ -201,35 +207,49 @@ public class CucumberTest {}
 Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition file `src/test/resources/person.feature`:
 
 ```gherkin
-Feature: Persons can be retrieved
-  Scenario: client makes call to GET persons
-    Then the client receives persons
+Feature: We can retrieve person data
+  Scenario: We can retrieve all persons
+    When I request all persons
+    Then I validate all persons
+  Scenario: We can retrieve specific person
+    When I request person by nickname "josdem"
+    Then I validate person data
 ```
 
-The next step is to create a class with a web client to call our get persons end-point:
+The next step is to create a class with a web client to create request to our persons end-point:
 
 ```java
 package com.jos.dem.springboot.cucumber;
 
-import com.jos.dem.springboot.cucumber.model.Person;
+import reactor.core.publisher.Mono;
+import reactor.core.publisher.Flux;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import reactor.core.publisher.Flux;
+import com.jos.dem.springboot.cucumber.model.Person;
 
 @ContextConfiguration(classes = DemoApplication.class)
 @WebAppConfiguration
-public class SpringIntegrationTest {
+public class PersonIntegrationTest {
 
   @Autowired
   private WebClient webClient;
 
-  Flux<Person> executeGet() throws Exception {
-    return webClient.get().uri("").retrieve()
+  Flux<Person> getPersons() throws Exception {
+    return webClient.get()
+      .uri("/persons/")
+      .retrieve()
     .bodyToFlux(Person.class);
+  }
+
+  Mono<Person> getPerson(String nickname) throws Exception {
+    return webClient.get()
+      .uri("/persons/" + nickname)
+      .retrieve()
+    .bodyToMono(Person.class);
   }
 
 }
@@ -254,7 +274,7 @@ public class DemoApplication {
 
   @Bean
   WebClient getWebClient() {
-    return WebClient.create("http://localhost:8080/persons");
+    return WebClient.create("http://localhost:8080/");
   }
 
 }
@@ -266,7 +286,7 @@ It is time to execute this command, so we can get our Spring Boot application up
 gradle bootRun
 ```
 
-Now let's create the method in the Java class to correspond to this test case scenario:
+Now let's create get persons test scenario
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -275,18 +295,40 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import com.jos.dem.springboot.cucumber.model.Person;
-
+import java.util.Date;
 import java.util.List;
 
-import cucumber.api.java.en.Then;
 import reactor.core.publisher.Flux;
 
-public class DefinitionIntegrationTest extends SpringIntegrationTest {
+import com.jos.dem.springboot.cucumber.model.Person;
 
-  @Then("^the client receives persons$")
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class GetPersonsTest extends PersonIntegrationTest {
+
+  private List<Person> persons;
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Before
+  public void setup() {
+    log.info("Before any test execution");
+  }
+
+  @When("I request all persons")
   public void shouldGetPersons() throws Exception {
-    List<Person> persons = executeGet().collectList().block();
+    log.info("Running: I request all persons at " + new Date());
+    persons = getPersons().collectList().block();
+  }
+
+  @Then("I validate all persons")
+  public void shouldValidatePersons() throws Exception {
+    log.info("Running: I validate all persons at " + new Date());
 
     assertEquals(5 , persons.size());
     assertAll("person",
@@ -298,10 +340,72 @@ public class DefinitionIntegrationTest extends SpringIntegrationTest {
     );
   }
 
+  @After
+  public void tearDown() {
+    log.info("After all test execution");
+  }
+
 }
 ```
 
-We can do a test run via Gradle task using command line as follow:
+And here is our get person test scenario
+
+```java
+package com.jos.dem.springboot.cucumber;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Date;
+
+import reactor.core.publisher.Flux;
+
+import com.jos.dem.springboot.cucumber.model.Person;
+
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.When;
+import cucumber.api.java.en.Then;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class GetPersonTest extends PersonIntegrationTest {
+
+  private Person person;
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Before
+  public void setup() {
+    log.info("Before any test execution");
+  }
+
+  @When("^I request person by nickname \"^\\s*\"$")
+  public void shouldGetPersonByNickname(String nickname) throws Exception {
+    log.info("Running: I request person by nickname at " + new Date());
+    person = getPerson(nickname).block();
+  }
+
+  @Then("I validate person data")
+  public void shouldValidatePersonData() throws Exception {
+    log.info("Running: I validate person data at " + new Date());
+
+    assertAll("person",
+      () -> assertEquals("josdem", person.getNickname()),
+      () -> assertEquals("joseluis.delacruz@gmail.com", person.getEmail())
+    );
+  }
+
+  @After
+  public void tearDown() {
+    log.info("After all test execution");
+  }
+
+}
+```
+
+We can test using Gradle with this command:
 
 ```bash
 gradle test
@@ -310,9 +414,9 @@ gradle test
 *Output:*
 
 ```bash
-:test > Executing test com.jos.dem.springboot.cucumber.CucumberTest
-BUILD SUCCESSFUL in 19s
-5 actionable tasks: 2 executed, 3 up-to-date
+> Task :test
+BUILD SUCCESSFUL in 5s
+5 actionable tasks: 5 executed
 ```
 
 **Using Maven**
@@ -342,7 +446,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.0.RELEASE</version>
+    <version>2.1.2.RELEASE</version>
     <relativePath/>
   </parent>
 
@@ -355,7 +459,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
     <maven.compiler.target>1.8</maven.compiler.target>
     <java.version>1.8</java.version>
     <cucumber.version>1.2.5</cucumber.version>
-    <junit.jupiter.version>5.2.0</junit.jupiter.version>
+    <junit.jupiter.version>5.4.0</junit.jupiter.version>
   </properties>
 
   <dependencies>
