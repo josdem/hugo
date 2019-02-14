@@ -419,35 +419,6 @@ BUILD SUCCESSFUL in 5s
 5 actionable tasks: 5 executed
 ```
 
-**Cucumber Tags**
-
-If you got many different feature files which cover different functionality of the application and  you want to execute only a specific feature file, you can use Cucumber tags from command line like this:
-
-```bash
-gradle -Dcucumber.options='--tags @SmokeTest' test
-```
-
-And this would be our feature file with `@SmokeTest` annotation:
-
-```gherkin
-@SmokeTest
-Feature: We can retrieve person data
-  Scenario: We can retrieve all persons
-    When I request all persons
-    Then I validate all persons
-  Scenario: We can retrieve specific person
-    When I request person by nickname "josdem"
-    Then I validate person data
-```
-
-Of course, you need to pass system properties variables from command line to the `gradle test` task in our `build.gradle` file
-
-```groovy
-test {
-  systemProperties = System.properties
-}
-```
-
 **Using Maven**
 
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
@@ -580,6 +551,41 @@ Finally this command to run our test scenario:
 
 ```bash
 mvn test
+```
+
+**Cucumber Tags**
+
+If you got many different feature files which cover different functionality of the application and  you want to execute only a specific feature file, you can use Cucumber tags from command line like this:
+
+```bash
+gradle -Dcucumber.options='--tags @SmokeTest' test
+```
+
+And this would be our feature file with `@SmokeTest` annotation:
+
+```gherkin
+@SmokeTest
+Feature: We can retrieve person data
+  Scenario: We can retrieve all persons
+    When I request all persons
+    Then I validate all persons
+  Scenario: We can retrieve specific person
+    When I request person by nickname "josdem"
+    Then I validate person data
+```
+
+**Note:** You need to pass system properties variables from command line to the `gradle test` task in order to do that, please add this lines to the `build.gradle` file
+
+```groovy
+test {
+  systemProperties = System.properties
+}
+```
+
+In case you are using Maven, use this command:
+
+```bash
+mvn -Dcucumber.options='--tags @SmokeTest' test
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-cucumber), to download the project:
