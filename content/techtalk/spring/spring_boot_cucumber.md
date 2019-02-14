@@ -8,7 +8,13 @@ description = "BDD (Behavior-driven development) is a technique very similar to 
 
 BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing. This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology.
 
-**Using Gradle**
+* [Spring Boot Cucumber with Gradle](#Gradle)
+* [Spring Boot Cucumber with Maven](#Maven)
+* [Spring Boot Cucumber with Tags](#Tags)
+
+<a name="Gradle">
+## Using Gradle
+</a>
 
 Let's start creating a new Spring Boot project with Webflux and Lombok as dependencies:
 
@@ -419,7 +425,9 @@ BUILD SUCCESSFUL in 5s
 5 actionable tasks: 5 executed
 ```
 
-**Using Maven**
+<a name="Maven">
+## Using Maven
+</a>
 
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
 
@@ -553,7 +561,9 @@ Finally this command to run our test scenario:
 mvn test
 ```
 
-**Cucumber Tags**
+<a name="Tags">
+## Cucumber Tags
+</a>
 
 If you got many different feature files which cover different functionality of the application and  you want to execute only a specific feature file, you can use Cucumber tags from command line like this:
 
