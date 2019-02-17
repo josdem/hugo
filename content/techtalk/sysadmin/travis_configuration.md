@@ -51,9 +51,8 @@ Next step is to set three environment variables in your Travis project configura
 
 * SONAR_LOGIN
 * SONAR_PROJECT
-* SONAR_URL
 
-Sonar login is an user token: In your Sonarqube account go to `User>My Account>Security` Your existing tokens are listed there. Sonar project is your Project Key defined in the Sonar project main section and sonar url is your Sonar server.
+Sonar login is an user token: In your Sonarqube account go to `User>My Account>Security` Your existing tokens are listed there. Sonar project is your Project Key defined in the Sonar project main section.
 
 <img src="/img/techtalks/sysadmin/travis.png">
 
@@ -63,10 +62,16 @@ Finally in your `.travis.yml` file you need to add the command required to start
 language: java
 jdk: openjdk8
 script:
-  - ./gradlew sonarqube
+  - ./gradlew test sonarqube
 ```
 
 [![Quality Gate Status](https://sonar.josdem.io/api/project_badges/measure?project=com.jos.dem.jugoterapia.webflux%3Ajugoterapia-webflux&metric=alert_status)](https://sonar.josdem.io/dashboard?id=com.jos.dem.jugoterapia.webflux%3Ajugoterapia-webflux)
+
+Do not forget to add Sonar server url to your `gradle.properties` file
+
+```properties
+systemProp.sonar.host.url=https://sonar.josdem.io/
+```
 
 To browse a project using Travis configuration go [here](https://github.com/josdem/jugoterapia-webflux).
 
