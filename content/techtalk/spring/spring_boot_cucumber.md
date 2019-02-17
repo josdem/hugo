@@ -568,7 +568,7 @@ mvn test
 If you got many different feature files which cover different functionality of the application and  you want to execute only a specific feature file, you can use Cucumber tags from command line like this:
 
 ```bash
-gradle -Dcucumber.options='--tags @SmokeTest' test
+gradle -Dcucumber.options="--tags @SmokeTest" test
 ```
 
 And this would be our feature file with `@SmokeTest` annotation:
@@ -595,7 +595,7 @@ test {
 In case you are using Maven, use this command:
 
 ```bash
-mvn -Dcucumber.options='--tags @SmokeTest' test
+mvn -Dcucumber.options="--tags @SmokeTest" test
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-cucumber), to download the project:
