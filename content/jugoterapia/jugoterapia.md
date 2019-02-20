@@ -25,7 +25,8 @@ In order to install this application you need to have installed Ice Cream 4.0.3 
 
 I hope you enjoy Jugoterapia as much as I did creating it for you.
 
-* [API Description](/jugoterapia/api)
+**More Information?**
+
 * [Swagger Documentation](https://webflux.josdem.io/swagger-ui.html)
 * [Jugoterapia Play Store](https://play.google.com/store/apps/details?id=com.jugoterapia.josdem)
 
