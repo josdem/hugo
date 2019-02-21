@@ -14,9 +14,9 @@ Juice and smoothie recipes provide alternatives to heal our body or boost energy
 
 <br/>
 
-Juices and smoothies are very effective ways to provide minerals, vitamins and essential elements to our body to be healthy. With Jugoterapia you will find several delicious fruit and vegetable combinations, they will provide an improve in your day to day life.
+Juices and smoothies are very effective ways to provide minerals, vitamins and essential elements to our body to be healthy. With Jugoterapia you will find several delicious fruit and vegetable combinations, they will provide an improvement in your day to day life.
 
-*This Android application has more than 100 recipes ready to help not only improving your health but also to heal your body in case of sickness. Share this application to everyone you love and you want well.*
+*This Android application has more than 100 recipes ready to help not only improve your health but also to heal your body in case of sickness. Share this application to everyone you love and you want well.*
 
 
 **What is new?**
