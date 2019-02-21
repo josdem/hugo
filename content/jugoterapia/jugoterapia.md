@@ -6,15 +6,15 @@ title = "Jugoterapia"
 description="Juices and smoothies recipes which provides alternatives to heal or boost our body"
 +++
 
-Juices and smoothies recipes which provides alternatives to heal or boost our body
+Juice and smoothie recipes provide alternatives to heal our body or boost energy levels
 
 |   |   |
 |---|---|
-|![jugoterapia](../../images/jugoterapia.png) | Every day more and more people are willing to have healthy and natural alternatives as source of nutrients since provide physical wellness. Maintain our body in a good shape and balance is not an easy task and even more complicated to restore it while sickness. A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables, kind of therapy to our body that helps among with other therapies to achieve happiness. This concept we called Jugoterapia.|
+|![jugoterapia](../../images/jugoterapia.png) | Every day more and more people are willing to have healthy and natural alternatives as source of nutrients to provide physical wellness. Maintain our body in a good shape and balance is not an easy task and even more complicated to restore it while sick. A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables, Jugoterapia is a kind of therapy that helps to achieve healthy style of life. This concept we call Jugoterapia.|
 
 <br/>
 
-Juices and smoothies are very effective ways to provide to our body minerals and vitamins, essential elements to be healthful. With Jugoterapia you will find several delicious combinations between fruits and vegetables, they will provide an improvement in your style of life.
+Juices and smoothies are very effective ways to provide minerals, vitamins and essential elements to our body to be healthy. With Jugoterapia you will find several delicious fruit and vegetables combinations, they will provide an improvement in your lifestyle.
 
 *This Android application has more than 100 recipes ready to help not only improving your health but also to heal your body in case of sickness. Share this application to everyone you love and you want well.*
 
