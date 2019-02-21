@@ -10,7 +10,7 @@ Juice and smoothie recipes provide alternatives to heal our body or boost energy
 
 |   |   |
 |---|---|
-|![jugoterapia](../../images/jugoterapia.png) | Every day more and more people are willing to have healthy and natural alternatives as source of nutrients to provide physical wellness. Maintain our body in a good shape and balance is not an easy task and even more complicated to restore it while sick. A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables, Jugoterapia is a kind of therapy that helps to achieve healthy style of life. This concept we call Jugoterapia.|
+|![jugoterapia](../../images/jugoterapia.png) | Every day more and more people are willing to have healthy and natural alternatives as source of nutrients to provide physical wellness. Maintain our body in a good shape and balance is not an easy task and even more complicated to restore it while sick. A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables, Jugoterapia is a kind of therapy that helps to achieve healthy lifestyle. This concept we call Jugoterapia.|
 
 <br/>
 
