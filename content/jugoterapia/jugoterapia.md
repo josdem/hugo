@@ -3,18 +3,18 @@ date = "2015-08-29T13:43:14-05:00"
 categories = ["projects","opensource"]
 tags = ["josdem", "projects","opensource"]
 title = "Jugoterapia"
-description="Juices and smoothies recipes which provides alternatives to heal or boost our body"
+description="Juice and smoothie recipes provide alternatives to heal our bodies and boost energy."
 +++
 
-Juice and smoothie recipes provide alternatives to heal our body or boost energy levels
+Juice and smoothie recipes provide alternatives to heal our bodies and boost energy.
 
 |   |   |
 |---|---|
-|![jugoterapia](../../images/jugoterapia.png) | Every day more and more people are willing to have healthy and natural alternatives as source of nutrients to provide physical wellness. Maintain our body in a good shape and balance is not an easy task and even more complicated to restore it while sick. A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables, Jugoterapia is a kind of therapy that helps to achieve healthy lifestyle. This concept we call Jugoterapia.|
+|![jugoterapia](../../images/jugoterapia.png) | Every day more and more people are willing to have healthy and natural alternatives as source of nutrients to provide physical wellness. Maintain our body in good shape and balance is not an easy task and even more complicated to restore it while sick. A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables. Jugoterapia is a kind of therapy that helps to achieve healthy lifestyle. This concept we call Jugoterapia.|
 
 <br/>
 
-Juices and smoothies are very effective ways to provide minerals, vitamins and essential elements to our body to be healthy. With Jugoterapia you will find several delicious fruit and vegetable combinations, they will provide an improvement in your day to day life.
+Juices and smoothies are very effective ways to provide minerals, vitamins and essential elements to our body to be healthy. With Jugoterapia you will find several delicious fruit and vegetable combinations that will improve your day to day life.
 
 *This Android application has more than 100 recipes ready to help not only improve your health but also to heal your body in case of sickness. Share this application to everyone you love and you want well.*
 
