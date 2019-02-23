@@ -6,9 +6,9 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code","ci","cd"]
 +++
 
-In this technical post we will cover the basic and essential commands in [Git](https://en.wikipedia.org/wiki/Git). Thank you [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) for all your creations and for making this developer world a best place to live.
+In this technical post we will cover the basic and essential commands in [Git](https://en.wikipedia.org/wiki/Git). Big Thank you [Linus Torvalds](https://en.wikipedia.org/wiki/Linus_Torvalds) for all your creations and for making this developer world a best place to live.
 
-The getting started recipe:
+**The getting started recipe**
 
 ```bash
 echo "# git-workshop" >> README.md
@@ -245,7 +245,7 @@ For a single file or
 git checkout .
 ```
 
-To undo all changes. To browse the project go [here](https://github.com/josdem/git-workshop), to download the project:
+To undo all changes. For a complete Git reference go [here](https://git-scm.com/docs). To browse the project go [here](https://github.com/josdem/git-workshop), to download the project:
 
 ```bash
 git@github.com:josdem/git-workshop.git
