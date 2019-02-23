@@ -245,7 +245,10 @@ For a single file or
 git checkout .
 ```
 
-To undo all changes.
+To undo all changes. To browse the project go [here](https://github.com/josdem/git-workshop), to download the project:
 
+```bash
+git@github.com:josdem/git-workshop.git
+```
 
 [Return to the main article](/techtalk/continuous_integration_delivery)
