@@ -167,6 +167,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Extreme Programming](/techtalk/best_practices/extreme_programming)
  * [SOLID Principles](/techtalk/best_practices/solid_principles)
 * [**Continuous Integration & Delivery**](/techtalk/continuous_integration_delivery)
+ * [Git Basics](/techtalk/cicd/git_basics)
  * [Building Software with Gradle](/techtalk/cicd/gradle)
 * [**Machine Learning**](/techtalk/machine_learning)
  * [Linear Regression](/techtalk/machine_learning/linear_regression)

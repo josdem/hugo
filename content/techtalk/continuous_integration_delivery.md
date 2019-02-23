@@ -40,6 +40,7 @@ It is essential that everybody involved in the process of delivering software is
 
 Finally, feedback is no good unless it is acted upon. This requires discipline and planning. When something needs doing, it is responsibility of the team decide on a course of action.
 
+* [Git Basics](/techtalk/cicd/git_basics)
 * [Building Software with Gradle](/techtalk/cicd/gradle)
 
 
