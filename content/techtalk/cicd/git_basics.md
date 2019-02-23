@@ -153,6 +153,26 @@ git pull origin branch_name
 
 That's it `git pull`, updates your current local branch with the latest changes from the remote server. `git fetch` never change or update any of your own local branches, it a is safe operation.
 
+**Ignore Files**
+
+Ignored files are usually build directories or generated files. It is a good practice ignore those files in order to do that you can simply create a file named `.gitignore` and add those files Git should ignore.
+
+```txt
+credentials.yml
+.classpath
+build/
+*.log
+**swp
+```
+
+For example:
+
+* `credentials.yml` Is a personal file with your username and password
+* `.classpath` A computer generated file
+* `build/` A computer generated directory
+* `*.log` An asterisk is a wildcard that matches zero or more characters
+* `**swp` Double asterisk to match directories anywhere in the repository
+
 **Log**
 
 The simpliest way to see your repository history is using this command:
@@ -160,5 +180,72 @@ The simpliest way to see your repository history is using this command:
 ```bash
 git log
 ```
+
+*Output*
+
+```bash
+commit 57b3fcd5985d5a905690154ff37d83753b2a0fcc
+Author: josdem <joseluis.delacruz@gmail.com>
+Date:   Sat Feb 23 09:24:32 2019 -0500
+
+    #1 Adding image
+
+commit fc5266ceb809a161d82db3b54c906efac846c1e3
+Author: josdem <joseluis.delacruz@gmail.com>
+Date:   Sat Feb 23 09:10:43 2019 -0500
+
+    #1 Changing file name
+
+commit 33d8a5feb6329c87f525685b39ce5e9b076cd3f3
+Author: josdem <joseluis.delacruz@gmail.com>
+Date:   Sat Feb 23 09:07:58 2019 -0500
+
+    #1 Deleting Chapter 1 in txt format
+
+commit 89365cd47aee0a534f2bb65fd1ebbd1600f6d0e3
+Author: josdem <joseluis.delacruz@gmail.com>
+```
+
+To see only the commits of a certain author
+
+```bash
+git log --author=josdem
+```
+
+Compressed log where each commit has a single line
+
+```bash
+git log --pretty=oneline
+```
+
+*Output*
+
+```bash
+57b3fcd5985d5a905690154ff37d83753b2a0fcc #1 Adding image
+fc5266ceb809a161d82db3b54c906efac846c1e3 #1 Changing file name
+33d8a5feb6329c87f525685b39ce5e9b076cd3f3 #1 Deleting Chapter 1 in txt format
+89365cd47aee0a534f2bb65fd1ebbd1600f6d0e3 #1 Adding Chapter 1 file
+3929d19b3183f36a2c22350b621267142d0f713d #1 Adding first line in Chapter 1
+b2fefdbc93de041541b2c1cda0da26e8369a9cd8 #1 Adding Chapter 1
+306b0c78b8062ed59c81d3262916d827f61a64f7 Adding Git ignore file
+52d856f9c2b44352abd77487891cdfba4af0f3b9 first commit
+```
+
+*Undo Local Changes*
+
+In case you did something wrong, you can replace local changes using this command
+
+```bash
+git checkout -- filename
+```
+
+For a single file or
+
+```bash
+git checkout .
+```
+
+To undo all changes.
+
 
 [Return to the main article](/techtalk/continuous_integration_delivery)
