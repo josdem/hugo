@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will cover required configuration we need to setup in our servers in order to execute shell commands or shell scripts using [Jenkins](https://jenkins.io/). You can execute shell in Jenkins as build steps like this.
+In this technical post we will cover required configuration we need to setup in our servers in order to execute shell commands or shell scripts using [Jenkins](https://jenkins.io/). You can execute shell in Jenkins as a build step like this.
 
 ```bash
 echo "Hello World!"
@@ -62,7 +62,7 @@ jenkins@b612:~$ ssh josdem@sonar.josdem.io "/home/josdem/jenkins/hello.sh"
 Hello World!
 ```
 
-In order to execute previous command you need to create a ssh password less login strategy using [SSH Keygen](https://www.ssh.com/ssh/keygen/)
+In order to execute previous command you need to create a ssh password-less login strategy using [SSH Keygen](https://www.ssh.com/ssh/keygen/)
 
 ```bash
 ssh-keygen -t rsa
@@ -94,7 +94,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-Now you are good to go and copy `/home/jenkins/.ssh/id_rsa.pub` to `remote_server/.ssh/authorized_keys`, Then In Jenkins you can setup that shell command:
+Now you are good to go and copy `/home/jenkins/.ssh/id_rsa.pub` to `remote_server/.ssh/authorized_keys`, Then in Jenkins you can setup that shell command.
 
 ```bash
 ssh josdem@sonar.josdem.io "/home/josdem/jenkins/hello.sh"
