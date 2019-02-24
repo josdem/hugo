@@ -155,7 +155,7 @@ That's it `git pull`, updates your current local branch with the latest changes 
 
 **Ignore Files**
 
-Ignored files are usually build directories or generated files. It is a good practice ignore those files in order to do that you can simply create a file named `.gitignore` and add those files Git should ignore.
+Ignored files are usually build directories and generated files. It is a good practice to ignore those files, you simply need to create a file named `.gitignore` and add path plus file names.
 
 ```txt
 credentials.yml
@@ -231,7 +231,7 @@ b2fefdbc93de041541b2c1cda0da26e8369a9cd8 #1 Adding Chapter 1
 52d856f9c2b44352abd77487891cdfba4af0f3b9 first commit
 ```
 
-*Undo Local Changes*
+**Undo Local Changes**
 
 In case you did something wrong, you can replace local changes using this command
 
