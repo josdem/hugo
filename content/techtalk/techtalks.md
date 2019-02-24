@@ -169,6 +169,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
 * [**Continuous Integration & Delivery**](/techtalk/continuous_integration_delivery)
  * [Git Basics](/techtalk/cicd/git_basics)
  * [Building Software with Gradle](/techtalk/cicd/gradle)
+ * [Jenkins Shell Execution](/techtalk/cicd/jenkins_shell_execution)
 * [**Machine Learning**](/techtalk/machine_learning)
  * [Linear Regression](/techtalk/machine_learning/linear_regression)
  * [Linear Algebra](/techtalk/machine_learning/linear_algebra)

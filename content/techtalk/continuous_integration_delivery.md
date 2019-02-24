@@ -42,6 +42,7 @@ Finally, feedback is no good unless it is acted upon. This requires discipline a
 
 * [Git Basics](/techtalk/cicd/git_basics)
 * [Building Software with Gradle](/techtalk/cicd/gradle)
+* [Jenkins Shell Execution](/techtalk/cicd/jenkins_shell_execution)
 
 
 [Return to the main article](/techtalk/techtalks)
