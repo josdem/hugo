@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will cover required configuration we need to setup in our servers in order to execute shell commands or shell scripts using [Jenkins](https://jenkins.io/). You can execute shell in Jenkins as a build step like this.
+In this technical post we will cover required configuration we need to setup in our servers in order to execute shell commands or shell scripts using [jenkins](https://jenkins.io/). you can execute shell in jenkins as a build step like this.
 
 ```bash
 echo "Hello World!"
