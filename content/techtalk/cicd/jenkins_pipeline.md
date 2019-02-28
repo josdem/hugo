@@ -35,7 +35,7 @@ Now lets instruct to Jenkins to obtain your pipeline from Source Control Managem
 
 ![SCM definition](/img/techtalks/cicd/pipeline.png)
 
-So if you save it and click in build now button you should be able to see this execution flow in the console output
+So, if you save it and click on `Build Now` button you should be able to see this execution flow in the console output
 
 ```bash
 Started by user josdem
