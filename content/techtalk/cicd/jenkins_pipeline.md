@@ -28,7 +28,7 @@ where:
 
 * `agent` Instructs Jenkins to allocate an executor
 * `echo` Writes simple string in the console output
-* `stage` A step in our continuous integration process
+* `stage` A phase in our continuous integration process
 * `steps` All steps within our stage
 
 Now lets instruct to Jenkins to obtain your pipeline from Source Control Management (SCM) in this case [Github](https://github.com/)
@@ -76,7 +76,7 @@ pipeline {
     }
     stage ('Start Jugoterapia Webflux Job') {
       steps {
-        echo 'Stoping Jugoterapia'
+        echo 'Starting Jugoterapia Build Job'
         build job: 'jugoterapia-webflux'
         echo 'Done!'
       }
