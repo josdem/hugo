@@ -101,7 +101,7 @@ where:
 
 ![Jugoterapia Pipeline](/img/techtalks/cicd/pipeline1.png)
 
-For more information how to execute shell commands or shell scripts using Jenkins, please go to my previous post [Jenkins Shell Execution](/techtalk/cicd/jenkins_shell_execution). To browse the project go [here](https://github.com/josdem/pipeline-workshop), to download the project:
+For more information how to execute shell commands or shell scripts using Jenkins, please go to my previous post [Jenkins Shell Execution](/techtalk/cicd/jenkins_shell_execution). To browse the project go [here](https://github.com/josdem/pipeline-workshop) and [here](https://github.com/josdem/jugoterapia-pipeline), to download the project:
 
 ```bash
 git clone git@github.com:josdem/pipeline-workshop.git
