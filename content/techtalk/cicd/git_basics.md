@@ -261,7 +261,7 @@ git checkout .
 To undo all changes. For a complete Git reference go [here](https://git-scm.com/docs). To browse the project go [here](https://github.com/josdem/git-workshop), to download the project:
 
 ```bash
-git@github.com:josdem/git-workshop.git
+git clone git@github.com:josdem/git-workshop.git
 ```
 
 [Return to the main article](/techtalk/continuous_integration_delivery)
