@@ -31,7 +31,7 @@ where:
 * `stage` A step in our continuous integration process
 * `steps` All steps within our stage
 
-Now lets instruct to Jenkins to obtain your pipeline from Source Control Management (SCM) in this case Github.
+Now lets instruct to Jenkins to obtain your pipeline from Source Control Management (SCM) in this case [Github](https://github.com/)
 
 ![SCM definition](/img/techtalks/cicd/pipeline.png)
 
