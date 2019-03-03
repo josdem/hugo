@@ -21,7 +21,9 @@ Juices and smoothies are very effective ways to provide minerals, vitamins and e
 
 **What is new?**
 
-This application is available in English and Spanish and it really depends on your Android language configuration. If your language plaform is Spanish then Jugoterapia will be in Spanish otherwhise in English. If you take a cool juice or smoothie picture, please feel free to share it with me, you can find my contact information in the landing page in this web site.
+* `1.2.5` Firebase remote config has been added in this release, so now we are able to set testing and production environments on the fly.
+* `1.2.4` This application is available in English and Spanish and it really depends on your Android language configuration. If your language plaform is Spanish then Jugoterapia will be in Spanish otherwhise in English. If you take a cool juice or smoothie picture, please feel free to share it with me, you can find my contact information in the landing page in this web site.
+
 
 In order to install this application you need to have installed Ice Cream 4.0.3 or newest.
 
@@ -36,5 +38,7 @@ I hope you enjoy Jugoterapia as much as I did creating it for you.
 
 * [Jugoterapia Mobile](https://github.com/josdem/jugoterapia-mobile)
 * [Jugoterapia Server](https://github.com/josdem/jugoterapia-webflux)
+
+As we enjoy great advantages from inventions of others, we should be glad of an opportunity to serve others by any invention of ours; and this we should do freely and generously. ~ Benjamin Franklin
 
 [Home](/)
