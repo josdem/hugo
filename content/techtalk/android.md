@@ -21,6 +21,7 @@ Here you can find some important topics regarding to Android development:
 * [Oauth2 Google Sign-In](/techtalk/android/oauth2_google)
 * [Appium Automation](/techtalk/android/appium_automation)
 * [Appium Cucumber and Junit5](/techtalk/android/appium_cucumber_junit5)
+* [Firebase Remote Config](/techtalk/android/firebase_remote_config)
 
 
 [Return to the main article](/techtalk/techtalks)

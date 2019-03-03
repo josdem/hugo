@@ -128,6 +128,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Oauth2 Google Sign-In](/techtalk/android/oauth2_google)
  * [Appium Automation](/techtalk/android/appium_automation)
  * [Appium Cucumber and Junit5](/techtalk/android/appium_cucumber_junit5)
+ * [Firebase Remote Config](/techtalk/android/firebase_remote_config)
 * [**Ruby**](/techtalk/ruby)
  * [Control Structure](/techtalk/ruby/ruby_control_structure)
  * [Smart Collections](/techtalk/ruby/ruby_smart_collections)
