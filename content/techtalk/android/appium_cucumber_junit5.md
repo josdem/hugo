@@ -58,28 +58,42 @@ dependencies {
 }
 ```
 
-Now, lets create a helper to take care about Android capabilities.
+Now, lets create a service to take care about Android capabilities.
 
 ```java
-package com.jos.dem.appium.helper;
+package com.jos.dem.appium.service;
+
+import java.io.IOException;
+import org.openqa.selenium.remote.DesiredCapabilities;
+
+public interface AppiumService {
+
+  void setCapabilities(DesiredCapabilities capabilities) throws IOException;
+
+}
+```
+
+Here is our service implementation:
+
+```java
+package com.jos.dem.appium.service.impl;
+
+import java.io.File;
+import java.io.IOException;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
+
 import com.jos.dem.appium.util.ConfigurationReader;
+import com.jos.dem.appium.service.AppiumService;
 
-public class CapabilitiesHelper {
+public class AppiumServiceImpl implements AppiumService {
 
-  private  DesiredCapabilities capabilities = new DesiredCapabilities();
-
-  public CapabilitiesHelper(){
+  public void setCapabilities(DesiredCapabilities capabilities) throws IOException {
     capabilities.setCapability("deviceName", ConfigurationReader.getProperty("device.name"));
     capabilities.setCapability("platformName", ConfigurationReader.getProperty("device.platform"));
     capabilities.setCapability("platformVersion", ConfigurationReader.getProperty("device.version"));
     capabilities.setCapability("appPackage", ConfigurationReader.getProperty("application.package"));
     capabilities.setCapability("appActivity", ConfigurationReader.getProperty("application.activity"));
-  }
-
-  public DesiredCapabilities getCapabilities(){
-    return capabilities;
   }
 
 }
@@ -99,7 +113,7 @@ appium.sleep=2
 appium.timeout=20
 ```
 
-**Note:** If you want to know how to read a properties file using Apache Commons, please go to my technical post [here](/techtalk/java/configuration_apache_commons/). The JUnit runner uses the JUnit framework to run Cucumber test cases, so we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
+**Note:** If you want to know more about Appium capabilities go [here](http://appium.io/docs/en/writing-running-appium/caps/). If you want to know how to read a properties file using Apache Commons, please go to my technical post [here](/techtalk/java/configuration_apache_commons/). The JUnit runner uses the JUnit framework to run Cucumber test cases, so we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
 package com.jos.dem.appium;
@@ -256,17 +270,20 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 
+import com.jos.dem.appium.service.AppiumService;
+import com.jos.dem.appium.service.impl.AppiumServiceImpl;
 import com.jos.dem.appium.util.ConfigurationReader;
-import com.jos.dem.appium.helper.CapabilitiesHelper;
 
 public class BaseStep {
 
   private static AndroidDriver<AndroidElement> driver;
-  private static CapabilitiesHelper helper = new CapabilitiesHelper();
+  private static AppiumService appiumService = new AppiumServiceImpl();
+  private static DesiredCapabilities capabilities = new DesiredCapabilities();
 
   public static AndroidDriver<AndroidElement> getDriver() throws IOException {
     if(driver == null){
-      driver = new AndroidDriver(new URL(ConfigurationReader.getProperty("appium.server")), helper.getCapabilities());
+      appiumService.setCapabilities(capabilities);
+      driver = new AndroidDriver(new URL(ConfigurationReader.getProperty("appium.server")), capabilities);
       driver.manage().timeouts().implicitlyWait(Long.parseLong(ConfigurationReader.getProperty("appium.wait")), TimeUnit.SECONDS);
     }
     return driver;
@@ -276,6 +293,10 @@ public class BaseStep {
     WebDriverWait wait =  new WebDriverWait(driver, Long.parseLong(ConfigurationReader.getProperty("appium.timeout")));
     wait.until(ExpectedConditions.visibilityOf(element));
     return element;
+  }
+
+  public static void stopDriver(){
+    driver.quit();
   }
 
 }
