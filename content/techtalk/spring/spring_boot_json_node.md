@@ -410,8 +410,11 @@ import java.io.InputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import javax.annotation.PostConstruct;
+
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import org.springframework.stereotype.Service;
 
@@ -422,6 +425,11 @@ import com.jos.dem.springboot.json.node.service.UnmarshallerService;
 public class UnmarshallerServiceImpl implements UnmarshallerService {
 
   private ObjectMapper mapper = new ObjectMapper();
+
+  @PostConstruct
+  public void setup() throws Exception {
+    mapper.registerModule(new JavaTimeModule());
+  }
 
   public Event read(File jsonFile) throws IOException {
     InputStream inputStream = new FileInputStream(jsonFile);
@@ -477,12 +485,15 @@ public class UnmarshallerServiceTest {
 
   private Event event;
   private Message message;
+  private Message[] messages;
 
   @BeforeEach
   void init() throws Exception {
     log.info("Getting Event from ClockIn json file");
     File jsonFile = new File("src/main/resources/ClockIn.json");
     event = service.read(jsonFile);
+    Message[] messages = event.getMessages();
+    message = messages[0];
   }
 
   @Test
@@ -493,7 +504,7 @@ public class UnmarshallerServiceTest {
     assertAll("event",
       () -> assertEquals("fbe07c89-ffa7-4c86-9832-5f75cf765737", event.getBatchId(), "Should get batch id"),
       () -> assertEquals("EmployeeClockIn", event.getEventType(), "Should get event type"),
-      () -> assertEquals(OffsetDateTime.parse("2019-03-09T07:36:43-05:00"), event.getPublishedAt(), "Should get published at time")
+      () -> assertEquals(OffsetDateTime.parse("2019-03-09T12:36:43Z"), event.getPublishedAt(), "Should get published at time")
     );
 
   }
@@ -503,14 +514,9 @@ public class UnmarshallerServiceTest {
   void shouldGetMessageFromEvent() throws Exception {
     log.info("Running: Validate Message values from event at {}", new Date());
 
-    Message[] messages = event.getMessages();
-    message = messages[0];
-
-    assertEquals("1", messages.length, "Should contain one message");
-
     assertAll("message",
       () -> assertEquals("4aeaa175-e46d-42eb-83d3-cd02865d4863", message.getMessageId(), "Should get message id"),
-      () -> assertEquals(OffsetDateTime.parse("2019-03-09T07:36:43-05:00"), event.getPublishedAt(), "Should get published at time")
+      () -> assertEquals(OffsetDateTime.parse("2019-03-09T12:36:43Z"), event.getPublishedAt(), "Should get published at time")
     );
 
   }
@@ -527,7 +533,7 @@ public class UnmarshallerServiceTest {
       () -> assertEquals("josdem", data.get("nickname").textValue(), "Should get Nickname"),
       () -> assertEquals(1196, data.get("employeeNumber").intValue(), "Should get Employee Number"),
       () -> assertEquals("joseluis.delacruz@gmail.com", data.get("email").textValue(), "Should get Email"),
-      () -> assertEquals("2019-03-09T07:36:43-05:00", data.get("clockInDateTime"), "Should get clockIn time")
+      () -> assertEquals("2019-03-09T07:36:43-05:00", data.get("clockInDateTime").textValue(), "Should get clockIn time")
     );
 
   }
@@ -538,6 +544,18 @@ public class UnmarshallerServiceTest {
   }
 
 }
+```
+
+To run the project with Gradle:
+
+```bash
+gradle test
+```
+
+To run the project with Maven:
+
+```bash
+mvn test
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-json-node), to download the project:
