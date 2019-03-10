@@ -45,11 +45,49 @@ dependencies {
 }
 ```
 
-Now let's add Junit5  dependency:
+Now let's add Junit5 dependencies and support:
 
 ```groovy
-testImplementation "org.junit.jupiter:junit-jupiter-api:5.4.0"
-testRuntime "org.junit.jupiter:junit-jupiter-engine:5.4.0"
+plugins {
+  id 'org.springframework.boot' version '2.1.3.RELEASE'
+  id 'java'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+def junitJupiterVersion = '5.4.0'
+
+group = 'com.jos.dem.springboot.json.node'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
+repositories {
+  mavenCentral()
+}
+
+dependencies {
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  compileOnly('org.projectlombok:lombok')
+  annotationProcessor('org.projectlombok:lombok')
+  testImplementation('org.springframework.boot:spring-boot-starter-test'){
+    exclude group: 'junit', module: 'junit'
+  }
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+  testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+  testImplementation 'io.projectreactor:reactor-test'
+  testCompile 'org.junit.platform:junit-platform-commons:1.4.0'
+  testCompile 'org.junit.platform:junit-platform-launcher:1.4.0'
+}
+
+test {
+  useJUnitPlatform()
+}
 ```
 
 **From Json to JsonNode**
@@ -66,14 +104,14 @@ Please, consider this test case to validate our transformation to JsonNode.
 
 ```java
 @Test
-@DisplayName("Validate Json to Json Node transformation")
+@DisplayName("Validate Json to JsonNode transformation")
 void shouldGetJsonNodeFromJson() throws Exception {
   log.info("Running: Validate json to json node transformation at {}", new Date());
 
   assertAll("node",
     () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
     () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
-    () -> assertEquals("email", node.get("email").textValue(), "should get email")
+    () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
   );
 
 }
@@ -88,10 +126,12 @@ package com.jos.dem.springboot.json.node.model;
 
 import lombok.Setter;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
 @Setter
 @Getter
+@NoArgsConstructor
 @AllArgsConstructor
 public class Person {
   private Integer id;
@@ -104,7 +144,7 @@ Here is our test case
 
 ```java
 @Test
-@DisplayName("Validate Json Node to Person transformation")
+@DisplayName("Validate JsonNode to Person transformation")
 void shouldGetPersonFromJsonNode() throws Exception {
   log.info("Running: Validate json to json node transformation at {}", new Date());
 
@@ -113,7 +153,7 @@ void shouldGetPersonFromJsonNode() throws Exception {
   assertAll("person",
     () -> assertEquals(1196, person.getId(), "Should get id"),
     () -> assertEquals("josdem", person.getNickname(), "Should get nickname"),
-    () -> assertEquals("email", person.getEmail(), "should get email")
+    () -> assertEquals("joseluis.delacruz@gmail.com", person.getEmail(), "should get email")
   );
 
 }
@@ -126,7 +166,7 @@ Now, let's validate a [POJO](https://en.wikipedia.org/wiki/Plain_old_Java_object
 
 ```java
 @Test
-@DisplayName("Validate Person to Json Node transformation")
+@DisplayName("Validate Person to JsonNode transformation")
 void shouldGetJsonNodeFromPerson() throws Exception {
   log.info("Running: Validate person to json node transformation at {}", new Date());
   Person person = new Person(1196, "josdem","joseluis.delacruz@gmail.com");
@@ -135,7 +175,7 @@ void shouldGetJsonNodeFromPerson() throws Exception {
   assertAll("person",
     () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
     () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
-    () -> assertEquals("email", node.get("email").textValue(), "should get email")
+    () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
   );
 
 }
@@ -155,13 +195,14 @@ void shouldGetJsonNodeFromArguments() throws Exception {
   String email = "joseluis.delacruz@gmail.com";
 
   JsonNode node = mapper.createObjectNode();
-  ((ObjectNode) node).put("id", 2016);
-  ((ObjectNode) node).put("name", "baeldung.com");
+  ((ObjectNode) node).put("id", 1196);
+  ((ObjectNode) node).put("nickname", "josdem");
+  ((ObjectNode) node).put("email", "joseluis.delacruz@gmail.com");
 
   assertAll("person",
     () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
     () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
-    () -> assertEquals("email", node.get("email").textValue(), "should get email")
+    () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
   );
 
 }
@@ -206,14 +247,14 @@ public class JsonNodeTest {
 
 
   @Test
-  @DisplayName("Validate Json to Json Node transformation")
+  @DisplayName("Validate Json to JsonNode transformation")
   void shouldGetJsonNodeFromJson() throws Exception {
     log.info("Running: Validate json to json node transformation at {}", new Date());
 
     assertAll("node",
       () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
       () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
-      () -> assertEquals("email", node.get("email").textValue(), "should get email")
+      () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
     );
 
   }
@@ -228,7 +269,7 @@ public class JsonNodeTest {
     assertAll("person",
       () -> assertEquals(1196, person.getId(), "Should get id"),
       () -> assertEquals("josdem", person.getNickname(), "Should get nickname"),
-      () -> assertEquals("email", person.getEmail(), "should get email")
+      () -> assertEquals("joseluis.delacruz@gmail.com", person.getEmail(), "should get email")
     );
 
   }
@@ -243,7 +284,7 @@ public class JsonNodeTest {
     assertAll("person",
       () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
       () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
-      () -> assertEquals("email", node.get("email").textValue(), "should get email")
+      () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
     );
 
   }
@@ -257,13 +298,14 @@ public class JsonNodeTest {
     String email = "joseluis.delacruz@gmail.com";
 
     JsonNode node = mapper.createObjectNode();
-    ((ObjectNode) node).put("id", 2016);
-    ((ObjectNode) node).put("name", "baeldung.com");
+    ((ObjectNode) node).put("id", 1196);
+    ((ObjectNode) node).put("nickname", "josdem");
+    ((ObjectNode) node).put("email", "joseluis.delacruz@gmail.com");
 
     assertAll("person",
       () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
       () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
-      () -> assertEquals("email", node.get("email").textValue(), "should get email")
+      () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
     );
 
   }
