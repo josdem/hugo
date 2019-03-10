@@ -99,6 +99,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Weblux Internationalization](/techtalk/spring/spring_webflux_internationalization)
 * [Spring Weblux Testing Web Layer](/techtalk/spring/spring_webflux_web_testing)
 * [Spring Boot Hazelcast](/techtalk/spring/spring_boot_hazelcast)
+* [Spring Boot Json Node](/techtalk/spring/spring_boot_json_node)
 
 [Return to the main article](/techtalk/techtalks)
 
