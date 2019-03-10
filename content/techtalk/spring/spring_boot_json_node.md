@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","spring boot","json nod
 categories = ["techtalk", "code","spring boot"]
 +++
 
-In computer science, marshalling is the process of transforming the representation of an object to a data format suitable for storage or transmission. In this technical post we will describe how we can marshall and unmarshall using [Jackson](https://en.wikipedia.org/wiki/Jackson_(API)), Json Node and Spring Boot. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). First let's create a new Spring Boot Webflux project:
+In computer science, marshalling is the process of transforming the representation of an object to a data format suitable for storage or transmission. In this technical post we will describe how we can marshall and unmarshall using [Jackson](https://en.wikipedia.org/wiki/Jackson_(API)), JsonNode and Spring Boot. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). First let's create a new Spring Boot Webflux project:
 
 ```bash
 spring init --dependencies=webflux,lombok --build=gradle --language=java spring-boot-json-node
