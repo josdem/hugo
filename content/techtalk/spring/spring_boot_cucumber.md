@@ -598,6 +598,99 @@ In case you are using Maven, use this command:
 mvn -Dcucumber.options="--tags @SmokeTest" test
 ```
 
+<a name="Reports">
+## Cucumber Reports
+</a>
+
+We can use a plugin in order to integrate [Extent Reports](http://extentreports.com/) to our project, in order to do that you need to add this dependencies:
+
+**Gradle**
+
+```groovy
+testImplementation('com.aventstack:extentreports:3.1.1')
+testImplementation('com.vimalselvam:cucumber-extentsreport:3.1.1')
+```
+
+**Maven**
+
+```xml
+<dependency>
+  <groupId>com.vimalselvam</groupId>
+  <artifactId>cucumber-extentsreport</artifactId>
+  <version>3.1.1</version>
+</dependency>
+<dependency>
+  <groupId>com.aventstack</groupId>
+  <artifactId>extentreports</artifactId>
+  <version>3.1.1</version>
+</dependency>
+```
+
+Now in our Cucumber test runner class add the `com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html` as a plugin
+
+```java
+package com.jos.dem.springboot.cucumber;
+
+import java.io.File;
+
+import com.vimalselvam.cucumber.listener.Reporter;
+
+import org.junit.runner.RunWith;
+import org.junit.AfterClass;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources",
+                 format = "pretty",
+                 plugin = "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html")
+public class CucumberTest {
+
+  @AfterClass
+  public static void teardown() {
+    Reporter.loadXMLConfig(new File("src/test/resources/config/extent-config.xml"));
+  }
+
+}
+```
+
+`extent-config.xml` is a config file with important elements such as:
+
+* Report Theme : `<theme>` : standard or dark
+* Document Encoding : `<encoding>` : UFT-8
+* Title of the Report : `<documentTitle>` : This will display on the Browser Tab
+* Name of the Report : `<reportName>` : This will display at the top of the Report
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<extentreports>
+  <configuration>
+    <theme>standard</theme>
+    <encoding>UTF-8</encoding>
+    <protocol>https</protocol>
+    <documentTitle>Extent</documentTitle>
+    <reportName>Spring Boot - Cucumber Report</reportName>
+    <scripts>
+      <![CDATA[
+        $(document).ready(function() {
+
+        });
+      ]]>
+    </scripts>
+    <styles>
+      <![CDATA[
+
+      ]]>
+    </styles>
+  </configuration>
+</extentreports>
+```
+
+Now, if you execute the test cases, you will generate an Extent report like this:
+
+<img src="/img/techtalks/spring/extent.png">
+
 To browse the project go [here](https://github.com/josdem/spring-boot-cucumber), to download the project:
 
 ```bash
