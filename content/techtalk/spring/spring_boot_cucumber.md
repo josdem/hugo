@@ -11,6 +11,7 @@ BDD (Behavior-driven development) is a technique very similar to implement UAT (
 * [Spring Boot Cucumber with Gradle](#Gradle)
 * [Spring Boot Cucumber with Maven](#Maven)
 * [Spring Boot Cucumber with Tags](#Tags)
+* [Spring Boot Cucumber Reports](#Reports)
 
 <a name="Gradle">
 ## Using Gradle
