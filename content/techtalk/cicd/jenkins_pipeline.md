@@ -104,6 +104,7 @@ where:
 * `sh 'sudo systemctl stop jugoterapia-webflux'` Is a shell command to execute `systemctl stop` jugoterapia service
 * `build job: 'jugoterapia-webflux'` Build another existing job in Jenkins named `jugoterapia-webflux`
 * `sh 'sudo systemctl start jugoterapia-webflux'` Starts Jugoterapia service again.
+* `build job: 'jugoterapia-cucumber'` Build another existing job for running feature testing
 
 
 ![Jugoterapia Pipeline](/img/techtalks/cicd/pipeline1.png)
