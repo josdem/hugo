@@ -21,6 +21,8 @@ Juices and smoothies are very effective ways to provide minerals, vitamins and e
 
 **What is new?**
 
+* `1.2.7` Advertising ID collection disabled
+* `1.2.6` Updating Dagger and Crashlytics dependencies
 * `1.2.5` Firebase remote config has been added in this release, so now we are able to set testing and production environments on the fly.
 * `1.2.4` This application is available in English and Spanish and it really depends on your Android language configuration. If your language plaform is Spanish then Jugoterapia will be in Spanish otherwhise in English. If you take a cool juice or smoothie picture, please feel free to share it with me, you can find my contact information in the landing page in this web site.
 
