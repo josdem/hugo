@@ -88,6 +88,13 @@ pipeline {
         echo 'Done!'
       }
     }
+    stage('Start Jugoterapia Feature Test') {
+      steps {
+        echo 'Starting Jugoterapia Feature Testing'
+        build job: 'jugoterapia-cucumber'
+        echo 'Done!'
+      }
+    }
   }
 }
 ```
