@@ -13,43 +13,45 @@ In this example I will show you how to use JMS in a Spring Boot application. **N
 Then execute this command in your terminal.
 
 ```bash
-spring init --dependencies=web --language=groovy --build=gradle spring-boot-jms
+spring init --dependencies=webflux,activemq,lombok --language=java --build=gradle spring-boot-jms
 ```
-
 
 This is the `build.gradle file` generated:
 
 ```groovy
-buildscript {
-	ext {
-		springBootVersion = '1.5.10.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+plugins {
+  id 'org.springframework.boot' version '2.1.4.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'groovy'
+apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.jms'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.codehaus.groovy:groovy')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation("org.springframework.boot:spring-boot-starter-activemq")
+  implementation('org.apache.activemq:activemq-broker')
+  compileOnly('org.projectlombok:lombok')
+  annotationProcessor('org.projectlombok:lombok')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 ```
 
+Next add this dependencies:
+
+```groovy
+implementation('org.apache.commons:commons-lang3:3.7')
+implementation('org.apache.activemq:activemq-broker')
+```
 
 First, lets create a `MessageService` to deliver messages to the queue.
 
@@ -68,53 +70,50 @@ interface MessageService {
 This is our `MessageServiceImpl` implementation class:
 
 ```groovy
-package com.jos.dem.springboot.jms.service.impl
+package com.jos.dem.springboot.jms.service.impl;
 
-import javax.jms.JMSException
-import javax.jms.ObjectMessage
-import javax.jms.Message
-import javax.jms.Session
+import javax.jms.JMSException;
+import javax.jms.ObjectMessage;
+import javax.jms.Message;
+import javax.jms.Session;
 
-import org.springframework.stereotype.Service
-import org.springframework.jms.core.JmsTemplate
-import org.springframework.jms.core.MessageCreator
-import org.springframework.jms.annotation.EnableJms
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.stereotype.Service;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.core.MessageCreator;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jos.dem.springboot.jms.command.Command
-import com.jos.dem.springboot.jms.service.MessageService
+import com.jos.dem.springboot.jms.command.Command;
+import com.jos.dem.springboot.jms.service.MessageService;
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 @EnableJms
-class MessageServiceImpl implements MessageService {
+public class MessageServiceImpl implements MessageService {
 
   @Autowired
-  JmsTemplate jmsTemplate
+  private JmsTemplate jmsTemplate;
 
-  Logger log = LoggerFactory.getLogger(this.class)
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  void sendMessage(final Command command) {
-    MessageCreator messageCreator = new MessageCreator() {
-
-      @Override
-      public Message createMessage(Session session) throws JMSException {
-        ObjectMessage message = session.createObjectMessage()
-        message.setObject(command)
-        return message
-      }
-    }
-
-    log.info 'Sending message'
-    jmsTemplate.send("destination", messageCreator)
+  public void sendMessage(final Command command) {
+    jmsTemplate.send("destination", (Session session) -> {
+      ObjectMessage message = session.createObjectMessage();
+      message.setObject(command);
+      return message;
+    });
   }
 
 }
 ```
 
-`Command` is just a serializable object and it is common for me to use an interface instead and specific POJO.
+Where:
+
+* `@EnableJms` Discovers methods annotated with `@JmsListener`.
+* `JmsTemplate` Sends messages to a JMS destination
+* `Command` Is just a serializable object and it is common for me to use an interface instead and specific POJO.
 
 ```groovy
 package com.jos.dem.springboot.jms.command
@@ -127,11 +126,18 @@ interface Command extends Serializable {}
 And this is the message object we are going to send.
 
 ```groovy
-package com.jos.dem.springboot.jms.command
+package com.jos.dem.springboot.jms.command;
 
-class PersonCommand implements Command {
-	String nickname
-	String email
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class PersonCommand implements Command {
+	private String nickname;
+	private String email;
 }
 ```
 
@@ -167,29 +173,29 @@ class MessageListener {
 As you can see `JmsTemplate` is sending a message to the `destination` and `@JmsListener` is waiting for new messages from `destination`, the another important part in this puzzle is the JMS container called `myJmsContainerFactory` who is defined in our Spring Boot application class as a bean.
 
 ```groovy
-package com.jos.dem.springboot.jms
+package com.jos.dem.springboot.jms;
 
-import javax.jms.ConnectionFactory
+import javax.jms.ConnectionFactory;
 
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.context.annotation.Bean
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import org.springframework.jms.config.JmsListenerContainerFactory
-import org.springframework.jms.config.SimpleJmsListenerContainerFactory
+import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
 
 @SpringBootApplication
-class DemoApplication {
+public class DemoApplication {
 
-  @Bean
-  JmsListenerContainerFactory<SimpleJmsListenerContainerFactory> myJmsContainerFactory(ConnectionFactory connectionFactory) {
-    SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory()
-    factory.setConnectionFactory(connectionFactory)
-    return factory
+	@Bean
+  public JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
+    SimpleJmsListenerContainerFactory factory = new SimpleJmsListenerContainerFactory();
+    factory.setConnectionFactory(connectionFactory);
+    return factory;
   }
 
-  static void main(String[] args) {
-    SpringApplication.run DemoApplication, args
+  public static void main(String[] args) {
+	  SpringApplication.run(DemoApplication.class, args);
   }
 
 }
@@ -224,18 +230,23 @@ class DemoController {
 }
 ```
 
-This is the output from our project execution:
+Now if you start our Spring Boot Application:
+
+```bash
+gradle bootRun
+```
+
+And hit this endopoint from command line:
+
+```bash
+curl http://localhost:8080/
+```
+
+You should be able to get this output:
 
 ```bash
 MessageServiceImpl : Sending message
 MessageListener    : Message Received <com.jos.dem.springboot.jms.command.PersonCommand@3a85a88c nickname=josdem email=joseluis.delacruz@gmail.com>
-```
-
-Do not forget to add ActiveMQ and JMS dependency to your `build.gradle` file
-
-```groovy
-  compile('org.apache.activemq:activemq-broker')
-  compile('org.springframework:spring-jms')
 ```
 
 To run the project
@@ -247,7 +258,7 @@ gradle bootRun
 To browse the project go [here](https://github.com/josdem/spring-boot-jms), to download the project:
 
 ```bash
-git clone https://github.com/josdem/spring-boot-jms.git
+git clone git@github.com:josdem/spring-boot-jms.git
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
