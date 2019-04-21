@@ -39,7 +39,6 @@ repositories {
 dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
   implementation("org.springframework.boot:spring-boot-starter-activemq")
-  implementation('org.apache.activemq:activemq-broker')
   compileOnly('org.projectlombok:lombok')
   annotationProcessor('org.projectlombok:lombok')
   testImplementation('org.springframework.boot:spring-boot-starter-test')
