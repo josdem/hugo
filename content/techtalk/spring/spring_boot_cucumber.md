@@ -603,7 +603,7 @@ mvn -Dcucumber.options="--tags @SmokeTest" test
 ## Cucumber Reports
 </a>
 
-We can use a plugin in order to integrate [Extent Reports](http://extentreports.com/) to our project, in order to do that you need to add this dependencies:
+We easily can use a plugin so that we will be able to integrate [Extent Reports](http://extentreports.com/) to our project, in order to do that you need to add this dependencies:
 
 **Gradle**
 
