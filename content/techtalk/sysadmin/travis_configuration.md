@@ -73,6 +73,12 @@ Do not forget to add Sonar server url to your `gradle.properties` file
 systemProp.sonar.host.url=https://sonar.josdem.io/
 ```
 
+You also can specify Sonar server from command line:
+
+```bash
+gradle test sonarqube -Dsonar.host.url=https://sonar.josdem.io
+```
+
 To browse a project using Travis configuration go [here](https://github.com/josdem/jugoterapia-webflux).
 
 [Return to the main article](/techtalk/sysadmin)
