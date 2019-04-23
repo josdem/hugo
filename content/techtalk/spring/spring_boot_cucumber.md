@@ -694,7 +694,7 @@ Now, if you execute the test cases, you will generate an Extent report like this
 
 **Cucumber Reports**
 
-Another cool plugin is [Cucumber Reports](https://wiki.jenkins.io/display/JENKINS/Cucumber+Reports+Plugin) the main advantage to use is that is very stylish and good looking besides it is easy to explore, feature, scenarios and steps. In order to integrate you need to add a simple line of code:
+Another cool plugin is [Cucumber Reports](https://wiki.jenkins.io/display/JENKINS/Cucumber+Reports+Plugin) is very stylish and good looking report, besides it is really easy to explore features, scenarios and steps. In order to integrate it you need to add a simple line of code:
 
 ```java
 package com.jos.dem.jugoterapia.cucumber;
@@ -722,7 +722,7 @@ public class CucumberTest {
 }
 ```
 
-Then after install Cucumber Reports plugin in your Jenkins server, create a post build action with this configuration:
+Then after install Cucumber Reports plugin in your Jenkins server just create a post build action with this configuration:
 
 <img src="/img/techtalks/spring/cucumber_reports.png">
 
