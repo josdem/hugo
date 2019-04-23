@@ -600,7 +600,7 @@ mvn -Dcucumber.options="--tags @SmokeTest" test
 ```
 
 <a name="Reports">
-## Cucumber Reports
+## Reports
 </a>
 
 We easily can use a plugin so that we will be able to integrate [Extent Reports](http://extentreports.com/) to our project, in order to do that you need to add this dependencies:
@@ -644,7 +644,7 @@ import cucumber.api.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features = "src/test/resources",
-                 format = {"pretty","json:target/reports/cucumber.json"},
+                 format = "pretty",
                  plugin = "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html")
 public class CucumberTest {
 
@@ -691,6 +691,44 @@ public class CucumberTest {
 Now, if you execute the test cases, you will generate an Extent report like this:
 
 <img src="/img/techtalks/spring/extent.png">
+
+**Cucumber Reports**
+
+Another cool plugin is [Cucumber Reports](https://wiki.jenkins.io/display/JENKINS/Cucumber+Reports+Plugin) the main advantage to use is that is very stylish and good looking besides it is easy to explore, feature, scenarios and steps. In order to integrate you need to add a simple line of code:
+
+```java
+package com.jos.dem.jugoterapia.cucumber;
+
+import java.io.File;
+
+import com.vimalselvam.cucumber.listener.Reporter;
+
+import org.junit.runner.RunWith;
+import org.junit.AfterClass;
+
+import cucumber.api.CucumberOptions;
+import cucumber.api.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+@CucumberOptions(features = "src/test/resources",
+                 format = {"pretty","json:target/reports/cucumber.json"},
+                 plugin = "com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:build/reports/report.html")
+public class CucumberTest {
+
+  @AfterClass
+  public static void teardown() {
+    Reporter.loadXMLConfig(new File("src/test/resources/config/extent-config.xml"));
+  }
+}
+```
+
+Then after install Cucumber Reports plugin in your Jenkins server, create a post build action with this configuration:
+
+<img src="/img/techtalks/spring/cucumber_reports.png">
+
+So each time when you execute your Jenkins job you will have this kind of Cucumber Report:
+
+<img src="/img/techtalks/spring/cucumber_reports1.png">
 
 To browse the project go [here](https://github.com/josdem/spring-boot-cucumber), to download the project:
 
