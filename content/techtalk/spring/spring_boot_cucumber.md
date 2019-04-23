@@ -28,7 +28,7 @@ Here is the complete `build.gradle` file generated:
 ```groovy
 buildscript {
   ext {
-    springBootVersion = '2.1.2.RELEASE'
+    springBootVersion = '2.1.4.RELEASE'
     cucumberVersion = '1.2.5'
     junitVersion = '5.4.0'
   }
@@ -455,7 +455,7 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.2.RELEASE</version>
+    <version>2.1.4.RELEASE</version>
     <relativePath/>
   </parent>
 
