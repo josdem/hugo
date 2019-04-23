@@ -26,19 +26,15 @@ spring init --dependencies=webflux,lombok --build=gradle --language=java spring-
 Here is the complete `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.4.RELEASE'
-    cucumberVersion = '1.2.5'
-    junitVersion = '5.4.0'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.1.4.RELEASE'
+  id "org.sonarqube" version "2.7"
+  id 'java'
 }
+
+def springBootVersion = '2.1.4.RELEASE'
+def junitJupiterVersion = '5.4.0'
+def cucumberVersion = '1.2.5'
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
@@ -46,7 +42,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.cucumber'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
   mavenCentral()
@@ -56,8 +52,19 @@ dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
   implementation('org.springframework.boot:spring-boot-starter-tomcat')
   compileOnly('org.projectlombok:lombok')
+  annotationProcessor 'org.projectlombok:lombok'
+  implementation('org.apache.commons:commons-lang3:3.8.1')
+  testImplementation("info.cukes:cucumber-java:$cucumberVersion")
+  testImplementation("info.cukes:cucumber-junit:$cucumberVersion")
+  testImplementation("info.cukes:cucumber-spring:$cucumberVersion")
+  testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+  testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('io.projectreactor:reactor-test')
+}
+
+test {
+  systemProperties = System.properties
 }
 ```
 
