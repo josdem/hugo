@@ -62,10 +62,6 @@ dependencies {
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('io.projectreactor:reactor-test')
 }
-
-test {
-  systemProperties = System.properties
-}
 ```
 
 Then add Junit5 and Cucumber dependencies
