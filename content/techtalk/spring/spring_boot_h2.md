@@ -71,6 +71,93 @@ public class Person {
 }
 ```
 
+And here is our `PersonRepository`, by extending `JpaRepository` we get a bunch of generic `CRUD` methods into our type that allows save, find all persons and so on, also will allow Spring Data JPA repository infrastructure to scan the classpath for this interface and create a Spring bean for it.
+
+```java
+package com.jos.dem.springboot.h2.repository;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.jos.dem.springboot.h2.model.Person;
+
+public interface PersonRepository extends JpaRepository<Person, Long>{
+
+  Person save(Person person);
+  List<Person> findAll();
+
+}
+```
+
+Next, we are going to use `CommandLineRunner` to populate our `person` table. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
+
+```java
+package com.example.springbooth2;
+
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
+import com.jos.dem.springboot.h2.model.Person;
+import com.jos.dem.springboot.h2.repository.PersonRepository;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@SpringBootApplication
+@EntityScan("com.jos.dem.springboot.h2.model")
+@EnableJpaRepositories("com.jos.dem.springboot.h2.repository")
+public class H2Application {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  public static void main(String[] args) {
+    SpringApplication.run(H2Application.class, args);
+  }
+
+  @Bean
+  CommandLineRunner start(PersonRepository personRepository){
+    return args -> {
+      Person person  = new Person(1L, "josdem", "joseluis.delacruz@gmail.com");
+      personRepository.save(person);
+      personRepository.findAll().forEach(p -> log.info("person: {}", p));
+    };
+  }
+
+}
+```
+
+H2 provides a web interface called H2 Console. Let’s enable that console in our `application.properties`.
+
+```properties
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.datasource.url=jdbc:h2:mem:persondb
+spring.datasource.username=sa
+spring.datasource.password=
+spring.datasource.driver-class-name=org.h2.Driver
+spring.datasource.platform=h2
+```
+
+The final step is to add `spring-boot-starter-web` dependency in order to get this H2 console work.
+
+```groovy
+implementation 'org.springframework.boot:spring-boot-starter-web'
+```
+
+Now, if you start our application, you should see this output
+
+```bash
+2019-05-01 19:28:14.169  INFO 9172 --- [main] com.example.springbooth2.H2Application   : Started H2Application in 4.771 seconds (JVM running for 5.196)
+2019-05-01 19:28:14.262  INFO 9172 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-05-01 19:28:14.358  INFO 9172 --- [main] ication$$EnhancerBySpringCGLIB$$690e2b18 : person: Person(id=1, nickname=josdem, email=joseluis.delacruz@gmail.com)
+```
+
+And the H2 console in this URL: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
+
 To run the project:
 
 ```bash
