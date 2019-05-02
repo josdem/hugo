@@ -92,7 +92,7 @@ public interface PersonRepository extends JpaRepository<Person, Long>{
 Next, we are going to use `CommandLineRunner` to populate our `person` table. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
 
 ```java
-package com.example.springbooth2;
+package com.jos.dem.springboot.h2;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -151,9 +151,9 @@ implementation 'org.springframework.boot:spring-boot-starter-web'
 Now, if you start our application, you should see this output
 
 ```bash
-2019-05-01 19:28:14.169  INFO 9172 --- [main] com.example.springbooth2.H2Application   : Started H2Application in 4.771 seconds (JVM running for 5.196)
-2019-05-01 19:28:14.262  INFO 9172 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
-2019-05-01 19:28:14.358  INFO 9172 --- [main] ication$$EnhancerBySpringCGLIB$$690e2b18 : person: Person(id=1, nickname=josdem, email=joseluis.delacruz@gmail.com)
+2019-05-02 09:14:42.378  INFO 8960 --- [main] com.jos.dem.springboot.h2.H2Application  : Started H2Application in 4.944 seconds (JVM running for 5.357)
+2019-05-02 09:14:42.492  INFO 8960 --- [main] o.h.h.i.QueryTranslatorFactoryInitiator  : HHH000397: Using ASTQueryTranslatorFactory
+2019-05-02 09:14:42.609  INFO 8960 --- [main] ication$$EnhancerBySpringCGLIB$$de299e81 : person: Person(id=1, nickname=josdem, email=joseluis.delacruz@gmail.com)
 ```
 
 And the H2 console in this URL: [http://localhost:8080/h2-console](http://localhost:8080/h2-console)
