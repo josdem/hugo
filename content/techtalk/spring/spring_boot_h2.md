@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will review how to integrate a [H2](https://www.h2database.com/html/main.html) un memory data base in a Spring Webflux application. Please read this previous [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux, Lombok, JPA and H2 as dependencies:
+In this technical post we will review how to integrate an [H2](https://www.h2database.com/html/main.html) in memory database in a Spring Webflux application. Please read this previous [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux, Lombok, JPA and H2 as dependencies:
 
 ```bash
 spring init --dependencies=webflux,lombok,jpa,h2 --language=java --build=gradle spring-boot-h2
