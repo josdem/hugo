@@ -191,13 +191,13 @@ You can do the same using Maven, the only difference is that you need to specify
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.1.RELEASE</version>
+    <version>2.1.4.RELEASE</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
+    <java.version>11</java.version>
   </properties>
 
   <dependencies>
@@ -231,13 +231,13 @@ Here is the application pom file:
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.1.RELEASE</version>
+    <version>2.1.4.RELEASE</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>1.8</java.version>
+    <java.version>11</java.version>
   </properties>
 
   <dependencies>
@@ -286,7 +286,7 @@ And this is our `pom.xml` in the `$PROJECT_HOME` directory.
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.1.RELEASE</version>
+    <version>2.1.4.RELEASE</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
