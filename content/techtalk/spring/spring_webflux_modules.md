@@ -51,7 +51,7 @@ dependencyManagement {
 }
 ```
 
-Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin. The `SpringBootPlugin` class provides a `BOM_COORDINATES`, a downside of this method is that it forces us to specify the version of the dependency management plugin.
+Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin. The `SpringBootPlugin` class provides a `BOM_COORDINATES`, a downside of this method is that it forces us to specify the version of the dependency management plugin. Now is time to create a service so we can use it in our application module.
 
 ```java
 package com.jos.dem.springboot.module.library.service;
