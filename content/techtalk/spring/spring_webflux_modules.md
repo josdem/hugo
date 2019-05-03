@@ -1,12 +1,12 @@
 +++
 title =  "Spring Webflux Multi-Module"
-description = "Spring_webflux_modules"
+description = "Wow to build a multi-module project using Gradle and Maven with Spring Webflux"
 date = "2018-12-16T10:48:18-05:00"
 tags = ["josdem", "techtalks","programming","technology","spring boot"]
 categories = ["techtalk", "code", "spring boot"]
 +++
 
-In this technical post, we will show how to build a multi-module project using Gradle and Maven with Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as a library:
+In this technical post, we will review how to build a multi-module project using Gradle and Maven with Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as a library:
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java library
@@ -15,16 +15,10 @@ spring init --dependencies=webflux --build=gradle --language=java library
 Here is the complete `build.gradle` file with jar and dependencyManagement closures included:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.1.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.1.4.RELEASE' apply false
+  id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+  id 'java'
 }
 
 apply plugin: 'java'
@@ -37,10 +31,10 @@ jar {
 
 group = 'com.jos.dem.springboot.module.library'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 
@@ -51,11 +45,13 @@ dependencies {
 }
 
 dependencyManagement {
-  imports { mavenBom("org.springframework.boot:spring-boot-dependencies:${springBootVersion}") }
+  imports{
+    mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+  }
 }
 ```
 
-Even though Spring Boot Gradle plugin is not being used, we want to take advantage of Spring Boot dependency management plugin and the MavenBom from Spring Boot. Now let's create a service component:
+Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin. The `SpringBootPlugin` class provides a `BOM_COORDINATES`, a downside of this method is that it forces us to specify the version of the dependency management plugin.
 
 ```java
 package com.jos.dem.springboot.module.library.service;
@@ -78,7 +74,7 @@ public class MessageService {
 }
 ```
 
-Next, let's create an application project, from the $PROJECT_HOME:
+Next, let's create an application project, from the `$PROJECT_HOME:`
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java application
@@ -87,30 +83,20 @@ spring init --dependencies=webflux --build=gradle --language=java application
 This is the `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.1.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.1.4.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.module'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 1.11
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
-
 
 dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
