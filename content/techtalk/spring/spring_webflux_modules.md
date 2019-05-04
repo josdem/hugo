@@ -21,16 +21,12 @@ plugins {
   id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'io.spring.dependency-management'
-
 jar {
   baseName = 'spring-boot-module-library'
   version = '0.0.1-SNAPSHOT'
 }
 
 group = 'com.jos.dem.springboot.module.library'
-version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.11
 
 repositories {
