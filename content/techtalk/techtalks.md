@@ -122,6 +122,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot Hazelcast](/techtalk/spring/spring_boot_hazelcast)
  * [Spring Boot JsonNode](/techtalk/spring/spring_boot_json_node)
  * [Spring Boot Server-sent Event](/techtalk/spring/spring_boot_sse)
+ * [Spring Boot Server-sent Event Client](/techtalk/spring/spring_boot_sse_client)
  * [Spring Boot H2](/techtalk/spring/spring_boot_h2)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
