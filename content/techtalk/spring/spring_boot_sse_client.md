@@ -166,12 +166,32 @@ public class ServerSentEventsConsumerController {
 }
 ```
 
-The subscribe method keeps receiving information as long as the server is still returning data. That's a client subscribes to a stream from a server and the server will send messages type event-stream to the client until the server or the client closes the stream. It is up to the server to decide when and what to send the client. For knowing more about Server-sent events technology please go [here](https://en.wikipedia.org/wiki/Server-sent_events)
+The subscribe method keeps receiving information as long as the server is still returning data. That's a client subscribes to a stream from a server and the server will send messages type event-stream to the client until the server or the client closes the stream. It is up to the server to decide when and what to send the client. For knowing more about Server-sent events technology please go [here](https://en.wikipedia.org/wiki/Server-sent_events). Do not forget to run this client in different port using the following specification in our `application.properties` file
 
-To run the project:
+```properties
+server.port=8081
+```
+
+Now, If you run the project:
 
 ```bash
 gradle bootRun
+```
+
+And hit this end-point:
+
+```bash
+curl http://localhost:8081/
+```
+
+Then you should see something like this:
+
+```bash
+2019-05-13 21:41:36.088 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:36.087150, content[{"nickname":"josdem","text":"Guten Tag","timestamp":"2019-05-14T01:41:36.031100Z"}]
+2019-05-13 21:41:37.034 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:37.034186, content[{"nickname":"josdem","text":"Zdravstvuyte","timestamp":"2019-05-14T01:41:37.030950Z"}]
+2019-05-13 21:41:38.034 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:38.034517, content[{"nickname":"josdem","text":"Bonjour","timestamp":"2019-05-14T01:41:38.030778Z"}]
+2019-05-13 21:41:39.031 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:39.031638, content[{"nickname":"josdem","text":"Salve","timestamp":"2019-05-14T01:41:39.029399Z"}]
+2019-05-13 21:41:40.033 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:40.033601, content[{"nickname":"josdem","text":"Hola","timestamp":"2019-05-14T01:41:40.030511Z"}]
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-sse-client), to download the project:
