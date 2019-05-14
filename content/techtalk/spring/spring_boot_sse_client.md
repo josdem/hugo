@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","Webflux"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will see how to consume an event stream using [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) in a Spring Webflux application. Please read this previous [Spring Webflux Basics](/techtalk/spring/spring_boot_sse) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+In this technical post we will see how to consume an event stream using [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) in a Spring Webflux application. Please read this previous [Spring Boot Server-sent Events](/techtalk/spring/spring_boot_sse) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
 
 ```bash
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-boot-sse-client
