@@ -45,7 +45,7 @@ dependencies {
 }
 ```
 
-Now and Junit 5 Framework dependencies to your `build.gradle` file:
+Now add Junit 5 Framework dependencies to your `build.gradle` file:
 
 ```groovy
 testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
@@ -126,7 +126,7 @@ public class ServerSentEventsClientApplication {
 }
 ```
 
-Finally let's create a controller to start the stream consumption
+Here we are defining a controller, so that we will be able to start the stream consumption
 
 ```java
 package com.jos.dem.springboot.sse.client.controller;
