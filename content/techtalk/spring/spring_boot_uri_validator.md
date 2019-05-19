@@ -195,7 +195,7 @@ public class ValidatorTest {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Test
+  @Test
   public void shouldValidateMnemonic() throws Exception {
     log.info("Running: Validating mnemonic at {}", new Date());
 
