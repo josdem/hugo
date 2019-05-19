@@ -103,6 +103,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Boot Server-sent Event](/techtalk/spring/spring_boot_sse)
 * [Spring Boot Server-sent Event Client](/techtalk/spring/spring_boot_sse_client)
 * [Spring Boot H2](/techtalk/spring/spring_boot_h2)
+* [Spring Webflux URI Validator](/techtalk/spring/spring_boot_uri_validator)
 
 [Return to the main article](/techtalk/techtalks)
 
