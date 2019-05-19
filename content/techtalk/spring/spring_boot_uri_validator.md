@@ -140,7 +140,7 @@ Where:
 * `@PathVariable` We are reading mnemonic as path variable
 * `@Validated` With this annotation we are enabling Hibernate validator
 
-[WebClient](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-client) is an bean instancem and it is defined in our validator Spring application
+[WebClient](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-client) is an bean instance and it is defined in our validator Spring application
 
 ```java
 package com.jos.dem.springboot.uri.validator;
