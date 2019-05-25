@@ -16,7 +16,7 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-	id 'org.springframework.boot' version '2.1.4.RELEASE'
+	id 'org.springframework.boot' version '2.1.5.RELEASE'
 	id 'java'
 }
 
@@ -24,7 +24,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.sse'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 configurations {
 	compileOnly {
@@ -43,6 +43,13 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'io.projectreactor:reactor-test'
 }
+```
+
+Now add Junit 5 Framework dependencies to your `build.gradle` file:
+
+```groovy
+testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 ```
 
 Let's start by creating a controller to serve our stream data
