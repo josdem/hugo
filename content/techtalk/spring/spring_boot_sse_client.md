@@ -16,7 +16,7 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.4.RELEASE'
+  id 'org.springframework.boot' version '2.1.5.RELEASE'
   id 'java'
 }
 
