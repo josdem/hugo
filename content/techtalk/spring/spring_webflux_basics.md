@@ -20,8 +20,6 @@ plugins {
   id 'java'
 }
 
-def junitJupiterVersion = '5.4.2'
-
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.webflux'
@@ -264,8 +262,7 @@ To browse the project go [here](https://github.com/josdem/reactive-webflux-works
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git
-git fetch
-git checkout feature/setup
+cd server
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
