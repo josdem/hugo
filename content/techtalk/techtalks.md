@@ -125,6 +125,8 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Boot Server-sent Event Client](/techtalk/spring/spring_boot_sse_client)
  * [Spring Boot H2](/techtalk/spring/spring_boot_h2)
  * [Spring Webflux URI Validator](/techtalk/spring/spring_boot_uri_validator)
+* [**Spring Boot Reactivo en Español**](/techtalk/spring#Spring_Boot_Reactive_ES)
+ * [Empezando con Spring Webflux](/techtalk/spring/spring_webflux_basics_es)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
  * [REST Calls with Retrofit](/techtalk/android/retrofit)

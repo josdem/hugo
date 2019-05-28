@@ -8,6 +8,7 @@ title = "Spring Framework"
 * [Spring MVC](#Spring_MVC)
 * [Spring Boot](#Spring_Boot)
 * [Spring Boot Reactive](#Spring_Boot_Reactive)
+* [Spring Boot Reactivo en Español](#Spring_Boot_Reactive_ES)
 
 <a name="Spring_MVC">
 ## Spring MVC
@@ -104,6 +105,14 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Boot Server-sent Event Client](/techtalk/spring/spring_boot_sse_client)
 * [Spring Boot H2](/techtalk/spring/spring_boot_h2)
 * [Spring Webflux URI Validator](/techtalk/spring/spring_boot_uri_validator)
+
+<a name="Spring_Boot_Reactive_ES">
+## Spring Boot Reactivo en Español
+</a>
+
+Esta sección está dedicada a explicar la programación reactiva introducida en Spring 5
+
+* [Empezando con Spring Webflux](/techtalk/spring/spring_webflux_basics_es)
 
 [Return to the main article](/techtalk/techtalks)
 
