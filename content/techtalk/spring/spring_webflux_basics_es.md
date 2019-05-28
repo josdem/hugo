@@ -51,8 +51,6 @@ Ahora es momento de crear un simple plano objeto de Java el cual nos ayudará a 
 ```java
 package com.jos.dem.webflux.model;
 
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -65,7 +63,6 @@ import lombok.AllArgsConstructor;
 public class Person {
 
   @Id
-  private UUID uuid;
   private String nickname;
   private String email;
 
@@ -79,10 +76,9 @@ package com.jos.dem.webflux.repository;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
-import java.util.UUID;
 import com.jos.dem.webflux.model.Person;
 
-public interface PersonRepository extends ReactiveMongoRepository<Person, UUID> {}
+public interface PersonRepository extends ReactiveMongoRepository<Person, String> {}
 ```
 
 Ahora, vamos a usar `CommandLineRunner` para iniciar nuestro flujo de trabajo. El `CommandLineRunner` es una interfaz call back en Spring Boot, cuando nuestra aplicación arranca llamará al metodo start y le pasará los argumentos unsando el método interno `run()`
@@ -124,10 +120,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import reactor.core.publisher.Flux;
 
-import java.util.UUID;
 import java.util.stream.Stream;
-
-import org.springframework.util.AlternativeJdkIdGenerator;
 
 import com.jos.dem.webflux.model.Person;
 import com.jos.dem.webflux.repository.PersonRepository;
@@ -140,8 +133,6 @@ public class PersonApplication {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  private AlternativeJdkIdGenerator idGenerator = new AlternativeJdkIdGenerator();
-
   public static void main(String[] args) {
     SpringApplication.run(PersonApplication.class, args);
   }
@@ -151,15 +142,13 @@ public class PersonApplication {
     return args -> {
 
       Flux.just(
-          new Person(idGenerator.generateId(), "josdem", "joseluis.delacruz@gmail.com"),
-          new Person(idGenerator.generateId(), "tgrip", "tgrip@email.com"),
-          new Person(idGenerator.generateId(), "edzero", "edzero@email.com"),
-          new Person(idGenerator.generateId(), "siedrix", "siedrix@email.com"),
-          new Person(idGenerator.generateId(), "mkheck", "mkheck@email.com"))
+          new Person("josdem", "joseluis.delacruz@gmail.com"),
+          new Person("tgrip", "tgrip@email.com"),
+          new Person("edzero", "edzero@email.com"),
+          new Person("siedrix", "siedrix@email.com"),
+          new Person("mkheck", "mkheck@email.com"))
         .flatMap(personRepository::save)
         .subscribe(person -> log.info("person: {}", person));
-
-      personRepository.deleteAll().subscribe();
 
     };
   }
@@ -167,7 +156,7 @@ public class PersonApplication {
 }
 ```
 
-[AlternativeJdkIdGenerator](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AlternativeJdkIdGenerator.html) es un generador de id que usa `SecureRandom` para la semilla inicial y `Random` después, esto provee a buen balance entre seguridad de random y performance. La lógica implementada en los operadores es sólamente ejecutada cuando nuestros datos empiezan a fluir, y la magia pasa cuando usamos el método `subscribe()`. Así es, ahora estamos guardando `Person` en nuestra base de datos MongoDB. Para poder ejecutar este ejemplo necesitas crear una base de datos en MongoDB con autorización habilitada para un usuario, no olvides agregar esas credenciales en tu archivo `application.properties`.
+La lógica implementada en los operadores es sólamente ejecutada cuando nuestros datos empiezan a fluir, y la magia pasa cuando usamos el método `subscribe()`. Así es, ahora estamos guardando `Person` en nuestra base de datos MongoDB. Para poder ejecutar este ejemplo necesitas crear una base de datos en MongoDB con autorización habilitada para un usuario, no olvides agregar esas credenciales en tu archivo `application.properties`.
 
 ```properties
 spring.data.mongodb.database=reactive_webflux
