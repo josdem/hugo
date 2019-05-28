@@ -72,7 +72,7 @@ public class Person {
 }
 ```
 
-La anotación `@Data` genera setters y getters, el método `toString()`, `equals()`, `hashcode()` y un constructor por cada atributo de la clase. Lombok es una gran herramienta para ahorrarnos código, para saber más acerca de Lombok por favor ve aquí: [aquí](https://projectlombok.org/). Spring Data ahora soporta la experiencia reactiva con MongoDB, Couchbase, Redis y Casandra, en este caso usaremos `PersonRepository` que extiende `ReactiveMongoRepository`.
+La anotación `@Data` genera setters y getters, el método `toString()`, `equals()`, `hashcode()` y un constructor por cada atributo de la clase. Lombok es una gran herramienta para ahorrarnos código, para saber más acerca de Lombok por favor ve [aquí](https://projectlombok.org/). Spring Data ahora soporta la experiencia reactiva con MongoDB, Couchbase, Redis y Casandra, en este caso usaremos `PersonRepository` que extiende `ReactiveMongoRepository`.
 
 ```java
 package com.jos.dem.webflux.repository;
