@@ -72,7 +72,7 @@ public class Person {
 }
 ```
 
-La anotación `@Data` genera setters y getters, el método `toString()`, `equals()`, `hashcode()` y un constructor por cada atributo de la clase. Lombok es una gran herramienta para ahorrarnos código, para saber más acerca de Lombok por favor ve aquí: [here](https://projectlombok.org/). Spring Data ahora soporta la experiencia reactiva con MongoDB, Couchbase, Redis y Casandra, en este caso usaremos `PersonRepository` que extiende `ReactiveMongoRepository`.
+La anotación `@Data` genera setters y getters, el método `toString()`, `equals()`, `hashcode()` y un constructor por cada atributo de la clase. Lombok es una gran herramienta para ahorrarnos código, para saber más acerca de Lombok por favor ve aquí: [aquí](https://projectlombok.org/). Spring Data ahora soporta la experiencia reactiva con MongoDB, Couchbase, Redis y Casandra, en este caso usaremos `PersonRepository` que extiende `ReactiveMongoRepository`.
 
 ```java
 package com.jos.dem.webflux.repository;
@@ -167,7 +167,7 @@ public class PersonApplication {
 }
 ```
 
-[AlternativeJdkIdGenerator](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AlternativeJdkIdGenerator.html) es un generador de id que usa `SecureRandom` para la semilla inicial y `Random` después, esto provee a buen balance entre seguridad de random y performance. La lógica implementada en los operadores es sólamente ejecutada cuando nuestros datos empiezan a fluir, y la magia pasa cuando usamos el método `subscribe()`. Así es, ahora estamos guardando `Person` en nuestra base de datos MongoDB. Para poder ejecutar este ejemplo necesitas crear una base de datos en MonoDB con autorización habilitada para un usuario, no olvides agregar esas credenciales en tu archivo `application.properties`.
+[AlternativeJdkIdGenerator](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AlternativeJdkIdGenerator.html) es un generador de id que usa `SecureRandom` para la semilla inicial y `Random` después, esto provee a buen balance entre seguridad de random y performance. La lógica implementada en los operadores es sólamente ejecutada cuando nuestros datos empiezan a fluir, y la magia pasa cuando usamos el método `subscribe()`. Así es, ahora estamos guardando `Person` en nuestra base de datos MongoDB. Para poder ejecutar este ejemplo necesitas crear una base de datos en MongoDB con autorización habilitada para un usuario, no olvides agregar esas credenciales en tu archivo `application.properties`.
 
 ```properties
 spring.data.mongodb.database=reactive_webflux
@@ -264,7 +264,7 @@ Este es el `pom.xml` generado:
 </project>
 ```
 
-Para explorat el proyecto, por favor ve [aquí](https://github.com/josdem/reactive-webflux-workshop), para descargar el proyecto:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/reactive-webflux-workshop), para descargar el proyecto:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git
