@@ -51,8 +51,6 @@ Now let's create a simple POJO to store and retrieve information from our MongoD
 ```java
 package com.jos.dem.webflux.model;
 
-import java.util.UUID;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -65,7 +63,6 @@ import lombok.AllArgsConstructor;
 public class Person {
 
   @Id
-  private UUID uuid;
   private String nickname;
   private String email;
 
@@ -79,10 +76,9 @@ package com.jos.dem.webflux.repository;
 
 import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
-import java.util.UUID;
 import com.jos.dem.webflux.model.Person;
 
-public interface PersonRepository extends ReactiveMongoRepository<Person, UUID> {}
+public interface PersonRepository extends ReactiveMongoRepository<Person, String> {}
 ```
 
 Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
@@ -124,10 +120,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import reactor.core.publisher.Flux;
 
-import java.util.UUID;
 import java.util.stream.Stream;
-
-import org.springframework.util.AlternativeJdkIdGenerator;
 
 import com.jos.dem.webflux.model.Person;
 import com.jos.dem.webflux.repository.PersonRepository;
@@ -140,8 +133,6 @@ public class PersonApplication {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  private AlternativeJdkIdGenerator idGenerator = new AlternativeJdkIdGenerator();
-
   public static void main(String[] args) {
     SpringApplication.run(PersonApplication.class, args);
   }
@@ -151,15 +142,13 @@ public class PersonApplication {
     return args -> {
 
       Flux.just(
-          new Person(idGenerator.generateId(), "josdem", "joseluis.delacruz@gmail.com"),
-          new Person(idGenerator.generateId(), "tgrip", "tgrip@email.com"),
-          new Person(idGenerator.generateId(), "edzero", "edzero@email.com"),
-          new Person(idGenerator.generateId(), "siedrix", "siedrix@email.com"),
-          new Person(idGenerator.generateId(), "mkheck", "mkheck@email.com"))
+          new Person("josdem", "joseluis.delacruz@gmail.com"),
+          new Person("tgrip", "tgrip@email.com"),
+          new Person("edzero", "edzero@email.com"),
+          new Person("siedrix", "siedrix@email.com"),
+          new Person("mkheck", "mkheck@email.com"))
         .flatMap(personRepository::save)
         .subscribe(person -> log.info("person: {}", person));
-
-      personRepository.deleteAll().subscribe();
 
     };
   }
@@ -167,7 +156,7 @@ public class PersonApplication {
 }
 ```
 
-[AlternativeJdkIdGenerator](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/util/AlternativeJdkIdGenerator.html) is an id generator that uses `SecureRandom` for the initial seed and Random thereafter, this provides a better balance between securely random ids and performance. The logic implemented in the operators is only executed when data starts to flow, and that does not happen until you use `subscribe()` method. That's it, now we are storing `Person` objects to our MongoDB. In order to run this example you need to create a database in MongoDB with `authorization: "enabled"`. Also do not forget to add your MongoDB credentials information to your `application.properties` file:
+The logic implemented in the operators is only executed when data starts to flow, and that does not happen until you use `subscribe()` method. That's it, now we are storing `Person` objects to our MongoDB. In order to run this example you need to create a database in MongoDB with `authorization: "enabled"`. Also do not forget to add your MongoDB credentials information to your `application.properties` file:
 
 ```properties
 spring.data.mongodb.database=reactive_webflux
@@ -201,65 +190,65 @@ This is the pom.xml file generated:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.example</groupId>
-	<artifactId>reactive-webflux-workshop</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
+  <groupId>com.jos.dem.webflux</groupId>
+  <artifactId>reactive-webflux-workshop</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
 
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+  <name>demo</name>
+  <description>Demo project for Spring Webflux</description>
 
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.5.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
 
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<java.version>1.8</java.version>
-	</properties>
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>11</java.version>
+  </properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webflux</artifactId>
-		</dependency>
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
 
-		<dependency>
-			<groupId>org.projectlombok</groupId>
-			<artifactId>lombok</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>io.projectreactor</groupId>
-			<artifactId>reactor-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-	</dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>
 ```
