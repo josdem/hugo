@@ -88,7 +88,7 @@ Este es el endpoint para obtener una persona por id: [http://localhost:8080/pers
 
 Concluiremos con lo siguiente:
 
-* Sprinh Boot ahora fomenta la programación reactiva
+* Spring Boot ahora fomenta la programación reactiva
 * Usando el estilo MVC para los controladores es una buena idea para empezar a adoptar web reactivo
 * Webflux combina bien con Java para la programación funcional
 * Spring Boot now embraces reactive programming
