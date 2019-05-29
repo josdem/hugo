@@ -39,10 +39,10 @@ public class PersonController {
     return personRepository.findAll();
   }
 
-  @GetMapping("/persons/{id}")
-  public Mono<Person> findById(@PathVariable String id){
-    log.info("Calling find person by id: " + id);
-    return personRepository.findById(id);
+  @GetMapping("/persons/{nickname}")
+  public Mono<Person> findById(@PathVariable String nickname){
+    log.info("Calling find person by id: {}", nickname);
+    return personRepository.findById(nickname);
   }
 
 }
@@ -52,39 +52,33 @@ The original Spring Web MVC was running on Tomcat and was purpose built for the 
 
 ```json
 [
-  {
-    "uuid": "7baac840-0ff1-4eea-a1f3-78a6320f5bcc",
-    "nickname": "edzero",
-    "email": "edzero@email.com"
-  },
-  {
-    "uuid": "7b098510-e260-4dc2-8b15-24fc403eb939",
-    "nickname": "skuarch",
-    "email": "skuarch@email.com"
-  },
-  {
-    "uuid": "d6089e68-e8c4-4ebe-aa2f-b566e13856a8",
-    "nickname": "siedrix",
-    "email": "siedrix@email.com"
-  },
-  {
-    "uuid": "ac55dfb8-795d-48d9-9827-4e401c0e4853",
-    "nickname": "tgrip",
-    "email": "tgrip@email.com"
-  },
-  {
-    "uuid": "5904ff32-7e36-4a81-b90f-c0d7a91214eb",
-    "nickname": "josdem",
-    "email": "josdem@email.com"
-  }
-]
+   {
+      "nickname":"mkheck",
+      "email":"mkheck@email.com"
+   },
+   {
+      "nickname":"josdem",
+      "email":"joseluis.delacruz@gmail.com"
+   },
+   {
+      "nickname":"edzero",
+      "email":"edzero@email.com"
+   },
+   {
+      "nickname":"siedrix",
+      "email":"siedrix@email.com"
+   },
+   {
+      "nickname":"tgrip",
+      "email":"tgrip@email.com"
+   }
+}
 ```
 
-And this one is the endpoint to get a person by id: [http://localhost:8080/persons/5904ff32-7e36-4a81-b90f-c0d7a91214eb](http://localhost:8080/persons/5904ff32-7e36-4a81-b90f-c0d7a91214eb)
+And this one is the endpoint to get a person by id: [http://localhost:8080/persons/josdem](http://localhost:8080/persons/josdem)
 
 ```json
 {
-  "uuid": "5904ff32-7e36-4a81-b90f-c0d7a91214eb",
   "nickname": "josdem",
   "email": "josdem@email.com"
 }
@@ -115,8 +109,7 @@ To browse the project go [here](https://github.com/josdem/reactive-webflux-works
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git
-git fetch
-git checkout feature/server
+cd server
 ```
 
 
