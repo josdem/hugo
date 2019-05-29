@@ -113,7 +113,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 Esta sección está dedicada a explicar la programación reactiva introducida en Spring 5
 
 * [Empezando con Spring Webflux](/techtalk/spring/spring_webflux_basics_es)
-* [Spring Webflux Server](/techtalk/spring/spring_webflux_server_es)
+* [Spring Webflux el lado del Servidor](/techtalk/spring/spring_webflux_server_es)
 
 [Return to the main article](/techtalk/techtalks)
 
