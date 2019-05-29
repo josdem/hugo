@@ -90,7 +90,7 @@ Concluiremos con lo siguiente:
 
 * Spring Boot ahora fomenta la programación reactiva
 * Usando el estilo MVC para los controladores es una buena idea para empezar a adoptar web reactivo
-* Webflux combina bien con Java en la programación funcional
+* Webflux combina bien con Java y la programación funcional
 * Webflux corre sobre Netty server
 
 Para correr este proyecto con Gradle:
