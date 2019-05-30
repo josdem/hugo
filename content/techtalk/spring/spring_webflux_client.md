@@ -6,44 +6,40 @@ date = "2018-03-28T11:36:40-06:00"
 description = "This time we will see the client side in a Spring Webflux project."
 +++
 
-In previous [Spring Boot Server](/techtalk/spring/spring_webflux_server) we covered web reactive server, this time we will see the client side. Let's start creating a new project with Webflux, Mongo Reactive and Lombok as dependencies:
+In previous [Spring Boot Server](/techtalk/spring/spring_webflux_server) we covered web reactive server, this time we will see the client side. Let's start creating a new project with Webflux and Lombok as dependencies:
 
 ```bash
-spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --language=java client
+spring init --dependencies=webflux,lombok --build=gradle --language=java client
 ```
 
 Here is the complete `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.0.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.webflux'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
-repositories {
-	mavenCentral()
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
 }
 
+repositories {
+  mavenCentral()
+}
 
 dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
-  implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
   compileOnly('org.projectlombok:lombok')
+  annotationProcessor 'org.projectlombok:lombok'
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('io.projectreactor:reactor-test')
 }
@@ -54,21 +50,11 @@ Now let's create a simple POJO to retrieve information from our reactive server.
 ```java
 package com.jos.dem.webflux.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Data
-@Document
-@NoArgsConstructor
-@AllArgsConstructor
 public class Person {
 
-  @Id
-  private String uuid;
   private String nickname;
   private String email;
 
@@ -88,8 +74,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.jos.dem.webflux.model.Person;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @SpringBootApplication
 public class PersonApplication {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   public static void main(String[] args) {
     SpringApplication.run(PersonApplication.class, args);
@@ -97,15 +88,15 @@ public class PersonApplication {
 
   @Bean
   WebClient webClient() {
-    return WebClient.create("http://localhost:8080/persons");
+    return WebClient.create("http://localhost:8080");
   }
 
   @Bean
   CommandLineRunner run(WebClient client){
     return args -> {
-      client.get().uri("").retrieve()
+      client.get().uri("/persons").retrieve()
         .bodyToFlux(Person.class)
-        .subscribe(System.out::println);
+        .subscribe(person -> log.info("person: {}", person));
     };
   }
 
@@ -124,6 +115,78 @@ To run the project:
 gradle bootRun
 ```
 
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=webflux,lombok --build=maven --language=java client
+```
+
+This is the pom.xml file generated:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jos.dem.webflux</groupId>
+  <artifactId>reactive-webflux-workshop</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>demo</name>
+  <description>Demo project for Spring Webflux</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.5.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>11</java.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+
+</project>
+```
+
 To run the project with Maven:
 
 ```bash
@@ -134,9 +197,7 @@ To browse the project go [here](https://github.com/josdem/reactive-webflux-works
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-workshop.git
-git fetch
-git checkout feature/client
+cd client
 ```
-
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
