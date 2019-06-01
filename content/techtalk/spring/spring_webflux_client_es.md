@@ -1,5 +1,5 @@
 +++
-title =  "Spring Webflux el Lado del Cliente"
+title =  "Spring Webflux el lado del Cliente"
 categories = ["techtalk", "code","spring webflux"]
 tags = ["josdem", "techtalks","programming","technology", "Spring WebFlux", "Reactive Web", "Java","spring webflux"]
 date = "2018-03-28T11:36:40-06:00"
