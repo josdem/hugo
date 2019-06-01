@@ -12,7 +12,7 @@ En el previo post [Spring Boot Server](/techtalk/spring/spring_webflux_server) c
 spring init --dependencies=webflux,lombok --build=gradle --language=java client
 ```
 
-Here is the complete `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
