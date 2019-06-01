@@ -81,7 +81,7 @@ import com.jos.dem.webflux.model.Person;
 public interface PersonRepository extends ReactiveMongoRepository<Person, String> {}
 ```
 
-Ahora, vamos a usar `CommandLineRunner` para iniciar nuestro flujo de trabajo. El `CommandLineRunner` es una interfaz call back en Spring Boot, cuando nuestra aplicación arranca llamará al metodo start y le pasará los argumentos unsando el método interno `run()`
+Ahora, vamos a usar `CommandLineRunner` para iniciar nuestro flujo de trabajo. El `CommandLineRunner` es una interfaz call back en Spring Boot, cuando nuestra aplicación arranca llamará al método start y le pasará los argumentos unsando el método interno `run()`
 
 ```java
 package com.jos.dem.webflux;
