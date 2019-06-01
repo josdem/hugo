@@ -116,7 +116,7 @@ Para correr el proyecto:
 gradle bootRun
 ```
 
-**Using Maven**
+**Usando Maven**
 
 Tú puedes hacer lo mismo usando Maven, la única diferencia es que necesitas específicar el parámtero `--build=maven` en el comando `spring-init`:
 
