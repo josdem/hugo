@@ -84,6 +84,57 @@ And this one is the endpoint to get a person by id: [http://localhost:8080/perso
 }
 ```
 
+**Testing**
+
+The best tool for testing this reactive web server is to use [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html) which is also a non-blocking, reactive client and it uses [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) internally to perform requests and validate responses.
+
+```java
+package com.jos.dem.webflux;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+
+import com.jos.dem.webflux.model.Person;
+import com.jos.dem.webflux.controller.PersonController;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class PersonControllerTest {
+
+  @Autowired
+  private WebTestClient webClient;
+
+  @Test
+  public void shouldGetPersons() throws Exception {
+    webClient.get().uri("/persons").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON_UTF8)
+      .expectBodyList(Person.class);
+  }
+
+  @Test
+  public void shouldGetPerson() throws Exception {
+    webClient.get().uri("/persons/{nickname}", "josdem").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON_UTF8)
+      .expectBody(Person.class);
+  }
+
+}
+```
+
 **Conclusion**
 
 Let me conclude by giving a short summary:
@@ -92,6 +143,7 @@ Let me conclude by giving a short summary:
 * Using Spring MVC-style Controllers is a good start to adopting Reactive Web
 * WebFlux combines well with Java functional programming
 * WebFlux runs on Netty server by default
+* The best tool for testing reactive web servers is to use WebTestClient
 
 To run the project with Gradle:
 
