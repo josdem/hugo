@@ -142,6 +142,23 @@ testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
 testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 ```
 
+Or to your `pom.xml` file
+
+```xml
+<dependency>
+  <groupId>org.junit.jupiter</groupId>
+  <artifactId>junit-jupiter-api</artifactId>
+  <version>${junit.jupiter.version}</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.junit.jupiter</groupId>
+  <artifactId>junit-jupiter-engine</artifactId>
+  <version>${junit.jupiter.version}</version>
+  <scope>test</scope>
+</dependency>
+```
+
 **Conclusion**
 
 Let me conclude by giving a short summary:
@@ -163,6 +180,19 @@ To run the project with Maven:
 ```bash
 mvn spring-boot:run
 ```
+
+To test the project with Gradle:
+
+```bash
+gradle test
+```
+
+To test the project with Maven:
+
+```bash
+mvn test
+```
+
 
 To browse the project go [here](https://github.com/josdem/reactive-webflux-workshop), to download the project:
 
