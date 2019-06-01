@@ -135,6 +135,13 @@ public class PersonControllerTest {
 }
 ```
 
+Do not forget to add Junit Jupiter aka Junit5 dependencies to your `build.gradle` file
+
+```groovy
+testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+```
+
 **Conclusion**
 
 Let me conclude by giving a short summary:
