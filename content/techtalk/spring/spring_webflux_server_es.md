@@ -84,6 +84,82 @@ Este es el endpoint para obtener una persona por id: [http://localhost:8080/pers
 }
 ```
 
+**Testeando la Capa Web**
+
+
+La mejor herramienta para testear este reactivo servidor web es [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html) el cual es también un cliente no-bloqueante, reactivo y usa [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) internamente para hacer peticiones y validar respuestas.
+
+```java
+package com.jos.dem.webflux;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.http.MediaType.APPLICATION_JSON;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+
+import com.jos.dem.webflux.model.Person;
+import com.jos.dem.webflux.controller.PersonController;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class PersonControllerTest {
+
+  @Autowired
+  private WebTestClient webClient;
+
+  @Test
+  public void shouldGetPersons() throws Exception {
+    webClient.get().uri("/persons").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON_UTF8)
+      .expectBodyList(Person.class);
+  }
+
+  @Test
+  public void shouldGetPerson() throws Exception {
+    webClient.get().uri("/persons/{nickname}", "josdem").accept(APPLICATION_JSON)
+      .exchange()
+      .expectStatus().isOk()
+      .expectHeader().contentType(APPLICATION_JSON_UTF8)
+      .expectBody(Person.class);
+  }
+
+}
+```
+
+No olviden agregar Junit Jupiter conocido también como Junit5 a tu archivo `build.gradle`
+
+```groovy
+testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+```
+
+O a tu archivo `pom.xml`
+
+```xml
+<dependency>
+  <groupId>org.junit.jupiter</groupId>
+  <artifactId>junit-jupiter-api</artifactId>
+  <version>${junit.jupiter.version}</version>
+  <scope>test</scope>
+</dependency>
+<dependency>
+  <groupId>org.junit.jupiter</groupId>
+  <artifactId>junit-jupiter-engine</artifactId>
+  <version>${junit.jupiter.version}</version>
+  <scope>test</scope>
+</dependency>
+```
+
 **Conclusión**
 
 Concluiremos con lo siguiente:
@@ -92,6 +168,7 @@ Concluiremos con lo siguiente:
 * Usando el estilo MVC para los controladores es una buena idea para empezar a adoptar web reactivo
 * Webflux combina bien con Java y la programación funcional
 * Webflux corre sobre Netty server
+* La mejor herramienta para testear un servidor web reactivo es WebTestClient
 
 Para correr este proyecto con Gradle:
 
