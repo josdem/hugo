@@ -6,9 +6,7 @@ date = "2018-04-10T09:46:11-05:00"
 description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project."
 +++
 
-Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project.
-
-Let's start creating a new Spring Boot project with Webflux, Security and Thymeleaf as dependencies:
+Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate Spring Security to your Spring Reactive Webflux project. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's start creating a new Spring Boot project with Webflux, Security and Thymeleaf as dependencies:
 
 ```bash
 spring init --dependencies=webflux,security,thymeleaf --build=gradle --language=java reactive-webflux-security
@@ -17,36 +15,27 @@ spring init --dependencies=webflux,security,thymeleaf --build=gradle --language=
 Here is the complete `build.gradle` file generated:
 
 ```java
-buildscript {
-	ext {
-		springBootVersion = '2.0.1.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-	}
+plugins {
+  id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.security'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 11
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-webflux')
-	compile('org.springframework.boot:spring-boot-starter-security')
-  compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile('io.projectreactor:reactor-test')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-security')
+  implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('io.projectreactor:reactor-test')
 }
 ```
 
@@ -56,11 +45,12 @@ Spring Security’s `@EnableWebFluxSecurity` annotation enable WebFlux support i
 package com.jos.dem.security.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
-import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
+import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @EnableWebFluxSecurity
@@ -80,7 +70,7 @@ public class SecurityConfig {
   }
 
   @Bean
-  public MapReactiveUserDetailsService userDetailsRepository() {
+  public MapReactiveUserDetailsService userDetailsService() {
     UserDetails user = User.withDefaultPasswordEncoder()
       .username("josdem")
       .password("12345678")
@@ -92,7 +82,7 @@ public class SecurityConfig {
 }
 ```
 
-`userDetailsRepository` provides us with a convenient mock user builder and an in-memory implementation of the user details service.
+`userDetailsRepository` provides a convenient mock user builder and an in-memory implementation from user details service.
 
 ```java
 package com.jos.dem.security.controller;
@@ -122,7 +112,7 @@ public class DemoController {
 }
 ```
 
-In the Controller we can see `Principal` and it can be defined directly as a method argument and it will be correctly resolved by the framework. `Principal` is the currently logged in user. This interface represents the abstract notion of a principal, which can be used to represent any entity, such as an individual or corporation.
+In this controller we can see `Principal` and it can be defined directly as a method argument and it will be correctly resolved by the framework. `Principal` is the currently logged in user. This interface represents the abstract notion of a principal, which can be used to represent any entity, whether individual or corporation.
 
 ```html
 <html>
@@ -142,12 +132,22 @@ After a successful login you can see a greeting
 
 <img src="/img/techtalks/spring/form_greeting.png">
 
-To browse the project go [here](https://github.com/josdem/reactive-webflux-security), to download the project:
+Finally here is our main Spring Boot demo application
 
-```bash
-git clone https://github.com/josdem/reactive-webflux-security.git
-git fetch
-git checkout feature/in-memory
+```java
+package com.jos.dem.security;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
+  }
+
+}
 ```
 
 To run the project:
@@ -155,6 +155,101 @@ To run the project:
 ```bash
 gradle bootRun
 ```
+
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=webflux,security,thymeleaf --build=maven --language=java reactive-webflux-security
+```
+
+And when you run your project use this command:
+
+```bash
+mvn spring-boot:run
+```
+
+This is the pom.xml file generated:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.jos.dem.webflux</groupId>
+  <artifactId>reactive-webflux-workshop</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>demo</name>
+  <description>Demo project for Spring Webflux Security</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.5.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>11</java.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.projectreactor</groupId>
+      <artifactId>reactor-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
+```
+
+To browse the project go [here](https://github.com/josdem/reactive-webflux-security), to download the project:
+
+```bash
+git clone https://github.com/josdem/reactive-webflux-security.git
+git fetch
+git checkout in-memory
+```
+
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
