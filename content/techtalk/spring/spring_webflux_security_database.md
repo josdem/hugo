@@ -207,7 +207,7 @@ spring.data.mongodb.password=password
 Now we are good to go and start our application using `gradle bootRun` command and then list our user collection from MongoDB.
 
 ```bash
-2019-06-08 14:49:18.694 INFO - [ntLoopGroup-2-3] application$$EnhancerBySpringCGLIB$$33cdb075 : user: User(uuid=5cfc029c5061f8554e0b6e95, username=josdem, password={bcrypt}$2a$10$ucxaZC48cuVSWxoKfvrr7.PEOGkX1iR9mXWXQey5vECfiXF/bewTm, active=true, roles=[ROLE_USER])
+2019-06-08 15:12:44.026  INFO 91949 - [ntLoopGroup-2-3] : user: User(username=josdem, password={bcrypt}$2a$10$Fyo6YP2SRe5MhOeQPD67KOoCIosizAsqcz98FZLvW0O2GFz10ag0a, active=true, roles=[ROLE_USER])
 ```
 
 Now if we open the main page of the application: [http://localhost:8080](http://localhost:8080) we’ll see a nice and good looking Bootstrap 4 form to accept our user.
