@@ -1,12 +1,12 @@
 +++
-title =  "Spring Webflux Security Database"
+title =  "Seguridad con Spring Webflux y MongoDB"
 categories = ["techtalk", "code","spring webflux"]
 tags = ["josdem", "techtalks","programming","technology","Spring Security", "Webflux Security","spring webflux"]
 date = "2018-04-11T16:12:30-05:00"
 description = "This post walks you through the process of creating a simple registration and login example with Spring WebFlux Security using MongoDB database."
 +++
 
-This post walks you through the process of creating a simple registration and login example with Spring WebFlux Security using MongoDB database. Please read this previous [Spring Webflix Security](/techtalk/spring/spring_webflux_security) before conitnue with this information. Let's add MongoDB and Lombok dependencies to the `build.gradle` file
+Este post nos llevará a través del proceso de crear una aplicación de registro y login usando Spring Webflux Security y MongoDB. Por favor lee mi previo post [Spring Webflix Security](/techtalk/spring/spring_webflux_security_es) antes de continuar con esta información. Vamos a empezar agregando las dependencias de MongoDB y Lombok al archivo `build.gradle`
 
 ```groovy
 implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
@@ -14,7 +14,7 @@ compileOnly('org.projectlombok:lombok')
 annotationProcessor('org.projectlombok:lombok')
 ```
 
-Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Next step,  we need to change Spring security Java config class in order to add `userDetailsService`, so that we can implement database access functionality.
+Lombok es una gran herramienta para ahorrarnos código, para saber más acerca de Lombok por favor ve [aquí](https://projectlombok.org/). Ahora, necesitamos cambiar la configuración de Spring Security específicamente el método `userDetailsService`, así podemos obtener un usuario de la base de datos MongoDB.
 
 ```java
 package com.jos.dem.security.config;
@@ -57,7 +57,7 @@ public class SecurityConfig {
 }
 ```
 
-Since we’re in reactive land, the user details service should also be reactive. So let's use a `ReactiveMongoRepository` that returns a Mono publisher.
+Desde que estamos en el campo reactivo, `userDetailsService()` debería ser reactivo. Así que usemos `ReactiveMongoRepository` que regresa un publisher de tipo Mono.
 
 ```java
 package com.jos.dem.security.repository;
