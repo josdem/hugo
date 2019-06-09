@@ -1,18 +1,18 @@
 +++
-title =  "Spring Webflux Security"
+title =  "Seguridad con Spring Webflux"
 categories = ["techtalk", "code","spring webflux"]
 tags = ["josdem", "techtalks","programming","technology", "webflux", "spring security","spring webflux"]
 date = "2018-04-10T09:46:11-05:00"
-description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project."
+description="Spring Security es un poderoso y altamente customizable framework de control de acceso. En este ejemplo veremos como integrar Spring Security en una aplicación reactiva Spring Webflux."
 +++
 
-Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate Spring Security to your Spring Reactive Webflux project. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's start creating a new Spring Boot project with Webflux, Security and Thymeleaf as dependencies:
+Spring Security es un poderoso y altamente customizable framework de control de acceso. En este ejemplo veremos como integrar Spring Security en una aplicación reactiva Spring Webflux. Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post técnico [Empezando con Spring Webflux](/techtalk/spring/spring_webflux_basics_es). Vamos a empezar creando un nuevo proyecto Spring Boot con Webflux, Security y Thymeleaf como dependencias:
 
 ```bash
 spring init --dependencies=webflux,security,thymeleaf --build=gradle --language=java reactive-webflux-security
 ```
 
-Here is the complete `build.gradle` file generated:
+Aquí esta el `build.gradle` generado:
 
 ```java
 plugins {
@@ -39,7 +39,8 @@ dependencies {
 }
 ```
 
-Spring Security’s `@EnableWebFluxSecurity` annotation enable WebFlux support in Spring Security. `SecurityWebFilterChain` provides some convenient defaults to get our application up and running quickly. A small improvement in Spring Security is a new styled login form which uses the Bootstrap 4 CSS framework, in order to use the new login form, let’s add the corresponding `formLogin()` builder method to the `ServerHttpSecurity`.
+La anotación Spring Security `@EnableWebFluxSecurity` habilita el soporte WebFlux en Spring Security. `SecurityWebFilterChain` provee confifguración por default para poder tener nuestra aplicación lista sin mucho esfuerzo. Una mejora en Spring Security es el formulario para el login el cual usa Bootstrap 4 CSS, ahora para poder utilizar este formulario vamos a agregar el correspondiente `formLogin()` al método builder de `ServerHttpSecurity`.
+
 
 ```java
 package com.jos.dem.security.config;
@@ -82,7 +83,7 @@ public class SecurityConfig {
 }
 ```
 
-`userDetailsService` provides a convenient mock user builder and an in-memory implementation from user details.
+`userDetailsService` provee un conveniente método para construir un nuevo usuario en memoria.
 
 ```java
 package com.jos.dem.security.controller;
@@ -112,7 +113,7 @@ public class DemoController {
 }
 ```
 
-In this controller we can see `Principal` and it can be defined directly as a method argument and it will be correctly resolved by the framework. `Principal` is the currently logged in user. This interface represents the abstract notion of a principal, which can be used to represent any entity, whether individual or corporation.
+En este controller podemos ver el objeto `Principal` y puede ser definido directamente como un argumento y así ser manejado correctamente por el framework. `Principal` es el usuario que se a logeado a la aplicación.
 
 ```html
 <html>
@@ -124,15 +125,15 @@ In this controller we can see `Principal` and it can be defined directly as a me
 </html>
 ```
 
-Now if we run the project `gradle bootRun` and we now open the main page of the application: [http://localhost:8080](http://localhost:8080) we’ll see that it looks much better than the default form we’re used to since previous versions of Spring Security.
+Ahora si iniciamos el proyecto con `gradle bootRun` y abrimos la página principal de la aplicación: [http://localhost:8080](http://localhost:8080) podremos ver que luce mucho mejor que las versiones previas de Spring Security.
 
 <img src="/img/techtalks/spring/login_form.png">
 
-After a successful login you can see a greeting
+Después de un acceso exitoso puedes ver este saludo.
 
 <img src="/img/techtalks/spring/form_greeting.png">
 
-Finally here is our main Spring Boot demo application
+Finalmente aquí está nuestra aplicación main de Spring Boot.
 
 ```java
 package com.jos.dem.security;
@@ -150,27 +151,27 @@ public class DemoApplication {
 }
 ```
 
-To run the project:
+Para correr el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-**Using Maven**
+**Usando Maven**
 
-You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+Tú puedes hacer lo mismo usando Maven, la única diferencia es que tienes que específicar el parámetro `--build=maven` en el comando `spring init`:
 
 ```bash
 spring init --dependencies=webflux,security,thymeleaf --build=maven --language=java reactive-webflux-security
 ```
 
-And when you run your project use this command:
+Entonces puedes correr el proyecto usando este comando:
 
 ```bash
 mvn spring-boot:run
 ```
 
-This is the pom.xml file generated:
+Este es el `pom.xml` generado:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -242,14 +243,13 @@ This is the pom.xml file generated:
 </project>
 ```
 
-To browse the project go [here](https://github.com/josdem/reactive-webflux-security), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/reactive-webflux-security), para descargar el proyecto:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-security.git
 git fetch
 git checkout in-memory
 ```
-
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
