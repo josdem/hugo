@@ -189,4 +189,4 @@ git clone https://github.com/josdem/reactive-webflux-workshop.git
 cd server
 ```
 
-[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_es))

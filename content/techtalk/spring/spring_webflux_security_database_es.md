@@ -74,7 +74,7 @@ public interface UserRepository extends ReactiveMongoRepository<User, String> {
 }
 ```
 
-Here is our user class that implements `UserDetails` specification.
+Aquí está nuestra clase user que implementa la especificación `UserDetails`.
 
 ```java
 package com.jos.dem.security.model;
@@ -150,7 +150,7 @@ public class User implements UserDetails {
 }
 ```
 
-Now, we are going to use `CommandLineRunner` to save an user. `CommandLineRunner` is a call back interface in Spring Boot, so when Spring Boot starts will call it and pass in args through a `run()` internal method.
+Ahora, vamos a usar `CommandLineRunner` para registrar un usuario. El `CommandLineRunner` es una interfaz call back en Spring Boot, cuando nuestra aplicación arranca llamará al método start y le pasará los argumentos unsando el método interno `run()`
 
 ```java
 package com.jos.dem.security;
@@ -195,7 +195,7 @@ public class DemoApplication {
 }
 ```
 
-Do not forget to create a Mongo database in your local environment and specify your credentials in the `application.properties` file:
+No olvides crear la base de datos Mongo en tu ambiente local y especificar las credenciales en el archivo `application.properties`.
 
 ```properties
 spring.data.mongodb.database=webflux_security
@@ -204,22 +204,22 @@ spring.data.mongodb.username=username
 spring.data.mongodb.password=password
 ```
 
-Now we are good to go and start our application using `gradle bootRun` command and then list our user collection from MongoDB.
+Ahora ya estamos listos para iniciar nuestra aplicación con el comando `gradle bootRun` y así poder listar nuestra colección de usuarios desde MongoDB.
 
 ```bash
 2019-06-08 15:12:44.026  INFO 91949 - [ntLoopGroup-2-3] : user: User(username=josdem, password={bcrypt}$2a$10$Fyo6YP2SRe5MhOeQPD67KOoCIosizAsqcz98FZLvW0O2GFz10ag0a, active=true, roles=[ROLE_USER])
 ```
 
-Now if we open the main page of the application: [http://localhost:8080](http://localhost:8080) we’ll see a nice and good looking Bootstrap 4 form to accept our user.
+Finalmente abramos nuestra página principal de la aplicación: [http://localhost:8080](http://localhost:8080) y veremos un lindo y atractivo formulario con Bootstrap 4 para poder hacer login de nuestro usuario.
 
 <img src="/img/techtalks/spring/login_form.png">
 
-After a successful login you can see a greeting
+Después de el acceso exitoso, podrás ver este saludo.
 
 <img src="/img/techtalks/spring/form_greeting.png">
 
 
-To browse the project go [here](https://github.com/josdem/reactive-webflux-security), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/reactive-webflux-security), para descargar el proyecto:
 
 ```bash
 git clone https://github.com/josdem/reactive-webflux-security.git
@@ -227,11 +227,11 @@ git fetch
 git checkout database
 ```
 
-To run the project:
+Para ejecutar el projecto:
 
 ```bash
 gradle bootRun
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive_es)
