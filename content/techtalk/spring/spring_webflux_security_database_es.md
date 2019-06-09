@@ -218,6 +218,33 @@ Después de el acceso exitoso, podrás ver este saludo.
 
 <img src="/img/techtalks/spring/form_greeting.png">
 
+**Usando Maven**
+
+Para el soporte Maven agrega las dependencias de MongoDB y Lombok al archivo `pom.xml`
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.projectlombok</groupId>
+  <artifactId>lombok</artifactId>
+  <scope>provided</scope>
+</dependency>
+```
+
+Para ejecutar el projecto con Gradle:
+
+```bash
+gradle bootRun
+```
+
+Para ejecutar el projecto con Maven:
+
+```bash
+mvn spring-boot:run
+```
 
 Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/reactive-webflux-security), para descargar el proyecto:
 
@@ -227,11 +254,6 @@ git fetch
 git checkout database
 ```
 
-Para ejecutar el projecto:
-
-```bash
-gradle bootRun
-```
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive_es)

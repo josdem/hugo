@@ -218,6 +218,33 @@ After a successful login you can see a greeting
 
 <img src="/img/techtalks/spring/form_greeting.png">
 
+**Using Maven**
+
+With Maven you need to add MongoDB and Lombok to the `pom.xml` file.
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.projectlombok</groupId>
+  <artifactId>lombok</artifactId>
+  <scope>provided</scope>
+</dependency>
+```
+
+To run the project with Gradle:
+
+```bash
+gradle bootRun
+```
+
+To run the project with Maven:
+
+```bash
+mvn spring-boot:run
+```
 
 To browse the project go [here](https://github.com/josdem/reactive-webflux-security), to download the project:
 
@@ -227,11 +254,6 @@ git fetch
 git checkout database
 ```
 
-To run the project:
-
-```bash
-gradle bootRun
-```
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
