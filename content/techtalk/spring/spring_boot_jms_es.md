@@ -1,5 +1,5 @@
 +++
-title = "Spring Boot JMS"
+title = "Usando JMS en Spring Webflux"
 categories = ["techtalk","code","spring boot"]
 tags = ["josdem","techtalks","programming","technology", "spring boot jms", "java message service", "spring boot"]
 date = "2018-02-26T09:08:25-06:00"
