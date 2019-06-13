@@ -6,15 +6,13 @@ date = "2018-02-26T09:08:25-06:00"
 description = "The Java Message Service is an API for sending messages between two or more clients. It is an implementation to Producer-Consumer Design Pattern"
 +++
 
-[Java Message Service](https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/jms.html) es una API para envio de mensajes entre uno o mas clientes. Es la implementaciión [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). El caso de uso es típicamente cuando tienes procesos que consumen tiempo de procesamiento y requieres que la respuesta sea manejada asíncronamente, así evitas que los clientes esperen por una respuesta. Para poner esto en contexto vamos a pensar en el escenario donde necesitas enviar un correo electrónico. Enviar un email consume tiempo así que es buena idea poner el mensaje en una cola de mensajes, de esta manera podemos continuar con el flujo de negocio sin forzar al cliente que espere hasta que el mensade de correo electrónico sea entregado. En este ejemplo te mostraré como usar JMS en una aplicación Spring Boot. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot)
-
-Then execute this command in your terminal.
+[Java Message Service](https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/jms.html) es una API para envio de mensajes entre uno o mas clientes. Es la implementaciión [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). El caso de uso es típicamente cuando tienes procesos que consumen tiempo de procesamiento y requieres que la respuesta sea manejada asíncronamente, así evitas que los clientes esperen por una respuesta. Para poner esto en contexto vamos a pensar en el escenario donde necesitas enviar un correo electrónico. Enviar un email consume tiempo así que es buena idea poner el mensaje en una cola de mensajes, de esta manera podemos continuar con el flujo de negocio sin forzar al cliente que espere hasta que el mensade de correo electrónico sea entregado. En este ejemplo te mostraré como usar JMS en una aplicación Spring Boot. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot). Entonces ejecuta este comando desde la terminal.
 
 ```bash
 spring init --dependencies=webflux,activemq,lombok --language=java --build=gradle spring-boot-jms
 ```
 
-This is the `build.gradle file` generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -43,14 +41,14 @@ dependencies {
 }
 ```
 
-Next add this dependencies:
+Después agrega estas dependencias:
 
 ```groovy
 implementation('org.apache.commons:commons-lang3')
 implementation('org.apache.activemq:activemq-broker')
 ```
 
-First, lets create a `MessageService` to deliver messages to the queue.
+Ahora, primero vamos a crear un `MessageService` para poder entregar mensajes a la cola de espera.
 
 ```groovy
 package com.jos.dem.springboot.jms.service
@@ -64,7 +62,7 @@ interface MessageService {
 }
 ```
 
-This is our `MessageServiceImpl` implementation class:
+Este es nuestra implementación del servicio `MessageServiceImpl`:
 
 ```groovy
 package com.jos.dem.springboot.jms.service.impl;
@@ -106,11 +104,11 @@ public class MessageServiceImpl implements MessageService {
 }
 ```
 
-Where:
+Donde:
 
-* `@EnableJms` Discovers methods annotated with `@JmsListener`.
-* `JmsTemplate` Sends messages to a JMS destination
-* `Command` Is just a serializable object and it is common for me to use an interface instead and specific POJO.
+* `@EnableJms` Descubre métodos anotados con `@JmsListener`.
+* `JmsTemplate` Envía mensajes al destino JMS.
+* `Command` Es un contrato para serializar los objetos POJO.
 
 ```groovy
 package com.jos.dem.springboot.jms.command
@@ -120,7 +118,7 @@ import java.io.Serializable
 interface Command extends Serializable {}
 ```
 
-And this is the message object we are going to send.
+Este el el mensaje que vamos a enviar.
 
 ```groovy
 package com.jos.dem.springboot.jms.command;
@@ -138,7 +136,7 @@ public class PersonCommand implements Command {
 }
 ```
 
-Now we have all entities we need to set in order to send a message, next we need to specify the entities to receive and process messages
+Ahora que tenemos todas la entidades que necesitamos para enviar un mensaje, vamos a especificar las necesarias para procesar los mensajes.
 
 ```groovy
 package com.jos.dem.springboot.jms.messengine
@@ -167,7 +165,7 @@ class MessageListener {
 }
 ```
 
-As you can see `JmsTemplate` is sending a message to the `destination` and `@JmsListener` is waiting for new messages from `destination`, the another important part in this puzzle is the JMS container called `myJmsContainerFactory` who is defined in our Spring Boot application class as a bean.
+Así como puedes ver `JmsTemplate` está enviando un mensaje a `destination` y `@JmsListener` está esperando por mensaje desde `destination`, otra parte imporante en el rompecabnezas es el contenerdo JMS llamado `myJmsContainerFactory` que está definido en nuestra aplicación Spring Boot como un bean.
 
 ```groovy
 package com.jos.dem.springboot.jms;

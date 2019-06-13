@@ -169,7 +169,7 @@ class MessageListener {
 }
 ```
 
-As you can see `JmsTemplate` is sending a message to the `destination` and `@JmsListener` is waiting for new messages from `destination`, the another important part in this puzzle is the JMS container called `myJmsContainerFactory` who is defined in our Spring Boot application class as a bean.
+As you can see `JmsTemplate` is sending a message to the `destination` and `@JmsListener` is waiting for new messages from `destination`, the another important part in this puzzle is the JMS container called `myJmsContainerFactory` which is defined in our Spring Boot application class as a bean.
 
 ```groovy
 package com.jos.dem.springboot.jms;
