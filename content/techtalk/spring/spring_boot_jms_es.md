@@ -196,7 +196,7 @@ public class DemoApplication {
 }
 ```
 
-That's it, now all components required have been already set. Here we are going to create a new `Person` message and send it to message service.
+Así es, ahora todos los componentes requeridos han sido definidos. Así ahora vamos a crear una nueva entidad `Person` que sirva como mensaje para ser enviado por nuestro service.
 
 ```groovy
 package com.jos.dem.springboot.jms.controller;
@@ -225,19 +225,19 @@ public class DemoController {
 }
 ```
 
-Now if you start our Spring Boot Application:
+Ahora si iniciamos nuestra aplicación Spring Boot:
 
 ```bash
 gradle bootRun
 ```
 
-And hit this endopoint from command line:
+Y al consultar el endpoint desde la línea de comando:
 
 ```bash
 curl http://localhost:8080/
 ```
 
-You should be able to get this output:
+Deberíamos poder ver esta salida:
 
 ```bash
 MessageServiceImpl : Sending message
@@ -246,9 +246,13 @@ MessageListener    : Message Received <com.jos.dem.springboot.jms.command.Person
 
 **Using Maven**
 
-You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+Tú puedes hacer lo mismo usando Maven, la única diferencia es que tienes que específicar el parámetro `--build=maven` en el comando `spring init`:
 
-This is the pom.xml file generated:
+```bash
+spring init --dependencies=webflux,activemq,lombok --language=java --build=maven spring-boot-jms
+```
+
+Este es el `pom.xml` generado:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -323,19 +327,19 @@ This is the pom.xml file generated:
 </project>
 ```
 
-To run the project with Gradle:
+Para correr el proyecto con Gradle:
 
 ```bash
 gradle bootRun
 ```
 
-To run the project with Maven:
+Para correr el proyecto con Maven:
 
 ```bash
 mvn spring-boot:run
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-jms), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-jms), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-jms.git

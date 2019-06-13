@@ -152,7 +152,7 @@ import org.springframework.stereotype.Component
 import org.springframework.jms.annotation.JmsListener
 import org.springframework.beans.factory.annotation.Autowired
 
-import org.slf4j.Logger
+import org.slf5j.Logger
 import org.slf4j.LoggerFactory
 
 @Component
@@ -251,6 +251,10 @@ MessageListener    : Message Received <com.jos.dem.springboot.jms.command.Person
 **Using Maven**
 
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=webflux,activemq,lombok --language=java --build=maven spring-boot-jms
+```
 
 This is the pom.xml file generated:
 
