@@ -196,7 +196,7 @@ public class DemoApplication {
 }
 ```
 
-Así es, ahora todos los componentes requeridos han sido definidos. Así ahora vamos a crear una nueva entidad `Person` que sirva como mensaje para ser enviado por nuestro service.
+Así es, ahora todos los componentes requeridos han sido definidos. Vamos creando una nueva entidad `Person` que sirva como mensaje para ser enviado por nuestro service.
 
 ```groovy
 package com.jos.dem.springboot.jms.controller;

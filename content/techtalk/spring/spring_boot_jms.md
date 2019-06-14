@@ -6,9 +6,7 @@ date = "2018-02-26T09:08:25-06:00"
 description = "The Java Message Service is an API for sending messages between two or more clients. It is an implementation to Producer-Consumer Design Pattern"
 +++
 
-[Java Message Service](https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/jms.html) is an API for sending messages between two or more clients. It is an implementation to [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). This technique is usually implemented when you have time consuming process and you need to avoid client waiting time. To put this in context let’s think about a scenario where we could use it. The first thing that comes to my mind is an email delivery process. Sending an email consumes too much time and we can put email delivery as a task in a queue, so we can continue with our business flow without force to the client to wait until its email is deliver.
-
-In this example I will show you how to use JMS in a Spring Boot application. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
+[Java Message Service](https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/jms.html) is an API for sending messages between two or more clients. It is an implementation to [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). This technique is usually implemented when you have time consuming process and you need to avoid client waiting time. To put this in context let’s think about a scenario where we could use it. The first thing that comes to my mind is an email delivery process. Sending an email consumes time and we can put email delivery as a task in a queue, so we can continue with our business flow without force to the client to wait until this email is deliver it. In this example I will show you how to use JMS in a Spring Boot application. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
 
 Then execute this command in your terminal.
 
@@ -112,7 +110,7 @@ Where:
 
 * `@EnableJms` Discovers methods annotated with `@JmsListener`.
 * `JmsTemplate` Sends messages to a JMS destination
-* `Command` Is just a serializable object and it is common for me to use an interface instead and specific POJO.
+* `Command` Is a contract, so we can make serializable specific POJO.
 
 ```groovy
 package com.jos.dem.springboot.jms.command
