@@ -113,7 +113,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
  * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
  * [Spring Boot JMS](/techtalk/spring/spring_boot_jms)
- * [Spring Boot Cucumber](/techtalk/spring/spring_boot_cucumber)
+ * [Spring Webflux Cucumber](/techtalk/spring/spring_webflux_cucumber)
  * [Spring Boot WebClient](/techtalk/spring/spring_boot_webclient)
  * [Spring Boot WebClient Cucumber and Junit5](/techtalk/spring/webclient_cucumber_junit5)
  * [Spring Boot Multi-Module](/techtalk/spring/spring_webflux_modules)
