@@ -731,10 +731,10 @@ So each time when you execute your Jenkins job you will have this kind of Cucumb
 
 <img src="/img/techtalks/spring/cucumber_reports1.png">
 
-To browse the project go [here](https://github.com/josdem/spring-boot-cucumber), to download the project:
+To browse the project go [here](https://github.com/josdem/spring-webflux-cucumber), to download the project:
 
 ```bash
-git clone https://github.com/josdem/spring_boot_cucumber.git
+git clone git@github.com:josdem/spring-webflux-cucumber.git
 ```
 
 
