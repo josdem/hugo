@@ -1,12 +1,13 @@
 +++
-title =  "Spring Boot Cucumber"
+title =  "Spring Webflux Cucumber"
 categories = ["techtalk", "code","spring boot"]
 tags = ["josdem", "techtalks","programming","technology","Java", "Cucumber","spring boot"]
 date = "2018-03-30T19:42:17-06:00"
 description = "BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing."
 +++
 
-BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing. This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Boot application, Cucumber is a very powerful testing framework written in the Ruby programming language, which follows the BDD methodology.
+BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing. This time I am going to show you how integrate [Cucumber](https://cucumber.io/) to a Spring Webflux application, Cucumber is a very powerful testing framework written in the [Ruby programming language](https://en.wikipedia.org/wiki/Ruby_(programming_language)), which follows the BDD methodology. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
+
 
 * [Spring Boot Cucumber with Gradle](#Gradle)
 * [Spring Boot Cucumber with Maven](#Maven)
@@ -27,14 +28,10 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.4.RELEASE'
+  id 'org.springframework.boot' version '2.1.5.RELEASE'
   id "org.sonarqube" version "2.7"
   id 'java'
 }
-
-def springBootVersion = '2.1.4.RELEASE'
-def junitJupiterVersion = '5.4.0'
-def cucumberVersion = '1.2.5'
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
@@ -44,6 +41,12 @@ group = 'com.jos.dem.springboot.cucumber'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 11
 
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 repositories {
   mavenCentral()
 }
@@ -52,13 +55,8 @@ dependencies {
   implementation('org.springframework.boot:spring-boot-starter-webflux')
   implementation('org.springframework.boot:spring-boot-starter-tomcat')
   compileOnly('org.projectlombok:lombok')
-  annotationProcessor('org.projectlombok:lombok')
+  annotationProcessor 'org.projectlombok:lombok'
   implementation('org.apache.commons:commons-lang3:3.8.1')
-  testImplementation("info.cukes:cucumber-java:$cucumberVersion")
-  testImplementation("info.cukes:cucumber-junit:$cucumberVersion")
-  testImplementation("info.cukes:cucumber-spring:$cucumberVersion")
-  testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-  testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
   testImplementation('org.springframework.boot:spring-boot-starter-test')
   testImplementation('io.projectreactor:reactor-test')
 }
@@ -154,7 +152,7 @@ public interface PersonService {
 }
 ```
 
-Implementation:
+Here is our mplementation:
 
 ```java
 package com.jos.dem.springboot.cucumber.service.impl;
@@ -214,7 +212,7 @@ import cucumber.api.junit.Cucumber;
 public class CucumberTest {}
 ```
 
-Gherkin is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition file `src/test/resources/person.feature`:
+[Gherkin](https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language) is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition file `src/test/resources/person.feature`:
 
 ```gherkin
 Feature: We can retrieve person data
@@ -226,7 +224,7 @@ Feature: We can retrieve person data
     Then I validate person data
 ```
 
-The next step is to create a class with a web client to create request to our persons end-point:
+Now, let's create a class with a web client to create request to our persons end-point:
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -265,7 +263,7 @@ public class PersonIntegrationTest {
 }
 ```
 
-This `WebClient` is actually a bean defined in our `DemoApplication` as follow:
+This `WebClient` is a bean defined in our `DemoApplication` as follow:
 
 ```java
 package com.jos.dem.springboot.cucumber;
