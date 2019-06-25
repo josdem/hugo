@@ -195,8 +195,7 @@ public class PersonServiceImpl implements PersonService {
 
 }
 ```
-
-The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation `@RunWith(Cucumber.class)` and define `@CucumberOptions` where we’re specifying the location of the Gherkin file which is also known as the feature file:
+Junit runner usa Junit framework para poder ejecutar los test usando Cucumber. Lo que necesitamos definir es una sóla clase con la anotación `@RunWith(Cucumber.class)` y definir `@CucumberOptions` donde nosotros vamos a especificar la localización de los archivos Gherkin también conocidos como los archivos feature.
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -210,7 +209,7 @@ import cucumber.api.junit.Cucumber;
 public class CucumberTest {}
 ```
 
-[Gherkin](https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language) is a DSL language used to describe an application feature that needs to be tested. Here is our person Gherkin feature definition file `src/test/resources/person.feature`:
+[Gherkin](https://en.wikipedia.org/wiki/Cucumber_(software)#Gherkin_language) es un lenguaje DSL usado para describir una aplicación que necesita ser testeada. Aquí está nuestro archivo feature `src/test/resources/person.feature`:
 
 ```gherkin
 Feature: We can retrieve person data
@@ -222,7 +221,7 @@ Feature: We can retrieve person data
     Then I validate person data
 ```
 
-Now, let's create a class with a web client to create request to our persons end-point:
+Ahora, vamos a crear una clase con webclien para poder hacer las peticiones al end-point `persons`:
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -261,7 +260,7 @@ public class PersonIntegrationTest {
 }
 ```
 
-This `WebClient` is a bean defined in our `DemoApplication` as follow:
+Este es el `WebClient` definido en nuestro `DemoApplication`:
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -286,13 +285,13 @@ public class DemoApplication {
 }
 ```
 
-It is time to execute this command, so we can get our Spring Boot application up and running.
+Es tiempo de ejecutar este comando, así podemos tener nuestra aplicación Spring Boot correndo y lista.
 
 ```bash
 gradle bootRun
 ```
 
-Now let's create get persons test scenario
+Ahora vamos a crear la implementación de prueba para obtener personas.
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -354,7 +353,7 @@ public class GetPersonsTest extends PersonIntegrationTest {
 }
 ```
 
-And here is our get person test scenario
+Y aquí está el escenario de prueba para obtener una persona en partícular
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -411,7 +410,7 @@ public class GetPersonTest extends PersonIntegrationTest {
 }
 ```
 
-We can test using Gradle with this command:
+Podemos ejecutar los test usando Gradle con este comando:
 
 ```bash
 gradle test
