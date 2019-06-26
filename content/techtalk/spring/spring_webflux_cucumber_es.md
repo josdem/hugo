@@ -601,7 +601,7 @@ mvn -Dcucumber.options="--tags @SmokeTest" test
 ## Reports
 </a>
 
-We easily can use a plugin so that we will be able to integrate [Extent Reports](http://extentreports.com/) to our project, in order to do that you need to add this dependencies:
+Fácilmente podemos usar un plugin que nos permita integrar [Extent Reports](http://extentreports.com/) a nuestro proyecto, para poder hacer eso necesitarás agregar estas dependencias:
 
 **Gradle**
 
@@ -625,7 +625,7 @@ testImplementation('com.vimalselvam:cucumber-extentsreport:3.1.1')
 </dependency>
 ```
 
-Now in our Cucumber test runner class add the `com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html` as a plugin
+Ahor en nuestra clase Cucumber agrega el nuevo `com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html` como un plugin
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -654,12 +654,12 @@ public class CucumberTest {
 }
 ```
 
-`extent-config.xml` is a config file with important elements such as:
+`extent-config.xml` es un archivo de configuración con algunos elementos imporantes como:
 
-* Report Theme : `<theme>` : standard or dark
+* Report Theme : `<theme>` : standard es oscuro
 * Document Encoding : `<encoding>` : UFT-8
-* Title of the Report : `<documentTitle>` : This will display on the Browser Tab
-* Name of the Report : `<reportName>` : This will display at the top of the Report
+* Title of the Report : `<documentTitle>` : Es el título que se mostrará en el Tab del browserThis will display on the Browser Tab
+* Name of the Report : `<reportName>` : Este título se mostrará en el inicio del reporte
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -686,7 +686,7 @@ public class CucumberTest {
 </extentreports>
 ```
 
-Now, if you execute the test cases, you will generate an Extent report like this:
+Ahora, si ejecutamos los test cases, podrás genera el reporte Extent como sigue:
 
 <img src="/img/techtalks/spring/extent.png">
 
