@@ -690,9 +690,9 @@ Ahora, si ejecutamos los test cases, podrás genera el reporte Extent como sigue
 
 <img src="/img/techtalks/spring/extent.png">
 
-**Cucumber Reports**
+**Reportes Cucumber**
 
-Another cool plugin is [Cucumber Reports](https://wiki.jenkins.io/display/JENKINS/Cucumber+Reports+Plugin) is very stylish and good looking report, besides it is really easy to explore features, scenarios and steps. In order to integrate it you need to add a simple line of code:
+Otro buen plugin es [Cucumber Reports](https://wiki.jenkins.io/display/JENKINS/Cucumber+Reports+Plugin) es muy estilizado y atractivo reporte, además facilita explorar los features, escenarios y pasos. Para poder generarlo necesitas una simple línea de código:
 
 ```java
 package com.jos.dem.jugoterapia.cucumber;
@@ -720,20 +720,20 @@ public class CucumberTest {
 }
 ```
 
-Then after install Cucumber Reports plugin in your Jenkins server just create a post build action with this configuration:
+Después de instalar el plugín de reportes de Cucumber en tu Jenkins server sólo crea un post build action con esta configuración.
 
 <img src="/img/techtalks/spring/cucumber_reports.png">
 
-So each time when you execute your Jenkins job you will have this kind of Cucumber Report:
+Así cada vez que ejecutes un Jenkins job encontrarás este tipo de reporte de Cucumber:
 
 <img src="/img/techtalks/spring/cucumber_reports1.png">
 
-To browse the project go [here](https://github.com/josdem/spring-webflux-cucumber), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-webflux-cucumber), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-webflux-cucumber.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot)
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive_ES)
 
