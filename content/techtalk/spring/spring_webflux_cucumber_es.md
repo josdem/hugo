@@ -428,13 +428,13 @@ BUILD SUCCESSFUL in 5s
 ## Using Maven
 </a>
 
-You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
+Tú puedes hacer lo mismo usando Maven, la única diferencia es que tienes que específicar el parámetro `--build=maven` en el comando `spring init`:
 
 ```bash
 spring init --dependencies=webflux,lombok --build=maven --language=java spring-boot-cucumber
 ```
 
-This is the `pom.xml` file generated along with Cucumber and Junit as dependencies on it added manualy:
+Este es el `pom.xml` generado:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -548,13 +548,13 @@ This is the `pom.xml` file generated along with Cucumber and Junit as dependenci
 </project>
 ```
 
-Now you can execute this command, so we can get our Spring Boot application up and running with Maven.
+Entonces puedes correr el proyecto usando este comando:
 
 ```bash
 mvn spring-boot:run
 ```
 
-Finally this command to run our test scenario:
+Finalmente este comando para correr los tests:
 
 ```bash
 mvn test
@@ -564,13 +564,13 @@ mvn test
 ## Cucumber Tags
 </a>
 
-If you got many different feature files which cover different functionality of the application and  you want to execute only a specific feature file, you can use Cucumber tags from command line like this:
+Si tienes diferentes archivos feature que cubren diferente funcioncalidad de la aplicación y quieres sólo ejecutar cierto feature, puedes usar los tags de Cucumber desde la línea de comandos como sigue:
 
 ```bash
 gradle -Dcucumber.options="--tags @SmokeTest" test
 ```
 
-And this would be our feature file with `@SmokeTest` annotation:
+Y este sería el archivo feature con la anotación `@SmokeTest`:
 
 ```gherkin
 @SmokeTest
@@ -583,7 +583,7 @@ Feature: We can retrieve person data
     Then I validate person data
 ```
 
-**Note:** You need to pass system properties variables from command line to the `gradle test` task in order to do that, please add this lines to the `build.gradle` file
+**Nota:** Tú necesitas pasar las variables de sistema desde la línea de comandos a la tarea test de Gradle y para poder hacer eso, por favor agrega estas líneas al archivo `build.gradle`
 
 ```groovy
 test {
@@ -591,7 +591,7 @@ test {
 }
 ```
 
-In case you are using Maven, use this command:
+En caso que uses Maven, es este comando:
 
 ```bash
 mvn -Dcucumber.options="--tags @SmokeTest" test
