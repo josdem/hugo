@@ -735,5 +735,6 @@ git clone git@github.com:josdem/spring-webflux-cucumber.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive_ES)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_ES)
+
 
