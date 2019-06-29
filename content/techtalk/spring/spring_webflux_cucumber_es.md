@@ -625,7 +625,7 @@ testImplementation('com.vimalselvam:cucumber-extentsreport:3.1.1')
 </dependency>
 ```
 
-Ahor en nuestra clase Cucumber agrega el nuevo `com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html` como un plugin
+Ahora en nuestra clase Cucumber agrega el nuevo `com.vimalselvam.cucumber.listener.ExtentCucumberFormatter:target/reports/report.html` como un plugin
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -658,7 +658,7 @@ public class CucumberTest {
 
 * Report Theme : `<theme>` : standard es oscuro
 * Document Encoding : `<encoding>` : UFT-8
-* Title of the Report : `<documentTitle>` : Es el título que se mostrará en el Tab del browserThis will display on the Browser Tab
+* Title of the Report : `<documentTitle>` : Es el título que se mostrará en el Tab del browser
 * Name of the Report : `<reportName>` : Este título se mostrará en el inicio del reporte
 
 ```xml
