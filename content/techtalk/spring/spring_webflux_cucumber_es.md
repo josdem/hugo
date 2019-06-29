@@ -6,7 +6,7 @@ date = "2018-03-30T19:42:17-06:00"
 description = "BDD (Behavior-driven development) is a technique very similar to implement UAT (User Acceptance Testing) in a software project. Usually is a good idea to use BDD to reprecent how users can define application behaviour, so in that way you can represent user stories in test scenarios aka. feature testing."
 +++
 
-BDD (Behavior-driven development) es una técnica muy similar a implementar UAT (User Acceptance Testing) en un proyecto de software. Usualmewnte es una buena idea usar BDD para representar como usuarios pueden definir el comportamiento de una aplicación, de esta manera podemos representar historias de usuario en test cases aka. feaure testing. Esta vez voy a mostrarte como integrarThis time I am going to show you how integrate [Cucumber](https://cucumber.io/) a una aplicación Spring Webflux, Cucumber es un poderoso framework de pruebas escrito en [Ruby programming language](https://en.wikipedia.org/wiki/Ruby_(programming_language)), el cual sigue la metodología BDD. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot). Entonces ejecuta este comando desde la terminal.
+BDD (Behavior-driven development) es una técnica muy similar a implementar UAT (User Acceptance Testing) en un proyecto de software. Usualmente es una buena idea usar BDD para representar como usuarios pueden definir el comportamiento de una aplicación, de esta manera podemos representar historias de usuario en test cases aka. feaure testing. Esta vez voy a mostrarte como integrar [Cucumber](https://cucumber.io/) a una aplicación Spring Webflux, Cucumber es un poderoso framework de pruebas escrito en [Ruby programming language](https://en.wikipedia.org/wiki/Ruby_(programming_language)), el cual sigue la metodología BDD. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot). Entonces ejecuta este comando desde la terminal.
 
 
 * [Spring Boot Cucumber with Gradle](#Gradle)
@@ -18,7 +18,7 @@ BDD (Behavior-driven development) es una técnica muy similar a implementar UAT 
 ## Using Gradle
 </a>
 
-Vamos a empezar creamndo un nuevo proyecto de Spring Boot con Webflux y Lombok como dependencias:
+Vamos a empezar creando un nuevo proyecto de Spring Boot con Webflux y Lombok como dependencias:
 
 ```bash
 spring init --dependencies=webflux,lombok --build=gradle --language=java spring-boot-cucumber
@@ -221,7 +221,7 @@ Feature: We can retrieve person data
     Then I validate person data
 ```
 
-Ahora, vamos a crear una clase con webclien para poder hacer las peticiones al end-point `persons`:
+Ahora, vamos a crear una clase con Webclient para poder hacer las peticiones al end-point `persons`:
 
 ```java
 package com.jos.dem.springboot.cucumber;
