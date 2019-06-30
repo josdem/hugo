@@ -6,13 +6,13 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will see how to integrate [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) in a Spring Webflux application. Please read this previous [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+En este post técnico revisaremos como integrar [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) en una aplicación Spring Webflux. Por favor lee mi previo post [Spring Webflux Basics](/techtalk/spring/spring_webflux_basics) antes de continuar con esta información. Después, vamos a crear un nuevo proyecto Spring Boot con Webflux y Lombok como dependencias:
 
 ```bash
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-boot-sse
 ```
 
-Here is the complete `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -45,14 +45,14 @@ dependencies {
 }
 ```
 
-Now add Junit 5 Framework dependencies to your `build.gradle` file:
+Ahora por favor agrega la dependencias Junit 5 al archivo `build.gradle`:
 
 ```groovy
 testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
 testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 ```
 
-Let's start by creating a controller to serve our stream data
+Empecemos por crear un controlador para servir nuestro stream de datos.
 
 ```java
 package com.jos.dem.springboot.sse.controller;
@@ -81,7 +81,7 @@ public class MessageController {
 }
 ```
 
-`MediaType.TEXT_EVENT_STREAM_VALUE` is needed when you want to return to the client server-side events. Now let's use `MessageCommand` as domain transfer object
+`MediaType.TEXT_EVENT_STREAM_VALUE` es necesario cuando quieres enviar server-sent events. Ahora vamos a usar `MessageCommand` como un objeto de transferencia de dominio.
 
 ```java
 package com.jos.dem.springboot.sse.model;
@@ -102,7 +102,7 @@ public class MessageCommand {
 }
 ```
 
-Next step is create a service which returns a `Flux` object with our data
+El siguiente paseo es crear un servicio que regrese un objeto `Flux` con nuestros datos.
 
 ```java
 package com.jos.dem.springboot.sse.service;
@@ -116,7 +116,7 @@ public interface MessageService {
 }
 ```
 
-Here is our implementation
+Aquí está la implementación
 
 ```java
 package com.jos.dem.springboot.sse.service.impl;
@@ -149,12 +149,12 @@ public class MessageServiceImpl implements MessageService {
 }
 ```
 
-Where:
+Donde:
 
-* `Flux.interval` Simulate data streaming every second
-* `messageGenerator` Generates a random message
+* `Flux.interval` Simula un stream de datos cada segundo
+* `messageGenerator` Genera un mensaje random
 
-Here is our message generator class
+Aquí está nuestra clase generadora de mensajes.
 
 ```java
 package com.jos.dem.springboot.sse.util;
@@ -185,19 +185,19 @@ public class MessageGenerator {
 }
 ```
 
-So, now if you execute our Spring Boot application
+Así, ahora si ejecutamos nuestro proyecto Spring.
 
 ```bash
 gradle bootRun
 ```
 
-And hit our Spring Boot applicaiton end-point
+Y accesamos a nuestro principal end-point
 
 ```bash
 curl http://localhost:8080/
 ```
 
-Then you should see something similar to this output
+Deberías ver algo similar a esta salida.
 
 ```bash
 data:{"nickname":"josdem","text":"Hola","timestamp":"2019-04-25T12:51:48.693987Z"}
@@ -207,7 +207,7 @@ data:{"nickname":"josdem","text":"Bonjour","timestamp":"2019-04-25T12:51:51.6932
 data:{"nickname":"josdem","text":"Hello","timestamp":"2019-04-25T12:51:52.693324Z"}
 ```
 
-Finally, let's use a Non-blocking, reactive client for testing our web layer, if you want to know more about WebTestClient, please go to my previous post [here](/techtalk/spring/spring_webflux_web_testing).
+Finalmente, vamos a usar a un cliente reactivo y no-bloqueante para testear nuestro componente web, si quieres saber más acerca de WebTestClient, por favor visita mi previo post [aquí](/techtalk/spring/spring_webflux_web_testing).
 
 ```java
 package com.jos.dem.springboot.sse;
@@ -265,25 +265,24 @@ public class ServerSentEventsClientApplicationTest {
 }
 ```
 
-To run the project:
+Para ejecutar  este proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-To test the project:
+Para testear el proyecto:
 
 ```bash
 gradle test
 ```
 
 
-To browse the project go [here](https://github.com/josdem/spring-boot-sse), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-sse), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-sse.git
 ```
 
-
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_es))
 
