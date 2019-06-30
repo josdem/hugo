@@ -133,6 +133,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Seguridad con Spring Webflux y MongoDB](/techtalk/spring/spring_webflux_security_database_es)
  * [Usando JMS en Spring Webflux](/techtalk/spring/spring_boot_jms_es)
  * [Spring Webflux y Cucumber](/techtalk/spring/spring_webflux_cucumber_es)
+ * [Spring Webflux y Server-sent Event](/techtalk/spring/spring_boot_sse_es)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
  * [REST Calls with Retrofit](/techtalk/android/retrofit)
