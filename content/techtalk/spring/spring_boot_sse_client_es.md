@@ -194,7 +194,7 @@ Deberías poder ver algo parecido a esto:
 2019-05-13 21:41:40.033 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:40.033601, content[{"nickname":"josdem","text":"Hola","timestamp":"2019-05-14T01:41:40.030511Z"}]
 ```
 
-Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-sse-clientp), para descargar el proyecto:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-sse-client), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-sse-client.git
