@@ -6,13 +6,13 @@ tags = ["josdem", "techtalks","programming","technology","Webflux"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will see how to consume an event stream using [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) in a Spring Webflux application. Please read this previous [Spring Boot Server-sent Events](/techtalk/spring/spring_boot_sse) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+En este post técnico te mostraremos como consumir un stream de eventos usando [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) en una aplicación Spring Webflux. Por favor lee mis previo post [Spring Boot Server-sent Events](/techtalk/spring/spring_boot_sse) antes de continuar con esta información. Entonces, creamos un nuevo proyecto Spring Boot con Webflux y Lombok como dependencias:
 
 ```bash
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-boot-sse-client
 ```
 
-Here is the complete `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -45,14 +45,14 @@ dependencies {
 }
 ```
 
-Now add Junit 5 Framework dependencies to your `build.gradle` file:
+Ahora por favor agrega la dependencias Junit 5 al archivo `build.gradle`:
 
 ```groovy
 testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
 testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 ```
 
-Let's start by creating a service to handle data consumption
+Empecemos por crear un servicio para manejar el consumo de datos.
 
 ```java
 package com.jos.dem.springboot.sse.client.service;
@@ -68,7 +68,7 @@ public interface ServerSentEventsConsumerService {
 }
 ```
 
-This is the service implementation
+Esta es la implementación del servicio.
 
 ```java
 package com.jos.dem.springboot.sse.client.service.impl;
@@ -101,7 +101,7 @@ public class ServerSentEventsConsumerServiceImpl implements ServerSentEventsCons
 }
 ```
 
-The given `ParameterizedTypeReference` is used to pass generic type information. Here you can see how we are defining our `WebClient` as a Spring bean.
+El valor `ParameterizedTypeReference` es usado para regresar valores de tipo genéricos. Aquí tu puedes ver como definimos nuestro `WebClient` como un bean de Spring.
 
 ```java
 package com.jos.dem.springboot.sse.client;
@@ -126,7 +126,7 @@ public class ServerSentEventsClientApplication {
 }
 ```
 
-Here we are defining a controller, so that we will be able to start the stream consumption
+Ahora definimos un controlador, de esta manera podemos iniciar el consumo del stream.
 
 ```java
 package com.jos.dem.springboot.sse.client.controller;
@@ -166,25 +166,25 @@ public class ServerSentEventsConsumerController {
 }
 ```
 
-The subscribe method keeps receiving information as long as the server is still returning data. That's a client subscribes to a stream from a server and the server will send messages type event-stream to the client until the server or the client closes the stream. It is up to the server to decide when and what to send the client. For knowing more about Server-sent events technology please go [here](https://en.wikipedia.org/wiki/Server-sent_events). Do not forget to run this client in different port using the following specification in our `application.properties` file
+El método subscribe mantiene recibiendo información tanto como el servidor siga enviando datos. Así es un cliente se suscribe a un stream del servidor y el servidor envía mensajes de tipo event-stream al cliente hasta el servidor o el cliente cierra el stream. Es el control del servidor decidir cuando y como enviar al cliente. Para saner más acerca de la tgecnología Server-send events por favor ve [here](https://en.wikipedia.org/wiki/Server-sent_events). No olvides correr este cliente en un puerto diferente usando la siguiente especificación en el archbivo `application.properties`.
 
 ```properties
 server.port=8081
 ```
 
-Now, If you run the project:
+Ahora, para correr el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-And hit this end-point:
+Y al consultar el end-point:
 
 ```bash
 curl http://localhost:8081/
 ```
 
-Then you should see something like this:
+Deberías poder ver algo parecido a esto:
 
 ```bash
 2019-05-13 21:41:36.088 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:36.087150, content[{"nickname":"josdem","text":"Guten Tag","timestamp":"2019-05-14T01:41:36.031100Z"}]
@@ -194,12 +194,12 @@ Then you should see something like this:
 2019-05-13 21:41:40.033 INFO 9103 [ctor-http-nio-6] : Current time: 21:41:40.033601, content[{"nickname":"josdem","text":"Hola","timestamp":"2019-05-14T01:41:40.030511Z"}]
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-sse-client), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-sse-clientp), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-sse-client.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_ES)
 
