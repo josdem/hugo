@@ -320,8 +320,8 @@ class StandardTest {
 
 Please, notice `TestInfo` and how is it used to inject information about the current test as method argument. Also notice how in Junit 5 neither test classes nor test methods need to be public.
 
-<a name="Assuptions">
-## Assuptions
+<a name="Assumptions">
+## Assumptions
 </a>
 
 JUnit Jupiter or Junit 5 comes with a subset of the assumption methods and are used to run tests only if certain conditions are met, this is typically used for external conditions that are required for the test to run properly.
