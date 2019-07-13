@@ -8,6 +8,13 @@ categories = ["techtalk", "code", "java"]
 
 Junit 5 is the next generation of Junit, it requires Java 8 since it was born as JUnit Lambda project, that project wanted to take full advantage of the new features from Java 8, especially lambda expressions.
 
+
+* [Assertions](#Assertions)
+* [Assumptions](#Assumptions)
+* [Conditions](#Conditions)
+* [Parameterized Tests](#Parameterized Tests)
+
+
 Using Gradle, you need to create a `build.gradle` file with the following structure:
 
 ```groovy
@@ -91,7 +98,9 @@ If you want to use Maven, please create the following `pom.xml` structure in the
 </project>
 ```
 
-**Assertions**
+<a name="Assertions">
+## Assertions
+</a>
 
 Assertions have been moved to `org.junit.jupiter.api.Assertions` and have been improved significantly. As mentioned earlier, you can now use lambdas in assertions:
 
@@ -311,7 +320,9 @@ class StandardTest {
 
 Please, notice `TestInfo` and how is it used to inject information about the current test as method argument. Also notice how in Junit 5 neither test classes nor test methods need to be public.
 
-**Assumptions**
+<a name="Assuptions">
+## Assuptions
+</a>
 
 JUnit Jupiter or Junit 5 comes with a subset of the assumption methods and are used to run tests only if certain conditions are met, this is typically used for external conditions that are required for the test to run properly.
 
@@ -351,7 +362,9 @@ class AssumptionShowTest {
 }
 ```
 
-**Conditions**
+<a name="Conditions">
+## Conditions
+</a>
 
 A test may be enable if meets some system environment conditions
 
@@ -435,7 +448,9 @@ class ConditionsShowTest {
 }
 ```
 
-**Parameterized Tests**
+<a name="Parameterized Testsm">
+## Parameterized Tests
+</a>
 
 Parameterized tests make it possible to run a test multiple times with different arguments. Here we are defining a string parameters using `@ValueSource`.
 
