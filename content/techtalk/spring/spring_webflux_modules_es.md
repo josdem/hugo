@@ -70,7 +70,7 @@ public class MessageService {
 }
 ```
 
-Ahoram vamnos a crear un proyecto para la aplicación, desde la raíz del `$PROJECT_HOME:`
+Ahora, vamnos a crear un proyecto para la aplicación, desde la raíz del `$PROJECT_HOME:`
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java application
