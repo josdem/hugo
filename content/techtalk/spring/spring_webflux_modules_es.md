@@ -153,7 +153,7 @@ Nosotros necesitaremos proveer un mensaje para el servicio in la librería vía 
 message=Hello World!
 ```
 
-Finalmente agreguemos un `settings.gradle` al directorio raíz para epecificar los módulos.
+Finalmente, agreguemos un `settings.gradle` al directorio raíz para epecificar los módulos.
 
 ```bash
 rootProject.name = 'spring-boot-module'
