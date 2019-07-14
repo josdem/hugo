@@ -96,7 +96,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Webflux Cucumber](/techtalk/spring/spring_webflux_cucumber)
 * [Spring Boot WebClient](/techtalk/spring/spring_boot_webclient)
 * [Spring Boot WebClient Cucumber and Junit5](/techtalk/spring/webclient_cucumber_junit5)
-* [Spring Boot Multi-Module](/techtalk/spring/spring_webflux_modules)
+* [Spring Webflux Multi-Module](/techtalk/spring/spring_webflux_modules)
 * [Spring Weblux Internationalization](/techtalk/spring/spring_webflux_internationalization)
 * [Spring Weblux Testing Web Layer](/techtalk/spring/spring_webflux_web_testing)
 * [Spring Boot Hazelcast](/techtalk/spring/spring_boot_hazelcast)
@@ -121,6 +121,7 @@ Esta sección está dedicada a explicar la programación reactiva introducida en
 * [Spring Webflux y Cucumber](/techtalk/spring/spring_webflux_cucumber_es)
 * [Spring Webflux y Server-sent Event](/techtalk/spring/spring_boot_sse_es)
 * [Spring Webflux Server-sent Event el lado del Cliente](/techtalk/spring/spring_boot_sse_client_es)
+* [Spring Webflux Multi-Módulo](/techtalk/spring/spring_webflux_modules_es)
 
 [Return to the main article](/techtalk/techtalks)
 

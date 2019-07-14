@@ -252,4 +252,4 @@ git checkout in-memory
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_ES)
