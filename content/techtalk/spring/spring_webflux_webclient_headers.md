@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-HTTP headers allow the client and the server to pass additional information with the request or the response, if you want to know more about the list we can use as Http headers, please go [here](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). In this technical post we will see how to validate a server response including their headers using [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+HTTP headers allow the client and the server to pass additional information with the request or the response, if you want to know more about the list we can use as Http headers, please go [here](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). In this technical post we will see how to validate a server response including their headers using [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux as dependencies:
 
 ```bash
 spring init --dependencies=webflux --language=java --build=gradle spring-webflux-webclient-workshop
@@ -46,7 +46,7 @@ testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 
 Let's start by creating a controller to retrieve a basic response, a hello world concept :)
 
-```groovy
+```java
 package com.jos.dem.spring.webflux.webclient;
 
 import reactor.core.publisher.Mono;
@@ -70,5 +70,32 @@ public class WebfluxController {
 
 }
 ```
+
+Now let's define a `Webclient` as a `@Bean`, With webclient you can use both worlds blocking and non-blocking HTTP requests.
+
+```java
+package com.jos.dem.spring.webflux.webclient;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@SpringBootApplication
+public class DemoApplication {
+
+  public static void main(String[] args) {
+    SpringApplication.run(DemoApplication.class, args);
+	}
+
+  @Bean
+  WebClient webClient() {
+    return WebClient.create("http://localhost:8080");
+  }
+
+}
+```
+
+
 
 
