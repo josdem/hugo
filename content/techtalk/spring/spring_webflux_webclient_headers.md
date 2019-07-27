@@ -142,9 +142,9 @@ public class WebclientServiceImpl implements WebclientService {
 
   public Mono<HttpHeaders> getHeaders(){
     return webClient.get()
-			.uri("/")
-			.exchange()
-			.map(response -> response.headers().asHttpHeaders());
+		  .uri("/")
+		  .exchange()
+		  .map(response -> response.headers().asHttpHeaders());
   }
 
 }
@@ -201,5 +201,25 @@ public class WebclientTest {
 }
 ```
 
+That's it, we are validating HttpHeaders which is a data structure representing HTTP request, mapping String header names to its values.
+
+To run the project:
+
+```bash
+gradle bootRun
+```
+
+To test the project:
+
+```bash
+gradle test
+```
+
+To browse the project go [here](https://github.com/josdem/spring-webflux-webclient-workshop), to download the project:
+
+```bash
+git clone git@github.com:josdem/spring-webflux-webclient-workshop.git
+```
 
 
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
