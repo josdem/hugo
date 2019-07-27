@@ -86,7 +86,7 @@ public class DemoApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
-	}
+  }
 
   @Bean
   WebClient webClient() {
@@ -96,6 +96,110 @@ public class DemoApplication {
 }
 ```
 
+Next step is to define a service with our WebClient request
+
+
+```java
+package com.jos.dem.spring.webflux.webclient.service;
+
+import reactor.core.publisher.Mono;
+import org.springframework.http.HttpHeaders;
+
+public interface WebclientService {
+
+  Mono<String> getGreetings();
+  Mono<HttpHeaders> getHeaders();
+
+}
+```
+
+In this example we are defining two metods in `getGreetings()` we expect to have our "HelloWorld!" message in the other method we expect to have our headers, here is our service implementation
+
+```java
+package com.jos.dem.spring.webflux.webclient.service.impl;
+
+import reactor.core.publisher.Mono;
+
+import org.springframework.http.HttpHeaders;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import com.jos.dem.spring.webflux.webclient.service.WebclientService;
+
+@Service
+public class WebclientServiceImpl implements WebclientService {
+
+  @Autowired
+  private WebClient webClient;
+
+  public Mono<String> getGreetings(){
+    return webClient.get()
+      .uri("/")
+      .retrieve()
+    .bodyToMono(String.class);
+  }
+
+  public Mono<HttpHeaders> getHeaders(){
+    return webClient.get()
+			.uri("/")
+			.exchange()
+			.map(response -> response.headers().asHttpHeaders());
+  }
+
+}
+```
+
+It is time to create our test case so that we can verify our service behaviour.
+
+```java
+package com.jos.dem.spring.webflux.webclient;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Date;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import org.springframework.http.HttpHeaders;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+
+import com.jos.dem.spring.webflux.webclient.service.WebclientService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class WebclientTest {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Autowired
+  private WebclientService webclientService;
+
+  @Test
+  public void shouldGetHelloWorld() throws Exception {
+    log.info("Running: Should get hello world message at {}", new Date());
+    String response = webclientService.getGreetings().block();
+    assertEquals("Hello World!", response);
+  }
+
+  @Test
+  public void shouldGetHeaders() throws Exception {
+    log.info("Running: Should get headers at {}", new Date());
+    HttpHeaders headers = webclientService.getHeaders().block();
+    assertEquals("text/plain;charset=UTF-8", headers.getContentType().toString());
+    assertEquals(12L, headers.getContentLength());
+  }
+
+}
+```
 
 
 
