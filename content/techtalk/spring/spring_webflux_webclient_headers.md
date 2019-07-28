@@ -47,12 +47,12 @@ testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 Let's start by creating a controller to retrieve a basic response, a hello world concept :)
 
 ```java
-package com.jos.dem.spring.webflux.webclient;
+package com.jos.dem.spring.webflux.webclient.controller;
 
 import reactor.core.publisher.Mono;
 
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -176,7 +176,7 @@ import org.slf4j.LoggerFactory;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class WebclientTest {
+public class WebfluxControllerTest {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
