@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","spring webflux"]
 categories = ["techtalk", "code", "spring"]
 +++
 
-In this technical post, we will see how to use different languages in your Spring Webflux application along with [Thymeleaf](https://www.thymeleaf.org/) template framework. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's create a new project using this command:
+In this technical post, we will see how to use different languages (English and Spanish) in your Spring Webflux application along with [Thymeleaf](https://www.thymeleaf.org/) template or [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Then, let's create a new project using this command:
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java spring-webflux-internationalization
@@ -15,34 +15,25 @@ spring init --dependencies=webflux --build=gradle --language=java spring-webflux
 This is the `build.gradle` generated file:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.2.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.1.7.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.spring.webflux.internationalization'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testImplementation('io.projectreactor:reactor-test')
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
 }
 ```
 
@@ -281,7 +272,42 @@ To run the project:
 gradle bootRun
 ```
 
-Then go to this address: [http://localhost:8080](http://localhost:8080). To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
+Then, execute this command:
+
+```bash
+curl -v http://localhost:8080
+```
+
+And you sould see this output:
+
+```bash
+* Rebuilt URL to: http://localhost:8080/
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 8080 (#0)
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/html
+< Content-Language: en-US
+< content-length: 183
+<
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Internationalization with Spring Webflux</title>
+  </head>
+  <body>
+  	<p>Hello from internationalization!</p>
+  </body>
+</html>
+* Connection #0 to host localhost left intact
+```
+
+To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-internationalization.git
@@ -402,7 +428,33 @@ To run the project:
 gradle bootRun
 ```
 
-Then go to this address: [http://localhost:8080](http://localhost:8080). To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
+Then, execute this command:
+
+```bash
+curl -v http://localhost:8080
+```
+
+And you sould see this output:
+
+```bash
+* Rebuilt URL to: http://localhost:8080/
+*   Trying ::1...
+* TCP_NODELAY set
+* Connected to localhost (::1) port 8080 (#0)
+> GET / HTTP/1.1
+> Host: localhost:8080
+> User-Agent: curl/7.54.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Content-Type: text/plain;charset=UTF-8
+< Content-Length: 32
+<
+* Connection #0 to host localhost left intact
+Hello from internationalization!%
+```
+
+To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-internationalization.git
