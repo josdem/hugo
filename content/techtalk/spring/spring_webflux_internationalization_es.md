@@ -6,13 +6,13 @@ tags = ["josdem", "techtalks","programming","technology","spring webflux"]
 categories = ["techtalk", "code", "spring"]
 +++
 
-In this technical post, we will see how to use different languages (English and Spanish) in your Spring Webflux application along with [Thymeleaf](https://www.thymeleaf.org/) template or [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Then, let's create a new project using this command:
+En este post técnico veremos como usar diferentes lenguajes (Inglés y Español) en una aplicación Spring Webflux junto con el template [Thymeleaf](https://www.thymeleaf.org/) o [REST](https://en.wikipedia.org/wiki/Representational_state_transfer). **NOTA:** Si quieres saber que necesitas tener instalado en tu computadora para crear fácilmente un proyecto de Spring boot, por favor visita mi previo post: [Spring Boot](/techtalk/spring_boot). Vamos a empezar creando un  nuevo proyecto de Spring Boot con Webflux como dependencia:
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java spring-webflux-internationalization
 ```
 
-This is the `build.gradle` generated file:
+Aquí esta el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -37,13 +37,13 @@ dependencies {
 }
 ```
 
-Then add Thymeleaf dependency to your `build.gradle` file
+Ahora agrega la dependencias Thymeleaf al archivo `build.gradle`
 
 ```groovy
 implementation('org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE')
 ```
 
-Spring Boot has an strategy interface for resolving messages, with support for internationalization of such messages.
+Spring Boot tiene una interfaz estratégica para resolver los mensajes para soporte de internacionalización de tales mensajes.
 
 ```java
 @Bean
@@ -55,7 +55,7 @@ public MessageSource messageSource() {
 }
 ```
 
-Now is time to configure template resolver, template engine and a view resolver since is what we need in order to configure Thymeleaf as html template.
+Ahora es tiempo de configurar el template resolver, template engine y el view resolver, desde que es lo que necesitamos para configurar Thymeleaf como un tempalte html.
 
 ```java
 @Bean
@@ -90,7 +90,7 @@ public void configureViewResolvers(ViewResolverRegistry registry) {
 }
 ```
 
-Here is the complete complete web configuration
+Aquí está completa la configuración web.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.config;
@@ -165,12 +165,12 @@ public class WebConfig implements ApplicationContextAware, WebFluxConfigurer {
 }
 ```
 
-As you can see `SpringResourceTemplateResolver` is in charge to set our template files path and extension. In this case will will define an `index.html` web page with a hello world message.
+Como puedes ver `SpringResourceTemplateResolver` está a cargo de definir los archivos y extensiones que usaremos. En este caso definiremos un archivo `index.html` como página web con un mensaje de saludo hello world.
 
 ```html
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8"> 
     <title>Internationalization with Spring Webflux</title>
   </head>
   <body>
@@ -179,19 +179,19 @@ As you can see `SpringResourceTemplateResolver` is in charge to set our template
 </html>
 ```
 
-Also `ResourceBundleMessageSource` is defining message resources path for each supported language. In this case we will define `messages.properties` for English.
+Además `ResourceBundleMessageSource` define el path para cada lenguage soportado. En este case define `messages.properties` para el Inglés.
 
 ```properties
 user.hello=Hello from internationalization!
 ```
 
-And `messages_es.properties` for Spanish
+Y `messages_es.properties` para el Español
 
 ```properties
 user.hello=¡Hola Internacionalización!
 ```
 
-Next step is to tell Spring to use a Locale resolver. So we need to add a configuration class which extends from `DelegatingWebFluxConfiguration` and returns our custom `LocaleContextResolver`.
+El siguiente paseo es decirle a Spring como usar el Locale resolver. Así que nosotros necesitaremos agregar una clase que extienda de `DelegatingWebFluxConfiguration` y regrese un customizado `LocaleContextResolver`.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.config;
@@ -213,7 +213,7 @@ public class LocaleSupportConfig extends DelegatingWebFluxConfiguration {
 }
 ```
 
-Here is our locale resolver
+Aquí está nuestro locale resolver
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.helper;
@@ -247,7 +247,7 @@ public class LocaleResolver implements LocaleContextResolver {
 }
 ```
 
-That's it, we are reading language support in the headers from client request, in that way we can show the right message to our client whether is using English or Spanish. Finally here is our controller to render the index web page.
+Así es, estamos leyendo el lenguaje soportado en los headers de la respuesta al cliente, de esta manera podemos mostrar el mensaje adecuado si el ciente está usando Inglés o Español. Finalmente aquí está nuestro controller para poder desplegar la página web.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.handler;
@@ -266,19 +266,19 @@ public class InternationalizationController {
 }
 ```
 
-To run the project:
+Para ejecutar el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-Then, execute this command:
+Después, ejecuta éste comando:
 
 ```bash
 curl -v http://localhost:8080
 ```
 
-And you sould see this output:
+Y deberías ver ésta salida:
 
 ```bash
 * Rebuilt URL to: http://localhost:8080/
@@ -307,7 +307,7 @@ And you sould see this output:
 * Connection #0 to host localhost left intact
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-webflux-internationalization), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-internationalization.git
@@ -315,9 +315,9 @@ git fetch
 git checkout thymeleaf
 ```
 
-## REST internationalization
+## Internacionalización en REST
 
-If you need to use internationalization in a REST api instead of Thymeleaf, please consider this following changes.
+Si necesitas implementar Internacionalización en REST en lugar de Thymeleaf, por favor considera los siguientes cambios.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.handler;
@@ -343,7 +343,7 @@ public class InternationalizationController {
 }
 ```
 
-Now we are using `@RestController` instead of `@Controller` and a locale service to resolve our messages.
+Ahora estamos usando `@RestController` en lugar de `@Controller` y un servicio locale para resolver nuestros mensajes.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.service;
@@ -355,7 +355,7 @@ public interface LocaleService {
 }
 ```
 
-Here is the implementation
+Aquí está la implementación:
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.service.impl;
@@ -386,7 +386,7 @@ public class LocaleServiceImpl implements LocaleService {
 }
 ```
 
-That's it, we are using the same locale resolver as Thymeleaf but now is a `@Component` so we can use `@Autowired` to inject it
+Así es, nosotros estamos usando el mismo locale resolver de Thymeleaf pero ahora es un `@Component` así podemos usar `@Autowired` para inyectarlo.
 
 ```java
 package com.jos.dem.spring.webflux.internationalization.helper;
@@ -422,19 +422,19 @@ public class LocaleResolver implements LocaleContextResolver {
 }
 ```
 
-To run the project:
+Para ejecutar el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-Then, execute this command:
+Después, ejecuta éste comando:
 
 ```bash
 curl -v http://localhost:8080
 ```
 
-And you sould see this output:
+Y deberías ver ésta salida:
 
 ```bash
 * Rebuilt URL to: http://localhost:8080/
@@ -454,7 +454,7 @@ And you sould see this output:
 Hello from internationalization!%
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-webflux-internationalization), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-webflux-internationalization), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-internationalization.git
@@ -462,4 +462,4 @@ git fetch
 git checkout rest
 ```
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive_es)
