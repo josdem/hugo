@@ -1,6 +1,6 @@
 +++
-title =  "Spring Webflux Internationalization"
-description = "Spring webflux internationalization"
+title =  "Internacionalización en Spring Webflux"
+description = "Spring webflux internacionalización"
 date = "2019-01-16T15:39:46-05:00"
 tags = ["josdem", "techtalks","programming","technology","spring webflux"]
 categories = ["techtalk", "code", "spring"]
