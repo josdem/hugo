@@ -1,12 +1,12 @@
 +++
-title =  "Spring Webflux Testing the Web Layer"
+title =  "Spring Webflux Testeando la Capa Web"
 description = "Spring webflux web testing"
 date = "2019-02-03T13:00:31-05:00"
 tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will go through the process of testing a reactive web layer using [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). WebTestClient helps to test Spring [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) controllers with auto configuration, if you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). As an example target project to test let's use this one [Jugoterapia WebFlux](https://github.com/josdem/jugoterapia-webflux) which provides healthy juice and smoothie recipes. In this technical post we will review how to test the controllers in this project. Please consider this first controller.
+En este post técnico iremos a través del proceso de testear una aplicación web reactiva usando [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). WebTestClient nos ayuda a testear controladores Spring [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) con auto configuration, si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post previo empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Como proyecto ejemplo vamos usar [Jugoterapia WebFlux](https://github.com/josdem/jugoterapia-webflux) el cual provee recetas saludables de jugos y licuados. En este post técnico veremos como testear los controladores. Ahora por favor considera este primer controlador.
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
@@ -41,7 +41,7 @@ public class HealthController {
 }
 ```
 
-The responsability in this conrtoller is to provide a health check, this is the test case we have for it.
+La responsabilidad de este controlador es proveer un mecanismo de verificar que el servicio está saludable, este es el test case.
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
@@ -75,7 +75,7 @@ public class HealthControllerTest {
 }
 ```
 
-Since Jugoterapia Webflux is a Spring Boot application we are using `@SpringBootTest` annotation that can be specified on a test class that runs Spring Boot based tests, also we are using `WebEnvironment` which creates a reactive web application context listening on a random port.
+Desde que Jugoterapia WebFlux es una aplicación Spring Boot estamos usando la anotación `@SpringBootTest` la cual específica que testeará una aplicacición de ese tipo, también estamos usando `WebEnvironment` el cual crea una aplicación de conexto reactiva escuchando en un puerto aleatorio.
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
@@ -125,7 +125,7 @@ public class CategoryController {
 }
 ```
 
-This controller get juice categories by languge and beverages by category id, and here is the test case
+Este controlador obtiene las categorías por lenguaje y por id y aquí esta el test case:
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
@@ -174,7 +174,7 @@ public class CategoryControllerTest {
 }
 ```
 
-Finally we have a beverage controller which gets a beverage by id.
+Finalmente tenemos el controlador que provee las bebidas por id
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
@@ -210,7 +210,7 @@ public class BeverageController {
 }
 ```
 
-Here is the test case
+Aquí está el test case:
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
@@ -249,22 +249,22 @@ public class BeverageControllerTest {
 }
 ```
 
-To browse the complete project go [here](https://github.com/josdem/jugoterapia-webflux), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/jugoterapia-webflux), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/jugoterapia-webflux.git
 ```
 
-To run the project:
+Para ejecutar el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-To test the project:
+Para ejecutar el proyecto:
 
 ```bash
 gradle test
 ```
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive_es)
