@@ -6,9 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-In this tutorial we will go through the process of testing reactive web layer using [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). `@WebFluxTest` helps to test Spring [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) controllers with auto configuration, if you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics).
-
-As example project to test we are going to use this one [Jugoterapia WebFlux](https://github.com/josdem/jugoterapia-webflux) which provides healthy juice and smoothie recipes and in this technical post we will review how to test controllers. Please consider this first controller.
+In this technical post we will go through the process of testing a reactive web layer using [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). WebTestClient helps to test Spring [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) controllers with auto configuration, if you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). As an example target project to test let's use this one [Jugoterapia WebFlux](https://github.com/josdem/jugoterapia-webflux) which provides healthy juice and smoothie recipes. In this technical post we will review how to test the controllers in this project. Please consider this first controller.
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
@@ -20,15 +18,20 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@Api(tags={"knows how to respond to sanity checks"})
 @RestController
-@RequestMapping("/sanity")
-public class SanityController {
+@RequestMapping("/health")
+public class HealthController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
+  @ApiImplicitParam(name = "ping", value = "Ping message", required = true, dataType = "string", paramType = "path")
   @GetMapping("/{ping}")
   public Mono<String> check(@PathVariable("ping") String ping){
     log.info(ping);
@@ -38,44 +41,41 @@ public class SanityController {
 }
 ```
 
-This controller does a service healthy check and this is the test case.
+The responsability in this conrtoller is to provide a health check, this is the test case we have for it.
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
 
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
-import com.jos.dem.jugoterapia.webflux.controller.SanityController;
-
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = WebEnvironment.DEFINED_PORT)
-public class SanityControllerTest {
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+public class HealthControllerTest {
 
   @Autowired
   private WebTestClient webClient;
 
   @Test
   public void shouldGetPong() throws Exception {
-    webClient.get().uri("/sanity/{ping}", "ping").accept(APPLICATION_JSON)
+    webClient.get().uri("/health/{ping}", "ping").accept(APPLICATION_JSON)
       .exchange()
-      .expectStatus().isOk()
+		  .expectStatus().isOk()
       .expectBody(String.class).isEqualTo("pong");
   }
 
 }
 ```
 
-Since Jugoterapia Webflux is a Spring Boot application we are using `@SpringBootTest` annotation that can be specified on a test class that runs Spring Boot based tests, also we are using `WebEnvironment` which creates a web application reactive context in a defined port.
+Since Jugoterapia Webflux is a Spring Boot application we are using `@SpringBootTest` annotation that can be specified on a test class that runs Spring Boot based tests, also we are using `WebEnvironment` which creates a reactive web application context listening on a random port.
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
