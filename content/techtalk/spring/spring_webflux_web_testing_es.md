@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-En este post técnico iremos a través del proceso de testear una aplicación web reactiva usando [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). WebTestClient nos ayuda a testear controladores Spring [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) con auto configuration, si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post previo empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Como proyecto ejemplo vamos usar [Jugoterapia WebFlux](https://github.com/josdem/jugoterapia-webflux) el cual provee recetas saludables de jugos y licuados. En este post técnico veremos como testear los controladores. Ahora por favor considera este primer controlador.
+En este post técnico iremos a través del proceso de testear una aplicación web reactiva usando [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). WebTestClient nos ayuda a testear controladores Spring [WebFlux](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html) con auto configuración, si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post previo empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Como proyecto ejemplo vamos usar [Jugoterapia WebFlux](https://github.com/josdem/jugoterapia-webflux) el cual provee recetas saludables de jugos y licuados. En este post técnico veremos como testear los controladores de ese proyecto. Ahora por favor considera este primer controlador.
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
@@ -41,7 +41,7 @@ public class HealthController {
 }
 ```
 
-La responsabilidad de este controlador es proveer un mecanismo de verificar que el servicio está saludable, este es el test case.
+La responsabilidad de este controlador es proveer un mecanismo de verificar que el servicio está "up and running!", este es el test case.
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
