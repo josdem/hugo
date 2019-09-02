@@ -14,7 +14,7 @@ categories = ["techtalk", "code"]
 * Supports multilingual documents
 * Can embed multiple data types
 
-All those reasons are important, but most important is that we can validate any XML using [XSD](https://en.wikipedia.org/wiki/XML_Schema_(W3C)) Schemas, in this technical post we will see how to generate Java classes using XSD eschemas with [JABX2](https://github.com/highsource/maven-jaxb2-plugin/wiki) and Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as dependency:
+All those reasons are important, but most important is that we can validate any XML using [XSD](https://en.wikipedia.org/wiki/XML_Schema_(W3C)) Schemas, in this technical post we will see how to generate Java classes using XSD eschemas with [JAXB2](https://github.com/highsource/maven-jaxb2-plugin/wiki) and Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as dependency:
 
 ```bash
 spring init --dependencies=webflux --build=maven --language=java spring-boot-xml-schema
