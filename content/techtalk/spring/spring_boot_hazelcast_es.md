@@ -15,16 +15,10 @@ spring init --dependencies=webflux --build=gradle --language=java spring-boot-ha
 This is the `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.2.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.1.8.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'java'
 }
 
 apply plugin: 'java'
@@ -33,7 +27,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.hazelcast'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
+sourceCompatibility = '11'
 
 repositories {
   mavenCentral()
@@ -156,11 +150,11 @@ curl http://localhost:8080/hazelcast/read/key
 Result:
 
 ```bash
-2019-02-10 16:05 INFO --- [           main] o.s.b.web.embedded.netty.NettyWebServer : Netty started on port(s): 8080
-2019-02-10 16:05 INFO --- [           main] c.j.d.s.hazelcast.HazelcastApplication  : Started HazelcastApplication in 6.08 seconds (JVM running for 6.459)
-2019-02-10 16:05 INFO --- [ctor-http-nio-2] c.j.d.s.h.c.HazelcastController         : Storing key: key with value: value
-2019-02-10 16:05 INFO --- [ctor-http-nio-2] c.h.i.p.impl.PartitionStateManager      : [192.168.0.8]:5701 [dev] [3.11.1] Initializing cluster partition table arrangement...
-2019-02-10 16:05 INFO --- [ctor-http-nio-3] c.j.d.s.h.c.HazelcastController         : Reading stored value with key: key
+2019-09-07 15:39:02.421  INFO 5934 --- [           main] com.hazelcast.core.LifecycleService      : [100.72.126.55]:5701 [dev] [3.11.4] [100.72.126.55]:5701 is STARTED
+2019-09-07 15:39:03.029  INFO 5934 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 8080
+2019-09-07 15:39:03.033  INFO 5934 --- [           main] c.j.d.s.hazelcast.HazelcastApplication   : Started HazelcastApplication in 5.518 seconds (JVM running for 5.867)
+2019-09-07 15:45:32.573  INFO 5934 --- [or-http-epoll-2] c.j.d.s.h.c.HazelcastController          : Storing key: key with value: value
+2019-09-07 15:45:32.593  INFO 5934 --- [or-http-epoll-2] c.h.i.p.impl.PartitionStateManager       : [100.72.126.55]:5701 [dev] [3.11.4] Initializing cluster partition table arrangement...
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-hazelcast), to download the project:
