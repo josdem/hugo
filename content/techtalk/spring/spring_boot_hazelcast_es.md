@@ -12,7 +12,7 @@ categories = ["techtalk", "code"]
 spring init --dependencies=webflux --build=gradle --language=java spring-boot-hazelcast
 ```
 
-This is the `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -40,13 +40,13 @@ dependencies {
 }
 ```
 
-Next step is to add Hazelcast dependency:
+El siguiente paso es agregar la dependencia de Hazelcast:
 
 ```groovy
 implementation 'com.hazelcast:hazelcast-spring'
 ```
 
-Hazelcast can be configured through xml or using configuration api or even mix of both. Please consider this configuration using Java config.
+Hazelcast puede ser configurado através de XML o usando configuración Java incluso ambas. Por favor considera la siguiente configuración usando Java config.
 
 ```java
 package com.jos.dem.springboot.hazelcast.conf;
@@ -79,11 +79,11 @@ public class HazelcastConfiguration {
 }
 ```
 
-To create a named `HazelcastInstance` you should set instance name of `Config` object. `MaxSizeConfig` is configuration for map's capacity. You can set a limit for number of entries or total memory cost of entries. `MaxSizePolicy` is maximum size policy in this case `FREE_HEAP_SIZE` is based on minimum free JVM heap memory in megabytes per JVM.
+Para crear un`HazelcastInstance` deberías agregar un nombre al objeto `Config`. `MaxSizeConfig` es la configuración para la capacidad de nuestro mapa. Tú puedes configurar el máximo número de entradas así como el costo total de memoria. `MaxSizePolicy` es la política de máximo tamaño, en este caso `FREE_HEAP_SIZE` está basado en la cantidad mínima de memoria libre de la JVM como heap memory y se mide megabytes.
 
-**Eviction**
+**Expulsión**
 
-Unless you delete the map entries manually or use an eviction policy, they will remain in the map. Hazelcast supports policy based eviction for distributed maps. Currently supported policies are LRU (Least Recently Used) and LFU (Least Frequently Used). Finally let's create a controller to store values in hazelcast and get them back.
+A menos que borres las entradas del mapa manualmente usando la política expulsión, estas permanecerán en el mapa. Hazelcast soporta la política de expulsión para mapas distribuidos. Actualmente las políticas soportadas son LRU (Los menos usados) and LFU (Los menos frecuentemente utilizados). Ahora, vamos a crear un controlador para almacenar nuestros valores en hazelcast y así obtenerlos de vuelta.
 
 ```java
 package com.jos.dem.springboot.hazelcast.controller;
@@ -129,25 +129,25 @@ public class HazelcastController {
 }
 ```
 
-That's it, if you start our Spring Boot application with this command:
+Así es, si inicias la aplicación Spring Boot con este comando:
 
 ```bash
 gradle bootRun
 ```
 
-You will be able to store a new value:
+Entonces podrás almacenar un nuevo valor así:
 
 ```bash
 curl -X POST http://localhost:8080/hazelcast/write/key/value
 ```
 
-And retrieve it
+Y obtenerlo así:
 
 ```bash
 curl http://localhost:8080/hazelcast/read/key
 ```
 
-Result:
+Resultado:
 
 ```bash
 2019-09-07 15:39:02.421  INFO 5934 --- [           main] com.hazelcast.core.LifecycleService      : [100.72.126.55]:5701 [dev] [3.11.4] [100.72.126.55]:5701 is STARTED
@@ -157,11 +157,11 @@ Result:
 2019-09-07 15:45:32.593  INFO 5934 --- [or-http-epoll-2] c.h.i.p.impl.PartitionStateManager       : [100.72.126.55]:5701 [dev] [3.11.4] Initializing cluster partition table arrangement...
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-hazelcast), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-hazelcast), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-hazelcast.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_es))

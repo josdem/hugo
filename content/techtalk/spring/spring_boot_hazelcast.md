@@ -46,7 +46,7 @@ Next step is to add Hazelcast dependency:
 implementation 'com.hazelcast:hazelcast-spring'
 ```
 
-Hazelcast can be configured through xml or using configuration api or even mix of both. Please consider this configuration using Java config.
+Hazelcast can be configured through XML or using Java configuration or even mix of both. Please consider this configuration using Java config.
 
 ```java
 package com.jos.dem.springboot.hazelcast.conf;
@@ -79,11 +79,11 @@ public class HazelcastConfiguration {
 }
 ```
 
-To create a named `HazelcastInstance` you should set instance name of `Config` object. `MaxSizeConfig` is configuration for map's capacity. You can set a limit for number of entries or total memory cost of entries. `MaxSizePolicy` is maximum size policy in this case `FREE_HEAP_SIZE` is based on minimum free JVM heap memory in megabytes per JVM.
+To create a named `HazelcastInstance` you should set an instance name in our `Config` object. `MaxSizeConfig` is configuration for map's capacity. You can set a limit for number of entries or total memory cost of entries. `MaxSizePolicy` is maximum size policy in this case `FREE_HEAP_SIZE` is based on minimum free JVM heap memory in megabytes.
 
 **Eviction**
 
-Unless you delete the map entries manually or use an eviction policy, they will remain in the map. Hazelcast supports policy based eviction for distributed maps. Currently supported policies are LRU (Least Recently Used) and LFU (Least Frequently Used). Finally let's create a controller to store values in hazelcast and get them back.
+Unless you delete the map entries manually or use an eviction policy, they will remain in the map. Hazelcast supports policy based eviction for distributed maps. Currently supported policies are LRU (Least Recently Used) and LFU (Least Frequently Used). Now, let's create a controller to store values in hazelcast and get them back.
 
 ```java
 package com.jos.dem.springboot.hazelcast.controller;
