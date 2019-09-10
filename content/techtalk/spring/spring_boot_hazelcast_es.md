@@ -1,5 +1,5 @@
 +++
-title =  "Spring Boot Hazelcast"
+title =  "Spring Boot Con Hazelcast"
 description = "Hazelcast es una plataforma en memoria distribuida para manejo de datos y ejecuciones paralelas"
 date = "2019-02-10T15:29:20-05:00"
 tags = ["josdem", "techtalks","programming","technology"]
@@ -164,4 +164,4 @@ git clone git@github.com:josdem/spring-boot-hazelcast.git
 ```
 
 
-[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_es))
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_es)
