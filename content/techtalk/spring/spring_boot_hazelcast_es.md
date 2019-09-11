@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-`java.util.Map` no es thread safe, si tú quieres usar un Mapa thread safe puedes usar `ConcurrentHashMap`, ¿Pero si quieres usar un mapa a través de multiples JVM?, entonces tu mejor opción es [Hazelcast](https://hazelcast.org/), además Hazelcast es Open Source escrita en Java y amigable con Maven. En este post técnico vamos a ver como podemos usar Hazelcast con Spring Boot. Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post previo empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Ahora, empecemos creando un nuevo proyecto con Spring Webflux como dependencia.
+`java.util.Map` no es thread safe, si tú quieres usar un mapa thread safe puedes usar `ConcurrentHashMap`, ¿Pero si quieres usar un mapa a través de multiples JVM?, entonces tu mejor opción es [Hazelcast](https://hazelcast.org/), además Hazelcast es Open Source escrito en Java y amigable con Maven. En este post técnico vamos a ver como podemos usar Hazelcast con Spring Boot. Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post previo empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Ahora, empecemos creando un nuevo proyecto con Spring Webflux como dependencia.
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java spring-boot-hazelcast
