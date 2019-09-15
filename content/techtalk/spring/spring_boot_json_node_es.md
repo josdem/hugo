@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","spring boot", "json no
 categories = ["techtalk", "code", "spring boot", "spring"]
 +++
 
-En ciencias computacionales, marshalling es el proceso de transformar la representación de un objeto a un formato de datos que se pueda almacenar o transmitir. En este post técnico describiremos como podemos hacer marshal y unmarshall usando [Jackson](https://en.wikipedia.org/wiki/Jackson_(API)), JsonNode y Spring Boot. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot). Entonces ejecuta este comando desde la terminal.
+En ciencias computacionales, marshalling es el proceso de transformar la representación de un objeto a un formato de datos que se pueda almacenar o transmitir. En este post técnico describiremos como podemos hacer marshall y unmarshall usando [Jackson](https://en.wikipedia.org/wiki/Jackson_(API)), JsonNode y Spring Boot. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot). Entonces ejecuta este comando desde la terminal.
 
 ```bash
 spring init --dependencies=webflux,lombok --build=gradle --language=java spring-boot-json-node
