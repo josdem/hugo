@@ -545,15 +545,15 @@ public class UnmarshallerServiceTest {
 }
 ```
 
-**Using Maven**
+**Usando Maven**
 
-You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
+Tú puedes hacer lo mismo usando Maven, la única diferencia es que tienes que específicar el parámetro `--build=maven` en el comando `spring init`:
 
 ```bash
 spring init --dependencies=webflux,lombok --build=maven --language=java spring-boot-json-node
 ```
 
-This is the `pom.xml` file generated along with Junit as dependency on it added manualy:
+Este es el `pom.xml` generado con la dependencia Junit5 agregada manualmente:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -651,7 +651,6 @@ This is the `pom.xml` file generated along with Junit as dependency on it added 
 
 </project>
 ```
-
 
 Para correr el proyecto con Gradle:
 
