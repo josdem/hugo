@@ -106,6 +106,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Boot H2](/techtalk/spring/spring_boot_h2)
 * [Spring Webflux URI Validator](/techtalk/spring/spring_boot_uri_validator)
 * [Spring Webflux Webclient Headers](/techtalk/spring/spring_webflux_webclient_headers)
+* [Spring Boot XML Schema](/techtalk/spring/spring_boot_xml_schema)
 
 <a name="Spring_Boot_Reactive_ES">
 ## Spring Boot Reactivo en Español
@@ -126,6 +127,7 @@ Esta sección está dedicada a explicar la programación reactiva introducida en
 * [Spring Weblux Intenacionalización](/techtalk/spring/spring_webflux_internationalization_es)
 * [Spring Weblux Testeando la Capa Web](/techtalk/spring/spring_webflux_web_testing_es)
 * [Spring Boot y JsonNode](/techtalk/spring/spring_boot_json_node_es)
+* [Spring Boot con Hazelcast](/techtalk/spring/spring_boot_hazelcast_es)
 
 [Return to the main article](/techtalk/techtalks)
 

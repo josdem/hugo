@@ -1,18 +1,18 @@
 +++
-title =  "Spring Boot Hazelcast"
-description = "Hazelcast is in-memory distributed computing platform for managing data and performing parallel execution for application speed and scale"
+title =  "Spring Boot Con Hazelcast"
+description = "Hazelcast es una plataforma en memoria distribuida para manejo de datos y ejecuciones paralelas"
 date = "2019-02-10T15:29:20-05:00"
 tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-`java.util.Map` is not thread safe, if you want to use thread safe Map you can use `ConcurrentHashMap` what if you want to use a map through multiple JVM? then your best option is [Hazelcast](https://hazelcast.org/), besides Hazelcast is Open Source written in Java and Maven friendly. In this technical post we are going to view how we can use Hazelcast among with Spring Boot. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). First let's create a new Spring Boot Webflux project:
+`java.util.Map` no es thread safe, si tú quieres usar un mapa thread safe puedes usar `ConcurrentHashMap`, ¿Pero si quieres usar un mapa a través de multiples JVM?, entonces tu mejor opción es [Hazelcast](https://hazelcast.org/), además Hazelcast es Open Source escrito en Java y amigable con Maven. En este post técnico vamos a ver como podemos usar Hazelcast con Spring Boot. Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor ve a mi previo post previo empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Ahora, empecemos creando un nuevo proyecto con Spring Webflux como dependencia.
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java spring-boot-hazelcast
 ```
 
-This is the `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -40,13 +40,13 @@ dependencies {
 }
 ```
 
-Next step is to add Hazelcast dependency:
+El siguiente paso es agregar la dependencia de Hazelcast:
 
 ```groovy
 implementation 'com.hazelcast:hazelcast-spring'
 ```
 
-Hazelcast can be configured through XML or using Java configuration or even mix of both. Please consider this configuration using Java config.
+Hazelcast puede ser configurado através de XML o usando configuración Java incluso ambas. Por favor considera la siguiente configuración usando Java config.
 
 ```java
 package com.jos.dem.springboot.hazelcast.conf;
@@ -79,11 +79,11 @@ public class HazelcastConfiguration {
 }
 ```
 
-To create a named `HazelcastInstance` you should set an instance name in our `Config` object. `MaxSizeConfig` is configuration for map's capacity. You can set a limit for number of entries or total memory cost of entries. `MaxSizePolicy` is maximum size policy in this case `FREE_HEAP_SIZE` is based on minimum free JVM heap memory in megabytes.
+Para crear un`HazelcastInstance` deberías agregar un nombre al objeto `Config`. `MaxSizeConfig` es la configuración para la capacidad de nuestro mapa. Tú puedes configurar el máximo número de entradas así como el costo total de memoria. `MaxSizePolicy` es la política de máximo tamaño, en este caso `FREE_HEAP_SIZE` está basado en la cantidad mínima de memoria libre de la JVM como heap memory y se mide megabytes.
 
-**Eviction**
+**Expulsión**
 
-Unless you delete the map entries manually or use an eviction policy, they will remain in the map. Hazelcast supports policy based eviction for distributed maps. Currently supported policies are LRU (Least Recently Used) and LFU (Least Frequently Used). Now, let's create a controller to store values in hazelcast and get them back.
+A menos que borres las entradas del mapa manualmente usando la política expulsión, estas permanecerán en el mapa. Hazelcast soporta la política de expulsión para mapas distribuidos. Actualmente las políticas soportadas son LRU (Los menos usados) and LFU (Los menos frecuentemente utilizados). Ahora, vamos a crear un controlador para almacenar nuestros valores en hazelcast y así obtenerlos de vuelta.
 
 ```java
 package com.jos.dem.springboot.hazelcast.controller;
@@ -129,25 +129,25 @@ public class HazelcastController {
 }
 ```
 
-That's it, if you start our Spring Boot application with this command:
+Así es, si inicias la aplicación Spring Boot con este comando:
 
 ```bash
 gradle bootRun
 ```
 
-You will be able to store a new value:
+Entonces podrás almacenar un nuevo valor así:
 
 ```bash
 curl -X POST http://localhost:8080/hazelcast/write/key/value
 ```
 
-And retrieve it
+Y obtenerlo así:
 
 ```bash
 curl http://localhost:8080/hazelcast/read/key
 ```
 
-Result:
+Resultado:
 
 ```bash
 2019-09-07 15:39:02.421  INFO 5934 --- [           main] com.hazelcast.core.LifecycleService      : [100.72.126.55]:5701 [dev] [3.11.4] [100.72.126.55]:5701 is STARTED
@@ -157,11 +157,11 @@ Result:
 2019-09-07 15:45:32.593  INFO 5934 --- [or-http-epoll-2] c.h.i.p.impl.PartitionStateManager       : [100.72.126.55]:5701 [dev] [3.11.4] Initializing cluster partition table arrangement...
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-hazelcast), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-hazelcast), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-hazelcast.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_es)
