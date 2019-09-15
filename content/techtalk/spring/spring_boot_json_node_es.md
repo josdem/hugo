@@ -180,4 +180,387 @@ void shouldGetJsonNodeFromPerson() throws Exception {
 }
 ```
 
+**Parámetros a JsonNode**
 
+Finalmente, transformemos sólo argumentos a JsonNode
+
+```java
+@Test
+@DisplayName("Validate Arguments to Json Node transformation")
+void shouldGetJsonNodeFromArguments() throws Exception {
+  log.info("Running: Validate arguments to json node transformation at {}", new Date());
+  Integer id = 1196;
+  String nickname = "josdem";
+  String email = "joseluis.delacruz@gmail.com";
+
+  JsonNode node = mapper.createObjectNode();
+  ((ObjectNode) node).put("id", 1196);
+  ((ObjectNode) node).put("nickname", "josdem");
+  ((ObjectNode) node).put("email", "joseluis.delacruz@gmail.com");
+
+  assertAll("person",
+    () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
+    () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
+    () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
+  );
+
+}
+```
+
+Aquí está el test case completo:
+
+```java
+package com.jos.dem.springboot.json.node;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Date;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import com.jos.dem.springboot.json.node.model.Person;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class JsonNodeTest {
+
+  private JsonNode node;
+  private ObjectMapper mapper = new ObjectMapper();
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @BeforeEach
+  void init() throws Exception {
+    log.info("Getting Json Node from Json");
+    String json = "{\"id\":1196,\"nickname\":\"josdem\",\"email\":\"joseluis.delacruz@gmail.com\"}";
+    node = mapper.readTree(json);
+  }
+
+
+  @Test
+  @DisplayName("Validate Json to JsonNode transformation")
+  void shouldGetJsonNodeFromJson() throws Exception {
+    log.info("Running: Validate json to json node transformation at {}", new Date());
+
+    assertAll("node",
+      () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
+      () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
+      () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
+    );
+
+  }
+
+  @Test
+  @DisplayName("Validate JsonNode to Person transformation")
+  void shouldGetPersonFromJsonNode() throws Exception {
+    log.info("Running: Validate json to json node transformation at {}", new Date());
+
+    Person person = mapper.treeToValue(node, Person.class);
+
+    assertAll("person",
+      () -> assertEquals(1196, person.getId(), "Should get id"),
+      () -> assertEquals("josdem", person.getNickname(), "Should get nickname"),
+      () -> assertEquals("joseluis.delacruz@gmail.com", person.getEmail(), "should get email")
+    );
+
+  }
+
+  @Test
+  @DisplayName("Validate Person to JsonNode transformation")
+  void shouldGetJsonNodeFromPerson() throws Exception {
+    log.info("Running: Validate person to json node transformation at {}", new Date());
+    Person person = new Person(1196, "josdem","joseluis.delacruz@gmail.com");
+    JsonNode node = mapper.valueToTree(person);
+
+    assertAll("person",
+      () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
+      () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
+      () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
+    );
+
+  }
+
+  @Test
+  @DisplayName("Validate Arguments to Json Node transformation")
+  void shouldGetJsonNodeFromArguments() throws Exception {
+    log.info("Running: Validate arguments to json node transformation at {}", new Date());
+    Integer id = 1196;
+    String nickname = "josdem";
+    String email = "joseluis.delacruz@gmail.com";
+
+    JsonNode node = mapper.createObjectNode();
+    ((ObjectNode) node).put("id", 1196);
+    ((ObjectNode) node).put("nickname", "josdem");
+    ((ObjectNode) node).put("email", "joseluis.delacruz@gmail.com");
+
+    assertAll("person",
+      () -> assertEquals(1196, node.get("id").intValue(), "Should get id"),
+      () -> assertEquals("josdem", node.get("nickname").textValue(), "Should get nickname"),
+      () -> assertEquals("joseluis.delacruz@gmail.com", node.get("email").textValue(), "should get email")
+    );
+
+  }
+
+  @AfterEach
+  void finish() throws Exception {
+    log.info("Test execution finished");
+  }
+
+}
+```
+
+**Trabajando con Estrúcturas Json Complejas**
+
+Consideremos esta estructura Json
+
+```json
+{
+  "batchId": "fbe07c89-ffa7-4c86-9832-5f75cf765737",
+  "eventType": "EmployeeClockIn",
+  "publishedAt": "2019-03-09T07:36:43-05:00",
+  "messages" : [{
+  	"messageId" : "4aeaa175-e46d-42eb-83d3-cd02865d4863",
+  	"eventAt": "2019-03-09T07:36:43-05:00",
+  	"data": {
+  		"firstname": "Jose",
+  		"lastname": "Morales",
+  		"nickname": "josdem",
+  		"employeeNumber": 1196,
+  		"email": "joseluis.delacruz@gmail.com",
+  		"clockInDateTime": "2019-03-09T07:36:43-05:00"
+  	}
+  }]
+}
+```
+
+Este podría una representación en Objeto, `Event`:
+
+```java
+package com.jos.dem.springboot.json.node.model;
+
+import java.time.OffsetDateTime;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class Event {
+  private String batchId;
+  private String eventType;
+  private OffsetDateTime publishedAt;
+  private Message[] messages;
+}
+```
+
+Este podría ser nuestra representación Objecto `Message`:
+
+```java
+package com.jos.dem.springboot.json.node.model;
+
+import java.time.OffsetDateTime;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+@Getter
+@Setter
+public class Message {
+  private String messageId;
+  private OffsetDateTime eventAt;
+  private JsonNode data;
+}
+```
+
+Así tenemos que para hacer unmarshall de esta estrúctura Json compleja la mejor estrategía es crear un servicio para delegar la responsabilidad.
+
+```java
+package com.jos.dem.springboot.json.node.service;
+
+import java.io.File;
+import java.io.IOException;
+
+import com.jos.dem.springboot.json.node.model.Event;
+
+public interface UnmarshallerService {
+
+  Event read(File jsonFile) throws IOException;
+
+}
+```
+
+Aquí está la implementación de nuestro servicio:
+
+```java
+package com.jos.dem.springboot.json.node.service.impl;
+
+import java.io.File;
+import java.io.InputStream;
+import java.io.FileInputStream;
+import java.io.IOException;
+
+import javax.annotation.PostConstruct;
+
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import org.springframework.stereotype.Service;
+
+import com.jos.dem.springboot.json.node.model.Event;
+import com.jos.dem.springboot.json.node.service.UnmarshallerService;
+
+@Service
+public class UnmarshallerServiceImpl implements UnmarshallerService {
+
+  private ObjectMapper mapper = new ObjectMapper();
+
+  @PostConstruct
+  public void setup() {
+    mapper.registerModule(new JavaTimeModule());
+  }
+
+  public Event read(File jsonFile) throws IOException {
+    InputStream inputStream = new FileInputStream(jsonFile);
+    JsonNode jsonNode = mapper.readTree(inputStream);
+    return mapper.treeToValue(jsonNode, Event.class);
+  }
+
+}
+```
+
+Aquí está nuestro test case completo para validar el unmarshall:
+
+```java
+package com.jos.dem.springboot.json.node;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Date;
+import java.time.OffsetDateTime;
+
+import com.fasterxml.jackson.databind.JsonNode;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.extension.ExtendWith;
+
+import java.io.File;
+import java.io.InputStream;
+import java.io.FileInputStream;
+
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.jos.dem.springboot.json.node.model.Event;
+import com.jos.dem.springboot.json.node.model.Message;
+import com.jos.dem.springboot.json.node.service.UnmarshallerService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
+public class UnmarshallerServiceTest {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
+  @Autowired
+  private UnmarshallerService service;
+
+  private Event event;
+  private Message message;
+  private Message[] messages;
+
+  @BeforeEach
+  void init() throws Exception {
+    log.info("Getting Event from ClockIn json file");
+    File jsonFile = new File("src/main/resources/ClockIn.json");
+    event = service.read(jsonFile);
+    Message[] messages = event.getMessages();
+    message = messages[0];
+  }
+
+  @Test
+  @DisplayName("Validate Event values from ClockIn Json file")
+  void shouldGetEventFromClockInFile() throws Exception {
+    log.info("Running: Validate Event values from ClockIn Json file at {}", new Date());
+
+    assertAll("event",
+      () -> assertEquals("fbe07c89-ffa7-4c86-9832-5f75cf765737", event.getBatchId(), "Should get batch id"),
+      () -> assertEquals("EmployeeClockIn", event.getEventType(), "Should get event type"),
+      () -> assertEquals(OffsetDateTime.parse("2019-03-09T12:36:43Z"), event.getPublishedAt(), "Should get published at time")
+    );
+
+  }
+
+  @Test
+  @DisplayName("Validate Message values from Event")
+  void shouldGetMessageFromEvent() throws Exception {
+    log.info("Running: Validate Message values from event at {}", new Date());
+
+    assertAll("message",
+      () -> assertEquals("4aeaa175-e46d-42eb-83d3-cd02865d4863", message.getMessageId(), "Should get message id"),
+      () -> assertEquals(OffsetDateTime.parse("2019-03-09T12:36:43Z"), event.getPublishedAt(), "Should get published at time")
+    );
+
+  }
+
+  @Test
+  @DisplayName("Validate Data values from message")
+  void shouldGetDataFromMessage() throws Exception {
+    log.info("Running: Validate Data values from message at {}", new Date());
+
+    JsonNode data = message.getData();
+    assertAll("data",
+      () -> assertEquals("Jose", data.get("firstname").textValue(), "Should get Firstname"),
+      () -> assertEquals("Morales", data.get("lastname").textValue(), "Should get Lastname"),
+      () -> assertEquals("josdem", data.get("nickname").textValue(), "Should get Nickname"),
+      () -> assertEquals(1196, data.get("employeeNumber").intValue(), "Should get Employee Number"),
+      () -> assertEquals("joseluis.delacruz@gmail.com", data.get("email").textValue(), "Should get Email"),
+      () -> assertEquals("2019-03-09T07:36:43-05:00", data.get("clockInDateTime").textValue(), "Should get clockIn time")
+    );
+
+  }
+
+  @AfterEach
+  void finish() throws Exception {
+    log.info("Test execution finished");
+  }
+
+}
+```
+
+Para correr el proyecto con Gradle:
+
+```bash
+gradle test
+```
+
+Para correr el proyecto con Maven:
+
+```bash
+mvn test
+```
+
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-json-node), para descargar el proyecto:
+
+```bash
+git clone git@github.com:josdem/spring-boot-json-node.git
+```
+
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)

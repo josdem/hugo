@@ -125,6 +125,7 @@ Esta sección está dedicada a explicar la programación reactiva introducida en
 * [Spring Webflux Multi-Módulo](/techtalk/spring/spring_webflux_modules_es)
 * [Spring Weblux Intenacionalización](/techtalk/spring/spring_webflux_internationalization_es)
 * [Spring Weblux Testeando la Capa Web](/techtalk/spring/spring_webflux_web_testing_es)
+* [Spring Boot y JsonNode](/techtalk/spring/spring_boot_json_node_es)
 
 [Return to the main article](/techtalk/techtalks)
 
