@@ -143,6 +143,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Weblux Testeando la Capa Web](/techtalk/spring/spring_webflux_web_testing_es)
  * [Spring Boot con Hazelcast](/techtalk/spring/spring_boot_hazelcast_es)
  * [Spring Boot y JsonNode](/techtalk/spring/spring_boot_json_node_es)
+ * [Spring Boot y H2](/techtalk/spring/spring_boot_h2_es)
 * [**Android**](/techtalk/android)
  * [Dependency Injection with Dagger](/techtalk/android/dagger2)
  * [REST Calls with Retrofit](/techtalk/android/retrofit)
