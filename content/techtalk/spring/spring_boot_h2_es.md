@@ -71,7 +71,7 @@ public class Person {
 }
 ```
 
-Aquí está nuestro `PersonRepository`, que extendiendo de `JpaRepository` obtenemos algunos métodos `CRUD` que nos permite salvar, buscar personas y demás, además permitirá al repositorio Spring Data JPA escanear en el classpath por esta interfaz y crear los beans adecuados.
+Aquí está nuestro `PersonRepository`, que extendiendo de `JpaRepository` obtenemos algunos métodos `CRUD` que nos permite salvar, buscar personas y demás, además permitirá al repositorio Spring Data JPA escanear en el classpath por esta interface y crear los beans adecuados.
 
 ```java
 package com.jos.dem.springboot.h2.repository;
