@@ -265,7 +265,7 @@ To test the project:
 gradle test
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-uri-validator), to download the project:
+To browse the project go [here](https://github.com/josdem/spring-webflux-uri-validator), to download the project:
 
 ```bash
 git clone git@github.com:josdem/spring-webflux-uri-validator.git
