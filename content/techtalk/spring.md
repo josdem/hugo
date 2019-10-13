@@ -129,6 +129,7 @@ Esta sección está dedicada a explicar la programación reactiva introducida en
 * [Spring Boot con Hazelcast](/techtalk/spring/spring_boot_hazelcast_es)
 * [Spring Boot y JsonNode](/techtalk/spring/spring_boot_json_node_es)
 * [Spring Boot y H2](/techtalk/spring/spring_boot_h2_es)
+* [Validando con Spring Webflux](/techtalk/spring/spring_webflux_uri_validator_es)
 
 [Return to the main article](/techtalk/techtalks)
 

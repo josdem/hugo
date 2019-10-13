@@ -1,18 +1,18 @@
 +++
-title =  "Spring Webflux URI Validator"
-description = "This technical post shows how to validate path variable formats"
+title =  "Validando con Spring Webflux"
+description = "Este post tecnico muestra como validar usando path variable"
 date = "2019-05-19T13:40:37-04:00"
 tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-[Spring Framework Validated](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/annotation/Validated.html) Is designed for convenient use with [Spring's JSR-30](https://beanvalidation.org/1.0/spec/#constraintsdefinitionimplementation-constraintdefinition-parameters-message) and allows to express and validate application constraints, in this technical post we will see how to validate a path variable using Spring Validated annotation in a Spring Webflux application, if you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+[Spring Framework Validated](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/annotation/Validated.html) Está designado como una implementación de Spring para el estándar [Spring's JSR-30](https://beanvalidation.org/1.0/spec/#constraintsdefinitionimplementation-constraintdefinition-parameters-message) y nos permite validar expresiones y beans de nuestras aplicaciones. En este post técnico veremos como validar beans usando path variable y expresiones regulares junto con la anotación Spring Validated en una aplicación Spring Webflux. **Nota:** Si quieres saber que herramientas necesitas tener instaladas en tu computadora para poder familiarizarte con Spring Boot por favor visita mi previo post: [Spring Boot](/techtalk/spring/spring_boot). Entonces ejecuta este comando desde la terminal.
 
 ```bash
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-webflux-uri-validator
 ```
 
-Here is the complete `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -45,7 +45,7 @@ dependencies {
 }
 ```
 
-Now add Junit 5 and Apache commons lang dependencies to your `build.gradle` file:
+Ahora agregamos las dependencias Junit 5 y Apache commons lang en el archivo `build.gradle`:
 
 ```groovy
 implementation('org.apache.commons:commons-lang3:3.8.1')
@@ -53,7 +53,7 @@ testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
 testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 ```
 
-Let's start by creating a service to send a request to the controller
+Vamos a empezar creando un servicio para abstraer la petición al controlador.
 
 ```java
 package com.jos.dem.springboot.uri.validator.service;
@@ -67,7 +67,7 @@ public interface WebClientService {
 }
 ```
 
-This is the service implementation
+Este es la implementación del servicio
 
 ```java
 package com.jos.dem.springboot.uri.validator.service.impl;
@@ -96,7 +96,7 @@ public class WebClientServiceImpl implements WebClientService {
 }
 ```
 
-This service implementation is receiving path as a variable and send it to a controller for validation.
+Este servicio recibe una variable como path para ser enviada y evaluada para el controlador.
 
 ```java
 package com.jos.dem.springboot.uri.validator.controller;
@@ -134,13 +134,13 @@ public class ValidatorController {
 }
 ```
 
-Where:
+Donde:
 
-* `regexp` Is a regular expresion to validate this format: `YYYY-MM-DD-` plus six digits, if you want to know more about regular expression in Java, please go [here](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
-* `@PathVariable` We are reading mnemonic as path variable
-* `@Validated` With this annotation we are enabling Hibernate validator
+* `regexp` Es una expresión regular para evaluar: `YYYY-MM-DD-` más seis dígitos, si quieres saber más acerca de expresiones regulares en Java, porfavor ve [aquí](https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html)
+* `@PathVariable` Estamos leyendo el mnemónico como una variable de path
+* `@Validated` Con esta anotación estamos hábilitando la validación con Spring
 
-[WebClient](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-client) is an bean instance and it is defined in our validator Spring application
+[WebClient](https://docs.spring.io/spring/docs/current/spring-framework-reference/web-reactive.html#webflux-client) Es una instancia bean que está definida en nuestra aplicación Spring.
 
 ```java
 package com.jos.dem.springboot.uri.validator;
@@ -165,7 +165,7 @@ public class UriValidatorApplication {
 }
 ```
 
-Finally, let's create a test case to validate our mnemonic value
+Finalmente, vamos a crear un test case para validar el mnemónico recibido
 
 ```java
 package com.jos.dem.springboot.uri.validator;
@@ -206,7 +206,7 @@ public class ValidatorTest {
 }
 ```
 
-If you want to see the error description when you are sending an invalid mnemonic, add an exception handler to the validator controller
+Para ver el error en la descripción cuando estamos enviando un mnemónico inválido, agreguemos un exception handler al controlador
 
 ```java
 package com.jos.dem.springboot.uri.validator.controller;
@@ -253,24 +253,25 @@ public class ValidatorController {
 }
 ```
 
-To run the project:
+Para correr el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-To test the project:
+Para testear el proyecto:
 
 ```bash
 gradle test
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-webflux-uri-validator), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-webflux-uri-validator), para descargar el proyecto:
+
 
 ```bash
 git clone git@github.com:josdem/spring-webflux-uri-validator.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_ES)
 
