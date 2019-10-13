@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-[Spring Framework Validated](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/annotation/Validated.html) Is designed for convenient use with [Spring's JSR-30](https://beanvalidation.org/1.0/spec/#constraintsdefinitionimplementation-constraintdefinition-parameters-message) and allows to express and validate application constraints, in this technical post we will see how to validate a path variable using Spring Validated annotation in a Spring Webflux application, if you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+[Spring Framework Validated](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/validation/annotation/Validated.html) Is designed for convenient use with [Spring's JSR-303](https://beanvalidation.org/1.0/spec/#constraintsdefinitionimplementation-constraintdefinition-parameters-message) and allows to express and validate application constraints, in this technical post we will see how to validate a path variable using Spring Validated annotation in a Spring Webflux application, if you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
 
 ```bash
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-webflux-uri-validator
