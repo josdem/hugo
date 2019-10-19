@@ -16,11 +16,10 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.6.RELEASE'
+  id 'org.springframework.boot' version '2.2.0.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
   id 'java'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.spring.webflux.webclient'
 version = '0.0.1-SNAPSHOT'
@@ -32,16 +31,15 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
   testImplementation 'io.projectreactor:reactor-test'
 }
-```
 
-Now add Junit 5 dependencies to your `build.gradle` file:
-
-```groovy
-testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+test {
+  useJUnitPlatform()
+}
 ```
 
 Let's start by creating a controller to retrieve a basic response, a hello world concept :)
@@ -159,9 +157,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.Date;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.Test;
 
 import org.springframework.http.HttpHeaders;
 
@@ -174,7 +170,6 @@ import com.jos.dem.spring.webflux.webclient.service.WebclientService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class WebfluxControllerTest {
 
