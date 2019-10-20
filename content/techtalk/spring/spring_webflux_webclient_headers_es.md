@@ -1,18 +1,18 @@
 +++
-title =  "Spring Webflux Webclient Headers"
-description = "In this technical post we will review how to read headers using WebClient"
+title =  "Leyendo Headers con WebClient"
+description = "En este post tecnico veremos como leer headers usando Webclient"
 date = "2019-07-23T10:24:17-04:00"
 tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-HTTP headers allow the client and the server to pass additional information with the request or the response, if you want to know more about the list we can use as Http headers, please go [here](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). In this technical post we will see how to validate a server response including their headers using [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux as dependencies:
+Los headers HTTP permiten al servidor proporcionar información, si quieres saber más acerca de la lista de los headers existentes Http, por favor ve [aquí](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). En este post técnico veremos como validar la respuesta de un servidor incluyendo los headers usando [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor visita mi previo post empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Entonces, crea una aplicación Spring Boot con Webflux como dependencia:
 
 ```bash
 spring init --dependencies=webflux --language=java --build=gradle spring-webflux-webclient-workshop
 ```
 
-Here is the complete `build.gradle` file generated:
+Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
@@ -42,7 +42,7 @@ test {
 }
 ```
 
-Let's start by creating a controller to retrieve a basic response, a hello world concept :)
+Vamos a empezar creando un controlador para obtener una respuesta básica, el concepto hello world! :)
 
 ```java
 package com.jos.dem.spring.webflux.webclient.controller;
@@ -69,7 +69,7 @@ public class WebfluxController {
 }
 ```
 
-Now let's define a `Webclient` as a `@Bean`, With webclient you can use both worlds blocking and non-blocking HTTP requests.
+Ahora, vamos a definir un `Webclient` como un `@Bean`, Con webclient puedes usar ambos mundos peticiones bloqueantes y no bloqueantes.
 
 ```java
 package com.jos.dem.spring.webflux.webclient;
@@ -94,7 +94,7 @@ public class DemoApplication {
 }
 ```
 
-Next step is to define a service with our WebClient request
+El siguiente paso es definir un servicio con nuestra petición usando WebClient
 
 
 ```java
@@ -111,7 +111,7 @@ public interface WebclientService {
 }
 ```
 
-In this example we are defining two metods in `getGreetings()` we expect to have our "HelloWorld!" message in the other method we expect to have our headers, here is our service implementation
+En este ejemplo estamos definiendo dos métodos `getGreetings()` esperamos tener un mensaje de texto  "HelloWorld!" en el otro método esperamos obtener los headers, aquí está la implementación del servicio:
 
 ```java
 package com.jos.dem.spring.webflux.webclient.service.impl;
@@ -148,7 +148,7 @@ public class WebclientServiceImpl implements WebclientService {
 }
 ```
 
-It is time to create our test case so that we can verify our service behaviour.
+Es tiempo de crear nuestro test case, así podemos verificar el comportamiento de nuestro servicio.
 
 ```java
 package com.jos.dem.spring.webflux.webclient;
@@ -196,25 +196,24 @@ public class WebfluxControllerTest {
 }
 ```
 
-That's it, we are validating HttpHeaders which is a data structure representing HTTP request, mapping String header names to its values.
+Así es, estamos validando los HttpHeaders los cuales es una estrúctura de datos representando una petición HTTP, mapeando String como nombres del header y sus valores.
 
-To run the project:
+Para correr el proyecto:
 
 ```bash
 gradle bootRun
 ```
 
-To test the project:
+Para testear el proyecto:
 
 ```bash
 gradle test
 ```
-
-To browse the project go [here](https://github.com/josdem/spring-webflux-webclient-workshop), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-webflux-webclient-workshop), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-webflux-webclient-workshop.git
 ```
 
 
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_ES)
