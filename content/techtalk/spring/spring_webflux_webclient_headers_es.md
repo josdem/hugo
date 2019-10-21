@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-Los headers HTTP permiten al servidor proporcionar información, si quieres saber más acerca de la lista de los headers existentes Http, por favor ve [aquí](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). En este post técnico veremos como validar la respuesta de un servidor incluyendo los headers usando [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor visita mi previo post empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Entonces, crea una aplicación Spring Boot con Webflux como dependencia:
+Los headers HTTP permiten al servidor y al cliente intercambiar información adicional más allá del body, si quieres saber más acerca de la lista de los headers existentes Http, por favor ve [aquí](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). En este post técnico veremos como validar la respuesta de un servidor incluyendo los headers usando [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor visita mi previo post empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Entonces, crea una aplicación Spring Boot con Webflux como dependencia:
 
 ```bash
 spring init --dependencies=webflux --language=java --build=gradle spring-webflux-webclient-workshop
