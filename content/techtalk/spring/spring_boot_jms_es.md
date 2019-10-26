@@ -16,17 +16,20 @@ Aquí está el `build.gradle` generado:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'org.springframework.boot' version '2.2.0.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
   id 'java'
 }
-
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.jms'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 11
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
@@ -37,7 +40,14 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-activemq")
   compileOnly('org.projectlombok:lombok')
   annotationProcessor('org.projectlombok:lombok')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+  testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+  useJUnitPlatform()
 }
 ```
 
@@ -50,7 +60,7 @@ implementation('org.apache.activemq:activemq-broker')
 
 Ahora, primero vamos a crear un `MessageService` para poder entregar mensajes a la cola de espera.
 
-```groovy
+```java
 package com.jos.dem.springboot.jms.service
 
 import com.jos.dem.springboot.jms.command.Command
@@ -64,7 +74,7 @@ interface MessageService {
 
 Este es nuestra implementación del servicio `MessageServiceImpl`:
 
-```groovy
+```java
 package com.jos.dem.springboot.jms.service.impl;
 
 import javax.jms.JMSException;
@@ -110,7 +120,7 @@ Donde:
 * `JmsTemplate` Envía mensajes al destino JMS.
 * `Command` Es un contrato para serializar los objetos POJO.
 
-```groovy
+```java
 package com.jos.dem.springboot.jms.command
 
 import java.io.Serializable
@@ -120,7 +130,7 @@ interface Command extends Serializable {}
 
 Este el el mensaje que vamos a enviar.
 
-```groovy
+```java
 package com.jos.dem.springboot.jms.command;
 
 import lombok.Data;
@@ -138,7 +148,7 @@ public class PersonCommand implements Command {
 
 Ahora que tenemos todas la entidades que necesitamos para enviar un mensaje, vamos a especificar las necesarias para procesar los mensajes.
 
-```groovy
+```java
 package com.jos.dem.springboot.jms.messengine
 
 import javax.jms.Message
@@ -167,7 +177,7 @@ class MessageListener {
 
 Así como puedes ver `JmsTemplate` está enviando un mensaje a `destination` y `@JmsListener` está esperando por mensaje desde `destination`, otra parte imporante en el rompecabnezas es el contenerdo JMS llamado `myJmsContainerFactory` que está definido en nuestra aplicación Spring Boot como un bean.
 
-```groovy
+```java
 package com.jos.dem.springboot.jms;
 
 import javax.jms.ConnectionFactory;
@@ -198,8 +208,10 @@ public class DemoApplication {
 
 Así es, ahora todos los componentes requeridos han sido definidos. Vamos creando una nueva entidad `Person` que sirva como mensaje para ser enviado por nuestro service.
 
-```groovy
+```java
 package com.jos.dem.springboot.jms.controller;
+
+import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -209,17 +221,23 @@ import com.jos.dem.springboot.jms.command.Command;
 import com.jos.dem.springboot.jms.command.PersonCommand;
 import com.jos.dem.springboot.jms.service.MessageService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @RestController
 public class DemoController {
 
-  @Autowired
+	@Autowired
   private MessageService messageService;
 
+  private Logger log = LoggerFactory.getLogger(this.getClass());
+
   @GetMapping("/")
-  public String index(){
+  public Mono<String> index(){
+    log.info("Sending message");
   	Command person = new PersonCommand("josdem","joseluis.delacruz@gmail.com");
   	messageService.sendMessage(person);
-  	return "Java Message Service";
+  	return Mono.just("Java Message Service");
   }
 
 }
@@ -260,24 +278,21 @@ Este es el `pom.xml` generado:
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.2.0.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
   <groupId>com.jos.dem.springboot</groupId>
   <artifactId>jms</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-
-  <name>demo</name>
+  <name>spring-boot-jms</name>
   <description>This project shows how to use JMS (Java Message Service) in a Spring Boot project</description>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.5.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
-
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>11</java.version>
   </properties>
 
@@ -325,6 +340,7 @@ Este es el `pom.xml` generado:
   </build>
 
 </project>
+`
 ```
 
 Para correr el proyecto con Gradle:
