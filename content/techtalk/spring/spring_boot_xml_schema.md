@@ -30,13 +30,13 @@ Here is the complete `pox.xml` file generated:
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.7.RELEASE</version>
+    <version>2.2.0.RELEASE</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.jos.dem.springboot.xml.schema</groupId>
   <artifactId>spring-boot-xml-schema</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>demo</name>
+  <name>spring-boot-xml-schema</name>
   <description>This project shows how to use XML schemas in a Spring Boot application</description>
 
   <properties>
