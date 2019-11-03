@@ -16,40 +16,38 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-	id 'org.springframework.boot' version '2.1.5.RELEASE'
-	id 'java'
+  id 'org.springframework.boot' version '2.2.0.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'java'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.sse'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
 }
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-webflux'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	testImplementation 'io.projectreactor:reactor-test'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+  testImplementation 'io.projectreactor:reactor-test'
 }
-```
 
-Now add Junit 5 Framework dependencies to your `build.gradle` file:
-
-```groovy
-testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+test {
+  useJUnitPlatform()
+}
 ```
 
 Let's start by creating a controller to serve our stream data
@@ -220,32 +218,31 @@ import java.time.LocalTime;
 
 import reactor.core.publisher.Flux;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 import org.springframework.http.MediaType;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.jos.dem.springboot.sse.model.MessageCommand;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-@RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class ServerSentEventsClientApplicationTest {
+class ServerSentEventsClientApplicationTest {
 
   @Autowired
   private WebTestClient webClient;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-	@Test
-	public void shouldConsumeServerSentEvents() throws Exception {
+  @Test
+  @DisplayName("Should get five events")
+  void shouldConsumeServerSentEvents() {
     log.info("Running: Consume server sent events: {}", new Date());
 
     List<MessageCommand> commands = webClient.get().uri("/")
@@ -258,9 +255,9 @@ public class ServerSentEventsClientApplicationTest {
       .collectList()
       .block();
 
-      commands.forEach(command -> log.info("command: {}", command));
-      assertEquals(5, commands.size());
-	}
+    commands.forEach(command -> log.info("command: {}", command));
+    assertEquals(5, commands.size());
+  }
 
 }
 ```
