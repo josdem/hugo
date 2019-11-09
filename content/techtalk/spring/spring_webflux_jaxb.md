@@ -82,7 +82,7 @@ public class PersonController {
     return Mono.just(
             new Person("Jose",
                     "Morales",
-                    "30 Frank Lloyd Ann Arbor MI 48105"));
+                    "30 Frank Lloyd, Ann Arbor MI 48105"));
   }
 
 }
@@ -163,7 +163,7 @@ You should see an output similar to this:
 < Content-Length: 179
 <
 * Connection #0 to host localhost left intact
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><address>30 Frank Lloyd Ann Arbor MI 48105</address><firstName>Jose</firstName><lastName>Morales</lastName></person>%
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><address>30 Frank Lloyd, Ann Arbor MI 48105</address><firstName>Jose</firstName><lastName>Morales</lastName></person>%
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-webflux-jaxb), to download the project:
