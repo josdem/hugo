@@ -121,9 +121,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = DemoApplication.class,
+				webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class DemoApplicationTests {
 
 	@Autowired
@@ -135,7 +137,10 @@ class DemoApplicationTests {
 						.exchange()
 						.expectStatus().isOk()
 						.expectHeader().contentType(APPLICATION_XML_VALUE)
-						.expectBody(Person.class);
+						.expectBody(Person.class)
+						.value(person -> person.getFirstName(), equalTo("Jose"))
+						.value(person -> person.getLastName(), equalTo("Morales"))
+						.value(person -> person.getAddress(), equalTo("30 Frank Lloyd, Ann Arbor MI 48105"));
 	}
 
 }
