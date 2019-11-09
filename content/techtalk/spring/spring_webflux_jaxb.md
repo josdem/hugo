@@ -127,7 +127,7 @@ import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
 class DemoApplicationTests {
 
 	@Autowired
-	:private WebTestClient webClient;
+	private WebTestClient webClient;
 
 	@Test
 	void shouldGetPerson() {
