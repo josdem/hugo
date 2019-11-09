@@ -128,6 +128,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Spring Webflux URI Validator](/techtalk/spring/spring_boot_uri_validator)
  * [Spring Webflux Webclient Headers](/techtalk/spring/spring_webflux_webclient_headers)
  * [Spring Boot XML Schema](/techtalk/spring/spring_boot_xml_schema)
+ * [Spring Webflux JAXB](/techtalk/spring/spring_webflux_jaxb)
 * [**Spring Boot Reactivo en Español**](/techtalk/spring#Spring_Boot_Reactive_ES)
  * [Empezando con Spring Webflux](/techtalk/spring/spring_webflux_basics_es)
  * [Spring Webflux el lado del Servidor](/techtalk/spring/spring_webflux_server_es)
