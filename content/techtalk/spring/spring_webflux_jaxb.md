@@ -60,29 +60,32 @@ implementation "org.glassfish.jaxb:jaxb-runtime"
 Let's start adding a controller to retreive a XML
 
 ```java
-package com.jos.dem.spring.webflux.jaxb.jaxb.controller;
+package com.jos.dem.spring.webflux.jaxb.controller;
 
-import com.jos.dem.spring.webflux.jaxb.jaxb.model.Person;
+import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-import static org.springframework.http.MediaType.APPLICATION_XML_VALUE;
+import com.jos.dem.spring.webflux.jaxb.model.Person;
+import com.jos.dem.spring.webflux.jaxb.repository.PersonRepository;
 
 @RestController
 public class PersonController {
+
+  @Autowired
+  private PersonRepository personRepository;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
   @GetMapping(value = "/", produces = APPLICATION_XML_VALUE)
   public Mono<Person> index() {
     log.info("Getting Person");
-    return Mono.just(
-            new Person("Jose",
-                    "Morales",
-                    "30 Frank Lloyd, Ann Arbor MI 48105"));
+    return personRepository.findOne("josdem");
   }
 
 }
@@ -91,31 +94,74 @@ public class PersonController {
 That's it, adding `APPLICATION_XML_VALUE` as [MediaType](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/http/MediaType.html) to the `@GetMapping` annotation will do the magic :). Here is our `Person` model:
 
 ```java
-package com.jos.dem.spring.webflux.jaxb.jaxb.model;
+package com.jos.dem.spring.webflux.jaxb.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
-@Data
+@Getter
 @AllArgsConstructor
 @NoArgsConstructor
 @XmlRootElement
 public class Person {
+  @XmlAttribute
+  private String nickname;
+  @XmlAttribute
   private String firstName;
+  @XmlAttribute
   private String lastName;
+  @XmlAttribute
   private String address;
+  @XmlElement
+  private Device device;
 }
 ```
 
-`@XmlRootElement`  annotation associate a root element with our `Person` class. Finally, let's test our controller with [WebTestClient](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html)
+Where:
+
+* `@XmlRootElement` annotation associate a root element with our `Person` class.
+* `@XmlAttribute` Will map to a XML field attribute.
+* `@XmlElement` Will map to a XML element.
+
+Where is our `Device` model:
+
+```java
+package com.jos.dem.spring.webflux.jaxb.model;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlAttribute;
+
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@XmlRootElement
+public class Device {
+  @XmlAttribute
+  private String name;
+  @XmlAttribute
+  private String os;
+  @XmlAttribute
+  private String model;
+}
+```
+
+Finally, let's test our controller with [WebTestClient](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html)
 
 ```java
 package com.jos.dem.spring.webflux.jaxb;
 
-import com.jos.dem.spring.webflux.jaxb.jaxb.model.Person;
+import com.jos.dem.spring.webflux.jaxb.model.Person;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -140,7 +186,10 @@ class DemoApplicationTests {
 						.expectBody(Person.class)
 						.value(person -> person.getFirstName(), equalTo("Jose"))
 						.value(person -> person.getLastName(), equalTo("Morales"))
-						.value(person -> person.getAddress(), equalTo("30 Frank Lloyd, Ann Arbor MI 48105"));
+						.value(person -> person.getAddress(), equalTo("30 Frank Lloyd, Ann Arbor MI 48105"))
+						.value(person -> person.getDevice().getName(), equalTo("Pixel 3"))
+						.value(person -> person.getDevice().getOs(), equalTo("Android"))
+						.value(person -> person.getDevice().getModel(), equalTo("9 Pie"));
 	}
 
 }
@@ -156,19 +205,19 @@ curl -v http://localhost:8080 \
 You should see an output similar to this:
 
 ```bash
-* Connected to localhost (::1) port 8080 (#0)
+* Connected to localhost (127.0.0.1) port 8080 (#0)
 > GET / HTTP/1.1
 > Host: localhost:8080
-> User-Agent: curl/7.54.0
+> User-Agent: curl/7.58.0
 > Accept: */*
 > Content-Type: application/xml
 >
 < HTTP/1.1 200 OK
 < Content-Type: application/xml
-< Content-Length: 179
+< Content-Length: 222
 <
 * Connection #0 to host localhost left intact
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?><person><address>30 Frank Lloyd, Ann Arbor MI 48105</address><firstName>Jose</firstName><lastName>Morales</lastName></person>%
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?><person nickname="josdem" firstName="Jose" lastName="Morales" address="30 Frank Lloyd, Ann Arbor MI 48105"><device name="Pixel 3" os="Android" model="9 Pie"/></person>
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-webflux-jaxb), to download the project:
