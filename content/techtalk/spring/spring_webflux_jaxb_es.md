@@ -198,7 +198,7 @@ Si quieres testear éste proyecto desde lìnea de comando, siempre puedes usar [
 
 ```bash
 curl -v http://localhost:8080 \
--H 'Content-Type: application/xml' localhost:8080
+-H 'Content-Type: application/xml'
 ```
 
 Entonces deberìas ver una salida similar a ésta:

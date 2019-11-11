@@ -199,7 +199,7 @@ If you want to test this project from command line
 
 ```bash
 curl -v http://localhost:8080 \
--H 'Content-Type: application/xml' localhost:8080
+-H 'Content-Type: application/xml'
 ```
 
 You should see an output similar to this:
