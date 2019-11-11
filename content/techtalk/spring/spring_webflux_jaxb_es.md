@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","Spring Webflux", "JAXB
 categories = ["techtalk", "code","java", "spring webflux"]
 +++
 
-En este post técnico veremos como responder [XML](https://en.wikipedia.org/wiki/XML) usando [JABX](https://eclipse-ee4j.github.io/jaxb-ri/) en la implementación de Jakarta EE. La Java arquitectura para XML Binding (JAXB) provee una API y herramientas para poder convertir entre documentos XML y objetos Java. **NOTA:** Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor visita mi previo post empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Entonces, crea una aplicación Spring Boot con Lombok y Webflux como dependencias:
+En este post técnico veremos como responder [XML](https://en.wikipedia.org/wiki/XML) usando [JAXB](https://eclipse-ee4j.github.io/jaxb-ri/) en la implementación de Jakarta EE. La Java arquitectura para XML Binding (JAXB) provee una API y herramientas para poder convertir entre documentos XML y objetos Java. **NOTA:** Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor visita mi previo post empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Entonces, crea una aplicación Spring Boot con Lombok y Webflux como dependencias:
 
 ```bash
  spring init --dependencies=webflux,lombok --build=gradle --language=java spring-webflux-jaxb
