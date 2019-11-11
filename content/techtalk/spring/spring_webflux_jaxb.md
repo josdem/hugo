@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","Spring Webflux", "JAXB
 categories = ["techtalk", "code","java", "spring webflux"]
 +++
 
-In this technical post we will take a look at how to produce [XML](https://en.wikipedia.org/wiki/XML) using [JABX](https://eclipse-ee4j.github.io/jaxb-ri/) Jakarta EE implementation. Java Architecture for XML Binding (JAXB) provides an API and tools that automate the mapping between XML documents and Java objects. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Webflux with Lombok as dependency:
+In this technical post we will take a look at how to produce [XML](https://en.wikipedia.org/wiki/XML) using [JAXB](https://eclipse-ee4j.github.io/jaxb-ri/) Jakarta EE implementation. Java Architecture for XML Binding (JAXB) provides an API and tools that automate the mapping between XML documents and Java objects. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Webflux with Lombok as dependency:
 
 ```bash
  spring init --dependencies=webflux,lombok --build=gradle --language=java spring-webflux-jaxb
