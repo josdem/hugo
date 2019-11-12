@@ -57,7 +57,7 @@ implementation "javax.xml.bind:jaxb-api"
 implementation "org.glassfish.jaxb:jaxb-runtime"
 ```
 
-Let's start adding a controller to retreive a XML
+Let's start adding a controller to retreive an XML
 
 ```java
 package com.jos.dem.spring.webflux.jaxb.controller;
@@ -129,7 +129,7 @@ Where:
 * `@XmlAttribute` Will map to a XML field attribute.
 * `@XmlElement` Will map to a XML element.
 
-Where is our `Device` model:
+Here is our `Device` model:
 
 ```java
 package com.jos.dem.spring.webflux.jaxb.model;
