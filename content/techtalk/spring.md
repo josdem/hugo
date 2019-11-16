@@ -132,6 +132,7 @@ Esta sección está dedicada a explicar la programación reactiva introducida en
 * [Spring Boot y H2](/techtalk/spring/spring_boot_h2_es)
 * [Validando con Spring Webflux](/techtalk/spring/spring_webflux_uri_validator_es)
 * [Leyendo Headers con WebClient](/techtalk/spring/spring_webflux_webclient_headers_es)
+* [Spring Boot y Esquemas XML](/techtalk/spring/spring_boot_xml_schema_es)
 * [Spring Webflux y JAXB](/techtalk/spring/spring_webflux_jaxb_es)
 
 [Return to the main article](/techtalk/techtalks)

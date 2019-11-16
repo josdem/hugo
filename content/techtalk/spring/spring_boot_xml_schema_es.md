@@ -20,7 +20,7 @@ Todas esas razones son imporatntes, pero la más imporante es que puede ser vali
 spring init --dependencies=webflux --build=maven --language=java spring-boot-xml-schema
 ```
 
-Here is the complete `pox.xml` file generated:
+Aquí está el `pom.xml` generado:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -72,7 +72,7 @@ Here is the complete `pox.xml` file generated:
 </project>
 ```
 
-Now, please add JAXB api and Apache Commons Lang3 dependencies to your `pox.xml` file:
+Ahora, por favor agrega JAXB y Apache Commons Lang3 como dependencias al archivo `pox.xml`
 
 ```xml
 <dependency>
@@ -87,7 +87,7 @@ Now, please add JAXB api and Apache Commons Lang3 dependencies to your `pox.xml`
 </dependency>
 ```
 
-And the JAXB2 Maven Plugin so we can transform our XML schemas in Java classes.
+Y el plugin de Maven para JAXB2, así podemos transformar nuestro esquema XML a clases Java.
 
 ```xml
 <plugin>
@@ -104,7 +104,7 @@ And the JAXB2 Maven Plugin so we can transform our XML schemas in Java classes.
 </plugin>
 ```
 
-Now, under `src/main/resources` let's add a `Person.xsd` schema
+Ahora, bajo `src/main/resources` agreguemos nuestro esquema `Person.xsd`.
 
 ```xml
 <?xml version="1.0"?>
@@ -122,15 +122,15 @@ Now, under `src/main/resources` let's add a `Person.xsd` schema
 </xs:schema>
 ```
 
-Where:
+Donde:
 
-* `xmlns:xs` Is our W3C standard definition
-* `elementFormDefault` Makes qualifying the name spaces of the elements in XML documents
-* `targetNamespace` Is is name that better identifies your schema.
-* `complexType` Group all Person's attributes
-* `sequence` element makes sure our attributes stay in order.
+* `xmlns:xs` Es la definición estándar W3C
+* `elementFormDefault` Califica los elementos en los documentos XML
+* `targetNamespace` Es el nombre que identifica el esquema.
+* `complexType` Agrupa los atributos Person
+* `sequence` Asegura que los atributos están en orden.
 
-This could be a XML representation
+Esta podría ser la representación XML
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -149,8 +149,7 @@ This could be a XML representation
 </person>
 ```
 
-Let's move forward and create a service to get that specific person
-
+Crearemos un servicio para crear una persona
 
 ```java
 package com.jos.dem.springboot.xml.schema.service;
@@ -164,7 +163,7 @@ public interface PersonService {
 }
 ```
 
-This is the implementation
+Esta es la implementación:
 
 ```java
 package com.jos.dem.springboot.xml.schema.service;
@@ -187,7 +186,7 @@ public class PersonServiceImpl implements PersonService {
 }
 ```
 
-Now, we can use `CommandLineRunner` to call our service and print out our person entity
+Ahora, podemos usar `CommandLineRunner` para llamar a nuestro servicio e imprimir el contenido de la entidad persona
 
 ```java
 package com.jos.dem.springboot.xml.schema;
@@ -223,13 +222,13 @@ public class DemoApplication {
 }
 ```
 
-The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method. Finally, if you execute our Spring Boot application, you should be able to see this output:
+El `CommandLineRunner` es una interfaz call back en Spring Boot, cuando nuestra aplicación arranca llamará al método start y le pasará los argumentos unsando el método interno `run()`, asì que si executas la aplicación Spring Boot, deberías ver una salida similar a ésta:
 
 ```bash
 2019-11-16 16:06:54.149  INFO 13286 --- [main] ication$$EnhancerBySpringCGLIB$$5c2c9c7e : Person: com.jos.dem.entities.Person@459cfcca[firstName=Jose,lastName=Morales,address=30 Frank Lloyd, Ann Arbor MI 48105]
 ```
 
-Finally, let’s test our person service
+Finalmente, vamos a crear un test para el servicio persona
 
 ```java
 package com.jos.dem.springboot.xml.schema;
@@ -267,19 +266,19 @@ class DemoApplicationTests {
 }
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-xml-schema), to download the project:
+Para explorar el proyecto, por favor ve [aquí](https://github.com/josdem/spring-boot-xml-schema), para descargar el proyecto:
 
 ```bash
 git clone git@github.com:josdem/spring-boot-xml-schema.git
 ```
 
-To run the project:
+Para correr el proyecto:
 
 ```bash
 mvn spring-boot:run
 ```
 
-To test the project:
+Para testear el proyecto:
 
 ```bash
 mvn test
