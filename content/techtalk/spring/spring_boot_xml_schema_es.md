@@ -1,20 +1,20 @@
 +++
-title =  "Spring Boot XML Schema"
-description = "In this technical post we will see how to generate Java classes using XSD eschemas with JAXB2"
+title =  "Spring Boot y Esquemas XML"
+description = "En este post tecnico veremos como generar clases Java usando esquemas XSD con JAXB2"
 date = "2019-09-02T15:48:23-04:00"
 tags = ["josdem", "techtalks","programming","technology", "xsd", "jaxb2"]
 categories = ["techtalk", "code", "spring boot"]
 +++
 
-[XML](https://en.wikipedia.org/wiki/XML) is still the most sophisticated format for distributed data, when you have complete control between your clients and services [JSON](https://en.wikipedia.org/wiki/JSON) is the king, but if not, you probably will need to deal with XML, and there is for good reasons:
+[XML](https://en.wikipedia.org/wiki/XML) sigue siendo el formato más sofisticado para datos distribuidos, cuando tenemos completo control entre los clientes y servicios [JSON](https://en.wikipedia.org/wiki/JSON) es el rey, pero sino, probablemente tendrás que ocupar XML y es por buenas razones:
 
-* XML is a [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) standard
-* XML can be validated using Schemas
-* XML embraces extensibility
-* Supports multilingual documents
-* Can embed multiple data types
+* XML es un estándar [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium)
+* XML puede ser validado usando esquemas
+* XML fomenta la extensibilidad
+* Suporta multilenguaje
+* Soporta diferentes tipos de datos
 
-All those reasons are important, but most important is that we can validate any XML using [XSD](https://en.wikipedia.org/wiki/XML_Schema_(W3C)) Schemas, in this technical post we will see how to generate Java classes using XSD eschemas with [JAXB2](https://github.com/highsource/maven-jaxb2-plugin/wiki) and Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as dependency:
+Todas esas razones son imporatntes, pero la más imporante es que puede ser validado usando esquemas [XSD](https://en.wikipedia.org/wiki/XML_Schema_(W3C)), en este post técnico veremos como generar clases Java usando esquemas XSD con [JAXB2](https://github.com/highsource/maven-jaxb2-plugin/wiki) y Spring Boot. **NOTA:** Si quieres saber más acerca de como crear una aplicación Spring Webflux por favor visita mi previo post empezando con Spring Webflux [aquí](/techtalk/spring/spring_webflux_basics). Entonces, crea una aplicación Spring Boot con Webflux como dependencia:
 
 ```bash
 spring init --dependencies=webflux --build=maven --language=java spring-boot-xml-schema
@@ -286,5 +286,4 @@ mvn test
 ```
 
 
-
-[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
+[Regresar al artículo principal](/techtalk/spring#Spring_Boot_Reactive_ES)
