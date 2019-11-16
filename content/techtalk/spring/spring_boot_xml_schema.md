@@ -226,7 +226,45 @@ public class DemoApplication {
 The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method. Finally, if you execute our Spring Boot application, you should be able to see this output:
 
 ```bash
-2019-09-02 15:34:00.776 INFO 5619 - [main] Application$$EnhancerBySpringCGLIB$$7416dabf : Person: com.jos.dem.entities.Person@3136695c[firstName=Jose,lastName=Morales,address=30 Frank Llord Dr, Ann Arbor, Michigan]
+2019-11-16 16:06:54.149  INFO 13286 --- [main] ication$$EnhancerBySpringCGLIB$$5c2c9c7e : Person: com.jos.dem.entities.Person@459cfcca[firstName=Jose,lastName=Morales,address=30 Frank Lloyd, Ann Arbor MI 48105]
+```
+
+Finally, let’s test our person service
+
+```java
+package com.jos.dem.springboot.xml.schema;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.jos.dem.entities.Person;
+import com.jos.dem.springboot.xml.schema.service.PersonService;
+
+@SpringBootTest
+class DemoApplicationTests {
+
+  @Autowired
+  private PersonService personService;
+
+  @Test
+  @DisplayName("Should create person")
+  void shouldCreatePerson() {
+    Person person = personService.create();
+
+    assertAll("person",
+        () -> assertEquals("Jose", person.getFirstName(), "should get first name"),
+        () -> assertEquals("Morales", person.getLastName(), "should get last name"),
+        () -> assertEquals("30 Frank Lloyd, Ann Arbor MI 48105", person.getAddress(), "should get address")
+        );
+  }
+
+}
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-xml-schema), to download the project:
@@ -240,6 +278,13 @@ To run the project:
 ```bash
 mvn spring-boot:run
 ```
+
+To test the project:
+
+```bash
+mvn test
+```
+
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
