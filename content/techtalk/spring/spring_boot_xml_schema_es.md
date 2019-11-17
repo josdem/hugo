@@ -143,8 +143,7 @@ Esta podría ser la representación XML
   <lastname>Morales</lastname>
   <address>
     30 Frank Llord,
-    Ann Arbor,
-    Michigan
+    Ann Arbor Michigan 48105
   </address>
 </person>
 ```
@@ -179,7 +178,7 @@ public class PersonServiceImpl implements PersonService {
     Person person =  new Person();
     person.setFirstName("Jose");
     person.setLastName("Morales");
-    person.setAddress("30 Frank Llord Dr, Ann Arbor, Michigan");
+    person.setAddress("30 Frank Lloyd, Ann Arbor MI 48105");
     return person;
   }
 
