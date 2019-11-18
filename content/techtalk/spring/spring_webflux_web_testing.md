@@ -134,7 +134,7 @@ public class CategoryController {
 }
 ```
 
-This controller get juice categories by languge and beverages by category id, and here is the test case
+This controller get juice categories by language and beverages by category id, and here is the test case
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
