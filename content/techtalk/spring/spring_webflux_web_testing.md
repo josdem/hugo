@@ -195,7 +195,7 @@ class CategoryControllerTest {
 }
 ```
 
-In the test case `shouldGetCategoriesByLanguage()` we are validating our list size and list content. Finally we have a beverage controller which gets a beverage by id and ingredients by keyboard.
+In the test case `shouldGetCategoriesByLanguage()` we are validating our list size and list content. Finally we have a beverage controller which gets a beverage by id and ingredients by keyword.
 
 ```java
 package com.jos.dem.jugoterapia.webflux.controller;
@@ -313,7 +313,13 @@ class BeverageControllerTest {
 
 ```
 
-In our test case `shouldGetBeverage()` we are validating beverage content and in our test case `shouldGetBeverageByIngredientKeywordIgnoreCase()` we are validating that every beverage in the collection has pear in ingredients.
+In our test case `shouldGetBeverage()` we are validating beverage content:
+
+* `equalTo` Validates equals between two values
+* `containsString` Validates contains a string value
+* `notNullValue` Validates is not null
+
+In our test case `shouldGetBeverageByIngredientKeywordIgnoreCase()` we are validating that every beverage in the collection has pear in ingredients.
 
 To browse the complete project go [here](https://github.com/josdem/jugoterapia-webflux), to download the project:
 
