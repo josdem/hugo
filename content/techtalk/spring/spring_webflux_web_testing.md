@@ -42,7 +42,7 @@ public class HealthController {
 }
 ```
 
-The responsability in this conrtoller is to provide a health check, this is the test case.
+The responsability in this conrtoller is to validate that our API is up and running!, this is the test case.
 
 ```java
 package com.jos.dem.jugoterapia.webflux;
@@ -310,7 +310,6 @@ class BeverageControllerTest {
   }
 
 }
-
 ```
 
 In our test case `shouldGetBeverage()` we are validating beverage content:
