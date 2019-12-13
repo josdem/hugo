@@ -6,24 +6,30 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-HTTP headers allow the client and the server to pass additional information with the request or the response, if you want to know more about the list we can use as Http headers, please go [here](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). In this technical post we will see how to validate a server response including their headers using [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html). If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux as dependencies:
+HTTP headers allow the client and the server to pass additional information with the request or the response, if you want to know more about the list we can use as Http headers, please go [here](https://en.wikipedia.org/wiki/List_of_HTTP_header_fields#Field_names). In this technical post we will see how to validate a server response including their headers using [WebTestClient](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/WebTestClient.html). If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Then, let’s create a new Spring Boot project with Webflux as dependencies:
 
 ```bash
-spring init --dependencies=webflux --language=java --build=gradle spring-webflux-webclient-workshop
+spring init --dependencies=webflux,lombok --language=java --build=gradle spring-webflux-webclient-workshop
 ```
 
 Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.2.0.RELEASE'
+  id 'org.springframework.boot' version '2.2.2.RELEASE'
   id 'io.spring.dependency-management' version '1.0.8.RELEASE'
   id 'java'
 }
 
 group = 'com.jos.dem.spring.webflux.webclient'
-version = '0.0.1-SNAPSHOT'
+version = '1.0.0-SNAPSHOT'
 sourceCompatibility = '11'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
@@ -31,6 +37,8 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  compileOnly('org.projectlombok:lombok')
+  annotationProcessor 'org.projectlombok:lombok'
   testImplementation('org.springframework.boot:spring-boot-starter-test') {
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
@@ -69,134 +77,99 @@ public class WebfluxController {
 }
 ```
 
-Now let's define a `Webclient` as a `@Bean`, With webclient you can use both worlds blocking and non-blocking HTTP requests.
+Let's create a person collection so that we can have some data in our `PersonRepository`
 
 ```java
 package com.jos.dem.spring.webflux.webclient;
 
+import com.jos.dem.spring.webflux.webclient.model.Person;
+import com.jos.dem.spring.webflux.webclient.repository.PersonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.Bean;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.context.annotation.Bean;
+
+import java.util.Arrays;
 
 @SpringBootApplication
 public class DemoApplication {
+
+  private Logger log = LoggerFactory.getLogger(this.getClass());
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
   }
 
   @Bean
-  WebClient webClient() {
-    return WebClient.create("http://localhost:8080");
+  CommandLineRunner start(PersonRepository personRepository){
+    return args -> {
+
+      Arrays.asList(
+          new Person("josdem", "joseluis.delacruz@gmail.com"),
+          new Person("tgrip", "tgrip@email.com"),
+          new Person("edzero", "edzero@email.com"),
+          new Person("siedrix", "siedrix@email.com"),
+          new Person("mkheck", "mkheck@losheckler.com"))
+        .forEach(person -> personRepository.save(person));
+
+    };
   }
 
 }
 ```
 
-Next step is to define a service with our WebClient request
-
-
-```java
-package com.jos.dem.spring.webflux.webclient.service;
-
-import reactor.core.publisher.Mono;
-import org.springframework.http.HttpHeaders;
-
-public interface WebclientService {
-
-  Mono<String> getGreetings();
-  Mono<HttpHeaders> getHeaders();
-
-}
-```
-
-In this example we are defining two metods in `getGreetings()` we expect to have our "HelloWorld!" message in the other method we expect to have our headers, here is our service implementation
-
-```java
-package com.jos.dem.spring.webflux.webclient.service.impl;
-
-import reactor.core.publisher.Mono;
-
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.reactive.function.client.WebClient;
-
-import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
-import com.jos.dem.spring.webflux.webclient.service.WebclientService;
-
-@Service
-public class WebclientServiceImpl implements WebclientService {
-
-  @Autowired
-  private WebClient webClient;
-
-  public Mono<String> getGreetings(){
-    return webClient.get()
-      .uri("/")
-      .retrieve()
-    .bodyToMono(String.class);
-  }
-
-  public Mono<HttpHeaders> getHeaders(){
-    return webClient.get()
-		  .uri("/")
-		  .exchange()
-		  .map(response -> response.headers().asHttpHeaders());
-  }
-
-}
-```
-
-It is time to create our test case so that we can verify our service behaviour.
+It is time to create our test case in order to verify our behaviour.
 
 ```java
 package com.jos.dem.spring.webflux.webclient;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.Date;
-
+import com.jos.dem.spring.webflux.webclient.model.Person;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import org.springframework.http.HttpHeaders;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
+import org.springframework.http.MediaType;
+import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.jos.dem.spring.webflux.webclient.service.WebclientService;
+import java.util.Date;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.hamcrest.Matchers.equalTo;
 
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class WebfluxControllerTest {
+public class PersonControllerTest {
+
+  @Autowired
+  private WebTestClient webTestClient;
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  @Autowired
-  private WebclientService webclientService;
-
   @Test
-  public void shouldGetHelloWorld() throws Exception {
-    log.info("Running: Should get hello world message at {}", new Date());
-    String response = webclientService.getGreetings().block();
-    assertEquals("Hello World!", response);
-  }
+  @DisplayName("Should get all of persons")
+  public void shouldGetAllPersons() throws Exception {
+    log.info("Running: Should get all persons at {}", new Date());
 
-  @Test
-  public void shouldGetHeaders() throws Exception {
-    log.info("Running: Should get headers at {}", new Date());
-    HttpHeaders headers = webclientService.getHeaders().block();
-    assertEquals("text/plain;charset=UTF-8", headers.getContentType().toString());
-    assertEquals(12L, headers.getContentLength());
+    webTestClient.get().uri("/persons/")
+            .exchange()
+            .expectStatus().isOk()
+            .expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)
+            .expectBodyList(Person.class)
+            .value(persons -> persons.size(), equalTo(5))
+            .value(persons -> persons.contains(new Person("josdem","joseluis.delacruz@gmail.com")))
+            .value(persons -> persons.contains(new Person("tgrip", "tgrip@email.com")))
+            .value(persons -> persons.contains(new Person("edzero", "edzero@email.com")))
+            .value(persons -> persons.contains(new Person("siedrix", "siedrix@email.com")))
+            .value(persons -> persons.contains(new Person("mkheck", "mkheck@losheckler.com")));
   }
 
 }
 ```
 
-That's it, we are validating HttpHeaders which is a data structure representing HTTP request, mapping String header names to its values.
+That's it, we are validating HttpHeaders using `expectHeader().contentType(MediaType.APPLICATION_JSON_VALUE)` if you want to see the complete list of validations we can do using Spring header assertions, please go [here](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/test/web/reactive/server/HeaderAssertions.html).
 
 To run the project:
 
