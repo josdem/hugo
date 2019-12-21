@@ -6,7 +6,7 @@ title = "CSV with Apache Commons"
 description = "Apache Commons CSV Commons software library provides a write and read files funtionality in variations of the Comma Separated Value (CSV) format."
 +++
 
-Apache Commons CSV makes read and write files funtionality easy whether is Comma or Tab Separated (CSV) format, for more information go [here](https://commons.apache.org/proper/commons-csv/). This time we will review how to write/read CSV tab delimeted files in java. Let's create a Java basic project structure using [lazybones](https://github.com/pledbrook/lazybones).
+Apache Commons CSV makes read and write files funtionality easy whether is Comma or Tab Separated (CSV), for more information go [here](https://commons.apache.org/proper/commons-csv/). This time we will review how to write/read CSV tab delimeted files in java. Let's create a Java basic project structure using [lazybones](https://github.com/pledbrook/lazybones).
 
 ```bash
 lazybones create java-basic csv-apache-commons
