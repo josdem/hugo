@@ -28,7 +28,7 @@ Previous command will create this structure
           |   +- java
 ```
 
-Edit your `build.gradle` file in order to create Jar task builder and add Apache commons dependencies.
+Edit your `build.gradle` file in order to create a Jar task builder plus adding Apache commons and Junit 5 dependencies.
 
 ```groovy
 ext {
