@@ -6,7 +6,7 @@ title = "CSV with Apache Commons"
 description = "Apache Commons CSV Commons software library provides a write and read files funtionality in variations of the Comma Separated Value (CSV) format."
 +++
 
-Apache Commons CSV Commons software library provides a write and read files funtionality in variations of the Comma Separated Value (CSV) format, for more information go [here](https://commons.apache.org/proper/commons-csv/). This time I will show how to write/read CSV tab delimeted files in java. First we need to create a Java basic project this time using [lazybones](https://github.com/pledbrook/lazybones).
+Apache Commons CSV makes write and read file funtionality easy whether is Comma or Tab Separated (CSV) format, for more information go [here](https://commons.apache.org/proper/commons-csv/). This time we will review how to write/read CSV tab delimeted files in java. Let's create a Java basic project structure using [lazybones](https://github.com/pledbrook/lazybones).
 
 ```bash
 lazybones create java-basic csv-apache-commons
@@ -28,22 +28,23 @@ Previous command will create this structure
           |   +- java
 ```
 
-Edit your `build.gradle` file to create a make a Jar task and add Apache commons dependencies.
+Edit your `build.gradle` file in order to create Jar task builder and add Apache commons dependencies.
 
 ```groovy
-ext.apacheCSVVersion = '1.4'
-ext.groovyVersion = '2.4.8'
-ext.spockVersion = '1.1-groovy-2.4-rc-3'
+ext {
+  springVersion = '5.2.2.RELEASE'
+  apacheCSVVersion = '1.7'
+  junitJupiterVersion = '5.5.2'
+}
 
 apply plugin: "java"
-apply plugin: "groovy"
 apply plugin: "application"
 
-version = '0.0.1'
+version = '1.0.0'
 
 task buildJar(type: Jar) {
   manifest {
-    attributes 'Implementation-Title': 'Read Write an CSV file with Apache Commons',
+    attributes 'Implementation-Title': 'Transforming an Excel file using AWS Lambda',
     'Implementation-Version': version,
     'Main-Class': 'example.Application'
   }
@@ -57,13 +58,19 @@ repositories {
 }
 
 dependencies {
-  compile "org.apache.commons:commons-csv:$apacheCSVVersion"
-  testCompile "org.codehaus.groovy:groovy:$groovyVersion"
-  testCompile "org.spockframework:spock-core:$spockVersion"
+  implementation "org.springframework:spring-context:$springVersion"
+  implementation "org.springframework:spring-core:$springVersion"
+  implementation "org.apache.commons:commons-csv:$apacheCSVVersion"
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+  testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+}
+
+test {
+  useJUnitPlatform()
 }
 ```
 
-Then define Java classes under `project-dir/src/main/java/example/`
+Now is time to create a CSV file reader under `project-dir/src/main/java/example/`
 
 ```java
 package example;
@@ -83,16 +90,14 @@ public class CsvFileReader {
     try{
       FileReader input = new FileReader(path);
       Iterable<CSVRecord> records = CSVFormat.TDF.withHeader("id", "name", "email").parse(input);
-      for (CSVRecord record : records) {
-        List<String> row = new ArrayList<String>();
-        String id = record.get("id");
-        String name = record.get("name");
-        String email = record.get("email");
-        row.add(id);
-        row.add(name);
-        row.add(email);
-        elements.add(row);
-      }
+
+      records.forEach(record -> {
+            List<String> row = new ArrayList<String>();
+            row.add(record.get("id"));
+            row.add(record.get("name"));
+            row.add(record.get("email"));
+            elements.add(row);
+          });
     } catch(IOException ioe){
       throw new CsvException(ioe.getMessage());
     }
@@ -102,7 +107,7 @@ public class CsvFileReader {
 }
 ```
 
-`CsvFileReader` reads the CSV file in java using `CSVFormat.TDF.withHeader("id", "name", "email").parse(input)` where:
+`CsvFileReader` reads our CSV file using `CSVFormat.TDF.withHeader("id", "name", "email").parse(input)` where:
 
 *  `TDF` is tab delimited specification
 * `parse` action reads from `FileReader` input
@@ -132,44 +137,51 @@ id  name  email
 3 josdem  josdem@email.com
 ```
 
-In order to read the CSV file, we need to create this simple POJO to contain the target id, name and email.
+For reading our the CSV file, we need to create this simple POJO containing target id, name and email.
 
 ```java
 package example;
 
 public class Target {
+
   private String id;
   private String name;
   private String email;
 
-  public void setId(String id){
+  public Target(String id, String name, String email) {
     this.id = id;
-  }
-
-  public String getId(){
-    return id;
-  }
-
-  public void setName(String name){
     this.name = name;
-  }
-
-  public String getName(){
-    return name;
-  }
-
-  public void setEmail(String email){
     this.email = email;
   }
 
-  public String getEmail(){
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public String getId() {
+    return id;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getEmail() {
     return email;
   }
 
 }
 ```
 
-`CsvFileWriter` writes the CSV file in java using `CSVFormat.TDF.withHeader("id", "name", "email").withRecordSeparator(NEW_LINE_SEPARATOR).print(output)` where:
+`CsvFileWriter` writes the CSV file using `CSVFormat.TDF.withHeader("id", "name", "email").withRecordSeparator(NEW_LINE_SEPARATOR).print(output)` where:
 
 * TDF is tab delimited specification
 * `withRecordSeparator` specify an '\n' character at the ending of new record written
@@ -191,13 +203,14 @@ public class CsvFileWriter {
 
   private static final String NEW_LINE_SEPARATOR = "\n";
 
-  public void write(List<Target> targets, String path){
+  public void write(List<Target> targets, String path) {
     List elements = new ArrayList<List<String>>();
-    try{
+    try {
       FileWriter output = new FileWriter(path);
-      CSVPrinter printer = CSVFormat.TDF.withHeader("id", "name", "email").withRecordSeparator(NEW_LINE_SEPARATOR).print(output);
+      CSVPrinter printer = CSVFormat.TDF.withHeader("id", "name", "email")
+          .withRecordSeparator(NEW_LINE_SEPARATOR).print(output);
 
-      for(Target target: targets){
+      for (Target target : targets) {
         List<String> record = new ArrayList<String>();
         record.add(target.getId());
         record.add(target.getName());
@@ -207,7 +220,7 @@ public class CsvFileWriter {
 
       output.flush();
       output.close();
-    } catch(IOException ioe){
+    } catch (IOException ioe) {
       throw new CsvException(ioe.getMessage());
     }
   }
@@ -215,70 +228,82 @@ public class CsvFileWriter {
 }
 ```
 
-This are the Groovy test cases to prove the functionality:
+This are our test cases written in [Junit 5](https://junit.org/junit5/)
 
-**CsvFileReaderSpec.groovy**
-
-```groovy
+```java
 package example;
 
-import spock.lang.Specification;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CsvFileReaderSpec extends Specification {
+import java.util.List;
+import java.util.Arrays;
 
-  CsvFileReader reader = new CsvFileReader()
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
-  void "Should read csv file"(){
-    given:"A path"
-    String path = 'src/test/resources/csv.txt'
-    when:
-    def result = reader.read(path);
-    then:
-    result.size() == 4
-    result.get(0) == ['id','name','email']
-    result.get(1) == ['1','eric','erich@email.com']
-    result.get(2) == ['2','martin','martinv@email.com']
-    result.get(3) == ['3','josdem','josdem@email.com']
+class CsvFileReaderTest {
+
+  private CsvFileReader reader = new CsvFileReader();
+
+  @Test
+  @DisplayName("Should read csv file")
+  void shouldReadCsvFile(){
+    String path = "src/test/resources/csv.txt";
+    List<List<String>> result = reader.read(path);
+
+    assertAll("rows",
+        () -> assertEquals(4, result.size(), "should have four rows"),
+        () -> assertTrue(result.contains(Arrays.asList("id","name","email")), "should have header"),
+        () -> assertTrue(result.contains(Arrays.asList("1","eric","erich@email.com")), "should contain Eric"),
+        () -> assertTrue(result.contains(Arrays.asList("2","martin","martinv@email.com")), "should contain Martin"),
+        () -> assertTrue(result.contains(Arrays.asList("3","josdem","josdem@email.com")), "should contain josdem")
+        );
   }
-
 }
 ```
 
-**CsvFileWriterSpec.groovy**
+And
 
-```groovy
+```java
 package example;
 
-import spock.lang.Specification;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class CsvFileWriterSpec extends Specification {
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+import java.util.Arrays;
 
-  CsvFileWriter writer = new CsvFileWriter()
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
 
-  void "Should write to a csv file"(){
-    given:"A path"
-      String path = 'src/test/resources/csv_written.txt'
-    and:"Some targets"
-      Target t1 = new Target(id:'1',name:'eric',email:'erich@email.com')
-      Target t2 = new Target(id:'2',name:'martin',email:'martinv@email.com')
-      Target t3 = new Target(id:'3',name:'josdem',email:'josdem@email.com')
-      List<Target> targets = [t1,t2,t3]
-    when:
-    writer.write(targets,path);
-    File file = new File(path)
-    then:"We expect file exist"
-    List<String> lines = []
-    file.eachLine { line ->
-      lines << line
-    }
-    lines.get(0) == 'id name  email'
-    lines.get(1) == '1  eric  erich@email.com'
-    lines.get(2) == '2  martin  martinv@email.com'
-    lines.get(3) == '3  josdem  josdem@email.com'
+class CsvFileWriterTest {
+
+  private CsvFileWriter writer = new CsvFileWriter();
+
+  @Test
+  @DisplayName("Should write csv file")
+  void shouldWriteCsvFile() throws Exception {
+    String path = "src/test/resources/csv.txt";
+    Target t1 = new Target("1", "eric", "erich@email.com");
+    Target t2 = new Target("2", "martin", "martinv@email.com");
+    Target t3 = new Target("3", "josdem", "josdem@email.com");
+
+    List<Target> targets = Arrays.asList(t1, t2, t3);
+
+    writer.write(targets, path);
+
+    Files.lines(Paths.get(path)).forEach(line ->
+        assertTrue(line.contains("email"), "should contains email word")
+    );
+
   }
 
 }
-
 ```
 
 To run the project:
@@ -287,10 +312,10 @@ To run the project:
 gradle test
 ```
 
-To download the code:
+To browse the project go [here](https://github.com/josdem/java-workshop), to download the project:
 
 ```bash
-git clone https://github.com/josdem/java-topics.git
+git clone git@github.com:josdem/java-workshop.git
 cd aws-csv-transformer
 ```
 
