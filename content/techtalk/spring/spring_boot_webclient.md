@@ -80,7 +80,7 @@ import com.jos.dem.springboot.webclient.service.BeverageService;
 @Service
 public class BeverageServiceImpl implements BeverageService {
 
-  private WebClient client = WebClient.create("https://jugoterapia.josdem.io/jugoterapia-server");
+  private WebClient client = WebClient.create("https://webflux.josdem.io");
 
   public Mono<Beverage> getBeverage(Long id){
     return client.get()
@@ -127,6 +127,7 @@ public class Beverage {
   private String name;
   private String ingredients;
   private String recipe;
+  private String image;
 
 }
 ```
@@ -172,7 +173,7 @@ You will see a request to the API service and a Json response:
 ```bash
 2018-06-15 22:55:38.550  INFO 1454 --- [NettyWebServer  : Netty started on port(s): 8080
 2018-06-15 22:55:38.554  INFO 1454 --- [DemoApplication : Started DemoApplication
-Beverage(id=35, name=Jugo nutritivo (Zanahoria), ingredients=4 Zanahorias,1 Tallo de apío,1 Pera,5 hojas de espinacas, recipe=Lava perfectamente todos los ingrendientes. Pasa la zanahoria por el extractor, el apio, las espinacas y la pera. Mezcla todo perfectamente y bebe de inmediato. La espinaca es una excelente fuente de hierro. Promueve el transporte y depósito de oxí­geno en los tejidos, aumenta la fuerza muscular, ayuda a bajar de peso, favorece el tránsito intestinal, beneficia a mujeres embarazadas y niños debido a su contenido de ácido fólico (vitamina B9), mejora la visión y mantiene la presión arterial balanceada.)
+com.jos.dem.springboot.webclient.model.Beverage@1304ec8d
 ```
 
 **Using Maven**
