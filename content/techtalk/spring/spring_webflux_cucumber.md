@@ -21,55 +21,53 @@ BDD (Behavior-driven development) is a technique very similar to implement UAT (
 Let's start creating a new Spring Boot project with Webflux and Lombok as dependencies:
 
 ```bash
-spring init --dependencies=webflux,lombok --build=gradle --language=java spring-boot-cucumber
+spring init --dependencies=webflux,lombok --build=gradle --language=java spring-webflux-cucumber
 ```
 
 Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.5.RELEASE'
-  id "org.sonarqube" version "2.7"
-  id 'java'
+	id 'org.springframework.boot' version '2.2.2.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
 }
-
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.cucumber'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = '12'
 
 configurations {
-  compileOnly {
-    extendsFrom annotationProcessor
-  }
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
 }
 
 repositories {
-  mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
-  implementation('org.springframework.boot:spring-boot-starter-tomcat')
-  compileOnly('org.projectlombok:lombok')
-  annotationProcessor 'org.projectlombok:lombok'
-  implementation('org.apache.commons:commons-lang3:3.8.1')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testImplementation('io.projectreactor:reactor-test')
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+	useJUnitPlatform()
 }
 ```
 
-Then add Junit5 and Cucumber dependencies
+Then add Cucumber dependencies
 
 ```groovy
 testImplementation("info.cukes:cucumber-java:$cucumberVersion")
 testImplementation("info.cukes:cucumber-junit:$cucumberVersion")
 testImplementation("info.cukes:cucumber-spring:$cucumberVersion")
-testImplementation("org.junit.jupiter:junit-jupiter-api:$junitVersion")
-testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitVersion")
 ```
 
 Now let's create a simple POJO retrieve information from an end point using Spring WebFlux.
@@ -92,7 +90,7 @@ public class Person {
 }
 ```
 
-Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Next step is to create person controller so we can define `GET/persons` and `GET/persons` by nickname endpoints. `@RestController` indicates that we don't want to render views, but write the results straight into the response body instead.`@GetMapping` tells Spring that this is the place to route persons calls, it is the shorthand annotation for `@RequestMapping(method=RequestMethod.GET)`.
+Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Next step is to create a person controller so we can define `GET/persons` and `GET/persons` by nickname endpoints. `@RestController` indicates that we don't want to render views, but write the results straight into the response body instead.`@GetMapping` tells Spring that this is the place to route persons calls, it is the shorthand annotation for `@RequestMapping(method=RequestMethod.GET)`.
 
 ```java
 package com.jos.dem.springboot.cucumber.controller;
@@ -239,7 +237,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import com.jos.dem.springboot.cucumber.model.Person;
 
-@ContextConfiguration(classes = DemoApplication.class)
+@ContextConfiguration(classes = CucumberApplication.class)
 @WebAppConfiguration
 public class PersonIntegrationTest {
 
@@ -263,7 +261,7 @@ public class PersonIntegrationTest {
 }
 ```
 
-This `WebClient` is a bean defined in our `DemoApplication` as follow:
+This `WebClient` is a bean defined in our `CucumberApplication` as follow:
 
 ```java
 package com.jos.dem.springboot.cucumber;
@@ -273,8 +271,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@SpringBootApplication
-public class DemoApplication {
+@SpringBootApplication(exclude = MongoAutoConfiguration.class)
+public class CucumberApplication {
 
   public static void main(String[] args) {
     SpringApplication.run(DemoApplication.class, args);
@@ -288,7 +286,7 @@ public class DemoApplication {
 }
 ```
 
-It is time to execute this command, so we can get our Spring Boot application up and running.
+`@SpringBootApplication` disables MongoDB database auto-configuration. It is time to execute this command, so we can get our Spring Boot application up and running.
 
 ```bash
 gradle bootRun
