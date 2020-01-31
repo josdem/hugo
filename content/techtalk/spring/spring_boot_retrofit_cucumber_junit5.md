@@ -1,12 +1,12 @@
 +++
 title =  "Spring Boot Retrofit2 Cucumber & Junit5"
-description = "Spring_boot_retrofit_cucumber_junit5"
+description = "Rretrofit cucumber junit5"
 date = "2018-12-28T16:13:39-05:00"
 tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-This time I will show you how to combine [Retrofit](https://square.github.io/retrofit/) along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) in order to consume [GitHub API v3](https://developer.github.com/v3/?) public REST API. First, let’s start creating a new Spring Boot project with Webflux as dependency:
+[Retrofit](https://square.github.io/retrofit/) is a powerful webclient for Java and Android, allows you to configure data serialization converters and internally uses [OkHttp](https://square.github.io/okhttp/) for HTTP requests. This time we will review how to use Retrofit along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) in order to consume a public REST API [GitHub API v3](https://developer.github.com/v3/?). Let’s start creating a new Spring Boot project with Webflux as dependency:
 
 ```bash
 spring init --dependencies=webflux --build=gradle --language=java retrofit-workshop
@@ -18,47 +18,51 @@ spring init --dependencies=webflux --build=gradle --language=java retrofit-works
 Here is the complete `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.1.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.2.4.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+ext {
+  cucumberVersion = '1.2.6'
+  retrofitVersion = '2.7.1'
+}
 
 group = 'com.jos.dem.retrofit.workshop'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 12
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-webflux')
-  compile('org.springframework.boot:spring-boot-starter-tomcat')
-  testCompile('org.springframework.boot:spring-boot-starter-test')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-tomcat')
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  implementation('org.apache.commons:commons-lang3:3.7')
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
 }
 ```
 
-Now add latest Retrofit, Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
+Now add latest Retrofit and Cucumber dependencies to your `build.gradle` file:
 
 ```groovy
 implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
-compile('com.squareup.retrofit2:converter-gson:2.5.0')
-testCompile("info.cukes:cucumber-java:$cucumberVersion")
-testCompile("info.cukes:cucumber-junit:$cucumberVersion")
-testCompile("info.cukes:cucumber-spring:$cucumberVersion")
-testCompile("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+implementation'com.squareup.retrofit2:converter-jackson:2.1.0'
+testImplementation("info.cukes:cucumber-java:$cucumberVersion")
+testImplementation("info.cukes:cucumber-junit:$cucumberVersion")
+testImplementation("info.cukes:cucumber-spring:$cucumberVersion")
 ```
 
 Next we are going to create a `GET` request example using the GitHub API V3.
@@ -91,28 +95,16 @@ Here is our model definition:
 ```java
 package com.jos.dem.retrofit.workshop.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class PublicEmail {
   private String email;
   private boolean verified;
   private boolean primary;
   private String visibility;
-
-  public String getEmail(){
-    return email;
-  }
-
-  public boolean isVerified(){
-    return verified;
-  }
-
-  public boolean isPrimary(){
-    return primary;
-  }
-
-  public String getVisibility(){
-    return visibility;
-  }
-
 }
 ```
 
@@ -180,20 +172,16 @@ Retrofit turns your HTTP API into a Java interface and in the `@PostConstruct` R
 package com.jos.dem.retrofit.workshop;
 
 import java.io.IOException;
-
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.PropertySource;
-
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
-
-import okhttp3.Request;
-import okhttp3.Response;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.PropertySource;
+import retrofit2.Retrofit;
+import retrofit2.converter.jackson.JacksonConverterFactory;
 
 @SpringBootApplication
 @PropertySource("classpath:application.properties")
@@ -218,10 +206,10 @@ public class RetrofitWorkshopApplication {
   public Retrofit retrofit() {
     clientBuilder.interceptors().add(interceptor);
     return new Retrofit.Builder()
-      .baseUrl(githubApiUrl)
-      .client(clientBuilder.build())
-      .addConverterFactory(GsonConverterFactory.create())
-      .build();
+        .baseUrl(githubApiUrl)
+        .client(clientBuilder.build())
+        .addConverterFactory(JacksonConverterFactory.create())
+        .build();
   }
 
   public static void main(String[] args) {
@@ -231,7 +219,7 @@ public class RetrofitWorkshopApplication {
 }
 ```
 
-Here we are using the Authorization header in order to set the API Github token. This strategy is using a Interceptor with request headers. This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires a PAT [Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Once you have that token you need to provide it to our Spring Boot project, this time we will use an `application.properties` file, please go to the [Project Configuration](https://github.com/josdem/retrofit-workshop/wiki/Properties-File) for getting more information. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
+Here we are using the Authorization header in order to set our API Github token. This strategy is using an Interceptor with headers. This project is using Github’s token authentication and requires a PAT [Personal Access Token](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/). Once you have that token you need to provide it to our Spring Boot project, please go to the [Project Configuration](https://github.com/josdem/retrofit-workshop/wiki/Properties-File) for more information. JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
 
 ```java
 package com.jos.dem.retrofit.workshop;
@@ -307,6 +295,16 @@ public class UserTest extends UserIntegrationTest {
     log.info("Before any test execution");
   }
 
+  @Then("User gets his public keys")
+  public void shouldGetKeys() throws Exception {
+    log.info("Running: User gets his SSH keys");
+
+    Call<List<SSHKey>> call = userService.getKeys();
+    Response<List<SSHKey>> response = call.execute();
+    List<SSHKey> keys = response.body();
+    assertTrue(keys.size() > 3, "Should be more than 3 keys");
+  }
+
   @Then("^User gets his public emails$")
   public void shouldGetEmails() throws Exception {
     log.info("Validating collection integrity");
@@ -375,41 +373,18 @@ Label model definition
 ```java
 package com.jos.dem.retrofit.workshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@AllArgsConstructor
 public class Label {
 
   private String name;
   private String description;
   private String color;
-
-  public Label(String name, String description, String color){
-    this.name = name;
-    this.description = description;
-    this.color = color;
-  }
-
-  public void setName(String name){
-    this.name = name;
-  }
-
-  public String getName(){
-    return name;
-  }
-
-  public void setDescription(String description){
-    this.description = description;
-  }
-
-  public String getDescription(){
-    return description;
-  }
-
-  public void setColor(String color){
-    this.color = color;
-  }
-
-  public String getColor(){
-    return color;
-  }
 
 }
 ```
@@ -557,7 +532,7 @@ PATCH /repos/:owner/:repo/labels/:current_name
 ```json
 {
   "name": "spock",
-  "description": "Spock is a testing and specification framework for Java and Groovy applications. It is beautiful and highly expressive",
+  "description": "Spock is a testing and specification framework for Java and Groovy applications.",
   "color": "ff0000"
 }
 ```
