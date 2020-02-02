@@ -122,6 +122,8 @@ void shouldFilterByDeveloper(){
 }
 ```
 
+With `.filter` and `.map` we are doing the same as `Optional::Stream`, plus we are filtering only developer values.
+
 To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
@@ -135,5 +137,4 @@ To run the code:
 gradle test
 ```
 
-With `.filter` and `.map` we are doing the same as `Optional::Stream` plus we are filtering only developer values.
 [Return to the main article](/techtalk/java)
