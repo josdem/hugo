@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code"]
 +++
 
-Once called a Billion-dollar mistake. `NullPointerException` is by far one of the most frecuent exceptions in Java and since version 8 we can use it as a way to avoid this exception. [Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) is a container that can has a value or not. In this technical post we will review basic concepts about Optional. Please consider this example where we are creating an empty optional.
+Once called a Billion-dollar mistake. `NullPointerException` is by far one of the most frequent exceptions in Java and since version 8 we can use it as a way to avoid this exception. [Optional](https://docs.oracle.com/javase/8/docs/api/java/util/Optional.html) is a container that can has a value or not. In this technical post we will review basic concepts about Optional. Please consider this example where we are creating an empty optional.
 
 ```java
 @Test
