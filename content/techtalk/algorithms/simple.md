@@ -26,6 +26,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Bon Appetit](#Bon_Appetit)
 * [Sock Merchant](#Sock_Merchant)
 * [Electronics Shop](#Electronics_Shop)
+* [Square my List](#Square_my_List)
 
 <a name="Palindrome">
 ## Palindrome
@@ -974,8 +975,8 @@ Given the price lists for the store's keyboards and USB drives, find and print t
 
 **Input Format**
 
-* Amount of money Monica has to spend in electronics. 
-* Integer collection denoting the prices of each keyboard brand. 
+* Amount of money Monica has to spend in electronics.
+* Integer collection denoting the prices of each keyboard brand.
 * Integer collection denoting the prices of each USB drive brand.
 
 **Constraints**
@@ -1024,7 +1025,7 @@ public class ShopCalculator {
     List<Map.Entry<Integer,Integer>> pairList = new ArrayList<Map.Entry<Integer,Integer>>();
 
     keyboards.forEach( k ->
-      usbs.forEach( u ->        
+      usbs.forEach( u ->
         pairList.add(new SimpleEntry<Integer,Integer>(k,u))
       )
     );
@@ -1043,7 +1044,7 @@ public class ShopCalculator {
     Integer result = new ShopCalculator().calculate(amount, keyboards, usbs);
     assert 9 == result;
   }
-  
+
 }
 ```
 
@@ -1053,10 +1054,43 @@ I solved this challenge in three steps:
 2. We are summarizing those price combinations and stored as a `List`
 3. We are getting max result combination comparing with equals or less that our amount
 
-To download the code:
+<a name="Square_my_List">
+## Square my List
+</a>
+
+Given a list of numeric elements, square every element from the list and retrun the result in another list collection.
+
+**Solution**
+
+```java
+import java.util.List;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+public class SquareCalculator {
+
+  private List<Integer> square(List<Integer> numbers){
+    return numbers.stream()
+      .map(i -> i * i)
+      .collect(Collectors.toList());
+  }
+
+  public static void main(String[] args){
+    List<Integer> numbers = Arrays.asList(1, 2, 3, 7, 9, 12, 15);
+    List<Integer> result = new SquareCalculator().square(numbers);
+    assert result.get(0) == 1;
+    assert result.get(2) == 9;
+    assert result.get(4) == 81;
+    assert result.get(6) == 225;
+  }
+
+}
+```
+
+To browse the project go [here](https://github.com/josdem/algorithms-workshop), to download the project:
 
 ```bash
-git clone https://github.com/josdem/algorithms-workshop.git
+git clone git@github.com:josdem/algorithms-workshop.git
 cd simple-algorithms
 ```
 
