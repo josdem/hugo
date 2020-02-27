@@ -175,10 +175,19 @@ public class MessageGenerator {
 }
 ```
 
-To run the project:
+So, now if you execute our Spring Boot application:
 
 ```bash
 gradle bootRun
+```
+
+And our client application which we will see in a moment, you should see this output from server side:
+
+```bash
+2020-02-27 15:16:10.905  INFO 33056 --- [           main] c.j.d.w.websocket.WebsocketApplication   : Started WebsocketApplication in 0.925 seconds (JVM running for 1.135)
+2020-02-27 15:16:18.895  INFO 33056 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onSubscribe(FluxMap.MapSubscriber)
+2020-02-27 15:16:18.897  INFO 33056 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : request(unbounded)
+2020-02-27 15:16:18.944  INFO 33056 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"start","timestamp":{"nano":887893000,"epochSecond":1582834578}})
 ```
 
 **WebSockets Client Side**
@@ -281,13 +290,120 @@ public class WebsocketClientApplication {
 }
 ```
 
-To run the project:
+So, now if you execute our Spring Boot application:
 
 ```bash
 gradle bootRun
 ```
 
-*Note:* Do not forget to add `server.port=8081` in application properties file, so we can run our client in a different port. To browse the project go [here](https://github.com/josdem/webflux-websocket-workshop), to download the project:
+You should see this output from client side:
+
+```bash
+2020-02-27 15:16:18.702  INFO 33092 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 8081
+2020-02-27 15:16:18.705  INFO 33092 --- [           main] c.j.d.w.w.WebsocketClientApplication     : Started WebsocketClientApplication in 0.841 seconds (JVM running for 1.078)
+2020-02-27 15:16:18.940  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onSubscribe(FluxMap.MapSubscriber)
+2020-02-27 15:16:18.941  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : request(unbounded)
+2020-02-27 15:16:19.934  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Hola","timestamp":{"nano":898843000,"epochSecond":1582834579}})
+2020-02-27 15:16:20.897  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Bonjour","timestamp":{"nano":896173000,"epochSecond":1582834580}})
+2020-02-27 15:16:21.897  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Zdravstvuyte","timestamp":{"nano":896219000,"epochSecond":1582834581}})
+2020-02-27 15:16:22.898  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Bonjour","timestamp":{"nano":896291000,"epochSecond":1582834582}})
+2020-02-27 15:16:23.899  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Hola","timestamp":{"nano":898594000,"epochSecond":1582834583}})
+2020-02-27 15:16:24.897  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Hello","timestamp":{"nano":895673000,"epochSecond":1582834584}})
+2020-02-27 15:16:25.900  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Hello","timestamp":{"nano":896273000,"epochSecond":1582834585}})
+2020-02-27 15:16:26.896  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Guten Tag","timestamp":{"nano":895445000,"epochSecond":1582834586}})
+2020-02-27 15:16:27.897  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Guten Tag","timestamp":{"nano":896101000,"epochSecond":1582834587}})
+2020-02-27 15:16:28.900  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"Hello","timestamp":{"nano":899134000,"epochSecond":1582834588}})
+2020-02-27 15:16:29.565  INFO 33092 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onComplete()
+2020-02-27 15:16:29.566  INFO 33092 --- [ctor-http-nio-2] ication$$EnhancerBySpringCGLIB$$76238f86 : complete
+```
+
+*Note:* Do not forget to add `server.port=8081` in application properties file, so we can run our client in a different port.
+
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
+
+```bash
+spring init --dependencies=webflux,lombok --build=gradle --language=java webflux-websocket-workshop
+```
+
+This is the `pom.xml` file generated
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.2.4.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.jos.dem.webflux.websocket</groupId>
+	<artifactId>server</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<name>Spring Webflux WebSockets</name>
+	<description>This project shows how to use Websocket with Spring Webflux</description>
+
+	<properties>
+		<java.version>12</java.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+```
+
+To run the project with Gradle:
+
+```bash
+gradle bootRun
+```
+
+To run the project with Maven:
+
+```bash
+mvn spring-boot:run
+```
+
+To browse the project go [here](https://github.com/josdem/webflux-websocket-workshop), to download the project:
 
 ```bash
 git clone git@github.com:josdem/webflux-websocket-workshop.git
