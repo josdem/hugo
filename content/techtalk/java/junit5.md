@@ -18,7 +18,7 @@ Junit 5 is the next generation of Junit, it requires Java 8 since it was born as
 Using Gradle, you need to create a `build.gradle` file with the following structure:
 
 ```groovy
-def junitJupiterVersion = '5.3.2'
+def junitJupiterVersion = '5.6.2'
 
 apply plugin: "java"
 
@@ -34,11 +34,6 @@ dependencies {
 
 test {
   useJUnitPlatform()
-
-  reports {
-    html.enabled = true
-  }
-
   systemProperties = System.properties
 }
 ```
@@ -59,9 +54,9 @@ If you want to use Maven, please create the following `pom.xml` structure in the
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.source>12</maven.compiler.source>
     <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-    <junit.jupiter.version>5.3.2</junit.jupiter.version>
+    <junit.jupiter.version>5.6.0</junit.jupiter.version>
   </properties>
 
   <dependencies>
@@ -374,18 +369,6 @@ A test may be enable if meets some system environment conditions
 @EnabledIfSystemProperty(named = "environment", matches = "DEV")
 void shouldRunIfDevelopmentEnvironment(){
   log.info("Running: Conditions if is development");
-  assertTrue(true);
-}
-```
-
-JUnit Jupiter provides the ability to enable test depending on the evaluation of a script configured via the `@EnabledIf`
-
-```java
-@Test
-@DisplayName("Should run if Monday")
-@EnabledIf("(java.time.LocalDate).now().getDayOfWeek() == 'MONDAY'")
-void shouldRunIfMonday() {
-  log.info("Running: Conditions if is Monday");
   assertTrue(true);
 }
 ```
