@@ -6,7 +6,7 @@ date = "2016-07-17T14:56:13-05:00"
 description = "Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API."
 +++
 
-Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API. To know more about Swagger please visit it's official web site [here](https://swagger.io/).
+Swagger is a simple yet powerful representation of your RESTful API. Where you can keep your documentation attached with the evolution of your project. With Swagger UI you will have a web interface that allows you to easily interact with API's resources without having any implamentation in place. To know more about Swagger please visit it's official web site [here](https://swagger.io/).
 
 **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
@@ -20,22 +20,23 @@ This is the `build.gradle` generated file:
 
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.1.1.RELEASE'
-    springfoxVersion = '2.9.2'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.2.4.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
+def springfoxVersion = '2.9.2'
+
+group = 'com.jos.dem.swagger'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '12'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
 	mavenCentral()
@@ -43,9 +44,15 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
-  implementation "io.springfox:springfox-swagger2:${springfoxVersion}"
-  implementation "io.springfox:springfox-swagger-ui:${springfoxVersion}"
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
+}
+
+test {
+  useJUnitPlatform()
 }
 ```
 
@@ -63,31 +70,47 @@ Next step is to create a Swagger Configuration file:
 ```java
 package com.jos.dem.swagger.config;
 
+import com.google.common.collect.Sets;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.spi.DocumentationType;
-import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
 
+  @Value("${api.version}")
+  private String version;
+
   @Bean
-  public Docket api() {
+  public Docket createDocket() {
     return new Docket(DocumentationType.SWAGGER_2)
-    .select()
-    .apis(RequestHandlerSelectors.any())
-    .paths(PathSelectors.any())
-    .build();
+        .useDefaultResponseMessages(false)
+        .protocols(Sets.newHashSet("https", "http"))
+        .apiInfo(apiInfo())
+        .select()
+        .apis(RequestHandlerSelectors.basePackage("com.jos.dem.swagger"))
+        .build();
   }
 
+  private ApiInfo apiInfo() {
+    return new ApiInfoBuilder()
+        .title("Spring Boot Swagger")
+        .description("Automated JSON API documentation for API's built with Spring")
+        .termsOfServiceUrl("https://josdem.io/")
+        .version(version)
+        .build();
+  }
 }
 ```
 
-Swagger 2 is enabled through the `@EnableSwagger2` annotation. With [Docket](http://springfox.github.io/springfox/javadoc/2.7.0/index.html?springfox/documentation/spring/web/plugins/Docket.html) bean definition we are able to provide methods for configuration, it has a `select()` method and returns an instance of `ApiSelectorBuilder`, which provides a way to control the endpoints exposed by Swagger. Predicates in `RequestHandlers` can be configured with the help of `RequestHandlerSelectors` and `PathSelectors`. Using `any()` for both will make documentation for your entire API available through Swagger.
+Swagger 2 is enabled through the `@EnableSwagger2` annotation. With [Docket](http://springfox.github.io/springfox/javadoc/2.7.0/index.html?springfox/documentation/spring/web/plugins/Docket.html) bean definition we are able to provide methods for configuration, it has a `select()` method and returns an instance of `ApiSelectorBuilder`, which provides a way to control the endpoints exposed by Swagger. Predicates in `RequestHandlers` can be configured with the help of `RequestHandlerSelectors` and `PathSelectors`.
 
 **Controller Documentation**
 
@@ -96,138 +119,169 @@ Now it is time to see the most common annotations in a `RestController` in order
 ```java
 package com.jos.dem.swagger.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-import static org.springframework.web.bind.annotation.RequestMethod.POST;
-
-import java.util.List;
-
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import com.jos.dem.swagger.command.UserCommand;
+import com.jos.dem.swagger.model.User;
+import com.jos.dem.swagger.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
-
-import com.jos.dem.swagger.service.UserService;
-import com.jos.dem.swagger.command.UserCommand;
-import com.jos.dem.swagger.model.User;
-
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import java.util.List;
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import javax.validation.constraints.Pattern;
+import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@Api(description="knows how receive manage user requests")
+@Api(tags = "knows how receive manage user requests")
+@Validated
 @RestController
-@RequestMapping("/users/*")
+@RequestMapping("/users")
+@RequiredArgsConstructor
 public class UserController {
 
   private Logger log = LoggerFactory.getLogger(this.getClass());
 
-  @Autowired
-  private UserService userService;
+  private final UserService userService;
 
-  @RequestMapping(method = GET)
-  public List<User> getAll(){
+  @ApiOperation(value = "Getting all users")
+  @ApiResponses(
+      value = {
+        @ApiResponse(code = 200, message = "Getting all users"),
+        @ApiResponse(code = 400, message = "Bad request"),
+        @ApiResponse(code = 500, message = "Something went wrong")
+      })
+  @GetMapping
+  public List<User> getAll() {
     log.info("Getting all users");
     return userService.getAll();
   }
 
-  @ApiImplicitParam(name = "uuid", value = "User's uuid", required = true, dataType = "string", paramType = "path")
-  @RequestMapping(method = GET, value = "{uuid}")
-  public User getByUuid(@PathVariable String uuid){
+  @ApiOperation(value = "Get user by uuid")
+  @ApiResponses(
+      value = {
+          @ApiResponse(code = 200, message = "Getting all users"),
+          @ApiResponse(code = 400, message = "Bad request"),
+          @ApiResponse(code = 500, message = "Something went wrong")
+      })
+  @ApiImplicitParams(
+      value = {
+        @ApiImplicitParam(
+            name = "uuid",
+            required = true,
+            dataType = "string",
+            paramType = "path",
+            value = "User's uuid")
+      })
+  @GetMapping(value = "/{uuid}")
+  public User getByUuid(
+      @PathVariable
+          @Pattern(
+              regexp =
+                  "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+              message = "Invalid uuid format")
+          String uuid) {
     log.info("Getting user by uuid: " + uuid);
     return userService.getByUuid(uuid);
   }
 
-  @RequestMapping(method = POST, consumes="application/json")
-  public User create(@RequestBody UserCommand command){
+  @ApiOperation(value = "Create user")
+  @ApiResponses(
+      value = {
+          @ApiResponse(code = 200, message = "User created"),
+          @ApiResponse(code = 400, message = "Bad request"),
+          @ApiResponse(code = 500, message = "Something went wrong")
+      })
+  @PostMapping(consumes = "application/json")
+  public User create(@Valid @RequestBody UserCommand command) {
     log.info("Saving user: w/uuid: " + command.getUuid());
     return userService.create(command);
   }
 
+  @ResponseStatus(value = HttpStatus.BAD_REQUEST)
+  @ExceptionHandler(ConstraintViolationException.class)
+  public ResponseEntity<String> handleException(ConstraintViolationException ce) {
+    return new ResponseEntity<>(ce.getMessage(), HttpStatus.BAD_REQUEST);
+  }
 }
 ```
 
-* `@ApiImplicitParams` Represents a single parameter in an API Operation, in this case user's uuid.
-* `@Api` is used to declare a Swagger resource API. Only classes that are annotated with @Api will be scanned by Swagger. You can also document your model using `@ApiModel`
+Where:
+
+* `@Api` Describe logical grouping of operations by resource
+* `@ApiOperation` Describes an operation against a specific path.
+* `@ApiResponses` Is a list of responses provided by the API operation
+* `@ApiImplicitParams` Represent parameters in an API operation. Please go [here](http://docs.swagger.io/swagger-core/current/apidocs/io/swagger/annotations/ApiImplicitParam.html) to see the complete list of attributes we can set in our params.
+
+Here is our user domain transfer object:
 
 ```java
 package com.jos.dem.swagger.command;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import lombok.Getter;
+import lombok.Setter;
 
-@ApiModel(value="UserModel", description="Model who represents an user entity")
-public class UserCommand {
-  @ApiModelProperty(value = "User's uuid", allowableValues = "aphanumeric")
+@Getter
+@Setter
+@ApiModel(value = "UserModel", description = "Model who represents an user entity")
+public class UserDto {
+  @ApiModelProperty(value = "User's uuid", required = true)
+  @Pattern(regexp = "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$", message = "Invalid uuid format")
   private String uuid;
-  @ApiModelProperty(value = "User's name", allowableValues = "text")
+
+  @ApiModelProperty(value = "User's name", required = true)
+  @NotBlank(message = "name is required")
   private String name;
-  @ApiModelProperty(value = "User's email", allowableValues = "email@domain")
+
+  @ApiModelProperty(value = "User's email", required = true)
+  @NotBlank(message = "email is required")
+  @Email
   private String email;
-
-  public void setUuid(String uuid){
-    this.uuid = uuid;
-  }
-
-  public String getUuid(){
-    return this.uuid;
-  }
-
-  public void setName(String name){
-    this.name = name;
-  }
-
-  public String getName(){
-    return this.name;
-  }
-
-  public void setEmail(String email){
-    this.email = email;
-  }
-
-  public String getEmail(){
-    return this.email;
-  }
-
 }
 ```
 
-`@ApiModel` Provides additional information about Swagger models. This translates to the [Model Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/1.2.md#527-model-object) in the Swagger Specification. The endpoint to create request to your API using Swagger is: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
+Where:
+
+* `@ApiModel` Provides additional information about Swagger models. This translates to the [Model Object](https://github.com/OAI/OpenAPI-Specification/blob/master/versions/1.2.md#527-model-object) in the Swagger Specification.
+* `@ApiModelProperty` Adds and manipulates data of a model property.
+
+So, now if you execute our application:
+
+```bash
+gradle bootRun
+```
+
+You should be able to hit the endpoint to create request to your API using Swagger: [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
 **Swagger Results**
 
-Let's start creating a new user.
 
-<img src="/img/techtalks/spring/swagger1.png">
-
-As you can see we have a Json as response with the new user created. So now we can call to retieve all users
-
-**Get all users**
-
-<img src="/img/techtalks/spring/swagger2.png">
-
-Finally, let's get a user by UUID
-
-**Get user by uuid**
-
-<img src="/img/techtalks/spring/swagger3.png">
+<img src="/img/techtalks/spring/swagger.png">
 
 To browse the code go [here](https://github.com/josdem/swagger-spring), to download the project:
 
 ```bash
-git clone https://github.com/josdem/swagger-spring.git
+git clone git@github.com:josdem/swagger-spring.git
 cd boot-configuration
-```
-
-To run the project:
-
-```
-gradle bootRun
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
