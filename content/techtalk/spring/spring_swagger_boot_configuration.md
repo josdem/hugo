@@ -13,7 +13,7 @@ Swagger is a simple yet powerful representation of your RESTful API. Where you c
 Then execute this command in your terminal:
 
 ```groovy
-spring init --dependencies=web --language=java --build=gradle boot-configuration
+spring init --dependencies=web,lombok --language=java --build=gradle boot-configuration
 ```
 
 This is the `build.gradle` generated file:
