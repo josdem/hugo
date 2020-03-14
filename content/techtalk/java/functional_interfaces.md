@@ -6,11 +6,7 @@ date = "2018-04-28T20:22:39-05:00"
 description = "A functional interface in Java is any with `@FunctionalInterface` annotation and with a SAM(Single Abstract Method) on it and it was introduced to facilitate Lambda functions."
 +++
 
-A functional interface in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](/techtalk/java/lambda_expressions). Since a lambda function can only provide the implementation for one method, it is mandatory for the functional interfaces to have only one abstract method.
-
-Java 8 has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`.
-
-`Consumer` has an `accept(Object)` method and represents an operation that accepts a single input argument and returns no result. Let's consider the following example:
+A functional interface in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](/techtalk/java/lambda_expressions). Since a lambda function can only provide the implementation for one method, it is mandatory for the functional interfaces to have only one abstract method. Java has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`. `Consumer` has an `accept(Object)` method and represents an operation that accepts a single input argument and returns no result. Let's consider the following example:
 
 ```java
 import java.util.function.Consumer;
@@ -250,6 +246,28 @@ public class PredicateTest {
 	}
 
 }
+```
+
+Finally, let's combine functions and predicates in this example: Let's suppose that we want to get all nicknames starting with "j" and ranked more than 3.
+
+```java
+@Test
+@DisplayName("should filter by high ranked and starts with J")
+  void shouldFilterByHighRankedAndLetter(){
+	  List<String> expectedPersons = Arrays.asList("josdem", "jeduan");
+		Function<Person, String> nicknames = (p) -> p.getNickname();
+
+		List<String> names = persons.stream()
+			.filter(p -> p.getRanking() > 4)
+			.map(nicknames)
+			.filter(n -> n.startsWith("j"))
+			.collect(Collectors.toList());
+
+		assertEquals(2, names.size(), "should have two names");
+		assertEquals(expectedPersons, names, "should have expected filtered persons");
+
+}
+
 ```
 
 
