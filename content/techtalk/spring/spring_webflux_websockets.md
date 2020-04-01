@@ -317,7 +317,7 @@ You should see this output from client side:
 2020-02-27 15:16:29.566  INFO 33092 --- [ctor-http-nio-2] ication$$EnhancerBySpringCGLIB$$76238f86 : complete
 ```
 
-*Note:* Do not forget to add `server.port=8081` in application properties file, so we can run our client in a different port.
+*Note:* Do not forget to add `server.port=8081` in application properties file, so we can run our client in a different port. Here you can find how another example about how to create a chatbot application using WebFlux, Websocket and JavaScript [WebFlux-WebSocket-Chatbot](https://github.com/josdem/webflux-websocket-chatbot)
 
 **Using Maven**
 
@@ -408,8 +408,6 @@ To browse the project go [here](https://github.com/josdem/webflux-websocket-work
 ```bash
 git clone git@github.com:josdem/webflux-websocket-workshop.git
 ```
-
-Here you can find how another example about how to create a chatbot application using WebFlux, Websocket and JavaScript [WebFlux-WebSocket-Chatbot](https://github.com/josdem/webflux-websocket-chatbot)
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
