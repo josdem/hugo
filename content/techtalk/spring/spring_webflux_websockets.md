@@ -409,5 +409,7 @@ To browse the project go [here](https://github.com/josdem/webflux-websocket-work
 git clone git@github.com:josdem/webflux-websocket-workshop.git
 ```
 
+Here you can find how another example about how to create a chatbot application using WebFlux, Websocket and JavaScript [WebFlux-WebSocket-Chatbot](https://github.com/josdem/webflux-websocket-chatbot)
+
 
 [Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
