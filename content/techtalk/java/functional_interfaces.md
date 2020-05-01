@@ -6,7 +6,17 @@ date = "2018-04-28T20:22:39-05:00"
 description = "A functional interface in Java is any with `@FunctionalInterface` annotation and with a SAM(Single Abstract Method) on it and it was introduced to facilitate Lambda functions."
 +++
 
-A functional interface in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](/techtalk/java/lambda_expressions). Since a lambda function can only provide the implementation for one method, it is mandatory for the functional interfaces to have only one abstract method. Java has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`. `Consumer` has an `accept(Object)` method and represents an operation that accepts a single input argument and returns no result. Let's consider the following example:
+A functional interface in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](/techtalk/java/lambda_expressions). Since a lambda function can only provide the implementation for one method, it is mandatory for the functional interfaces to have only one abstract method. Java has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`.i
+
+* [Basic Functional Interfaces](#Basic_Functional_Interfaces)
+* [Special Functional Interfaces](#Special_Functional_Interfaces)
+
+
+<a name="Basic_Functional_Interfaces">
+## Basic Functional Interfaces
+</a>
+
+`Consumer` has an `accept(Object)` method and represents an operation that accepts a single input argument and returns no result. Let's consider the following example:
 
 ```java
 package com.jos.dem.functional;
@@ -265,7 +275,9 @@ Finally, let's combine functions and predicates in this example: Let's suppose t
 
 ```
 
+<a name="Special_Functional_Interfaces">
 ## Special Functional Interfaces
+</a>
 
 `BiConsumer` Is also a functional interface and represents an operation that accepts two input arguments and returns no result. BiConsumer is helpful when you need to create a function with two arguments and return no value, please consider the following example:
 
