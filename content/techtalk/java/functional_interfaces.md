@@ -279,7 +279,7 @@ Finally, let's combine functions and predicates in this example: Let's suppose t
 ## Special Functional Interfaces
 </a>
 
-`BiConsumer` Is also a functional interface and represents an operation that accepts two input arguments and returns no result. BiConsumer is helpful when you need to create a function with two arguments and return no value, please consider the following example:
+`BiConsumer` Is also a functional interface and represents an operation that accepts two input arguments and returns no result. BiConsumer is useful when you need to create a function with two arguments and returns nothing, please consider the following example:
 
 ```java
 package com.jos.dem.functional;
