@@ -9,6 +9,8 @@ description = "A functional interface in Java is any with `@FunctionalInterface`
 A functional interface in Java is any with `@FunctionalInterface` annotation and with SAM(Single Abstract Method). It was introduced to facilitate [Lambda expressions](/techtalk/java/lambda_expressions). Since a lambda function can only provide the implementation for one method, it is mandatory for the functional interfaces to have only one abstract method. Java has defined a lot of functional interfaces in `java.util.function` package. Some of them are `Consumer`, `Supplier`, `Function` and `Predicate`. `Consumer` has an `accept(Object)` method and represents an operation that accepts a single input argument and returns no result. Let's consider the following example:
 
 ```java
+package com.jos.dem.functional;
+
 import java.util.function.Consumer;
 
 public class ConsumerExample {
@@ -17,7 +19,6 @@ public class ConsumerExample {
     Consumer<String> consumer = x -> System.out.println(x.toLowerCase());
     consumer.accept("JOSDEM");
   }
-
 }
 ```
 
@@ -32,21 +33,21 @@ josdem
 ```java
 package com.jos.dem.functional;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.function.Supplier;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.jupiter.api.Test;
-import java.util.function.Supplier;
-import org.junit.jupiter.api.DisplayName;
-
-public class SupplierTest {
+class SupplierTest {
 
   @Test
   @DisplayName("Understands how to get a string using supplier")
-  public void shouldSupplyAnString(){
+  public void shouldSupplyAnString() {
     Supplier<String> supplier = () -> "josdem";
     assertEquals("josdem", supplier.get());
   }
-
 }
 ```
 
@@ -64,7 +65,7 @@ public class FunctionTest {
 
   @Test
   @DisplayName("Understands how to get string lenght")
-  public void shouldGetStringLenght(){
+  public void shouldGetStringLenght() {
     Integer expectedResult = 6;
     Function<String, Integer> function = string -> string.length();
     assertEquals(expectedResult, function.apply("josdem"));
@@ -78,7 +79,7 @@ public class FunctionTest {
  ```java
 @Test
 @DisplayName("Understands how to get josdem lenght and if it is even")
-public void shouldKnowIfNicknameLengthIsEven(){
+public void shouldKnowIfNicknameLengthIsEven() {
   Function<String, Integer> lenghtFunction = string -> string.length();
   Function<Integer, Boolean> evenFunction = integer -> integer % 2 == 0;
 
@@ -194,13 +195,10 @@ public void shouldGetPersonsWithFourInRankingOrMore(){
 ```java
 @Test
 @DisplayName("Understands how to get persons high ranked and starts with J")
-public void shouldGetPersonsHihgRankedAndStartsWithJ(){
-	Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
-	Predicate<Person> startsWithJ = person -> person.getNickname().startsWith("j");
-	assertEquals(2, persons.stream()
-                    .filter(isHighRanked)
-                    .filter(startsWithJ)
-                    .count());
+public void shouldGetPersonsHighRankedAndStartsWithJ() {
+  Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
+  Predicate<Person> startsWithJ = person -> person.getNickname().startsWith("j");
+  assertEquals(2, persons.stream().filter(isHighRanked).filter(startsWithJ).count());
 }
 ```
 
@@ -209,42 +207,39 @@ This is the complete test:
 ```java
 package com.jos.dem.functional;
 
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import java.util.List;
-import java.util.Arrays;
-import java.util.function.Predicate;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.DisplayName;
+class PredicateTest {
 
-public class PredicateTest {
-
-	private List<Person> persons = Arrays.asList(
-		new Person("josdem", 5),
-		new Person("tgrip", 4),
-		new Person("edzero", 3),
-		new Person("jeduan", 5),
-		new Person("siedrix", 5)
-	);
+  private final List<Person> persons =
+      Arrays.asList(
+          new Person("josdem", 5),
+          new Person("tgrip", 4),
+          new Person("edzero", 3),
+          new Person("jeduan", 5),
+          new Person("siedrix", 5));
 
   @Test
   @DisplayName("Understands how to get persons with four in ranking or more")
-	public void shouldGetPersonsWithFourInRankingOrMore(){
-		Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
-		assertEquals(4, persons.stream().filter(isHighRanked).count());
-	}
+  public void shouldGetPersonsWithFourInRankingOrMore() {
+    Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
+    assertEquals(4, persons.stream().filter(isHighRanked).count());
+  }
 
   @Test
   @DisplayName("Understands how to get persons high ranked and starts with J")
-	public void shouldGetPersonsHihgRankedAndStartsWithJ(){
-		Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
-		Predicate<Person> startsWithJ = person -> person.getNickname().startsWith("j");
-		assertEquals(2, persons.stream()
-                      .filter(isHighRanked)
-                      .filter(startsWithJ)
-                      .count());
-	}
-
+  public void shouldGetPersonsHighRankedAndStartsWithJ() {
+    Predicate<Person> isHighRanked = person -> person.getRanking() >= 4;
+    Predicate<Person> startsWithJ = person -> person.getNickname().startsWith("j");
+    assertEquals(2, persons.stream().filter(isHighRanked).filter(startsWithJ).count());
+  }
 }
 ```
 
@@ -268,6 +263,37 @@ Finally, let's combine functions and predicates in this example: Let's suppose t
 
 }
 
+```
+
+## Special Functional Interfaces
+
+`BiConsumer` Is also a functional interface and represents an operation that accepts two input arguments and returns no result. BiConsumer is helpful when you need to create a function with two arguments and return no value, please consider the following example:
+
+```java
+package com.jos.dem.functional;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.function.BiConsumer;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class BiConsumerTest {
+
+  @Test
+  @DisplayName("should test bi-consumer")
+  void shouldValidateString() {
+    BiConsumer<Integer, String> consumer =
+        (rank, nickname) -> {
+          Person person = new Person(nickname, rank);
+          assertEquals("josdem", person.getNickname());
+          assertEquals(Integer.valueOf(5), person.getRanking());
+        };
+
+    consumer.accept(5, "josdem");
+  }
+}
 ```
 
 
