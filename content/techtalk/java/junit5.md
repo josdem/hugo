@@ -12,7 +12,7 @@ Junit 5 is the next generation of Junit, it requires Java 8 since it was born as
 * [Assertions](#Assertions)
 * [Assumptions](#Assumptions)
 * [Conditions](#Conditions)
-* [Parameterized Tests](#Parameterized Tests)
+* [Parameterized Tests](#Parameterized_Tests)
 
 
 Using Gradle, you need to create a `build.gradle` file with the following structure:
@@ -431,7 +431,7 @@ class ConditionsShowTest {
 }
 ```
 
-<a name="Parameterized Testsm">
+<a name="Parameterized_Tests">
 ## Parameterized Tests
 </a>
 
