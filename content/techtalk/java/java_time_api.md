@@ -171,7 +171,7 @@ public class DateFormatter {
 *output*
 
 ```bash
-YYYY-MMM format from now is: 2017-abr
+YYYY-MMM format from now is: 2020-Jul
 ```
 
 To download the code:
