@@ -71,7 +71,7 @@ Duration in seconds: 1
 
 **Calculating Between Days**
 
-When you want to perform calculations between days, temporal unit interface unit can be used, since represents a unit of time. Enumeration ChronoUnit actually implements our temporal unit interface. By importing `java.time.temporal,ChronoUnit.*` you can use enumerations such as days and you can use methods as between.
+When you want to perform calculations between days, temporal unit interface unit can be used, since represents a unit of time. Enumeration ChronoUnit actually implements our temporal unit interface. By importing `java.time.temporal,ChronoUnit.*` you can use enumerations such as DAYS, WEEKS, MONTHS, YEARS and you can use methods as between.
 
 *example*
 
@@ -102,7 +102,7 @@ public class BetweenDays {
 There are 168 shopping days until Christmas
 ```
 
-A period class also have a between method and you can use to figure out how many days or months are between dates.
+A period class also have a between method and you can use it to figure out how many days or months are between dates.
 
 *example*
 
