@@ -52,7 +52,7 @@ public class ExecutorExample {
 }
 ```
 
-Another way to avoid race conditions is to use atomic operations such as `AtomicInteger`, besides it has a better performance than synchonizing locks. Let's create that version as follow:
+While you are working in executors you need to use atomic operations, this is one of the most common `AtomicInteger`, internally it has a int value and has atomic operations like `incrementAndGet()`:
 
 ```java
 import java.util.stream.IntStream;
@@ -68,7 +68,7 @@ public class ExecutorAtomic {
 	private ExecutorService executor = Executors.newFixedThreadPool(3);
 
 	private Integer start() throws InterruptedException {
-		IntStream.range(0, 3).forEach(i -> executor.submit(atomic::incrementAndGet));
+		IntStream.range(0, 3).forEach(i -> executor.execute(atomic::incrementAndGet));
 		executor.shutdown();
 
 		executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
@@ -88,16 +88,11 @@ public class ExecutorAtomic {
 Executors support another kind of task named Callable, which is functional interfaces just like runnables but instead of being void they return a value. Callables can be submitted to executor services. Since `submit()` doesn't wait until the task completes, the executor service cannot return the result of the callable directly. Instead the executor returns a special result of type Future which can be used to retrieve the actual result at a later point in time.
 
 ```java
-import java.util.concurrent.Future;
-import java.util.concurrent.Callable;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ExecutionException;
+import java.util.concurrent.*;
 
 public class ExecutorCallable {
 
-  private final static Integer MAX_PERIOD_TIME = 30;
+  private static final Integer MAX_PERIOD_TIME = 30;
 
   private ExecutorService executor = Executors.newFixedThreadPool(3);
 
@@ -118,12 +113,11 @@ public class ExecutorCallable {
 class CallableThread implements Callable<Integer> {
 
   @Override
-  public Integer call() throws InterruptedException{
+  public Integer call() throws InterruptedException {
     final Integer wait = 3;
     TimeUnit.SECONDS.sleep(wait);
     return wait;
   }
-
 }
 ```
 
@@ -133,7 +127,7 @@ class CallableThread implements Callable<Integer> {
 I have been sleeping: 3 seconds
 ```
 
-In Java 8, the `CompletableFuture` class was introduced and also implements this `Future` interface. It provides an `isDone()` method to check whether the computation is done or not, and a `get()` method to retrieve the result of the computation when it is done.
+Since Java 8, the `CompletableFuture` class was introduced and also implements this `Future` interface. It provides an `isDone()` method to check whether the computation is done or not, and a `get()` method to retrieve the result of the computation when it is done.
 
 ```java
 import java.util.concurrent.TimeUnit;
