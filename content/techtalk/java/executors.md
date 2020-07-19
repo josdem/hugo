@@ -12,14 +12,14 @@ Executors is part of concurrency Java API, and it is a high level manging thread
 ExecutorService executor = Executors.newFixedThreadPool(3);
 ```
 
-Previous code we are creating a thread-pool with 3 threads. You should stop executors, otherwise they keep listening for new tasks, the preferred way to do it is following:
+In previous code we are creating a thread-pool with 3 threads. You should stop executors, otherwise they keep listening for new tasks, the preferred way to do it is following this recipe:
 
 ```java
 executor.shutdown();
 executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
 ```
 
-Executor shuts down softly by waiting a certain amount of time for termination of currently running tasks. After a maximum of MAX_PERIOD_TIME seconds the executor finally shuts down by interrupting all running tasks. Here is the most simpliest executor service example:
+Executor shuts down softly by waiting a certain amount of time for termination in current running tasks. After `MAX_PERIOD_TIME` seconds executor finally shuts down by interrupting all tasks running. Here is the most simpliest executor example:
 
 
 ```java
@@ -52,40 +52,39 @@ public class ExecutorExample {
 }
 ```
 
-While you are working in executors you need to use atomic operations, this is one of the most common `AtomicInteger`, internally it has a int value and has atomic operations like `incrementAndGet()`:
+While you are working in executors you need to use atomic operations, this is one of the most common atomic variable classes `AtomicInteger`, internally it has a int value and has atomic operations like `incrementAndGet()`:
 
 ```java
-import java.util.stream.IntStream;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Executors;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.IntStream;
 
 public class ExecutorAtomic {
 
-	private final static Integer MAX_PERIOD_TIME = 30;
-	private AtomicInteger atomic = new AtomicInteger(0);
-	private ExecutorService executor = Executors.newFixedThreadPool(3);
+  private static final Integer MAX_PERIOD_TIME = 30;
+  private AtomicInteger atomic = new AtomicInteger(0);
+  private ExecutorService executor = Executors.newFixedThreadPool(3);
 
-	private Integer start() throws InterruptedException {
-		IntStream.range(0, 3).forEach(i -> executor.execute(atomic::incrementAndGet));
-		executor.shutdown();
+  private Integer start() throws InterruptedException {
+    IntStream.range(0, 3).forEach(i -> executor.execute(atomic::incrementAndGet));
+    executor.shutdown();
 
-		executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
-		return atomic.get();
-	}
+    executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
+    return atomic.get();
+  }
 
-	public static void main(String[] args) throws InterruptedException {
-		Integer result = new ExecutorAtomic().start();
-		System.out.println("I have been counting: " + result + " times");
-	}
-
+  public static void main(String[] args) throws InterruptedException {
+    Integer result = new ExecutorAtomic().start();
+    assert result == 3;
+  }
 }
 ```
 
 **Callables and Futures**
 
-Executors support another kind of task named Callable, which is functional interfaces just like runnables but instead of being void they return a value. Callables can be submitted to executor services. Since `submit()` doesn't wait until the task completes, the executor service cannot return the result of the callable directly. Instead the executor returns a special result of type Future which can be used to retrieve the actual result at a later point in time.
+Executors support another kind of task named Callable, which is a functional interface just like runnables but instead of being void they return a value. Callables can be submitted to executor services. Since `submit()` doesn't wait until the task completes, the executor service cannot return the result of the callable directly. Instead the executor returns a special result of type Future which can be used to retrieve the actual result at a later point in time.
 
 ```java
 import java.util.concurrent.*;
@@ -96,17 +95,18 @@ public class ExecutorCallable {
 
   private ExecutorService executor = Executors.newFixedThreadPool(3);
 
-  private void start() throws InterruptedException, ExecutionException {
+  private Integer start() throws InterruptedException, ExecutionException {
     Future<Integer> future = executor.submit(new CallableThread());
     final Integer result = future.get();
     executor.shutdown();
 
-    System.out.println("I have been sleeping: " + result + " seconds");
     executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
+    return result;
   }
 
   public static void main(String[] args) throws InterruptedException, ExecutionException {
-    new ExecutorCallable().start();
+    Integer result = new ExecutorCallable().start();
+    assert result == 3;
   }
 }
 
@@ -121,167 +121,126 @@ class CallableThread implements Callable<Integer> {
 }
 ```
 
-*Output*
-
-```bash
-I have been sleeping: 3 seconds
-```
-
 Since Java 8, the `CompletableFuture` class was introduced and also implements this `Future` interface. It provides an `isDone()` method to check whether the computation is done or not, and a `get()` method to retrieve the result of the computation when it is done.
 
 ```java
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.*;
 
 public class ExecutorCompletableFuture {
 
-  private final static Integer MAX_PERIOD_TIME = 30;
+  private static final Integer MAX_PERIOD_TIME = 30;
 
   private ExecutorService executor = Executors.newFixedThreadPool(3);
 
-  private void start() throws InterruptedException, ExecutionException {
-    CompletableFuture<Integer> completableFuture  = new CompletableFuture<Integer>();
+  private Integer start() throws InterruptedException, ExecutionException {
+    CompletableFuture<Integer> completableFuture = new CompletableFuture<>();
 
-    executor.submit(() -> {
-      try{
-        final Integer wait = 3;
-        TimeUnit.SECONDS.sleep(wait);
-        completableFuture.complete(wait);
-      } catch (InterruptedException ie){
-        System.out.println("InterruptedException: " + ie.getMessage());
-      }
-    });
+    executor.submit(
+        () -> {
+          try {
+            final Integer wait = 3;
+            completableFuture.complete(wait);
+            TimeUnit.SECONDS.sleep(wait);
+          } catch (InterruptedException ie) {
+            ie.printStackTrace();
+          }
+        });
 
     final Integer result = completableFuture.get();
     executor.shutdown();
 
-    System.out.println("I have been sleeping: " + result + " seconds");
     executor.awaitTermination(MAX_PERIOD_TIME, TimeUnit.SECONDS);
+    return result;
   }
 
   public static void main(String[] args) throws InterruptedException, ExecutionException {
-    new ExecutorCompletableFuture().start();
+    Integer result = new ExecutorCompletableFuture().start();
+    assert result == 3;
   }
 }
-
 ```
 
-*Output*
-
-```bash
-I have been sleeping: 3 seconds
-```
-
-A cool functionality is to use this asynchronous methods with `runAsync`, `supplyAsync` and `thenApplyAsync`. If you want to run some background task asynchronously and don’t want to return anything from the task, then you use `runAsync()`. It returns `CompletableFuture<Void>`
+A cool functionality is to use asynchronous staic methods such as `runAsync`, `supplyAsync` and `thenApplyAsync`. If you want to run some background task asynchronously and don’t want to return anything from the task, then you can use `runAsync()`. It returns `CompletableFuture<Void>`
 
 ```java
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 public class CompletableFutureRunAsync {
 
   private void start() throws InterruptedException, ExecutionException {
-    CompletableFuture<Void> completableFuture  = CompletableFuture.runAsync( () -> {
-      try{
-        TimeUnit.SECONDS.sleep(3);
-      } catch(InterruptedException ie){
-        System.out.println("InterruptedException: " + ie.getMessage());
-      }
-    });
+    CompletableFuture<Void> completableFuture =
+        CompletableFuture.runAsync(
+            () -> {
+              try {
+                TimeUnit.SECONDS.sleep(3);
+              } catch (InterruptedException ie) {
+                ie.printStackTrace();
+              }
+            });
     completableFuture.get();
-    System.out.println("I have been sleeping: 3 seconds");
   }
 
   public static void main(String[] args) throws InterruptedException, ExecutionException {
     new CompletableFutureRunAsync().start();
   }
-
 }
 ```
 
-*Output*
-
-```bash
-I have been sleeping: 3 seconds
-```
-
-`CompletableFuture.supplyAsync()` is use when you provide a `Supplier<T>` and returns `CompletableFuture<T>` where `T` is the type of the value obtained by calling the given supplier, then you apply that `T`.
+`CompletableFuture.supplyAsync()` is used when you want to provide a value using a `Supplier<T>` running a taks that is asynchronously completed, then use that value in a function with `thenApply()` method
 
 
 ```java
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
+import java.util.function.Supplier;
 
 public class CompletableFutureSupplyAsync {
 
-  private void start() throws InterruptedException, ExecutionException {
-    CompletableFuture<String> completableFuture  = CompletableFuture.supplyAsync( () -> {
-      try{
-        TimeUnit.SECONDS.sleep(3);
-      } catch(InterruptedException ie){
-        System.out.println("InterruptedException: " + ie.getMessage());
-      }
-      return "3 seconds";
-    }).thenApply(message -> {
-      return "I have been sleeping " + message;
-    });
-    System.out.println(completableFuture.get());
+  private String start() throws InterruptedException, ExecutionException {
+    final Supplier<String> supplier = () -> "hello";
+    final Function<String, String> function = value -> value + " world";
+
+    CompletableFuture<String> completableFuture =
+        CompletableFuture.supplyAsync(supplier).thenApply(function);
+    return completableFuture.get();
   }
 
   public static void main(String[] args) throws InterruptedException, ExecutionException {
-    new CompletableFutureSupplyAsync().start();
+    String result = new CompletableFutureSupplyAsync().start();
+    assert result.equals("hello world");
   }
-
 }
 ```
 
-*Output*
-
-```bash
-I have been sleeping: 3 seconds
-```
-
-If you want to run async logic in a separate thread tou can use `thenApplyAsync()`
+If you want to run async logic in a separate `CompletableFuture` you can use `thenApplyAsync()`
 
 ```java
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.Supplier;
 
 public class CompletableFutureThenApplyAsync {
 
-  private void start() throws InterruptedException, ExecutionException {
-    CompletableFuture<Integer> completableFuture  = CompletableFuture.completedFuture(3).thenApplyAsync(wait -> {
-      try{
-        TimeUnit.SECONDS.sleep(wait);
-      } catch(InterruptedException ie){
-        System.out.println("InterruptedException: " + ie.getMessage());
-      }
-      return wait;
-    });
+  private String start() throws InterruptedException, ExecutionException {
+    final Supplier<String> supplier = () -> "hello";
+    CompletableFuture<String> completableFuture = CompletableFuture.supplyAsync(supplier);
 
-    final Integer result = completableFuture.get();
-    System.out.println("I have been sleeping: " + result + " seconds");
+    CompletableFuture<String> future = completableFuture.thenApplyAsync(value -> value + " world");
+
+    return future.get();
   }
 
   public static void main(String[] args) throws InterruptedException, ExecutionException {
-    new CompletableFutureThenApplyAsync().start();
+    String result = new CompletableFutureThenApplyAsync().start();
+    assert result.equals("hello world");
   }
 }
 ```
 
-*Output*
-
-```bash
-I have been sleeping: 3 seconds
-```
-
-To browse the project go [here](https://github.com/josdem/java-workshop), to download the project:
+To browse the project [here](https://github.com/josdem/java-workshop), to download the project:
 
 ```bash
 git clone https://github.com/josdem/java-workshop.git
@@ -292,7 +251,7 @@ To run the code:
 
 ```bash
 javac ${JAVA_PROGRAM}.java
-java ${JAVA_PROGRAM}
+java -ea ${JAVA_PROGRAM}
 ```
 
 
