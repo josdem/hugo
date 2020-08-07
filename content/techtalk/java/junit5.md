@@ -18,29 +18,32 @@ Junit 5 is the next generation of Junit, it requires Java 8 since it was born as
 Using Gradle, you need to create a `build.gradle` file with the following structure:
 
 ```groovy
-def junitJupiterVersion = '5.6.2'
+plugins {
+  id 'java'
+}
 
-apply plugin: "java"
+def junitJupiterVersion = '5.6.2'
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-  testCompile "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
+  testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
+  testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
   testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 }
 
 test {
   useJUnitPlatform()
-  systemProperties = System.properties
+
+  testLogging {
+    events "passed", "skipped", "failed"
+  }
 }
 ```
 
-In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params and engine version, `jupiter-engine` is only required at runtime. Also in `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html), with `html.engine = true` we can generate html reports in a similar way `Spock Framework` does. Last but not least `systemProperties = System.properties` allows Gradle to read system properties values.
-
-If you want to use Maven, please create the following `pom.xml` structure in the root project:
+In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params and engine version, `jupiter-engine` is only required at runtime. Also in `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html). If you want to use Maven, please create the following `pom.xml` structure in the root project:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -54,9 +57,11 @@ If you want to use Maven, please create the following `pom.xml` structure in the
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>12</maven.compiler.source>
-    <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
-    <junit.jupiter.version>5.6.0</junit.jupiter.version>
+    <java.version>13</java.version>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+    <maven.surefire.version>3.0.0-M5</maven.surefire.version>
+    <junit.jupiter.version>5.6.2</junit.jupiter.version>
   </properties>
 
   <dependencies>
@@ -85,7 +90,7 @@ If you want to use Maven, please create the following `pom.xml` structure in the
       <!-- JUnit 5 requires Surefire version 2.22.0 or higher -->
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.1</version>
+        <version>${maven.surefire.version}</version>
       </plugin>
     </plugins>
   </build>
@@ -184,20 +189,14 @@ Here is the complete Junit test case:
 ```java
 package com.jos.dem.junit;
 
-import static java.time.Duration.ofMinutes;
-
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTimeout;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.stream.Stream;
-
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
+import java.util.stream.Stream;
+
+import static java.time.Duration.ofMinutes;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AssertionShowTest {
 
@@ -206,38 +205,37 @@ class AssertionShowTest {
   @Test
   @DisplayName("Should show how we can use lambdas in a test")
   void shouldTestLambdaExpression() {
-    assertTrue(Stream.of(1, 2, 3)
-      .mapToInt(Integer::intValue)
-      .sum() == 6, () -> "Sum should be 6");
+    assertTrue(Stream.of(1, 2, 3).mapToInt(Integer::intValue).sum() == 6, () -> "Sum should be 6");
   }
 
   @Test
   @DisplayName("Should assert all person attributes at once")
   void shouldAssertAllPersonAttributes() {
-      assertAll("person",
-          () -> assertEquals("josdem", person.getNickname()),
-          () -> assertEquals("joseluis.delacruz@gmail.com", person.getEmail())
-      );
+    assertAll(
+        "person",
+        () -> assertEquals("josdem", person.getNickname()),
+        () -> assertEquals("joseluis.delacruz@gmail.com", person.getEmail()));
   }
 
   @Test
   @DisplayName("Should show how works dependent assertions")
-  void shouldTestDependentAssertions(){
-    assertAll("person",
-            () -> {
-                String nickname = person.getNickname();
-                assertNotNull(nickname, "Nickname should not be null");
+  void shouldTestDependentAssertions() {
+    assertAll(
+        "person",
+        () -> {
+          String nickname = person.getNickname();
+          assertNotNull(nickname, "Nickname should not be null");
 
-                assertAll("nickname",
-                    () -> assertTrue(nickname.startsWith("j"), "Should starts with j"),
-                    () -> assertTrue(nickname.endsWith("m"), "Should ends with m")
-                );
-            });
+          assertAll(
+              "nickname",
+              () -> assertTrue(nickname.startsWith("j"), "Should starts with j"),
+              () -> assertTrue(nickname.endsWith("m"), "Should ends with m"));
+        });
   }
 
   @Test
   @DisplayName("Should throw an exception")
-  public void shouldThrowNullPointerException() {
+  void shouldThrowNullPointerException() {
     Person person = null;
     assertThrows(NullPointerException.class, () -> person.getNickname());
   }
@@ -258,7 +256,6 @@ class AssertionShowTest {
   private static String greeting() {
     return "Hello, World!";
   }
-
 }
 ```
 
@@ -267,17 +264,11 @@ Now let's see JUnit Jupiter principal test case annotations and life cycle:
 ```java
 package com.jos.dem.junit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.*;
 
 import java.util.logging.Logger;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StandardTest {
 
@@ -309,7 +300,6 @@ class StandardTest {
   static void tearDown() {
     log.info("After all test execution");
   }
-
 }
 ```
 
@@ -325,14 +315,14 @@ JUnit Jupiter or Junit 5 comes with a subset of the assumption methods and are u
 ```java
 package com.jos.dem.junit;
 
-import static org.junit.jupiter.api.Assumptions.assumeTrue;
-import static org.junit.jupiter.api.Assumptions.assumingThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 
 import java.util.logging.Logger;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 class AssumptionShowTest {
 
@@ -341,19 +331,18 @@ class AssumptionShowTest {
 
   @Test
   @DisplayName("Assume that is a Gmail account")
-  void shouldKnowIfIsGmailAccount(){
+  void shouldKnowIfIsGmailAccount() {
     assumeTrue(person.getEmail().endsWith("gmail.com"));
     log.info("Test continues ...");
     assertEquals("josdem", person.getNickname());
   }
 
-   @Test
-   @DisplayName("Assuming something based in conditions")
-   void testAssumingThat() {
-     assumingThat(2 > 1, () -> log.info("This should happen!"));
-     assumingThat(2 < 1, () -> log.info("This should never happen!"));
-   }
-
+  @Test
+  @DisplayName("Assuming something based in conditions")
+  void testAssumingThat() {
+    assumingThat(2 > 1, () -> log.info("This should happen!"));
+    assumingThat(2 < 1, () -> log.info("This should never happen!"));
+  }
 }
 ```
 
