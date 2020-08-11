@@ -378,13 +378,12 @@ Here is the complete Junit test case:
 ```java
 package com.jos.dem.junit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.condition.OS.MAC;
 import static org.junit.jupiter.api.condition.OS.LINUX;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.condition.EnabledIf;
 import org.junit.jupiter.api.condition.EnabledOnOs;
 import org.junit.jupiter.api.condition.EnabledIfSystemProperty;
 
@@ -399,14 +398,6 @@ class ConditionsShowTest {
   @EnabledIfSystemProperty(named = "environment", matches = "DEV")
   void shouldRunIfDevelopmentEnvironment(){
     log.info("Running: Conditions if is development");
-    assertTrue(true);
-  }
-
-  @Test
-  @DisplayName("Should run if Monday")
-  @EnabledIf("(java.time.LocalDate).now().getDayOfWeek() == 'MONDAY'")
-  void shouldRunIfMonday() {
-    log.info("Running: Conditions if is Monday");
     assertTrue(true);
   }
 
@@ -485,18 +476,17 @@ Here is the complete Junit test case:
 ```java
 package com.jos.dem.junit;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-
-import java.util.EnumSet;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.EnumSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.jupiter.params.provider.CsvFileSource;
 
+import java.util.EnumSet;
 import java.util.logging.Logger;
+
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ParameterizedShowTest {
 
@@ -505,8 +495,8 @@ class ParameterizedShowTest {
 
   @DisplayName("Allow string as parameters")
   @ParameterizedTest
-  @ValueSource(strings = { "radar", "anitalavalatina" })
-  void shouldAllowStringAsParamters(String word) {
+  @ValueSource(strings = {"radar", "anitalavalatina"})
+  void shouldAllowStringAsParameters(String word) {
     log.info("Running: Parameters as string");
     assertTrue(evaluator.isPalindrome(word));
   }
@@ -520,7 +510,9 @@ class ParameterizedShowTest {
 
   @DisplayName("Allow certain enum as parameters")
   @ParameterizedTest
-  @EnumSource(value = Environment.class, names = {"DEVELOPMENT", "QA"})
+  @EnumSource(
+      value = Environment.class,
+      names = {"DEVELOPMENT", "QA"})
   void shouldAllowCertainEnumAsParameters(Environment environment) {
     assertTrue(EnumSet.of(Environment.DEVELOPMENT, Environment.QA).contains(environment));
   }
@@ -533,7 +525,6 @@ class ParameterizedShowTest {
     assertTrue(nickname.length() > 3);
     assertTrue(email.endsWith("email.com"));
   }
-
 }
 ```
 
