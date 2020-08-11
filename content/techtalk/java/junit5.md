@@ -443,7 +443,9 @@ The annotation provides an optional names parameter that lets you specify which 
 ```java
 @DisplayName("Allow certain enum as parameters")
 @ParameterizedTest
-@EnumSource(value = Environment.class, names = {"DEVELOPMENT", "QA"})
+@EnumSource(
+    value = Environment.class,
+    names = {"DEVELOPMENT", "QA"})
 void shouldAllowCertainEnumAsParameters(Environment environment) {
   assertTrue(EnumSet.of(Environment.DEVELOPMENT, Environment.QA).contains(environment));
 }
