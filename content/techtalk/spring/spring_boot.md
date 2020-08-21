@@ -7,7 +7,7 @@ description = "It is a Spring project aim to create easy web or stand-alone appl
 +++
 
 ## What is Spring Boot?
-It is a Spring project aim to create easy web or stand-alone applications. It provides the next features:
+Open source Java framework used to create micro services but also to create easy web or stand-alone applications. It provides the next features:
 
 * No XML configuration is required
 * Netty (Starter Webflux) or Tomcat (Starter Web)
@@ -15,7 +15,6 @@ It is a Spring project aim to create easy web or stand-alone applications. It pr
 * Easy setup
 * Very lightweight
 * Easy to test
-* You can create web, standalone, API or executable applications
 
 This post shows you how to create a simple Spring Boot project with this features:
 
@@ -31,45 +30,43 @@ You can create this project from command line like this:
 spring init --dependencies=web --build=gradle --language=java spring-boot-setup
 ```
 
-That command will generate a Spring project structure under `spring-boot-setup` folder. In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily install:
+That command will generate a Spring project structure under `spring-boot-setup` folder. In order to do that you need to install [SDKMAN](http://sdkman.io/) if you are using Linux or Mac, or [posh-gvm](https://github.com/flofreud/posh-gvm) if you are using Windows. After that, you can easily set up this software development kits:
 
 * Spring Boot
-* Gradle or Maven
+* Gradle
+* Maven
 * Java
 
-I will show you a short version of `build.gradle` generated.
+Here is a `build.gradle` generated example.
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.0.6.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+	id 'org.springframework.boot' version '2.3.3.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
 }
-
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.springboot.setup'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = '13'
 
 repositories {
 	mavenCentral()
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-web')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+test {
+	useJUnitPlatform()
 }
 ```
-`org.springframework.boot` plugin activate `spring-boot-gradle-plugin`, `io.spring.dependency.management` plugin supports Maven. `boot:spring-boot-starter-test` pulls in Spring Boot Junit, Mockito, Spring Test and more.This project will generate an `DemoApplication.java` file.
+
+`org.springframework.boot` makes it easy to stand up our Spring application with very little configuration, `io.spring.dependency.management` plugin provides Maven dependency managent. `boot:spring-boot-starter-test` is an starter for Spring Boot applications with libraries including Junit Jupiter and Mockito. This project will generate an `DemoApplication.java` file.
 
 ```groovy
 package com.jos.dem.springboot.setup;
@@ -86,7 +83,7 @@ public class DemoApplication {
 
 }
 ```
-`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package and register them, also indicates this class is a source of beans definitions. Next let's create a simple rest controller as follow:
+`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package also enables auto-configuration, attemping to guess and configure that you might how cool is that?. Next step, let's create a simple rest controller as follow:
 
 
 ```groovy
@@ -133,51 +130,51 @@ This is the `pom.xml` file generated:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-
-	<groupId>com.jos.dem.springboot</groupId>
-	<artifactId>setup</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
-
-	<name>Spring Boot Setup</name>
-	<description>Demo project for Spring Boot</description>
-
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.0.6.RELEASE</version>
-		<relativePath/>
+		<version>2.3.3.RELEASE</version>
+		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+	<groupId>com.jos.dem.springboot.setup</groupId>
+	<artifactId>spring-boot-setup</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>demo</name>
+	<description>Demo project for Spring Boot</description>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-  </properties>
+	<properties>
+		<java.version>13</java.version>
+	</properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-  </dependency>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	</dependencies>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 
 </project>
 ```
