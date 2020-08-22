@@ -83,7 +83,7 @@ public class DemoApplication {
 
 }
 ```
-`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package also enables auto-configuration, attemping to guess and configure that you might how cool is that?. Next step, let's create a simple rest controller as follow:
+`@SpringApplication` annotation allows Spring Boot to scan recursively for beans inside this package also enables auto-configuration, attemping to guess and configure what you might need, how cool is that?. Next step, let's create a simple rest controller as follow:
 
 
 ```groovy
