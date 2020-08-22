@@ -572,7 +572,7 @@ class ExecutionOrderTest {
     log.info(String.format("Executing %s ...", testInfo.getDisplayName()));
   }
 }
-````
+```
 
 
 To browse the code go [here](https://github.com/josdem/junit5-workshop), to download the code:
@@ -591,6 +591,18 @@ To run the project using Maven:
 
 ```bash
 mvn -Denvironment=DEV test
+```
+
+To execute a single test with Gradle
+
+```bash
+gradle test --tests=$testName
+```
+
+To execute a single test with Maven
+
+```bash
+mvn test -Dtest=$testName
 ```
 
 
