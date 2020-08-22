@@ -530,6 +530,50 @@ class ParameterizedShowTest {
 }
 ```
 
+<a name="Test_Execution_Order">
+## Test Execution Order
+</a>
+
+Sometimes you might need to execute test cases in order, this is common when you are writting integration or functional test cases. In order to set test order execution you need this annotation `@TestMethodOrder(OrderAnnotation.class)` plus this one in every test case: `@Order` here is an example:
+
+
+```java
+package com.jos.dem.junit;
+
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
+
+import java.util.logging.Logger;
+
+@TestMethodOrder(OrderAnnotation.class)
+class ExecutionOrderTest {
+
+  private final Logger log = Logger.getLogger(ExecutionOrderTest.class.getName());
+
+  @Test
+  @Order(1)
+  @DisplayName("first test")
+  void shouldExecuteFirst(TestInfo testInfo) {
+    log.info(String.format("Executing %s ...", testInfo.getDisplayName()));
+  }
+
+  @Test
+  @Order(2)
+  @DisplayName("second test")
+  void shouldExecuteSecond(TestInfo testInfo) {
+    log.info(String.format("Executing %s ...", testInfo.getDisplayName()));
+  }
+
+  @Test
+  @Order(3)
+  @DisplayName("third test")
+  void shouldExecuteThird(TestInfo testInfo) {
+    log.info(String.format("Executing %s ...", testInfo.getDisplayName()));
+  }
+}
+````
+
+
 To browse the code go [here](https://github.com/josdem/junit5-workshop), to download the code:
 
 ```bash
