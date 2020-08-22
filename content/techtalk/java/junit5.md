@@ -13,6 +13,7 @@ Junit 5 is the next generation of Junit, it requires Java 8 since it was born as
 * [Assumptions](#Assumptions)
 * [Conditions](#Conditions)
 * [Parameterized Tests](#Parameterized_Tests)
+* [Test Execution Order](#Test_Execution_Order)
 
 
 Using Gradle, you need to create a `build.gradle` file with the following structure:
@@ -534,7 +535,7 @@ class ParameterizedShowTest {
 ## Test Execution Order
 </a>
 
-Sometimes you might need to execute test cases in order, this is common when you are writting integration or functional test cases. In order to set test order execution you need this annotation `@TestMethodOrder(OrderAnnotation.class)` plus this one in every test case: `@Order` here is an example:
+Sometimes you might need to execute test cases in order, this could be required when you are writting integration or functional test cases. In order to set test order execution you need this annotation `@TestMethodOrder(OrderAnnotation.class)` plus this one in every test case: `@Order` here is an example:
 
 
 ```java
