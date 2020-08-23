@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology"]
 categories = ["techtalk", "code", "java"]
 +++
 
-Junit 5 is the next generation of Junit, it requires Java 8 since it was born as JUnit Lambda project, that project wanted to take full advantage of the new features from Java 8, especially lambda expressions.
+JUnit 5 is JUnit next generation, it requires Java 8 since it was born as JUnit Lambda project, that project wanted to take full advantages from Java 8 new features, especially lambda expressions.
 
 
 * [Assertions](#Assertions)
