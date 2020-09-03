@@ -6,7 +6,7 @@ date = "2018-02-26T09:08:25-06:00"
 description = "The Java Message Service is an API for sending messages between two or more clients. It is an implementation to Producer-Consumer Design Pattern"
 +++
 
-[Java Message Service](https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/jms.html) is an API for sending messages between two or more clients. It is an implementation to [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). This technique is usually implemented when you have time consuming process and you need to avoid client waiting time. To put this in context let’s think about a scenario where we could use it. The first thing that comes to my mind is an email delivery process. Sending an email consumes time and we can put email delivery as a task in a queue, so we can continue with our business flow without force to the client to wait until this email is deliver it. In this example I will show you how to use JMS in a Spring Boot application. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
+[Java Message Service](https://docs.spring.io/spring/docs/3.0.x/spring-framework-reference/html/jms.html) is an API for sending and receiving messages. It is an implementation to [Producer-Consumer Design Pattern](https://en.wikipedia.org/wiki/Producer%E2%80%93consumer_problem). This technique is usually implemented when you have a time consuming process and you need to avoid that a client is waiting for completing that process. To put this in context let’s think about a scenario where we could use it. The first thing that comes to my mind is an email delivery process. Sending an email consumes time and we can put email delivery as a message in a queue, so we can continue with our business flow without force to the client to wait until this email is deliver. In this example, we will see how to use JMS in a Spring Boot application. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
 
 Then execute this command in your terminal.
 
@@ -18,38 +18,38 @@ This is the `build.gradle file` generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.2.0.RELEASE'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-  id 'java'
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'java'
 }
 
 group = 'com.jos.dem.springboot.jms'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = '13'
 
 configurations {
-  compileOnly {
-    extendsFrom annotationProcessor
-  }
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
-  implementation("org.springframework.boot:spring-boot-starter-activemq")
-  compileOnly('org.projectlombok:lombok')
-  annotationProcessor('org.projectlombok:lombok')
-  testImplementation('org.springframework.boot:spring-boot-starter-test') {
-    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-  }
-  testImplementation 'io.projectreactor:reactor-test'
+    implementation 'org.springframework.boot:spring-boot-starter-activemq'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation 'io.projectreactor:reactor-test'
 }
 
 test {
-  useJUnitPlatform()
+    useJUnitPlatform()
 }
 ```
 
@@ -63,14 +63,13 @@ implementation('org.apache.activemq:activemq-broker')
 First, lets create a `MessageService` to deliver messages to the queue.
 
 ```java
-package com.jos.dem.springboot.jms.service
+package com.jos.dem.springboot.jms.service;
 
-import com.jos.dem.springboot.jms.command.Command
+import com.jos.dem.springboot.jms.command.Command;
 
-interface MessageService {
+public interface MessageService {
 
-  void sendMessage(final Command command)
-
+  void sendMessage(final Command command);
 }
 ```
 
@@ -79,40 +78,34 @@ This is our `MessageServiceImpl` implementation class:
 ```java
 package com.jos.dem.springboot.jms.service.impl;
 
-import javax.jms.JMSException;
-import javax.jms.ObjectMessage;
-import javax.jms.Message;
-import javax.jms.Session;
-
-import org.springframework.stereotype.Service;
-import org.springframework.jms.core.JmsTemplate;
-import org.springframework.jms.core.MessageCreator;
-import org.springframework.jms.annotation.EnableJms;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.jos.dem.springboot.jms.command.Command;
 import com.jos.dem.springboot.jms.service.MessageService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jms.annotation.EnableJms;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Service;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.jms.ObjectMessage;
+import javax.jms.Session;
 
+@Slf4j
 @Service
 @EnableJms
+@RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-  @Autowired
-  private JmsTemplate jmsTemplate;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+  private final JmsTemplate jmsTemplate;
 
   public void sendMessage(final Command command) {
-    jmsTemplate.send("destination", (Session session) -> {
-      ObjectMessage message = session.createObjectMessage();
-      message.setObject(command);
-      return message;
-    });
+    jmsTemplate.send(
+        "destination",
+        (Session session) -> {
+          ObjectMessage message = session.createObjectMessage();
+          message.setObject(command);
+          return message;
+        });
   }
-
 }
 ```
 
@@ -135,45 +128,42 @@ And this is the message object we are going to send.
 ```java
 package com.jos.dem.springboot.jms.command;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class PersonCommand implements Command {
-	private String nickname;
-	private String email;
+  private String nickname;
+  private String email;
 }
 ```
 
 Now we have all entities we need to set in order to send a message, next we need to specify the entities to receive and process messages
 
 ```java
-package com.jos.dem.springboot.jms.messengine
+package com.jos.dem.springboot.jms.messengine;
 
-import javax.jms.Message
-import javax.jms.ObjectMessage
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Component;
 
-import org.springframework.stereotype.Component
-import org.springframework.jms.annotation.JmsListener
-import org.springframework.beans.factory.annotation.Autowired
+import javax.jms.JMSException;
+import javax.jms.Message;
+import javax.jms.ObjectMessage;
 
-import org.slf5j.Logger
-import org.slf4j.LoggerFactory
-
+@Slf4j
 @Component
-class MessageListener {
-
-  Logger log = LoggerFactory.getLogger(this.class)
+public class MessageListener {
 
   @JmsListener(destination = "destination", containerFactory = "myJmsContainerFactory")
-  void receiveMessage(Message message) {
-    Object command =  ((ObjectMessage) message).getObject()
-    log.info "Message Received ${command.dump()}"
+  public void receiveMessage(Message message) throws JMSException {
+    Object command = ((ObjectMessage) message).getObject();
+    log.info("Message Received: " + ToStringBuilder.reflectionToString(command));
   }
-
 }
 ```
 
@@ -182,17 +172,16 @@ As you can see `JmsTemplate` is sending a message to the `destination` and `@Jms
 ```java
 package com.jos.dem.springboot.jms;
 
-import javax.jms.ConnectionFactory;
-
-import org.springframework.context.annotation.Bean;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
+import org.springframework.context.annotation.Bean;
 import org.springframework.jms.config.JmsListenerContainerFactory;
 import org.springframework.jms.config.SimpleJmsListenerContainerFactory;
 
+import javax.jms.ConnectionFactory;
+
 @SpringBootApplication
-public class DemoApplication {
+public class JmsDemoApplication {
 
   @Bean
   public JmsListenerContainerFactory<?> myJmsContainerFactory(ConnectionFactory connectionFactory) {
@@ -202,9 +191,8 @@ public class DemoApplication {
   }
 
   public static void main(String[] args) {
-	  SpringApplication.run(DemoApplication.class, args);
+    SpringApplication.run(JmsDemoApplication.class, args);
   }
-
 }
 ```
 
@@ -213,35 +201,29 @@ That's it, now all components required have been already set. Here we are going 
 ```java
 package com.jos.dem.springboot.jms.controller;
 
-import reactor.core.publisher.Mono;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
-
 import com.jos.dem.springboot.jms.command.Command;
 import com.jos.dem.springboot.jms.command.PersonCommand;
 import com.jos.dem.springboot.jms.service.MessageService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+@Slf4j
 @RestController
-public class DemoController {
+@RequiredArgsConstructor
+public class JmsController {
 
-	@Autowired
-  private MessageService messageService;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+  private final MessageService messageService;
 
   @GetMapping("/")
-  public Mono<String> index(){
+  public Mono<String> index() {
     log.info("Sending message");
-  	Command person = new PersonCommand("josdem","joseluis.delacruz@gmail.com");
-  	messageService.sendMessage(person);
-  	return Mono.just("Java Message Service");
+    Command person = new PersonCommand("josdem", "joseluis.delacruz@gmail.com");
+    messageService.sendMessage(person);
+    return Mono.just("Java Message Service");
   }
-
 }
 ```
 
@@ -277,41 +259,34 @@ This is the pom.xml file generated:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.2.0.RELEASE</version>
+    <version>2.3.3.RELEASE</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
-
   <groupId>com.jos.dem.springboot</groupId>
-  <artifactId>jms</artifactId>
+  <artifactId>spring-boot-jms</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <packaging>jar</packaging>
   <name>spring-boot-jms</name>
   <description>This project shows how to use JMS (Java Message Service) in a Spring Boot project</description>
 
   <properties>
-    <java.version>11</java.version>
+    <java.version>13</java.version>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webflux</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-activemq</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <optional>true</optional>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.apache.commons</groupId>
       <artifactId>commons-lang3</artifactId>
@@ -320,10 +295,22 @@ This is the pom.xml file generated:
       <groupId>org.apache.activemq</groupId>
       <artifactId>activemq-broker</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.junit.vintage</groupId>
+          <artifactId>junit-vintage-engine</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.projectreactor</groupId>
