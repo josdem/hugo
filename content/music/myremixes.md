@@ -6,7 +6,14 @@ title = "DJing"
 +++
 Music has been always part of my life, as a child I use to connect speakers, microphones and walkmans together. Now is my hobbie create mixes and upload them to the cloud, so anyone who enjoy music as I do can listen and share them. **NOTE:** I’m going to put my mixes from 2010 to nowadays, I hope you enjoy them.
 
-## Tension - Trance (2018)
+## Ypsilanti - Trance (2020)
+
+<iframe width="660" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Fdjlo-ypsilanti%2F" frameborder="0" ></iframe>
+<br/>
+
+Armin van Buuren feat. Miri Ben-Ari - Intense (Original Mix) + Andy Moor Vs M.I.K.E. - Spirits Pulse (Original Mix) + Temple One - Aurora (Sequentia Remix) + Accendo - Arcturus (Original Mix) + Adam Nickey - Altara (Original Mix) + Super 8 & Tab - My Enemy (Extended Mix) + Steve Bryan & Noel Gitman - Luna System (Tritonal Remix) + Alex O’rion - Craters Of The Moon (Craving Remix)
+
+## Tension - Trance (2019)
 
 <iframe width="660" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Ftension%2F" frameborder="0" ></iframe>
 <br/>
