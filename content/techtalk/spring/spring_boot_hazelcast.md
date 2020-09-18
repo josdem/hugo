@@ -9,25 +9,27 @@ categories = ["techtalk", "code"]
 `java.util.Map` is not thread safe, if you want to use thread safe Map you can use `ConcurrentHashMap` what if you want to use a map through multiple JVM? then your best option is [Hazelcast](https://hazelcast.org/), besides Hazelcast is Open Source written in Java and Maven friendly. In this technical post we are going to view how we can use Hazelcast among with Spring Boot. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). First let's create a new Spring Boot Webflux project:
 
 ```bash
-spring init --dependencies=webflux --build=gradle --language=java spring-boot-hazelcast
+spring init --dependencies=webflux,lombok --build=gradle --language=java spring-boot-hazelcast
 ```
 
 This is the `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.8.RELEASE'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'org.springframework.boot' version '2.3.4.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
   id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
 group = 'com.jos.dem.springboot.hazelcast'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '13'
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
@@ -35,9 +37,18 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
   testImplementation 'io.projectreactor:reactor-test'
 }
+
+test {
+  useJUnitPlatform()
+}
+
 ```
 
 Next step is to add Hazelcast dependency:
@@ -55,26 +66,22 @@ import com.hazelcast.config.Config;
 import com.hazelcast.config.EvictionPolicy;
 import com.hazelcast.config.MapConfig;
 import com.hazelcast.config.MaxSizeConfig;
-
-import org.springframework.stereotype.Component;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 @Component
 public class HazelcastConfiguration {
 
-  @Bean
-  public Config hazelCastConfig(){
-    Config config = new Config();
-    config.setInstanceName("hazelcast-instance")
-      .addMapConfig(
-          new MapConfig()
-          .setName("configuration")
-          .setMaxSizeConfig(new MaxSizeConfig(200, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
-          .setEvictionPolicy(EvictionPolicy.LRU)
-          .setTimeToLiveSeconds(-1));
-    return config;
-  }
+    @Bean
+    public Config hazelCastConfig() {
+        return new Config().setInstanceName("hazelcast-instance")
+                .addMapConfig(
+                        new MapConfig()
+                                .setName("configuration")
+                                .setMaxSizeConfig(new MaxSizeConfig(200, MaxSizeConfig.MaxSizePolicy.FREE_HEAP_SIZE))
+                                .setEvictionPolicy(EvictionPolicy.LRU)
+                                .setTimeToLiveSeconds(-1));
+    }
 
 }
 ```
@@ -88,28 +95,24 @@ Unless you delete the map entries manually or use an eviction policy, they will 
 ```java
 package com.jos.dem.springboot.hazelcast.controller;
 
-import java.util.Map;
-
 import com.hazelcast.core.HazelcastInstance;
-
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/hazelcast")
+@RequiredArgsConstructor
 public class HazelcastController {
 
-  @Autowired
-  private HazelcastInstance hazelcastInstance;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+  private final HazelcastInstance hazelcastInstance;
 
   @PostMapping("/write/{key}/{value}")
   public String write(@PathVariable("key") String key, @PathVariable("value") String value) {
@@ -120,12 +123,11 @@ public class HazelcastController {
   }
 
   @GetMapping("/read/{key}")
-  public String read(@PathVariable("key") String key){
+  public String read(@PathVariable("key") String key) {
     log.info("Reading stored value with key: {}", key);
     Map<String, String> map = hazelcastInstance.getMap("memory");
     return map.get(key);
   }
-
 }
 ```
 
@@ -150,12 +152,98 @@ curl http://localhost:8080/hazelcast/read/key
 Result:
 
 ```bash
-2019-09-07 15:39:02.421  INFO 5934 --- [           main] com.hazelcast.core.LifecycleService      : [100.72.126.55]:5701 [dev] [3.11.4] [100.72.126.55]:5701 is STARTED
-2019-09-07 15:39:03.029  INFO 5934 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 8080
-2019-09-07 15:39:03.033  INFO 5934 --- [           main] c.j.d.s.hazelcast.HazelcastApplication   : Started HazelcastApplication in 5.518 seconds (JVM running for 5.867)
-2019-09-07 15:45:32.573  INFO 5934 --- [or-http-epoll-2] c.j.d.s.h.c.HazelcastController          : Storing key: key with value: value
-2019-09-07 15:45:32.593  INFO 5934 --- [or-http-epoll-2] c.h.i.p.impl.PartitionStateManager       : [100.72.126.55]:5701 [dev] [3.11.4] Initializing cluster partition table arrangement...
+2020-09-17 21:19:52.864  INFO 18154 --- [           main] com.hazelcast.core.LifecycleService      : [10.0.0.253]:5701 [dev] [3.12.9] [10.0.0.253]:5701 is STARTED
+2020-09-17 21:19:53.142  INFO 18154 --- [           main] o.s.b.web.embedded.netty.NettyWebServer  : Netty started on port(s): 8080
+2020-09-17 21:19:53.148  INFO 18154 --- [           main] c.j.d.s.hazelcast.HazelcastApplication   : Started HazelcastApplication in 3.721 seconds (JVM running for 3.911)
+2020-09-17 21:19:57.296  INFO 18154 --- [or-http-epoll-2] c.j.d.s.h.c.HazelcastController          : Storing key: key with value: value
+2020-09-17 21:19:57.308  INFO 18154 --- [or-http-epoll-2] c.h.i.p.impl.PartitionStateManager       : [10.0.0.253]:5701 [dev] [3.12.9] Initializing cluster partition table arrangement...
+2020-09-17 21:20:06.127  INFO 18154 --- [or-http-epoll-3] c.j.d.s.h.c.HazelcastController          : Reading stored value with key: key
 ```
+
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=webflux,lombok --language=java --build=maven spring-boot-hazelcast
+```
+
+This is the pom.xml file generated:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.4.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.jos.dem.springboot.hazelcast</groupId>
+    <artifactId>spring-boot-hazelcast</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>Spring Boot Hazelcast</name>
+    <description>Demo project for Spring Boot</description>
+
+    <properties>
+        <java.version>13</java.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.hazelcast</groupId>
+            <artifactId>hazelcast-spring</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+To run the project with Maven:
+
+```bash
+mvn spring-boot:run
+```
+
 
 To browse the project go [here](https://github.com/josdem/spring-boot-hazelcast), to download the project:
 
