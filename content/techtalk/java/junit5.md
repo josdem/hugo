@@ -474,19 +474,58 @@ id,name,email
 3,josdem,josdem@email.com
 ```
 
-Here is the complete Junit test case:
+With `@MethodSource` you can generate a stream of arguments, please consider the following example:
+
+```java
+@DisplayName("Allow factory method arguments")
+@ParameterizedTest
+@MethodSource("players")
+void shouldBeValidPlayers(String nickname, int ranking) {
+  assertTrue(nickname.length() > 3);
+  assertTrue(ranking >= 0 && ranking <= 5);
+}
+
+private static Stream<Arguments> players() {
+  return Stream.of(Arguments.of("eric", 5), Arguments.of("martin", 4), Arguments.of("josdem", 5));
+}
+```
+
+That's it, we have a factory method named `players` (same name we have in `@MethodSource`). What if you want to send objects as arguments, no problem!
+
+
+```java
+@DisplayName("Allow json files as arguments")
+@ParameterizedTest
+@MethodSource("persons")
+void shouldValidatePersons(Person person) {
+  assertTrue(person.getNickname().length() > 3);
+  assertTrue(person.getEmail().endsWith("email.com"));
+}
+
+private static Stream<Arguments> persons() {
+  return Stream.of(
+      Arguments.of(new Person("josdem", "josdem@email.com")),
+      Arguments.of(new Person("martin", "martin@email.com")),
+      Arguments.of(new Person("eric", "eric@email.com")));
+}
+```
+
+For more information please go [here](https://junit.org/junit5/docs/current/user-guide/#writing-tests-parameterized-tests-sources-MethodSource). This is the complete Junit test case:
 
 ```java
 package com.jos.dem.junit;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.EnumSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.EnumSet;
 import java.util.logging.Logger;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -522,11 +561,38 @@ class ParameterizedShowTest {
 
   @DisplayName("Allow csv files as parameters")
   @ParameterizedTest
-  @CsvFileSource(resources = "/csv.txt", numLinesToSkip = 1)
+  @CsvFileSource(resources = "/csv/persons.txt", numLinesToSkip = 1)
   void shouldAllowCsvFileSource(int id, String nickname, String email) {
     assertNotNull(id);
     assertTrue(nickname.length() > 3);
     assertTrue(email.endsWith("email.com"));
+  }
+
+  @DisplayName("Allow factory method arguments")
+  @ParameterizedTest
+  @MethodSource("players")
+  void shouldBeValidPlayers(String nickname, int ranking) {
+    assertTrue(nickname.length() > 3);
+    assertTrue(ranking >= 0 && ranking <= 5);
+  }
+
+  private static Stream<Arguments> players() {
+    return Stream.of(Arguments.of("eric", 5), Arguments.of("martin", 4), Arguments.of("josdem", 5));
+  }
+
+  @DisplayName("Allow json files as arguments")
+  @ParameterizedTest
+  @MethodSource("persons")
+  void shouldValidatePersons(Person person) {
+    assertTrue(person.getNickname().length() > 3);
+    assertTrue(person.getEmail().endsWith("email.com"));
+  }
+
+  private static Stream<Arguments> persons() {
+    return Stream.of(
+        Arguments.of(new Person("josdem", "josdem@email.com")),
+        Arguments.of(new Person("martin", "martin@email.com")),
+        Arguments.of(new Person("eric", "eric@email.com")));
   }
 }
 ```
