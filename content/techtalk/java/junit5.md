@@ -490,7 +490,7 @@ private static Stream<Arguments> players() {
 }
 ```
 
-That's it, we have a factory method named `players` (same name we have in `@MethodSource`). What if you want to send objects as arguments, no problem!
+That's it, we have a factory method named `players` (same name we have in `@MethodSource`) and we are receiving those arguments as `String`, `int` in our test method. What if you want to send objects as arguments, no problem!
 
 
 ```java
