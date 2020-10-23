@@ -9,6 +9,8 @@ description = "This time I will show you how to use JDBC template in a Spring Bo
 Spring JDBC template provide an abstraction that makes easy for you to implement relational database operations within a Spring Boot application. Spring [JdbcTemplate](https://docs.spring.io/spring-framework/docs/1.0.0/api/org/springframework/jdbc/core/JdbcTemplate.html) is the central class in the JDBC core package.
 
 * [Query for Multiple Rows](#QueryMultipleRows)
+* [Query for Object](#QueryForObject)
+* [Query for Update](#QueryForUpdate)
 
 Let’s start creating a new Spring Boot project with web and jdbc dependencies:
 
@@ -225,6 +227,79 @@ spring:
     username: username
     password: password
     driver-class-name: com.mysql.jdbc.Driver
+```
+
+<a name="QueryForObject">
+## Query for Object
+</a>
+
+Here is an example how to query for a single domain object:
+
+```java
+public Person findByNickname(String nickname) {
+  return jdbcTemplate.queryForObject(
+    "SELECT * FROM person WHERE nickname = ?", new Object[]{nickname},
+    BeanPropertyRowMapper.newInstance(Person.class)
+  );
+}
+```
+
+Notice that we are using an object array to set our parameter query.
+
+<a name="QueryForUpdate">
+## Query for Update
+</a>
+
+Update querying is very self explanatory.
+
+```java
+public int updateRanking(String nickname, int ranking) {
+  return jdbcTemplate.update("UPDATE person SET ranking = ? WHERE nickname = ?", ranking, nickname);
+}
+```
+
+Here is the complete `PersonRepository` example:
+
+```java
+package com.jos.dem.springboot.jdbc.repository;
+
+import com.jos.dem.springboot.jdbc.model.Person;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Slf4j
+@Repository
+@RequiredArgsConstructor
+public class PersonRepository {
+
+  private final JdbcTemplate jdbcTemplate;
+
+
+  public Person findByNickname(String nickname) {
+    return jdbcTemplate.queryForObject(
+            "SELECT * FROM person WHERE nickname = ?", new Object[]{nickname},
+            BeanPropertyRowMapper.newInstance(Person.class)
+    );
+  }
+
+
+  public List<Person> findAll() {
+    return jdbcTemplate.query(
+            "SELECT * FROM person",
+            BeanPropertyRowMapper.newInstance(Person.class)
+    );
+  }
+
+  public int updateRanking(String nickname, int ranking) {
+    return jdbcTemplate.update("UPDATE person SET ranking = ? WHERE nickname = ?", ranking, nickname);
+  }
+
+}
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-jdbc-template), to download the project
