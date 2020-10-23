@@ -305,7 +305,7 @@ public class PersonRepository {
 To browse the project go [here](https://github.com/josdem/spring-boot-jdbc-template), to download the project
 
 ```bash
-git clone https://github.com/josdem/spring-boot-jdbc-template.git
+git clone git@github.com:josdem/spring-boot-jdbc-template.git
 ```
 
 To run the project
