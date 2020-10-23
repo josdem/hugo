@@ -6,71 +6,76 @@ date = "2017-06-30T11:03:38-05:00"
 description = "This time I will show you how to use JDBC template in a Spring Boot application. Spring JdbcTemplate is a powerful mechanism to connect to a relational database and execute SQL queries."
 +++
 
-This time I will show you how to use JDBC template in a Spring Boot application. Spring [JdbcTemplate](https://docs.spring.io/spring-framework/docs/1.0.0/api/org/springframework/jdbc/core/JdbcTemplate.html) is a powerful mechanism to connect to a relational database and execute SQL queries.
+Spring JDBC template provide an abstraction that makes easy for you to implement relational database operations within a Spring Boot application. Spring [JdbcTemplate](https://docs.spring.io/spring-framework/docs/1.0.0/api/org/springframework/jdbc/core/JdbcTemplate.html) is the central class in the JDBC core package.
+
+* [Query for Multiple Rows](#QueryMultipleRows)
 
 Let’s start creating a new Spring Boot project with web and jdbc dependencies:
 
 ```bash
-spring init --dependencies=web,jdbc --language=groovy --build=gradle spring-boot-jdbc-template
+spring init --dependencies=web,jdbc --language=java --build=gradle spring-boot-jdbc-template
 ```
 
 This is the `build.gradle` file generated:
 
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '1.5.12.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+	id 'org.springframework.boot' version '2.3.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+	id 'java'
 }
-
-apply plugin: 'groovy'
-apply plugin: 'org.springframework.boot'
 
 group = 'com.jos.dem.springboot.jdbc'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 13
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
 
 repositories {
-  mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-  compile 'org.springframework.boot:spring-boot-starter'
-  compile 'org.springframework.boot:spring-boot-starter-jdbc'
-  compile 'org.codehaus.groovy:groovy'
-  testCompile 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	compileOnly 'org.projectlombok:lombok'
+	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'io.projectreactor:reactor-test'
 }
 ```
 
 Do not forget to add MySQL dependency to the `build.gradle` file:
 
 ```groovy
-compile 'mysql:mysql-connector-java:5.1.34'
+compile 'mysql:mysql-connector-java:8.0.15'
 ```
 
-Then we will create a `person` model object that represent person table in a MySQL database.
+Let's create a `person` model object that represent person table in a MySQL database.
 
-```groovy
-package com.jos.dem.springboot.jdbc.model
+```java
+package com.jos.dem.springboot.jdbc.model;
 
-class Person {
+import lombok.Data;
 
-  Long id
-  String nickname
-  String email
-  Integer ranking
+@Data
+public class Person {
 
+	private long id;
+	private String nickname;
+	private String email;
+	private int ranking;
 }
 ```
 
-Let's take a look to the MySQL database called `spring_boot_jdbc_template` with a person table.
+As a precondition to execute this project we will need a MySQL database created in our local computer named `spring_boot_jdbc_template` with a person table.
 
 ```sql
 CREATE TABLE `person` (
@@ -79,10 +84,10 @@ CREATE TABLE `person` (
   `email` varchar(255) NOT NULL,
   `ranking` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-)
+);
 ```
 
-With this data:
+And this data:
 
 ```sql
 +----+----------+-----------------------------+---------+
@@ -94,114 +99,132 @@ With this data:
 +----+----------+-----------------------------+---------+
 ```
 
-Spring provides a template class called `JdbcTemplate` that makes it easy to work with SQL relational databases and JDBC, so let's create a `PersonRepository` to use it.
+<a name="QueryMultipleRows">
+## Query for Multiple Rows
+</a>
 
-```groovy
-package com.jos.dem.springboot.jdbc.repository
 
-import org.springframework.stereotype.Repository
-import org.springframework.jdbc.core.JdbcTemplate
-import org.springframework.jdbc.core.BeanPropertyRowMapper
-import org.springframework.beans.factory.annotation.Autowired
+`JdbcTemplate` is the lowest level approach to manage databases other implementations uses it behind the scenes. From our end let's create a `PersonRepository` to use it.
 
-import com.jos.dem.springboot.jdbc.model.Person
+```java
+package com.jos.dem.springboot.jdbc.repository;
 
+import com.jos.dem.springboot.jdbc.model.Person;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Slf4j
 @Repository
-class PersonRepository {
+@RequiredArgsConstructor
+public class PersonRepository {
 
-  @Autowired
-  JdbcTemplate jdbcTemplate
+  private final JdbcTemplate jdbcTemplate;
 
-  List<Person> findAll() {
-    jdbcTemplate.query(
-      'SELECT * FROM person',
-      BeanPropertyRowMapper.newInstance(Person.class)
-    )
+
+  public List<Person> findAll() {
+    return jdbcTemplate.query(
+            "SELECT * FROM person",
+            BeanPropertyRowMapper.newInstance(Person.class)
+    );
   }
 
 }
 ```
 
-`BeanPropertyRowMapper` can maps a row’s column value to a property by matching their names in a model object.
+`BeanPropertyRowMapper` can maps a row’s column value to a property by matching their names in a model object. Now let's create a service to delegate data access to the repository:
 
-Now let's create a service to delegate data access to the repository:
+```java
+package com.jos.dem.springboot.jdbc.service;
 
-```groovy
-package com.jos.dem.springboot.jdbc.service
+import com.jos.dem.springboot.jdbc.model.Person;
 
-import com.jos.dem.springboot.jdbc.model.Person
+import java.util.List;
 
-interface PersonService {
+public interface PersonService {
 
-  List<Person> getPersons()
+	List<Person> getPersons();
 
 }
 ```
 
 This is the implementation
 
-```groovy
-package com.jos.dem.springboot.jdbc.service.impl
+```java
+package com.jos.dem.springboot.jdbc.service.impl;
 
-import org.springframework.stereotype.Service
-import org.springframework.beans.factory.annotation.Autowired
+import com.jos.dem.springboot.jdbc.model.Person;
+import com.jos.dem.springboot.jdbc.repository.PersonRepository;
+import com.jos.dem.springboot.jdbc.service.PersonService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Service;
 
-import com.jos.dem.springboot.jdbc.model.Person
-import com.jos.dem.springboot.jdbc.service.PersonService
-import com.jos.dem.springboot.jdbc.repository.PersonRepository
+import java.util.List;
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
+@Slf4j
 @Service
-class PersonServiceImpl implements PersonService {
+@RequiredArgsConstructor
+public class PersonServiceImpl implements PersonService {
 
-  @Autowired
-  PersonRepository personRepository
+  private final PersonRepository personRepository;
 
-  Logger log = LoggerFactory.getLogger(this.class)
-
-  List<Person> getPersons() {
-    log.info 'Querying for getting persons'
-    personRepository.findAll()
+  public List<Person> getPersons() {
+    log.info("Querying for getting persons");
+    return personRepository.findAll();
   }
 
 }
 ```
 
-Finally we get `PersonService` bean from the spring application context and execute the `getPersons()` method:
+It's time to wire up our `PersonService` bean from the spring application context using `CommandLineRunner`:
 
-```groovy
-package com.jos.dem.springboot.jdbc
+```java
+package com.jos.dem.springboot.jdbc;
 
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.context.ConfigurableApplicationContext
+import com.jos.dem.springboot.jdbc.model.Person;
+import com.jos.dem.springboot.jdbc.service.PersonService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
-import com.jos.dem.springboot.jdbc.model.Person
-import com.jos.dem.springboot.jdbc.service.PersonService
+import java.util.List;
 
+@Slf4j
 @SpringBootApplication
-class JdbcApplication {
+public class JdbcApplication {
 
-  static void main(String[] args) {
-    ConfigurableApplicationContext context = SpringApplication.run JdbcApplication, args
-    List<Person> persons = context.getBean(PersonService.class).getPersons()
-    persons.each {
-      println "person: ${it.dump()}"
+    public static void main(String[] args) {
+        SpringApplication.run(JdbcApplication.class, args);
     }
-  }
+
+
+    @Bean
+    CommandLineRunner run(PersonService personService){
+        return args -> {
+            List<Person> persons = personService.getPersons();
+            persons.forEach(person -> log.info("person: {}", person));
+        };
+    }
 
 }
 ```
 
-Don't forget to set datasource information in your `application.properties`
+Don't forget to set datasource information in your `application.yml`
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost/spring_boot_jdbc_template
-spring.datasource.username=username
-spring.datasource.password=password
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+```yaml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost/spring_boot_jdbc_template?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC
+    username: username
+    password: password
+    driver-class-name: com.mysql.jdbc.Driver
 ```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-jdbc-template), to download the project
