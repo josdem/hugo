@@ -2,11 +2,11 @@
 title =  "Spring Boot Server-sent Events Client"
 description = "In this technical post we will see how to create a Sever-sent events client in a Spring Webflux application."
 date = "2019-05-13T20:25:54-04:00"
-tags = ["josdem", "techtalks","programming","technology","Webflux"]
+tags = ["josdem", "techtalks","programming","technology","Webflux", "Server Sent Events testing", "Server sent events client", "Server server events StepVerifier"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will see how to consume an event stream using [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) in a Spring Webflux application. Please read this previous [Spring Boot Server-sent Events](/techtalk/spring/spring_boot_sse) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
+In this technical post we will see how to consume events using [Sever-sent events](https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events) in a Spring Webflux application. Please read this previous [Spring Boot Server-sent Events](/techtalk/spring/spring_boot_sse) before conitnue with this information. Then, let’s create a new Spring Boot project with Webflux and Lombok as dependencies:
 
 ```bash
 spring init --dependencies=webflux,lombok --language=java --build=gradle spring-boot-sse-client
@@ -14,17 +14,16 @@ spring init --dependencies=webflux,lombok --language=java --build=gradle spring-
 
 Here is the complete `build.gradle` file generated:
 
-```groovy
+```java
 plugins {
-  id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'org.springframework.boot' version '2.3.4.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
   id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
 group = 'com.jos.dem.springboot.sse.client'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '13'
 
 configurations {
   compileOnly {
@@ -40,16 +39,17 @@ dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
-  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation('org.springframework.boot:spring-boot-starter-test') {
+    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+  }
   testImplementation 'io.projectreactor:reactor-test'
+  testCompileOnly 'org.projectlombok:lombok'
+  testAnnotationProcessor "org.projectlombok:lombok"
 }
-```
 
-Now add Junit 5 Framework dependencies to your `build.gradle` file:
-
-```groovy
-testCompile "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
-testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+test {
+  useJUnitPlatform()
+}
 ```
 
 Let's start by creating a service to handle data consumption
@@ -73,23 +73,22 @@ This is the service implementation
 ```java
 package com.jos.dem.springboot.sse.client.service.impl;
 
+import com.jos.dem.springboot.sse.client.service.ServerSentEventsConsumerService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.codec.ServerSentEvent;
+import org.springframework.stereotype.Service;
+import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
-import org.springframework.stereotype.Service;
-import org.springframework.http.codec.ServerSentEvent;
-import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.reactive.function.client.WebClient;
-
-import com.jos.dem.springboot.sse.client.service.ServerSentEventsConsumerService;
-
 @Service
+@RequiredArgsConstructor
 public class ServerSentEventsConsumerServiceImpl implements ServerSentEventsConsumerService {
 
-  @Autowired
-  private WebClient webCLient;
+  private final WebClient webCLient;
 
-  private ParameterizedTypeReference<ServerSentEvent<String>> type = new ParameterizedTypeReference<ServerSentEvent<String>>() {};
+  private ParameterizedTypeReference<ServerSentEvent<String>> type = new ParameterizedTypeReference<>() {
+  };
 
   public Flux<ServerSentEvent<String>> consume(){
     return webCLient.get()
@@ -101,16 +100,41 @@ public class ServerSentEventsConsumerServiceImpl implements ServerSentEventsCons
 }
 ```
 
-The given `ParameterizedTypeReference` is used to pass generic type information. Here you can see how we are defining our `WebClient` as a Spring bean.
+Here we are using `ParameterizedTypeReference` as generic type. Let's also create a `WebClient` bean definition.
+
+```java
+package com.jos.dem.springboot.sse.client.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@Configuration
+public class ApplicationConfig {
+    @Bean
+    WebClient webClient() {
+        return WebClient.create("http://localhost:8080/");
+    }
+}
+```
+
+We are using `CommandRunner`, so that we can start the stream consumption. `CommandLineRunner` is a call back interface, when Spring Boot starts will call it and pass in args through a `run()` internal method.
 
 ```java
 package com.jos.dem.springboot.sse.client;
 
-import org.springframework.context.annotation.Bean;
+import com.jos.dem.springboot.sse.client.service.ServerSentEventsConsumerService;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.reactive.function.client.WebClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.codec.ServerSentEvent;
+import reactor.core.publisher.Flux;
 
+import java.time.LocalTime;
+
+@Slf4j
 @SpringBootApplication
 public class ServerSentEventsClientApplication {
 
@@ -119,70 +143,79 @@ public class ServerSentEventsClientApplication {
   }
 
   @Bean
-  WebClient webClient() {
-    return WebClient.create("http://localhost:8080/");
+  CommandLineRunner start(ServerSentEventsConsumerService service) {
+    return args -> {
+      Flux<ServerSentEvent<String>> eventStream = service.consume();
+
+      eventStream.subscribe(ctx ->
+              log.info("Current time: {}, content[{}] ", LocalTime.now(), ctx.data()));
+    };
   }
 
 }
 ```
 
-Here we are defining a controller, so that we will be able to start the stream consumption
+We are subscribing to the emiter in order to keep receiving information. That's it a client subscribes to a stream from a server and the server will send messages type event-stream to the client until the server or the client closes the stream. It is up to the server to decide when and what to send the client. For knowing more about Server-sent events technology please go [here](https://en.wikipedia.org/wiki/Server-sent_events). Do not forget to run this client in different port using the following specification in our `application.yml` file
+
+```yaml
+server:
+  port: 8081
+```
+
+Finally, here you can find our test case to validate this functionality, `StepVerifier` is a tool from reactor that help us to do our testing in the reactive world.
 
 ```java
-package com.jos.dem.springboot.sse.client.controller;
+package com.jos.dem.springboot.sse.client;
 
-import java.time.LocalTime;
-
-import reactor.core.publisher.Flux;
-
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.codec.ServerSentEvent;
 
 import com.jos.dem.springboot.sse.client.service.ServerSentEventsConsumerService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.codec.ServerSentEvent;
+import reactor.test.StepVerifier;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.time.Duration;
 
-@RestController
-public class ServerSentEventsConsumerController {
+@Slf4j
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
+class ServerSentEventsClientApplicationTest {
 
-  @Autowired
-  private ServerSentEventsConsumerService service;
+    private final ServerSentEventsConsumerService service;
 
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+    @Test
+    @DisplayName("Consume Server Sent Event")
+    public void shouldConsumeServerSentEvents(TestInfo testInfo) throws Exception {
+        log.info("Running: {}", testInfo.getDisplayName());
 
-  @GetMapping("/")
-  public String index() {
-    Flux<ServerSentEvent<String>> eventStream = service.consume();
-
-    eventStream.subscribe(ctx ->
-      log.info("Current time: {}, content[{}] ", LocalTime.now(), ctx.data()));
-
-    return "Starting to consume events...";
-  }
+        StepVerifier.create(service.consume())
+                .expectNextMatches(event -> event.data().contains("josdem"))
+                .thenAwait(Duration.ofSeconds(5))
+                .expectNextCount(1)
+                .thenCancel()
+                .verify();
+    }
 
 }
 ```
 
-The subscribe method keeps receiving information as long as the server is still returning data. That's a client subscribes to a stream from a server and the server will send messages type event-stream to the client until the server or the client closes the stream. It is up to the server to decide when and what to send the client. For knowing more about Server-sent events technology please go [here](https://en.wikipedia.org/wiki/Server-sent_events). Do not forget to run this client in different port using the following specification in our `application.properties` file
-
-```properties
-server.port=8081
-```
-
-Now, If you run the project:
+To run the project:
 
 ```bash
 gradle bootRun
 ```
 
-And hit this end-point:
+To test the project:
 
 ```bash
-curl http://localhost:8081/
+gradle bootRun
 ```
+
 
 Then you should see something like this:
 
