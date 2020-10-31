@@ -2,7 +2,7 @@
 title =  "Spring Boot Server-sent Events"
 description = "In this technical post we will see how to integrate Sever-sent events in a Spring Webflux application."
 date = "2019-04-25T08:22:13-04:00"
-tags = ["josdem", "techtalks","programming","technology"]
+tags = ["josdem", "techtalks","programming","technology", "SSE example", "Spring Boot and SSE", "SSE with Spring Boot"]
 categories = ["techtalk", "code"]
 +++
 
@@ -16,14 +16,14 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.2.0.RELEASE'
-  id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+  id 'org.springframework.boot' version '2.3.4.RELEASE'
+  id 'io.spring.dependency-management' version '1.0.10.RELEASE'
   id 'java'
 }
 
 group = 'com.jos.dem.springboot.sse'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+sourceCompatibility = '13'
 
 configurations {
   compileOnly {
@@ -55,31 +55,31 @@ Let's start by creating a controller to serve our stream data
 ```java
 package com.jos.dem.springboot.sse.controller;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jos.dem.springboot.sse.model.MessageCommand;
+import com.jos.dem.springboot.sse.model.Event;
 import com.jos.dem.springboot.sse.service.MessageService;
 
 @RestController
+@RequiredArgsConstructor
 public class MessageController {
 
-  @Autowired
-  private MessageService messageService;
+  private final MessageService messageService;
 
   @GetMapping(path = "/",  produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-  public Flux<MessageCommand> index() {
+  public Flux<Event> index() {
     return messageService.stream();
   }
 
 }
 ```
 
-`MediaType.TEXT_EVENT_STREAM_VALUE` is needed when you want to return to the client server-side events. Now let's use `MessageCommand` as domain transfer object
+`MediaType.TEXT_EVENT_STREAM_VALUE` represents plain text event sent that follows SSE format, responses starts with `"data:"`. Now let's use `Event` as domain transfer object
 
 ```java
 package com.jos.dem.springboot.sse.model;
@@ -93,7 +93,7 @@ import lombok.AllArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class MessageCommand {
+public class Event {
   private String nickname;
   private String text;
   private Instant timestamp;
@@ -119,29 +119,27 @@ Here is our implementation
 ```java
 package com.jos.dem.springboot.sse.service.impl;
 
-import java.util.List;
-import java.util.Arrays;
 import java.time.Instant;
 import java.time.Duration;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Flux;
 
 import org.springframework.stereotype.Service;
-import org.springframework.beans.factory.annotation.Autowired;
 
-import com.jos.dem.springboot.sse.model.MessageCommand;
+import com.jos.dem.springboot.sse.model.Event;
 import com.jos.dem.springboot.sse.service.MessageService;
-import com.jos.dem.springboot.sse.util.MessageGenerator;
+import com.jos.dem.springboot.sse.util.EventGenerator;
 
 @Service
+@RequiredArgsConstructor
 public class MessageServiceImpl implements MessageService {
 
-  @Autowired
-  private MessageGenerator messageGenerator;
+  private final EventGenerator eventGenerator;
 
-  public Flux<MessageCommand> stream() {
+  public Flux<Event> stream() {
     return Flux.interval(Duration.ofSeconds(1))
-      .map(it -> new MessageCommand("josdem", messageGenerator.generate(), Instant.now()));
+      .map(it -> new Event("josdem", eventGenerator.generate(), Instant.now()));
   }
 
 }
@@ -150,7 +148,7 @@ public class MessageServiceImpl implements MessageService {
 Where:
 
 * `Flux.interval` Simulate data streaming every second
-* `messageGenerator` Generates a random message
+* `eventGenerator` Generates a random message
 
 Here is our message generator class
 
@@ -164,9 +162,9 @@ import java.util.Random;
 import org.springframework.stereotype.Component;
 
 @Component
-public class MessageGenerator {
+public class EventGenerator {
 
-  private List<String> messages = Arrays.asList(
+  private List<String> events = Arrays.asList(
     "Bonjour",
     "Hola",
     "Zdravstvuyte",
@@ -174,10 +172,10 @@ public class MessageGenerator {
     "Guten Tag",
     "Hello");
 
-  private final Random random = new Random(messages.size());
+  private final Random random = new Random(events.size());
 
   public String generate() {
-    return messages.get(random.nextInt(messages.size()));
+    return events.get(random.nextInt(events.size()));
   }
 
 }
@@ -210,56 +208,56 @@ Finally, let's use a Non-blocking, reactive client for testing our web layer, if
 ```java
 package com.jos.dem.springboot.sse;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.util.List;
-import java.util.Date;
-import java.time.LocalTime;
-
-import reactor.core.publisher.Flux;
-
-import org.junit.jupiter.api.Test;
+import com.jos.dem.springboot.sse.model.Event;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
-import org.springframework.http.MediaType;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.codec.ServerSentEvent;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import com.jos.dem.springboot.sse.model.MessageCommand;
+import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Slf4j
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
+@RequiredArgsConstructor(onConstructor_ = @Autowired)
 class ServerSentEventsClientApplicationTest {
 
-  @Autowired
-  private WebTestClient webClient;
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+  private final WebTestClient webClient;
 
   @Test
   @DisplayName("Should get five events")
-  void shouldConsumeServerSentEvents() {
-    log.info("Running: Consume server sent events: {}", new Date());
+  void shouldConsumeServerSentEvents(TestInfo testInfo) {
+    log.info("Running: {}", testInfo.getDisplayName());
 
-    List<MessageCommand> commands = webClient.get().uri("/")
-      .accept(MediaType.valueOf(MediaType.TEXT_EVENT_STREAM_VALUE))
-      .exchange()
-      .expectStatus().isOk()
-      .returnResult(MessageCommand.class)
-      .getResponseBody()
-      .take(5)
-      .collectList()
-      .block();
+    List<Event> events = webClient.get().uri("/")
+            .accept(MediaType.valueOf(MediaType.TEXT_EVENT_STREAM_VALUE))
+            .exchange()
+            .expectStatus().isOk()
+            .returnResult(Event.class)
+            .getResponseBody()
+            .take(5)
+            .collectList()
+            .block();
 
-    commands.forEach(command -> log.info("command: {}", command));
-    assertEquals(5, commands.size());
+    events.forEach(event -> log.info("event: {}", event));
+    assertEquals(5, events.size());
   }
 
 }
+```
+
+*NOTE:* Do not forget to add this lines to your `build.gradle` file so that you can use Lombok in test cases.
+
+```java
+testCompileOnly 'org.projectlombok:lombok'
+testAnnotationProcessor "org.projectlombok:lombok"
 ```
 
 To run the project:
