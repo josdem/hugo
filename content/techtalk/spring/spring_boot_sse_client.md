@@ -213,7 +213,7 @@ gradle bootRun
 To test the project:
 
 ```bash
-gradle bootRun
+gradle test
 ```
 
 
