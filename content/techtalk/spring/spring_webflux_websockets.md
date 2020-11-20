@@ -334,7 +334,7 @@ You should see this output from client side:
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the spring init command line:
 
 ```bash
-spring init --dependencies=webflux,lombok --build=gradle --language=java webflux-websocket-workshop
+spring init --dependencies=webflux,lombok --build=maven --language=java webflux-websocket-workshop
 ```
 
 This is the `pom.xml` file generated
@@ -342,22 +342,22 @@ This is the `pom.xml` file generated
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.4.RELEASE</version>
+		<version>2.4.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jos.dem.webflux.websocket</groupId>
-	<artifactId>server</artifactId>
+	<artifactId>client</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Spring Webflux WebSockets</name>
 	<description>This project shows how to use Websocket with Spring Webflux</description>
 
 	<properties>
-		<java.version>12</java.version>
+		<java.version>13</java.version>
 	</properties>
 
 	<dependencies>
@@ -375,12 +375,6 @@ This is the `pom.xml` file generated
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>io.projectreactor</groupId>
