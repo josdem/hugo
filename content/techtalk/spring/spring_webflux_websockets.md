@@ -2,7 +2,7 @@
 title =  "Spring Webflux WebSockets"
 description = "Spring Webflux with WebSockets"
 date = "2020-02-27T11:52:46-05:00"
-tags = ["josdem", "techtalks","programming","technology"]
+tags = ["josdem", "techtalks","programming","technology","websockets and spring boot example","websockets webflux example"]
 categories = ["techtalk", "code", "spring", "webflux", "websockets"]
 +++
 
@@ -16,14 +16,14 @@ Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-	id 'org.springframework.boot' version '2.2.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.springframework.boot' version '2.4.0'
+	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
 }
 
 group = 'com.jos.dem.webflux.websocket'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '12'
+sourceCompatibility = '13'
 
 configurations {
 	compileOnly {
@@ -53,30 +53,24 @@ test {
 In order to implement WebSockets we need to create a `WebSocketHandlerAdpater` so that we can map each `WebSocketHandler` we are planning to use.
 
 ```java
-package com.jos.dem.webflux.websocket;
+package com.jos.dem.webflux.websocket.config;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.web.reactive.HandlerMapping;
 import org.springframework.web.reactive.handler.SimpleUrlHandlerMapping;
 import org.springframework.web.reactive.socket.WebSocketHandler;
-import org.springframework.web.reactive.socket.server.support.WebSocketHandlerAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication
+@Configuration
 @RequiredArgsConstructor
-public class WebsocketApplication {
+public class WebSocketConfig {
 
   private final WebSocketHandler webSocketHandler;
-
-  public static void main(String[] args) {
-    SpringApplication.run(WebsocketApplication.class, args);
-  }
 
   @Bean
   public HandlerMapping handlerMapping() {
@@ -89,14 +83,10 @@ public class WebsocketApplication {
     return mapping;
   }
 
-  @Bean
-  public WebSocketHandlerAdapter handlerAdapter() {
-    return new WebSocketHandlerAdapter();
-  }
 }
 ```
 
-And here is our `ReactiveWebSocketHandler` which is responsible of managing our WebSocket session.
+And here is our `ReactiveWebSocketHandler` which is managing our WebSocket session and messaging exchange.
 
 ```java
 package com.jos.dem.webflux.websocket.handler;
@@ -105,39 +95,41 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.jos.dem.webflux.websocket.model.Event;
 import com.jos.dem.webflux.websocket.util.MessageGenerator;
-import java.time.Duration;
-import java.time.Instant;
-import javax.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.socket.WebSocketHandler;
-import org.springframework.web.reactive.socket.WebSocketMessage;
 import org.springframework.web.reactive.socket.WebSocketSession;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
+
+import javax.annotation.PostConstruct;
+import java.time.Duration;
+import java.time.Instant;
 
 @Component
 @RequiredArgsConstructor
 public class ReactiveWebSocketHandler implements WebSocketHandler {
 
   private Flux<String> intervalFlux;
-  private final ObjectMapper mapper = new ObjectMapper();
+  private final ObjectMapper mapper;
   private final MessageGenerator messageGenerator;
 
   @PostConstruct
-  private void setup(){
-    intervalFlux =
-        Flux.interval(Duration.ofSeconds(1)).map(it -> getEvent());
+  private void setup() {
+    intervalFlux = Flux.interval(Duration.ofSeconds(2)).map(it -> getEvent());
   }
 
   @Override
   public Mono<Void> handle(WebSocketSession session) {
-    return session
-        .send(intervalFlux.map(session::textMessage))
-        .and(session.receive().map(WebSocketMessage::getPayloadAsText).log());
+    return session.send(
+        session
+            .receive()
+            .map(webSocketMessage -> webSocketMessage.getPayloadAsText())
+            .log()
+            .map(message -> session.textMessage(message)));
   }
 
-  private String getEvent(){
+  private String getEvent() {
     JsonNode node = mapper.valueToTree(new Event(messageGenerator.generate(), Instant.now()));
     return node.toString();
   }
@@ -175,19 +167,10 @@ public class MessageGenerator {
 }
 ```
 
-So, now if you execute our Spring Boot application:
+Now, you are good to execute our Spring Boot application server side, keep in mind that messages will start to flow once you execute the client side, we will see in a bit how we can execute both at the same time:
 
 ```bash
 gradle bootRun
-```
-
-And our client application which we will see in a moment, you should see this output from server side:
-
-```bash
-2020-02-27 15:16:10.905  INFO 33056 --- [           main] c.j.d.w.websocket.WebsocketApplication   : Started WebsocketApplication in 0.925 seconds (JVM running for 1.135)
-2020-02-27 15:16:18.895  INFO 33056 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onSubscribe(FluxMap.MapSubscriber)
-2020-02-27 15:16:18.897  INFO 33056 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : request(unbounded)
-2020-02-27 15:16:18.944  INFO 33056 --- [ctor-http-nio-2] reactor.Flux.Map.1                       : onNext({"message":"start","timestamp":{"nano":887893000,"epochSecond":1582834578}})
 ```
 
 **WebSockets Client Side**
