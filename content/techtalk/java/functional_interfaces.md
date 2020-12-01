@@ -175,7 +175,7 @@ public class RunnableTest {
 ```
 
 
-`Predicate` is also a functional interface, therefore we can pass lambda expressions wherever predicate is expected. This is `filter()` formal definition: Returns a stream consisting of the elements of this stream that match the given predicate.
+`Predicate` is also a functional interface, it is a statement that could be evaluated to true or false. Filter is a popular aggregate operation and  this is `filter()` formal definition: Returns a stream consisting of the elements of this stream that match the given predicate.
 
 ```java
 Stream<T> filter(Predicate<? super T> predicate);
