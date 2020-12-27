@@ -149,6 +149,29 @@ public class FunctionTest {
 }
 ```
 
+The`UnaryOperator` takes one argument and returns a result of the same type, so you can replace `Function<Integer, Integer>` with `UnaryOperator<Integer>`
+
+```java
+package com.jos.dem.functional;
+
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+
+import java.util.function.UnaryOperator;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+class UnaryOperatorTest {
+
+    @Test
+    @DisplayName("Unary operator example")
+    void shouldTestUnaryOperator() {
+        UnaryOperator<Integer> unaryOperator = x -> x * 2;
+        assertEquals(Integer.valueOf(8), unaryOperator.apply(4));
+    }
+}
+```
+
 Runnable:
 
 Since Java 8 Runnable is a functional interface and can therefore be used as the assignment target for a lambda expression or method reference. Please consider this silly example of Runnable
@@ -355,7 +378,7 @@ class BiFunctionTest {
 To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
-git clone https://github.com/josdem/java-workshop.git
+git clone git@github.com:josdem/java-workshop.git
 cd functional-interfaces
 ```
 
