@@ -206,7 +206,7 @@ public class FileStreamer {
 }
 ```
 
-`Stream.iterate` is used to iterate values from a seed and defined by an `UnaryOperator` if you want to know more about unary operator, please go to my previous post [Functional Interfaces](https://josdem.io/techtalk/java/functional_interfaces/#Basic_Functional_Interfaces)
+`Stream.iterate` is used to iterate values from a seed to a value defined by an `UnaryOperator` if you want to know more about unary operator, please go to my previous post [Functional Interfaces](https://josdem.io/techtalk/java/functional_interfaces/#Basic_Functional_Interfaces)
 
 ```java
 import java.util.List;
