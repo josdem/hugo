@@ -206,6 +206,34 @@ public class FileStreamer {
 }
 ```
 
+`Stream.iterate` is used to iterate values from a seed and defined by an `UnaryOperator` if you want to know more about unary operator, please go to my previous post [Functional Interfaces](https://josdem.io/techtalk/java/functional_interfaces/#Basic_Functional_Interfaces)
+
+```java
+import java.util.List;
+import java.util.ArrayList;
+import java.util.stream.Stream;
+
+public class StreamIterate {
+
+    public static void main(String[] args){
+        List<Integer> values = new ArrayList<>();
+
+        Stream.iterate(0, i -> i + 2)
+                .limit(6)
+                .forEach(values::add);
+
+        assert(values.size() == 6);
+        assert(values.get(0) == 0);
+        assert(values.get(1) == 2);
+        assert(values.get(2) == 4);
+        assert(values.get(3) == 6);
+        assert(values.get(4) == 8);
+        assert(values.get(5) == 10);
+    }
+
+}
+```
+
 To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
