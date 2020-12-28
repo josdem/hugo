@@ -32,7 +32,7 @@ public class MapSquares {
 }
 ```
 
-The `sorted` method is used to sort a stream's elements.
+`sorted` method is used to sort a stream's elements.
 
 ```java
 import java.util.List;
@@ -63,7 +63,7 @@ public class ListSorter {
 }
 ```
 
-The reduction operation combines all elements of the stream into a single result.
+Reduction operation combines all elements of the stream into a single result.
 
 ```java
 import java.util.List;
