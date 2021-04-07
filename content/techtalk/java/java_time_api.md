@@ -76,24 +76,33 @@ When you want to perform calculations between days, temporal unit interface unit
 *example*
 
 ```java
+import java.time.LocalDate;
 import java.time.Month;
 import java.time.Period;
-import java.time.LocalDate;
-import static java.time.temporal.ChronoUnit.*;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class BetweenDays {
 
-  private void compute(){
-    LocalDate christmas = LocalDate.of(2020, Month.DECEMBER, 25);
+  private void compute() {
+    LocalDate christmas = LocalDate.of(2021, Month.DECEMBER, 25);
     LocalDate today = LocalDate.now();
     long days = DAYS.between(today, christmas);
     System.out.println("There are " + days + " shopping days until Christmas");
+
+    Period untilChristmas = Period.between(today, christmas);
+    System.out.println(
+        "There are "
+            + untilChristmas.getMonths()
+            + " months and "
+            + untilChristmas.getDays()
+            + " days until Christmas");
   }
 
-  public static void main(String[] args){
+  public static void main(String[] args) {
     new BetweenDays().compute();
   }
-}
+
 ```
 
 *output*
@@ -177,7 +186,7 @@ YYYY-MMM format from now is: 2020-Jul
 To browse the code go [here](https://github.com/josdem/java-workshop), to download the code:
 
 ```bash
-git clone https://github.com/josdem/java-topics.git
+git clone git@github.com:josdem/java-workshop.git
 cd date-and-time
 ```
 
