@@ -18,38 +18,38 @@ This is the `build.gradle file` generated:
 
 ```groovy
 plugins {
-    id 'org.springframework.boot' version '2.3.3.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id 'java'
+  id 'org.springframework.boot' version '2.4.5'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'java'
 }
 
 group = 'com.jos.dem.springboot.jms'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '13'
+sourceCompatibility = '15'
 
 configurations {
-    compileOnly {
-        extendsFrom annotationProcessor
-    }
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
 }
 
 repositories {
-    mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-activemq'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    compileOnly 'org.projectlombok:lombok'
-    annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
-    testImplementation 'io.projectreactor:reactor-test'
+  implementation 'org.springframework.boot:spring-boot-starter-activemq'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  implementation 'org.apache.commons:commons-lang3'
+  implementation 'org.apache.activemq:activemq-broker'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
 }
 
 test {
-    useJUnitPlatform()
+  useJUnitPlatform()
 }
 ```
 
@@ -264,7 +264,7 @@ This is the pom.xml file generated:
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.3.3.RELEASE</version>
+    <version>2.4.5</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.jos.dem.springboot</groupId>
@@ -274,7 +274,7 @@ This is the pom.xml file generated:
   <description>This project shows how to use JMS (Java Message Service) in a Spring Boot project</description>
 
   <properties>
-    <java.version>13</java.version>
+    <java.version>15</java.version>
   </properties>
 
   <dependencies>
@@ -305,12 +305,6 @@ This is the pom.xml file generated:
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.junit.vintage</groupId>
-          <artifactId>junit-vintage-engine</artifactId>
-        </exclusion>
-      </exclusions>
     </dependency>
     <dependency>
       <groupId>io.projectreactor</groupId>
@@ -324,6 +318,14 @@ This is the pom.xml file generated:
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
