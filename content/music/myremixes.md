@@ -8,7 +8,7 @@ Music has been always part of my life, as a child I use to connect speakers, mic
 
 ## Dreams - Trance (2021)
 
-<iframe width="600" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Fdreams%2F" frameborder="0" ></iframe>
+<iframe width="660" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Fdreams%2F" frameborder="0" ></iframe>
 <br/>
 
 Treadstone - Galaxia (Original Mix) + Marcus Schossow - The Last Pluck (Original Mix) + Reeves - Dreams (Incl. Jon O'Bir Remix) + Matt Lange - Rift (Original Mix) + Robert Babicz - Dark Flower (Joris Voorn Magnolia Mix) + JPL - A Better Daze (Audien Remix) + Thomas Mengel - Pelagos (Extended Mix) + Spencer Brown & Wilt Claybourne - Womaa (Original Mix)
