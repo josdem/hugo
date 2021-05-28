@@ -51,7 +51,6 @@ In this section I'll go through a complete Spring MVC project starting from the 
 In this section I will cover small projects I'm doing using Spring Boot, what is called micro services.
 
 * [Spring Boot Basics](/techtalk/spring/spring_boot)
-* [Spring Boot with Thymeleaf](/techtalk/spring/spring_boot_thymeleaf)
 * [Spring Boot AOP](/techtalk/spring/spring_boot_aop)
 * [Spring Boot RESTful](/techtalk/spring/spring_boot_restful)
 * [Spring Boot Handler Exception](/techtalk/spring/spring_boot_handler_exception)
@@ -92,6 +91,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Webflux Client](/techtalk/spring/spring_webflux_client)
 * [Spring Webflux Security](/techtalk/spring/spring_webflux_security)
 * [Spring Webflux Security Database](/techtalk/spring/spring_webflux_security_database)
+* [Spring Webflux with Thymeleaf](/techtalk/spring/spring_webflux_thymeleaf)
 * [Spring Boot JMS](/techtalk/spring/spring_boot_jms)
 * [Spring Webflux Cucumber](/techtalk/spring/spring_webflux_cucumber)
 * [Spring Boot WebClient](/techtalk/spring/spring_boot_webclient)

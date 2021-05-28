@@ -1,9 +1,9 @@
 +++
-title = "Spring Boot with Thymeleaf"
+title = "Spring Webflux with Thymeleaf"
 categories = ["techtalk","code","spring boot"]
-tags = ["josdem","techtalks","programming","technology","spring boot"]
+tags = ["josdem","techtalks","programming","technology","spring boot","Spring Webflux", "Thymeleaf"]
 date = "2017-08-29T20:18:08-05:00"
-description = "This time I will show you how to create a basic project in Spring Boot with Thymeleaf"
+description = "Basic project with Spring Webflux and Thymeleaf"
 +++
 
 ## Setup
