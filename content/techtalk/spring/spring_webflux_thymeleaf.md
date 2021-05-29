@@ -6,7 +6,7 @@ date = "2017-08-29T20:18:08-05:00"
 description = "Basic project with Spring Webflux and Thymeleaf"
 +++
 
-If you need to render HTML for web and stand alone applications and want to have reactive Spring Webflux as backend, this technical post is for youi, because this time we will go through the process to create a basic project in Spring Webflux with Thymeleaf. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
+If you need to render HTML for web and stand alone applications and want to have reactive Spring Webflux as backend, this technical post is for you, because this time we will go through the process to create a basic project in Spring Webflux with Thymeleaf. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
 
 
 Then execute this command in your terminal.
@@ -71,7 +71,7 @@ public class DemoController{
 }
 ```
 
-At this point you have an application Spring Boot running in 8080 port. Execute this command to start this project, to see our Hello World message you might need to open URL `http://localhost:8080` in a browser:
+At this point you have a Spring Boot application running at 8080 port. Execute this command to start this project, to see our Hello World message you might need to open URL `http://localhost:8080` in a browser:
 
 ```bash
 gradle bootRun
