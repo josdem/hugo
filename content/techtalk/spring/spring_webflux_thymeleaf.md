@@ -6,7 +6,7 @@ date = "2017-08-29T20:18:08-05:00"
 description = "Basic project with Spring Webflux and Thymeleaf"
 +++
 
-If you need to render HTML for web and stand alone applications and want to have reactive Spring Webflux as backend, this technical post is for you because this time we will go through the process to create a basic project in Spring Webflux with Thymeleaf. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
+If you need to render HTML for web and stand alone applications and want to have reactive Spring Webflux as backend, this technical post is for youi, because this time we will go through the process to create a basic project in Spring Webflux with Thymeleaf. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
 
 
 Then execute this command in your terminal.
@@ -71,7 +71,7 @@ public class DemoController{
 }
 ```
 
-At this point you have an application Spring Boot running in 8080 port. Execute this command in order execute this project, to see the Hello World message you might need to open URL provided by Spring in a browser:
+At this point you have an application Spring Boot running in 8080 port. Execute this command to start this project, to see our Hello World message you might need to open URL `http://localhost:8080` in a browser:
 
 ```bash
 gradle bootRun
@@ -84,18 +84,14 @@ Next step is change from `RestController` to a `Controller` so we can render the
 ```groovy
 package com.jos.dem.springboot.thymeleaf.controller;
 
-import com.jos.dem.springboot.thymeleaf.model.Person;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DemoController{
 
   @RequestMapping("/")
-  public String index(final Model model){
-    Person person = new Person("josdem", "joseluis.delacruz@gmail.com");
-    model.addAttribute("person", person);
+  public String index(){
     return "index";
   }
 
