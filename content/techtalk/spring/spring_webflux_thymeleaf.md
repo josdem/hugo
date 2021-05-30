@@ -160,7 +160,7 @@ And you can see the model in the template using some Thymeleaf tags:
 </html>
 ```
 
-To browse the project go [here](https://github.com/josdem/spring-boot-thymeleaf), to download the Project:
+To browse the project go [here](https://github.com/josdem/spring-webflux-thymeleaf), to download the Project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-thymeleaf.git
