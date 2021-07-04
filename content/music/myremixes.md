@@ -9,7 +9,7 @@ Music has been always part of my life, as a child I use to connect speakers, mic
 
 ## Spooky - Trance (2021)
 
-<iframe width="600" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Fspooky%2F" frameborder="0" ></iframe>
+<iframe width="660" height="180" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fjosdem%2Fspooky%2F" frameborder="0" ></iframe>
 <br/>
 
 Estiva - Bloom (Extended Mix) + Kyau & Albert - Tube Hearts (Original Mix) + Ilan Bluestone, Spencer Brown - Pooperling (Original Mix) + Above & Beyond - Is It Love? (Above & Beyond Extended Club Mix) + ALPHA 9 - Azzura (Extended Mix) + Andrew Bayer, Alison May - Tidal Wave (In My Next Life Extended Mix) + ARTY - Avalanche (Extended Mix) + Spooky - Belong (Sasha Involver Remix - Prankster Bootleg Edit)
