@@ -22,7 +22,6 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [Breaking the Records](#Breaking_Records)
 * [String Compressor](#String_Compressor)
-* [Bon Appetit](#Bon_Appetit)
 * [Sock Merchant](#Sock_Merchant)
 * [Electronics Shop](#Electronics_Shop)
 * [Square my List](#Square_my_List)
@@ -702,72 +701,6 @@ public class StringCompressor {
     String string = "aaabbbbcc";
     String result = new StringCompressor().compress(string);
     System.out.println(result);
-  }
-
-}
-```
-
-<a name="Bon_Appetit">
-## Bon Appetit
-</a>
-
-Anna and Brian order `$N$` items at a restaurant, but Anna declines to eat any of the `$Kth$` item (where `$0 \le K \le N$`) due to an allergy. When the check comes, they decide to split the cost of all the items they shared; however, Brian may have forgotten that they didn't split the `$Kth$` item and accidentally charged Anna for it.
-
-You are given `$N, K,$` the cost of each of the  items, and the total amount of money that Brian charged Anna for her portion of the bill. If the bill is fairly split, print Bon Appetit; otherwise, print the amount of money that Brian must refund to Anna. It is guaranteed that the amount will always be an integer.
-
-**Input Format**
-
-An integer denoting `$K$`(the `$0$`-based index of the item that Anna did not eat).
-An integer arrray where each integer `$i$` denotes the cost, `$c[i]$`, of item  `$i$` (where `$0 \le i \le N$`).
-
-**Constraints**
-
-* `$0 \le K \le N$`
-* `$0 \le c[i] \le 10^4$`
-
-**Output Format**
-
-The difference (i.e., `$Bcharged - Bactual  $`) that Brian must refund to Anna (it is guaranteed that this will always be an integer).
-
-**Sample Input**
-
-```bash
-itemAvoided = 1
-prices = [3, 10, 2, 9]
-```
-
-**Sample Output**
-
-```bash
-5
-```
-
-**Explanation**
-
-Anna didn't eat item `$c[i] = 10  $`, but she shared the rest of the items with Brian. The total cost of the shared items is  `$3 + 2 + 9 = 14$` and, split in half, the cost per person is `$Bactual = 7$`. Brian charged her `$Bcharged = 12$` for her portion of the bill, which is more than the `$7$` dollars worth of food that she actually shared with him. Thus, we get the amount Anna was overcharged, `$Bcharged-Bactual = 12 - 7 = 5$`.
-
-**Solution**
-
-```java
-import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-public class BonAppetitCalculator {
-
-  private Integer compute(List<Integer> prices, int itemAvoided){
-    Integer charged = prices.stream().mapToInt(Integer::intValue).sum() / 2;
-    prices.remove(itemAvoided);
-    Integer fair = prices.stream().mapToInt(Integer::intValue).sum() / 2;
-    return charged - fair;
-  }
-
-  public static void main(String[] args){
-    List<Integer> prices = new LinkedList<Integer>(Arrays.asList(3, 10, 2, 9));
-    int itemAvoided = 1;
-    Integer result = new BonAppetitCalculator().compute(prices, itemAvoided);
-    assert 5 == result;
   }
 
 }
