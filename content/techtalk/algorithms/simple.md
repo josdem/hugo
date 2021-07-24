@@ -46,29 +46,26 @@ assert isPalindrome('anitalavalatina')
 ## Biggest Number
 </a>
 
-From a string list with character, number pair elements, extract number and get the biggest
+Messages with random data are coming! But we just care about numbers!
+Your task is to implement a function which removes all non numeric data and return just the biggest number
+messages = ["hi", "2", "@#$%", "32"]
+result = 32
 
-example: "a1", "b2", "c3" biggest: 3
 
 ```java
-import java.util.OptionalInt;
-import java.util.Arrays;
 import java.util.List;
 
-public class BiggestNumber {
+public class BiggestNumberFinder {
 
-  private OptionalInt find(List<String> strings){
-    return strings.stream().map(s -> s.substring(1))
-           .mapToInt(Integer::parseInt)
-           .max();
+  private String regex = "-?[0-9]+.?[0-9]+";
+
+  public double find(List<String> numbers) {
+    return numbers.stream()
+        .filter(it -> it.matches(regex))
+        .map(it -> Double.parseDouble(it))
+        .max(Double::compare)
+        .get();
   }
-
-  public static void main(String[] args){
-    List<String> strings = Arrays.asList("a1","b2","c3");
-    OptionalInt result = new BiggestNumber().find(strings);
-    assert result.getAsInt() == 3;
-  }
-
 }
 ```
 
@@ -552,11 +549,8 @@ public class MinMaxFinder {
 ## Birthday Cake Candles
 </a>
 
-Colleen is having a birthday! She will have a cake with one candle for each year of her age. When she blows out the candles, she’ll only be able to blow out the tallest ones.
-
-**Output**
-
-A integer denoting the number of candles the can be blown out.
+It is your birthday! And you want to make it special, so you want to keep only biggest candles in the cake
+Your task is to create a function that removes all small candles and just keep the biggest ones.
 
 **Sample Input**
 
@@ -567,37 +561,24 @@ A integer denoting the number of candles the can be blown out.
 **Sample Output**
 
 ```bash
-2
+[3,3]
 ```
-
-**Explanation**
-
-The maximum candle height is 3 and there are two candles of that height.
 
 **Solution**
 
 ```java
 import java.util.List;
-import java.util.Arrays;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
-public class BirthdayCakeCandlesCounter {
+public class CandleCounter {
 
-  private Integer count(List<Integer> sizes){
-    Optional<Integer> max = sizes.stream().max(Integer::compare);
-    Long result = sizes.stream().filter(it -> it == max.get()).count();
-    return result.intValue();
+  public List<Integer> count(List<Integer> candles) {
+    Optional<Integer> biggest = candles.stream().max(Integer::compare);
+    return candles.stream().filter(it -> it == biggest.get()).collect(Collectors.toList());
   }
-
-  public static void main(String[] args){
-    List<Integer> sizes = Arrays.asList(3, 2, 1, 3);
-    Integer result = new BirthdayCakeCandlesCounter().count(sizes);
-    assert 2 == result;
-  }
-
 }
 ```
-
 
 <a name="Breaking_Records">
 ## Breaking The Records
