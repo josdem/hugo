@@ -6,9 +6,7 @@ date = "2016-07-17T14:56:13-05:00"
 description = "Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API."
 +++
 
-Swagger is a simple yet powerful representation of your RESTful API. Where you can keep your documentation attached with the evolution of your project. With Swagger UI you will have a web interface that allows you to easily interact with API's resources without having any implamentation in place. To know more about Swagger please visit it's official web site [here](https://swagger.io/).
-
-**NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
+The open API specification, previously known as Swagger specification defines standard, language-agnostic interface to [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API's which allows to understand service's capabilities without access the code. Where you can keep your documentation attached with the evolution of your project. With Swagger UI you will have a web interface that allows you to easily interact with API's resources without having any implamentation in place. An Open API specification can then be used by code generation tools to generate servers and clients, testing tools and many more test cases. To know more about Swagger please visit it's official web site [here](https://swagger.io/). **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
 
 Then execute this command in your terminal:
 
@@ -21,16 +19,17 @@ This is the `build.gradle` generated file:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.2.4.RELEASE'
-  id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+  id 'org.springframework.boot' version '2.5.3'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 
-def springfoxVersion = '2.9.2'
+def springfoxVersion = '3.0.0'
+def springfoxUiVersion = '2.9.2'
 
 group = 'com.jos.dem.swagger'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '12'
+sourceCompatibility = '15'
 
 configurations {
   compileOnly {
@@ -44,11 +43,10 @@ repositories {
 
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-validation'
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
-  testImplementation('org.springframework.boot:spring-boot-starter-test') {
-    exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-  }
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {
@@ -70,7 +68,6 @@ Next step is to create a Swagger Configuration file:
 ```java
 package com.jos.dem.swagger.config;
 
-import com.google.common.collect.Sets;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -80,6 +77,8 @@ import springfox.documentation.service.ApiInfo;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
+
+import java.util.Set;
 
 @Configuration
 @EnableSwagger2
@@ -92,7 +91,7 @@ public class SwaggerConfig {
   public Docket createDocket() {
     return new Docket(DocumentationType.SWAGGER_2)
         .useDefaultResponseMessages(false)
-        .protocols(Sets.newHashSet("https", "http"))
+        .protocols(Set.of("https", "http"))
         .apiInfo(apiInfo())
         .select()
         .apis(RequestHandlerSelectors.basePackage("com.jos.dem.swagger"))
