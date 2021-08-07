@@ -282,7 +282,7 @@ You should be able to hit the endpoint to create request to your API using Swagg
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
 
 ```bash
-spring init --dependencies=web,lombok --language=java --build=gradle boot-configuration
+spring init --dependencies=web,lombok --language=java --build=maven boot-configuration
 ```
 
 This is the pom.xml file generated:
