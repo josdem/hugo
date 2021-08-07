@@ -59,7 +59,7 @@ Then add swagger dependencies in your `build.gradle` file
 ```groovy
 dependencies {
   compile "io.springfox:springfox-swagger2:${springfoxVersion}"
-  compile "io.springfox:springfox-swagger-ui:${springfoxVersion}"
+  compile "io.springfox:springfox-swagger-ui:${springfoxUiVersion}"
 }
 ```
 
@@ -275,6 +275,96 @@ You should be able to hit the endpoint to create request to your API using Swagg
 
 
 <img src="/img/techtalks/spring/swagger.png">
+
+
+**Using Maven**
+
+You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
+
+```bash
+spring init --dependencies=web,lombok --language=java --build=gradle boot-configuration
+```
+
+This is the pom.xml file generated:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.5.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.jos.dem.swagger</groupId>
+	<artifactId>boot-configuration</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>boot-configuration</name>
+	<description>com.jos.dem.swagger</description>
+	<properties>
+		<java.version>15</java.version>
+		<springfox-version>3.0.0</springfox-version>
+		<springfox-ui-version>2.9.2</springfox-ui-version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger2</artifactId>
+			<version>${springfox-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.springfox</groupId>
+			<artifactId>springfox-swagger-ui</artifactId>
+			<version>${springfox-ui-version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
+```
+
+To run the project with Maven:
+
+```bash
+mvn spring-boot:run
+```
 
 To browse the code go [here](https://github.com/josdem/swagger-spring), to download the project:
 
