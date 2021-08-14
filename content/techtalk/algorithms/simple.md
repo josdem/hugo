@@ -20,7 +20,6 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Plus Minus](#Plus_Minus)
 * [Min-Max Sum](#Min_Max_Sum)
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
-* [Breaking the Records](#Breaking_Records)
 * [String Compressor](#String_Compressor)
 * [Sock Merchant](#Sock_Merchant)
 * [Electronics Shop](#Electronics_Shop)
@@ -577,83 +576,6 @@ public class CandleCounter {
   }
 }
 ```
-
-<a name="Breaking_Records">
-## Breaking The Records
-</a>
-
-Maria plays `n` games of college basketball in a season. Because she wants to go pro, she tracks her points scored per game sequentially in an array defined as:
-
-```bash
-score = [s0, s1, s2, ..., sn]
-```
-
-After each game `i`, she checks to see if score `s` breaks her record for most or least points scored so far during that season.
-
-Given Maria's array of `scores` for a season of `n` games, find the number of times she breaks her record for most and least points scored during the season.
-
-**Note:** Assume her records for most and least points at the start of the season are the number of points scored during the first game of the season.
-
-
-**Sample Input**
-
-```bash
-[10, 5, 20, 20, 4, 5, 2, 25, 1]
-```
-
-**Sample Output**
-
-```bash
-[2, 4]
-```
-
-**Explanation**
-
-She broke her best record twice and her worst record four times.
-
-
-**Solution**
-
-```java
-import java.util.List;
-import java.util.Arrays;
-
-public class BreackingRecordsCounter {
-
-  private Pair count(List<Integer> scores){
-    Integer highest = scores.get(0);
-    Integer lowest = scores.get(0);
-    Integer highestCounter = 0;
-    Integer lowestCoutner = 0;
-
-    for(Integer score : scores){
-      if(score > highest) {
-        highestCounter++;
-        highest = score;
-      }
-      if(score < lowest){
-        lowestCoutner++;
-        lowest = score;
-      }
-    }
-
-    return new Pair(highestCounter, lowestCoutner);
-  }
-
-  public static void main(String[] args){
-    List<Integer> scores = Arrays.asList(10, 5, 20, 20, 4, 5, 2, 25, 1);
-    Pair result = new BreackingRecordsCounter().count(scores);
-    assert 2 == result.getHighest();
-    assert 4 == result.getLowest();
-  }
-
-}
-```
-
-
-Pair is just a POJO for containing highest and lowest values.
-
-This solution kind is `O(N)` since the algorithm performance will grow linearly and in direct proportion to the size of the input data set.
 
 <a name="String_Compressor">
 ## String Compressor
