@@ -8,9 +8,8 @@ description = "This section is about solving simple algorithms, coding challenge
 
 This section is about solving simple algorithms, coding challenges, puzzles, katas and dojo material in Java.
 
-* [Biggest Number](#Biggest_Number)
 * [Sum a Collection](#Sum_a_Collection)
-* [Staircase](#Staircase)
+* [Biggest Number](#Biggest_Number)
 * [Most Popular in the array](#Most_Popular_in_the_Array)
 * [Center Point in 2d Array](#Center_Point_in_2d_Array)
 * [Power Set](#Power_Set)
@@ -24,6 +23,23 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Electronics Shop](#Electronics_Shop)
 * [Square my List](#Square_my_List)
 
+
+<a name="Sum_a_Collection">
+## Sum a Collection
+</a>
+
+Given an array of integers, find the sum of its elements.
+
+```java
+import java.util.List;
+
+public class CollectionAdder {
+
+    public int sum(List<Integer> numbers) {
+        return numbers.stream().reduce(0, Integer::sum);
+    }
+}
+```
 
 <a name="Biggest_Number">
 ## Biggest Number
@@ -52,87 +68,11 @@ public class BiggestNumberFinder {
 }
 ```
 
-<a name="Sum_a_Collection">
-## Sum a Collection
-</a>
-
-Given an array of integers, find the sum of its elements.
-
-```java
-import java.util.List;
-
-public class CollectionAdder {
-
-    public int sum(List<Integer> numbers) {
-        return numbers.stream().reduce(0, Integer::sum);
-    }
-}
-```
-
-<a name="Staircase">
-## Staircase
-</a>
-
-Consider a staircase of size 4:
-
-```
-#
-##
-###
-####
-```
-
-Observe that its base and height are both equal. Write a program that prints a staircase of size `n`.
-
-```java
-public class Staircase {
-
-  private void printStair(Integer size){
-    for(int j=1; j<=size; j++){
-      for(int i=1; i<=j; i++){
-        System.out.print("#");
-      }
-      System.out.print("\n");
-    }
-  }
-
-  public static void main(String[] args){
-    Integer size = 4;
-    new Staircase().printStair(size);
-  }
-
-}
-```
-
 <a name="Most_Popular_in_the_Array">
 ## Most Popular in the Array
 </a>
 
-Assume I have an array that looks like the following:
-
-```groovy
-def array = [34,31,34,56,12,35,24,34,69,18]
-```
-
-Write a function that can determine what is the most popular in the array, in this case "34" because it is the number that appears the most often.
-
-**Groovy Version**
-
-```groovy
-Integer mostPopular(def array){
-  Integer occurrences = 0
-  Integer mostPopular = 0
-  array.each{
-    if(array.count { it } > occurrences){
-      occurrences = array.count { it }
-      mostPopular = it
-    }
-  }
-  mostPopular
-}
-```
-
-**Java Version**
+Assume I have an array that looks like the following: `[34 , 31, 34, 56, 12, 35, 24, 34, 69, 18]` Write a function that can determine what is the most popular in the array, in this case "34" because it is the number that appears the most often.
 
 ```java
 import java.util.Map;
@@ -146,10 +86,10 @@ public class PopularDetector {
   private Integer find(List<Integer> numbers){
      Integer value = numbers.stream()
        .collect(Collectors.groupingBy(it -> it, Collectors.counting()))
-       .entrySet()                                     // 1
+       .entrySet()
        .stream()
        .max(Comparator.comparing(Map.Entry::getValue))
-       .get()                                          // 2
+       .get()
        .getKey();
      return value;
   }
@@ -163,10 +103,6 @@ public class PopularDetector {
 
 }
 ```
-
-1. Gets Map.Entry interface
-2. Gets entry resultant from max comparator
-
 
 <a name="Center_Point_in_2d_Array">
 ## Center Point in 2d Array
