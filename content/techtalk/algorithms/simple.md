@@ -6,9 +6,8 @@ title = "Algorithms"
 description = "This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy."
 +++
 
-This section is about solving simple algorithms, coding challenges, puzzles, katas and dojos in Java and Groovy.
+This section is about solving simple algorithms, coding challenges, puzzles, katas and dojo material in Java.
 
-* [Find Palindrome](#Palindrome)
 * [Biggest Number](#Biggest_Number)
 * [Sum a Collection](#Sum_a_Collection)
 * [Staircase](#Staircase)
@@ -25,19 +24,6 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Electronics Shop](#Electronics_Shop)
 * [Square my List](#Square_my_List)
 
-<a name="Palindrome">
-## Palindrome
-</a>
-
-A Palindrome is a word phrase, or number that reads the same backward or forward.
-
-```groovy
-Boolean isPalindrome(String string){
-  string.reverse().equals(string)
-}
-
-assert isPalindrome('anitalavalatina')
-```
 
 <a name="Biggest_Number">
 ## Biggest Number
@@ -72,33 +58,14 @@ public class BiggestNumberFinder {
 
 Given an array of integers, find the sum of its elements.
 
-**Groovy Version**
-
-```groovy
-def array = [1, 2, 3, 4, 10, 11]
-println array.sum{it}
-```
-
-
-**Java Version**
-
 ```java
 import java.util.List;
-import java.util.Arrays;
-import java.util.stream.IntStream;
 
-public class CollectionSum {
+public class CollectionAdder {
 
-  private Integer sum(List<Integer> array){
-    return array.stream().mapToInt(it -> it).sum();
-  }
-
-  public static void main(String[] args){
-    List<Integer> array = Arrays.asList(1,2,3,4,10,11);
-    Integer result = new CollectionSum().sum(array);
-    System.out.println(result);
-  }
-
+    public int sum(List<Integer> numbers) {
+        return numbers.stream().reduce(0, Integer::sum);
+    }
 }
 ```
 
