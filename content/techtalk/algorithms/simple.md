@@ -31,7 +31,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 
 Messages with random data are coming! But we just care about numbers!
 Your task is to implement a function which removes all non numeric data and return just the biggest number
-messages = ["hi", "2", "@#$%", "32"]
+messages = `["hi", "2", "@#$%", "32"]`
 result = 32
 
 
