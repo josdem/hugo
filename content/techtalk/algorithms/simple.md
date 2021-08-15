@@ -46,9 +46,7 @@ public class CollectionAdder {
 </a>
 
 Messages with random data are coming! But we just care about numbers!
-Your task is to implement a function which removes all non numeric data and return just the biggest number
-messages = `["hi", "2", "@#$%", "32"]`
-result = 32
+Your task is to implement a function which removes all non numeric data and return just the biggest number messages = `"hi", "2", "@#$%", "32"` result = 32
 
 
 ```java
@@ -72,7 +70,7 @@ public class BiggestNumberFinder {
 ## Most Popular in the Array
 </a>
 
-Assume I have an array that looks like the following: `[34 , 31, 34, 56, 12, 35, 24, 34, 69, 18]` Write a function that can determine what is the most popular in the array, in this case "34" because it is the number that appears the most often.
+Assume I have a collection with numners with: `34 , 31, 34, 56, 12, 35, 24, 34, 69, 18` Write a function that can determine what is the most popular in the array, in this case "34" because it is the number that appears the most often.
 
 ```java
 import java.util.Map;
