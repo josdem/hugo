@@ -70,35 +70,26 @@ public class BiggestNumberFinder {
 ## Most Popular in the Array
 </a>
 
-Assume I have a collection with numners with: `34 , 31, 34, 56, 12, 35, 24, 34, 69, 18` Write a function that can determine what is the most popular in the array, in this case "34" because it is the number that appears the most often.
+Given a collection with numbers: `34 , 31, 34, 56, 12, 35, 24, 34, 69, 18` mber in the array, in this case 34 because it is the number that appears most often.
 
 ```java
-import java.util.Map;
-import java.util.List;
-import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class PopularDetector {
+public class PopularFinder {
 
-  private Integer find(List<Integer> numbers){
-     Integer value = numbers.stream()
-       .collect(Collectors.groupingBy(it -> it, Collectors.counting()))
-       .entrySet()
-       .stream()
-       .max(Comparator.comparing(Map.Entry::getValue))
-       .get()
-       .getKey();
-     return value;
+  public int find(List<Integer> numbers) {
+    return numbers.stream()
+        .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
+        .entrySet()
+        .stream()
+        .max(Comparator.comparing(Map.Entry::getValue))
+        .get()
+        .getKey();
   }
-
-
-  public static void main(String[] args){
-    List<Integer> numbers = Arrays.asList(34,31,34,56,12,35,24,34,69,18);
-    Integer result = new PopularDetector().find(numbers);
-    assert result == 34;
-  }
-
 }
 ```
 
