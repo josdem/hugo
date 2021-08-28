@@ -12,7 +12,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Biggest Number](#Biggest_Number)
 * [Most Popular in the array](#Most_Popular_in_the_Array)
 * [Common Elements in two Collections](#Common_Elements_in_two_Collections)
-* [Plus Minus](#Plus_Minus)
+* [Plus Minus](#Number_Counter)
 * [Min-Max Sum](#Min_Max_Sum)
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [String Compressor](#String_Compressor)
@@ -129,65 +129,39 @@ public class CommonElementsFinder {
 ```
 
 
-<a name="Plus_Minus">
-## Plus Minus
+<a name="Number_Counter">
+## Number Counter
 </a>
 
-Given an array of integers, calculate which fraction of its elements are positive, which fraction of its elements are negative, and which fraction of its elements are zeroes, respectively.
-
-**Output**
-
-* A decimal representing of the fraction of positive numbers in the array compared to its size.
-* A decimal representing of the fraction of negative numbers in the array compared to its size.
-* A decimal representing of the fraction of zeroes in the array compared to its size.
-
+Given an integer collection, return an array with three elements:
+how many of them are positive, how many negative and how many are zeros.
 
 **Sample Input**
 
 ```bash
-[-4,3,-9,0,4,1]
+[-4, 3, -9, 0, 4, 1]
 ```
 
-
-**Sample Output**
+**Expected Output**
 
 ```bash
-0.5
-0.333333
-0.166667
+[3, 2, 1]
 ```
-
-**Explanation**
-
-There are `3` positive numbers, `2` negative numbers, and `1` zero in the array.
-
-The respective fractions of positive numbers, negative numbers and zeroes are: `$\frac{3}{6} = 0.5, \frac{2}{6} = 0.333333, \frac{1}{6} = 0.166667$` respectively.
 
 **Solution**
 
 ```java
-import java.util.List;
 import java.util.Arrays;
-import java.util.ArrayList;
 
-public class PlusMinusFinder {
+public class NumbersCounter {
 
-  private float[] find(List<Integer> numbers){
-    float[] result = new float[3];
-    result[0] = numbers.stream().filter(it -> it > 0).count() / (float)numbers.size();
-    result[1] = numbers.stream().filter(it -> it < 0).count() / (float)numbers.size();
-    result[2] = numbers.stream().filter(it -> it == 0).count() / (float)numbers.size();
-    return result;
-  }
-
-  public static void main(String[] args){
-    List<Integer> numbers = Arrays.asList(-4,3,-9,0,4,1);
-    float[] result = new PlusMinusFinder().find(numbers);
-    assert 0.5f == result[0];
-    assert 0.33333334f == result[1];
-    assert 0.16666667f == result[2];
-  }
-
+    public int[] count(int[] numbers) {
+        return new int[]{
+                (int)Arrays.stream(numbers).filter(n -> n > 0).count(),
+                (int)Arrays.stream(numbers).filter(n -> n < 0).count(),
+                (int)Arrays.stream(numbers).filter(n -> n == 0).count()
+        };
+    }
 }
 ```
 
