@@ -12,7 +12,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Biggest Number](#Biggest_Number)
 * [Most Popular in the array](#Most_Popular_in_the_Array)
 * [Common Elements in two Collections](#Common_Elements_in_two_Collections)
-* [Plus Minus](#Number_Counter)
+* [Number Counter](#Number_Counter)
 * [Min-Max Sum](#Min_Max_Sum)
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [String Compressor](#String_Compressor)
@@ -127,7 +127,6 @@ public class CommonElementsFinder {
 
 }
 ```
-
 
 <a name="Number_Counter">
 ## Number Counter
