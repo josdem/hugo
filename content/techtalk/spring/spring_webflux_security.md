@@ -6,36 +6,51 @@ date = "2018-04-10T09:46:11-05:00"
 description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project."
 +++
 
-Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate Spring Security to your Spring Reactive Webflux project. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's start creating a new Spring Boot project with Webflux, Security and Thymeleaf as dependencies:
+Spring Security is a powerful and highly customizable authentication and access-control framework. In this technical post we will go through the process to integrate Spring Security to Spring Reactive Webflux. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's begin creating a new Spring Boot project with Webflux, Lombok, Spring Security and Thymeleaf:
 
 ```bash
-spring init --dependencies=webflux,security,thymeleaf --build=gradle --language=java reactive-webflux-security
+spring init --dependencies=webflux,lombok,security,thymeleaf --build=gradle --language=java reactive-webflux-security
 ```
 
 Here is the complete `build.gradle` file generated:
 
 ```java
 plugins {
-  id 'org.springframework.boot' version '2.1.5.RELEASE'
+  id 'org.springframework.boot' version '2.5.4'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
 group = 'com.jos.dem.security'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 16
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
-  implementation('org.springframework.boot:spring-boot-starter-security')
-  implementation('org.springframework.boot:spring-boot-starter-thymeleaf')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testImplementation('io.projectreactor:reactor-test')
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
+  testImplementation 'org.springframework.security:spring-security-test'
+  testCompileOnly 'org.projectlombok:lombok'
+  testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+test {
+  useJUnitPlatform()
 }
 ```
 
@@ -44,41 +59,39 @@ Spring Security’s `@EnableWebFluxSecurity` annotation enable WebFlux support i
 ```java
 package com.jos.dem.security.config;
 
+import com.jos.dem.security.model.Roles;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
+import org.springframework.security.core.userdetails.MapReactiveUserDetailsService;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.server.SecurityWebFilterChain;
 
 @EnableWebFluxSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+  private final ApplicationConfig config;
 
   @Bean
   public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-    http
-      .authorizeExchange()
-      .anyExchange()
-      .authenticated()
-      .and()
-      .httpBasic()
-      .and()
-      .formLogin();
+    http.authorizeExchange().anyExchange().authenticated().and().httpBasic().and().formLogin();
     return http.build();
   }
 
+  @SuppressWarnings("deprecation")
   @Bean
   public MapReactiveUserDetailsService userDetailsService() {
-    UserDetails user = User.withDefaultPasswordEncoder()
-      .username("josdem")
-      .password("12345678")
-      .roles("USER")
-      .build();
+    UserDetails user =
+        User.withDefaultPasswordEncoder()
+            .username(config.getUsername())
+            .password(config.getPassword())
+            .roles(Roles.USER.name())
+            .build();
     return new MapReactiveUserDetailsService(user);
   }
-
 }
 ```
 
@@ -87,19 +100,18 @@ public class SecurityConfig {
 ```java
 package com.jos.dem.security.controller;
 
-import org.springframework.ui.Model;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.security.Principal;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+@Slf4j
 @Controller
-public class DemoController {
-
-  private Logger log = LoggerFactory.getLogger(this.getClass());
+@RequiredArgsConstructor
+public class SecurityController {
 
   @GetMapping("/")
   public String index(Model model, Principal principal) {
@@ -108,7 +120,6 @@ public class DemoController {
     model.addAttribute("username", username);
     return "home";
   }
-
 }
 ```
 
@@ -141,12 +152,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class SecurityApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(DemoApplication.class, args);
+    SpringApplication.run(SecurityApplication.class, args);
   }
-
 }
 ```
 
@@ -161,7 +171,7 @@ gradle bootRun
 You can do the same using Maven, the only difference is that you need to specify `--build=maven` parameter in the `spring init` command line:
 
 ```bash
-spring init --dependencies=webflux,security,thymeleaf --build=maven --language=java reactive-webflux-security
+spring init --dependencies=webflux,lombok,security,thymeleaf --build=maven --language=java reactive-webflux-security
 ```
 
 And when you run your project use this command:
@@ -177,26 +187,25 @@ This is the pom.xml file generated:
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
 
   <groupId>com.jos.dem.webflux</groupId>
   <artifactId>reactive-webflux-workshop</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>demo</name>
   <description>Demo project for Spring Webflux Security</description>
 
-  <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.5.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
-  </parent>
-
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>11</java.version>
+    <java.version>16</java.version>
   </properties>
 
   <dependencies>
@@ -212,7 +221,15 @@ This is the pom.xml file generated:
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>org.thymeleaf.extras</groupId>
+      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
@@ -235,6 +252,14 @@ This is the pom.xml file generated:
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
