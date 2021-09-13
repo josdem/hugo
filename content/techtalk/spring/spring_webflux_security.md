@@ -6,7 +6,7 @@ date = "2018-04-10T09:46:11-05:00"
 description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Reactive Webflux project."
 +++
 
-Spring Security is a powerful and highly customizable authentication and access-control framework. In this technical post we will go through the process to integrate Spring Security to Spring Reactive Webflux. If you want to know more about how to create Spring Webflux please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's begin creating a new Spring Boot project with Webflux, Lombok, Spring Security and Thymeleaf:
+Spring Security is a powerful and highly customizable authentication and access-control framework. In this technical post we will go through the process to integrate Spring Security to Spring Reactive Webflux. If you want to know more about how to create a Spring Webflux application please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's begin creating a new Spring Boot project with Webflux, Lombok, Spring Security and Thymeleaf:
 
 ```bash
 spring init --dependencies=webflux,lombok,security,thymeleaf --build=gradle --language=java reactive-webflux-security
