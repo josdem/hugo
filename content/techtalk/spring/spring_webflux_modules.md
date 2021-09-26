@@ -16,18 +16,18 @@ Here is the complete `build.gradle` file with jar and dependencyManagement closu
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.4.RELEASE' apply false
-  id 'io.spring.dependency-management' version '1.0.6.RELEASE'
+  id 'org.springframework.boot' version '2.5.4' apply false
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 
 jar {
   baseName = 'spring-boot-module-library'
-  version = '0.0.1-SNAPSHOT'
+  version = '1.0.0-SNAPSHOT'
 }
 
 group = 'com.jos.dem.springboot.module.library'
-sourceCompatibility = 1.11
+sourceCompatibility = 16
 
 repositories {
   mavenCentral()
@@ -35,9 +35,9 @@ repositories {
 
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testImplementation('io.projectreactor:reactor-test')
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
 }
 
 dependencyManagement {
@@ -45,9 +45,13 @@ dependencyManagement {
     mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
   }
 }
+
+test {
+  useJUnitPlatform()
+}
 ```
 
-Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin. The `SpringBootPlugin` class provides a `BOM_COORDINATES`, a downside of this method is that it forces us to specify the version of the dependency management plugin. Let's create a service so we can use it in our application module.
+Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin, therefore we want to use: `apply false`. `SpringBootPlugin` class provides a `BOM_COORDINATES`. Let's create a service so we can use it in our application module.
 
 ```java
 package com.jos.dem.springboot.module.library.service;
@@ -80,25 +84,28 @@ This is the `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.4.RELEASE'
+  id 'org.springframework.boot' version '2.5.4'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
 
-apply plugin: 'io.spring.dependency-management'
-
 group = 'com.jos.dem.springboot.module'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.11
+version = '1.0.0-SNAPSHOT'
+sourceCompatibility = 16
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation 'org.springframework.boot:spring-boot-starter-webflux'
   implementation project(':library')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testImplementation('io.projectreactor:reactor-test')
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
+}
+
+test {
+  useJUnitPlatform()
 }
 ```
 
