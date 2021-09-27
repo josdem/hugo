@@ -6,13 +6,13 @@ tags = ["josdem", "techtalks","programming","technology","spring boot"]
 categories = ["techtalk", "code", "spring boot"]
 +++
 
-In this technical post, we will review how to build a multi-module project using Gradle and Maven with Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as a library:
+In this technical post, we will review how to build a multi-module project using Gradle and Maven with Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot/). Let's start creating a new Spring Boot project with Webflux as a library:
 
 ```bash
-spring init --dependencies=webflux,loombok --build=gradle --language=java library
+spring init --dependencies=webflux,lombok --build=gradle --language=java library
 ```
 
-Here is the complete `build.gradle` file with jar and dependencyManagement closures included:
+Here is the complete `build.gradle` generated:
 
 ```groovy
 plugins {
@@ -53,7 +53,7 @@ test {
 }
 ```
 
-Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin, therefore we want to use: `apply false`. `SpringBootPlugin` provides a `BOM_COORDINATES` to handle project's versions and dependencies. Let's create a service so we can use it in our application module.
+Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying some Spring Boot’s features, therefore we will use: `apply false`. `SpringBootPlugin` provides a `BOM_COORDINATES` to handle project's versions and dependencies. Let's create a service so we can use it in our application module.
 
 ```java
 package com.jos.dem.springboot.module.library.service;
@@ -168,7 +168,7 @@ public class ModuleApplication {
 
 We need to provide a message for the service in the library by using `$PROJECT_HOME/application/src/main/resources/application.yml`.
 
-```yml
+```yaml
 app:
   message: 'Hello World!'
 ```
@@ -182,7 +182,7 @@ include 'library'
 include 'application'
 ```
 
-To run the project: Build the library first and then run the application. From `$PROJECT_HOME`:
+To run the project: Build the library first with `mvn install` and then run the application. From `$PROJECT_HOME`:
 
 ```bash
 gradle build :application:bootRun
