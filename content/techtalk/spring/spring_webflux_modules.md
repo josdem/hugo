@@ -9,33 +9,35 @@ categories = ["techtalk", "code", "spring boot"]
 In this technical post, we will review how to build a multi-module project using Gradle and Maven with Spring Boot. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot). Let's start creating a new Spring Boot project with Webflux as a library:
 
 ```bash
-spring init --dependencies=webflux --build=gradle --language=java library
+spring init --dependencies=webflux,loombok --build=gradle --language=java library
 ```
 
 Here is the complete `build.gradle` file with jar and dependencyManagement closures included:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.5.4' apply false
+  id 'org.springframework.boot' version '2.5.5' apply false
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
-}
-
-jar {
-  baseName = 'spring-boot-module-library'
-  version = '1.0.0-SNAPSHOT'
 }
 
 group = 'com.jos.dem.springboot.module.library'
 sourceCompatibility = 16
 
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 repositories {
   mavenCentral()
 }
 
-
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'io.projectreactor:reactor-test'
 }
@@ -51,24 +53,26 @@ test {
 }
 ```
 
-Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin, therefore we want to use: `apply false`. `SpringBootPlugin` class provides a `BOM_COORDINATES`. Let's create a service so we can use it in our application module.
+Since we are creating a library here, we want Spring Boot’s dependency management to be used in this project without applying Spring Boot’s plugin, therefore we want to use: `apply false`. `SpringBootPlugin` provides a `BOM_COORDINATES` to handle project's versions and dependencies. Let's create a service so we can use it in our application module.
 
 ```java
 package com.jos.dem.springboot.module.library.service;
 
+import com.jos.dem.springboot.module.library.config.LibraryProperties;
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 import org.springframework.stereotype.Service;
 import org.springframework.beans.factory.annotation.Value;
 
 @Service
+@RequiredArgsConstructor
 public class MessageService {
 
-  @Value("${message}")
-  private String message;
+  private final LibraryProperties libraryProperties;
 
   public Mono<String> getMessage(){
-    return Mono.just(message);
+    return Mono.just(libraryProperties.getMessage());
   }
 
 }
@@ -77,14 +81,14 @@ public class MessageService {
 Next, let's create an application project, from the `$PROJECT_HOME:`
 
 ```bash
-spring init --dependencies=webflux --build=gradle --language=java application
+spring init --dependencies=webflux,lombok --build=gradle --language=java application
 ```
 
 This is the `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.5.4'
+  id 'org.springframework.boot' version '2.5.5'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
@@ -93,6 +97,12 @@ group = 'com.jos.dem.springboot.module'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 16
 
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 repositories {
   mavenCentral()
 }
@@ -100,6 +110,8 @@ repositories {
 dependencies {
   implementation 'org.springframework.boot:spring-boot-starter-webflux'
   implementation project(':library')
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
   testImplementation 'org.springframework.boot:spring-boot-starter-test'
   testImplementation 'io.projectreactor:reactor-test'
 }
@@ -114,19 +126,19 @@ That's it, we are importing our library as project dependency using Gradle imple
 ```java
 package com.jos.dem.springboot.module.controller;
 
+import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import com.jos.dem.springboot.module.library.service.MessageService;
 
 @RestController
+@RequiredArgsConstructor
 public class ModuleController {
 
-  @Autowired
-  private MessageService messageService;
+  private final MessageService messageService;
 
   @GetMapping("/")
   public Mono<String> index(){
@@ -154,13 +166,14 @@ public class ModuleApplication {
 }
 ```
 
-We need to provide a message for the service in the library via `$PROJECT_HOME/application/src/main/resources/application.properties`.
+We need to provide a message for the service in the library by using `$PROJECT_HOME/application/src/main/resources/application.yml`.
 
-```properties
-message=Hello World!
+```yml
+app:
+  message: 'Hello World!'
 ```
 
-Finally add a `settings.gradle` to the root directory to drive the build at the top level.
+Finally add a `settings.gradle` to the root directory to drive our build at the top level.
 
 ```bash
 rootProject.name = 'spring-boot-module'
@@ -188,19 +201,19 @@ You can do the same using Maven, the only difference is that you need to specify
 
   <groupId>com.jos.dem.springboot.module</groupId>
   <artifactId>library</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.4.RELEASE</version>
+    <version>2.5.5</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>11</java.version>
+    <java.version>16</java.version>
   </properties>
 
   <dependencies>
@@ -228,19 +241,19 @@ Here is the application pom file:
 
   <groupId>com.jos.dem.springboot.module</groupId>
   <artifactId>application</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.4.RELEASE</version>
+    <version>2.5.5</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>11</java.version>
+    <java.version>16</java.version>
   </properties>
 
   <dependencies>
@@ -251,7 +264,7 @@ Here is the application pom file:
     <dependency>
       <groupId>com.jos.dem.springboot.module</groupId>
       <artifactId>library</artifactId>
-      <version>0.0.1-SNAPSHOT</version>
+      <version>1.0.0-SNAPSHOT</version>
     </dependency>
 
     <dependency>
@@ -283,13 +296,13 @@ And this is our `pom.xml` in the `$PROJECT_HOME` directory.
 
   <groupId>com.jos.dem.springboot.module</groupId>
   <artifactId>spring-boot-module</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.4.RELEASE</version>
+    <version>2.5.5</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
