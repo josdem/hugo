@@ -182,7 +182,7 @@ include 'library'
 include 'application'
 ```
 
-To run the project: Build the library first with `mvn install` and then run the application. From `$PROJECT_HOME`:
+To run the project from `$PROJECT_HOME`:
 
 ```bash
 gradle build :application:bootRun
@@ -314,7 +314,7 @@ And this is our `pom.xml` in the `$PROJECT_HOME` directory.
 </project>
 ```
 
-Build the library first and then run the application. From `$PROJECT_HOME`:
+Build the library first with `mvn install` and then run the application. From `$PROJECT_HOME`:
 
 ```bash
 mvn install spring-boot:run -pl application
