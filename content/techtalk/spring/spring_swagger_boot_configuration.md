@@ -6,7 +6,7 @@ date = "2016-07-17T14:56:13-05:00"
 description = "Swagger is a simple yet powerful representation of your RESTful API. With Swagger you can keep your documentation attached with the evolution of your code and with Swagger UI you'll have a web interface that allows you to easily create GET and POST request to your API."
 +++
 
-The open API specification, previously known as Swagger specification defines standard, language-agnostic interface to [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API's which allows to understand service's capabilities without access the code. Where you can keep your documentation attached with the evolution of your project. With Swagger UI you will have a web interface that allows you to easily interact with API's resources without having any implamentation in place. An Open API specification can then be used by code generation tools to generate servers and clients, testing tools and many more test cases. To know more about Swagger please visit it's official web site [here](https://swagger.io/). **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring_boot)
+Open API specification, previously known as Swagger specification defines standard, language-agnostic interface to [RESTful](https://en.wikipedia.org/wiki/Representational_state_transfer) API's which allows to understand service's capabilities without access the code. Where you can keep your documentation attached with the evolution of your project. With Swagger UI you will have a web interface that allows you to easily interact with API's resources without having any implamentation in place. An Open API specification can then be used by code generation tools to generate servers and clients, testing tools and many more. To know more about Swagger please visit it's official web site [here](https://swagger.io/). **NOTE:** If you need to know what tools you need to have installed in yout computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
 
 Then execute this command in your terminal:
 
@@ -19,7 +19,7 @@ This is the `build.gradle` generated file:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.5.3'
+  id 'org.springframework.boot' version '2.5.5'
   id 'io.spring.dependency-management' version '1.0.11.RELEASE'
   id 'java'
 }
@@ -29,7 +29,6 @@ def springfoxUiVersion = '2.9.2'
 
 group = 'com.jos.dem.swagger'
 version = '1.0.0-SNAPSHOT'
-sourceCompatibility = '15'
 
 configurations {
   compileOnly {
@@ -68,7 +67,7 @@ Next step is to create a Swagger Configuration file:
 ```java
 package com.jos.dem.swagger.config;
 
-import org.springframework.beans.factory.annotation.Value;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -82,30 +81,30 @@ import java.util.Set;
 
 @Configuration
 @EnableSwagger2
+@RequiredArgsConstructor
 public class SwaggerConfig {
 
-  @Value("${api.version}")
-  private String version;
+    private final ApplicationProperties applicationProperties;
 
-  @Bean
-  public Docket createDocket() {
-    return new Docket(DocumentationType.SWAGGER_2)
-        .useDefaultResponseMessages(false)
-        .protocols(Set.of("https", "http"))
-        .apiInfo(apiInfo())
-        .select()
-        .apis(RequestHandlerSelectors.basePackage("com.jos.dem.swagger"))
-        .build();
-  }
+    @Bean
+    public Docket createDocket() {
+        return new Docket(DocumentationType.SWAGGER_2)
+                .useDefaultResponseMessages(false)
+                .protocols(Set.of("https", "http"))
+                .apiInfo(apiInfo())
+                .select()
+                .apis(RequestHandlerSelectors.basePackage("com.jos.dem.swagger"))
+                .build();
+    }
 
-  private ApiInfo apiInfo() {
-    return new ApiInfoBuilder()
-        .title("Spring Boot Swagger")
-        .description("Automated JSON API documentation for API's built with Spring")
-        .termsOfServiceUrl("https://josdem.io/")
-        .version(version)
-        .build();
-  }
+    private ApiInfo apiInfo() {
+        return new ApiInfoBuilder()
+                .title("Spring Boot Swagger")
+                .description("Automated JSON API documentation for API's built with Spring")
+                .termsOfServiceUrl("https://josdem.io/")
+                .version(applicationProperties.getVersion())
+                .build();
+    }
 }
 ```
 
@@ -295,7 +294,7 @@ This is the pom.xml file generated:
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.3</version>
+		<version>2.5.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.jos.dem.swagger</groupId>
