@@ -72,7 +72,7 @@ And answer prompt questions with:
 
 This will gererate a WebdriverIO configuration file named `wdio.conf.js`. Finally we can create our first test, let's create a spec file named `helloWorld.js` under `${PROJECT_HOME}/test/specs/helloWorld.js`
 
-```javaScript
+```javascript
 const assert = require('assert')
 
 describe('Loading webpage', () => {
