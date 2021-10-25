@@ -12,5 +12,6 @@ In this section I will post all referent about UX development such as Javascript
 * [Inquirer & Callback](/techtalk/ux/ux_inquirer)
 * [Mongoose](/techtalk/ux/ux_mongoose)
 * [Templating with Swig & Express](/techtalk/ux/ux_templating)
+* [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started)
 
 [Return to the main article](/techtalk/techtalks)
