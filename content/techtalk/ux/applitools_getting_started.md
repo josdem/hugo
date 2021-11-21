@@ -166,6 +166,10 @@ module.exports = {
 }
 ``` 
 
+You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see this output:
+
+<img src="/img/techtalks/ux/applitools.png">
+
 To browse the code go [here](https://github.com/josdem/applitools-workshop), to download the project:
 
 ```bash
