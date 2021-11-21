@@ -13,5 +13,6 @@ In this section I will post all referent about UX development such as Javascript
 * [Mongoose](/techtalk/ux/ux_mongoose)
 * [Templating with Swig & Express](/techtalk/ux/ux_templating)
 * [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started)
+* [Applitools Getting Started](/techtalk/ux/applitools_getting_started)
 
 [Return to the main article](/techtalk/techtalks)
