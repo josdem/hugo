@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","WebdriverIO", "Applito
 categories = ["techtalk", "code", "NodeJS", "JavaScript","WebdriverIO", "Applitools"]
 +++
 
-In the same way we open our eyes and analyze if an image looks good, [Applitools](https://applitools.com/) uses [Visual AI](https://www.syte.ai/blog/visual-ai/what-is-visual-ai/) to detect changes in our website so we can identify UI defects or validate expected new functionality. In this technical post we will go over Applitools technology and how it can save us to of time in visual components validations. **NOTE:** If you need to know how to setup a [WebdriverIO](https://webdriver.io/), please refer my previous post: [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started/). Then add Applitools dependency:
+In the same way we open our eyes and analyze if an image looks good, [Applitools](https://applitools.com/) uses [Visual AI](https://www.syte.ai/blog/visual-ai/what-is-visual-ai/) to detect changes in our website so we can identify UI defects or validate expected new functionality. In this technical post we will go over Applitools technology and how it can save us ton of time in visual components validations. **NOTE:** If you need to know how to setup a [WebdriverIO](https://webdriver.io/), please refer my previous post: [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started/). Then add Applitools dependency:
 
 ```bash
 npm i --save-dev @applitools/eyes-webdriverio
