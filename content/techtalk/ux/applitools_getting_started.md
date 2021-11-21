@@ -166,7 +166,7 @@ module.exports = {
 }
 ``` 
 
-You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see this output:
+You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see those screenshots stored at your Applitools test results dashboard:
 
 <img src="/img/techtalks/ux/applitools.png">
 
