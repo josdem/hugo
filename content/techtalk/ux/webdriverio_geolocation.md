@@ -46,7 +46,7 @@ Let's move from United States Michigan to Mexico Guadalajara.
 
 ```javascript
 describe("Checking locations", () => {
-  it("goes from Ann Arbor to Guadalajara to Amsterdam", async () => {
+  it("goes from Ann Arbor to Guadalajara", async () => {
     await LocationPage.open()
     await browser.cdp("Emulation", "setGeolocationOverride", {
       latitude: 42.3173603,
