@@ -14,5 +14,6 @@ In this section I will post all referent about UX development such as Javascript
 * [Templating with Swig & Express](/techtalk/ux/ux_templating)
 * [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started)
 * [Applitools Getting Started](/techtalk/ux/applitools_getting_started)
+* [WebdriverIO Geolocation](/techtalk/ux/webdriverio_geolocation)
 
 [Return to the main article](/techtalk/techtalks)

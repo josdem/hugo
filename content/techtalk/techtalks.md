@@ -180,6 +180,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Templating with Swig & Express](/techtalk/ux/ux_templating)
  * [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started)
  * [Applitools Getting Started](/techtalk/ux/applitools_getting_started)
+ * [WebdriverIO Geolocation](/techtalk/ux/webdriverio_geolocation)
 * [**Refactoring**](/techtalk/refactoring)
  * [Duplicated Code](/techtalk/refactoring/duplicated_code)
  * [Replace Temp With Query](/techtalk/refactoring/replace_temp_with_query)
