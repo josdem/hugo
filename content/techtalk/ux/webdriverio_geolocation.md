@@ -15,7 +15,7 @@ npm i --save-dev @wdio/devtools-service
 
 Now let's create a test scenario where we modify our location to be in Ann Arbor Michigan, United States.
 
-```javaScript
+```javascript
 describe("Checking locations", () => {
   it("goes to Ann Arbor Michigan", async () => {
     await LocationPage.open()
@@ -29,7 +29,7 @@ describe("Checking locations", () => {
 
 On LocationPage open method we are browsing this URL: https://www.where-am-i.net/ so we can get our current location. Another important method is `cbp` which is a custom command added to the browser that allows to call emulation `setGeolocationOverride` from devtools protocol, if you want to know more about this method please go [here](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setGeolocationOverride)
 
-```javaScript
+```javascript
 class LocationPage {
 
   async open() {
@@ -44,7 +44,7 @@ module.exports = new LocationPage()
 
 Let's move from United States Michigan to Mexico Guadalajara.
 
-```javaScript
+```javascript
 describe("Checking locations", () => {
   it("goes from Ann Arbor to Guadalajara to Amsterdam", async () => {
     await LocationPage.open()
@@ -66,7 +66,7 @@ describe("Checking locations", () => {
 
 On `LocationPage.clickOnLocationButton()` we are performing a click on location button so we can update our location on the map.
 
-```javaScript
+```javascript
 const properties = require(`../properties/test.properties`)
 
 class LocationPage {
@@ -93,7 +93,7 @@ module.exports = new LocationPage()
 
 And finally let's move from Mexico to Netherlands, also here we are externalizing our values in a properties file, so we can avoid hard coding.
 
-```javaScript
+```javascript
 const properties = require(`../properties/test.properties`)
 const LocationPage = require("../pageobjects/location.page")
 
