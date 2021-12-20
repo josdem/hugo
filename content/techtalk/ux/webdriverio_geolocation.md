@@ -1,6 +1,6 @@
 +++
-title =  "Webdriverio Geolocation"
-description = "Webdriverio_geolocation"
+title =  "WebdriverIO Geolocation"
+description = "WebdriverIO mocking geolocation using cbp method from devtools"
 date = "2021-12-20T13:17:33-06:00"
 tags = ["josdem", "techtalks","programming","technology","WebdriverIO"]
 categories = ["techtalk", "code", "NodeJS", "JavaScript","WebdriverIO"]
