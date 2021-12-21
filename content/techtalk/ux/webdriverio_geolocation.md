@@ -27,7 +27,7 @@ describe("Checking locations", () => {
 })
 ```
 
-On LocationPage open method we are browsing this URL: https://www.where-am-i.net/ so we can get our current location. Another important method is `cbp` which is a custom command added to the browser that allows to call emulation `setGeolocationOverride` from devtools protocol, if you want to know more about this method please go [here](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setGeolocationOverride)
+On `LocationPage` open method we are browsing this URL: https://www.where-am-i.net/ so we can get our current location. Another important method is `cbp` which is a custom command added to the browser that allows to call emulation `setGeolocationOverride` from devtools protocol, if you want to know more about this method please go [here](https://chromedevtools.github.io/devtools-protocol/tot/Emulation/#method-setGeolocationOverride)
 
 ```javascript
 class LocationPage {
@@ -42,7 +42,7 @@ module.exports = new LocationPage()
 
 <img src="/img/techtalks/ux/ann_arbor.png">
 
-Let's move from United States Michigan to Mexico Guadalajara.
+Let's move our location from Ann Arbor United States to Guadalajara Mexico
 
 ```javascript
 describe("Checking locations", () => {
@@ -64,7 +64,7 @@ describe("Checking locations", () => {
 })
 ```
 
-On `LocationPage.clickOnLocationButton()` we are performing a click on location button so we can update our location on the map.
+On `LocationPage.clickOnLocationButton()` we are performing a click action on location button so we can update our location on the map.
 
 ```javascript
 const properties = require(`../properties/test.properties`)
@@ -91,7 +91,7 @@ module.exports = new LocationPage()
 <img src="/img/techtalks/ux/guadalajara.png">
 
 
-And finally let's move from Mexico to Netherlands, also here we are externalizing our values in a properties file, so we can avoid hard coding.
+And finally let's move from Mexico to Netherlands, also please notice how here we are externalizing our values in a properties file, so we can avoid hard coding.
 
 ```javascript
 const properties = require(`../properties/test.properties`)
@@ -129,7 +129,7 @@ describe("Checking locations", () => {
 
 <img src="/img/techtalks/ux/amsterdam.png">
 
-You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see those geolocations in the map. To browse the code go [here](https://github.com/josdem/webdriverio-workshop), to download the project:
+You are good to execute this project with: `npx wdio run wdio.conf.js`, and you should see those geolocations in the map. To browse the code go [here](https://github.com/josdem/webdriverio-workshop), to download the project:
 
 ```bash
 git clone git@github.com:josdem/webdriverio-workshop.git
