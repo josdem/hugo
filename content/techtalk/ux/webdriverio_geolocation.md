@@ -13,6 +13,16 @@ In this technical post we will go over the process to mimic user's geolocation u
 npm i --save-dev @wdio/devtools-service
 ```
 
+Then edit `wdio.conf.js` and add `devtools` service to the webdriverIO configuration.
+
+```javascript
+// Test runner services
+// Services take over a specific job you don't want to take care of. They enhance
+// your test setup with almost no effort. Unlike plugins, they don't add new
+// commands. Instead, they hook themselves up into the test process.
+services: ["chromedriver", "devtools"],
+```
+
 Now let's create a test scenario where we modify our location to be in Ann Arbor Michigan, United States.
 
 ```javascript
