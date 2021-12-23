@@ -13,7 +13,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Most Popular in the array](#Most_Popular_in_the_Array)
 * [Common Elements in two Collections](#Common_Elements_in_two_Collections)
 * [Number Counter](#Number_Counter)
-* [Min-Max Sum](#Min_Max_Sum)
+* [Characters Counter](#Characters_Counter)
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [String Compressor](#String_Compressor)
 * [Sock Merchant](#Sock_Merchant)
@@ -154,66 +154,32 @@ public class NumbersCounter {
 }
 ```
 
-<a name="Min_Max_Sum">
-## Min-Max Sum
+<a name="Characters_Counter">
+## Characters Counter
 </a>
 
-Given five positive integers, find the minimum and maximum values that can be calculated by summing exactly four of the five integers. Then get the respective minimum and maximum values.
-
-**Output**
-
-* A integer denoting minimum value that can be calculated by summing exactly four of the five integers.
-* A integer denoting maximum value that can be calculated by summing exactly four of the five integers.
-
-**Sample Input**
-
-```bash
-[1,2,3,4,5]
-```
-
-**Sample Output**
-
-```bash
-10 14
-```
-
-**Explanation**
-
-Our initial numbers are `1, 2, 3, 4` and `5`. We can calculate the following sums using four of the five integers:
-
-* If we sum everything except `1`, our sum is `2 + 3 + 4 + 5 = 14`.
-* If we sum everything except `2`, our sum is `1 + 3 + 4 + 5 = 13`.
-* If we sum everything except `3`, our sum is `1 + 2 + 4 + 5 = 12`.
-* If we sum everything except `4`, our sum is `1 + 2 + 3 + 5 = 11`.
-* If we sum everything except `5`, our sum is `1 + 2 + 3 + 4 = 10`.
-
-As you can see, the minimal sum is `10` and the maximal sum is `14`.
+Create two functions one for counting vowels and another for counting consonants. Given a string, when that string is josdem, then counting vowels should be 2 and consonants 4.
 
 **Solution**
 
 ```java
-import java.util.List;
 import java.util.Arrays;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.List;
 
-public class MinMaxFinder {
+public class CharactersCounter {
+  private List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u');
+  private List<Character> consonants =
+      Arrays.asList(
+          'b', 'c', 'd', 'f', 'g', 'h', 'j', 'k', 'l', 'm', 'n', 'r', 'p', 'q', 's', 't', 'v', 'w',
+          'x', 'y', 'z');
 
-  private SortedSet<Integer> find(List<Integer> numbers){
-    SortedSet<Integer> collection = new TreeSet<Integer>();
-    for(int i=0; i<numbers.size(); i++){
-      collection.add(numbers.stream().mapToInt(it -> it).sum() - numbers.get(i));
-    }
-    return collection;
+  public int countVowels(String keyword) {
+    return (int) keyword.chars().filter(ch -> vowels.contains((char) ch)).count();
   }
 
-  public static void main(String[] args){
-    List<Integer> numbers = Arrays.asList(1,2,3,4,5);
-    SortedSet<Integer> result = new MinMaxFinder().find(numbers);
-    assert 10 == result.first();
-    assert 14 == result.last();
+  public int countConsonants(String keyword) {
+    return (int) keyword.chars().filter(ch -> consonants.contains((char) ch)).count();
   }
-
 }
 ```
 
