@@ -233,7 +233,7 @@ String = "aaabbbbcc"
 **Sample Output**
 
 ```bash
-a3b4c2
+"a3b4c2"
 ```
 
 **Solution**
