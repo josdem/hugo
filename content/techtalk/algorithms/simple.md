@@ -222,12 +222,7 @@ public class CandleCounter {
 ## String Compressor
 </a>
 
-Given a String "aaabbbbcc" compress it in such a way that you get pairs: character, count as: a3b4c2.
-
-**Constraints**
-
-* `$a \le character \le z$`
-* `$1 \le string(length) \le 1000$`
+Given a String "aaabbbbcc" when we call compress method then we have a compressed string like: "a3b4c2"
 
 **Sample Input**
 
@@ -249,23 +244,20 @@ import java.util.stream.Collectors;
 
 public class StringCompressor {
 
-  private String compress(String string){
-    Map<Character, Long> map = string.chars()
-        .mapToObj(i -> (char)i)
-        .collect(Collectors.groupingBy(it -> it, Collectors.counting()));
-
-    StringBuffer sb = new StringBuffer();
-
-    map.forEach((k,v) -> sb.append(k.toString() + v.toString()));
+  public String compress(String keyword) {
+    Map<Object, Long> map =
+        keyword
+            .chars()
+            .mapToObj(it -> (char) it)
+            .collect(Collectors.groupingBy(it -> it, Collectors.counting()));
+    StringBuilder sb = new StringBuilder();
+    map.forEach(
+        (k, v) -> {
+          sb.append(k);
+          sb.append(v);
+        });
     return sb.toString();
   }
-
-  public static void main(String[] args){
-    String string = "aaabbbbcc";
-    String result = new StringCompressor().compress(string);
-    System.out.println(result);
-  }
-
 }
 ```
 
