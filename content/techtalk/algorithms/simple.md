@@ -265,22 +265,7 @@ public class StringCompressor {
 ## Sock Merchant
 </a>
 
-John works at a clothing store and he's going through a pile of socks to find the number of matching pairs. More specifically, he has a pile of `$N$` loose socks where each sock `$i$`  is labeled with an integer, `$Ci$`, denoting its color. He wants to sell as many socks as possible, but his customers will only buy them in matching pairs. Two socks, `$i, j$`, are a single matching pair if they have the same color `$(Ci == Cj)$`.
-
-Given `$N$` and the color of each sock, how many pairs of socks can John sell?
-
-**Input Format**
-
-An integers collection describing the respective values of `$c0, c1, c2,..., cN-1$`.
-
-**Constraints**
-
-* `$1 \le N \le 100$`
-* `$1 \le Ci \le 100$`
-
-**Output Format**
-
-Total number of matching pairs of socks that John can sell.
+John works at a clothing store and he's going through a pile of socks to find the number of matching pairs. Given a collection with colors `10, 20, 20, 10, 10, 30, 50, 10, 20`write a function to find how many pairs you can get.
 
 **Sample Input**
 
