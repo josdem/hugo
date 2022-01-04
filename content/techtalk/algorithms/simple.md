@@ -288,44 +288,34 @@ As you can see from the figure above, we can match three pairs of socks.
 **Solution**
 
 ```java
-import java.util.Map;
+package com.jos.dem.kata;
+
+/*
+John works at a clothing store and he’s going through a pile of socks to find the number of matching pairs.
+Given: A collection with socks’ colors 10, 20, 20, 10, 10, 30, 50, 10, 20
+Then: Write a function to find out how many pairs you can get.
+ */
+
 import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-public class SockPairMatcher{
+class SockPairFinder {
 
-  private Integer match(List<Integer> colors){
-    Map<Integer, Long> map = colors.stream()
-      .collect(Collectors.groupingBy(it->it, Collectors.counting()));
-
-    List<Long> values = map.entrySet().stream()
-      .filter(it -> it.getValue() / 2 > 0)
-      .map(Map.Entry::getValue)
-      .collect(Collectors.toList());
-
-    Long result = values.stream()
-      .mapToLong(it -> it / 2)
-      .sum();
-
+  public Integer findPairsBy(List<Integer> colors) {
+    Map<Integer, Long> map =
+        colors.stream().collect(Collectors.groupingBy(Function.identity(), Collectors.counting()));
+    List<Long> values =
+        map.entrySet().stream()
+            .map(Map.Entry::getValue)
+            .filter(it -> it / 2 > 0)
+            .collect(Collectors.toList());
+    Long result = values.stream().mapToLong(it -> it / 2).sum();
     return result.intValue();
   }
-
-  public static void main(String[] args){
-    List<Integer> colors = Arrays.asList(10, 20, 20, 10, 10, 30, 50, 10, 20);
-    Integer result = new SockPairMatcher().match(colors);
-    assert 3 == result;
-  }
-
 }
 ```
-
-We are solving this challenge in three steps:
-
-1. We are grouping by occurrences
-2. From a map we are getting `Map.Entry` collection as stream, then we filtered every item value by which one is divisible by 2, finally we stored filtered values as a list.
-3. We are counting how many pairs we can create by dividing every item from long collection by 2
 
 <a name="Electronics_Shop">
 ## Electronics Shop
