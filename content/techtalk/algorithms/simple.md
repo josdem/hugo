@@ -17,6 +17,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Birthday Cake Candles](#Birthday_Cake_Candles)
 * [String Compressor](#String_Compressor)
 * [Sock Merchant](#Sock_Merchant)
+* [Smallest Biggest](#Smallest_Biggest)
 * [Electronics Shop](#Electronics_Shop)
 * [Square my List](#Square_my_List)
 
@@ -307,6 +308,41 @@ class SockPairFinder {
             .collect(Collectors.toList());
     Long result = values.stream().mapToLong(it -> it / 2).sum();
     return result.intValue();
+  }
+}
+```
+
+<a name="Smallest_Biggest">
+## Smallest Biggest
+</a>
+
+Find smaller and biggest numbers in a collection, then return another collection with result. Given a collection like: `7, 5, 2, 4, 3, 9` when I call find method then I will get a collection with `2, 9` values.
+
+**Sample Input**
+
+```bash
+numbers = [7, 5, 2, 4, 3, 9]
+```
+
+**Sample Output**
+
+```bash
+result = [2, 9]
+```
+
+**Solution**
+
+```java
+package com.jos.dem.kata;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class SmallerBiggestFinder {
+  public List<Integer> find(List<Integer> numbers) {
+    Integer smaller = numbers.stream().reduce((a, b) -> a < b ? a : b).get();
+    Integer biggest = numbers.stream().reduce((a, b) -> a > b ? a : b).get();
+    return Arrays.asList(smaller, biggest);
   }
 }
 ```
