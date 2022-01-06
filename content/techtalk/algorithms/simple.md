@@ -289,8 +289,6 @@ As you can see from the figure above, we can match three pairs of socks.
 **Solution**
 
 ```java
-package com.jos.dem.kata;
-
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
@@ -333,8 +331,6 @@ result = [2, 9]
 **Solution**
 
 ```java
-package com.jos.dem.kata;
-
 import java.util.Arrays;
 import java.util.List;
 
@@ -478,17 +474,10 @@ git clone git@github.com:josdem/algorithms-workshop.git
 cd simple-algorithms
 ```
 
-To run Java code:
+To run Java project code: Go to the kata directory and do
 
 ```bash
-javac ${PROGRAM_NAME}.java
-java -ea ${PROGRAM_NAME}
-```
-
-To run Groovy code:
-
-```bash
-groovy ${PROGRAM_NAME}.groovy
+gradle test
 ```
 
 
