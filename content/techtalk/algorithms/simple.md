@@ -347,27 +347,8 @@ public class SmallerBiggestFinder {
 ## Electronics Shop
 </a>
 
-Monica wants to buy exactly one keyboard and one USB drive from her favorite electronics store. The store sells `$N$` different brands of keyboards and `$M$` different brands of USB drives. Monica has exactly `$S$` dollars to spend, and she wants to spend as much of it as possible (i.e., the total cost of her purchase must be maximal).
-
-Given the price lists for the store's keyboards and USB drives, find and print the amount of money Monica will spend. If she doesn't have enough money to buy one keyboard and one USB drive, print `$-1$` instead.
-
-**Note:** She will never buy more than one keyboard and one USB drive even if she has the leftover money to do so.
-
-**Input Format**
-
-* Amount of money Monica has to spend in electronics.
-* Integer collection denoting the prices of each keyboard brand.
-* Integer collection denoting the prices of each USB drive brand.
-
-**Constraints**
-
-* `$1 \le N,M \le 1000$`
-* `$1 \le S \le 10^6$`
-* `$1 \le price \le 10^6$`
-
-**Output Format**
-
-Single integer denoting the amount of money Monica will spend. If she doesn't have enough money to buy one keyboard and one USB drive `-1` instead.
+Monica wants to buy exactly one keyboard and one USB drive from her favorite electronics store. The store sells N different brands of keyboards and M different brands of USB drives. Monica has exactly S dollars to spend, and she wants to spend as much of it as possible (i.e., the total cost of her purchase must be maximal).
+Given the amount of money Monica has to spend in electronics and the prices lists for the store's keyboards and USB drives, find out the amount of money Monica will spend.
 
 **Sample Input**
 
@@ -390,49 +371,30 @@ She can buy the `$2nd$` keyboard and the `$3rd$` USB drive for a total cost of `
 **Solution**
 
 ```java
-import java.util.Map;
-import java.util.List;
-import java.util.Arrays;
-import java.util.ArrayList;
-import java.util.Optional;
 import java.util.AbstractMap.SimpleEntry;
-
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 public class ShopCalculator {
 
-  private Integer calculate(final Integer amount, List<Integer> keyboards, List<Integer> usbs){
-    List<Map.Entry<Integer,Integer>> pairList = new ArrayList<Map.Entry<Integer,Integer>>();
+  public int compute(Integer amount, List<Integer> keyboards, List<Integer> usbs) {
+    final List<Map.Entry<Integer, Integer>> pairs = new ArrayList<>();
 
-    keyboards.forEach( k ->
-      usbs.forEach( u ->
-        pairList.add(new SimpleEntry<Integer,Integer>(k,u))
-      )
-    );
+    keyboards.forEach(
+        k ->
+            usbs.forEach(
+                u -> {
+                  pairs.add(new SimpleEntry<>(k, u));
+                }));
 
-    List<Integer> electronicsCost = pairList.stream().map(entry -> entry.getKey() + entry.getValue()).collect(Collectors.toList());
-
-    Optional<Integer> result = electronicsCost.stream().filter(it -> it <= amount).max(Integer::compare);
-
-    return result.isPresent() ? result.get() : -1;
+    final List<Integer> prices =
+        pairs.stream().map(entry -> entry.getKey() + entry.getValue()).collect(Collectors.toList());
+    return prices.stream().filter(it -> it <= amount).max(Integer::compare).get();
   }
-
-  public static void main(String[] args){
-    List<Integer> keyboards = Arrays.asList(3, 1);
-    List<Integer> usbs = Arrays.asList(5, 2, 8);
-    Integer amount = 10;
-    Integer result = new ShopCalculator().calculate(amount, keyboards, usbs);
-    assert 9 == result;
-  }
-
 }
 ```
-
-I solved this challenge in three steps:
-
-1. We are creating keyboard and usb price combination using a `Map.Entry` pair object
-2. We are summarizing those price combinations and stored as a `List`
-3. We are getting max result combination comparing with equals or less that our amount
 
 <a name="Square_my_List">
 ## Square my List
