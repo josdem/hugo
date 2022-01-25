@@ -20,6 +20,7 @@ This section is about solving simple algorithms, coding challenges, puzzles, kat
 * [Smallest Biggest](#Smallest_Biggest)
 * [Electronics Shop](#Electronics_Shop)
 * [Square my List](#Square_my_List)
+* [Digital Adder](#Digital_Adder)
 
 
 <a name="Sum_a_Collection">
@@ -414,6 +415,30 @@ public class SquareCalculator {
   }
 }
 ```
+
+<a name="Digital_Adder">
+## Digital Adder
+</a>
+
+Given a numeric collection, when I call add method, then I will get a collection with every element summing its digits
+
+**Solution**
+
+```Java
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class DigitalAdder {
+  public List<Integer> add(List<Integer> numbers) {
+    List<String> numbersAsString =
+        numbers.stream().map(it -> String.valueOf(it)).collect(Collectors.toList());
+    return numbersAsString.stream()
+        .map(string -> string.chars().map(ch -> Integer.valueOf(Character.toString(ch))).sum())
+        .collect(Collectors.toList());
+  }
+}
+```
+
 
 To browse the project go [here](https://github.com/josdem/algorithms-workshop), to download the project:
 
