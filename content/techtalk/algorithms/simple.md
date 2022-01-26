@@ -403,6 +403,19 @@ public class ShopCalculator {
 
 Given a numeric list elements, square every element from the list and retrun the result in another collection.
 
+**Sample Input**
+
+```bash
+numbers = [15, 20, 4, 8]
+```
+
+**Sample Output**
+
+```bash
+expectedCollection = [6, 2, 4, 8]
+```
+
+
 **Solution**
 
 ```java
@@ -424,7 +437,7 @@ Given a numeric collection, when I call add method, then I will get a collection
 
 **Solution**
 
-```Java
+```java
 import java.util.List;
 import java.util.stream.Collectors;
 
