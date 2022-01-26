@@ -12,7 +12,6 @@ description = "This section is about solving simple algorithms, coding challenge
 * [Stream Merger](/techtalk/algorithms/algorithm_stream_merger)
 * [Is Pangram](/techtalk/algorithms/algorithm_is_pangram)
 * [Get Month Name](/techtalk/algorithms/get_month_name)
-* [Digital Sum Sort](/techtalk/algorithms/digital_sum_sort)
 * [Matrix Diagonal Difference](/techtalk/algorithms/matrix_diagonal_difference)
 * [Grading Students](/techtalk/algorithms/grading_students)
 * [Apple and Orange](/techtalk/algorithms/apple_orange)
