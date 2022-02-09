@@ -15,5 +15,6 @@ In this section I will post all referent about UX development such as Javascript
 * [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started)
 * [Applitools Getting Started](/techtalk/ux/applitools_getting_started)
 * [WebdriverIO Geolocation](/techtalk/ux/webdriverio_geolocation)
+* [WebdriverIO with Cucumber Getting Started](/techtalk/ux/webdriverio_cucumber_getting_started)
 
 [Return to the main article](/techtalk/techtalks)
