@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","WebdriverIO"]
 categories = ["techtalk", "code", "NodeJS", "JavaScript","WebdriverIO"]
 +++
 
-[WebdriverIO](https://webdriver.io/) Is an automation framework based in [NodeJS](https://nodejs.org/en/) designed to support cross-browser testing and modern mobile native applications. It's archictecture is based on plugins you can use to extend easily functionlality. WebdriverIO rely on [WebDriver](https://w3c.github.io/webdriver/) protocols that guarantees a true cross-browsing experience and also is a truly open source project driven by [OpenJSFoundation](https://openjsf.org/). This time we will connect WebdriverIO with [Cucumber Framework](https://cucumber.io/). Let's start by installing NodeJS in our computer, I highly recommend to use [NVM](https://github.com/nvm-sh/nvm) so you can manage different versions. Once installed let's create a new directory named `webdriverio-getting-started` and execute this command:
+[WebdriverIO](https://webdriver.io/) Is an automation framework based in [NodeJS](https://nodejs.org/en/) designed to support cross-browser testing and modern mobile native applications. It's archictecture is based on plugins you can use to extend easily functionlality. WebdriverIO rely on [WebDriver](https://w3c.github.io/webdriver/) protocols that guarantees a true cross-browsing experience and also is a truly open source project driven by [OpenJSFoundation](https://openjsf.org/). This time we will connect WebdriverIO with [Cucumber Framework](https://cucumber.io/). Let's start by installing NodeJS in our computer, I highly recommend to use [NVM](https://github.com/nvm-sh/nvm) so you can manage different versions. Once installed let's create a new directory named `webdriverio-cucumber-getting-started` and execute this command inside that new directory:
 
 ```bash
 npm init
@@ -99,17 +99,21 @@ Copy generated code (step definition methods) and paste them into the `steps.js`
 ```javascript
 const { Given, When, Then } = require('@cucumber/cucumber')
 
-Given('A webpage as {string}', function (keyword) {
-    browser.url(keyword)
+Given('A webpage as {string}', function (string) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending;
 })
+
 
 When('I get page title', function () {
-    title = browser.getTitle()
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
 })
 
-Then('I validate title is {string}', function (title) {
-    expect(title === "josdem").toBeTruthy()
-})
+Then('I validate title is {string}', function (string) {
+  // Write code here that turns the phrase above into concrete actions
+  return 'pending'
+});
 ```
 
 Finally add your steps implementation
@@ -136,16 +140,22 @@ Then('I validate title is {string}', function (title) {
 You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see this output:
 
 ```bash
-"spec" Reporter:
+ "spec" Reporter:
 ------------------------------------------------------------------
-[chrome 94.0.4606.81 linux #0-0] Running: chrome (v94.0.4606.81) on linux
-[chrome 94.0.4606.81 linux #0-0] Session ID: 6c452fa2e8f3528b031a3f92b47620e3
-[chrome 94.0.4606.81 linux #0-0]
-[chrome 94.0.4606.81 linux #0-0] » /test/specs/helloWorld.js
-[chrome 94.0.4606.81 linux #0-0] Loading webpage
-[chrome 94.0.4606.81 linux #0-0]    ✓ validates website title
-[chrome 94.0.4606.81 linux #0-0]
-[chrome 94.0.4606.81 linux #0-0] 1 passing (1.1s)
+[chrome 98.0.4758.80 linux #0-0] Running: chrome (v98.0.4758.80) on linux
+[chrome 98.0.4758.80 linux #0-0] Session ID: 3176c7b69b896934eaf6d4dbb65939ea
+[chrome 98.0.4758.80 linux #0-0]
+[chrome 98.0.4758.80 linux #0-0] » /features/helloWorld.feature
+[chrome 98.0.4758.80 linux #0-0] To test a website
+[chrome 98.0.4758.80 linux #0-0] Loading webpage
+[chrome 98.0.4758.80 linux #0-0]    ✓ Given A webpage as "https://josdem.io/"
+[chrome 98.0.4758.80 linux #0-0]    ✓ When I get page title
+[chrome 98.0.4758.80 linux #0-0]    ✓ Then I validate title is "josdem"
+[chrome 98.0.4758.80 linux #0-0]
+[chrome 98.0.4758.80 linux #0-0] 3 passing (1s)
+
+
+Spec Files:	 1 passed, 1 total (100% completed) in 00:00:02
 ```
 
 
