@@ -159,10 +159,10 @@ Spec Files:	 1 passed, 1 total (100% completed) in 00:00:02
 ```
 
 
-To browse the code go [here](https://github.com/josdem/webdriverio-getting-started), to download the project:
+To browse the code go [here](https://github.com/josdem/webdriverio-cucumber-getting-started), to download the project:
 
 ```bash
-git clone git@github.com:josdem/webdriverio-getting-started.git
+git clone git@github.com:josdem/webdriverio-cucumber-getting-started.git
 ```
 
 [Return to the main article](/techtalk/ux)
