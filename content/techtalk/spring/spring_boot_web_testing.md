@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","Spring boot", "MockMvc
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will go through the process of testing a web layer using [MockMvc](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html). MockMvc helps to test Spring Boot controllers with auto configuration, if you want to know more about how to create Spring Boot application please go to my previous post getting started with Spring Boot [here](/techtalk/spring/spring_boot). As project target to test we will use [Spring Boot Swagger](/techtalk/spring/spring_swagger_boot_configuration) Please consider this controller.
+In this technical post, we will go through the process of testing a web layer using [MockMvc](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/test/web/servlet/MockMvc.html). MockMvc helps to test Spring Boot controllers with auto-configuration, if you want to know more about how to create Spring Boot application please go to my previous post getting started with Spring Boot [here](/techtalk/spring/spring_boot). As the project target to test we will use [Spring Boot Swagger](/techtalk/spring/spring_swagger_boot_configuration). Please consider this controller.
 
 ```java
 package com.josdem.swagger.controller;
@@ -74,8 +74,7 @@ public class UserController {
   }
 }
 ```
-
-As you can see we can register a new user with the post endpoint: `create`, so let's create a test case that creates a new user and hit this endpoint:
+As you can see, we can register a new user with the post endpoint: `create`, so let’s make a test case that creates a new user and hits this endpoint:
 
 ```java
 @Test
@@ -97,7 +96,7 @@ void shouldCreateUser(TestInfo testInfo) throws Exception {
 }
 ```
 
-`MockMvc` is sending content as an object mapper using a Json Java library and handling the response using `MockMvcResultMatchers` so that, we can validate two important things: status code and body content. Here is the test case to validate we are able to get a user by `UUID`.
+`MockMvc` is sending content as an object mapper using a Json Java library and handling the response using `MockMvcResultMatchers` so that we can validate two critical things: status code and body content. Here is the test case to validate we can get a user by UUID.
 
 ```java
 @Test
@@ -111,7 +110,7 @@ void shouldGetUserByUuid(TestInfo testInfo) throws Exception {
 }
 ```
 
-Since we have only one user registered in our application, we can validate user's collection size like:
+Since we have only one user registered in our application, we can validate the user's collection size like:
 
 ```java
 @Test
@@ -123,7 +122,7 @@ void shouldGetUsers(TestInfo testInfo) throws Exception {
 }
 ```
 
-That's it, to count users in our response we can use: `jsonPath("$.*", hasSize(1)`. Finally, let's validate a negative scenario where our endpoint is receiving an invalid `UUID`.
+That's it, to count users in our response we can use: `jsonPath("$.*", hasSize(1)`. Finally, let's validate a negative scenario where our endpoint receives an invalid `UUID`.
 
 ```java
 @Test
@@ -225,7 +224,7 @@ public class UserControllerTest {
 }
 ```
 
-In order to guarantee our test cases are executed in an particular order we are using this nice Junit5 annotation: `@Order`, if you want to know more how to use it please go to my previous technical post [Junit5](/techtalk/java/junit5/#Test_Execution_Order). To browse the code go [here](https://github.com/josdem/swagger-spring), to download the project:
+To guarantee our test cases are executed in a particular order, we are using this excellent Junit5 annotation: `@Order`. If you want to know more how to use it please go to my previous technical post [Junit5](/techtalk/java/junit5/#Test_Execution_Order). To browse the code, go [here](https://github.com/josdem/swagger-spring), to download the project:
 
 ```bash
 git clone git@github.com:josdem/swagger-spring.git
