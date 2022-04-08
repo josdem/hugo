@@ -79,6 +79,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Parameters](/techtalk/spring/spring_boot_parameters)
 * [Spring Boot Profiles](/techtalk/spring/spring_boot_profiles)
 * [Spring Boot Retrofit2 Cucumber & Junit5](/techtalk/spring/spring_boot_retrofit_cucumber_junit5)
+* [Spring Boot Testing Web Layer](/techtalk/spring/spring_boot_web_testing)
 
 <a name="Spring_Boot_Reactive">
 ## Spring Boot Reactive
