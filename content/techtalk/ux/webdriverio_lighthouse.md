@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology", "webdriverio"]
 categories = ["techtalk", "code", "nodejs", "webdriverio"]
 +++
 
-[Lighthouse](https://developers.google.com/web/tools/lighthouse) It is a performance tool for measuring and monitoring a website. You can run Lighthouse as Chrome extension, from command line, or as a Node module. Coming with [WebdriverIO](https://webdriver.io/) you can use it with devtools service. In this technical post we will go through the process to configure and use Lighthouse module as a service to run chrome devtools commands in a spec test with [Mocka Framework](https://mochajs.org/). **NOTE:** If you need to know how to setup a WebdriverIO, please refer my previous post: [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started/). Then add devtools dependency:
+[Lighthouse](https://developers.google.com/web/tools/lighthouse) It is a performance tool for measuring and monitoring a website. You can run Lighthouse as Chrome extension, from the command line, or as a Node module. Coming with [WebdriverIO](https://webdriver.io/) you can use it with devtools service. In this technical post, we will go through the process to configure and use Lighthouse module as a service to run chrome devtools commands in a spec test with [Mocka Framework](https://mochajs.org/). **NOTE:** If you need to know how to setup a WebdriverIO, please refer to my previous post: [WebdriverIO Getting Started](/techtalk/ux/webdriverio_getting_started/). Then add devtools dependency:
 
 ```bash
 npm i --save-dev @wdio/devtools-service
@@ -90,7 +90,7 @@ You are good to execute this project with: `npx wdio run wdio.conf.js --spec=tes
 score:  0.99
 ```
 
-If you want to understand in deep the meaning for this metrics, please go to the official documentation [here](https://web.dev/lighthouse-performance/). To browse the code go [here](https://github.com/josdem/webdriverio-workshop), to download the project:
+If you want to understand in deep the meaning of these metrics, please go to the official documentation [here](https://web.dev/lighthouse-performance/). To browse the code go [here](https://github.com/josdem/webdriverio-workshop), to download the project:
 
 ```bash
 git clone git@github.com:josdem/webdriverio-workshop.git
