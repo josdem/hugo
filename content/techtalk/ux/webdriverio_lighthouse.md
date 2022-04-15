@@ -34,7 +34,7 @@ describe("Loading website", () => {
   })
 
   it("Getting Lighthouse score", async () => {
-    await browser.url(properties.url)
+    await browser.url(properties.website)
     await browser.getPageWeight()
     let metrics = await browser.getMetrics()
     let score = await browser.getPerformanceScore()
@@ -49,7 +49,48 @@ describe("Loading website", () => {
 })
 ```
 
-You are good to execute this project with: `npx wdio run wdio.conf.js`, and you should see those metrics in the console. To browse the code go [here](https://github.com/josdem/webdriverio-workshop), to download the project:
+You are good to execute this project with: `npx wdio run wdio.conf.js --spec=test/specs/lighthouse.spec.js`, and you should see those metrics in the console.
+
+
+```bash
+2022-04-15T19:37:43.031Z INFO webdriver: COMMAND getPageWeight()
+2022-04-15T19:37:43.031Z INFO webdriver: RESULT {
+   pageWeight: 1268690,
+   transferred: 901469,
+   requestCount: 34,
+   details: {
+     Document: { size: 28164, encoded: 0, count: 1 },
+     Stylesheet: { size: 55228, encoded: 55228, count: 2 },
+     Script: { size: 511371, encoded: 176796, count: 8 },
+     Image: { size: 668272, encoded: 668272, count: 19 },
+     Font: { size: 4500, encoded: 0, count: 1 },
+     XHR: { size: 5, encoded: 23, count: 2 },
+     Other: { size: 1150, encoded: 1150, count: 1 }
+   }
+}
+2022-04-15T19:37:43.298Z INFO webdriver: COMMAND getPerformanceScore()
+2022-04-15T19:37:43.502Z INFO webdriver: RESULT 0.99
+ metrics: {
+   timeToFirstByte: 45,
+   serverResponseTime: 45,
+   domContentLoaded: 688,
+   firstVisualChange: 692,
+   firstPaint: 656,
+   firstContentfulPaint: 656,
+   firstMeaningfulPaint: 657,
+   largestContentfulPaint: 876,
+   lastVisualChange: 926,
+   interactive: 688,
+   load: 920,
+   speedIndex: 845,
+   totalBlockingTime: 0,
+   maxPotentialFID: 16,
+   cumulativeLayoutShift: 0
+}
+score:  0.99
+```
+
+If you want to understand in deep the meaning for this metrics, please go to the official documentation [here](https://web.dev/lighthouse-performance/). To browse the code go [here](https://github.com/josdem/webdriverio-workshop), to download the project:
 
 ```bash
 git clone git@github.com:josdem/webdriverio-workshop.git
