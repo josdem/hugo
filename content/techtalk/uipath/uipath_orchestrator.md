@@ -12,8 +12,10 @@ categories = ["techtalk", "code"]
 - IIS Application Init
 - IIS ISAPI Extensions
 - IIS ISAPI Filter
-- IIS ASPNET 45
+- IIS ASPNET 4.7
 - IIS Windows Authentication
 - IIS URL Authorization
+
+If you want to know how to enble IIS features, please go [here](https://computingforgeeks.com/install-and-configure-iis-web-server-on-windows-server/)
 
 [Return to the main article](/techtalk/techtalks)
