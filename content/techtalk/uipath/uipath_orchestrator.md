@@ -43,13 +43,10 @@ Run the Windows Installer (UiPathOrchestrator.msi). The UiPath Orchestrator Setu
 <img src="/img/techtalks/uipath/orchestrator2.png">
 
 
+Make sure your certificate is imported in both Personal and Trusted Root Certification Authorities, you can manage that configuration openint the Manage Computer Certificates located in Control Panel. The Application Pool Settings step is displayed. Select Custom account and provide your server computer credentials. The Orchestrator Database Settings step is displayed.
 
-The Application Pool Settings step is displayed.
+<img src="/img/techtalks/uipath/orchestrator3.png">
 
- - Identity - Enables you to choose the identity under which the UiPath Orchestrator website runs. The following options are available:
-   - Application Pool Identity - runs the Orchestrator website under the default identity of the application pool.
-   - Custom account - runs the Orchestrator website under an existing Windows or Domain identity.
-
-Select Application Pool Identity.
+In this setup we will have UiPath databases in the same server, but it is recommeded to setup the databases in a different server. Also you should choose Windows Integrated Authentication instead of SQL Server Authentication.
 
 [Return to the main article](/techtalk/techtalks)
