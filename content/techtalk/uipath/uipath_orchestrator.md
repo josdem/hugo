@@ -21,4 +21,14 @@ If you want to know how to enable IIS features, please go [here](https://computi
 - IIS URL rewrite, you can find it [here](https://www.iis.net/downloads/microsoft/url-rewrite)
 - ASP .NET Core 5.0 Runtime, you can find it [here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0). Make sure you install the Hosting Bundle installer.
 
+HTTPS protocol is mandatory for all communication between robots and Orchestrator. Therefore we need to create a self-certificate, which is not recommended for Production. Type this command in a PowerShell console:
+
+```bash
+$pass = ConvertTo-SecureString -String "Secret" -Force -AsPlainText
+$imported = Import-PfxCertificate -FilePath "%USERPROFILE%\UIPathCertificate.pfx" -CertStoreLocation Cert:\LocalMachine\My\ -Exportable -Password $pass
+$store = New-Object System.Security.Cryptography.X509Certificates.X509Store( "Root", "LocalMachine")
+$store.Open("MaxAllowed")
+$store.Add($imported)
+```
+
 [Return to the main article](/techtalk/techtalks)
