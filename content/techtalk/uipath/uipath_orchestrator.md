@@ -37,6 +37,13 @@ Run the Windows Installer (UiPathOrchestrator.msi). The UiPath Orchestrator Setu
 
 <img src="/img/techtalks/uipath/orchestrator1.png">
 
+ Click Next, the Orchestrator IIS Settings step is displayed.
+
+
+<img src="/img/techtalks/uipath/orchestrator2.png">
+
+
+
 The Application Pool Settings step is displayed.
 
  - Identity - Enables you to choose the identity under which the UiPath Orchestrator website runs. The following options are available:
