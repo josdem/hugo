@@ -43,7 +43,7 @@ Run the Windows Installer (UiPathOrchestrator.msi). The UiPath Orchestrator Setu
 <img src="/img/techtalks/uipath/orchestrator2.png">
 
 
-Make sure your certificate is imported in both Personal and Trusted Root Certification Authorities, you can manage that configuration openint the Manage Computer Certificates located in Control Panel. The Application Pool Settings step is displayed. Select Custom account and provide your server computer credentials. The Orchestrator Database Settings step is displayed.
+Make sure your certificate is imported in both Personal and Trusted Root Certification Authorities, you can manage that configuration opening the Manage Computer Certificates located in Control Panel. The Application Pool Settings step is displayed. Select Custom account and provide your server computer credentials. Next step is Database Settings.
 
 <img src="/img/techtalks/uipath/orchestrator3.png">
 
