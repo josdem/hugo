@@ -60,7 +60,7 @@ Set admin passwords for both host and tenant. Tenant account allows you to model
 
 <img src="/img/techtalks/uipath/orchestrator6.png">
 
-Finally, click next to start the installation; once it is done you should enter to the orchestrator home website with your admin credentials.
+Finally, click next to start the installation; once it is done, you should enter to the orchestrator home website with your admin credentials.
 
 <img src="/img/techtalks/uipath/orchestrator7.png">
 
