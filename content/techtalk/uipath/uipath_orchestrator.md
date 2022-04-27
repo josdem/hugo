@@ -56,7 +56,7 @@ Click next until the Orchestrator Authentication Settings step is displayed.
 
 <img src="/img/techtalks/uipath/orchestrator5.png">
 
-Set admin passwords for host and tenant. Tenant account allows you to model your organization structure. Click next to see Test Automation database settings.
+Set admin passwords for both host and tenant. Tenant account allows you to model your organization structure. Click next to see Test Automation database settings.
 
 <img src="/img/techtalks/uipath/orchestrator5.png">
 
