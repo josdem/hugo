@@ -47,8 +47,17 @@ Make sure your certificate is imported in both Personal and Trusted Root Certifi
 
 <img src="/img/techtalks/uipath/orchestrator3.png">
 
-In this setup, we will have UiPath databases on the same server, but it is recommended to setup the databases on a different server. Also, you should choose Windows Integrated Authentication instead of SQL Server Authentication. Click next to validate SQL connections by the installer. If the SQL connection is valid, the Identity Server Settings will show up.
+In this setup, we will have UiPath databases on the same server, but it is recommended to setup the databases on a different server. Also, you should choose Windows Integrated Authentication instead of SQL Server Authentication. Click next to validate SQL connections by the installer. If the SQL connection is valid, the Identity Server Settings will appear.
 
 <img src="/img/techtalks/uipath/orchestrator4.png">
+
+Click next until the Orchestrator Authentication Settings step is displayed.
+
+
+<img src="/img/techtalks/uipath/orchestrator5.png">
+
+Set admin passwords for host and tenant. Tenant account allows you to model your organization structure. Click next to see Test Automation database settings.
+
+<img src="/img/techtalks/uipath/orchestrator5.png">
 
 [Return to the main article](/techtalk/techtalks)
