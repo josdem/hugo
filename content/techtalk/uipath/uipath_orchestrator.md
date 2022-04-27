@@ -37,16 +37,16 @@ Run the Windows Installer (UiPathOrchestrator.msi). The UiPath Orchestrator Setu
 
 <img src="/img/techtalks/uipath/orchestrator1.png">
 
- Click Next, the Orchestrator IIS Settings step is displayed.
+Click Next, and the Orchestrator IIS Settings step is displayed.
 
 
 <img src="/img/techtalks/uipath/orchestrator2.png">
 
 
-Make sure your certificate is imported in both Personal and Trusted Root Certification Authorities, you can manage that configuration opening the Manage Computer Certificates located in Control Panel. The Application Pool Settings step is displayed. Select Custom account and provide your server computer credentials. Next step is Database Settings.
+Make sure your certificate is imported in both Personal and Trusted Root Certification Authorities; you can manage that configuration by opening the Manage Computer Certificates located in Control Panel. When the Application Pool Settings step is displayed select custom account and provide your server user's credentials. Next step is Database Settings.
 
 <img src="/img/techtalks/uipath/orchestrator3.png">
 
-In this setup we will have UiPath databases in the same server, but it is recommeded to setup the databases in a different server. Also you should choose Windows Integrated Authentication instead of SQL Server Authentication.
+In this setup, we will have UiPath databases on the same server, but it is recommended to setup the databases on a different server. Also, you should choose Windows Integrated Authentication instead of SQL Server Authentication.
 
 [Return to the main article](/techtalk/techtalks)
