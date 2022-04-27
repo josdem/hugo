@@ -31,4 +31,18 @@ $store.Open("MaxAllowed")
 $store.Add($imported)
 ```
 
+## Single-Node Installation
+
+Run the Windows Installer (UiPathOrchestrator.msi). The UiPath Orchestrator Setup wizard is displayed.
+
+<img src="/img/techtalks/uipath/orchestrator1.png">
+
+The Application Pool Settings step is displayed.
+
+ - Identity - Enables you to choose the identity under which the UiPath Orchestrator website runs. The following options are available:
+   - Application Pool Identity - runs the Orchestrator website under the default identity of the application pool.
+   - Custom account - runs the Orchestrator website under an existing Windows or Domain identity.
+
+Select Application Pool Identity.
+
 [Return to the main article](/techtalk/techtalks)
