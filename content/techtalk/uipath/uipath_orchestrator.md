@@ -16,6 +16,9 @@ categories = ["techtalk", "code"]
 - IIS Windows Authentication
 - IIS URL Authorization
 
-If you want to know how to enable IIS features, please go [here](https://computingforgeeks.com/install-and-configure-iis-web-server-on-windows-server/); also we need to install IIS URL rewrite; this is a third party application, and you can find it [here](https://www.iis.net/downloads/microsoft/url-rewrite)
+If you want to know how to enable IIS features, please go [here](https://computingforgeeks.com/install-and-configure-iis-web-server-on-windows-server/); also, we need to install some third-party applications:
+
+- IIS URL rewrite, you can find it [here](https://www.iis.net/downloads/microsoft/url-rewrite)
+- ASP .NET Core 5.0 Runtime, you can find it [here](https://dotnet.microsoft.com/en-us/download/dotnet/5.0). Make sure you install the Hosting Bundle installer.
 
 [Return to the main article](/techtalk/techtalks)
