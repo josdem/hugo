@@ -133,7 +133,7 @@ where:
 - `${username}` Is artifactory username
 - `${password}` Is artifactory password
 
-### Publishing using Maven
+## Publishing using Maven
 
 With Maven you need to specify in the `distributionManagement` section repository id which must be unique and URL:
 
