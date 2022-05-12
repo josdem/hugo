@@ -1,0 +1,239 @@
++++
+title =  "Spring Webflux Artifactory Library"
+description = "How to pulish a Jar library in Jfrog artifactory"
+date = "2022-05-12T15:47:21-04:00"
+tags = ["josdem", "techtalks","programming","technology","JFrog","Artifactory"]
+categories = ["techtalk", "code"]
++++
+
+In this technical post we will go over the process to publish a Spring Webflux library to [JFrog](https://jfrog.com/). **NOTE:** If you want to know more about how to create a Spring Webflux application please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's begin creating a new Spring Boot project with Webflux and Lombok.
+
+```bash
+spring init --dependencies=webflux,lombok --build=gradle --language=java juice-webflux
+```
+
+Now, let's activate Maven publish plugin:
+
+```bash
+apply plugin: 'maven-publish'
+```
+
+And add our Gradle publishing task definition
+
+```bash
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "http://asus:8081/artifactory/libs-snapshot-local"
+            allowInsecureProtocol = true
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
+    }
+}
+```
+In this publishing section we are defining, artifact id and group id taken from our `build.gradle` definition, versioning is handled by versionMapping DSL which allows to configure version strategies, if you want to know more about it, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:resolved_dependencies). JFrog Platform hosts local, virtual and remote [repository types](https://www.jfrog.com/confluence/display/JFROG/Repository+Management), in this case we are using `libs-snapshot-local` to publish our library. This is our complete `build.gradle` file.
+
+```groovy
+plugins {
+    id 'org.springframework.boot' version '2.6.7'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+apply plugin: 'maven-publish'
+
+group = 'com.josdem.jugoterapia.webclient'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '16'
+
+allprojects {
+    repositories {
+        maven {
+            url "http://asus:8081/artifactory/libs-develop"
+            allowInsecureProtocol true
+        }
+    }
+}
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testCompileOnly 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            from components.java
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+        }
+    }
+    repositories {
+        maven {
+            url = "http://asus:8081/artifactory/libs-snapshot-local"
+            allowInsecureProtocol = true
+            credentials {
+                username = "${artifactory_user}"
+                password = "${artifactory_password}"
+            }
+        }
+    }
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+```
+
+We are passing artifactory credentials using project properties with the -P flag, so publishing from command line will be
+
+```bash
+gradle -Partifactory_user=${username} -Partifactory_password=@{password} publish
+```
+
+where:
+
+- `${username}` Is artifactory username
+- `${password}` Is artifactory password
+
+### Publishing using Maven
+
+With Maven you need to specify in the `distributionManagement` section repository id which must be unique and URL:
+
+```xml
+<distributionManagement>
+    <repository>
+        <id>artifactory</id>
+        <url>http://asus:8081/artifactory/libs-snapshot-local</url>
+    </repository>
+</distributionManagement>
+```
+
+Plus your Jfrog credentials in the `${USER_HOME}/.m2/settings.xml` file
+
+```xml
+<settings>
+  <servers>
+    <server>
+      <id>artifactory</id>
+      <username>username</username>
+      <password>password</password>
+    </server>
+  </servers>
+</settings>
+```
+
+Here is the complete `pom.xml` file:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.7</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.josdem.jugoterapia.webclient</groupId>
+    <artifactId>juice-webclient</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>Jugoterapia client library</name>
+    <description>Demo project for Spring Boot</description>
+    <properties>
+        <java.version>16</java.version>
+    </properties>
+    <distributionManagement>
+        <repository>
+            <id>artifactory</id>
+            <url>http://asus:8081/artifactory/libs-snapshot-local</url>
+        </repository>
+    </distributionManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.projectreactor</groupId>
+            <artifactId>reactor-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
+```
+
+To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
+
+```bash
+git clone git@github.com:josdem/juice-webclient.git
+```
+
+[Return to the main article](/techtalk/spring#Spring_Boot_Reactive)
