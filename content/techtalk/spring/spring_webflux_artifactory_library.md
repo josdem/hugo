@@ -62,15 +62,6 @@ group = 'com.josdem.jugoterapia.webclient'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '16'
 
-allprojects {
-    repositories {
-        maven {
-            url "http://asus:8081/artifactory/libs-develop"
-            allowInsecureProtocol true
-        }
-    }
-}
-
 configurations {
     compileOnly {
         extendsFrom annotationProcessor
