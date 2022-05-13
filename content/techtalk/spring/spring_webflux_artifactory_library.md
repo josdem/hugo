@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","JFrog","Artifactory"]
 categories = ["techtalk", "code"]
 +++
 
-In this technical post we will go over the process to publish a Spring Webflux library to [JFrog](https://jfrog.com/). **NOTE:** If you want to know more about how to create a Spring Webflux application please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's begin creating a new Spring Boot project with Webflux and Lombok.
+In this technical post, we will go over the process of publish a Spring Webflux library to [JFrog](https://jfrog.com/). **NOTE:** If you want to know more about creating a Spring Webflux application, please go to my previous post getting started with Spring Webflux [here](/techtalk/spring/spring_webflux_basics). Let's begin creating a new Spring Boot project with Webflux and Lombok.
 
 ```bash
 spring init --dependencies=webflux,lombok --build=gradle --language=java juice-webflux
@@ -18,7 +18,7 @@ Now, let's activate Maven publish plugin:
 apply plugin: 'maven-publish'
 ```
 
-And add our Gradle publishing task definition
+And add our Gradle publishing task definition.
 
 ```bash
 publishing {
@@ -47,7 +47,7 @@ publishing {
     }
 }
 ```
-In this publishing section we are defining, artifact id and group id taken from our `build.gradle` definition, versioning is handled by versionMapping DSL which allows to configure version strategies, if you want to know more about it, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:resolved_dependencies). JFrog Platform hosts local, virtual and remote [repository types](https://www.jfrog.com/confluence/display/JFROG/Repository+Management), in this case we are using `libs-snapshot-local` to publish our library. This is our complete `build.gradle` file.
+In this publishing section, we are defining, artifact id and group id taken from our `build.gradle` definition; versioning is handled by `versionMapping` DSL, which allows configuring version strategies; if you want to know more about it, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:resolved_dependencies). JFrog Platform hosts local, virtual and remote [repository types](https://www.jfrog.com/confluence/display/JFROG/Repository+Management); in this case, we are using `libs-snapshot-local` to publish our library. This is our complete `build.gradle` file.
 
 ```groovy
 plugins {
@@ -122,7 +122,7 @@ tasks.named('test') {
 }
 ```
 
-We are passing artifactory credentials using project properties with the -P flag, so publishing from command line will be
+We are passing artifactory credentials using project properties with the -P flag, so publishing from the command line will be
 
 ```bash
 gradle -Partifactory_user=${username} -Partifactory_password=@{password} publish
@@ -135,7 +135,7 @@ where:
 
 ## Publishing using Maven
 
-With Maven you need to specify in the `distributionManagement` section repository id which must be unique and URL:
+With Maven you need to specify in the `distributionManagement` section repository id, which must be unique and URL:
 
 ```xml
 <distributionManagement>
@@ -146,7 +146,7 @@ With Maven you need to specify in the `distributionManagement` section repositor
 </distributionManagement>
 ```
 
-Plus your Jfrog credentials in the `${USER_HOME}/.m2/settings.xml` file
+Plus, your Jfrog credentials in the `${USER_HOME}/.m2/settings.xml` file
 
 ```xml
 <settings>
