@@ -122,7 +122,7 @@ tasks.named('test') {
 }
 ```
 
-We are passing artifactory credentials using project properties with the -P flag, so publishing from the command line will be
+If you want to see a complete example how to publish with extra information, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:complete_example). We are passing artifactory credentials using project properties with the `-P` flag, so publishing from the command line will be
 
 ```bash
 gradle -Partifactory_user=${username} -Partifactory_password=@{password} publish
