@@ -97,9 +97,8 @@ publishing {
         }
     }
     repositories {
+        url = "https://jfrog.josdem.io/artifactory/libs-snapshot-local"
         maven {
-            url = "http://asus:8081/artifactory/libs-snapshot-local"
-            allowInsecureProtocol = true
             credentials {
                 username = "${artifactory_user}"
                 password = "${artifactory_password}"
@@ -175,7 +174,7 @@ Here is the complete `pom.xml` file:
     <distributionManagement>
         <repository>
             <id>artifactory</id>
-            <url>http://asus:8081/artifactory/libs-snapshot-local</url>
+            <url>https://jfrog.josdem.io/artifactory/libs-snapshot-local</url>
         </repository>
     </distributionManagement>
     <dependencies>
@@ -220,6 +219,12 @@ Here is the complete `pom.xml` file:
 
 </project>
 ```
+
+To publish library to artifactory
+
+```bash
+mvn deploy
+``
 
 To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
 
