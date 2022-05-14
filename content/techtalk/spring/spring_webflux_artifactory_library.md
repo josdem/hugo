@@ -1,5 +1,5 @@
 +++
-title =  "Spring Webflux Artifactory Library"
+title =  "Spring Webflux Publishing an Artifactory Library"
 description = "How to pulish a Jar library in Jfrog artifactory"
 date = "2022-05-12T15:47:21-04:00"
 tags = ["josdem", "techtalks","programming","technology","JFrog","Artifactory"]
