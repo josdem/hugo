@@ -224,7 +224,7 @@ To publish library to artifactory
 
 ```bash
 mvn deploy
-``
+```
 
 To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
 
