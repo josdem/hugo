@@ -111,7 +111,7 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Webflux JAXB](/techtalk/spring/spring_webflux_jaxb)
 * [Spring Webflux Constructor Injection](/techtalk/spring/spring_webflux_required_args_constructor)
 * [Spring Webflux WebSockets](/techtalk/spring/spring_webflux_websockets)
-* [Spring Webflux Artifactory Library](/techtalk/spring/spring_webflux_artifactory_library)
+* [Spring Webflux Publishing an Artifactory Library](/techtalk/spring/spring_webflux_artifactory_library)
 
 <a name="Spring_Boot_Reactive_ES">
 ## Spring Boot Reactivo en Español
