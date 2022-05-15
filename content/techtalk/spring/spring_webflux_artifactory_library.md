@@ -233,7 +233,7 @@ To publish library to artifactory
 mvn deploy
 ```
 
-If you want to learn more and publish your own library, feel free to drop me a message in my home page website and ask for a Jfrog credentials. To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
+If you want to learn more and publish your own library, feel free to drop me a message on my home page website and ask for a Jfrog credentials. To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
 
 ```bash
 git clone git@github.com:josdem/juice-webclient.git
