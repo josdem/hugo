@@ -131,7 +131,7 @@ With Maven you need to specify in the `distributionManagement` section repositor
 <distributionManagement>
     <repository>
         <id>artifactory</id>
-        <url>http://asus:8081/artifactory/libs-snapshot-local</url>
+        <url>https://jfrog.josdem.io/artifactory/libs-snapshot-local</url>
     </repository>
 </distributionManagement>
 ```
