@@ -56,6 +56,11 @@ plugins {
     id 'java'
 }
 
+ext {
+	artifactory_user = System.getProperty("ARTIFACTORY_USER");
+	artifactory_password = System.getProperty("ARTIFACTORY_PASSWORD");
+}
+
 apply plugin: 'maven-publish'
 
 group = 'com.josdem.jugoterapia.webclient'
@@ -115,7 +120,9 @@ tasks.named('test') {
 If you want to see a complete example how to publish with extra information, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:complete_example). We are passing artifactory credentials using project properties with the `-P` flag, so publishing from the command line will be
 
 ```bash
-gradle -Partifactory_user=${username} -Partifactory_password=@{password} publish
+export ARTIFACTORY_USER=${username}
+export ARTIFACTORY_PASSWORD=${password}
+gradle publish
 ```
 
 where:
@@ -226,7 +233,7 @@ To publish library to artifactory
 mvn deploy
 ```
 
-To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
+If you want to learn more and publish your own library, feel free to drop me a message in my home page website and ask for a Jfrog credentials. To browse the project go [here](https://github.com/josdem/juice-webclient), to download the project:
 
 ```bash
 git clone git@github.com:josdem/juice-webclient.git
