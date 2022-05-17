@@ -37,7 +37,7 @@ publishing {
     }
     repositories {
         maven {
-            url = "http://asus:8081/artifactory/libs-snapshot-local"
+            url = "https://jfrog.josdem.io/artifactory/libs-snapshot-local"
             allowInsecureProtocol = true
             credentials {
                 username = "${artifactory_user}"
