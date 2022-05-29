@@ -57,8 +57,8 @@ plugins {
 }
 
 ext {
-	artifactory_user = System.getProperty("ARTIFACTORY_USER");
-	artifactory_password = System.getProperty("ARTIFACTORY_PASSWORD");
+    artifactory_user = "$System.env.ARTIFACTORY_USER"
+    artifactory_password = "$System.env.ARTIFACTORY_PASSWORD"
 }
 
 apply plugin: 'maven-publish'
@@ -117,7 +117,7 @@ tasks.named('test') {
 }
 ```
 
-If you want to see a complete example how to publish with extra information, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:complete_example). We are passing artifactory credentials using project properties with the `-P` flag, so publishing from the command line will be
+If you want to see a complete example how to publish with extra information, please go [here](https://docs.gradle.org/7.4.2/userguide/publishing_maven.html#publishing_maven:complete_example). We are passing artifactory credentials using system properties, so publishing from the command line will be
 
 ```bash
 export ARTIFACTORY_USER=${username}
@@ -132,15 +132,31 @@ where:
 
 ## Publishing using Maven
 
-With Maven you need to specify in the `distributionManagement` section repository id, which must be unique and URL:
+With Maven you need to specify in the `distributionManagement` section repository id, which in this case should be `snapshots` and URL. Plus repositories, specifying your artifactory server:
 
 ```xml
 <distributionManagement>
     <repository>
-        <id>artifactory</id>
+        <id>snapshots</id>
         <url>https://jfrog.josdem.io/artifactory/libs-snapshot-local</url>
     </repository>
 </distributionManagement>
+<repositories>
+    <repository>
+        <snapshots>
+            <enabled>false</enabled>
+        </snapshots>
+        <id>central</id>
+        <name>libs-release</name>
+        <url>https://jfrog.josdem.io/artifactory/libs-release</url>
+    </repository>
+    <repository>
+        <snapshots/>
+        <id>snapshots</id>
+        <name>libs-snapshot</name>
+        <url>https://jfrog.josdem.io/artifactory/libs-snapshot</url>
+    </repository>
+</repositories>
 ```
 
 Plus, your Jfrog credentials in the `${USER_HOME}/.m2/settings.xml` file
@@ -180,10 +196,26 @@ Here is the complete `pom.xml` file:
     </properties>
     <distributionManagement>
         <repository>
-            <id>artifactory</id>
+            <id>snapshots</id>
             <url>https://jfrog.josdem.io/artifactory/libs-snapshot-local</url>
         </repository>
     </distributionManagement>
+    <repositories>
+        <repository>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>central</id>
+            <name>libs-release</name>
+            <url>https://jfrog.josdem.io/artifactory/libs-release</url>
+        </repository>
+        <repository>
+            <snapshots/>
+            <id>snapshots</id>
+            <name>libs-snapshot</name>
+            <url>https://jfrog.josdem.io/artifactory/libs-snapshot</url>
+        </repository>
+    </repositories>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
