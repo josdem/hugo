@@ -51,7 +51,7 @@ In this publishing section, we are defining, artifact id and group id taken from
 
 ```groovy
 plugins {
-    id 'org.springframework.boot' version '2.6.7'
+    id 'org.springframework.boot' version '2.6.7' apply false
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
@@ -85,6 +85,12 @@ dependencies {
     testImplementation 'io.projectreactor:reactor-test'
     testCompileOnly 'org.projectlombok:lombok'
     testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+dependencyManagement {
+    imports{
+        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+    }
 }
 
 publishing {
@@ -243,23 +249,6 @@ Here is the complete `pom.xml` file:
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <excludes>
-                        <exclude>
-                            <groupId>org.projectlombok</groupId>
-                            <artifactId>lombok</artifactId>
-                        </exclude>
-                    </excludes>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 
 </project>
 ```
