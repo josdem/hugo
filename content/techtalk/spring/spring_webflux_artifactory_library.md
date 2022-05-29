@@ -159,15 +159,20 @@ With Maven you need to specify in the `distributionManagement` section repositor
 </repositories>
 ```
 
-Plus, your Jfrog credentials in the `${USER_HOME}/.m2/settings.xml` file
+Do not forget to set up your Jfrog credentials in the `${USER_HOME}/.m2/settings.xml` file
 
 ```xml
 <settings>
   <servers>
     <server>
-      <id>artifactory</id>
       <username>username</username>
       <password>password</password>
+      <id>central</id>
+    </server>
+    <server>
+      <username>username</username>
+      <password>password</password>
+      <id>snapshots</id>
     </server>
   </servers>
 </settings>
