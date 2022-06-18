@@ -15,48 +15,38 @@ spring init --dependencies=webflux,lombok --build=gradle --language=java spring-
 Here is the complete `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.0.5.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'org.springframework.boot' version '2.7.0'
+  id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+  id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.jos.dem.springboot.webclient'
+group = 'com.jos.dem.webclient'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 15
 
 repositories {
-	mavenCentral()
+  mavenCentral()
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-webflux')
-  compile('org.springframework.boot:spring-boot-starter')
-  compile('org.projectlombok:lombok')
-  testCompile('org.springframework.boot:spring-boot-starter-test')
+  implementation('org.springframework.boot:spring-boot-starter-webflux')
+  implementation('org.springframework.boot:spring-boot-starter-tomcat')
+  compileOnly('org.projectlombok:lombok')
+  annotationProcessor 'org.projectlombok:lombok'
+  testImplementation('org.springframework.boot:spring-boot-starter-test')
+  testImplementation('io.projectreactor:reactor-test')
 }
 ```
 
-**NOTE:** If you want to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot)
-
-Now add latest Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
+**NOTE:** If you want to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot). Now add latest Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
 
 ```groovy
-testCompile("info.cukes:cucumber-java:$cucumberVersion")
-testCompile("info.cukes:cucumber-junit:$cucumberVersion")
-testCompile("info.cukes:cucumber-spring:$cucumberVersion")
-testCompile("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
-testRuntime("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
+testImplementation("info.cukes:cucumber-java:$cucumberVersion")
+testImplementation("info.cukes:cucumber-junit:$cucumberVersion")
+testImplementation("info.cukes:cucumber-spring:$cucumberVersion")
+testImplementation("org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion")
+testImplementation("org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion")
 ```
 
 Next we are going to create a `GET` request example using the GitHub API V3.
