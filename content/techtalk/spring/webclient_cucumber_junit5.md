@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology","spring boot", "webclie
 categories = ["techtalk", "code", "spring boot", "cucumber", "junit5"]
 +++
 
-This time I will show you how to combine Webflux [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) in order to consume [GitHub API v3](https://developer.github.com/v3/?) public REST API. First, let’s start creating a new Spring Boot project with Webflux and Lombok as dependencies:
+This time I will show you how to combine Webflux [WebClient](https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-webclient.html) along with [Cucumber](https://cucumber.io/) and [Junit 5](https://junit.org/junit5/) to consume [GitHub API v3](https://developer.github.com/v3/?) public REST API. First, let’s start creating a new Spring Boot project with Webflux and Lombok as dependencies:
 
 ```bash
 spring init --dependencies=webflux,lombok --build=gradle --language=java spring-boot-web-client
@@ -45,7 +45,7 @@ dependencies {
 }
 ```
 
-**NOTE:** If you want to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot). Now add latest Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
+**NOTE:** If you want to know what tools you need to have installed on your computer to create a Spring Boot basic project, please refer to my previous post: [Spring Boot](/techtalk/spring/spring_boot). Now add the latest Cucumber and Junit 5 Framework dependencies to your `build.gradle` file:
 
 ```groovy
 testImplementation("info.cukes:cucumber-java:$cucumberVersion")
@@ -185,7 +185,7 @@ public class WebClientApplication {
 }
 ```
 
-This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token that you can generate from here: [Personal Access Token](https://github.com/settings/tokens). Once you have that token you need to provide it to our Spring Boot project, this time we will use an `application.properties` file, please go to the [Project Configuration](https://github.com/josdem/webclient-workshop/wiki/Properties-File) for getting more information. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file which is also known as the feature file:
+This project is using Github’s [Basic Authentication](https://developer.github.com/v3/auth/#basic-authentication) and requires your Github username and access token, that you can generate from here: [Personal Access Token](https://github.com/settings/tokens). Once you have that token you need to provide it to our Spring Boot project; this time, we will use an `application.properties` file, please go to the [Project Configuration](https://github.com/josdem/webclient-workshop/wiki/Properties-File) to get more information. The JUnit runner uses the JUnit framework to run the Cucumber Test. What we need is to create a single empty class with an annotation @RunWith(Cucumber.class) and define @CucumberOptions where we’re specifying the location of the Gherkin file, which is also known as the feature file:
 
 ```java
 package com.jos.dem.webclient;
