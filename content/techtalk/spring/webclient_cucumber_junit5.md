@@ -25,6 +25,12 @@ group = 'com.jos.dem.webclient'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 15
 
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
+
 repositories {
   mavenCentral()
 }
