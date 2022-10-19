@@ -1,6 +1,6 @@
 +++
 title =  "Applitools Getting Started"
-description = "Applitools_getting_started"
+description = "Applitools Getting Started"
 date = "2021-11-20T11:22:39-05:00"
 tags = ["josdem", "techtalks","programming","technology","WebdriverIO", "Applitools"]
 categories = ["techtalk", "code", "NodeJS", "JavaScript","WebdriverIO", "Applitools"]
@@ -164,7 +164,23 @@ module.exports = {
   cleaning,
   publishing,
 }
-``` 
+```
+
+One important part missing here is our page to test, we will create one named `test/pageobjects/home.page.js`, page object design pattern is very popular when we talk about testing automation concepts, a page object is a representation of a web page, so if the UI changes, you only need to change your page object not test cases.
+
+```javascript
+const properties = require(`../properties/${process.env.NODE_ENV}.properties`)
+
+class Home {
+
+  async open() {
+    await browser.url(properties.url)
+    return await browser.getTitle()
+  }
+}
+
+export const HomePage = new Home()
+```
 
 You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see those screenshots stored at your Applitools test results dashboard:
 
