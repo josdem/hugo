@@ -17,9 +17,9 @@ Now let's create a `navigate.spec.js` under `test/specs/` directory with this co
 ```javascript
 const properties = require(`../properties/${process.env.NODE_ENV}.properties`)
 
-import * as assert from "assert"
-import * as applitools from "../utils/applitools.util"
-import { HomePage } from "../pageobjects/home.page"
+const assert = require("assert")
+const applitools = require("../utils/applitools.util")
+const HomePage  = require("../pageobjects/home.page")
 
 describe("Loading WebdriverIO webpage", () => {
   before("setting up Applitools configuration", async () => {
@@ -171,7 +171,7 @@ One important part missing here is our page to test, we will create one named `t
 ```javascript
 const properties = require(`../properties/${process.env.NODE_ENV}.properties`)
 
-class Home {
+class HomePage {
 
   async open() {
     await browser.url(properties.url)
@@ -179,7 +179,16 @@ class Home {
   }
 }
 
-export const HomePage = new Home()
+module.exports = new HomePage()
+```
+
+It is important to notice that we are loading properties file dynamically using [JavaScript backtick template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), in this way we can load development, stage and production with different data. Here is our properties file.
+
+```javascript
+module.exports = {
+    url: "https://webdriver.io/",
+    title: "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO",
+}
 ```
 
 You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see those screenshots stored at your Applitools test results dashboard:
