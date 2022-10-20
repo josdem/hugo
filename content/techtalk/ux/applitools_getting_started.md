@@ -182,7 +182,7 @@ class HomePage {
 module.exports = new HomePage()
 ```
 
-It is important to notice that we are loading properties file dynamically using [JavaScript backtick template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), in this way we can load development, stage and production with different data. Here is our properties file.
+Please notice that we are loading properties file dynamically using [JavaScript backtick template](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals), in this way we can load development, stage and production with different data. Here is our properties file.
 
 ```javascript
 module.exports = {
