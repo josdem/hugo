@@ -195,6 +195,51 @@ You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see
 
 <img src="/img/techtalks/ux/applitools.png">
 
+Applitools can also take screenshots from a particular region, this is useful when you might want to focus your test in some particular section of the website. Here is the code:
+
+```javasctipt
+const checkRegionEyes = async (screenshot, region) => {
+await eyes.check(screenshot, Target.region(By.css(region)))
+}
+```
+
+And the test calling the method here:
+
+```javascript
+const properties = require(`../properties/${process.env.NODE_ENV}.properties`)
+
+const assert = require("assert")
+const applitools = require("../utils/applitools.util")
+const HomePage  = require("../pageobjects/home.page")
+
+describe("Checkout footer region", () => {
+  before("setting up Applitools configuration", async () => {
+    await applitools.setUpConfiguration()
+  })
+
+  beforeEach("setting up test information", async function () {
+    const appName = await this.test.parent.title
+    const testName = await this.currentTest.title
+    await applitools.setUpTest(appName, testName)
+  })
+
+  it("validates website footer", async () => {
+    const title = await HomePage.open()
+    await applitools.checkRegionEyes("footer region", HomePage.getFooter())
+    assert.strictEqual(title, properties.title)
+    await applitools.closeEyes()
+  })
+
+  afterEach("cleaning up test", async () => {
+    await applitools.cleaning()
+  })
+
+  after("publishing results", async () => {
+    await applitools.publishing()
+  })
+})
+```
+
 To browse the code go [here](https://github.com/josdem/applitools-workshop), to download the project:
 
 ```bash
