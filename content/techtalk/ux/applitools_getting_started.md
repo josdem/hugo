@@ -197,7 +197,7 @@ You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see
 
 Applitools can also take screenshots from a particular region, this is useful when you might want to focus your test in some particular section of the website. Here is the code:
 
-```javasctipt
+```javascript
 const checkRegionEyes = async (screenshot, region) => {
 await eyes.check(screenshot, Target.region(By.css(region)))
 }
