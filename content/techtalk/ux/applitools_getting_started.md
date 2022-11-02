@@ -15,36 +15,33 @@ npm i --save-dev @applitools/eyes-webdriverio
 Now let's create a `navigate.spec.js` under `test/specs/` directory with this content
 
 ```javascript
-const properties = require(`../properties/${process.env.NODE_ENV}.properties`)
-
-const assert = require("assert")
-const applitools = require("../utils/applitools.util")
+const Applitools = require("../utils/applitools.util")
+const Constants = require('../utils/constants.util')
 const HomePage  = require("../pageobjects/home.page")
 
-describe("Loading WebdriverIO webpage", () => {
+const testName = 'Home Page'
+const batchName = 'WebdriverIO'
+
+describe(testName, () => {
   before("setting up Applitools configuration", async () => {
-    await applitools.setUpConfiguration()
+    await Applitools.setUpConfiguration(batchName)
   })
 
   beforeEach("setting up test information", async function () {
-    const appName = await this.test.parent.title
-    const testName = await this.currentTest.title
-    await applitools.setUpTest(appName, testName)
+    await Applitools.setUpTest(Constants.appName, testName)
   })
 
   it("validates website title", async () => {
-    const title = await HomePage.open()
-    await applitools.checkWindowEyes("home page")
-    assert.strictEqual(title, properties.title)
-    await applitools.closeEyes()
+    await HomePage.open()
+    await Applitools.checkWindowEyes("home page")
   })
 
   afterEach("cleaning up test", async () => {
-    await applitools.cleaning()
+    await Applitools.closeEyes()
   })
 
   after("publishing results", async () => {
-    await applitools.publishing()
+    await Applitools.cleaning()
   })
 })
 ```
@@ -95,8 +92,8 @@ const APPLITOOLS_SERVER = "https://eyes.applitools.com/"
 const BATCH_INFO = "Ultrafast Batch"
 const BREAK_POINT_SIZE = 700
 const CHROME = {
-  width: 800,
-  height: 600,
+  width: 1280,
+  height: 768,
 }
 const FIREFOX = {
   width: 800,
@@ -147,11 +144,8 @@ const closeEyes = async () => {
   await eyes.closeAsync()
 }
 
-const cleaning = async () => {
-  await eyes.abortAsync()
-}
-
 const publishing = async () => {
+  await eyes.abortAsync()
   const results = await runner.getAllTestResults(false)
   console.log(results)
 }
@@ -161,8 +155,7 @@ module.exports = {
   setUpTest,
   checkWindowEyes,
   closeEyes,
-  cleaning,
-  publishing,
+  cleaning
 }
 ```
 
@@ -189,6 +182,14 @@ module.exports = {
     url: "https://webdriver.io/",
     title: "WebdriverIO · Next-gen browser and mobile automation test framework for Node.js | WebdriverIO",
 }
+```
+
+Also consider using a constants file, so that you can define values you can use across all the project
+
+```javascript
+module.exports = Object.freeze({
+  appName: "WDIO Automation",
+})
 ```
 
 You are good to execute it with: `npx wdio run wdio.conf.js`, and you should see those screenshots stored at your Applitools test results dashboard:
