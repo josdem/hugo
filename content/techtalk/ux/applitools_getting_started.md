@@ -19,7 +19,6 @@ const Applitools = require("../utils/applitools.util")
 const Constants = require('../utils/constants.util')
 const HomePage  = require("../pageobjects/home.page")
 
-const testName = 'Home Page'
 const batchName = 'WebdriverIO'
 
 describe(testName, () => {
@@ -28,6 +27,7 @@ describe(testName, () => {
   })
 
   beforeEach("setting up test information", async function () {
+    const testName = this.currentTest.title
     await Applitools.setUpTest(Constants.appName, testName)
   })
 
@@ -49,7 +49,7 @@ describe(testName, () => {
 Let's analyze every section, on `before` method we are setting up all required Applitools setup, on `beforeEach` we are setting up our test information such as application and test name. it "validates website title" we are opening our taget web page and taking an screenshot with `await applitools.checkWindowEyes("home page")` on `afterEach` and `after` methods we are cleaning and publishing our results. Now is time to take a look to Applitools confuguration in detail:
 
 ```javascript
-const setUpConfiguration = async () => {
+const setUpConfiguration = async (batchName) => {
   const runnerOptions = new RunnerOptions().testConcurrency(5)
   runner = new VisualGridRunner(runnerOptions)
   eyes = new Eyes(runner)
@@ -57,7 +57,7 @@ const setUpConfiguration = async () => {
   configuration = eyes.getConfiguration()
   configuration.setApiKey(process.env.APPLITOOLS_API_KEY)
   configuration.setServerUrl(APPLITOOLS_SERVER)
-  configuration.setBatch(new BatchInfo(BATCH_INFO))
+  configuration.setBatch(new BatchInfo(batchName))
   configuration.addBrowser(CHROME.width, CHROME.height, BrowserType.CHROME)
   configuration.addBrowser(FIREFOX.width, FIREFOX.height, BrowserType.FIREFOX)
   configuration.addBrowser(EDGE.width, EDGE.height, BrowserType.EDGE_CHROMIUM)
@@ -89,7 +89,6 @@ On `closeEyes` we are closing asynchronously Applitools eyes, this is important 
 const { VisualGridRunner, RunnerOptions, Eyes, Target, BatchInfo, BrowserType, DeviceName, ScreenOrientation } = require("@applitools/eyes-webdriverio")
 
 const APPLITOOLS_SERVER = "https://eyes.applitools.com/"
-const BATCH_INFO = "Ultrafast Batch"
 const BREAK_POINT_SIZE = 700
 const CHROME = {
   width: 1280,
@@ -112,7 +111,7 @@ let eyes
 let runner
 let configuration
 
-const setUpConfiguration = async () => {
+const setUpConfiguration = async (batchName) => {
   const runnerOptions = new RunnerOptions().testConcurrency(5)
   runner = new VisualGridRunner(runnerOptions)
   eyes = new Eyes(runner)
@@ -120,7 +119,7 @@ const setUpConfiguration = async () => {
   configuration = eyes.getConfiguration()
   configuration.setApiKey(process.env.APPLITOOLS_API_KEY)
   configuration.setServerUrl(APPLITOOLS_SERVER)
-  configuration.setBatch(new BatchInfo(BATCH_INFO))
+  configuration.setBatch(new BatchInfo(batchName))
   configuration.addBrowser(CHROME.width, CHROME.height, BrowserType.CHROME)
   configuration.addBrowser(FIREFOX.width, FIREFOX.height, BrowserType.FIREFOX)
   configuration.addBrowser(EDGE.width, EDGE.height, BrowserType.EDGE_CHROMIUM)
@@ -144,7 +143,7 @@ const closeEyes = async () => {
   await eyes.closeAsync()
 }
 
-const publishing = async () => {
+const cleaning = async () => {
   await eyes.abortAsync()
   const results = await runner.getAllTestResults(false)
   console.log(results)
