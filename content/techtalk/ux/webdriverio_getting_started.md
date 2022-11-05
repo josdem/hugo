@@ -70,7 +70,7 @@ And answer prompt questions with:
 - Do you want to add a service to your test setup? -> chromedriver
 - What is the base url? -> http://localhost
 
-This will gererate a WebdriverIO configuration file named `wdio.conf.js`. Finally we can create our first test, let's create a spec file named `helloWorld.js` under `${PROJECT_HOME}/test/specs/helloWorld.js`
+This will gererate a WebdriverIO configuration file named `wdio.conf.js`. Finally we can create our first test, let's create a spec file named `hello.world.js` under `${PROJECT_HOME}/test/specs/helloWorld.js`
 
 ```javascript
 const assert = require('assert')
