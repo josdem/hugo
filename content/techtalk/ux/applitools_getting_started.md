@@ -21,7 +21,7 @@ const HomePage  = require("../pageobjects/home.page")
 
 const batchName = 'WebdriverIO'
 
-describe(testName, () => {
+describe("validating WebdriverIO web page", () => {
   before("setting up Applitools configuration", async () => {
     await Applitools.setUpConfiguration(batchName)
   })
