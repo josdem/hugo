@@ -6,7 +6,7 @@ date = "2017-06-05T14:45:09-05:00"
 description = "You know the benefits using version of control in software development such as Git or Subversion. This time I will show you Flyway to manage version control for your database, so you can track schema's evolution across all your environments with ease using Gradle and Spring Boot."
 +++
 
-In the same way we find benefits using version of control in software development with [Git](https://git-scm.com/), we can vertioning our database so that we can manage changes in both schema and information. Let me introduce [Flyway](https://flywaydb.org/) an open source project that help us to do database migrations easily, that's it, how cool would be to see our database evolution across all our development life cycle?. In this example we wil be using [Gradle](https://gradle.org/) and Spring Boot. Let’s start creating a new Spring Boot project with web and jpa dependencies:
+In the same way we find benefits using version of control in software development with [Git](https://git-scm.com/), we can versioning our database so that we can manage changes in both schema and information. Let me introduce [Flyway](https://flywaydb.org/) an open source project that help us to do database migrations easily, that's it, how cool would be to see our database evolution across all our development life cycle?. In this example we wil be using [Gradle](https://gradle.org/) and Spring Boot. Let’s start creating a new Spring Boot project with web and jpa dependencies:
 
 ```bash
 spring init --dependencies=web,mysql,jpa --language=java --build=gradle --type=gradle-project spring-boot-flyway
