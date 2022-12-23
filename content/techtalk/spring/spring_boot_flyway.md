@@ -6,59 +6,61 @@ date = "2017-06-05T14:45:09-05:00"
 description = "You know the benefits using version of control in software development such as Git or Subversion. This time I will show you Flyway to manage version control for your database, so you can track schema's evolution across all your environments with ease using Gradle and Spring Boot."
 +++
 
-You know the benefits using version of control in software development such as [Git](https://git-scm.com/) or [Subversion](https://subversion.apache.org/). This time I will show you [Flyway](https://flywaydb.org/) to manage version control for your database, so you can track schema's evolution across all your environments with ease using [Gradle](https://gradle.org/) and Spring Boot.
-
-Let’s start creating a new Spring Boot project with web and jpa dependencies:
+In the same way we find benefits using version of control in software development with [Git](https://git-scm.com/), we can vertioning our database so that we can manage changes in both schema and information. Let me introduce [Flyway](https://flywaydb.org/) an open source project that help us to do database migrations easily, that's it, how cool would be to see our database evolution across all our development life cycle?. In this example we wil be using [Gradle](https://gradle.org/) and Spring Boot. Let’s start creating a new Spring Boot project with web and jpa dependencies:
 
 ```bash
-spring init --dependencies=web,jpa --language=groovy --build=gradle spring-boot-flyway
+spring init --dependencies=web,mysql,jpa --language=java --build=gradle --type=gradle-project spring-boot-flyway
 ```
 
 This is the `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '1.5.12.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.7.7'
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
-apply plugin: 'groovy'
-apply plugin: 'org.springframework.boot'
-
+group = 'com.jos.dem.springboot.flyway'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = '17'
 
 repositories {
-  mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-  compile 'org.springframework.boot:spring-boot-starter-web'
-  compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-  compile 'mysql:mysql-connector-java:5.1.34'
-  compile 'org.codehaus.groovy:groovy'
-  testCompile 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    runtimeOnly 'mysql:mysql-connector-java'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
 ```
 
-Then let's add Flyway plugin to the `gradle.properties` to connect to MySQL database:
+Then let's add Flyway plugin to the `build.gradle` file to connect to MySQL database:
 
 ```groovy
+buildscript {
+    dependencies {
+        classpath 'org.flywaydb:flyway-mysql:9.8.1'
+    }
+}
+
 plugins {
-  id "org.flywaydb.flyway" version "5.0.7"
+    id 'java'
+    id 'org.springframework.boot' version '2.7.7'
+    id "org.flywaydb.flyway" version "9.8.1"
+    id 'io.spring.dependency-management' version '1.1.0'
 }
 
 flyway {
   url = 'jdbc:mysql://localhost:3306/flyway_demo'
-  user = 'flywayUser'
-  password = 'flywaySecret'
+  user = 'databaseUser'
+  password = 'databasePassword'
 }
 ```
 
@@ -67,9 +69,9 @@ Now let's create first migration called `src/main/resources/db/migration/V1__per
 ```sql
 DROP TABLE IF EXISTS `person`;
 CREATE TABLE `person` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(255) NOT NULL,
-  `lastname` varchar(255) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 );
 ```
@@ -77,7 +79,7 @@ CREATE TABLE `person` (
 Secondly, let's add a second migration called `src/main/resources/db/migration/V2__person_insert.sql`:
 
 ```sql
-INSERT INTO `person` VALUES (1, 'Jose Luis', 'De la Cruz Morales'), (2, 'Eric', 'Haddad')
+INSERT INTO `person` VALUES (1, 'Jose', 'Morales'), (2, 'Eric', 'Haddad')
 ```
 
 Let's run Flyway to migrate our database using gradle:
@@ -89,13 +91,17 @@ gradle flywayMigrate -i
 If all went well, you should see the following output:
 
 ```bash
-Flyway Community Edition 5.0.7 by Boxfuse
-Database: jdbc:mysql://localhost:3306/flyway_demo (MySQL 5.7)
-Successfully validated 2 migrations (execution time 00:00.039s)
+Database: jdbc:mysql://localhost:3306/flyway_demo (MySQL 8.0)
+Successfully validated 2 migrations (execution time 00:00.006s)
+Creating Schema History table `flyway_demo`.`flyway_schema_history` ...
 Current version of schema `flyway_demo`: << Empty Schema >>
-Migrating schema `flyway_demo` to version 1 - person create
-Migrating schema `flyway_demo` to version 2 - person insert
-Successfully applied 2 migrations to schema `flyway_demo` (execution time 00:00.985s)
+Migrating schema `flyway_demo` to version "1 - person create"
+DB: Unknown table 'flyway_demo.person' (SQL State: 42S02 - Error Code: 1051)
+Migrating schema `flyway_demo` to version "2 - person insert"
+Successfully applied 2 migrations to schema `flyway_demo`, now at version v2 (execution time 00:00.085s)
+:flywayMigrate (Thread[Execution worker Thread 2,5,main]) completed. Took 0.865 secs.
+
+BUILD SUCCESSFUL
 ```
 
 We can do `flywayMigrate` task as dependent to `bootRun` task in gradle as follow:
@@ -103,27 +109,6 @@ We can do `flywayMigrate` task as dependent to `bootRun` task in gradle as follo
 ```groovy
 bootRun.dependsOn rootProject.tasks['flywayMigrate']
 ```
-
-
-Flyway uses `VX__description.sql` convention names. We are using `application.properties` to specify embedded database driver class, credentials and ddl (Data Definition Language) strategy.
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/flyway_demo
-spring.datasource.username=flywayUser
-spring.datasource.password=secret
-spring.datasource.driver-class-name=com.mysql.jdbc.Driver
-
-spring.jpa.generate-ddl=false
-spring.jpa.hibernate.ddl-auto=none
-```
-
-
-JPA has features for DDL generation, and these can be set up to run on startup against the database. This is controlled through two last previous properties:
-
-* `spring.jpa.generate-ddl` (boolean) switches the feature on and off and is vendor independent.
-* `spring.jpa.hibernate.ddl-auto` (enum) is a Hibernate feature that controls the behavior in a more fine-grained way. This features are: `create`, `create-drop`, `validate`, and `update`.
-
-In production or using Flyway version control it is highly recommended you use `none` or simply do not specify this property.
 
 Here is our `Person` entity:
 
