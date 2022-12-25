@@ -113,28 +113,27 @@ bootRun.dependsOn rootProject.tasks['flywayMigrate']
 Here is our `Person` entity:
 
 ```groovy
-package com.jos.dem.springboot.flyway.model
+package com.jos.dem.springboot.flyway.model;
 
-import static javax.persistence.GenerationType.AUTO
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-import javax.persistence.Id
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
+import static javax.persistence.GenerationType.AUTO;
 
 @Entity
-class Person {
+public class Person {
 
   @Id
-  @GeneratedValue(strategy=AUTO)
-  Long id
+  @GeneratedValue(strategy = AUTO)
+  Long id;
 
   @Column(nullable = false)
-  String firstname
+  String firstName;
 
   @Column(nullable = false)
-  String lastname
-
+  String lastName;
 }
 ```
 
