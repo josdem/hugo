@@ -17,5 +17,6 @@ In this section I will post all referent about UX development such as Javascript
 * [WebdriverIO Geolocation](/techtalk/ux/webdriverio_geolocation)
 * [WebdriverIO with Cucumber Getting Started](/techtalk/ux/webdriverio_cucumber_getting_started)
 * [WebdriverIO Lighthouse](/techtalk/ux/webdriverio_lighthouse)
+* [Selenium Cucumber And TestNG](/techtalk/ux/selenium-cucumber-testng)
 
 [Return to the main article](/techtalk/techtalks)
