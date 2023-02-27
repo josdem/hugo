@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology", "automation", "seleniu
 categories = ["techtalk", "code", "ui", "automation"]
 +++
 
-[Selenium](https://www.selenium.dev/) is a collection of tools and libraries that enable and support automation for web browsers, Selenium follows the [W3c WebDriver Specification](https://www.w3.org/TR/webdriver/) standard, that is importat due to allows you to create interchangeable code for all major web browsers. Also is a truly open source project under Apache version 2.0 license. This time we will review how to build a broswer validation using Selenuium, [Cucumber](https://cucumber.io/) and [TestNG](https://testng.org/doc/). First, let's create a new Maven project using [IntelliJ](https://www.jetbrains.com/idea/) and select Java 17 version, your pom.xml file should looks like this:
+[Selenium](https://www.selenium.dev/) is a collection of tools and libraries that enable and support automation for web browsers, Selenium follows the [W3c WebDriver Specification](https://www.w3.org/TR/webdriver/) standard, that is importat due to allows you to create interchangeable code for all major web browsers. Also is a truly open source project under Apache version 2.0 license. This time we will review how to build a browser functionality validation using Selenuium, [Cucumber](https://cucumber.io/) and [TestNG](https://testng.org/doc/). First, let's create a new Maven project using [IntelliJ](https://www.jetbrains.com/idea/) and select Java 17 version, your pom.xml file should looks like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -29,7 +29,7 @@ categories = ["techtalk", "code", "ui", "automation"]
 </project>
 ```
 
-Now, let's add selenium-java, cucumber-java, cucumber-testng and cucumber-core.
+Now, let's add `selenium-java`, `cucumber-java`, `cucumber-testng` and `cucumber-core` dependencies.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -83,7 +83,7 @@ Now, let's add selenium-java, cucumber-java, cucumber-testng and cucumber-core.
 </project>
 ```
 
-In the same level as pom.xml, let's create a new file named `testng.xml`
+In the same level as `pom.xml`, let's create a new file named `testng.xml`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -98,7 +98,7 @@ In the same level as pom.xml, let's create a new file named `testng.xml`
 </suite>
 ```
 
-As you can see our group id is: `com.josdem.selenium.cucumber` and we need a Java class in src/test/java named `TestRunner` with this structure:
+As you can see our group id is: `com.josdem.selenium.cucumber`, therefore, we need a Java class in `src/test/java` named `TestRunner` with this structure:
 
 ```java
 package com.josdem.selenium.cucumber;
@@ -118,7 +118,7 @@ import io.cucumber.testng.CucumberOptions;
 public class TestRunner extends AbstractTestNGCucumberTests {}
 ```
 
-That's it in this file we are defining our feature home, let's create a simple feature file.
+That's it, in this file we are defining our feature home directory, let's create a simple feature file there.
 
 ```gherkin
 @smoke
@@ -129,7 +129,7 @@ Feature: josdem Test
     Then I validate is "josdem"
 ```
 
-And steps goes in com.josdem.selenium.cucumber.steps
+And the steps definition goes in `com.josdem.selenium.cucumber.steps` package
 
 ```java
 package com.josdem.selenium.cucumber.steps;
@@ -166,7 +166,7 @@ public class WebsiteStep {
 }
 ```
 
-As you can see we are using regular expressions to pass arguments or values from feature file to the step definitions. Finally you can execute this project with command:
+ChromeDriver is a separate executable that Seleium uses to control Chrome, if you are using a Linux distribution, just download it and store it at `/usr/bin`, otherwise, please follow the instructions [here](https://chromedriver.chromium.org/home). As you can see in the previous `WebsisteStep` class, we are using regular expressions to pass arguments or values from feature file to the step definitions. Finally you can execute this project with command:
 
 ```bash
 mvn test
