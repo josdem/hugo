@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology", "automation", "seleniu
 categories = ["techtalk", "code", "ui", "automation"]
 +++
 
-[Selenium](https://www.selenium.dev/) is a collection of tools and libraries that enable and support automation for web browsers, Selenium follows the [W3c WebDriver Specification](https://www.w3.org/TR/webdriver/) standard, that is importat due to allows you to create interchangeable code for all major web browsers standard, that is importat due to allows you to create interchangeable code for all major web browsers. Also is a truly open source project under Apache version 2.0 license. This time we will review how to build a broswer validation using Selenuium, [Cucumber](https://cucumber.io/) and [TestNG](https://testng.org/doc/). Fist, let's create a new Maven project using [IntelliJ](https://www.jetbrains.com/idea/) and select Java 17 version, your pom.xml file will looks like this:
+[Selenium](https://www.selenium.dev/) is a collection of tools and libraries that enable and support automation for web browsers, Selenium follows the [W3c WebDriver Specification](https://www.w3.org/TR/webdriver/) standard, that is importat due to allows you to create interchangeable code for all major web browsers. Also is a truly open source project under Apache version 2.0 license. This time we will review how to build a broswer validation using Selenuium, [Cucumber](https://cucumber.io/) and [TestNG](https://testng.org/doc/). First, let's create a new Maven project using [IntelliJ](https://www.jetbrains.com/idea/) and select Java 17 version, your pom.xml file should looks like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -81,7 +81,7 @@ Now, let's add selenium-java, cucumber-java, cucumber-testng and cucumber-core.
 
 
 </project>
-``
+```
 
 In the same level as pom.xml, let's create a new file named `testng.xml`
 
