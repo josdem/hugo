@@ -166,7 +166,7 @@ public class WebsiteStep {
 }
 ```
 
-ChromeDriver is a separate executable that Seleium uses to control Chrome, if you are using a Linux distribution, just download it and store it at `/usr/bin` if you are using macOS store it at `/usr/local/bin`, otherwise, please follow the instructions [here](https://chromedriver.chromium.org/home). As you can see in the previous `WebsisteStep` class, we are using regular expressions to pass arguments or values from feature file to the step definitions. Finally, you can execute this project with command:
+ChromeDriver is a separate executable that Selenium uses to control Chrome, if you are using a Linux distribution, just download it and store it at `/usr/bin` if you are using macOS store it at `/usr/local/bin`, otherwise, please follow the instructions [here](https://chromedriver.chromium.org/home). As you can see in the previous `WebsisteStep` class, we are using regular expressions to pass arguments or values from feature file to the step definitions. Finally, you can execute this project with command:
 
 ```bash
 mvn test
