@@ -6,7 +6,7 @@ tags = ["josdem", "techtalks","programming","technology", "automation", "seleniu
 categories = ["techtalk", "code", "ui", "automation"]
 +++
 
-[Selenium](https://www.selenium.dev/) is a collection of tools and libraries that enable and support automation for web browsers, Selenium follows the [W3c WebDriver Specification](https://www.w3.org/TR/webdriver/) standard, that is importat due to allows you to create interchangeable code for all major web browsers. Also is a truly open source project under Apache version 2.0 license. This time we will review how to build a browser functionality validation using Selenuium, [Cucumber](https://cucumber.io/) and [TestNG](https://testng.org/doc/). First, let's create a new Maven project using [IntelliJ](https://www.jetbrains.com/idea/) and select Java 17 version, your pom.xml file should looks like this:
+[Selenium](https://www.selenium.dev/) is a collection of tools and libraries that enable and support automation for web browsers, Selenium follows the [W3c WebDriver Specification](https://www.w3.org/TR/webdriver/) standard, which is important due to allows you to create interchangeable code for all major web browsers. Also is a truly open source project under Apache version 2.0 license. This time we will review how to build a browser functionality validation using Selenium, [Cucumber](https://cucumber.io/), and [TestNG](https://testng.org/doc/). First, let's create a new Maven project using [IntelliJ](https://www.jetbrains.com/idea/) and select Java 17 version, your pom.xml file should look like this:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -29,7 +29,7 @@ categories = ["techtalk", "code", "ui", "automation"]
 </project>
 ```
 
-Now, let's add `selenium-java`, `cucumber-java`, `cucumber-testng` and `cucumber-core` dependencies.
+Now, let's add `selenium-java`, `cucumber-java`, `cucumber-testing`, and `cucumber-core` dependencies.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -166,7 +166,7 @@ public class WebsiteStep {
 }
 ```
 
-ChromeDriver is a separate executable that Seleium uses to control Chrome, if you are using a Linux distribution, just download it and store it at `/usr/bin`, otherwise, please follow the instructions [here](https://chromedriver.chromium.org/home). As you can see in the previous `WebsisteStep` class, we are using regular expressions to pass arguments or values from feature file to the step definitions. Finally you can execute this project with command:
+ChromeDriver is a separate executable that Seleium uses to control Chrome, if you are using a Linux distribution, just download it and store it at `/usr/bin` if you are using macOS store it at `/usr/local/bin`, otherwise, please follow the instructions [here](https://chromedriver.chromium.org/home). As you can see in the previous `WebsisteStep` class, we are using regular expressions to pass arguments or values from feature file to the step definitions. Finally, you can execute this project with command:
 
 ```bash
 mvn test
