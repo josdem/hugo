@@ -23,7 +23,7 @@ plugins {
   id 'java'
 }
 
-def junitJupiterVersion = '5.6.2'
+def junitJupiterVersion = '5.9.2'
 
 repositories {
   mavenCentral()
@@ -32,19 +32,16 @@ repositories {
 dependencies {
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterVersion"
   testImplementation "org.junit.jupiter:junit-jupiter-params:$junitJupiterVersion"
-  testRuntime "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
+  testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterVersion"
 }
 
 test {
+  systemProperties = System.properties
   useJUnitPlatform()
-
-  testLogging {
-    events "passed", "skipped", "failed"
-  }
 }
 ```
 
-In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params and engine version, `jupiter-engine` is only required at runtime. Also in `test` task definition we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html). If you want to use Maven, please create the following `pom.xml` structure in the root project:
+In the dependencies section, we are defining Junit Jupiter api, Junit Jupiter params, and engine version, `jupiter-engine` is only required at runtime. Also, in the test task definition, we specify Junit platform support, you can get more information [here](https://docs.gradle.org/current/dsl/org.gradle.api.tasks.testing.Test.html). If you want to use Maven, please create the following `pom.xml` structure in the root project:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -58,11 +55,11 @@ In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params 
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <java.version>13</java.version>
+    <java.version>17</java.version>
     <maven.compiler.source>${java.version}</maven.compiler.source>
     <maven.compiler.target>${java.version}</maven.compiler.target>
     <maven.surefire.version>3.0.0-M5</maven.surefire.version>
-    <junit.jupiter.version>5.6.2</junit.jupiter.version>
+    <junit.jupiter.version>5.9.2</junit.jupiter.version>
   </properties>
 
   <dependencies>
@@ -103,7 +100,7 @@ In dependencies section we are defining Junit Jupiter api, Junit Jupiter Params 
 ## Assertions
 </a>
 
-Assertions have been moved to `org.junit.jupiter.api.Assertions` and have been improved significantly. As mentioned earlier, you can now use lambdas in assertions:
+Assertions have been moved to `org.junit.jupiter.api`.Assertions have been improved significantly. As mentioned earlier, you can now use lambdas in assertions:
 
 ```java
 @Test
@@ -260,7 +257,7 @@ class AssertionShowTest {
 }
 ```
 
-Now let's see JUnit Jupiter principal test case annotations and life cycle:
+Now let’s see JUnit Jupiter prominent test case annotations and life cycle:
 
 ```java
 package com.jos.dem.junit;
@@ -304,14 +301,14 @@ class StandardTest {
 }
 ```
 
-Please, notice `TestInfo` and how is it used to inject information about the current test as method argument. Also notice how in Junit 5 neither test classes nor test methods need to be public.
+Please, notice `TestInfo` and how is it used to inject information about the current test as a method argument. Also, notice how on Junit 5 neither test classes nor test methods need to be public.
 
 <a name="Assumptions">
 ## Assumptions
 </a>
 
-JUnit Jupiter or Junit 5 comes with a subset of the assumption methods and are used to run tests only if certain conditions are met, this is typically used for external conditions that are required for the test to run properly.
 
+JUnit Jupiter or Junit 5 comes with a subset of the assumption methods and is used to run tests only if certain conditions are met, this is typically used for external conditions that are required for the test to run properly.
 
 ```java
 package com.jos.dem.junit;
@@ -351,7 +348,7 @@ class AssumptionShowTest {
 ## Conditions
 </a>
 
-A test may be enable if meets some system environment conditions
+A test may be enabled if meets some system environment conditions
 
 ```java
 @Test
@@ -416,7 +413,7 @@ class ConditionsShowTest {
 ## Parameterized Tests
 </a>
 
-Parameterized tests make it possible to run a test multiple times with different arguments. Here we are defining a string parameters using `@ValueSource`.
+Parameterized tests make it possible to run a test multiple times with different arguments. Here we are defining string parameters using `@ValueSource`.
 
 ```java
 @DisplayName("Allow string as parameters")
@@ -428,7 +425,7 @@ void shouldAllowStringAsParamters(String word) {
 }
 ```
 
-`@EnumSource` provides a convenient way to use Enum constants.
+`@EnumSource` provides a convenient way to use `Enum` constants.
 
 ```java
 @DisplayName("Allow enum as parameters")
@@ -601,8 +598,7 @@ class ParameterizedShowTest {
 ## Test Execution Order
 </a>
 
-Sometimes you might need to execute test cases in order, this could be required when you are writting integration or functional test cases. In order to set test order execution you need this annotation `@TestMethodOrder(OrderAnnotation.class)` plus this one in every test case: `@Order` here is an example:
-
+Sometimes you might need to execute test cases in order; this could be required when you are writing integration or functional test cases. In order to set test order execution, you need this annotation `@TestMethodOrder(OrderAnnotation.class)` plus this one in every test case: `@Order` Here is an example:
 
 ```java
 package com.jos.dem.junit;
