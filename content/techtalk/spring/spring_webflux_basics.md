@@ -6,25 +6,24 @@ date = "2018-03-25T12:57:29-06:00"
 description = "Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono."
 +++
 
-Spring Boot now embraces reactive programming which is a non-blocking asynchronous applications and event-driven. Spring Framework uses Reactor internally for its own reactive support. Reactor is a Reactive Streams implementation that further extends the basic Publisher contract with the Flux and Mono. **NOTE:** If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer my previous post: [Spring Boot](/techtalk/spring/spring_boot). Let's start creating a new Spring Boot project with Webflux, Mongo Reactive and Lombok as dependencies:
+Spring Boot now embraces reactive programming, a non-blocking asynchronous and event-driven application. Spring Framework uses Reactor internally for its own reactive support. The reactor is a Reactive Streams implementation that further extends the primary Publisher contract with Flux and Mono. NOTE: If you need to know what tools you need to have installed in your computer in order to create a Spring Boot basic project, please refer to my previous post: [Spring Boot](/techtalk/spring/spring_boot). Let’s start creating a new Spring Boot project with Webflux, Mongo Reactive, and Lombok as dependencies:
 
 ```bash
-spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --language=java reactive-webflux-workshop
+spring init --dependencies=webflux,data-mongodb-reactive,lombok --build=gradle --type=gradle-project --language=java reactive-webflux-workshop
 ```
 
 Here is the complete `build.gradle` file generated:
 
 ```groovy
 plugins {
-  id 'org.springframework.boot' version '2.1.5.RELEASE'
   id 'java'
+  id 'org.springframework.boot' version '3.0.6'
+  id 'io.spring.dependency-management' version '1.1.0'
 }
-
-apply plugin: 'io.spring.dependency-management'
 
 group = 'com.jos.dem.webflux'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 11
+sourceCompatibility = 17
 
 configurations {
   compileOnly {
@@ -41,8 +40,12 @@ dependencies {
   compileOnly 'org.projectlombok:lombok'
   annotationProcessor 'org.projectlombok:lombok'
   implementation('org.springframework.boot:spring-boot-starter-data-mongodb-reactive')
-  testImplementation('org.springframework.boot:spring-boot-starter-test')
-  testImplementation('io.projectreactor:reactor-test')
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'io.projectreactor:reactor-test'
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
 }
 ```
 
@@ -69,7 +72,7 @@ public class Person {
 }
 ```
 
-The `@Data` annotation generates setters and getters, `toString()`, `equals()`, `hashcode()` and a constructor for every required field. Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Spring Data now is supporting a full reactive experience with MongoDB, Couchbase, Redis and Casandra, in this case let's create a `PersonRepository` using `ReactiveMongoRepository` as we going to be reactive.
+The `@Data` annotation generates setters and getters, `toString()`, `equals()`, `hashcode()`, and a constructor for every required field. Lombok is a great tool to avoid boilerplate code, for knowing more please go [here](https://projectlombok.org/). Spring Data now is supporting a full reactive experience with MongoDB, Couchbase, Redis, and Casandra, in this case, let’s create a `PersonRepository` using `ReactiveMongoRepository` as we going to be reactive.
 
 ```java
 package com.jos.dem.webflux.repository;
@@ -81,7 +84,7 @@ import com.jos.dem.webflux.model.Person;
 public interface PersonRepository extends ReactiveMongoRepository<Person, String> {}
 ```
 
-Next, we are going to use `CommandLineRunner` to start our workflow. The `CommandLineRunner` is a call back interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
+Next, we are going to use CommandLineRunner to start our workflow. The `CommandLineRunner` is a callback interface in Spring Boot, when Spring Boot starts will call it and pass in args through a `run()` internal method.
 
 ```java
 package com.jos.dem.webflux;
@@ -156,7 +159,7 @@ public class PersonApplication {
 }
 ```
 
-The logic implemented in the operators is only executed when data starts to flow, and that does not happen until you use `subscribe()` method. That's it, now we are storing `Person` objects to our MongoDB. In order to run this example you need to create a database in MongoDB with `authorization: "enabled"`. Also do not forget to add your MongoDB credentials information to your `application.properties` file:
+The logic implemented in the operators is only executed when data starts to flow, and that does not happen until you use `subscribe()` method. That’s it, now we are storing Person objects in our MongoDB. In order to run this example you need to create a database in [MongoDB with authorization](https://www.mongodb.com/features/mongodb-authentication): "enabled". Also, do not forget to add your MongoDB credentials information to your `application.properties` file:
 
 ```properties
 spring.data.mongodb.database=reactive_webflux
@@ -204,14 +207,12 @@ This is the pom.xml file generated:
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.5.RELEASE</version>
+    <version>3.0.6</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>11</java.version>
+    <java.version>17</java.version>
   </properties>
 
   <dependencies>
@@ -223,6 +224,7 @@ This is the pom.xml file generated:
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
+
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
@@ -245,11 +247,17 @@ This is the pom.xml file generated:
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <excludes>
+            <exclude>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+            </exclude>
+          </excludes>
+        </configuration>
       </plugin>
     </plugins>
   </build>
-
-
 </project>
 ```
 
