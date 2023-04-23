@@ -142,7 +142,7 @@ class PersonControllerTest {
 
 **Conclusion**
 
-Let me conclude by giving a short summary:
+Let me conclude by giving a summary:
 
 * Spring Boot now embraces reactive programming
 * Using Spring MVC-style Controllers is a good start to adopting Reactive Web
