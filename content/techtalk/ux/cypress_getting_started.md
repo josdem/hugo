@@ -70,7 +70,7 @@ We can use `cy.fixture()` in the `before()` structure to read all data from the 
   })
   
   it("validates page title", function () {
-    cy.visit("https://vetlog.org/")
+    cy.visit(this.data.vetlogUrl)
     cy.title().should("eq", this.data.expectedTitle)
   })
 
