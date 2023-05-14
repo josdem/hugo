@@ -58,7 +58,7 @@ That's it; we open an URL [https://vetlog.org/](https://vetlog.org/) and validat
   "vetlogUrl": "http://vetlog.org",
   "expectedTitle": "Vetlog"
 }
-````
+```
 We can use `cy.fixture()` in the `before()` structure to read all data from the fixture file "test.json" to the local object "this".
  ```javascript
  describe("Loading home page", () => {
