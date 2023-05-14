@@ -37,9 +37,48 @@ Now we want to generate some Cypress structure in our project; in order to do th
 ```bash
 npx cypress open
 ```
-Select default options and create a new spec which is a test file named:
+Select default options and create a new spec which is a test file named it as:
 ```bash
 cypress\e2e\home.spec.cy.js
+```
+Open that file and add this code:
+```JavaScript
+describe("Loading home page", () => {
+  
+    it("validates page title", function () {
+      cy.visit("https://vetlog.org/")
+      cy.title().should("eq", "Vetlog")
+    })
+    
+})
+````
+That's it; we open an URL [https://vetlog.org/](https://vetlog.org/) and validating the page title is equal to "Vetlog", pretty straight forward; however, following good practices, we need to externalize this URL and expected titles; Cypress provides us with a feature to drive the data from external sources called fixtures, which are located in `${PROJECT_HOME}/cypress/fixtures`. Let's create one named: `test.json` with this content:
+```JavaScript
+{
+  "vetlogUrl": "http://vetlog.org",
+  "expectedTitle": "Vetlog"
+}
+````
+We can use `cy.fixture()` in the `before()` structure to read all data from the fixture file "test.json" to the local object "this".
+ ```JavaScript
+ describe("Loading home page", () => {
+
+  before(function () {
+    cy.fixture("test").then((data) => {
+      this.data = data
+    })
+  })
+  
+  it("validates page title", function () {
+    cy.visit("https://vetlog.org/")
+    cy.title().should("eq", this.data.expectedTitle)
+  })
+
+})
+```
+To run the project:
+```bash
+npx cypress run --browser chrome
 ```
 To browse the code go [here](https://github.com/josdem/cypress-getting-started), to download the project:
 
