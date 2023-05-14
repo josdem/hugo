@@ -27,7 +27,7 @@ This will create a new `package.json` file and it should looks like this:
   "author": "",
   "license": "ISC"
 }
-````
+```
 Next step is to use `npm` command to install Cypress.
 
 ```bash
