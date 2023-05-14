@@ -1,0 +1,51 @@
++++
+title =  "Cypress Getting Started"
+description = "Cypress_getting_started"
+date = "2023-05-14T10:42:51-04:00"
+tags = ["josdem", "techtalks","programming","technology", "automation", "cypress"]
+categories = ["techtalk", "code", "ui", "automation"]
++++
+
+[Cypress](https://www.cypress.io/) is a next-generation front-end testing tool built for modern web applications; it runs on Chrome, Firefox, Edge, and Electron. Cypress is most often compared to Selenium; however, Cypress is both fundamentally and architecturally different. Cypress is faster in execution plus facilitates UI selectors interaction and validations. Keep in mind that Cypress is a JavaScript only tool. Let's start by installing NodeJS on our computer, I highly recommend using [NVM](https://github.com/nvm-sh/nvm) so you can manage different versions. Once installed, let's create a new directory named `cypress-getting-started` and execute this command inside that new directory:
+
+```bash
+npm init -y
+```
+
+This will create a new `package.json` file and it should looks like this:
+
+```javaScript
+{
+  "name": "cypress-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+````
+Next step is to use `npm` command to install Cypress.
+
+```bash
+npm install cypress
+```
+Now we want to generate some Cypress structure in our project; in order to do that, let's run Cypress in an interactive mode with this command.
+```bash
+npx cypress open
+```
+Select default options and create a new spec which is a test file named:
+```bash
+cypress\e2e\home.spec.cy.js
+```
+To browse the code go [here](https://github.com/josdem/cypress-getting-started), to download the project:
+
+```bash
+git clone git@github.com:josdem/webdriverio-getting-started.git
+```
+
+[Return to the main article](/techtalk/ux)
+

@@ -186,6 +186,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [WebdriverIO with Cucumber Getting Started](/techtalk/ux/webdriverio_cucumber_getting_started)
  * [WebdriverIO Lighthouse](/techtalk/ux/webdriverio_lighthouse)
  * [Selenium Cucumber And TestNG](/techtalk/ux/selenium-cucumber-testng)
+ * [Cypress Getting Started](/techtalk/ux/cypress_getting_started)
 * [**Refactoring**](/techtalk/refactoring)
  * [Duplicated Code](/techtalk/refactoring/duplicated_code)
  * [Replace Temp With Query](/techtalk/refactoring/replace_temp_with_query)
