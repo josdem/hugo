@@ -14,7 +14,7 @@ npm init -y
 
 This will create a new `package.json` file and it should looks like this:
 
-```javaScript
+```javascript
 {
   "name": "cypress-workshop",
   "version": "1.0.0",
@@ -42,7 +42,7 @@ Select default options and create a new spec which is a test file named it as:
 cypress\e2e\home.spec.cy.js
 ```
 Open that file and add this code:
-```JavaScript
+```javascript
 describe("Loading home page", () => {
   
     it("validates page title", function () {
@@ -53,14 +53,14 @@ describe("Loading home page", () => {
 })
 ````
 That's it; we open an URL [https://vetlog.org/](https://vetlog.org/) and validating the page title is equal to "Vetlog", pretty straight forward; however, following good practices, we need to externalize this URL and expected titles; Cypress provides us with a feature to drive the data from external sources called fixtures, which are located in `${PROJECT_HOME}/cypress/fixtures`. Let's create one named: `test.json` with this content:
-```JavaScript
+```javascript
 {
   "vetlogUrl": "http://vetlog.org",
   "expectedTitle": "Vetlog"
 }
 ````
 We can use `cy.fixture()` in the `before()` structure to read all data from the fixture file "test.json" to the local object "this".
- ```JavaScript
+ ```javascript
  describe("Loading home page", () => {
 
   before(function () {
