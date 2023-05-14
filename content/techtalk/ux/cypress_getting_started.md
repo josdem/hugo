@@ -51,7 +51,7 @@ describe("Loading home page", () => {
     })
     
 })
-````
+```
 That's it; we open an URL [https://vetlog.org/](https://vetlog.org/) and validating the page title is equal to "Vetlog", pretty straight forward; however, following good practices, we need to externalize this URL and expected titles; Cypress provides us with a feature to drive the data from external sources called fixtures, which are located in `${PROJECT_HOME}/cypress/fixtures`. Let's create one named: `test.json` with this content:
 ```javascript
 {
