@@ -1,6 +1,6 @@
 +++
 title =  "Cypress Getting Started"
-description = "Cypress_getting_started"
+description = "Cypress getting started - Cypress is a next-generation front-end testing tool built for modern web applications"
 date = "2023-05-14T10:42:51-04:00"
 tags = ["josdem", "techtalks","programming","technology", "automation", "cypress"]
 categories = ["techtalk", "code", "ui", "automation"]
@@ -44,12 +44,12 @@ cypress\e2e\home.spec.cy.js
 Open that file and add this code:
 ```javascript
 describe("Loading home page", () => {
-  
+
     it("validates page title", function () {
       cy.visit("https://vetlog.org/")
       cy.title().should("eq", "Vetlog")
     })
-    
+
 })
 ```
 That's it; we open an URL [https://vetlog.org/](https://vetlog.org/) and validating the page title is equal to "Vetlog", pretty straight forward; however, following good practices, we need to externalize this URL and expected titles; Cypress provides us with a feature to drive the data from external sources called fixtures, which are located in `${PROJECT_HOME}/cypress/fixtures`. Let's create one named: `test.json` with this content:
@@ -68,7 +68,7 @@ We can use `cy.fixture()` in the `before()` structure to read all data from the 
       this.data = data
     })
   })
-  
+
   it("validates page title", function () {
     cy.visit(this.data.vetlogUrl)
     cy.title().should("eq", this.data.expectedTitle)
@@ -83,7 +83,7 @@ npx cypress run --browser chrome
 To browse the code go [here](https://github.com/josdem/cypress-getting-started), to download the project:
 
 ```bash
-git clone git@github.com:josdem/webdriverio-getting-started.git
+git clone git@github.com:josdem/cypress-getting-started.git
 ```
 
 [Return to the main article](/techtalk/ux)
