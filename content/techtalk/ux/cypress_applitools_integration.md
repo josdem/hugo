@@ -78,7 +78,7 @@ describe("Loading home page", () => {
     cy.eyesClose()
   })
 })
-````
+```
 To run the project:
 ```bash
 npx cypress run --browser chrome
