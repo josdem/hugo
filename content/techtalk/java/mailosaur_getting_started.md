@@ -7,7 +7,7 @@ categories = ["techtalk", "code"]
 +++
 
 
-If you want to create end-to-end tests that rely on email verification such as sent, confirmation, password reset, etc. [Mailosaur](https://mailosaur.com/) is your friend. **Note:** You will need a Mailosaur account in order to create a new trial account; sign up [here](https://mailosaur.com/app/signup/). In this technical post, we will go over the required configuration to set up an email sent validation. Let's start by creating a new Gradle - Java project with Kotlin DSL script :) `build.gradle.kts` should look like this:
+If you want to create end-to-end tests that rely on email verification such as sent, confirmation, password reset, etc. [Mailosaur](https://mailosaur.com/) is your friend. **Note:** You will need a Mailosaur account to create a new trial account; sign up [here](https://mailosaur.com/app/signup/). In this technical post, we will go over the required configuration to set up an email sent validation. Let's start by creating a new Gradle - Java project with Kotlin DSL script :) `build.gradle.kts` should look like this:
 
 ```groovy
 plugins {
@@ -80,8 +80,8 @@ class MailosaurSenderTest {
         criteria.withSentTo("josdem@" + serverId + SERVER_DOMAIN);
         Message message = mailosaur.messages().get(params, criteria);
 
-        assertNotNull(message);
-        assertEquals("test", message.subject());
+        assertNotNull(message, "we should have a message");
+        assertEquals("test", message.subject(), "email subject should be test");
     }
 }
 ```
