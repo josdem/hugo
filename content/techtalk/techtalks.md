@@ -44,6 +44,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [JFairy Data Generator](/techtalk/java/jfairy)
  * [Using Optional](/techtalk/java/optional)
  * [Builder Desing Pattern](/techtalk/java/builder_design_pattern)
+ * [Mailosaur Getting Started](/techtalk/java/mailosaur_getting_started)
 * [**Groovy**](/techtalk/groovy)
  * [Groovy and other languages](/techtalk/groovy/groovy_and_other_languages)
  * [Essential Concepts](/techtalk/groovy/groovy_essential_concepts)

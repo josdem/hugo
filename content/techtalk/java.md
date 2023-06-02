@@ -33,6 +33,7 @@ There are three main features in Java 8 that I love, one of them is the lambda e
 * [JFairy Data Generator](/techtalk/java/jfairy)
 * [Using Optional](/techtalk/java/optional)
 * [Builder Desing Pattern](/techtalk/java/builder_design_pattern)
+* [Mailosaur Getting Started](/techtalk/java/mailosaur_getting_started)
 * [GitHub Repository](https://github.com/josdem/java-workshop)
 
 
