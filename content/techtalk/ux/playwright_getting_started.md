@@ -81,7 +81,7 @@ To open last HTML report run:
 npx playwright show-report
 ```
 
-To browse the code go [here](https://github.com/josdem/playwright-getting-started), to download the project:
+To browse the code go [here](https://github.com/josdem/playwright-workshop), to download the project:
 
 ```bash
 git clone git@github.com:josdem/playwright-workshop.git
