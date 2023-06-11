@@ -6,8 +6,6 @@ tags = ["josdem", "techtalks","programming","technology","ci","cd", "jenkins"]
 categories = ["techtalk", "code","devops"]
 +++
 
-**Getting started**
-
 In this technical post, we will review concepts we need to know in order to create and execute [Jenkins Pipeline](https://jenkins.io/doc/book/pipeline/). A pipeline is an expression of our process to implement [Continuous Integration](https://en.wikipedia.org/wiki/Continuous_integration), we write our process using a [DSL](https://en.wikipedia.org/wiki/Domain-specific_language), and this is the basic structure using [Groovy](https://en.wikipedia.org/wiki/Apache_Groovy)
 
 ```groovy
