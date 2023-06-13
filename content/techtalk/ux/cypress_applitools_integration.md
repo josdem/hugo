@@ -1,6 +1,6 @@
 +++
 title =  "Cypress Applitools Integration"
-description = "Cypress_applitools_integration"
+description = "Cypress Applitools Integration"
 date = "2023-05-20T19:27:20-04:00"
 tags = ["josdem", "techtalks","programming","technology", "automation", "cypress", "applitools"]
 categories = ["techtalk", "code", "ui", "automation", "visual validation"]
@@ -79,10 +79,13 @@ describe("Loading home page", () => {
   })
 })
 ```
+
 To run the project:
+
 ```bash
 npx cypress run --browser chrome
 ```
+
 Go to the [Applitools eyes dashboard](https://eyes.applitools.com/app/test-results/) and you should be able to see your batch images.
 
 <img src="/img/techtalks/ux/vetlog_applitools.png">
