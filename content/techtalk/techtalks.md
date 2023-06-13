@@ -190,6 +190,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Cypress Getting Started](/techtalk/ux/cypress_getting_started)
  * [Cypress Applitools Integration](/techtalk/ux/cypress_applitools_integration)
  * [Playwright Getting Started](/techtalk/ux/playwright_getting_started)
+ * [Playwright Applitools Integration](/techtalk/ux/playwright_applitools_integration)
 * [**Refactoring**](/techtalk/refactoring)
  * [Duplicated Code](/techtalk/refactoring/duplicated_code)
  * [Replace Temp With Query](/techtalk/refactoring/replace_temp_with_query)
