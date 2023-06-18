@@ -22,5 +22,6 @@ In this section I will post all referent about UX development such as Javascript
 * [Cypress Applitools Integration](/techtalk/ux/cypress_applitools_integration)
 * [Playwright Getting Started](/techtalk/ux/playwright_getting_started)
 * [Playwright Applitools Integration](/techtalk/ux/playwright_applitools_integration)
+* [Playwright Reports Deployment](/techtalk/ux/Playwright_reports_deployment)
 
 [Return to the main article](/techtalk/techtalks)

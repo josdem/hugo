@@ -1,6 +1,6 @@
 +++
 title =  "Playwright Reports Deployment"
-description = "Playwright_reports_deployment"
+description = "Playwright reports are essential in a project since they provide a quick analysis about pass/fail ratio, scenarios, browsers behaviour, logs, etc."
 date = "2023-06-18T15:46:49-04:00"
 tags = ["josdem", "techtalks","programming","technology", "automation", "playwright", "githubactions", "nginx"]
 categories = ["techtalk", "code", "ui", "automation"]
