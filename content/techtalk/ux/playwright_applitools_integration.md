@@ -14,7 +14,7 @@ npm install @applitools/eyes-playwright --save-dev
 
 Now let’s create an applitools.util.ts under our `${PROJECT_HOME}/utils` directory and add this content:
 
-```typescript
+```javascript
 import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes, Target } from "@applitools/eyes-playwright"
 import { Page } from "@playwright/test"
 
@@ -90,7 +90,7 @@ $Env:APPLITOOLS_API_KEY="YOUR_APPLITOOLS_API_KEY"
 
 This is how our home page looks like after integrating Applitools.
 
-```typescript
+```javascript
 import { test, expect } from "@playwright/test"
 import { Constants } from "../properties/test.properties"
 import applitools from "../utils/applitools.util"
