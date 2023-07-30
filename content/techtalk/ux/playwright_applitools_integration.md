@@ -12,10 +12,11 @@ In the same way, we open our eyes and analyze if an image looks good; [Applitool
 npm install @applitools/eyes-playwright --save-dev
 ```
 
-Now let’s create an applitools.util.js under our `${PROJECT_HOME}/utils` directory and add this content:
+Now let’s create an applitools.util.ts under our `${PROJECT_HOME}/utils` directory and add this content:
 
-```javascript
+```typescript
 import { BatchInfo, Configuration, VisualGridRunner, BrowserType, DeviceName, ScreenOrientation, Eyes, Target } from "@applitools/eyes-playwright"
+import { Page } from "@playwright/test"
 
 const CHROME = {
   width: 1280,
@@ -38,7 +39,7 @@ let configuration
 let runner
 let eyes
 
-const setUpConfiguration = async (batchName) => {
+export function setUpConfiguration(batchName: string){
   runner = new VisualGridRunner({ testConcurrency: 5 })
   configuration = new Configuration()
   configuration.setBatch(new BatchInfo(batchName))
@@ -50,31 +51,25 @@ const setUpConfiguration = async (batchName) => {
   configuration.addDeviceEmulation(DeviceName.Pixel_5, ScreenOrientation.PORTRAIT)
 }
 
-const setUpTest = async (page, appName, testName) => {
+export async function setUpTest(page: Page, appName: string, testName: string){
   eyes = new Eyes(runner, configuration)
   await eyes.open(page, appName, testName)
 }
 
-const checkWindowEyes = async (screenshot) => {
+export async function checkWindowEyes(screenshot: string){
   await eyes.check(screenshot, Target.window().layout())
 }
 
-const closeEyes = async () => {
+export async function closeEyes(){
   await eyes.close()
 }
 
-const cleaning = async () => {
+export async function cleaning(){
   const results = await runner.getAllTestResults()
   console.log("Visual test results", results)
 }
 
-module.exports = {
-  setUpTest,
-  closeEyes,
-  cleaning,
-  checkWindowEyes,
-  setUpConfiguration,
-}
+export default { setUpConfiguration, setUpTest, checkWindowEyes, closeEyes, cleaning }
 ```
 
 On `checkWindowEyes` we are capturing a screenshot from the browser using `eyes.check` method, we can also capture from any region, UI element, or even entire window, you can know more about it [here](https://applitools.com/docs/method-eyes-check-seleniumide-command.html), and in our `setUpTest` we are initializing Applitools eyes with page, application name, and test information.
@@ -95,22 +90,22 @@ $Env:APPLITOOLS_API_KEY="YOUR_APPLITOOLS_API_KEY"
 
 This is how our home page looks like after integrating Applitools.
 
-```javascript
-const { test, expect } = require("@playwright/test")
-const properties = require("../properties/test.properties")
-const applitools = require("../utils/applitools.util")
+```typescript
+import { test, expect } from "@playwright/test"
+import { Constants } from "../properties/test.properties"
+import applitools from "../utils/applitools.util"
 
 test.beforeAll(async () => {
-  await applitools.setUpConfiguration(properties.batchName)
+  applitools.setUpConfiguration(Constants.BATCH_NAME)
 })
 
 test.beforeEach(async ({ page }) => {
-  await applitools.setUpTest(page, properties.app, test.info().title)
+  await applitools.setUpTest(page, Constants.APP, test.info().title)
 })
 
 test("should validate page title", async ({ page }) => {
-  await page.goto(properties.url)
-  await expect(page).toHaveTitle(properties.title)
+  await page.goto(Constants.URL)
+  await expect(page).toHaveTitle(Constants.TITLE)
   await applitools.checkWindowEyes("Home Page")
 })
 
@@ -137,6 +132,20 @@ To browse the code go [here](https://github.com/josdem/playwright-applitools), t
 
 ```bash
 git clone git@github.com:josdem/playwright-applitools.git
+```
+
+To go to javascript version:
+
+```bash
+git fetch
+git checkout javascript
+```
+
+To go to typescript version:
+
+```bash
+git fetch
+git checkout typescript
 ```
 
 [Return to the main article](/techtalk/ux)
