@@ -90,7 +90,7 @@ To open last HTML report run:
 npx playwright show-report
 ```
 
-To browse the code go [here](https://github.com/josdem/playwright-workshop), to download the project:
+If you want to know how many ways we have to execute Playwright tests from command-line, please go [here](https://playwright.dev/docs/running-tests#command-line). To browse the code go [here](https://github.com/josdem/playwright-workshop), to download the project:
 
 ```bash
 git clone git@github.com:josdem/playwright-workshop.git
