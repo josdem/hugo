@@ -124,7 +124,7 @@ To run the project:
 npx playwright test --project chromium
 ```
 
-As you can see here I am using only Chromium browser and the reson why I am doing this is for having Applitools to manage different browser and platforms to test across different devices. Here is the Playwright configuration file.
+As you can see here, I am using only the Chromium browser, and the reason why I am doing this is for having Applitools to manage different browsers and platforms to test across different devices. Here is the Playwright configuration file.
 
 ```javascript
 // @ts-check
