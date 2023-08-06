@@ -124,6 +124,33 @@ To run the project:
 npx playwright test --project chromium
 ```
 
+As you can see here I am using only Chromium browser and the reson why I am doing this is for having Applitools to manage different browser and platforms to test across different devices. Here is the Playwright configuration file.
+
+```javascript
+// @ts-check
+const { defineConfig, devices } = require("@playwright/test")
+
+module.exports = defineConfig({
+  testDir: "./tests",
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: "html",
+  timeout: 60000,
+  use: {
+    trace: "on-first-retry",
+  },
+
+  projects: [
+    {
+      name: "chromium",
+      use: { ...devices["Desktop Chrome"] },
+    },
+  ],
+})
+```
+
 Go to the [Applitools eyes dashboard](https://eyes.applitools.com/app/test-results/) and you should be able to see your batch images.
 
 <img src="/img/techtalks/ux/vetlog_playwright_applitools.png">
