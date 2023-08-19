@@ -149,6 +149,7 @@ gradle bootRun -Dflyway.user=${username} -Dflyway.password=${pawword}
 ```
 
 where:
+
 - `${username}` is the database username
 - `${password}` is the database password
 
