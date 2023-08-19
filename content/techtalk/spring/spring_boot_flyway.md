@@ -6,38 +6,42 @@ date = "2017-06-05T14:45:09-05:00"
 description = "You know the benefits using version of control in software development such as Git or Subversion. This time I will show you Flyway to manage version control for your database, so you can track schema's evolution across all your environments with ease using Gradle and Spring Boot."
 +++
 
-In the same way we find benefits using version of control in software development with [Git](https://git-scm.com/), we can versioning our database so that we can manage changes in both schema and information. Let me introduce [Flyway](https://flywaydb.org/) an open source project that help us to do database migrations easily, that's it, how cool would be to see our database evolution across all our development life cycle?. In this example we wil be using [Gradle](https://gradle.org/) and Spring Boot. Let’s start creating a new Spring Boot project with web and jpa dependencies:
+In the same way, we find benefits in using version of control in software development with [Git](https://git-scm.com/); we can version our database to manage changes in schema and information. Let's go over [Flyway](https://flywaydb.org/), an open source project that help us to implement database migrations easily; that's it, how cool would it be to see our database evolution across our development life cycle? In this example, we wil be using [Gradle](https://gradle.org/) and Spring Boot. Let’s start creating a new Spring Boot project with web and JPA dependencies:
 
 ```bash
-spring init --dependencies=web,mysql,jpa --language=java --build=gradle --type=gradle-project spring-boot-flyway
+spring init --dependencies=webflux,mysql,jpa --build=gradle --type=gradle-project --language=java spring-boot-flyway
 ```
 
 This is the `build.gradle` file generated:
 
 ```groovy
 plugins {
-    id 'java'
-    id 'org.springframework.boot' version '2.7.7'
-    id 'io.spring.dependency-management' version '1.1.0'
+	id 'java'
+	id 'org.springframework.boot' version '3.1.2'
+	id 'io.spring.dependency-management' version '1.1.2'
 }
 
-group = 'com.jos.dem.springboot.flyway'
+group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+
+java {
+	sourceCompatibility = '17'
+}
 
 repositories {
-    mavenCentral()
+	mavenCentral()
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
-    runtimeOnly 'mysql:mysql-connector-java'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-webflux'
+	runtimeOnly 'com.mysql:mysql-connector-j'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'io.projectreactor:reactor-test'
 }
 
 tasks.named('test') {
-    useJUnitPlatform()
+	useJUnitPlatform()
 }
 ```
 
@@ -45,22 +49,23 @@ Then let's add Flyway plugin to the `build.gradle` file to connect to MySQL data
 
 ```groovy
 buildscript {
+    repositories {
+        mavenCentral()
+    }
     dependencies {
-        classpath 'org.flywaydb:flyway-mysql:9.8.1'
+        classpath("org.flywaydb:flyway-mysql:9.21.1")
     }
 }
 
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.7'
-    id "org.flywaydb.flyway" version "9.8.1"
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.1.2'
+    id 'io.spring.dependency-management' version '1.1.2'
+    id 'org.flywaydb.flyway' version '9.21.1'
 }
 
 flyway {
   url = 'jdbc:mysql://localhost:3306/flyway_demo'
-  user = 'databaseUser'
-  password = 'databasePassword'
 }
 ```
 
@@ -104,10 +109,10 @@ Successfully applied 2 migrations to schema `flyway_demo`, now at version v2 (ex
 BUILD SUCCESSFUL
 ```
 
-We can do `flywayMigrate` task as dependent to `bootRun` task in gradle as follow:
+We can do `flywayMigrate` task as dependent to `bootRun` task on Gradle as follow:
 
 ```groovy
-bootRun.dependsOn rootProject.tasks['flywayMigrate']
+bootRun.dependsOn("flywayMigrate")
 ```
 
 Here is our `Person` entity:
@@ -137,17 +142,23 @@ public class Person {
 }
 ```
 
+To run the project:
+
+```bash
+gradle bootRun -Dflyway.user=${username} -Dflyway.password=${pawword}
+```
+
+where:
+- `${username}` is the database username
+- `${password}` is the database password
+
+
 To browse the project go [here](https://github.com/josdem/spring-boot-flyway), to download the project:
 
 ```bash
 git clone https://github.com/josdem/spring-boot-flyway.git
 ```
 
-To run the project:
-
-```bash
-gradle bootRun
-```
 
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
