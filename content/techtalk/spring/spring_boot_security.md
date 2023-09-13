@@ -154,6 +154,8 @@ The expected behavior is when a user clicks on the `/message` link it will ask f
 ```java
 package com.josdem.springboot.security.config;
 
+import com.josdem.springboot.security.model.Role;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -166,20 +168,18 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class WebSecurityConfig {
+
+  private final CredentialsProperties credentialsProperties;
 
   @Bean
   public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-    http
-            .authorizeHttpRequests((requests) -> requests
-                    .requestMatchers("/", "/home").permitAll()
-                    .anyRequest().authenticated()
-            )
-            .formLogin((form) -> form
-                    .loginPage("/login")
-                    .permitAll()
-            )
-            .logout((logout) -> logout.permitAll());
+    http.authorizeHttpRequests(
+            (requests) ->
+                requests.requestMatchers("/", "/home").permitAll().anyRequest().authenticated())
+        .formLogin((form) -> form.loginPage("/login").permitAll())
+        .logout((logout) -> logout.permitAll());
 
     return http.build();
   }
@@ -187,15 +187,14 @@ public class WebSecurityConfig {
   @Bean
   public UserDetailsService userDetailsService() {
     UserDetails user =
-            User.withDefaultPasswordEncoder()
-                    .username("josdem")
-                    .password("12345678")
-                    .roles("USER")
-                    .build();
+        User.withDefaultPasswordEncoder()
+            .username(credentialsProperties.getUsername())
+            .password(credentialsProperties.getPassword())
+            .roles(Role.USER.name())
+            .build();
 
     return new InMemoryUserDetailsManager(user);
   }
-
 }
 ```
 
