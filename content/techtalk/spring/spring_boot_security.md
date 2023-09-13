@@ -139,7 +139,7 @@ And home view:
 </html>
 ```
 
-This home view includes a link to `/message` page, which is defined in the following [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html) template.
+This home view includes a link to `/message` page, defined in the following [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html) template.
 
 ```html
 <!DOCTYPE html>
@@ -149,7 +149,7 @@ This home view includes a link to `/message` page, which is defined in the follo
 </html>
 ```
 
-The expected behaivour is when a user clicks on the `/message` link it will ask for credentials, in order to do that we need to define our `securityFilterChain` and `userDetailsService`
+The expected behavior is when a user clicks on the `/message` link it will ask for credentials, in order to do that we need to define our `securityFilterChain` and `userDetailsService`
 
 ```java
 package com.josdem.springboot.security.config;
@@ -232,12 +232,6 @@ To browse the project go [here](https://github.com/josdem/spring-boot-security),
 git clone git@github.com:josdem/spring-boot-security.git
 git fetch
 git checkout feature/in-memory
-```
-
-To run the project:
-
-```bash
-gradle bootRun
 ```
 
 [Return to the main article](/techtalk/spring#Spring_Boot)
