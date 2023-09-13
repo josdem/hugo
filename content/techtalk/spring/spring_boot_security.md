@@ -6,232 +6,230 @@ date = "2017-01-10T19:25:41-06:00"
 description = "Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Boot project."
 +++
 
-Spring Security is a powerful and highly customizable authentication and access-control framework. In this example I will show you how to integrate it to your Spring Boot project. First you set up a basic build script.`build.gradle`
+Spring Security is a powerful and highly customizable authentication and access-control framework. This technical post will review how to integrate security into your Spring Boot project. **NOTE:** If you need to know what tools you need to have installed on your computer to create a Spring Boot basic project, please refer to my previous post: [Spring Boot](/techtalk/spring_boot). Then, let’s create a new Spring Boot project with web, security and Lombok as dependencies:
+
+```bash
+spring init --dependencies=web,security,thymeleaf --build=gradle --type=gradle-project --language=java spring-boot-security
+```
+
+Here is the complete `build.gradle` file generated:
 
 ```groovy
-buildscript {
-  ext {
-    springBootVersion = '2.0.0.RELEASE'
-  }
-  repositories {
-    mavenCentral()
-  }
-  dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-  }
+plugins {
+  id 'java'
+  id 'org.springframework.boot' version '3.1.3'
+  id 'io.spring.dependency-management' version '1.1.3'
 }
 
-apply plugin: 'groovy'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-
-group = 'com.jos.dem.springboot.security'
+group = 'com.josdem.springboot.security'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+
+java {
+  sourceCompatibility = '17'
+}
+
+configurations {
+  compileOnly {
+    extendsFrom annotationProcessor
+  }
+}
 
 repositories {
   mavenCentral()
 }
 
 dependencies {
-  compile('org.springframework.boot:spring-boot-starter-web')
-  compile('org.springframework.boot:spring-boot-starter-security')
-  compile('org.springframework.boot:spring-boot-starter-thymeleaf')
-  compile('org.codehaus.groovy:groovy-all')
-  testCompile('org.springframework.boot:spring-boot-starter-test')
+  implementation 'org.springframework.boot:spring-boot-starter-security'
+  implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+  implementation 'org.springframework.boot:spring-boot-starter-web'
+  compileOnly 'org.projectlombok:lombok'
+  annotationProcessor 'org.projectlombok:lombok'
+  implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+  testImplementation 'org.springframework.boot:spring-boot-starter-test'
+  testImplementation 'org.springframework.security:spring-security-test'
+  testCompileOnly 'org.projectlombok:lombok'
+  testAnnotationProcessor 'org.projectlombok:lombok'
+}
+
+tasks.named('test') {
+  useJUnitPlatform()
 }
 ```
 
-Spring Security’s `WebSecurityConfigurerAdapter` provides some convenient defaults to get our application up and running quickly. Let’s see how we can update our configuration to use a custom form.
+In the latest versions of Spring Security you will need to specify your view template names; here we have an example of how to do it.
 
-```groovy
-package com.jos.dem.springboot.security.config
+```java
+package com.josdem.springboot.security.config;
 
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.context.annotation.Configuration
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder
-import org.springframework.security.config.annotation.web.builders.HttpSecurity
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@EnableWebSecurity
-class SecurityConfig extends WebSecurityConfigurerAdapter {
+public class MvcConfig implements WebMvcConfigurer {
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http
-    .authorizeRequests()
-    .antMatchers("/assets/**").permitAll() // 1
-    .anyRequest().authenticated()          // 2
-    .and()
-    .formLogin()                           // 3
-    .loginPage("/login")                   // 4
-    .permitAll()
-  }
-
-  @Autowired
-  void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-    auth
-    .inMemoryAuthentication()
-    .withUser("josdem").password("12345678").roles("USER")
-  }
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/home").setViewName("home");
+        registry.addViewController("/hello").setViewName("hello");
+        registry.addViewController("/login").setViewName("login");
+        registry.addViewController("/logout").setViewName("logout");
+    }
 
 }
 ```
-
-1. We grant full access to the assets folder (JavaScript and CSS)
-2. Every request requires the user to be authenticated
-3. Form based authentication is supported
-4. Login request mapping
-
-**Besides**
-
-The `SecurityConfig` class is annotated with `@EnableWebSecurity` to enable Spring Security’s web security support and provide the Spring MVC integration.
-
-The `configure(HttpSecurity)` method defines which URL paths should be secured and which should not.
-
-The `configureGlobal(AuthenticationManagerBuilder)` method, it sets up an in-memory user store with a single user. That user is given a username of `"user"`, a password of `"12345678"`, and a role of `"USER"`.
 
 Now we need to create the login page:
 
 ```html
-<html>
-  <head>
-    <link rel="stylesheet" th:href="@{/assets/third-party/bootstrap/dist/css/bootstrap.min.css}" />
-  </head>
-  <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <font color="white"><h3 th:text="#{login.header}"/></font>
-    </nav>
-    <br/><br/><br/><br/>
-    <div th:if="${error}">
-      <div align="center">
-        <p th:text="${error}"/>
-      </div>
-    </div>
-    <div class="container">
-      <form th:action="@{/login}" method='POST' id='loginForm' class='cssform' autocomplete='off'>
-        <div class="form-group">
-          <label for="username"><h4 th:text="#{login.username}"/></label>
-          <input type="text" name='username' class="form-control" placeholder="username" id='username'/>
-        </div>
-        <div class="form-group">
-          <label for="password"><h4 th:text="#{login.password}"/></label>
-          <input type="password" name='password' class="form-control" placeholder="password" id='password'/>
-        </div>
-        <br/>
-        <button id="btn-success" type="submit" class="btn btn-lg btn-primary btn-block"><h5 th:text="#{login.action}"/></button>
-        <br/>
-      </form>
-    </div>
-    <footer>
-      <nav class="navbar navbar-inverse navbar-fixed-bottom">
-        <a class="navbar-brand" th:href="#{project.repository}"><p th:text="#{login.footer}"/></a>
-      </nav>
-    </footer>
-  </body>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security Example </title>
+</head>
+<body>
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div><label> Username : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+</form>
+</body>
 </html>
 ```
 
-This is our `LoginController` we are rendering error object message in case that the attempt to login failed and the view is specified.
+This is our `HomeController`.
 
 
-```groovy
-package com.jos.dem.springboot.security.controller
+```java
+package com.josdem.springboot.security.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
-import org.springframework.web.servlet.ModelAndView
-import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.beans.factory.annotation.Value
-import org.springframework.stereotype.Controller
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
+@Slf4j
 @Controller
-class LoginController {
+public class HomeController {
 
-  Logger log = LoggerFactory.getLogger(this.class)
-
-  @RequestMapping("/login")
-  ModelAndView login(@RequestParam Optional<String> error){
-    log.info "Calling login"
-    ModelAndView modelAndView = new ModelAndView('login/login')
-    if(error.isPresent()){
-      modelAndView.addObject('error', 'Invalid Credentials')
-    }
-    modelAndView
-  }
-
-}
-```
-
-In Spring Boot 2.0.0.RELEASE we need to specify `PasswordEncoder` therefore we need to add that bean to the configuration. I am attaching here our `SpringBootApplication` class
-
-```groovy
-package com.jos.dem.springboot.security
-
-import org.springframework.boot.SpringApplication
-import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.context.annotation.Bean
-import org.springframework.security.crypto.password.PasswordEncoder
-import org.springframework.security.crypto.password.NoOpPasswordEncoder
-
-@SpringBootApplication
-class DemoApplication {
-
-  @Bean
-  PasswordEncoder passwordEncoder() {
-    NoOpPasswordEncoder.getInstance()
-  }
-
-  static void main(String[] args) {
-    SpringApplication.run DemoApplication, args
+  @GetMapping("/")
+  public String index() {
+    log.info("Calling home");
+    return "home";
   }
 }
 ```
 
-Finally this is our `HomeController` with a protected message:
-
-```groovy
-package com.jos.dem.springboot.security.controller
-
-import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.RequestMapping
-
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
-
-@Controller
-class HomeController {
-
-  Logger log = LoggerFactory.getLogger(this.class)
-
-  @RequestMapping('/')
-  String index(){
-    log.info 'Calling Index'
-    'index'
-  }
-
-}
-```
-
-A protected messsage is just a `Hello World!` page
+And home view:
 
 ```html
-<html>
-  Hello World!
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <title>Home Page</title>
+</head>
+<body>
+<h1>Welcome!</h1>
+<p>Click <a th:href="@{/message}">here</a> to see a private message.</p>
+</body>
 </html>
 ```
 
-Now run the project and try visiting http://localhost:8080/ to see a Hello World message previous authentication using our custom login page.
+This home view includes a link to `/message` page, which is defined in the following [Thymeleaf](https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html) template.
+
+```html
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Hello Page</title></head>
+<body><h1>Hello World!</h1></body>
+</html>
+```
+
+The expected behaivour is when a user clicks on the `/message` link it will ask for credentials, in order to do that we need to define our `securityFilterChain` and `userDetailsService`
+
+```java
+package com.josdem.springboot.security.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+
+@Configuration
+@EnableWebSecurity
+public class WebSecurityConfig {
+
+  @Bean
+  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+    http
+            .authorizeHttpRequests((requests) -> requests
+                    .requestMatchers("/", "/home").permitAll()
+                    .anyRequest().authenticated()
+            )
+            .formLogin((form) -> form
+                    .loginPage("/login")
+                    .permitAll()
+            )
+            .logout((logout) -> logout.permitAll());
+
+    return http.build();
+  }
+
+  @Bean
+  public UserDetailsService userDetailsService() {
+    UserDetails user =
+            User.withDefaultPasswordEncoder()
+                    .username("josdem")
+                    .password("12345678")
+                    .roles("USER")
+                    .build();
+
+    return new InMemoryUserDetailsManager(user);
+  }
+
+}
+```
+
+Finally this is our `MessageController`:
+
+```java
+package com.josdem.springboot.security.controller;
+
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Slf4j
+@Controller
+public class MessageController {
+
+    @GetMapping("/message")
+    public String message() {
+        log.info("Calling private message");
+        return "message";
+    }
+}
+```
+
+Now run the project:
+
+```bash
+gradle bootRun
+```
 
 To browse the project go [here](https://github.com/josdem/spring-boot-security), to download the project:
 
 ```bash
-git clone https://github.com/josdem/spring-boot-security.git
+git clone git@github.com:josdem/spring-boot-security.git
 git fetch
 git checkout feature/in-memory
 ```
