@@ -78,7 +78,7 @@ public class MvcConfig implements WebMvcConfigurer {
 }
 ```
 
-Now we need to create the login page:
+Now we need to create the login page as: `${PROJECT_HOME}/src/main/resources/templates/login.html`:
 
 ```html
 <!DOCTYPE html>
