@@ -10,6 +10,7 @@ categories = ["techtalk", "code"]
 
 ## Repository Permission
 Read access to:
+
 - Actions variables
 - Deployments
 - Environments
@@ -17,6 +18,7 @@ Read access to:
 - Secrets
 
 Read and Write access to:
+
 - Action
 - Code (Contents)
 - Workflows
