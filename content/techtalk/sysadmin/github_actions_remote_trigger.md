@@ -68,7 +68,7 @@ The last step is to create a HTTP request
 
 ```bash
 curl --request POST \
-  --url 'https://api.github.com/repos/josdem/${YOUR_REPOSITORY}/dispatches' \
+  --url 'https://api.github.com/repos/${USERNAME}/${YOUR_REPOSITORY}/dispatches' \
   --header 'Accept: application/vnd.github+json' \
   --header 'Authorization: Bearer ${TOKEN}' \
   --data '{"event_type: "Called from API request"}'
@@ -76,6 +76,7 @@ curl --request POST \
 
 where:
 
+- `${USERNAME}` GitHub username
 - `${YOUR_REPOSITORY}` Repository with workflow you want to run
 - `${TOKEN}` Your fine-grained generated token
 
