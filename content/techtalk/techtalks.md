@@ -227,6 +227,7 @@ My main goal at writting techtalks is keeping me in touch with new tendencies in
  * [Launching an EC2 using CloudFormation](/techtalk/sysadmin/cloud_formation_ec2)
  * [Spring Boot in Nginx Server](/techtalk/sysadmin/spring_boot_nginx)
  * [Travis Configuration](/techtalk/sysadmin/travis_configuration)
+ * [Github Actions Remote Trigger](/techtalk/sysadmin/github_actions_remote_trigger)
 * [**UiPath**](/techtalk/uipath)
  * [UiPath Orchestrator](/techtalk/uipath/uipath_orchestrator)
 * [**Apache Camel**](/techtalk/camel)

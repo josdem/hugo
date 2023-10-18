@@ -13,5 +13,6 @@ The duties of a system administrator are wide-ranging, and vary widely from one 
 * [Launching an EC2 using CloudFormation](/techtalk/sysadmin/cloud_formation_ec2)
 * [Spring Boot in Nginx Server](/techtalk/sysadmin/spring_boot_nginx)
 * [Travis Configuration](/techtalk/sysadmin/travis_configuration)
+* [Github Actions Remote Trigger](/techtalk/sysadmin/github_actions_remote_trigger)
 
 [Return to the main article](/techtalk/techtalks)
