@@ -23,7 +23,7 @@ Read and Write access to:
 
 Then, you will need to add a `repository_dispatch` event as you can see in this example:
 
-```yml
+```yaml
 name: Playwright Tests
 on:
   push:
