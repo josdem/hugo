@@ -71,7 +71,7 @@ curl --request POST \
   --url 'https://api.github.com/repos/${USERNAME}/${YOUR_REPOSITORY}/dispatches' \
   --header 'Accept: application/vnd.github+json' \
   --header 'Authorization: Bearer ${TOKEN}' \
-  --data '{"event_type: "Called from API request"}'
+  --data '{"event_type": "Called from API request"}'
 ```
 
 where:
