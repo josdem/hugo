@@ -80,7 +80,7 @@ where:
 - `${YOUR_REPOSITORY}` Repository with workflow you want to run
 - `${TOKEN}` Your fine-grained generated token
 
-## Inkoke from Jenkins Pipeline
+## Invoke from Jenkins Pipeline
 
 If you want to execute this `cURL` command from a declarative Jenkins pipeline, you can do it in this way:
 
