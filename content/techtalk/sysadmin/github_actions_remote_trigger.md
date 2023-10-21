@@ -80,11 +80,34 @@ where:
 - `${YOUR_REPOSITORY}` Repository with workflow you want to run
 - `${TOKEN}` Your fine-grained generated token
 
+## Inkoke from Jenkins Pipeline
 
-To browse a project with this implementation go [here](https://github.com/josdem/playwright-vetlog), to download the project:
+If you want to execute this `cURL` command from a declarative Jenkins pipeline, you can do it in this way:
+
+```groovy
+stage ('Testing') {
+  steps {
+    echo 'Invoke GitHub Actions Workflow'
+    script {
+      try {
+        sh """curl -X POST https://api.github.com/repos/josdem/playwright-vetlog/dispatches \
+        --header "Accept: application/vnd.github.v3+json" \
+        --header "Authorization: Bearer ${token}" \
+        --data '{"event_type": "Called from Jenkins"}'"""
+      } catch (Exception e) {
+        echo "Failed to invoke GitHub Actions Workflow: ${e.getMessage()}"
+      }
+    }
+    echo 'Done!'
+  }
+}
+```
+
+To browse a project with this implementation go [here](https://github.com/josdem/playwright-vetlog) and [here](https://github.com/josdem/vetlog-pipeline) to download the project:
 
 ```bash
 git clone git@github.com:josdem/playwright-vetlog.git
+git clone git@github.com:josdem/vetlog-pipeline.git
 ```
 
 [Return to the main article](/techtalk/sysadmin)
