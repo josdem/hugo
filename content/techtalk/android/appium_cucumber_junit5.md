@@ -319,4 +319,6 @@ To browse the code go [here](https://github.com/josdem/jugoterapia-appium), to d
 git clone git@github.com:josdem/jugoterapia-appium.git
 ```
 
+Here is a sibling project using a recent version: [launcher-automation](https://github.com/josdem/launcher-automation)
+
 [Return to the main article](/techtalk/android)
