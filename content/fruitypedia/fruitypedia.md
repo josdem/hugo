@@ -1,8 +1,8 @@
 +++
 date = "2015-08-29T13:43:14-05:00"
 categories = ["projects","opensource"]
-tags = ["josdem", "projects","opensource"]
-title = "Jugoterapia"
+tags = ["josdem", "projects","opensource","android","kotlin","fruitypedia"]
+title = "Fruitypedia"
 description="Juice and smoothie recipes provide alternatives to heal our bodies and boost energy."
 +++
 
@@ -10,7 +10,7 @@ Juice and smoothie recipes provide alternatives to heal our bodies and boost ene
 
 |   |   |
 |---|---|
-|![fruitypedia](../../images/jugoterapia.png) | Every day, more people are willing to have healthy and natural alternatives as a source of nutrients to provide physical wellness. Maintaining our bodies in good shape is not easy, especially when we are sick. **Preventive medicine is key!** A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables. Fruitypedia offers therapy that helps to have a healthy lifestyle.|
+|![fruitypedia](../../images/fruitypedia.png) | Every day, more people are willing to have healthy and natural alternatives as a source of nutrients to provide physical wellness. Maintaining our bodies in good shape is not easy, especially when we are sick. **Preventive medicine is key!** A good way to achieve a healthy alimentation is to eat a good amount of fruits and vegetables. Fruitypedia offers therapy that helps to have a healthy lifestyle.|
 
 <br/>
 
