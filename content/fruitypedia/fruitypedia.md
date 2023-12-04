@@ -23,7 +23,7 @@ Juices and smoothies effectively provide minerals, vitamins, and essential nutri
 
 * `alpha-1.4` We are back, providing new smoothie recipes!
 
-In order to install this application, you need to have installed [Lollipop 5.0](https://www.android.com/versions/lollipop-5-0/) or newest. I hope you enjoy Jugoterapia as much as I did coding it for you.
+In order to install this application, you need to have installed [Lollipop 5.0](https://www.android.com/versions/lollipop-5-0/) or newest. I hope you enjoy Fruitypedia as much as I did coding it for you.
 
 **More Information?**
 
