@@ -44,7 +44,7 @@ disqusShortname = "josdem"
 	# Replace the 'avatar.jpg' under 'static/img' with your own image.
 	[params.about]
 		title = "About me"
-		bio = "**Jose Morales is a software developer** eager to contribute to products. He has four public projects [Jmetadata](/jmetadata/jmetadata), [Jugoterapia](/jugoterapia/jugoterapia), [Jmailer](http://jmailer.josdem.io/), and [Vetlog](http://vetlog.org/), he enjoys writing about technology, so he has a [Techtalks](/techtalk/techtalks) section; his hobby is creating [Mixes](/music/myremixes) because he thinks that sharing is caring."
+		bio = "**Jose Morales is a software developer** eager to contribute to products. He has four public projects [Jmetadata](/jmetadata/jmetadata), [Fruitypedia](/fruitypedia/fruitypedia), [Jmailer](http://jmailer.josdem.io/), and [Vetlog](http://vetlog.org/), he enjoys writing about technology, so he has a [Techtalks](/techtalk/techtalks) section; his hobby is creating [Mixes](/music/myremixes) because he thinks that sharing is caring."
 
 		[[params.about.skills]]
 			name = "Communication"
