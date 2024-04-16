@@ -80,6 +80,7 @@ In this section I will cover small projects I'm doing using Spring Boot, what is
 * [Spring Boot Profiles](/techtalk/spring/spring_boot_profiles)
 * [Spring Boot Retrofit2 Cucumber & Junit5](/techtalk/spring/spring_boot_retrofit_cucumber_junit5)
 * [Spring Boot Testing Web Layer](/techtalk/spring/spring_boot_web_testing)
+* [Spring Boot Publishing an Artifactory Library](/techtalk/spring/spring_boot_artifactory_library)
 
 <a name="Spring_Boot_Reactive">
 ## Spring Boot Reactive
@@ -111,7 +112,6 @@ This section will explore a new paradigm introduced in Spring Framework 5, react
 * [Spring Webflux JAXB](/techtalk/spring/spring_webflux_jaxb)
 * [Spring Webflux Constructor Injection](/techtalk/spring/spring_webflux_required_args_constructor)
 * [Spring Webflux WebSockets](/techtalk/spring/spring_webflux_websockets)
-* [Spring Webflux Publishing an Artifactory Library](/techtalk/spring/spring_webflux_artifactory_library)
 
 <a name="Spring_Boot_Reactive_ES">
 ## Spring Boot Reactivo en Español
